@@ -1,5 +1,4 @@
-MimeTypeArray
-=============
+# MimeTypeArray
 
 **Deprecated**
 
@@ -7,14 +6,12 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `MimeTypeArray` interface returns an array of [`MimeType`](mimetype) instances, each of which contains information about a supported browser plugins. This object is returned by [`NavigatorPlugins.mimeTypes`](navigatorplugins/mimetypes).
 
-Properties
-----------
+## Properties
 
 <span class="page-not-created">`MimeTypeArray.length`</span>  
 The number of items in the array.
 
-Methods
--------
+## Methods
 
 <span class="page-not-created">`MimeTypeArray.item()`</span>  
 Returns the `MimeType` object with the specified index.
@@ -22,8 +19,7 @@ Returns the `MimeType` object with the specified index.
 <span class="page-not-created">`MimeTypeArray.namedItem()`</span>  
 Returns the `MimeType` object with the specified name.
 
-Example
--------
+## Example
 
 The following example tests whether a plugin is available for the application/pdf mime type and if so, which plugin that is.
 
@@ -37,14 +33,12 @@ The following example tests whether a plugin is available for the application/pd
       //   should upgrade their browser.
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#mimetypearray">HTML Living Standard<br />
 <span class="small">The definition of 'MimeTypeArray' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,12 +1,10 @@
-Navigator.serial
-================
+# Navigator.serial
 
 The `serial` read-only property of the [`Navigator`](../navigator) interface returns a [`Serial`](../serial) object which represents the entry point into the <span class="page-not-created">`Web Serial API`</span>.
 
 When getting, the same instance of the [`Serial`](../serial) object will always be returned.
 
-Syntax
-------
+## Syntax
 
     var serialObj = navigator.serial;
 
@@ -14,8 +12,7 @@ Syntax
 
 A [`Serial`](../serial) object.
 
-Examples
---------
+## Examples
 
 The following example uses the `getPorts()` method to initialize a list of available ports.
 
@@ -24,14 +21,12 @@ The following example uses the `getPorts()` method to initialize a list of avail
       // Initialize the list of available ports with `ports` on page load.
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/serial/#extensions-to-the-navigator-interface">Web Serial API<br />
 <span class="small">The definition of 'Extensions to the Navigator Interface' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -87,10 +82,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Read from and write to a serial port](https://web.dev/serial/)
--   [Getting started with the web serial API](https://codelabs.developers.google.com/codelabs/web-serial#0)
+- [Read from and write to a serial port](https://web.dev/serial/)
+- [Getting started with the web serial API](https://codelabs.developers.google.com/codelabs/web-serial#0)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/serial" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/serial</a>

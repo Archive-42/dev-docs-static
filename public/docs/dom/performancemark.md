@@ -1,12 +1,10 @@
-PerformanceMark
-===============
+# PerformanceMark
 
-`PerformanceMark` is an *abstract* interface for [`PerformanceEntry`](performanceentry) objects with an [`entryType`](performanceentry/entrytype) of "`mark`". Entries of this type are created by calling [`performance.mark()`](performance/mark) to add a *named* [`DOMHighResTimeStamp`](domhighrestimestamp) (the *mark*) to the browser's *performance timeline*.
+`PerformanceMark` is an _abstract_ interface for [`PerformanceEntry`](performanceentry) objects with an [`entryType`](performanceentry/entrytype) of "`mark`". Entries of this type are created by calling [`performance.mark()`](performance/mark) to add a _named_ [`DOMHighResTimeStamp`](domhighrestimestamp) (the _mark_) to the browser's _performance timeline_.
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-Properties
-----------
+## Properties
 
 This interface has no properties but it extends the following [`PerformanceEntry`](performanceentry) properties by qualifying/constraining the properties as follows:
 
@@ -20,27 +18,23 @@ Returns the name given to the mark when it was created via a call to [`performan
 Returns the [`DOMHighResTimeStamp`](domhighrestimestamp) when [`performance.mark()`](performance/mark) was called.
 
 [`PerformanceEntry.duration`](performanceentry/duration)  
-Returns "`0`". (A mark has no *duration*.)
+Returns "`0`". (A mark has no _duration_.)
 
-Methods
--------
+## Methods
 
 This interface has no methods.
 
-Example
--------
+## Example
 
 See the example in [Using the User Timing API](user_timing_api/using_the_user_timing_api).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/user-timing/#performancemark">User Timing Level 2<br />
 <span class="small">The definition of 'PerformanceMark' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/user-timing/#performancemark">User Timing<br />
 <span class="small">The definition of 'PerformanceMark' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Basic definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -148,10 +142,9 @@ No
 
 12.0
 
-See also
---------
+## See also
 
--   [User Timing (Overview)](user_timing_api)
--   [Using the User Timing API](user_timing_api/using_the_user_timing_api)
+- [User Timing (Overview)](user_timing_api)
+- [Using the User Timing API](user_timing_api/using_the_user_timing_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceMark" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PerformanceMark</a>

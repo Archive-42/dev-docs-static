@@ -1,5 +1,4 @@
-Navigator.locks
-===============
+# Navigator.locks
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `locks` read-only property of the [`Navigator`](../navigator) interface returns a [`LockManager`](../lockmanager) object which provides methods for requesting a new [`Lock`](../lock) object and querying for an existing `Lock` object.
 
-Syntax
-------
+## Syntax
 
     var lockManager = navigator.locks
 
@@ -17,14 +15,12 @@ Syntax
 
 A [`LockManager`](../lockmanager) object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/web-locks/#navigator-mixins">Web Locks API<br />
 <span class="small">The definition of 'locks' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

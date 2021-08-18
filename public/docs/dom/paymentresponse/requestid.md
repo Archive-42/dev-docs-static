@@ -1,5 +1,4 @@
-PaymentResponse.requestId
-=========================
+# PaymentResponse.requestId
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `requestId` read-only property of the [`PaymentResponse`](../paymentresponse) interface rreturns the free-form identifier supplied by the `PaymentResponse()` constructor by details.id.
 
-Syntax
-------
+## Syntax
 
     var id = paymentRequest.id
 
@@ -17,14 +15,12 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-paymentresponse-requestid">Payment Request API<br />
 <span class="small">The definition of 'requestId' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

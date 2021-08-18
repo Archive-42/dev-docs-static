@@ -1,10 +1,8 @@
-Node.isConnected
-================
+# Node.isConnected
 
 The `isConnected` read-only property of the [`Node`](../node) interface returns a boolean indicating whether the node is connected (directly or indirectly) to the context object, for example the [`Document`](../document) object in the case of the normal DOM, or the [`ShadowRoot`](../shadowroot) in the case of a shadow DOM.
 
-Syntax
-------
+## Syntax
 
     var isItConnected = nodeObjectInstance.isConnected
 
@@ -12,8 +10,7 @@ Syntax
 
 `true` if the node is connected to its relevant context object, and `false` if not.
 
-Examples
---------
+## Examples
 
 ### Standard DOM
 
@@ -62,14 +59,12 @@ A shadow DOM example:
     shadow.appendChild(style);
     console.log(style.isConnected); // Returns true
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-node-isconnected">DOM<br />
 <span class="small">The definition of 'isConnected' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -125,9 +120,8 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [Node.prototype.isConnected polyfill](https://gist.github.com/eligrey/f109a6d0bf4efe3461201c3d7b745e8f)
+- [Node.prototype.isConnected polyfill](https://gist.github.com/eligrey/f109a6d0bf4efe3461201c3d7b745e8f)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/isConnected" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/isConnected</a>

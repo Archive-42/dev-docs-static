@@ -1,38 +1,34 @@
-RTCError
-========
+# RTCError
 
 The `RTCError` interface describes an error which has occurred while handling [WebRTC](webrtc_api) operations. It's based upon the standard [`DOMException`](domexception) interface that describes general DOM errors.
 
-Constructor
------------
+## Constructor
 
 <span class="page-not-created">`RTCError()`</span>  
 Creates and returns a new `RTCError` object initialized with the properties of the provided <span class="page-not-created">`RTCErrorInit`</span> dictionary and, optionally, a string to use as the value of the error's [`message`](domexception/message) property.
 
-Properties
-----------
+## Properties
 
-*In addition to the properties defined by the parent interface, [`DOMException`](domexception), `RTCError` includes the following properties:*
+_In addition to the properties defined by the parent interface, [`DOMException`](domexception), `RTCError` includes the following properties:_
 
- [`errorDetail`](rtcerror/errordetail) <span class="badge inline readonly">Read only </span>   
+[`errorDetail`](rtcerror/errordetail) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) specifying the WebRTC-specific error code identifying the type of error that occurred.
 
- [`receivedAlert`](rtcerror/receivedalert) <span class="badge inline readonly">Read only </span>   
+[`receivedAlert`](rtcerror/receivedalert) <span class="badge inline readonly">Read only </span>  
 An unsigned long integer value indicating the fatal [DTLS](https://developer.mozilla.org/en-US/docs/Glossary/DTLS) error which was received from the network. Only valid if the `errorDetail` string is `dtls-failure`. If `null`, no DTLS error was received.
 
- [`sctpCauseCode`](rtcerror/sctpcausecode) <span class="badge inline readonly">Read only </span>   
+[`sctpCauseCode`](rtcerror/sctpcausecode) <span class="badge inline readonly">Read only </span>  
 If `errorDetail` is `sctp-failure`, this property is a long integer specifying the [SCTP](https://developer.mozilla.org/en-US/docs/Glossary/SCTP) cause code indicating the cause of the failed SCTP negotiation. `null` if the error isn't an SCTP error.
 
- [`sdpLineNumber`](rtcerror/sdplinenumber) <span class="badge inline readonly">Read only </span>   
+[`sdpLineNumber`](rtcerror/sdplinenumber) <span class="badge inline readonly">Read only </span>  
 If `errorDetail` is `sdp-syntax-error`, this property is a long integer identifying the line number of the [SDP](https://developer.mozilla.org/en-US/docs/Glossary/SDP) on which the syntax error occurred. `null` if the error isn't an SDP syntax error.
 
- [`sentAlert`](rtcerror/sentalert) <span class="badge inline readonly">Read only </span>   
+[`sentAlert`](rtcerror/sentalert) <span class="badge inline readonly">Read only </span>  
 If `errorDetail` is `dtls-failure`, this property is an unsigned long integer indicating the fatal DTLS error that was sent out by this device. If `null`, no DTLS error was transmitted.
 
 All `RTCError` objects have their [`name`](domexception/name) set to `OperationError`.
 
-Examples
---------
+## Examples
 
 In this example, a handler is established for an [`RTCDataChannel`](rtcdatachannel)'s [`error`](rtcdatachannel/error_event) event.
 
@@ -62,14 +58,12 @@ The above example uses [`addEventListener()`](eventtarget/addeventlistener) to a
       /* and so forth */
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcerror">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCError' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-PaymentRequestUpdateEvent.PaymentRequestUpdateEvent()
-=====================================================
+# PaymentRequestUpdateEvent.PaymentRequestUpdateEvent()
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `PaymentRequestUpdateEvent` constructor creates a new [`PaymentRequestUpdateEvent`](../paymentrequestupdateevent) object which enables a web page to update the details of a [`PaymentRequest`](../paymentrequest) in response to a user action. Actual updates are made by passing options to the [`updateWith()`](updatewith) method.
 
-Syntax
-------
+## Syntax
 
     var paymentRequestUpdateEvent = new PaymentRequestUpdateEvent()
 
@@ -21,14 +19,12 @@ None.
 A new `PaymentRequestUpdateEvent` object.[Payment Request API  
 <span class="small">The definition of 'PaymentRequestUpdateEvent' in that specification.</span>](https://w3c.github.io/payment-request/#paymentrequestupdateevent-interface)
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#constructor-0">Payment Request API<br />
 <span class="small">The definition of 'PaymentRequestUpdateEvent()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

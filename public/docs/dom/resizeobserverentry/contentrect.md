@@ -1,10 +1,8 @@
-ResizeObserverEntry.contentRect
-===============================
+# ResizeObserverEntry.contentRect
 
 The `contentRect` read-only property of the [`ResizeObserverEntry`](../resizeobserverentry) interface returns a [`DOMRectReadOnly`](../domrectreadonly) object containing the new size of the observed element when the callback is run. Note that this is better supported than [`ResizeObserverEntry.borderBoxSize`](borderboxsize) or [`ResizeObserverEntry.contentBoxSize`](contentboxsize), but it is left over from an earlier implementation of the Resize Observer API, is still included in the spec for web compat reasons, and may be deprecated in future versions.
 
-Syntax
-------
+## Syntax
 
     var contentRect = resizeObserverEntry.contentRect;
 
@@ -14,8 +12,7 @@ A [`DOMRectReadOnly`](../domrectreadonly) object containing the new size of the 
 
 If the `target` is an HTML [`Element`](../element), the returned `contentRect` is the element's content box. If the `target` is an [`SVGElement`](../svgelement), the returned `contentRect` is the SVG's bounding box.
 
-Examples
---------
+## Examples
 
 The following snippet is taken from the [resize-observer-text.html](https://mdn.github.io/dom-examples/resize-observer/resize-observer-text.html) ([see source](https://github.com/mdn/dom-examples/blob/master/resize-observer/resize-observer-text.html)) example. This uses a simple feature detection test to see if the browser supports the newer [`ResizeObserverEntry.contentBoxSize`](contentboxsize) property — if so, it uses that to get the sizing data it needs. If not, it uses `contentRect`.
 
@@ -33,14 +30,12 @@ The following snippet is taken from the [resize-observer-text.html](https://mdn.
 
     resizeObserver.observe(divElem);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/resize-observer/#dom-resizeobserverentry-contentrect">Resize Observer<br />
 <span class="small">The definition of 'contentRect' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

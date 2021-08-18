@@ -1,10 +1,8 @@
-PaymentAddress.city
-===================
+# PaymentAddress.city
 
 The `city` read-only property of the [`PaymentAddress`](../paymentaddress) interface returns a string containing the city or town portion of the address.
 
-Syntax
-------
+## Syntax
 
     var paymentCity = PaymentAddress.city;
 
@@ -12,14 +10,12 @@ Syntax
 
 A [`DOMString`](../domstring) indicating the city or town portion of the address described by the [`PaymentAddress`](../paymentaddress) object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-paymentaddress-city">Payment Request API<br />
 <span class="small">The definition of 'PaymentAddress.city' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

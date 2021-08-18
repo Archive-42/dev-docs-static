@@ -1,157 +1,154 @@
-Navigator
-=========
+# Navigator
 
 The `Navigator` interface represents the state and the identity of the user agent. It allows scripts to query it and to register themselves to carry on some activities.
 
 A `Navigator` object can be retrieved using the read-only [`window.navigator`](window/navigator) property.
 
-Properties
-----------
+## Properties
 
-*Doesn't inherit any properties, but implements those defined in [`NavigatorID`](navigatorid), [`NavigatorLanguage`](navigatorlanguage), [`NavigatorOnLine`](navigatoronline), <span class="page-not-created">`NavigatorContentUtils`</span>, [`NavigatorStorage`](navigatorstorage), <span class="page-not-created">`NavigatorStorageUtils`</span>, [`NavigatorConcurrentHardware`](navigatorconcurrenthardware), [`NavigatorPlugins`](navigatorplugins), and <span class="page-not-created">`NavigatorUserMedia`</span>.*
+_Doesn't inherit any properties, but implements those defined in [`NavigatorID`](navigatorid), [`NavigatorLanguage`](navigatorlanguage), [`NavigatorOnLine`](navigatoronline), <span class="page-not-created">`NavigatorContentUtils`</span>, [`NavigatorStorage`](navigatorstorage), <span class="page-not-created">`NavigatorStorageUtils`</span>, [`NavigatorConcurrentHardware`](navigatorconcurrenthardware), [`NavigatorPlugins`](navigatorplugins), and <span class="page-not-created">`NavigatorUserMedia`</span>._
 
 ### Standard properties
 
- [`Navigator.connection`](navigator/connection) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Navigator.connection`](navigator/connection) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Provides a [`NetworkInformation`](networkinformation) object containing information about the network connection of a device.
 
- [`Navigator.cookieEnabled`](navigator/cookieenabled) <span class="badge inline readonly">Read only </span>   
+[`Navigator.cookieEnabled`](navigator/cookieenabled) <span class="badge inline readonly">Read only </span>  
 Returns false if setting a cookie will be ignored and true otherwise.
 
- [`Navigator.credentials`](navigator/credentials) <span class="badge inline readonly">Read only </span>   
+[`Navigator.credentials`](navigator/credentials) <span class="badge inline readonly">Read only </span>  
 Returns the [`CredentialsContainer`](credentialscontainer) interface which exposes methods to request credentials and notify the user agent when interesting events occur such as successful sign in or sign out.
 
- [`Navigator.deviceMemory`](navigator/devicememory) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Navigator.deviceMemory`](navigator/devicememory) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns the amount of device memory in gigabytes. This value is an approximation given by rounding to the nearest power of 2 and dividing that number by 1024.
 
- [`Navigator.doNotTrack`](navigator/donottrack) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Navigator.doNotTrack`](navigator/donottrack) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Reports the value of the user's do-not-track preference. When this value is "yes", your web site or application should not track the user.
 
- [`Navigator.geolocation`](navigator/geolocation) <span class="badge inline readonly">Read only </span>   
+[`Navigator.geolocation`](navigator/geolocation) <span class="badge inline readonly">Read only </span>  
 Returns a [`Geolocation`](geolocation) object allowing accessing the location of the device.
 
- [`Navigator.hid`](navigator/hid) <span class="badge inline readonly">Read only </span>   
+[`Navigator.hid`](navigator/hid) <span class="badge inline readonly">Read only </span>  
 Returns an [`HID`](hid) object providing methods for connecting to HID devices, listing attached HID devices, and event handlers for connected HID devices.
 
- [`NavigatorConcurrentHardware.hardwareConcurrency`](navigatorconcurrenthardware/hardwareconcurrency) <span class="badge inline readonly">Read only </span>   
+[`NavigatorConcurrentHardware.hardwareConcurrency`](navigatorconcurrenthardware/hardwareconcurrency) <span class="badge inline readonly">Read only </span>  
 Returns the number of logical processor cores available.
 
- [`NavigatorPlugins.javaEnabled`](navigatorplugins/javaenabled) <span class="badge inline readonly">Read only </span>   
+[`NavigatorPlugins.javaEnabled`](navigatorplugins/javaenabled) <span class="badge inline readonly">Read only </span>  
 Returns false.
 
- [`Navigator.keyboard`](navigator/keyboard) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Navigator.keyboard`](navigator/keyboard) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a [`Keyboard`](keyboard) object which provides access to functions that retrieve keyboard layout maps and toggle capturing of key presses from the physical keyboard.
 
- [`NavigatorLanguage.language`](navigatorlanguage/language) <span class="badge inline readonly">Read only </span>   
+[`NavigatorLanguage.language`](navigatorlanguage/language) <span class="badge inline readonly">Read only </span>  
 Returns a [`DOMString`](domstring) representing the preferred language of the user, usually the language of the browser UI. The `null` value is returned when this is unknown.
 
- [`NavigatorLanguage.languages`](navigatorlanguage/languages) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`NavigatorLanguage.languages`](navigatorlanguage/languages) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns an array of [`DOMString`](domstring) representing the languages known to the user, by order of preference.
 
- [`Navigator.locks`](navigator/locks) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Navigator.locks`](navigator/locks) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a [`LockManager`](lockmanager) object which provides methods for requesting a new [`Lock`](lock) object and querying for an existing [`Lock`](lock) object
 
- [`Navigator.maxTouchPoints`](navigator/maxtouchpoints) <span class="badge inline readonly">Read only </span>   
+[`Navigator.maxTouchPoints`](navigator/maxtouchpoints) <span class="badge inline readonly">Read only </span>  
 Returns the maximum number of simultaneous touch contact points are supported by the current device.
 
- [`Navigator.mediaCapabilities`](navigator/mediacapabilities) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Navigator.mediaCapabilities`](navigator/mediacapabilities) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a [`MediaCapabilities`](mediacapabilities) object that can expose information about the decoding and encoding capabilities for a given format and output capabilities.
 
- [`Navigator.mediaDevices`](navigator/mediadevices) <span class="badge inline readonly">Read only </span>   
+[`Navigator.mediaDevices`](navigator/mediadevices) <span class="badge inline readonly">Read only </span>  
 Returns a reference to a [`MediaDevices`](mediadevices) object which can then be used to get information about available media devices ([`MediaDevices.enumerateDevices()`](mediadevices/enumeratedevices)), find out what constrainable properties are supported for media on the user's computer and user agent ([`MediaDevices.getSupportedConstraints()`](mediadevices/getsupportedconstraints)), and to request access to media using [`MediaDevices.getUserMedia()`](mediadevices/getusermedia).
 
- [`Navigator.mediaSession`](navigator/mediasession) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Navigator.mediaSession`](navigator/mediasession) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns [`MediaSession`](mediasession) object which can be used to provide metadata that can be used by the browser to present information about the currently-playing media to the user, such as in a global media controls UI.
 
- [`NavigatorPlugins.mimeTypes`](navigatorplugins/mimetypes) <span class="badge inline readonly">Read only </span><span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`NavigatorPlugins.mimeTypes`](navigatorplugins/mimetypes) <span class="badge inline readonly">Read only </span><span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns an [`MimeTypeArray`](mimetypearray) listing the MIME types supported by the browser.
 
- [`NavigatorOnLine.onLine`](navigatoronline/online) <span class="badge inline readonly">Read only </span>   
+[`NavigatorOnLine.onLine`](navigatoronline/online) <span class="badge inline readonly">Read only </span>  
 Returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the browser is working online.
 
- [`Navigator.permissions`](navigator/permissions) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Navigator.permissions`](navigator/permissions) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a [`Permissions`](permissions) object that can be used to query and update permission status of APIs covered by the [Permissions API](permissions_api).
 
- [`NavigatorPlugins.plugins`](navigatorplugins/plugins) <span class="badge inline readonly">Read only </span><span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`NavigatorPlugins.plugins`](navigatorplugins/plugins) <span class="badge inline readonly">Read only </span><span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns a [`PluginArray`](pluginarray) listing the plugins installed in the browser.
 
- [`Navigator.presentation`](navigator/presentation) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Navigator.presentation`](navigator/presentation) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a reference to the [`Presentation`](presentation) API.
 
- [`Navigator.serial`](navigator/serial) <span class="badge inline readonly">Read only </span>   
+[`Navigator.serial`](navigator/serial) <span class="badge inline readonly">Read only </span>  
 Returns a [`Serial`](serial) object, which represents the entry point into the <span class="page-not-created">`Web Serial API`</span> to enable the control of serial ports.
 
- [`Navigator.serviceWorker`](navigator/serviceworker) <span class="badge inline readonly">Read only </span>   
+[`Navigator.serviceWorker`](navigator/serviceworker) <span class="badge inline readonly">Read only </span>  
 Returns a [`ServiceWorkerContainer`](serviceworkercontainer) object, which provides access to registration, removal, upgrade, and communication with the [`ServiceWorker`](serviceworker) objects for the [associated document](https://html.spec.whatwg.org/multipage/browsers.html#concept-document-window).
 
- [`NavigatorStorage.storage`](navigatorstorage/storage) <span class="badge inline readonly">Read only </span>   
+[`NavigatorStorage.storage`](navigatorstorage/storage) <span class="badge inline readonly">Read only </span>  
 Returns the singleton [`StorageManager`](storagemanager) object used for managing persistence permissions and estimating available storage on a site-by-site/app-by-app basis.
 
- [`NavigatorID.userAgent`](navigatorid/useragent) <span class="badge inline readonly">Read only </span>   
+[`NavigatorID.userAgent`](navigatorid/useragent) <span class="badge inline readonly">Read only </span>  
 Returns the user agent string for the current browser.
 
- [`Navigator.vendor`](navigator/vendor) <span class="badge inline readonly">Read only </span>   
+[`Navigator.vendor`](navigator/vendor) <span class="badge inline readonly">Read only </span>  
 Returns the vendor name of the current browser (e.g., "Netscape6").
 
- [`Navigator.webdriver`](navigator/webdriver) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Navigator.webdriver`](navigator/webdriver) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Indicates whether the user agent is controlled by automation.
 
- [`Navigator.xr`](navigator/xr) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Navigator.xr`](navigator/xr) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns [`XRSystem`](xrsystem) object, which represents the entry point into the [WebXR API](webxr_device_api).
 
 ### Non-standard properties
 
- [`Navigator.buildID`](navigator/buildid) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`Navigator.buildID`](navigator/buildid) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns the build identifier of the browser. In modern browsers this property now returns a fixed timestamp as a privacy measure, e.g. `20181001000000` in Firefox 64 onwards.
 
- [`Navigator.contacts`](navigator/contacts) <span class="badge inline readonly">Read only </span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`Navigator.contacts`](navigator/contacts) <span class="badge inline readonly">Read only </span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns a [`ContactsManager`](contactsmanager) interface which allows users to select entries from their contact list and share limited details of the selected entries with a website or application.
 
- <span class="page-not-created">`Navigator.securitypolicy`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+<span class="page-not-created">`Navigator.securitypolicy`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns an empty string. In Netscape 4.7x, returns "US & CA domestic policy" or "Export policy".
 
- <span class="page-not-created">`Navigator.standalone`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+<span class="page-not-created">`Navigator.standalone`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns a boolean indicating whether the browser is running in standalone mode. Available on Apple's iOS Safari only.
 
- [`Navigator.wakeLock`](navigator/wakelock) <span class="badge inline readonly">Read only </span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`Navigator.wakeLock`](navigator/wakelock) <span class="badge inline readonly">Read only </span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns a [`WakeLock`](wakelock) interface you can use to request screen wake locks and prevent screen from dimming, turning off, or showing a screen saver.
 
 ### Deprecated properties
 
- [`NavigatorID.appCodeName`](navigatorid/appcodename) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`NavigatorID.appCodeName`](navigatorid/appcodename) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns the internal "code" name of the current browser. Do not rely on this property to return the correct value.
 
- [`NavigatorID.appName`](navigatorid/appname) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`NavigatorID.appName`](navigatorid/appname) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns a [`DOMString`](domstring) with the official name of the browser. Do not rely on this property to return the correct value.
 
- [`NavigatorID.appVersion`](navigatorid/appversion) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`NavigatorID.appVersion`](navigatorid/appversion) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns the version of the browser as a [`DOMString`](domstring). Do not rely on this property to return the correct value.
 
- [`Navigator.activeVRDisplays`](navigator/activevrdisplays) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Navigator.activeVRDisplays`](navigator/activevrdisplays) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns an array containing every [`VRDisplay`](vrdisplay) object that is currently presenting ([`VRDisplay.ispresenting`](vrdisplay/ispresenting) is `true`).
 
- [`Navigator.battery`](navigator/battery) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Navigator.battery`](navigator/battery) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns a [`BatteryManager`](batterymanager) object you can use to get information about the battery charging status.
 
- [`Navigator.oscpu`](navigator/oscpu) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Navigator.oscpu`](navigator/oscpu) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns a string that represents the current operating system.
 
- [`NavigatorID.platform`](navigatorid/platform) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`NavigatorID.platform`](navigatorid/platform) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns a string representing the platform of the browser. Do not rely on this function to return a significant value.
 
- [`NavigatorID.product`](navigatorid/product) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`NavigatorID.product`](navigatorid/product) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Always returns `'Gecko'`, on any browser. This property is kept only for compatibility purpose.
 
- [`Navigator.productSub`](navigator/productsub) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Navigator.productSub`](navigator/productsub) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns the build number of the current browser (e.g., "20060909").
 
- [`Navigator.vendorSub`](navigator/vendorsub) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Navigator.vendorSub`](navigator/vendorsub) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns the vendor version number (e.g. "6.1").
 
-Methods
--------
+## Methods
 
-*Doesn't inherit any method, but implements those defined in [`NavigatorID`](navigatorid), <span class="page-not-created">`NavigatorContentUtils`</span>, <span class="page-not-created">`NavigatorUserMedia`</span>, and <span class="page-not-created">`NavigatorStorageUtils`</span>.*
+_Doesn't inherit any method, but implements those defined in [`NavigatorID`](navigatorid), <span class="page-not-created">`NavigatorContentUtils`</span>, <span class="page-not-created">`NavigatorUserMedia`</span>, and <span class="page-not-created">`NavigatorStorageUtils`</span>._
 
 [`Navigator.canShare()`](navigator/canshare)  
 Returns `true` if a call to `Navigator.share()` would succeed.
@@ -179,26 +176,24 @@ Causes vibration on devices with support for it. Does nothing if vibration suppo
 
 ### Deprecated methods
 
- [`Navigator.getVRDisplays()`](navigator/getvrdisplays) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Navigator.getVRDisplays()`](navigator/getvrdisplays) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns a promise that resolves to an array of [`VRDisplay`](vrdisplay) objects representing any available VR devices connected to the computer.
 
- [`Navigator.getUserMedia()`](navigator/getusermedia) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Navigator.getUserMedia()`](navigator/getusermedia) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 After having prompted the user for permission, returns the audio or video stream associated to a camera or microphone on the local computer.
 
- [`Navigator.registerContentHandler()`](navigator/registercontenthandler) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Navigator.registerContentHandler()`](navigator/registercontenthandler) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Allows web sites to register themselves as a possible handler for a given MIME type.
 
- [`NavigatorID.taintEnabled()`](navigatorid/taintenabled) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`NavigatorID.taintEnabled()`](navigatorid/taintenabled) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns `false`. JavaScript taint/untaint functions removed in JavaScript 1.2.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#the-navigator-object">HTML Living Standard<br />
 <span class="small">The definition of 'the Navigator object' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

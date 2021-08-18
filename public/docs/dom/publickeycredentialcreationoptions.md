@@ -1,5 +1,4 @@
-PublicKeyCredentialCreationOptions
-==================================
+# PublicKeyCredentialCreationOptions
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `PublicKeyCredentialCreationOptions` dictionary of the [Web Authentication API](web_authentication_api) holds options passed to [`navigators.credentials.create()`](credentialscontainer/create) in order to create a [`PublicKeyCredential`](publickeycredential).
 
-Properties
-----------
+## Properties
 
 [`PublicKeyCredentialCreationOptions.rp`](publickeycredentialcreationoptions/rp)  
 An object describing the relying party which requested the credential creation.
@@ -22,28 +20,26 @@ A [`BufferSource`](buffersource), emitted by the relying party's server and used
 [`PublicKeyCredentialCreationOptions.pubKeyCredParams`](publickeycredentialcreationoptions/pubkeycredparams)  
 An [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of element which specify the desired features of the credential, including its type and the algorithm used for the cryptographic signature operations. This array is sorted by descending order of preference.
 
- [`PublicKeyCredentialCreationOptions.timeout`](publickeycredentialcreationoptions/timeout) <span class="badge inline optional">Optional</span>   
+[`PublicKeyCredentialCreationOptions.timeout`](publickeycredentialcreationoptions/timeout) <span class="badge inline optional">Optional</span>  
 A numerical hint, in milliseconds, which indicates the time the caller is willing to wait for the creation operation to complete. This hint may be overridden by the browser.
 
- [`PublicKeyCredentialCreationOptions.excludeCredentials`](publickeycredentialcreationoptions/excludecredentials) <span class="badge inline optional">Optional</span>   
+[`PublicKeyCredentialCreationOptions.excludeCredentials`](publickeycredentialcreationoptions/excludecredentials) <span class="badge inline optional">Optional</span>  
 An [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of descriptors for existing credentials. This is provided by the relying party to avoid creating new public key credentials for an existing user who already have some.
 
- [`PublicKeyCredentialCreationOptions.authenticatorSelection`](publickeycredentialcreationoptions/authenticatorselection) <span class="badge inline optional">Optional</span>   
+[`PublicKeyCredentialCreationOptions.authenticatorSelection`](publickeycredentialcreationoptions/authenticatorselection) <span class="badge inline optional">Optional</span>  
 An object whose properties are criteria used to filter out the potential authenticators for the creation operation.
 
- [`PublicKeyCredentialCreationOptions.attestation`](publickeycredentialcreationoptions/attestation) <span class="badge inline optional">Optional</span>   
+[`PublicKeyCredentialCreationOptions.attestation`](publickeycredentialcreationoptions/attestation) <span class="badge inline optional">Optional</span>  
 A [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) which indicates how the attestation (for the authenticator's origin) should be transported.
 
- [`PublicKeyCredentialCreationOptions.extensions`](publickeycredentialcreationoptions/extensions) <span class="badge inline optional">Optional</span>   
+[`PublicKeyCredentialCreationOptions.extensions`](publickeycredentialcreationoptions/extensions) <span class="badge inline optional">Optional</span>  
 An object with several client extensions' inputs. Those extensions are used to request additional processing (e.g. dealing with legacy FIDO APIs credentials, prompting a specific text on the authenticator, etc.).
 
-Methods
--------
+## Methods
 
 None.
 
-Examples
---------
+## Examples
 
     // some examples of COSE algorithms
     const cose_alg_ECDSA_w_SHA256 = -7;
@@ -116,14 +112,12 @@ Examples
         console.error(err);
       });;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#dictdef-publickeycredentialcreationoptions">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'PublicKeyCredentialCreationOptions dictionary' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -413,9 +407,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   <span class="page-not-created">`PublicKeyRequestOptions`</span>: the dictionary which provides option for the public key retrieval operation
+- <span class="page-not-created">`PublicKeyRequestOptions`</span>: the dictionary which provides option for the public key retrieval operation
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialCreationOptions" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialCreationOptions</a>

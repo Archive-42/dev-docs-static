@@ -1,23 +1,19 @@
-RTCAnswerOptions
-================
+# RTCAnswerOptions
 
 The `RTCAnswerOptions` dictionary is used to provide optional settings when creating an [SDP](https://developer.mozilla.org/en-US/docs/Glossary/SDP) answer using [`RTCPeerConnection.createOffer()`](rtcpeerconnection/createoffer) after receiving an offer from a remote peer. The `createOffer()` method's `options` parameter is of this type.
 
-Properties
-----------
+## Properties
 
-*This dictionary inherits properties from the [`RTCOfferAnswerOptions`](rtcofferansweroptions) dictionary, on which it's based.*
+_This dictionary inherits properties from the [`RTCOfferAnswerOptions`](rtcofferansweroptions) dictionary, on which it's based._
 
 **Note:** At this time, `RTCAnswerOptions` does not have any additional properties defined beyond those included in [`RTCOfferAnswerOptions`](rtcofferansweroptions). However, this is likely to change in the future, so the type has been defined in preparation for that eventuality.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcansweroptions">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCAnswerOptions' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

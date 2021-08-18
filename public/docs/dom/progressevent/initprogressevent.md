@@ -1,5 +1,4 @@
-ProgressEvent.initProgressEvent()
-=================================
+# ProgressEvent.initProgressEvent()
 
 **Deprecated**
 
@@ -15,40 +14,37 @@ The `ProgressEvent.initProgressEvent()` method Initializes an animation event cr
 
 **Note:** this method has been dropped during the standard process. It has been deprecated and removed from most implementation. Do not use it anymore, use the standard constructor, [`ProgressEvent()`](progressevent), to create a synthetic [`ProgressEvent`](../progressevent)
 
-Syntax
-------
+## Syntax
 
     Progress.initProgressEvent(typeArg, canBubbleArg, cancelableArg, lengthComputable, loaded, total);
 
 ### Parameters
 
-*typeArg*  
+_typeArg_  
 Is a [`DOMString`](../domstring) identifying the specific type of animation event that occurred. The following values are allowed:
 
 <table><thead><tr class="header"><th>Value</th><th>Meaning</th></tr></thead><tbody><tr class="odd"><td><code>loadstart</code></td><td>The operation has started.</td></tr><tr class="even"><td><code>progress</code></td><td>The operation still is in progress.</td></tr><tr class="odd"><td><code>error</code></td><td>The operation failed and didn't complete.</td></tr><tr class="even"><td><code>abort</code></td><td>The operation was cancelled and didn't complete.</td></tr><tr class="odd"><td><code>load</code></td><td>The operation completed.</td></tr><tr class="even"><td><code>loadend</code></td><td>The operation stopped.</td></tr></tbody></table>
 
-*canBubbleArg*  
+_canBubbleArg_  
 Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) flag indicating if the event can bubble (`true`) or not (`false)`.
 
-*cancelableArg*  
+_cancelableArg_  
 Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) flag indicating if the event associated action can be avoided (`true`) or not (`false)`.
 
-*lengthComputable*  
+_lengthComputable_  
 Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) flag indicating if the total work to be done, and the amount of work already done, by the underlying process is calculable. In other words, it tells if the progress is measurable or not.
 
-*loaded*  
+_loaded_  
 Is an `unsigned long long` representing the amount of work already performed by the underlying process. The ratio of work done can be calculated with the property and `ProgressEvent.total`. When downloading a resource using HTTP, this only represent the part of the content itself, not headers and other overhead.
 
-*total*  
+_total_  
 Is an `unsigned long long` representing the total amount of work that the underlying process is in the progress of performing. When downloading a resource using HTTP, this only represent the content itself, not headers and other overhead.
 
-Specifications
---------------
+## Specifications
 
 This feature does not exist in any specifications.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -104,9 +100,8 @@ Yes-6
 
 No
 
-See also
---------
+## See also
 
--   The [`ProgressEvent`](../progressevent) interface it belongs to.
+- The [`ProgressEvent`](../progressevent) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ProgressEvent/initProgressEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ProgressEvent/initProgressEvent</a>

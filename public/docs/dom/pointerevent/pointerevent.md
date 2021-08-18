@@ -1,36 +1,33 @@
-PointerEvent.PointerEvent()
-===========================
+# PointerEvent.PointerEvent()
 
 The `PointerEvent()` constructor creates a new synthetic and untrusted [`PointerEvent`](../pointerevent) object instance.
 
-Syntax
-------
+## Syntax
 
      event = new PointerEvent(type, PointerEventInit);
 
 ### Arguments
 
-*type*  
+_type_  
 Is a [`DOMString`](../domstring) representing the name of the event (see [PointerEvent event types](../pointerevent#pointer_event_types)).
 
- *PointerEventInit*<span class="badge inline optional">Optional</span>   
+_PointerEventInit_<span class="badge inline optional">Optional</span>  
 Is a `PointerEventInit` dictionary, having the following fields:
 
--   `pointerId` — optional and defaulting to `0`, of type `long`, that sets the value of the instance's [`PointerEvent.pointerId`](pointerid).
--   `width` — optional and defaulting to `1`, of type `double`, that sets the value of the instance's [`PointerEvent.width`](width).
--   `height` — optional and defaulting to `1`, of type `double`, that sets the value of the instance's [`PointerEvent.height`](height).
--   `pressure` — optional and defaulting to `0`, of type `float`, that sets the value of the instance's [`PointerEvent.pressure`](pressure).
--   `tangentialPressure` — optional and defaulting to `0`, of type `float`, that sets the value of the instance's [`PointerEvent.tangentialPressure`](tangentialpressure).
--   `tiltX` — optional and defaulting to `0`, of type `long`, that sets the value of the instance's [`PointerEvent.tiltX`](tiltx).
--   `tiltY` — optional and defaulting to `0`, of type `long`, that sets the value of the instance's [`PointerEvent.tiltY`](tilty).
--   `twist` — optional and defaulting to `0`, of type `long`, that sets the value of the instance's [`PointerEvent.twist`](twist).
--   `pointerType` — optional and defaulting to `""`, of type [`DOMString`](../domstring), that sets the value of the instance's [`PointerEvent.pointerType`](pointertype).
--   `isPrimary` — optional and defaulting to `false`, of type [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean), that sets the value of the instance's [`PointerEvent.isPrimary`](isprimary).
+- `pointerId` — optional and defaulting to `0`, of type `long`, that sets the value of the instance's [`PointerEvent.pointerId`](pointerid).
+- `width` — optional and defaulting to `1`, of type `double`, that sets the value of the instance's [`PointerEvent.width`](width).
+- `height` — optional and defaulting to `1`, of type `double`, that sets the value of the instance's [`PointerEvent.height`](height).
+- `pressure` — optional and defaulting to `0`, of type `float`, that sets the value of the instance's [`PointerEvent.pressure`](pressure).
+- `tangentialPressure` — optional and defaulting to `0`, of type `float`, that sets the value of the instance's [`PointerEvent.tangentialPressure`](tangentialpressure).
+- `tiltX` — optional and defaulting to `0`, of type `long`, that sets the value of the instance's [`PointerEvent.tiltX`](tiltx).
+- `tiltY` — optional and defaulting to `0`, of type `long`, that sets the value of the instance's [`PointerEvent.tiltY`](tilty).
+- `twist` — optional and defaulting to `0`, of type `long`, that sets the value of the instance's [`PointerEvent.twist`](twist).
+- `pointerType` — optional and defaulting to `""`, of type [`DOMString`](../domstring), that sets the value of the instance's [`PointerEvent.pointerType`](pointertype).
+- `isPrimary` — optional and defaulting to `false`, of type [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean), that sets the value of the instance's [`PointerEvent.isPrimary`](isprimary).
 
 **Note**: The `PointerEventInit` dictionary also accepts fields from the [`MouseEvent`](../mouseevent/mouseevent), [`UIEventInit`](../uievent/uievent) and [`EventInit`](../event/event) dictionaries.
 
-Example
--------
+## Example
 
     var moveEvent = new PointerEvent("pointermove");
 
@@ -44,8 +41,7 @@ Example
         isPrimary: true
        });
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

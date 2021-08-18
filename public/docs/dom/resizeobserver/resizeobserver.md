@@ -1,10 +1,8 @@
-ResizeObserver()
-================
+# ResizeObserver()
 
 The `ResizeObserver` constructor creates a new [`ResizeObserver`](../resizeobserver) object, which can be used to report changes to the content or border box of an [`Element`](../element) or the bounding box of an [`SVGElement`](../svgelement).
 
-Syntax
-------
+## Syntax
 
     var ResizeObserver = new ResizeObserver(callback)
 
@@ -28,8 +26,7 @@ The callback will generally follow a pattern along the lines of:
       }
     }
 
-Examples
---------
+## Examples
 
 The following snippet is taken from the [resize-observer-text.html](https://mdn.github.io/dom-examples/resize-observer/resize-observer-text.html) ([see source](https://github.com/mdn/dom-examples/blob/master/resize-observer/resize-observer-text.html)) example:
 
@@ -54,14 +51,12 @@ The following snippet is taken from the [resize-observer-text.html](https://mdn.
 
     resizeObserver.observe(divElem);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/resize-observer/#dom-resizeobserver-resizeobserver">Resize Observer<br />
 <span class="small">The definition of 'ResizeObserver' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

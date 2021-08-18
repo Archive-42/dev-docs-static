@@ -1,25 +1,21 @@
-Navigator.vendor
-================
+# Navigator.vendor
 
 The value of the [`Navigator`](../navigator) `vendor` property is always either "`Google Inc.`", "`Apple Computer, Inc.`", or (in Firefox) the empty string.
 
-Syntax
-------
+## Syntax
 
     venString = window.navigator.vendor
 
 ### Value
 
--   Either "`Google Inc.`", "`Apple Computer, Inc.`", or (in Firefox) the empty string.
+- Either "`Google Inc.`", "`Apple Computer, Inc.`", or (in Firefox) the empty string.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-vendor">HTML Living Standard<br />
 <span class="small">The definition of 'NavigatorID: vendor' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

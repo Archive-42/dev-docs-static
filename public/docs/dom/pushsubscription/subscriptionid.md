@@ -1,5 +1,4 @@
-PushSubscription.subscriptionId
-===============================
+# PushSubscription.subscriptionId
 
 **Deprecated**
 
@@ -7,18 +6,15 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `endpoint` read-only property of the [`PushSubscription`](../pushsubscription) interface returns a [`DOMString`](../domstring) containing the subscription ID associated with the push subscription.
 
-Syntax
-------
+## Syntax
 
     var subId = pushSubscription.subscriptionId;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/">Push API</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

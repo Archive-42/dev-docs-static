@@ -1,5 +1,4 @@
-NDEFRecord.lang
-===============
+# NDEFRecord.lang
 
 **Draft**
 
@@ -18,8 +17,7 @@ The `lang` property ofthe [`NDEFRecord`](../ndefrecord) interface is [`USVString
 
 The record might be missing a language tag, for example, if the recorded information is not locale-specific.
 
-Syntax
-------
+## Syntax
 
     NDEFRecord.lang
 
@@ -27,13 +25,11 @@ Syntax
 
 A [`USVString`](../usvstring).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/web-nfc/#dom-ndefrecord-lang">Web NFC, NDEFRecord.lang</a></td><td>Draft</td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -89,10 +85,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [HTML `lang` attribute](https://developer.mozilla.org/docs/Web/HTML/Global_attributes/lang), that declares content langauge of the document or its elements
--   HTTP headers that declare content language: [`Content-Language`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) and [`Accept-Language`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language)
+- [HTML `lang` attribute](https://developer.mozilla.org/docs/Web/HTML/Global_attributes/lang), that declares content langauge of the document or its elements
+- HTTP headers that declare content language: [`Content-Language`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) and [`Accept-Language`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NDEFRecord/lang" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NDEFRecord/lang</a>

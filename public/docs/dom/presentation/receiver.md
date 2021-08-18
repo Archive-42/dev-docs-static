@@ -1,10 +1,8 @@
-Presentation.receiver
-=====================
+# Presentation.receiver
 
 The **read-only** [`Presentation`](../presentation) attribute `receiver`, which is only available in browser contexts which are **receiving** a presentation, returns the [`PresentationReceiver`](../presentationreceiver) object which can be used to access and communicate with the browser context which controls the presentation. This property is always `null` when accessed from outside a browser context which is receiving a presentation.
 
-Syntax
-------
+## Syntax
 
     receiver = Presentation.receiver;
 
@@ -18,8 +16,7 @@ If the code is running in a context which is receiving a presentation, the retur
 
 If the current context is not receiving a presentation, `receiver` is `null`.
 
-Example
--------
+## Example
 
 ### Determining whether or not the context is receiving a presentation
 
@@ -49,14 +46,12 @@ After getting access to the output list element in the variable `connectionView`
 
 The promise handler receives as its input parameter an array of the incoming connections. We iterate over these using [`forEach()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach), appending a new item to the `connectionView` list element for each connection.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/presentation-api/#dom-presentation-receiver">Presentation API<br />
 <span class="small">The definition of 'receiver' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -112,11 +107,10 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   Presentation API
--   [`Presentation`](../presentation)
--   [`PresentationReceiver`](../presentationreceiver)
+- Presentation API
+- [`Presentation`](../presentation)
+- [`PresentationReceiver`](../presentationreceiver)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Presentation/receiver" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Presentation/receiver</a>

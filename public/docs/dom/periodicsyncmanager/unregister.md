@@ -1,5 +1,4 @@
-PeriodicSyncManager.unregister()
-================================
+# PeriodicSyncManager.unregister()
 
 **Draft**
 
@@ -7,8 +6,7 @@ This page is not complete.
 
 The `unregister()` method of the [`PeriodicSyncManager`](../periodicsyncmanager) interface unregisters the periodic sync request corresponding to the specified tag and returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves when unregistration completes.
 
-Syntax
-------
+## Syntax
 
     var unregister = PeriodicSyncManager.unregister(tag);
 
@@ -25,8 +23,7 @@ A resolved [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/R
 
 None.
 
-Examples
---------
+## Examples
 
 The following example removes a periodic sync to stop syncing articles in the background.
 
@@ -34,14 +31,12 @@ The following example removes a periodic sync to stop syncing articles in the ba
       registration.periodicSync.unregister('get-latest-news');
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/periodic-background-sync/#dom-periodicsyncmanager-unregister">Web Periodic Background Synchronization<br />
 <span class="small">The definition of 'unregister' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -97,10 +92,9 @@ No
 
 13.0
 
-See also
---------
+## See also
 
--   [Richer offline experiences with the Periodic Background Sync API](https://web.dev/periodic-background-sync/)
--   [A Periodic Background Sync demo app](https://webplatformapis.com/periodic_sync/periodicSync_improved.html)
+- [Richer offline experiences with the Periodic Background Sync API](https://web.dev/periodic-background-sync/)
+- [A Periodic Background Sync demo app](https://webplatformapis.com/periodic_sync/periodicSync_improved.html)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PeriodicSyncManager/unregister" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PeriodicSyncManager/unregister</a>

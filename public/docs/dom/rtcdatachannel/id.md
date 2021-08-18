@@ -1,5 +1,4 @@
-RTCDataChannel.id
-=================
+# RTCDataChannel.id
 
 **Experimental**
 
@@ -12,8 +11,7 @@ Each [`RTCPeerConnection`](../rtcpeerconnection) can therefore have up to a theo
 
 In early versions of the WebRTC specification, this property's name was [`stream`](stream). Code that uses that property needs to be updated.
 
-Syntax
-------
+## Syntax
 
     var id = aDataChannel.id;
 
@@ -25,22 +23,19 @@ While the [`label`](label) property doesn't have to be unique, this ID number is
 
 This can be also useful for logging and debugging purposes.
 
-Example
--------
+## Example
 
     var pc = new RTCPeerConnection();
     var dc = pc.createDataChannel("my channel");
 
     console.log("Channel id: " + dc.id);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcdatachannel-id">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCDataChannel.id' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -96,11 +91,10 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [WebRTC](../webrtc_api)
--   [`RTCDataChannel`](../rtcdatachannel)
--   [`RTCPeerConnection.createDataChannel()`](../rtcpeerconnection/createdatachannel)
+- [WebRTC](../webrtc_api)
+- [`RTCDataChannel`](../rtcdatachannel)
+- [`RTCPeerConnection.createDataChannel()`](../rtcpeerconnection/createdatachannel)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/id" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/id</a>

@@ -1,36 +1,31 @@
-PictureInPictureWindow
-======================
+# PictureInPictureWindow
 
 The `PictureInPictureWindow` interface represents an object able to programmatically obtain the `width` and `height` and `resize event` of the floating video window.
 
 An object with this interface is obtained using the [`HTMLVideoElement.requestPictureInPicture()`](htmlvideoelement/requestpictureinpicture) promise return value.
 
-Properties
-----------
+## Properties
 
-*The `PictureInPictureWindow` interface doesn't inherit any properties.*
+_The `PictureInPictureWindow` interface doesn't inherit any properties._
 
- [`PictureInPictureWindow.width`](pictureinpicturewindow/width) <span class="badge inline readonly">Read only </span>   
+[`PictureInPictureWindow.width`](pictureinpicturewindow/width) <span class="badge inline readonly">Read only </span>  
 Determines the width of the floating video window.
 
- [`PictureInPictureWindow.height`](pictureinpicturewindow/height) <span class="badge inline readonly">Read only </span>   
+[`PictureInPictureWindow.height`](pictureinpicturewindow/height) <span class="badge inline readonly">Read only </span>  
 Determines the height of the floating video window.
 
-Methods
--------
+## Methods
 
-*The `PictureInPictureWindow` interface doesn't inherit any methods.*
+_The `PictureInPictureWindow` interface doesn't inherit any methods._
 
-Events
-------
+## Events
 
-*The `PictureInPictureWindow` interface doesn't inherit any events.*
+_The `PictureInPictureWindow` interface doesn't inherit any events._
 
 [`PictureInPictureWindow.resize`](pictureinpicturewindow/resize_event)  
 Sent to a [`PictureInPictureWindow`](pictureinpicturewindow) when the floating video window is resized. The associated event handler is [`PictureInPictureWindow.onresize`](pictureinpicturewindow/onresize).
 
-Examples
---------
+## Examples
 
 Given a `<button>` and a `<video>`, clicking the button will make the video enter the picture-in-picture mode; we then attach an event to print the floating video window dimensions to the console.
 
@@ -50,13 +45,11 @@ Given a `<button>` and a `<video>`, clicking the button will make the video ente
       });
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/picture-in-picture/#pictureinpicturewindow">Picture-in-Picture API</a></td><td><span class="spec-draft">Draft</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -216,9 +209,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`Picture-in-Picture_API`](picture-in-picture_api)
+- [`Picture-in-Picture_API`](picture-in-picture_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PictureInPictureWindow" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PictureInPictureWindow</a>

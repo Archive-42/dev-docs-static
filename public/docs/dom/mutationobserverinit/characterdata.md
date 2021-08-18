@@ -1,5 +1,4 @@
-MutationObserverInit.characterData
-==================================
+# MutationObserverInit.characterData
 
 The **[`MutationObserverInit`](../mutationobserverinit)** dictionary's optional `characterData` property is used to specify whether or not to monitor the node or nodes being observed for changes to their textual contents.
 
@@ -7,8 +6,7 @@ Character data changes are detectable on any text node, including nodes based on
 
 Note that this doesn't monitor content of an [`HTMLElement`](../htmlelement), even if it only contains text inside, as it only monitors text nodes themselves. So either pass directly a text node to the [`observe()`](../mutationobserver/observe) method or you need to also set `subtree: true`.
 
-Syntax
-------
+## Syntax
 
     var options = {
       characterData: true | false
@@ -22,22 +20,19 @@ If `true`, the callback specified when [`observe()`](../mutationobserver/observe
 
 You can expand the capabilities of attribute mutation monitoring using other options:
 
--   [`characterDataOldValue`](characterdataoldvalue) lets you specify whether or not you want the previous value of changed text nodes to be provided using the [`MutationRecord`](../mutationrecord)'s <span class="page-not-created">`oldValue`</span> property.
--   [`subtree`](subtree) lets you specify whether to watch the target node and all of its descendants (`true`), or just the target node (`false`).
+- [`characterDataOldValue`](characterdataoldvalue) lets you specify whether or not you want the previous value of changed text nodes to be provided using the [`MutationRecord`](../mutationrecord)'s <span class="page-not-created">`oldValue`</span> property.
+- [`subtree`](subtree) lets you specify whether to watch the target node and all of its descendants (`true`), or just the target node (`false`).
 
 If you set `characterDataOldValue` to `true`, `characterData` is automatically assumed to be `true`, even if you don't expressly set it as such.
 
-Example
--------
+## Example
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-mutationobserverinit-characterdata">DOM<br />
 <span class="small">The definition of 'MutationObserverInit.characterData' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

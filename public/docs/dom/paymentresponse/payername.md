@@ -1,5 +1,4 @@
-PaymentRequest.payerName
-========================
+# PaymentRequest.payerName
 
 **Secure context**
 
@@ -12,8 +11,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `payerName` read-only property of the [`PaymentResponse`](../paymentresponse) interface returns the name supplied by the user. This option is only present when the `requestPayerName` option is set to `true` in the options parameter of the [`PaymentRequest()`](../paymentrequest/paymentrequest) constructor.
 
-Syntax
-------
+## Syntax
 
     var payerName = PaymentResponse.payerName;
 
@@ -21,14 +19,12 @@ Syntax
 
 A string containing the payer name.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-paymentresponse-payername">Payment Request API<br />
 <span class="small">The definition of 'payerName' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-PerformanceTiming.fetchStart
-============================
+# PerformanceTiming.fetchStart
 
 **Deprecated**
 
@@ -9,21 +8,18 @@ This feature is no longer recommended. Though some browsers might still support 
 
 This interface of this property is deprecated in the [Navigation Timing Level 2 specification](https://w3c.github.io/navigation-timing/#obsolete). Please use the [`PerformanceNavigationTiming`](../performancenavigationtiming) interface instead.
 
-The legacy `PerformanceTiming``.fetchStart` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, the browser is ready to fetch the document using an HTTP request. This moment is *before* the check to any application cache.
+The legacy ` PerformanceTiming``.fetchStart ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, the browser is ready to fetch the document using an HTTP request. This moment is _before_ the check to any application cache.
 
-Syntax
-------
+## Syntax
 
     time = performance.timing.fetchStart;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/navigation-timing/#dom-performancetiming-fetchstart">Navigation Timing<br />
 <span class="small">The definition of 'PerformanceTiming.fetchStart' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -79,9 +75,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The [`PerformanceTiming`](../performancetiming) interface it belongs to.`PerformanceTiming``.fetchStart`
+- The [`PerformanceTiming`](../performancetiming) interface it belongs to.` PerformanceTiming``.fetchStart `
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/fetchStart" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/fetchStart</a>

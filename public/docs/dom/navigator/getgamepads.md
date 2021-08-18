@@ -1,5 +1,4 @@
-Navigator.getGamepads()
-=======================
+# Navigator.getGamepads()
 
 **Experimental**
 
@@ -10,13 +9,11 @@ The `Navigator.getGamepads()` method returns an array of [`Gamepad`](../gamepad)
 
 Elements in the array may be `null` if a gamepad disconnects during a session, so that the remaining gamepads retain the same index.
 
-Syntax
-------
+## Syntax
 
      var gamepads = navigator.getGamepads();
 
-Example
--------
+## Example
 
     window.addEventListener("gamepadconnected", function(e) {
       var gp = navigator.getGamepads()[e.gamepad.index];
@@ -26,14 +23,12 @@ Example
       );
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/gamepad/">Gamepad<br />
 <span class="small">The definition of 'The Gamepad API specification' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -101,10 +96,9 @@ No
 
 1.5
 
-See also
---------
+## See also
 
--   [Using the Gamepad API](../gamepad_api/using_the_gamepad_api)
--   [Gamepad API](../gamepad_api)
+- [Using the Gamepad API](../gamepad_api/using_the_gamepad_api)
+- [Gamepad API](../gamepad_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getGamepads" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getGamepads</a>

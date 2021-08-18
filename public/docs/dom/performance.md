@@ -1,61 +1,58 @@
-Performance
-===========
+# Performance
 
 The `Performance` interface provides access to performance-related information for the current page. It's part of the High Resolution Time API, but is enhanced by the [Performance Timeline API](performance_timeline), the [Navigation Timing API](navigation_timing_api), the [User Timing API](user_timing_api), and the [Resource Timing API](resource_timing_api).
 
 An object of this type can be obtained by calling the [`window.performance`](window/performance) read-only attribute.
 
-***Note*:** This interface and its members are available in [Web Workers](web_workers_api) via `WorkerGlobalScope.performance` , except where indicated below. Also, note that performance markers and measures are per context. If you create a mark on the main thread (or other worker), you cannot see it in a worker thread, and vice versa.
+**_Note_:** This interface and its members are available in [Web Workers](web_workers_api) via `WorkerGlobalScope.performance` , except where indicated below. Also, note that performance markers and measures are per context. If you create a mark on the main thread (or other worker), you cannot see it in a worker thread, and vice versa.
 
-Properties
-----------
+## Properties
 
-*The `Performance` interface doesn't inherit any properties.*
+_The `Performance` interface doesn't inherit any properties._
 
- [`Performance.navigation`](performance/navigation) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Performance.navigation`](performance/navigation) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 A legacy [`PerformanceNavigation`](performancenavigation) object that provides useful context about the operations included in the times listed in `timing`, including whether the page was a load or a refresh, how many redirections occurred, and so forth.
 
 Not available in workers.
 
- [`Performance.timing`](performance/timing) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Performance.timing`](performance/timing) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 A legacy [`PerformanceTiming`](performancetiming) object containing latency-related performance information.
 
 Not available in workers.
 
- [`Performance.memory`](performance/memory) <span class="badge inline readonly">Read only </span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
-A *non-standard* extension added in Chrome, this property provides an object with basic memory usage information. *You **should not use** this non-standard API.*
+[`Performance.memory`](performance/memory) <span class="badge inline readonly">Read only </span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
+A _non-standard_ extension added in Chrome, this property provides an object with basic memory usage information. _You **should not use** this non-standard API._
 
- [`Performance.timeOrigin`](performance/timeorigin) <span class="badge inline readonly">Read only </span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`Performance.timeOrigin`](performance/timeorigin) <span class="badge inline readonly">Read only </span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns the high resolution timestamp of the start time of the performance measurement.
 
-Methods
--------
+## Methods
 
-*The `Performance` interface doesn't inherit any methods.*
+_The `Performance` interface doesn't inherit any methods._
 
 [`Performance.clearMarks()`](performance/clearmarks)  
-Removes the given *mark* from the browser's performance entry buffer.
+Removes the given _mark_ from the browser's performance entry buffer.
 
 [`Performance.clearMeasures()`](performance/clearmeasures)  
-Removes the given *measure* from the browser's performance entry buffer.
+Removes the given _measure_ from the browser's performance entry buffer.
 
 [`Performance.clearResourceTimings()`](performance/clearresourcetimings)  
 Removes all [`performance entries`](performanceentry) with a [`entryType`](performanceentry/entrytype) of "`resource`" from the browser's performance data buffer.
 
 [`Performance.getEntries()`](performance/getentries)  
-Returns a list of [`PerformanceEntry`](performanceentry) objects based on the given *filter*.
+Returns a list of [`PerformanceEntry`](performanceentry) objects based on the given _filter_.
 
 [`Performance.getEntriesByName()`](performance/getentriesbyname)  
-Returns a list of [`PerformanceEntry`](performanceentry) objects based on the given *name* and *entry type*.
+Returns a list of [`PerformanceEntry`](performanceentry) objects based on the given _name_ and _entry type_.
 
 [`Performance.getEntriesByType()`](performance/getentriesbytype)  
-Returns a list of [`PerformanceEntry`](performanceentry) objects of the given *entry type*.
+Returns a list of [`PerformanceEntry`](performanceentry) objects of the given _entry type_.
 
 [`Performance.mark()`](performance/mark)  
-Creates a [`timestamp`](domhighrestimestamp) in the browser's *performance entry buffer* with the given name.
+Creates a [`timestamp`](domhighrestimestamp) in the browser's _performance entry buffer_ with the given name.
 
 [`Performance.measure()`](performance/measure)  
-Creates a named [`timestamp`](domhighrestimestamp) in the browser's performance entry buffer between two specified marks (known as the *start mark* and *end mark*, respectively).
+Creates a named [`timestamp`](domhighrestimestamp) in the browser's performance entry buffer between two specified marks (known as the _start mark_ and _end mark_, respectively).
 
 [`Performance.now()`](performance/now)  
 Returns a [`DOMHighResTimeStamp`](domhighrestimestamp) representing the number of milliseconds elapsed since a reference instant.
@@ -66,8 +63,7 @@ Sets the browser's resource timing buffer size to the specified number of "`reso
 [`Performance.toJSON()`](performance/tojson)  
 Is a jsonizer returning a json object representing the `Performance` object.
 
-Events
-------
+## Events
 
 Listen to these events using `addEventListener()` or by assigning an event listener to the `oneventname` property of this interface.
 
@@ -75,8 +71,7 @@ Listen to these events using `addEventListener()` or by assigning an event liste
 Fired when the browser's [resource timing buffer](performance/setresourcetimingbuffersize) is full.  
 Also available via the [`onresourcetimingbufferfull`](performance/onresourcetimingbufferfull) property.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/hr-time-2/#sec-performance">High Resolution Time Level 2<br />
 <span class="small">The definition of 'Performance' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Defines <code>toJson()</code> method.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/hr-time-1/#performance">High Resolution Time<br />
@@ -87,8 +82,7 @@ Specifications
 <span class="small">The definition of 'Performance extensions' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Clarifies <code>mark()</code>, <code>clearMark()</code>, <code>measure()</code> and <code>clearMeasure()</code> methods.</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/user-timing/#extensions-performance-interface">User Timing<br />
 <span class="small">The definition of 'Performance extensions' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Defines <code>mark()</code>, <code>clearMark()</code>, <code>measure()</code> and <code>clearMeasure()</code> methods.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

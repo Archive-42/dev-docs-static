@@ -1,15 +1,13 @@
-PannerNode.panningModel
-=======================
+# PannerNode.panningModel
 
 The `panningModel` property of the [`PannerNode`](../pannernode) interface is an enumerated value determining which spatialisation algorithm to use to position the audio in 3D space.
 
 The possible values are:
 
--   `equalpower`: Represents the equal-power panning algorithm, generally regarded as simple and efficient. `equalpower` is the default value.
--   `HRTF`: Renders a stereo output of higher quality than `equalpower` — it uses a convolution with measured impulse responses from human subjects.
+- `equalpower`: Represents the equal-power panning algorithm, generally regarded as simple and efficient. `equalpower` is the default value.
+- `HRTF`: Renders a stereo output of higher quality than `equalpower` — it uses a convolution with measured impulse responses from human subjects.
 
-Syntax
-------
+## Syntax
 
     var audioCtx = new AudioContext();
     var panner = audioCtx.createPanner();
@@ -19,8 +17,7 @@ Syntax
 
 A enum — see [`PanningModelType`](https://webaudio.github.io/web-audio-api/#idl-def-PanningModelType).
 
-Example
--------
+## Example
 
 In the following example, you can see an example of how the `createPanner()` method, [`AudioListener`](../audiolistener) and [`PannerNode`](../pannernode) would be used to control audio spatialisation. Generally you will define the position in 3D space that your audio listener and panner (source) occupy initially, and then update the position of one or both of these as the application is used. You might be moving a character around inside a game world for example, and wanting delivery of audio to change realistically as your character moves closer to or further away from a music player such as a stereo. In the example you can see this being controlled by the functions `moveRight()`, `moveLeft()`, etc., which set new values for the panner position via the `PositionPanner()` function.
 
@@ -115,14 +112,12 @@ Note how we have used some feature detection to either give the browser the newe
 
 In terms of working out what position values to apply to the listener and panner, to make the sound appropriate to what the visuals are doing on screen, there is quite a bit of math involved, but you will soon get used to it with a bit of experimentation.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-pannernode-panningmodel">Web Audio API<br />
 <span class="small">The definition of 'panningModel' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -178,9 +173,8 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](../web_audio_api/using_web_audio_api)
+- [Using the Web Audio API](../web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/panningModel" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/panningModel</a>

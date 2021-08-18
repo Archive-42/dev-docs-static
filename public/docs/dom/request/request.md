@@ -1,43 +1,39 @@
-Request()
-=========
+# Request()
 
 The `Request()` constructor creates a new [`Request`](../request) object.
 
-Syntax
-------
+## Syntax
 
     var myRequest = new Request(input[, init]);
 
 ### Parameters
 
-*input*  
+_input_  
 Defines the resource that you wish to fetch. This can either be:
 
--   A [`USVString`](../usvstring) containing the direct URL of the resource you want to fetch.
--   A [`Request`](../request) object, effectively creating a copy. Note the following behavioral updates to retain security while making the constructor less likely to throw exceptions:
-    -   If this object exists on another origin to the constructor call, the [`Request.referrer`](referrer) is stripped out.
-    -   If this object has a [`Request.mode`](mode) of `navigate`, the `mode` value is converted to `same-origin`.
+- A [`USVString`](../usvstring) containing the direct URL of the resource you want to fetch.
+- A [`Request`](../request) object, effectively creating a copy. Note the following behavioral updates to retain security while making the constructor less likely to throw exceptions:
+  - If this object exists on another origin to the constructor call, the [`Request.referrer`](referrer) is stripped out.
+  - If this object has a [`Request.mode`](mode) of `navigate`, the `mode` value is converted to `same-origin`.
 
- *init* <span class="badge inline optional">Optional</span>   
+_init_ <span class="badge inline optional">Optional</span>  
 An options object containing any custom settings that you want to apply to the request. The possible options are:
 
--   `method`: The request method, e.g., `GET`, `POST`. The default is `GET`.
--   `headers`: Any headers you want to add to your request, contained within a [`Headers`](../headers) object or an object literal with [`ByteString`](../bytestring) values.
--   `body`: Any body that you want to add to your request: this can be a [`Blob`](../blob), [`BufferSource`](../buffersource), [`FormData`](../formdata), [`URLSearchParams`](../urlsearchparams), [`USVString`](../usvstring), or [`ReadableStream`](../readablestream) object. Note that a request using the `GET` or `HEAD` method cannot have a body.
--   `mode`: The mode you want to use for the request, e.g., `cors`, `no-cors`, `same-origin`, or `navigate`. The default is `cors`.
--   `credentials`: The request credentials you want to use for the request: `omit`, `same-origin`, or `include`. The default is `same-origin`.
--   `cache`: The [cache mode](cache) you want to use for the request.
--   `redirect`: The redirect mode to use: `follow`, `error`, or `manual`. The default is `follow`.
--   `referrer`: A [`USVString`](../usvstring) specifying `no-referrer`, `client`, or a URL. The default is `about:client`.
--   `integrity`: Contains the [subresource integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) value of the request (e.g., `sha256-BpfBw7ivV8q2jLiT13fxDYAe2tJllusRSZ273h2nFSE=`).
+- `method`: The request method, e.g., `GET`, `POST`. The default is `GET`.
+- `headers`: Any headers you want to add to your request, contained within a [`Headers`](../headers) object or an object literal with [`ByteString`](../bytestring) values.
+- `body`: Any body that you want to add to your request: this can be a [`Blob`](../blob), [`BufferSource`](../buffersource), [`FormData`](../formdata), [`URLSearchParams`](../urlsearchparams), [`USVString`](../usvstring), or [`ReadableStream`](../readablestream) object. Note that a request using the `GET` or `HEAD` method cannot have a body.
+- `mode`: The mode you want to use for the request, e.g., `cors`, `no-cors`, `same-origin`, or `navigate`. The default is `cors`.
+- `credentials`: The request credentials you want to use for the request: `omit`, `same-origin`, or `include`. The default is `same-origin`.
+- `cache`: The [cache mode](cache) you want to use for the request.
+- `redirect`: The redirect mode to use: `follow`, `error`, or `manual`. The default is `follow`.
+- `referrer`: A [`USVString`](../usvstring) specifying `no-referrer`, `client`, or a URL. The default is `about:client`.
+- `integrity`: Contains the [subresource integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) value of the request (e.g., `sha256-BpfBw7ivV8q2jLiT13fxDYAe2tJllusRSZ273h2nFSE=`).
 
-Errors
-------
+## Errors
 
 <table><thead><tr class="header"><th>Type</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>TypeError</code></td><td>Since <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/43">Firefox 43</a>, <code>Request()</code> will throw a TypeError if the URL has credentials, such as http://user:password@example.com.</td></tr></tbody></table>
 
-Example
--------
+## Example
 
 In our [Fetch Request example](https://github.com/mdn/fetch-examples/tree/master/fetch-request) (see [Fetch Request live](https://mdn.github.io/fetch-examples/fetch-request/)) we create a new `Request` object using the constructor, then fetch it using a [`WindowOrWorkerGlobalScope.fetch`](../windoworworkerglobalscope/fetch) call. Since we are fetching an image, we run [`Body.blob`](../body/blob) on the response to give it the proper MIME type so it will be handled properly, then create an Object URL of it and display it in an [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element.
 
@@ -93,14 +89,12 @@ You may also pass a [`Request`](../request) object to the `Request()` constructo
 
 **Note**: This last usage is probably only useful in [ServiceWorkers](../service_worker_api).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fetch.spec.whatwg.org/#dom-request">Fetch<br />
 <span class="small">The definition of 'Request()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -308,11 +302,10 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [ServiceWorker API](../service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [ServiceWorker API](../service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request/Request" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Request/Request</a>

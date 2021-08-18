@@ -1,5 +1,4 @@
-MediaTrackSupportedConstraints
-==============================
+# MediaTrackSupportedConstraints
 
 The `MediaTrackSupportedConstraints` dictionary establishes the list of constrainable properties recognized by the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) or browser in its implementation of the [`MediaStreamTrack`](mediastreamtrack) object. An object conforming to `MediaTrackSupportedConstraints` is returned by [`MediaDevices.getSupportedConstraints()`](mediadevices/getsupportedconstraints).
 
@@ -9,8 +8,7 @@ An actual constraint set is described using an object based on the [`MediaTrackC
 
 To learn more about how constraints work, see [Capabilities, constraints, and settings](media_streams_api/constraints).
 
-Properties
-----------
+## Properties
 
 Some combination—but not necessarily all—of the following properties will exist on the object.
 
@@ -75,8 +73,7 @@ A Boolean value which is `true` if the [`cursor`](mediatrackconstraints/displays
 [`logicalSurface`](mediatracksupportedconstraints/logicalsurface)  
 A Boolean value which is `true` if the [`logicalSurface`](mediatrackconstraints/logicalsurface) constraint is supported in the current environment.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -634,17 +631,16 @@ Yes
 
 6.0
 
-See also
---------
+## See also
 
--   [Media Capture and Streams API](media_streams_api)
--   [Capabilities, constraints, and settings](media_streams_api/constraints)
--   [Screen Capture API](screen_capture_api)
--   [Using the Screen Capture API](screen_capture_api/using_screen_capture)
--   [`MediaTrackConstraints`](mediatrackconstraints)
--   [`MediaDevices.getUserMedia()`](mediadevices/getusermedia)
--   [`MediaStreamTrack.getConstraints()`](mediastreamtrack/getconstraints)
--   [`MediaStreamTrack.applyConstraints()`](mediastreamtrack/applyconstraints)
--   [`MediaStreamTrack.getSettings()`](mediastreamtrack/getsettings)
+- [Media Capture and Streams API](media_streams_api)
+- [Capabilities, constraints, and settings](media_streams_api/constraints)
+- [Screen Capture API](screen_capture_api)
+- [Using the Screen Capture API](screen_capture_api/using_screen_capture)
+- [`MediaTrackConstraints`](mediatrackconstraints)
+- [`MediaDevices.getUserMedia()`](mediadevices/getusermedia)
+- [`MediaStreamTrack.getConstraints()`](mediastreamtrack/getconstraints)
+- [`MediaStreamTrack.applyConstraints()`](mediastreamtrack/applyconstraints)
+- [`MediaStreamTrack.getSettings()`](mediastreamtrack/getsettings)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSupportedConstraints" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSupportedConstraints</a>

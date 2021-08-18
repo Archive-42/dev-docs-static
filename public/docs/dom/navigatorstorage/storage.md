@@ -1,5 +1,4 @@
-NavigatorStorage.storage
-========================
+# NavigatorStorage.storage
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `NavigatorStorage.storage` read-only property returns the singleton [`StorageManager`](../storagemanager) object used to access the overall storage capabilities of the browser for the current site or app. The returned object lets you examine and configure persistence of data stores and learn approximately how much more space your browser has available for local storage use.
 
-Syntax
-------
+## Syntax
 
     var storageManager = navigator.storage;
 
@@ -16,14 +14,12 @@ Syntax
 
 A [`StorageManager`](../storagemanager) object you can use to maintain persistence for stored data, as well as to determine roughly how much room there is for data to be stored.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://storage.spec.whatwg.org/#navigatorstorage">Storage<br />
 <span class="small">The definition of 'navigator.storage' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -79,12 +75,11 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [`NavigatorStorage`](../navigatorstorage)
--   [`StorageManager`](../storagemanager)
--   [`Navigator`](../navigator)
--   [`WorkerNavigator`](../workernavigator)
+- [`NavigatorStorage`](../navigatorstorage)
+- [`StorageManager`](../storagemanager)
+- [`Navigator`](../navigator)
+- [`WorkerNavigator`](../workernavigator)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorStorage/storage" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NavigatorStorage/storage</a>

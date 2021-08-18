@@ -1,5 +1,4 @@
-NodeIterator.referenceNode
-==========================
+# NodeIterator.referenceNode
 
 **Experimental**
 
@@ -8,13 +7,11 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `NodeIterator.referenceNode` read-only returns the [`Node`](../node) to which the iterator is anchored; as new nodes are inserted, the iterator remains anchored to the reference node as specified by this property.
 
-Syntax
-------
+## Syntax
 
     node = nodeIterator.referenceNode;
 
-Example
--------
+## Example
 
     var nodeIterator = document.createNodeIterator(
         document.body,
@@ -24,14 +21,12 @@ Example
     );
     node = nodeIterator.referenceNode;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-nodeiterator-referencenode">DOM<br />
 <span class="small">The definition of 'NodeIterator.referenceNode' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -87,9 +82,8 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   The interface it belongs to: [`NodeIterator`](../nodeiterator)
+- The interface it belongs to: [`NodeIterator`](../nodeiterator)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeIterator/referenceNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NodeIterator/referenceNode</a>

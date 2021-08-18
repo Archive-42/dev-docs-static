@@ -1,5 +1,4 @@
-Response.error()
-================
+# Response.error()
 
 The `error()` method of the [`Response`](../response) interface returns a new `Response` object associated with a network error.
 
@@ -7,8 +6,7 @@ The `error()` method of the [`Response`](../response) interface returns a new `R
 
 **Note**: An "error" `Response` never really gets exposed to script: such a response to a [`fetch()`](../windoworworkerglobalscope/fetch) would reject the promise.
 
-Syntax
-------
+## Syntax
 
     var errorResponse = Response.error();
 
@@ -20,19 +18,16 @@ None.
 
 A [`Response`](../response) object.
 
-Example
--------
+## Example
 
 TBD (does not yet appear to be supported anywhere).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fetch.spec.whatwg.org/#dom-response-error">Fetch<br />
 <span class="small">The definition of 'error()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,11 +83,10 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [ServiceWorker API](../service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [ServiceWorker API](../service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response/error" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Response/error</a>

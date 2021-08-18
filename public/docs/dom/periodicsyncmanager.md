@@ -1,5 +1,4 @@
-PeriodicSyncManager
-===================
+# PeriodicSyncManager
 
 **Draft**
 
@@ -7,13 +6,11 @@ This page is not complete.
 
 The `PeriodicSyncManager` interface of the [`Web Periodic Background Synchronization API`](web_periodic_background_synchronization_api) provides a way to register tasks to be run in a service worker at periodic intervals with network connectivity. These tasks are referred to as periodic background sync requests. Access `PeriodicSyncManager` through the [`ServiceWorkerRegistration.periodicSync`](serviceworkerregistration/periodicsync).
 
-Properties
-----------
+## Properties
 
 None.
 
-Methods
--------
+## Methods
 
 [`PeriodicSyncManager.register`](periodicsyncmanager/register)  
 Registers a periodic sync request with the browser with the specified tag and options. Returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves when the registration completes.
@@ -24,8 +21,7 @@ Returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Re
 [`PeriodicSyncManager.unregister`](periodicsyncmanager/unregister)  
 Unregisters the periodic sync request corresponding to the specified tag and returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves when unregistration completes.
 
-Examples
---------
+## Examples
 
 The following examples show how to use the interface.
 
@@ -63,14 +59,12 @@ The following code removes a Periodic Background Sync task to stop articles sync
       registration.periodicSync.unregister('get-latest-news');
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/periodic-background-sync/#periodicsyncmanager">Web Periodic Background Synchronization<br />
 <span class="small">The definition of 'PeriodicSyncManager' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -204,10 +198,9 @@ No
 
 13.0
 
-See also
---------
+## See also
 
--   [Richer offline experiences with the Periodic Background Sync API](https://web.dev/periodic-background-sync/)
--   [A Periodic Background Sync demo app](https://webplatformapis.com/periodic_sync/periodicSync_improved.html)
+- [Richer offline experiences with the Periodic Background Sync API](https://web.dev/periodic-background-sync/)
+- [A Periodic Background Sync demo app](https://webplatformapis.com/periodic_sync/periodicSync_improved.html)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PeriodicSyncManager" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PeriodicSyncManager</a>

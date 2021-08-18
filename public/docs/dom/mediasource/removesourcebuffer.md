@@ -1,5 +1,4 @@
-MediaSource.removeSourceBuffer()
-================================
+# MediaSource.removeSourceBuffer()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `removeSourceBuffer()` method of the [`MediaSource`](../mediasource) interface removes the given [`SourceBuffer`](../sourcebuffer) from the <span class="page-not-created">`SourceBuffers`</span> list associated with this `MediaSource` object.
 
-Syntax
-------
+## Syntax
 
     mediaSource.removeSourceBuffer(sourceBuffer);
 
@@ -26,8 +24,7 @@ The [`SourceBuffer`](../sourcebuffer) object to be removed.
 
 <table><thead><tr class="header"><th>Exception</th><th>Explanation</th></tr></thead><tbody><tr class="odd"><td><code>NotFoundError</code></td><td>The supplied sourceBuffer doesn't exist in <a href="sourcebuffers"><code>MediaSource.sourceBuffers</code></a>.</td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
     for (i = 0; i < 10; i++) {
       var sourceBuffer = mediaSource.addSourceBuffer(mimeCodec);
@@ -35,14 +32,12 @@ Examples
 
     mediaSource.removeSourceBuffer(mediaSource.sourceBuffers[0]);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/media-source/#dom-mediasource-removesourcebuffer">Media Source Extensions<br />
 <span class="small">The definition of 'removeSourceBuffer()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -100,10 +95,9 @@ No
 
 1.5
 
-See also
---------
+## See also
 
--   [`SourceBuffer`](../sourcebuffer)
--   [`SourceBufferList`](../sourcebufferlist)
+- [`SourceBuffer`](../sourcebuffer)
+- [`SourceBufferList`](../sourcebufferlist)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/removeSourceBuffer" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/removeSourceBuffer</a>

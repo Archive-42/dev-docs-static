@@ -1,24 +1,21 @@
-NamedNodeMap
-============
+# NamedNodeMap
 
 The `NamedNodeMap` interface represents a collection of [`Attr`](attr) objects. Objects inside a `NamedNodeMap` are not in any particular order, unlike [`NodeList`](nodelist), although they may be accessed by an index as in an array.
 
-A `NamedNodeMap` object is *live* and will thus be auto-updated if changes are made to its contents internally or elsewhere.
+A `NamedNodeMap` object is _live_ and will thus be auto-updated if changes are made to its contents internally or elsewhere.
 
 Although called `NamedNodeMap`, this interface doesn't deal with [`Node`](node) objects but with [`Attr`](attr) objects, which were originally a specialized class of [`Node`](node), and still are in some implementations.
 
-Properties
-----------
+## Properties
 
-*This interface doesn't inherit any property.*
+_This interface doesn't inherit any property._
 
- <span class="page-not-created">`NamedNodeMap.length`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`NamedNodeMap.length`</span> <span class="badge inline readonly">Read only </span>  
 Returns the amount of objects in the map.
 
-Methods
--------
+## Methods
 
-*This interface doesn't inherit any method.*
+_This interface doesn't inherit any method._
 
 [`NamedNodeMap.getNamedItem()`](namednodemap/getnameditem)  
 Returns a [`Attr`](attr), corresponding to the given name.
@@ -41,8 +38,7 @@ Replaces, or adds, the [`Attr`](attr) identified in the map by the given namespa
 <span class="page-not-created">`NamedNodeMap.removeNamedItemNS()`</span>  
 Removes the [`Attr`](attr) identified by the given namespace and related local name.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#interface-namednodemap">DOM<br />
 <span class="small">The definition of 'NamedNodeMap' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Deals with <a href="attr"><code>Attr</code></a> instead of <a href="node"><code>Node</code></a></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-1780488922">Document Object Model (DOM) Level 3 Core Specification<br />
@@ -50,8 +46,7 @@ Specifications
 <span class="small">The definition of 'NamedNodeMap' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Added <code>getNamedItemNS()</code>, <code>setNamedItemNS()</code> and <code>removeNamedItemNS()</code></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/core.html#ID-1780488922">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'NamedNodeMap' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -323,9 +318,8 @@ Yes-22
 
 1.0
 
-See also
---------
+## See also
 
--   [`Element.attributes`](element/attributes)
+- [`Element.attributes`](element/attributes)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NamedNodeMap" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NamedNodeMap</a>

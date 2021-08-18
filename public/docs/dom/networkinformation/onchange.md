@@ -1,5 +1,4 @@
-NetworkInformation.onchange
-===========================
+# NetworkInformation.onchange
 
 **Experimental**
 
@@ -8,13 +7,11 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `NetworkInformation.onchange` event handler contains the code that is fired when connection information changes, and the `change` is received by the [`NetworkInformation`](../networkinformation) object.
 
-Syntax
-------
+## Syntax
 
     netInfo.onchange = function() { ... }
 
-Examples
---------
+## Examples
 
     // Get the connection type.
     var type = navigator.connection.type;
@@ -28,14 +25,12 @@ Examples
 
     // Another way: navigator.connection.addEventListener('change', changeHandler);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/netinfo/#dom-networkinformation-onchange">Network Information API<br />
 <span class="small">The definition of 'onchange' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-RTCDataChannel.protocol
-=======================
+# RTCDataChannel.protocol
 
 **Experimental**
 
@@ -12,8 +11,7 @@ The permitted values of this property are defined by the Web site or app using t
 
 The ability for each channel to have a defined subprotocol lets your app, for example, use JSON objects as messages on one channel while another channel is plaintext and another is raw binary or even some other format.
 
-Syntax
-------
+## Syntax
 
     var subProtocol = aDataChannel.protocol;
 
@@ -21,8 +19,7 @@ Syntax
 
 A string identifying the app-defined subprotocol being used for exchanging data on the channel. If none has been established, this is an empty string ("").
 
-Example
--------
+## Example
 
     var pc = new RTCPeerConnection();
     var dc = pc.createDataChannel("my channel", {
@@ -40,14 +37,12 @@ Example
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-datachannel-protocol">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCDataChannel.protocol' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -103,11 +98,10 @@ Yes
 
 6.0
 
-See also
---------
+## See also
 
--   [WebRTC](../webrtc_api)
--   [`RTCDataChannel`](../rtcdatachannel)
--   [`RTCPeerConnection.createDataChannel()`](../rtcpeerconnection/createdatachannel)
+- [WebRTC](../webrtc_api)
+- [`RTCDataChannel`](../rtcdatachannel)
+- [`RTCPeerConnection.createDataChannel()`](../rtcpeerconnection/createdatachannel)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/protocol" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/protocol</a>

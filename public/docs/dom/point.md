@@ -1,5 +1,4 @@
-Point
-=====
+# Point
 
 **Deprecated**
 
@@ -13,22 +12,19 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 Although it is not directly related to this defunct interface, you are probably looking for [`DOMPoint`](dompoint), which is part of the [Geometry Interfaces Module Level 1](https://drafts.fxtf.org/geometry/) specification.
 
-Properties
-----------
+## Properties
 
- `x` <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+`x` <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 A floating-point value specifying the point's position with respect to the X (horizontal) axis.
 
- `y` <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+`y` <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 A floating-point value specifying the point's position with respect to the Y (vertical) axis.
 
-Specifications
---------------
+## Specifications
 
 This class was specified in [the defunct 20 March 2009 Working Draft of CSS 2D Transforms Module Level 3](https://www.w3.org/TR/2009/WD-css3-2d-transforms-20090320/). It is not present in the current working draft of the [CSS Transforms Level 1](https://drafts.csswg.org/css-transforms/) specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -136,11 +132,10 @@ Yes
 
 ?
 
-See also
---------
+## See also
 
--   [`Window.convertPointFromNodeToPage()`](window/convertpointfromnodetopage)
--   [`Window.convertPointFromPageToNode()`](window/convertpointfrompagetonode)
--   [`WebKitPoint` documentation at the IE Dev Center](https://msdn.microsoft.com/en-us/library/ie/dn760730(v=vs.85).aspx)
+- [`Window.convertPointFromNodeToPage()`](window/convertpointfromnodetopage)
+- [`Window.convertPointFromPageToNode()`](window/convertpointfrompagetonode)
+- [`WebKitPoint` documentation at the IE Dev Center](<https://msdn.microsoft.com/en-us/library/ie/dn760730(v=vs.85).aspx>)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Point" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Point</a>

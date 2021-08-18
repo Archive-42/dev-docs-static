@@ -1,10 +1,8 @@
-MutationObserver.MutationObserver()
-===================================
+# MutationObserver.MutationObserver()
 
 The DOM `MutationObserver()` constructor — part of the [`MutationObserver`](../mutationobserver) interface — creates and returns a new observer which invokes a specified callback when DOM events occur. DOM observation does not begin immediately; the [`observe()`](observe) method must be called first to establish which portion of the DOM to watch and what kinds of changes to watch for.
 
-Syntax
-------
+## Syntax
 
     const observer = new MutationObserver(callback)
 
@@ -24,8 +22,7 @@ See the [example](#example) below for more details.
 
 A new [`MutationObserver`](../mutationobserver) object, configured to call the specified `callback` when DOM mutations occur.
 
-Example
--------
+## Example
 
 This example creates a new `MutationObserver` configured to watch a node and all of its children for additions and removals of elements to the tree, as well as any changes to attributes on any of the elements in the tree.
 
@@ -75,14 +72,12 @@ Then the observer is instantiated, specifying the `callback()` function. We begi
 
 From this point until [`disconnect()`](disconnect) is called, `callback()` will be called each time an element is added to or removed from the DOM tree rooted at `targetNode`, or any of those elements' attributes are changed.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-mutationobserver-mutationobserver">DOM<br />
 <span class="small">The definition of 'MutationObserver()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

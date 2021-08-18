@@ -1,10 +1,8 @@
-RTCIceTransport.getSelectedCandidatePair()
-==========================================
+# RTCIceTransport.getSelectedCandidatePair()
 
 The [`RTCIceTransport`](../rtcicetransport) method `getSelectedCandidatePair()` returns an [`RTCIceCandidatePair`](../rtcicecandidatepair) object containing the current best-choice pair of [ICE](https://developer.mozilla.org/en-US/docs/Glossary/ICE) candidates describing the configuration of the endpoints of the transport.
 
-Syntax
-------
+## Syntax
 
     candidatePair = RTCIceTransport.getSelectedCandidatePair();
 
@@ -18,8 +16,7 @@ A [`RTCIceCandidatePair`](../rtcicecandidatepair) object describing the configur
 
 The return value is `null` if no pair of candidates has been selected yet.
 
-Usage notes
------------
+## Usage notes
 
 As the ICE agent performs negotiation of a [`RTCPeerConnection`](../rtcpeerconnection), it gathers and analyzes candidate configurations from each the two peers. As soon as it finds an acceptable matching pair of candidates, meeting the requirements for the connection, a `selectedcandidatepairchange` event is fired at the [`RTCIceTransport`](../rtcicetransport). From that time forward, the best matching pair of candidates will always be available by calling `getSelectedCandidatePair()`.
 
@@ -27,8 +24,7 @@ As ICE negotiation continues, any time a pair of candidates is discovered that i
 
 **Note:** It's possible for one of the configurations in the selected candidate pair to remain unchanged when a new pairing is chosen.
 
-Example
--------
+## Example
 
 In this example, an event handler for `selectedcandidatepairchange` is set up to update an on-screen display showing the protocol used by the currently selected candidate pair.
 
@@ -42,14 +38,12 @@ In this example, an event handler for `selectedcandidatepairchange` is set up to
       remoteProtocol.innerText = pair.remote.protocol.toUpperCase();
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicetransport-getselectedcandidatepair">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceTransport.getSelectedCandidatePair()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

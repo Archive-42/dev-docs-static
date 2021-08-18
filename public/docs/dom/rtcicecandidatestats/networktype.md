@@ -1,5 +1,4 @@
-RTCIceCandidateStats.networkType
-================================
+# RTCIceCandidateStats.networkType
 
 **Deprecated**
 
@@ -9,8 +8,7 @@ The [`RTCIceCandidateStats`](../rtcicecandidatestats) dictionary's `networkType`
 
 **Note:** The `networkType` property is only included in `RTCIceCandidateStats` objects for local candidates (that is, candidates generated locally and included in an [SDP](https://developer.mozilla.org/en-US/docs/Glossary/SDP) offer or answer that has been sent to the remote peer).
 
-Syntax
-------
+## Syntax
 
     networkType = rtcIceCandidateStats.networkType;
 
@@ -43,8 +41,7 @@ The user's browser is unable or unwilling to identify the underlying connection 
 
 **Note:** Keep in mind that the specified value only reflects the initial connection between the local peer and the next hop along the network toward reaching the remote peer. For example, if the `networkType` is `wifi` but the user is connected using a cellular hotspot, the connection will be bottlenecked by the underlying cellular network (and any other networks between the two peers).
 
-Example
--------
+## Example
 
 This example sets up a periodic function using [`setInterval()`](../windoworworkerglobalscope/setinterval) that outputs statistics reports for candidates that use or would use a cellular data network to a log view.
 
@@ -72,8 +69,7 @@ This example sets up a periodic function using [`setInterval()`](../windoworwork
       });
     }, 1000);
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

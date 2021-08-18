@@ -1,10 +1,8 @@
-Node.ownerDocument
-==================
+# Node.ownerDocument
 
 The `ownerDocument` read-only property of the [`Node`](../node) interface returns the top-level document object of the node.
 
-Syntax
-------
+## Syntax
 
     var document = element.ownerDocument;
 
@@ -12,8 +10,7 @@ Syntax
 
 `document` is the top-level [`Document`](../document) object in which all the child nodes are created. If this property is used on a node that is itself a document, the value is `null`.
 
-Example
--------
+## Example
 
     // Given a node "p", get the top-level HTML
     // child of the document object
@@ -21,14 +18,12 @@ Example
     var d = p.ownerDocument;
     var html = d.documentElement;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-node-ownerdocument">DOM<br />
 <span class="small">The definition of 'Node: ownerDocument' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

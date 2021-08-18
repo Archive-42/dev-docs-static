@@ -1,5 +1,4 @@
-PositionSensorVRDevice.getImmediateState()
-==========================================
+# PositionSensorVRDevice.getImmediateState()
 
 **Deprecated**
 
@@ -14,8 +13,7 @@ The `getImmediateState()` method of the [`VRDisplay`](../vrdisplay) interface re
 
 For most standard uses, you'll probably want to use [`PositionSensorVRDevice.getState`](getstate) instead.
 
-Syntax
-------
+## Syntax
 
     var myPositionstate = PositionSensorVRDevice.getImmediateState();
 
@@ -27,8 +25,7 @@ None.
 
 A [`VRPose`](../vrpose) object.
 
-Examples
---------
+## Examples
 
 Our [positionsensorvrdevice](https://mdn.github.io/webvr-tests/positionsensorvrdevice/) demo uses the WebVR API to update the view of a simple [`2D canvas`](../canvasrenderingcontext2d) scene on each frame of a [`requestAnimationFrame`](../window/requestanimationframe) loop. The main function that updates the view data is as follows:
 
@@ -60,10 +57,9 @@ Our [positionsensorvrdevice](https://mdn.github.io/webvr-tests/positionsensorvrd
 
 Here we are grabbing a [`VRPose`](../vrpose) object using `getImmediateState()` and storing it in `posState` (the actual live demo uses `getState()`, but both seem to do the same thing currently.) We then check to make sure that position and orientation info is present in the current frame using [`VRPose.hasPosition`](../vrpose/hasposition) and [`VRPose.hasOrientation`](../vrpose/hasorientation) (these return `null` if, for example the head mounted display is turned off or not pointing at the position sensor, which would cause an error.)
 
-We then output the x, y and z position and orientation values for informational purposes, and use those values to update the `xPos`, `yPos`, `zPos, ``xOrient`, `yOrient`, and `zOrient` variables, which are used to update the scene rendering on each frame.
+We then output the x, y and z position and orientation values for informational purposes, and use those values to update the `xPos`, `yPos`, ` zPos, ``xOrient `, `yOrient`, and `zOrient` variables, which are used to update the scene rendering on each frame.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -131,10 +127,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [WebVR API homepage](../webvr_api).
--   <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
+- [WebVR API homepage](../webvr_api).
+- <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PositionSensorVRDevice/getImmediateState" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PositionSensorVRDevice/getImmediateState</a>

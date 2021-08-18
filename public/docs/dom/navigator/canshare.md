@@ -1,5 +1,4 @@
-Navigator.canShare()
-====================
+# Navigator.canShare()
 
 **Non-standard**
 
@@ -16,29 +15,26 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `Navigator.canShare()` method of the Web Share API returns `true` if a call to [`navigator.share()`](share) would succeed.
 
-Syntax
-------
+## Syntax
 
     const canShare = navigator.canShare(data);
 
 ### Parameters
 
- `data` <span class="badge inline optional">Optional</span>   
+`data` <span class="badge inline optional">Optional</span>  
 An object containing data to share that matches what you would pass to [`navigator.share()`](share).
 
 ### Return value
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean). True if data can be shared with [`Navigator.share()`](share).
 
-Examples
---------
+## Examples
 
     if(navigator.canShare(data)) {
       // We can use share() to share the data! Woop!
     }
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -96,8 +92,7 @@ No
 
 11.0
 
-See also
---------
+## See also
 
 [`navigator.share()`](share)
 

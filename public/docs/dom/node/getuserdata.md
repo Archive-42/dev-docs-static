@@ -1,5 +1,4 @@
-Node.getUserData()
-==================
+# Node.getUserData()
 
 **Deprecated**
 
@@ -9,29 +8,25 @@ The `Node.getUserData()` method returns any user [`DOMUserData`](../domuserdata)
 
 The `Node.setUserData` and [`Node.getUserData`](getuserdata) methods are no longer available from Web content. <span class="page-not-created">`Element.dataset`</span> or [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) can be used instead.
 
-Syntax
-------
+## Syntax
 
     userData = someNode.getUserData(userKey);
 
 ### Parameters
 
--   `userKey` is the key to choose the specific data sought for the given node. More than one key may have been assigned on a given node, containing its own value.
+- `userKey` is the key to choose the specific data sought for the given node. More than one key may have been assigned on a given node, containing its own value.
 
-Example
--------
+## Example
 
     var d = document.setUserData('key', 15, null);
     console.log(document.getUserData('key')); // 15
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#Node3-getUserData">Document Object Model (DOM) Level 3 Core Specification<br />
 <span class="small">The definition of 'Node.getUserData()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -87,11 +82,10 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`Node.setUserData()`](setuserdata)
--   [`UserDataHandler`](../userdatahandler)
--   [`DOMUserData`](../domuserdata)
+- [`Node.setUserData()`](setuserdata)
+- [`UserDataHandler`](../userdatahandler)
+- [`DOMUserData`](../domuserdata)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/getUserData" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/getUserData</a>

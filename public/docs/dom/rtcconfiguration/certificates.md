@@ -1,10 +1,8 @@
-RTCConfiguration.certificates
-=============================
+# RTCConfiguration.certificates
 
 The [`RTCConfiguration`](../rtcconfiguration) dictionary's optional `certificates` property is an array of [`RTCCertificate`](../rtccertificate) objects providing the security certificates available for use when authenticating duing the connection process.
 
-Syntax
-------
+## Syntax
 
     let rtcConfiguration = {
       certificates: certificateList
@@ -19,8 +17,7 @@ An array of [`RTCCertificate`](../rtccertificate) objects, each specifying one s
 
 See [Using certificates](#using_certificates) below for more information on why you might want to—or not to—explicitly provide certificates.
 
-Description
------------
+## Description
 
 If this property isn't included in the configuration, a set of certificates is automatically generated for each instance of [`RTCPeerConnection`](../rtcpeerconnection). Although a given [DTLS](https://developer.mozilla.org/en-US/docs/Glossary/DTLS) connection only uses a single certificate, providing multiple options in the `certificates` list may improve the odds of establishing a connection by increasing the chances a mutually-compatible encryption algorithm and key size may be found.
 
@@ -38,8 +35,7 @@ If you don't provide certificates, new ones are generated automatically. One obv
 
 **&lt;&lt;&lt;--- add link to information about identity ---&gt;&gt;&gt;**
 
-Examples
---------
+## Examples
 
 This example uses [`RTCPeerConnection.generateCertificate()`](../rtcpeerconnection/generatecertificate) to create a certificate, then uses it to open a new [`RTCPeerConnection`](../rtcpeerconnection).
 
@@ -52,14 +48,12 @@ This example uses [`RTCPeerConnection.generateCertificate()`](../rtcpeerconnecti
       var pc = new RTCPeerConnection({certificates: [cert]});
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcconfiguration-certificates">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCConfiguration.certificates' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

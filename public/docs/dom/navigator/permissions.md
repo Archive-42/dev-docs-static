@@ -1,5 +1,4 @@
-Navigator.permissions
-=====================
+# Navigator.permissions
 
 **Experimental**
 
@@ -8,18 +7,15 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `Navigator.permissions` read-only property returns a [`Permissions`](../permissions) object that can be used to query and update permission status of APIs covered by the [Permissions API](../permissions_api).
 
-Syntax
-------
+## Syntax
 
     permissionsObj = globalObj.navigator.permissions
 
-Value
------
+## Value
 
 A [`Permissions`](../permissions) object.
 
-Examples
---------
+## Examples
 
     navigator.permissions.query({name:'geolocation'}).then(function(result) {
       if (result.state === 'granted') {
@@ -30,13 +26,11 @@ Examples
       // Don't do anything if the permission was denied.
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/permissions/">Permissions</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -94,10 +88,9 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [Permissions API](../permissions_api)
--   [`Navigator`](../navigator)
+- [Permissions API](../permissions_api)
+- [`Navigator`](../navigator)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/permissions" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/permissions</a>

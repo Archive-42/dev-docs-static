@@ -1,10 +1,8 @@
-PerformanceElementTiming.element
-================================
+# PerformanceElementTiming.element
 
 The `element` read-only property of the [`PerformanceElementTiming`](../performanceelementtiming) interface returns an [`Element`](../element) which is a literal representation of the associated element.
 
-Syntax
-------
+## Syntax
 
     var element = PerformanceElementTiming.element;
 
@@ -12,8 +10,7 @@ Syntax
 
 An [`Element`](../element).
 
-Examples
---------
+## Examples
 
 In this example calling `entry.element` will log to the console  
 `<img src="image.jpg" alt="a nice image" elementtiming="big-image">`.
@@ -31,14 +28,12 @@ In this example calling `entry.element` will log to the console
 
 This example uses the [`PerformanceObserver`](../performanceobserver) interface to create a list of performance measurement events. In our case we observe the [`PerformanceEntry.entrytype`](../performanceentry/entrytype) `element` in order to use the `PerformanceElementTiming` interface.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/element-timing/#dom-performanceelementtiming-element">Element Timing<br />
 <span class="small">The definition of 'PerformanceElementTiming.element' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

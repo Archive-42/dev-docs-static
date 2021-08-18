@@ -1,5 +1,4 @@
-PerformanceLongTaskTiming.attribution
-=====================================
+# PerformanceLongTaskTiming.attribution
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `attribution` readonly property of the [`PerformanceLongTaskTiming`](../performancelongtasktiming) interface returns a sequence of [`TaskAttributionTiming`](../taskattributiontiming) instances.
 
-Syntax
-------
+## Syntax
 
     var taskAttributeTiming = PerformanceLongTaskTiming.attribution;
 
@@ -17,14 +15,12 @@ Syntax
 
 A sequence of [`TaskAttributionTiming`](../taskattributiontiming) instances.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/longtasks/#dom-performancelongtasktiming-attribution">Long Tasks API 1<br />
 <span class="small">The definition of 'attribution' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

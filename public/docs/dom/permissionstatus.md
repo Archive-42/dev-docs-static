@@ -1,5 +1,4 @@
-PermissionStatus
-================
+# PermissionStatus
 
 **Experimental**
 
@@ -8,13 +7,12 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `PermissionStatus` interface of the [Permissions API](permissions_api) provides the state of an object and an event handler for monitoring changes to said state.
 
-Properties
-----------
+## Properties
 
- [`PermissionStatus.state`](permissionstatus/state) <span class="badge inline readonly">Read only </span>   
+[`PermissionStatus.state`](permissionstatus/state) <span class="badge inline readonly">Read only </span>  
 Returns the state of a requested permission; one of `'granted'`, `'denied'`, or `'prompt'`.
 
- `PermissionStatus.status`<span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+`PermissionStatus.status`<span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns the state of a requested permission; one of `'granted'`, `'denied'`, or `'prompt'`. Later versions of the specification replace this with [`PermissionStatus.state`](permissionstatus/state).
 
 ### Event Handler
@@ -22,8 +20,7 @@ Returns the state of a requested permission; one of `'granted'`, `'denied'`, or 
 [`PermissionStatus.onchange`](permissionstatus/onchange)  
 An event called whenever `PermissionStatus.status` changes.
 
-Example
--------
+## Example
 
     navigator.permissions.query({name:'geolocation'}).then(function(permissionStatus) {
       console.log('geolocation permission status is ', permissionStatus.state);
@@ -32,14 +29,12 @@ Example
       };
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/permissions/#status-of-a-permission">Permissions<br />
 <span class="small">The definition of 'PermissionStatus' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

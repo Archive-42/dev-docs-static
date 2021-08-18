@@ -1,12 +1,10 @@
-MessagePort: messageerror event
-===============================
+# MessagePort: messageerror event
 
 The `messageerror` event is fired on a [`MessagePort`](../messageport) object when it receives a message that can't be deserialized.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../messageevent"><code>MessageEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><code>onmessageerror</code></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 Suppose a script creates a `MessageChannel` and sends one of the ports to a different browsing context, such as another `<iframe>`, using code like this:
 
@@ -55,13 +53,11 @@ Note that the listener must call `MessagePort.start()` before any messages will 
 
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/indices.html#event-messageerror">HTML Living Standard</a></td><td><span class="spec-living">Living Standard</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -117,10 +113,9 @@ Samsung Internet
 
 8.0
 
-See also
---------
+## See also
 
--   Related events: `message`.
--   [Using channel messaging](../channel_messaging_api/using_channel_messaging)
+- Related events: `message`.
+- [Using channel messaging](../channel_messaging_api/using_channel_messaging)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MessagePort/messageerror_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MessagePort/messageerror_event</a>

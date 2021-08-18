@@ -1,5 +1,4 @@
-PublicKeyCredentialRequestOptions.extensions
-============================================
+# PublicKeyCredentialRequestOptions.extensions
 
 **Secure context**
 
@@ -9,14 +8,13 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 Extensions are values requesting additional processing by the client and by the authenticator. For instance, extensions may be used for:
 
--   backward compatibility with the legacy FIDO JS API,
--   knowing the user verification process,
--   etc.
+- backward compatibility with the legacy FIDO JS API,
+- knowing the user verification process,
+- etc.
 
 **Note:** An analogous option exists for the creation operation ([`navigators.credentials.create()`](../credentialscontainer/create)), see [`PublicKeyCredentialCreationOptions.extensions`](../publickeycredentialcreationoptions/extensions).
 
-Syntax
-------
+## Syntax
 
     extensions = publicKeyCredentialRequestOptions.extensions
 
@@ -32,8 +30,7 @@ Here is the current (as of March 2019) list of potential extensions which may be
 
 **Note:** Extensions are optional and different browsers may recognize different extensions. All extensions are optional for the client to process them: if a browser does not know a given extension, that will not cause any failure, the extension will not be processed.
 
-Examples
---------
+## Examples
 
     var options = {
       extensions: {
@@ -52,14 +49,12 @@ Examples
          console.error(err);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#dom-publickeycredentialrequestoptions-extensions">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'extensions' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -115,11 +110,10 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`PublicKeyCredential.getClientExtensionResults()`](../publickeycredential/getclientextensionresults)
--   [The list of all of the extensions defined in the specification](https://w3c.github.io/webauthn/#sctn-defined-extensions)
--   [`PublicKeyCredentialCreationOptions.extensions`](../publickeycredentialcreationoptions/extensions), the analogous option property used when creating a credential
+- [`PublicKeyCredential.getClientExtensionResults()`](../publickeycredential/getclientextensionresults)
+- [The list of all of the extensions defined in the specification](https://w3c.github.io/webauthn/#sctn-defined-extensions)
+- [`PublicKeyCredentialCreationOptions.extensions`](../publickeycredentialcreationoptions/extensions), the analogous option property used when creating a credential
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialRequestOptions/extensions" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialRequestOptions/extensions</a>

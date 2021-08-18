@@ -1,10 +1,8 @@
-MouseEvent.movementX
-====================
+# MouseEvent.movementX
 
 The `movementX` read-only property of the [`MouseEvent`](../mouseevent) interface provides the difference in the X coordinate of the mouse pointer between the given event and the previous `mousemove` event. In other words, the value of the property is computed like this: `currentEvent.movementX = currentEvent.screenX - previousEvent.screenX`.
 
-Syntax
-------
+## Syntax
 
     var xShift = instanceOfMouseEvent.movementX;
 
@@ -12,8 +10,7 @@ Syntax
 
 A number
 
-Example
--------
+## Example
 
 This example logs the amount of mouse movement using `movementX` and [`movementY`](movementy).
 
@@ -33,14 +30,12 @@ This example logs the amount of mouse movement using `movementX` and [`movementY
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/pointerlock/#dom-mouseevent-movementx">Pointer Lock<br />
 <span class="small">The definition of 'MouseEvent.movementX' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -112,11 +107,10 @@ Yes
 
 Yes-3.0
 
-See also
---------
+## See also
 
--   [`MouseEvent.movementY`](movementy)
--   [`MouseEvent`](../mouseevent)
--   [Pointer Lock](../pointer_lock_api)
+- [`MouseEvent.movementY`](movementy)
+- [`MouseEvent`](../mouseevent)
+- [Pointer Lock](../pointer_lock_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/movementX" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/movementX</a>

@@ -1,5 +1,4 @@
-Using Pointer Events
-====================
+# Using Pointer Events
 
 This guide demonstrates how to use [pointer events](../pointer_events) and the HTML [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element to build a multi-touch enabled drawing application. This example is based on the one in the [touch events overview](../touch_events), except it uses the [pointer events](../pointerevent) input event model. Another difference is that because pointer events are pointer device agnostic, the application accepts coordinate-based inputs from a mouse, a pen, or a fingertip using the same code.
 
@@ -7,8 +6,7 @@ This application will only work on a browser that supports pointer events.
 
 A live version of this application is available on [GitHub](https://mdn.github.io/dom-examples/pointerevents/Using_Pointer_Events.html). The [source code is available on Github](https://github.com/mdn/dom-examples/blob/master/pointerevents/Using_Pointer_Events.html) and pull requests and bug reports are welcome.
 
-Definitions
------------
+## Definitions
 
 Surface  
 A touch-sensitive surface. This may be a trackpad, a touch screen, or even a virtual mapping of a user's desk surface (or mousepad) with the physical screen.
@@ -16,8 +14,7 @@ A touch-sensitive surface. This may be a trackpad, a touch screen, or even a vir
 Touch point  
 A point of contact with the surface. This may be a finger (or elbow, ear, nose, whatever, but typically a finger), stylus, mouse, or any other method for specifying a single point on the surface.
 
-Example
--------
+## Example
 
 The text below uses the term "finger" when describing the contact with the surface, but it could, of course, also be a stylus, mouse, or other method of pointing at a location.
 
@@ -197,15 +194,13 @@ The `ongoingTouchIndexById()` function below scans through the `ongoingTouches` 
       p.innerHTML = msg + "\n" + p.innerHTML;
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/pointerevents2/#pointerevent-interface">Pointer Events – Level 2<br />
 <span class="small">The definition of 'PointerEvent' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/pointerevents1/#pointerevent-interface">Pointer Events<br />
 <span class="small">The definition of 'PointerEvent' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -649,10 +644,9 @@ Returns values in screen pixels instead of CSS document pixels.
 
 BCD tables only load in the browser
 
-See also
---------
+## See also
 
--   [Pointer events](../pointer_events)
--   [Touch events](../touch_events)
+- [Pointer events](../pointer_events)
+- [Touch events](../touch_events)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events/Using_Pointer_Events" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events/Using_Pointer_Events</a>

@@ -1,5 +1,4 @@
-PushSubscription
-================
+# PushSubscription
 
 **Experimental**
 
@@ -10,23 +9,21 @@ The `PushSubscription` interface of the [Push API](push_api) provides a subcript
 
 An instance of this interface can be serialized.
 
-Properties
-----------
+## Properties
 
- [`PushSubscription.endpoint`](pushsubscription/endpoint) <span class="badge inline readonly">Read only </span>   
+[`PushSubscription.endpoint`](pushsubscription/endpoint) <span class="badge inline readonly">Read only </span>  
 A [`USVString`](usvstring) containing the endpoint associated with the push subscription.
 
- [`PushSubscription.expirationTime`](pushsubscription/expirationtime) <span class="badge inline readonly">Read only </span>   
+[`PushSubscription.expirationTime`](pushsubscription/expirationtime) <span class="badge inline readonly">Read only </span>  
 A [`DOMHighResTimeStamp`](domhighrestimestamp) of the subscription expiration time associated with the push subscription, if there is one, or null otherwise.
 
- [`PushSubscription.options`](pushsubscription/options) <span class="badge inline readonly">Read only </span>   
+[`PushSubscription.options`](pushsubscription/options) <span class="badge inline readonly">Read only </span>  
 An object containing the options used to create the subscription.
 
- [`PushSubscription.subscriptionId`](pushsubscription/subscriptionid) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span> <span class="badge inline readonly">Read only </span>   
+[`PushSubscription.subscriptionId`](pushsubscription/subscriptionid) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span> <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) containing the subscription ID associated with the push subscription.
 
-Methods
--------
+## Methods
 
 [`PushSubscription.getKey()`](pushsubscription/getkey)  
 Returns an [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) which contains the client's public key, which can then be sent to a server and used in encrypting push message data.
@@ -37,8 +34,7 @@ Standard serializer — returns a JSON representation of the subscription proper
 [`PushSubscription.unsubscribe()`](pushsubscription/unsubscribe)  
 Starts the asynchronous process of unsubscribing from the push service, returning a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) when the current subscription is successfully unregistered.
 
-Example
--------
+## Example
 
     navigator.serviceWorker.ready.then(function(reg) {
       reg.pushManager.getSubscription().then(function(subscription) {
@@ -50,14 +46,12 @@ Example
       })
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/#pushsubscription-interface">Push API<br />
 <span class="small">The definition of 'PushSubscription' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -307,10 +301,9 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [Push API](push_api)
--   [Service Worker API](service_worker_api)
+- [Push API](push_api)
+- [Service Worker API](service_worker_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PushSubscription" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PushSubscription</a>

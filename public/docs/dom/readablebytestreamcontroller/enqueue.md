@@ -1,5 +1,4 @@
-ReadableByteStreamController.enqueue()
-======================================
+# ReadableByteStreamController.enqueue()
 
 **Draft**
 
@@ -12,14 +11,13 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `enqueue()` method of the [`ReadableByteStreamController`](../readablebytestreamcontroller) interface enqueues a given chunk in the associated stream.
 
-Syntax
-------
+## Syntax
 
     readableByteStreamController.enqueue(chunk);
 
 ### Parameters
 
-*chunk*  
+_chunk_  
 The chunk to enqueue.
 
 ### Return value
@@ -31,19 +29,16 @@ The chunk to enqueue.
 TypeError  
 The source object is not a `ReadableByteStreamController`, or the stream cannot be read for some other reason, or the chunk is not an object, or the chunk's internal array buffer is non-existent or detached.
 
-Examples
---------
+## Examples
 
 TBD.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://streams.spec.whatwg.org/#rbs-controller-enqueue">Streams<br />
 <span class="small">The definition of 'enqueue()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

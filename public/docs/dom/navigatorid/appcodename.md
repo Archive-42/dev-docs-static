@@ -1,5 +1,4 @@
-NavigatorID.appCodeName
-=======================
+# NavigatorID.appCodeName
 
 **Deprecated**
 
@@ -9,8 +8,7 @@ The value of the `NavigatorID.appCodeName` property is always "`Mozilla`", in an
 
 **Note:** Do not rely on this property to return a real product name. All browsers return "`Mozilla`" as the value of this property.
 
-Syntax
-------
+## Syntax
 
     codeName = navigator.appCodeName
 
@@ -18,14 +16,12 @@ Syntax
 
 The string "`Mozilla`".
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-appcodename">HTML Living Standard<br />
 <span class="small">The definition of 'NavigatorID.appCodeName' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -81,10 +77,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`NavigatorID.appName`](appname)
--   [`NavigatorID.product`](product)
+- [`NavigatorID.appName`](appname)
+- [`NavigatorID.product`](product)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorID/appCodeName" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NavigatorID/appCodeName</a>

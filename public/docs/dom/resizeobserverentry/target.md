@@ -1,10 +1,8 @@
-ResizeObserverEntry.target
-==========================
+# ResizeObserverEntry.target
 
 The `target` read-only property of the [`ResizeObserverEntry`](../resizeobserverentry) interface returns a reference to the [`Element`](../element) or [`SVGElement`](../svgelement) that is being observed.
 
-Syntax
-------
+## Syntax
 
     var element = ResizeObserverEntry.target;
     var svgElement = ResizeObserverEntry.target;
@@ -13,8 +11,7 @@ Syntax
 
 An [`Element`](../element) or [`SVGElement`](../svgelement) representing the element being observed.
 
-Examples
---------
+## Examples
 
 The following snippet is taken from the [resize-observer-border-radius.html](https://mdn.github.io/dom-examples/resize-observer/resize-observer-border-radius.html) ([see source](https://github.com/mdn/dom-examples/blob/master/resize-observer/resize-observer-border-radius.html)) example. This example includes a green box, sized as a percentage of the viewport size. When the viewport size is changed, the box's rounded corners change in proportion to the size of the box. We could just implement this using [`border-radius`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) with a percentage, but that quickly leads to ugly-looking elliptical corners; this solution gives you nice square corners that scale with the box size.
 
@@ -34,14 +31,12 @@ To grab a reference to the observed element so we can update its [`border-radius
 
     resizeObserver.observe(document.querySelector('div'));
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/resize-observer/#dom-resizeobserverentry-target">Resize Observer<br />
 <span class="small">The definition of 'target' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

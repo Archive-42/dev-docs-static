@@ -1,10 +1,8 @@
-Node.removeChild()
-==================
+# Node.removeChild()
 
 The `Node.removeChild()` method removes a child node from the DOM and returns the removed node.
 
-Syntax
-------
+## Syntax
 
     var oldChild = node.removeChild(child);
 
@@ -12,9 +10,9 @@ Or just:
 
     node.removeChild(child);
 
--   `child` is the child node to be removed from the DOM.
--   `node` is the parent node of `child`.
--   `oldChild` holds a reference to the removed child node, i.e., `oldChild === child`.
+- `child` is the child node to be removed from the DOM.
+- `node` is the parent node of `child`.
+- `oldChild` holds a reference to the removed child node, i.e., `oldChild === child`.
 
 The removed child node still exists in memory, but is no longer part of the DOM. With the first syntax form shown, you may reuse the removed node later in your code, via the `oldChild` object reference.
 
@@ -30,12 +28,10 @@ The method throws an exception in 2 different ways:
 
     `Uncaught NotFoundError: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node`.
 
-2.  If the `child` doesn't exist on the DOM of the page, the method throws the following exception:  
-      
+2.  If the `child` doesn't exist on the DOM of the page, the method throws the following exception:
     `Uncaught TypeError: Failed to execute 'removeChild' on 'Node': parameter 1 is not of type 'Node'.`
 
-Examples
---------
+## Examples
 
 ### Simple examples
 
@@ -96,19 +92,16 @@ To remove all children from an element:
       garbage = top.removeChild(nested);
     </script>
 
-Notes
------
+## Notes
 
 Unlike [`Node.cloneNode()`](clonenode) the return value preserves the [`EventListener`](../eventlistener)s.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-node-removechild">DOM<br />
 <span class="small">The definition of 'Node: removeChild' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -164,12 +157,11 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`Node.replaceChild()`](replacechild)
--   [`Node.parentNode`](parentnode)
--   [`ChildNode.remove()`](../childnode/remove)
--   [`Node.cloneNode()`](clonenode)
+- [`Node.replaceChild()`](replacechild)
+- [`Node.parentNode`](parentnode)
+- [`ChildNode.remove()`](../childnode/remove)
+- [`Node.cloneNode()`](clonenode)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild</a>

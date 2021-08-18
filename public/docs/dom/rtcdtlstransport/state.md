@@ -1,10 +1,8 @@
-RTCDtlsTransport.state
-======================
+# RTCDtlsTransport.state
 
 The `state` read-only property of the [`RTCDtlsTransport`](../rtcdtlstransport) interface provides information which describes a Datagram Transport Layer Security (**[DTLS](https://developer.mozilla.org/en-US/docs/Glossary/DTLS)**) transport state.
 
-Syntax
-------
+## Syntax
 
     let myState = dtlsTransport.state;
 
@@ -27,8 +25,7 @@ The transport has been closed intentionally as the result of receipt of a `close
 `failed`  
 The transport has failed as the result of an error (such as receipt of an error alert or failure to validate the remote fingerprint).
 
-Examples
---------
+## Examples
 
 This example presents a function, `tallySenders()`, which iterates over an `RTCPeerConnection`'s [`RTCRtpSender`](../rtcrtpsender)s, tallying up how many of them are in various states. The function returns an object containing properties whose values indicate how many of the senders are in each state.
 
@@ -78,14 +75,12 @@ This example presents a function, `tallySenders()`, which iterates over an `RTCP
 
 Note that in this code, the `new` and `connecting` states are being treated as a single `connectionPending` status in the returned object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcdtlstransport-state">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCDtlsTransport.state' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -145,10 +140,9 @@ No
 
 11.0
 
-See also
---------
+## See also
 
--   [WebRTC API](../webrtc_api)
--   [`RTCDtlsTransport`](../rtcdtlstransport)
+- [WebRTC API](../webrtc_api)
+- [`RTCDtlsTransport`](../rtcdtlstransport)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDtlsTransport/state" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDtlsTransport/state</a>

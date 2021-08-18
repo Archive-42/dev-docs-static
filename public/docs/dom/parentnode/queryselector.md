@@ -1,5 +1,4 @@
-ParentNode.querySelector()
-==========================
+# ParentNode.querySelector()
 
 **Draft**
 
@@ -11,8 +10,7 @@ If you need all the elements matching the selector list, use [`querySelectorAll(
 
 **Note:** This method is implemented as [`Document.querySelector()`](../document/queryselector), [`DocumentFragment.querySelector()`](../documentfragment/queryselector) and [`Element.querySelector()`](../element/queryselector).
 
-Syntax
-------
+## Syntax
 
     element = parentNode.querySelector(selectors);
 
@@ -34,8 +32,7 @@ The first [`Element`](../element) that matches at least one of the specified sel
 `SyntaxError`  
 The syntax of the specified `selectors` string is not valid.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-parentnode-queryselector">DOM<br />
 <span class="small">The definition of 'ParentNode.querySelector()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Living standard</td></tr><tr class="even"><td><a href="https://dev.w3.org/2006/webapi/selectors-api2/#dom-parentnode-queryselector">Selectors API Level 2<br />
@@ -43,19 +40,17 @@ Specifications
 <span class="small">The definition of 'ParentNode.querySelector()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/selectors-api/#interface-definitions">Selectors API Level 1<br />
 <span class="small">The definition of 'document.querySelector()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Original definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.ParentNode.querySelector`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).
 
-See also
---------
+## See also
 
--   [Locating DOM elements using selectors](../document_object_model/locating_dom_elements_using_selectors)
--   [Code snippets for `querySelector()`](https://developer.mozilla.org/en-US/docs/Code_snippets/QuerySelector)
--   [Attribute selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) in the CSS Guide
--   [Attribute selectors](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Attribute_selectors) in the MDN Learning Area
--   This method is available as [`Element.querySelector()`](../element/queryselector), [`Document.querySelector()`](../document/queryselector), and [`DocumentFragment.querySelector()`](../documentfragment/queryselector)
+- [Locating DOM elements using selectors](../document_object_model/locating_dom_elements_using_selectors)
+- [Code snippets for `querySelector()`](https://developer.mozilla.org/en-US/docs/Code_snippets/QuerySelector)
+- [Attribute selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) in the CSS Guide
+- [Attribute selectors](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Attribute_selectors) in the MDN Learning Area
+- This method is available as [`Element.querySelector()`](../element/queryselector), [`Document.querySelector()`](../document/queryselector), and [`DocumentFragment.querySelector()`](../documentfragment/queryselector)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelector" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelector</a>

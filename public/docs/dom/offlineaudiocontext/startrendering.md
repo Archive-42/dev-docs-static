@@ -1,5 +1,4 @@
-OfflineAudioContext.startRendering()
-====================================
+# OfflineAudioContext.startRendering()
 
 The `startRendering()` method of the [`OfflineAudioContext`](../offlineaudiocontext) Interface starts rendering the audio graph, taking into account the current connections and the current scheduled changes.
 
@@ -7,8 +6,7 @@ The `complete` event (of type [`OfflineAudioCompletionEvent`](../offlineaudiocom
 
 Browsers currently support two versions of the `startRendering()` method — an older event-based version and a newer promise-based version. The former will eventually be removed, but currently both mechanisms are provided for legacy reasons.
 
-Syntax
-------
+## Syntax
 
 Event-based version:
 
@@ -31,8 +29,7 @@ None.
 
 Void.
 
-Example
--------
+## Example
 
 In this simple example, we declare both an [`AudioContext`](../audiocontext) and an `OfflineAudioContext` object. We use the `AudioContext` to load an audio track via XHR ([`BaseAudioContext.decodeAudioData`](../baseaudiocontext/decodeaudiodata)), then the `OfflineAudioContext` to render the audio into an [`AudioBufferSourceNode`](../audiobuffersourcenode) and play the track through. After the offline audio graph is set up, you need to render it to an [`AudioBuffer`](../audiobuffer) using [`OfflineAudioContext.startRendering`](startrendering).
 
@@ -93,14 +90,12 @@ At this point we create another audio context, create an [`AudioBufferSourceNode
 
     getData();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-offlineaudiocontext-startrendering">Web Audio API<br />
 <span class="small">The definition of 'startRendering()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -186,9 +181,8 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](../web_audio_api/using_web_audio_api)
+- [Using the Web Audio API](../web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/OfflineAudioContext/startRendering" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/OfflineAudioContext/startRendering</a>

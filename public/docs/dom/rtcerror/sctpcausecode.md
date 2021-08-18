@@ -1,10 +1,8 @@
-RTCError.sctpCauseCode
-======================
+# RTCError.sctpCauseCode
 
 The read-only `sctpCauseCode` property in an [`RTCError`](../rtcerror) object provides the [SCTP](https://developer.mozilla.org/en-US/docs/Glossary/SCTP) cause code explaining why the SCTP negotiation failed, if the `RTCError` represents an SCTP error.
 
-Syntax
-------
+## Syntax
 
     let sctpCause = rtcError.sctpCauseCode;
 
@@ -14,14 +12,12 @@ An unsigned long integer value specifying SCTP cause code explaining why the err
 
 The standard SCTP error cause codes, numbered 1-13, are defined in the SCTP specification: [RFC 4960, section 3.3.10](https://tools.ietf.org/html/rfc4960#section-3.3.10).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcerror-sctpcausecode">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCError.sctpCauseCode' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

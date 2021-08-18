@@ -1,5 +1,4 @@
-MutationObserverInit.characterDataOldValue
-==========================================
+# MutationObserverInit.characterDataOldValue
 
 The **[`MutationObserverInit`](../mutationobserverinit)** dictionary's optional `characterDataOldValue` property is used to specify whether or not the <span class="page-not-created">`MutationRecord.oldValue`</span> property for DOM mutations should be set to the previous value of text nodes which changed.
 
@@ -7,8 +6,7 @@ If you set the [`MutationObserverInit.characterData`](characterdata) property to
 
 Character data changes are detectable on any text node, including nodes based on the [`Text`](../text), [`ProcessingInstruction`](../processinginstruction), and [`Comment`](../comment) interfaces.
 
-Syntax
-------
+## Syntax
 
     var options = {
       characterDataOldValue: true | false
@@ -22,17 +20,14 @@ By default, only changes to the text of the node specified as the `target` param
 
 If you set `characterDataOldValue` to `true`, `characterData` is automatically assumed to be `true`, even if you don't expressly set it as such.
 
-Example
--------
+## Example
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-mutationobserverinit-characterdataoldvalue">DOM<br />
 <span class="small">The definition of 'MutationObserverInit.characterDataOldValue' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

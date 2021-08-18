@@ -1,5 +1,4 @@
-RTCDataChannel.onmessage
-========================
+# RTCDataChannel.onmessage
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `RTCDataChannel.onmessage` property stores an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) which specifies a function to be called when the `message` event is fired on the channel. This event is represented by the [`MessageEvent`](../messageevent) interface. This event is sent to the channel when a message is received from the other peer.
 
-Syntax
-------
+## Syntax
 
     RTCDataChannel.onmessage = function;
 
@@ -17,8 +15,7 @@ Syntax
 
 A function which the browser will call to handle the `message` event. The function receives as its sole input parameter a [`MessageEvent`](../messageevent) object describing the event.
 
-Example
--------
+## Example
 
 This code snippet creates a peer connection, adds a data channel to it, and starts creating new [`<p>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p) (paragraph) elements each time a message arrives, with the message's contents displayed inside it. The new elements are then attached to the end of the document.
 
@@ -33,14 +30,12 @@ This code snippet creates a peer connection, adds a data channel to it, and star
       receiveBox.appendChild(el);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcdatachannel-onmessage">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCDataChannel.onmessage' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -96,12 +91,11 @@ Yes
 
 6.0
 
-See also
---------
+## See also
 
--   [WebRTC](../webrtc_api)
--   [`RTCPeerConnection`](../rtcpeerconnection)
--   [`RTCDataChannel`](../rtcdatachannel)
--   The `message` event and its type, [`MessageEvent`](../messageevent).
+- [WebRTC](../webrtc_api)
+- [`RTCPeerConnection`](../rtcpeerconnection)
+- [`RTCDataChannel`](../rtcdatachannel)
+- The `message` event and its type, [`MessageEvent`](../messageevent).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/onmessage" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/onmessage</a>

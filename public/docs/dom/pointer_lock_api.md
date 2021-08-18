@@ -1,24 +1,21 @@
-Pointer Lock API
-================
+# Pointer Lock API
 
-The **Pointer Lock API** (formerly called *Mouse Lock API*) provides input methods based on the movement of the mouse over time (i.e., deltas), not just the absolute position of the mouse cursor in the viewport. It gives you access to raw mouse movement, locks the target of mouse events to a single element, eliminates limits on how far mouse movement can go in a single direction, and removes the cursor from view. It is ideal for first person 3D games, for example.
+The **Pointer Lock API** (formerly called _Mouse Lock API_) provides input methods based on the movement of the mouse over time (i.e., deltas), not just the absolute position of the mouse cursor in the viewport. It gives you access to raw mouse movement, locks the target of mouse events to a single element, eliminates limits on how far mouse movement can go in a single direction, and removes the cursor from view. It is ideal for first person 3D games, for example.
 
 More than that, the API is useful for any applications that require significant mouse input to control movements, rotate objects, and change entries, for example allowing users to control the viewing angle by moving the mouse around without any button clicking. The buttons are then freed up for other actions. Other examples include apps for viewing maps or satellite imagery.
 
 Pointer lock lets you access mouse events even when the cursor goes past the boundary of the browser or screen. For example, your users can continue to rotate or manipulate a 3D model by moving the mouse without end. Without Pointer lock, the rotation or manipulation stops the moment the pointer reaches the edge of the browser or screen. Game players can now click buttons and swipe the mouse cursor back and forth without worrying about leaving the game play area and accidentally clicking another application that would take mouse focus away from the game.
 
-Basic concepts
---------------
+## Basic concepts
 
 Pointer lock is related to [mouse capture](element/setcapture). Mouse capture provides continued delivery of events to a target element while a mouse is being dragged, but it stops when the mouse button is released. Pointer lock is different from mouse capture in the following ways:
 
--   It is persistent: Pointer lock does not release the mouse until an explicit API call is made or the user uses a specific release gesture.
--   It is not limited by browser or screen boundaries.
--   It continues to send events regardless of mouse button state.
--   It hides the cursor.
+- It is persistent: Pointer lock does not release the mouse until an explicit API call is made or the user uses a specific release gesture.
+- It is not limited by browser or screen boundaries.
+- It continues to send events regardless of mouse button state.
+- It hides the cursor.
 
-Method/properties overview
---------------------------
+## Method/properties overview
 
 This section provides a brief description of each property and method related to the pointer lock specification.
 
@@ -56,8 +53,7 @@ The [`Document.exitPointerLock()`](document/exitpointerlock) method is used to e
     // Attempt to unlock
     document.exitPointerLock();
 
-pointerlockchange event
------------------------
+## pointerlockchange event
 
 When the Pointer lock state changes—for example, when calling [`requestPointerLock()`](element/requestpointerlock), [`exitPointerLock()`](document/exitpointerlock), the user pressing the ESC key, etc.—the `pointerlockchange` event is dispatched to the `document`. This is a simple event and contains no extra data.
 
@@ -78,8 +74,7 @@ When the Pointer lock state changes—for example, when calling [`requestPointer
       }
     }
 
-pointerlockerror event
-----------------------
+## pointerlockerror event
 
 When there is an error caused by calling [`requestPointerLock()`](element/requestpointerlock) or [`exitPointerLock()`](document/exitpointerlock), the `pointerlockerror` event is dispatched to the `document`. This is a simple event and contains no extra data.
 
@@ -92,8 +87,7 @@ When there is an error caused by calling [`requestPointerLock()`](element/reques
 
 **Note**: until Firefox 50 the above events were prefixed with `moz` in Firefox.
 
-Extensions to mouse events
---------------------------
+## Extensions to mouse events
 
 The Pointer lock API extends the normal [`MouseEvent`](mouseevent) interface with movement attributes. Two new attributes to mouse events—[`movementX`](mouseevent/movementx) and [`movementY`](mouseevent/movementy)—provide the change in mouse positions. The values of the parameters are the same as the difference between the values of [`MouseEvent`](mouseevent) properties, [`screenX`](mouseevent/screenx) and [`screenY`](mouseevent/screeny), which are stored in two subsequent `mousemove` events, `eNow` and `ePrevious`. In other words, the Pointer lock parameter `movementX = eNow.screenX - ePrevious.screenX`.
 
@@ -107,8 +101,7 @@ The parameters [`movementX`](mouseevent/movementx) and [`movementY`](mouseevent/
 
 When the mouse is unlocked, the system cursor can exit and re-enter the browser window. If that happens, [`movementX`](mouseevent/movementx) and [`movementY`](mouseevent/movementy) could be set to zero.
 
-Simple example walkthrough
---------------------------
+## Simple example walkthrough
 
 We've written a [simple pointer lock demo](https://mdn.github.io/dom-examples/pointer-lock/) to show you how to use it to set up a simple control system ([see source code](https://github.com/mdn/dom-examples/tree/master/pointer-lock)). The demo looks like this:
 
@@ -197,20 +190,17 @@ The `canvasDraw()` function draws the ball in the current `x` and `y` positions:
       ctx.fill();
     }
 
-iframe limitations
-------------------
+## iframe limitations
 
 Pointer lock can only lock one iframe at a time. If you lock one iframe, you cannot try to lock another iframe and transfer the target to it; pointer lock will error out. To avoid this limitation, first unlock the locked iframe, and then lock the other.
 
 While iframes work by default, "sandboxed" iframes block Pointer lock. The ability to avoid this limitation, in the form of the attribute/value combination `<iframe sandbox="allow-pointer-lock">`, is expected to appear in Chrome soon.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/pointerlock/">Pointer Lock</a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -286,9 +276,8 @@ Yes
 
 BCD tables only load in the browser
 
-See also
---------
+## See also
 
--   [`MouseEvent`](mouseevent)
+- [`MouseEvent`](mouseevent)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API</a>

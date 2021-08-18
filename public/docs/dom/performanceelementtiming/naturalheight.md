@@ -1,10 +1,8 @@
-PerformanceElementTiming.naturalHeight
-======================================
+# PerformanceElementTiming.naturalHeight
 
 The `naturalHeight` read-only property of the [`PerformanceElementTiming`](../performanceelementtiming) interface returns the intrinsic height of the image element.
 
-Syntax
-------
+## Syntax
 
     var height = PerformanceElementTiming.naturalHeight;
 
@@ -12,8 +10,7 @@ Syntax
 
 An unsigned 32-bit integer (unsigned long) which is the intrinsic height of the image if this is applied to an image, 0 for text.
 
-Examples
---------
+## Examples
 
 In this example the image file has a width of 1000px and a height of 750px. Calling `entry.naturalHeight` returns `750`, that being the intrinsic height in pixels.
 
@@ -30,14 +27,12 @@ In this example the image file has a width of 1000px and a height of 750px. Call
 
 This example uses the [`PerformanceObserver`](../performanceobserver) interface to create a list of performance measurement events. In our case we observe the [`PerformanceEntry.entrytype`](../performanceentry/entrytype) `element` in order to use the `PerformanceElementTiming` interface.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/element-timing/#dom-performanceelementtiming-naturalheight">Element Timing<br />
 <span class="small">The definition of 'PerformanceElementTiming.naturalHeight' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

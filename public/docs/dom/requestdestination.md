@@ -1,10 +1,8 @@
-RequestDestination
-==================
+# RequestDestination
 
 The `RequestDestination` enumerated type contains the permitted values for a request's [`destination`](request/destination). These string values indicate potential types of content that a request may try to retrieve.
 
-Values
-------
+## Values
 
 `""`  
 The default value of `destination` is used for destinations that do not have their own value. [navigator.sendBeacon()](navigator/sendbeacon), [EventSource](eventsource), [&lt;a ping&gt;](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attr-ping), [&lt;area ping&gt;](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area#attr-ping), [fetch()](windoworworkerglobalscope/fetch), [XMLHttpRequest](xmlhttprequest), [WebSocket](websocket), [Cache](cache) and more.
@@ -63,14 +61,12 @@ The target is a worker.
 `"xslt"`  
 The target is an XLST transform.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fetch.spec.whatwg.org/#requestdestination">Fetch<br />
 <span class="small">The definition of 'RequestDestination' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -126,11 +122,10 @@ Samsung Internet
 
 9.0
 
-See also
---------
+## See also
 
--   [Fetch API](fetch_api)
--   [Using Fetch](fetch_api/using_fetch)
--   [`Request.destination`](request/destination)
+- [Fetch API](fetch_api)
+- [Using Fetch](fetch_api/using_fetch)
+- [`Request.destination`](request/destination)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RequestDestination" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RequestDestination</a>

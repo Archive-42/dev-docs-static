@@ -1,35 +1,31 @@
-ResizeObserverEntry
-===================
+# ResizeObserverEntry
 
 The `ResizeObserverEntry` interface represents the object passed to the [`ResizeObserver()`](resizeobserver/resizeobserver) constructor's callback function, which allows you to access the new dimensions of the [`Element`](element) or [`SVGElement`](svgelement) being observed.
 
-Properties
-----------
+## Properties
 
- [`ResizeObserverEntry.borderBoxSize`](resizeobserverentry/borderboxsize) <span class="badge inline readonly">Read only </span>   
+[`ResizeObserverEntry.borderBoxSize`](resizeobserverentry/borderboxsize) <span class="badge inline readonly">Read only </span>  
 An object containing the new border box size of the observed element when the callback is run.
 
- [`ResizeObserverEntry.contentBoxSize`](resizeobserverentry/contentboxsize) <span class="badge inline readonly">Read only </span>   
+[`ResizeObserverEntry.contentBoxSize`](resizeobserverentry/contentboxsize) <span class="badge inline readonly">Read only </span>  
 An object containing the new content box size of the observed element when the callback is run.
 
- <span class="page-not-created">`ResizeObserverEntry.devicePixelContentBoxSize`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`ResizeObserverEntry.devicePixelContentBoxSize`</span> <span class="badge inline readonly">Read only </span>  
 An object containing the new content box size in device pixels of the observed element when the callback is run.
 
- [`ResizeObserverEntry.contentRect`](resizeobserverentry/contentrect) <span class="badge inline readonly">Read only </span>   
+[`ResizeObserverEntry.contentRect`](resizeobserverentry/contentrect) <span class="badge inline readonly">Read only </span>  
 A [`DOMRectReadOnly`](domrectreadonly) object containing the new size of the observed element when the callback is run. Note that this is better supported than the above two properties, but it is left over from an earlier implementation of the Resize Observer API, is still included in the spec for web compat reasons, and may be deprecated in future versions.
 
- [`ResizeObserverEntry.target`](resizeobserverentry/target) <span class="badge inline readonly">Read only </span>   
+[`ResizeObserverEntry.target`](resizeobserverentry/target) <span class="badge inline readonly">Read only </span>  
 A reference to the [`Element`](element) or [`SVGElement`](svgelement) being observed.
 
 **Note**: The content box is the box in which content can be placed, meaning the border box minus the padding and border width. The border box encompasses the content, padding, and border. See [The box model](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model) for further explanation.
 
-Methods
--------
+## Methods
 
 None.
 
-Examples
---------
+## Examples
 
 The following snippet is taken from the [resize-observer-text.html](https://mdn.github.io/dom-examples/resize-observer/resize-observer-text.html) ([see source](https://github.com/mdn/dom-examples/blob/master/resize-observer/resize-observer-text.html)) example. This uses a simple feature detection test to see if the browser supports the newer `contentBoxSize` property — if so, it uses that to get the sizing data it needs. If not, it uses the older `contentRect` property.
 
@@ -47,14 +43,12 @@ The following snippet is taken from the [resize-observer-text.html](https://mdn.
 
     resizeObserver.observe(divElem);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/resize-observer/#resize-observer-entry-interface">Resize Observer<br />
 <span class="small">The definition of 'ResizeObserverEntry' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

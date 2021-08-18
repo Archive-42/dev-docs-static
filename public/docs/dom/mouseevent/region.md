@@ -1,10 +1,8 @@
-MouseEvent.region
-=================
+# MouseEvent.region
 
 The `MouseEvent.region` read-only property returns the id of the [canvas hit region](../canvasrenderingcontext2d/addhitregion) affected by the event. If no hit region is affected, `null` is returned.
 
-Syntax
-------
+## Syntax
 
     var hitRegion = instanceOfMouseEvent.region
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`DOMString`](../domstring) representing the id of the hit region.
 
-Example
--------
+## Example
 
 Example of using the `event.region` combined with `CanvasRenderingContext2D.addHitRegion()` method.
 
@@ -35,8 +32,7 @@ Example of using the `event.region` combined with `CanvasRenderingContext2D.addH
     });
     </script>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -92,10 +88,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`MouseEvent`](../mouseevent)
--   [`CanvasRenderingContext2D.addHitRegion()`](../canvasrenderingcontext2d/addhitregion)
+- [`MouseEvent`](../mouseevent)
+- [`CanvasRenderingContext2D.addHitRegion()`](../canvasrenderingcontext2d/addhitregion)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/region" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/region</a>

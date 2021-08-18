@@ -1,5 +1,4 @@
-PaymentRequest.onshippingoptionchange
-=====================================
+# PaymentRequest.onshippingoptionchange
 
 **Secure context**
 
@@ -12,15 +11,13 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `onshippingoptionchange` event of the [`PaymentRequest`](../paymentrequest) interface is fired whenever the user changes a shipping option.
 
-Syntax
-------
+## Syntax
 
     PaymentRequest.addEventListener('shippingoptionchange', shippingOptionChangeEvent => { ... });
 
     PaymentRequest.onshippingoptionchange = function(shippingOptionChangeEvent) { ... };
 
-Examples
---------
+## Examples
 
 The `shippingoptionchange` event is triggered by a user-agent controlled interaction. If the option stored by the user agent changes at any time during a payment process, the event is triggered. To make sure an updated option is included when sending payment information to the server, you should add event listeners for a [`PaymentRequest`](../paymentrequest) object after instantiation, but before the call to `show()`.
 
@@ -67,14 +64,12 @@ The `shippingoptionchange` event is triggered by a user-agent controlled interac
       })(details, request.shippingAddress));
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#onshippingoptionchange-attribute">Payment Request API<br />
 <span class="small">The definition of 'onshippingoptionchange' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

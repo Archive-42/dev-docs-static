@@ -1,5 +1,4 @@
-Navigator.webdriver
-===================
+# Navigator.webdriver
 
 **Experimental**
 
@@ -10,7 +9,7 @@ The `webdriver` read-only property of the [`navigator`](../navigator) interface 
 
 It defines a standard way for co-operating user agents to inform the document that it is controlled by [WebDriver](https://developer.mozilla.org/en-US/docs/Web/WebDriver), for example, so that alternate code paths can be triggered during automation.
 
-The `navigator.``webdriver` property is true when in:
+The ` navigator.``webdriver ` property is true when in:
 
 Chrome  
 The `--enable-automation` or the `--headless` flag or the `--remote-debugging-port` is used.
@@ -18,8 +17,7 @@ The `--enable-automation` or the `--headless` flag or the `--remote-debugging-po
 Firefox  
 The `marionette.enabled` preference or `--marionette` flag is passed.
 
-Syntax
-------
+## Syntax
 
     var isAutomated = navigator.webdriver
 
@@ -27,14 +25,12 @@ Syntax
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webdriver/#dom-navigatorautomationinformation-webdriver">WebDriver<br />
 <span class="small">The definition of 'webdriver' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

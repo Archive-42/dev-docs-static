@@ -1,5 +1,4 @@
-msCachingEnabled
-================
+# msCachingEnabled
 
 **Non-standard**
 
@@ -9,24 +8,22 @@ The `msCachingEnabled` method gets the current caching state for an [XMLHttpRequ
 
 This proprietary method is specific to Internet Explorer and Microsoft Edge.
 
-Syntax
-------
+## Syntax
 
      var cacheState = XMLHttpRequest.msCachingEnabled();
 
 ### Parameters
 
- *cacheState*\[out, retval\]  
+_cacheState_\[out, retval\]  
 Type = **boolean**. If true, `XMLHttpRequest `is cached to disk. If false, it is not written to disk.
 
 ### Return value
 
 Type: **boolean**. If true, `XMLHttpRequest `is cached to disk. If false, it is not written to disk.
 
-See also
---------
+## See also
 
--   [msCaching property](mscaching)
--   [Microsoft API extensions](microsoft_extensions)
+- [msCaching property](mscaching)
+- [Microsoft API extensions](microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/msCachingEnabled" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/msCachingEnabled</a>

@@ -1,5 +1,4 @@
-PaymentMethodChangeEvent
-========================
+# PaymentMethodChangeEvent
 
 **Secure context**
 
@@ -7,36 +6,31 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `PaymentMethodChangeEvent` interface of the [Payment Request API](payment_request_api) describes the [`paymentmethodchange`](paymentrequest/paymentmethodchange_event) event which is fired by some payment handlers when the user switches payment instruments (e.g., a user selects a "store" card to make a purchase while using Apple Pay).
 
-Constructor
------------
+## Constructor
 
 [`PaymentMethodChangeEvent()`](paymentmethodchangeevent/paymentmethodchangeevent)  
 Creates and returns a new `PaymentMethodChangeEvent` object, optionally initialized with values taken from a given <span class="page-not-created">`PaymentMethodChangeEventInit`</span> dictionary.
 
-Properties
-----------
+## Properties
 
-*In addition to the properties below, this interface includes properties inherited from [`PaymentRequestUpdateEvent`](paymentrequestupdateevent).*
+_In addition to the properties below, this interface includes properties inherited from [`PaymentRequestUpdateEvent`](paymentrequestupdateevent)._
 
- [`methodDetails`](paymentmethodchangeevent/methoddetails) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>   
+[`methodDetails`](paymentmethodchangeevent/methoddetails) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>  
 An object containing payment method-specific data useful when handling a payment method change. If no such information is available, this value is `null`.
 
- [`methodName`](paymentmethodchangeevent/methodname) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>   
+[`methodName`](paymentmethodchangeevent/methodname) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>  
 A [`DOMString`](domstring) containing the payment method identifier, a string which uniquely identifies a particular payment method. This identifier is usually a URL used during the payment process, but may be a standardized non-URL string as well, such as `basic-card`. The default value is the empty string, `""`.
 
-Methods
--------
+## Methods
 
-*This interface includes methods inherited from [`PaymentRequestUpdateEvent`](paymentrequestupdateevent).*
+_This interface includes methods inherited from [`PaymentRequestUpdateEvent`](paymentrequestupdateevent)._
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#paymentmethodchangeevent-interface">Payment Request API<br />
 <span class="small">The definition of 'PaymentMethodChangeEvent' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

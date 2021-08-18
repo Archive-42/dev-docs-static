@@ -1,10 +1,8 @@
-RTCError.receivedAlert
-======================
+# RTCError.receivedAlert
 
 The [`RTCError`](../rtcerror) read-only property `receivedAlert` specifies the fatal [DTLS](https://developer.mozilla.org/en-US/docs/Glossary/DTLS) error which resulted in an alert being received from the remote peer.
 
-Syntax
-------
+## Syntax
 
     let receivedAlert = rtcError.receivedAlert;
 
@@ -14,14 +12,12 @@ An unsigned long integer value specifying the fatal [DTLS](https://developer.moz
 
 This property is `null` if the `RTCError` doesn't represent a DTLS error (with [`errorDetail`](errordetail) set to `dtls-failure`).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcerror-receivedalert">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCError.receivedAlert' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

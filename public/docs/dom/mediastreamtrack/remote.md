@@ -1,5 +1,4 @@
-MediaStreamTrack.remote
-=======================
+# MediaStreamTrack.remote
 
 **Deprecated**
 
@@ -7,13 +6,11 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `MediaStreamTrack.remote` read-only property allows Javascript to know whether a WebRTC MediaStreamTrack is from a remote source or a local one. It returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) with a value of `true` if the track is sourced remotely (that is, sourced by an [`RTCPeerConnection`](../rtcpeerconnection)), or `false` if it is sourced locally.
 
-Syntax
-------
+## Syntax
 
     var bool = track.remote;
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -69,9 +66,8 @@ No
 
 5.0-7.0
 
-See also
---------
+## See also
 
--   [WebRTC](../webrtc_api)
+- [WebRTC](../webrtc_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/remote" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/remote</a>

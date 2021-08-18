@@ -1,5 +1,4 @@
-PublicKeyCredentialRequestOptions.rpId
-======================================
+# PublicKeyCredentialRequestOptions.rpId
 
 **Secure context**
 
@@ -11,8 +10,7 @@ This property is optional. If it is not explicitly provided, the user agent will
 
 **Note:** An analogous option exists for the creation operation ([`navigators.credentials.create()`](../credentialscontainer/create)), see the `id` property of [`PublicKeyCredentialCreationOptions.rp`](../publickeycredentialcreationoptions/rp).
 
-Syntax
-------
+## Syntax
 
     rpId = publicKeyCredentialRequestOptions.rpId
 
@@ -20,8 +18,7 @@ Syntax
 
 A [`USVString`](../usvstring) for the identifier of the relying party. Its value can only be a suffix of the current origin's domain.
 
-Examples
---------
+## Examples
 
     var options = {
       challenge: new Uint8Array([/* bytes sent from the server */]),
@@ -37,14 +34,12 @@ Examples
          console.error(err);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#dom-publickeycredentialrequestoptions-rpid">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'rpId' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -100,9 +95,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`PublicKeyCredentialCreationOptions.rp`](../publickeycredentialcreationoptions/rp) which represents the relying party (including its ID) for the creation operation
+- [`PublicKeyCredentialCreationOptions.rp`](../publickeycredentialcreationoptions/rp) which represents the relying party (including its ID) for the creation operation
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialRequestOptions/rpId" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialRequestOptions/rpId</a>

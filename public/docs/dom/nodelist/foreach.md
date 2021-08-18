@@ -1,10 +1,8 @@
-NodeList.prototype.forEach()
-============================
+# NodeList.prototype.forEach()
 
 The `forEach()` method of the [`NodeList`](../nodelist) interface calls the callback given in parameter once for each value pair in the list, in insertion order.
 
-Syntax
-------
+## Syntax
 
     someNodeList.forEach(callback[, thisArg]);
 
@@ -16,21 +14,20 @@ A function to execute on each element of `someNodeList`. It accepts 3 parameters
 `currentValue`  
 The current element being processed in `someNodeList`.
 
- `currentIndex` <span class="badge inline optional">Optional</span>   
+`currentIndex` <span class="badge inline optional">Optional</span>  
 The index of the `currentValue` being processed in `someNodeList`.
 
- `listObj` <span class="badge inline optional">Optional</span>   
+`listObj` <span class="badge inline optional">Optional</span>  
 The `someNodeList` that `forEach()` is being applied to.
 
- `thisArg` <span class="badge inline optional">Optional</span>   
+`thisArg` <span class="badge inline optional">Optional</span>  
 Value to use as `this` when executing `callback`.
 
 ### Return value
 
 [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined).
 
-Example
--------
+## Example
 
     let node = document.createElement("div");
     let kid1 = document.createElement("p");
@@ -56,8 +53,7 @@ The above code results in the following:
     [object Text], 1, myThisArg
     [object HTMLSpanElement], 2, myThisArg
 
-Polyfill
---------
+## Polyfill
 
 This [polyfill](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill) adds compatibility to all Browsers supporting [ES5](https://caniuse.com/#search=es5):
 
@@ -78,14 +74,12 @@ OR
 
 The above behavior is how many browsers actually implement `NodeList.prototype.forEach()` (Chrome, for example).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://heycam.github.io/webidl/#es-forEach">Web IDL<br />
 <span class="small">The definition of 'forEach' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Defines <code>forEach</code> on <code>iterable</code> declarations</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -141,10 +135,9 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [`Node`](../node)
--   [`NodeList`](../nodelist)
+- [`Node`](../node)
+- [`NodeList`](../nodelist)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach</a>

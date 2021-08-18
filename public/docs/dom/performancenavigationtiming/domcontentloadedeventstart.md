@@ -1,5 +1,4 @@
-PerformanceNavigationTiming.domContentLoadedEventStart
-======================================================
+# PerformanceNavigationTiming.domContentLoadedEventStart
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `domContentLoadedEventStart` read-only property returns a [`timestamp`](../domhighrestimestamp) representing the time value equal to the time immediately before the user agent fires the [DOMContentLoaded](https://html.spec.whatwg.org/multipage/syntax.html#the-end) event at the current document.
 
-Syntax
-------
+## Syntax
 
     perfEntry.domContentLoadedEventStart;
 
@@ -17,8 +15,7 @@ Syntax
 
 A [`timestamp`](../domhighrestimestamp) representing the time value equal to the time immediately before the user agent fires the [DOMContentLoaded](https://html.spec.whatwg.org/multipage/syntax.html#the-end) event at the current document.
 
-Example
--------
+## Example
 
 The following example illustrates this property's usage.
 
@@ -44,14 +41,12 @@ The following example illustrates this property's usage.
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/navigation-timing/#dom-performancenavigationtiming-domcontentloadedeventstart">Navigation Timing Level 2<br />
 <span class="small">The definition of 'domContentLoadedEventStart' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

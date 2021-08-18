@@ -1,5 +1,4 @@
-RTCDataChannel.label
-====================
+# RTCDataChannel.label
 
 **Experimental**
 
@@ -14,8 +13,7 @@ A unique ID can be found in the [`id`](id) property.
 
 A data channel's label is set when the channel is created by calling [`RTCPeerConnection.createDataChannel()`](../rtcpeerconnection/createdatachannel). It cannot be changed after that.
 
-Syntax
-------
+## Syntax
 
     var name = aDataChannel.label;
 
@@ -23,8 +21,7 @@ Syntax
 
 A string identifier assigned by the Web site or app when the data channel was created, as specified when [`RTCPeerConnection.createDataChannel()`](../rtcpeerconnection/createdatachannel) was called to create the channel.
 
-Example
--------
+## Example
 
 This sample creates a data channel on an [`RTCPeerConnection`](../rtcpeerconnection), then, some time later, sets the content of a UI element to display the channel's name.
 
@@ -36,14 +33,12 @@ This sample creates a data channel on an [`RTCPeerConnection`](../rtcpeerconnect
     document.getElementById("channel-name").innerHTML =
               "<span class='channelName'>" + dc.label + "</span>";
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-datachannel-label">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCDataChannel.label' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -99,12 +94,11 @@ Yes
 
 6.0
 
-See also
---------
+## See also
 
--   [WebRTC](../webrtc_api)
--   [`RTCDataChannel`](../rtcdatachannel)
--   [`RTCDataChannel.id`](id)
--   [`RTCPeerConnection.createDataChannel()`](../rtcpeerconnection/createdatachannel)
+- [WebRTC](../webrtc_api)
+- [`RTCDataChannel`](../rtcdatachannel)
+- [`RTCDataChannel.id`](id)
+- [`RTCPeerConnection.createDataChannel()`](../rtcpeerconnection/createdatachannel)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/label" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/label</a>

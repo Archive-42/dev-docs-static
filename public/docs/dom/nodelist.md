@@ -1,5 +1,4 @@
-NodeList
-========
+# NodeList
 
 `NodeList` objects are collections of [nodes](node), usually returned by properties such as [`Node.childNodes`](node/childnodes) and methods such as [`document.querySelectorAll()`](document/queryselectorall).
 
@@ -7,14 +6,13 @@ Although `NodeList` is not an `Array`, it is possible to iterate over it with `f
 
 However, some older browsers have not implemented `NodeList.forEach()` nor `Array.from()`. This can be circumvented by using [`Array.prototype.forEach()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) — see this document's [Example](#example).
 
-Live vs. Static NodeLists
--------------------------
+## Live vs. Static NodeLists
 
-Although they are both considered `NodeList`s, there are 2 varieties of NodeList: *live* and *static*.
+Although they are both considered `NodeList`s, there are 2 varieties of NodeList: _live_ and _static_.
 
 ### Live NodeLists
 
-In some cases, the `NodeList` is *live*, which means that changes in the DOM automatically update the collection.
+In some cases, the `NodeList` is _live_, which means that changes in the DOM automatically update the collection.
 
 For example, [`Node.childNodes`](node/childnodes) is live:
 
@@ -26,18 +24,16 @@ For example, [`Node.childNodes`](node/childnodes) is live:
 
 ### Static NodeLists
 
-In other cases, the `NodeList` is *static,* where any changes in the DOM does not affect the content of the collection. The ubiquitous [`document.querySelectorAll()`](document/queryselectorall) method returns a *static* `NodeList`.
+In other cases, the `NodeList` is _static,_ where any changes in the DOM does not affect the content of the collection. The ubiquitous [`document.querySelectorAll()`](document/queryselectorall) method returns a _static_ `NodeList`.
 
 It's good to keep this distinction in mind when you choose how to iterate over the items in the `NodeList`, and whether you should cache the list's `length`.
 
-Properties
-----------
+## Properties
 
 [`NodeList.length`](nodelist/length)  
 The number of nodes in the `NodeList`.
 
-Methods
--------
+## Methods
 
 [`NodeList.item()`](nodelist/item)  
 Returns an item in the list by its index, or `null` if the index is out-of-bounds.
@@ -56,8 +52,7 @@ Returns an [`iterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/
 [`NodeList.values()`](nodelist/values)  
 Returns an [`iterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) allowing code to go through all values (nodes) of the key/value pairs contained in the collection.
 
-Example
--------
+## Example
 
 It's possible to loop over the items in a `NodeList` using a [for](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) loop:
 
@@ -65,7 +60,7 @@ It's possible to loop over the items in a `NodeList` using a [for](https://devel
       let item = myNodeList[i];
     }
 
-**Don't use `for...in` to enumerate the items in `NodeList`s**, since they will *also* enumerate its `length` and `item` properties and cause errors if your script assumes it only has to deal with [`element`](element) objects. Also, `for..in` is not guaranteed to visit the properties in any particular order.
+**Don't use `for...in` to enumerate the items in `NodeList`s**, since they will _also_ enumerate its `length` and `item` properties and cause errors if your script assumes it only has to deal with [`element`](element) objects. Also, `for..in` is not guaranteed to visit the properties in any particular order.
 
 `for...of` loops **will** loop over `NodeList` objects correctly:
 
@@ -83,8 +78,7 @@ There is also an Internet Explorer-compatible way to use [`Array.prototype.forEa
       checkbox.checked = true;
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#interface-nodelist">DOM<br />
 <span class="small">The definition of 'NodeList' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-536297177">Document Object Model (DOM) Level 3 Core Specification<br />
@@ -92,8 +86,7 @@ Specifications
 <span class="small">The definition of 'NodeList' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-536297177">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'NodeList' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

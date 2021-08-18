@@ -1,5 +1,4 @@
-RTCDataChannel.reliable
-=======================
+# RTCDataChannel.reliable
 
 **Experimental**
 
@@ -14,8 +13,7 @@ The read-only `RTCDataChannel` property `reliable` indicates whether or not the 
 
 This property is obsolete. Use [`RTCDataChannel.ordered`](ordered) instead in any new code, and update existing code as soon as possible.
 
-Syntax
-------
+## Syntax
 
     var reliable = aDataChannel.reliable;
 
@@ -23,18 +21,15 @@ Syntax
 
 `true` if the [`RTCDataChannel`](../rtcdatachannel)'s connection is reliable; `false` if it isn't.
 
-Example
--------
+## Example
 
     // TBD
 
-Specifications
---------------
+## Specifications
 
 No longer part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -90,11 +85,10 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [WebRTC](../webrtc_api)
--   [`RTCDataChannel`](../rtcdatachannel)
--   [`RTCDataChannel.ordered`](ordered)
+- [WebRTC](../webrtc_api)
+- [`RTCDataChannel`](../rtcdatachannel)
+- [`RTCDataChannel.ordered`](ordered)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/reliable" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/reliable</a>

@@ -1,10 +1,8 @@
-OfflineAudioContext.resume()
-============================
+# OfflineAudioContext.resume()
 
 The `resume()` method of the [`OfflineAudioContext`](../offlineaudiocontext) interface resumes the progression of time in an audio context that has been suspended. The promise resolves immediately because the `OfflineAudioContext` does not require the audio hardware. If the context is not currently suspended or the rendering has not started, the promise is rejected with [`InvalidStateError`](../domexception#exception-invalidstateerror).
 
-Syntax
-------
+## Syntax
 
     OfflineAudioContext.resume().then(function() { ... });
 
@@ -20,16 +18,14 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 The promise is rejected when the following exception is encountered.
 
--   [`InvalidStateError`](../domexception#exception-invalidstateerror) if the context is not currently suspended or the rendering has not started.
+- [`InvalidStateError`](../domexception#exception-invalidstateerror) if the context is not currently suspended or the rendering has not started.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-offlineaudiocontext-resume">Web Audio API<br />
 <span class="small">The definition of 'resume()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

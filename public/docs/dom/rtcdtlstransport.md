@@ -1,8 +1,6 @@
-RTCDtlsTransport
-================
+# RTCDtlsTransport
 
-Properties
-----------
+## Properties
 
 The `RTCDtlsTransport` interface provides access to information about the Datagram Transport Layer Security (**[DTLS](https://developer.mozilla.org/en-US/docs/Glossary/DTLS)**) transport over which a [`RTCPeerConnection`](rtcpeerconnection)'s [RTP](https://developer.mozilla.org/en-US/docs/Glossary/RTP) and [RTCP](https://developer.mozilla.org/en-US/docs/Glossary/RTCP) packets are sent and received by its [`RTCRtpSender`](rtcrtpsender) and [`RTCRtpReceiver`](rtcrtpreceiver) objects.
 
@@ -10,14 +8,13 @@ A DTLS transport is also used to provide information about [SCTP](https://develo
 
 Features of the DTLS transport include the addition of security to the underlying transport; the `RTCDtlsTransport` interface can be used to obtain information about the underlying transport and the security added to it by the DTLS layer.
 
- [`iceTransport`](rtcdtlstransport/icetransport) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
+[`iceTransport`](rtcdtlstransport/icetransport) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
 The read-only `RTCDtlsTransport` property `iceTransport` contains a reference to the underlying `RTCIceTransport`.
 
- [`state`](rtcdtlstransport/state) undefined  
+[`state`](rtcdtlstransport/state) undefined  
 `WebRTC`
 
-Description
------------
+## Description
 
 ### Allocation of DTLS transports
 
@@ -53,8 +50,7 @@ Because transports are established early in the negotiation process, it's likely
 
 You can, in turn, identify the `RTCDtlsTransport` used to securely encapsulate the data channels' SCTP communications by looking at the `RTCSctpTransport` object's <span class="page-not-created">`transport`</span> property.
 
-Examples
---------
+## Examples
 
 This example presents a function, `tallySenders()`, which iterates over an `RTCPeerConnection`'s [`RTCRtpSender`](rtcrtpsender)s, tallying up how many of them are in various states. The function returns an object containing properties whose values indicate how many of the senders are in each state.
 
@@ -104,14 +100,12 @@ This example presents a function, `tallySenders()`, which iterates over an `RTCP
 
 Note that in this code, the `new` and `connecting` states are being treated as a single `connectionPending` status in the returned object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcdtlstransport">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCDtlsTransport' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -351,10 +345,9 @@ No
 
 11.0
 
-See also
---------
+## See also
 
--   [`RTCRtpSender.transport`](rtcrtpsender/transport) and [`RTCRtpReceiver.transport`](rtcrtpreceiver/transport)
--   <span class="page-not-created">`RTCSctpTransport.transport`</span>
+- [`RTCRtpSender.transport`](rtcrtpsender/transport) and [`RTCRtpReceiver.transport`](rtcrtpreceiver/transport)
+- <span class="page-not-created">`RTCSctpTransport.transport`</span>
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDtlsTransport" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDtlsTransport</a>

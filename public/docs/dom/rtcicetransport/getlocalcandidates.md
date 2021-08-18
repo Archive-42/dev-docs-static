@@ -1,12 +1,10 @@
-RTCIceTransport.getLocalCandidates()
-====================================
+# RTCIceTransport.getLocalCandidates()
 
 The **[`RTCIceTransport`](../rtcicetransport)** method `getLocalCandidates()` returns an array of [`RTCIceCandidate`](../rtcicecandidate) objects, one for each of the candidates that have been gathered by the local device during the current [ICE](https://developer.mozilla.org/en-US/docs/Glossary/ICE) agent session.
 
 The local candidates are placed in this list by the ICE agent prior to being delivered to the local client's code in an `icecandidate` event so that the client can forward the candidates to the remote peer.
 
-Syntax
-------
+## Syntax
 
     localCandidates = RTCIceTransport.getLocalCandidates();
 
@@ -20,8 +18,7 @@ A JavaScript [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/R
 
 You can't correlate these local candidates with matching remote candidates. To find the best match found so far, call [`RTCIceTransport.getSelectedCandidatePair()`](getselectedcandidatepair).
 
-Example
--------
+## Example
 
 This simple example gets the local candidate list from the [`RTCIceTransport`](../rtcicetransport) for the first [`RTCRtpSender`](../rtcrtpsender) on the [`RTCPeerConnection`](../rtcpeerconnection), then outputs to the console all of the candidates in the list.
 
@@ -31,14 +28,12 @@ This simple example gets the local candidate list from the [`RTCIceTransport`](.
       console.log("Candidate " + index + ": " + candidate.candidate);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicetransport-getlocalcandidates">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceCandidate.getLocalCandidates()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

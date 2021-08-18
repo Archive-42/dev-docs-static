@@ -1,10 +1,8 @@
-RTCIceCandidate. toJSON()
-=========================
+# RTCIceCandidate. toJSON()
 
 The [`RTCIceCandidate`](../rtcicecandidate) method `toJSON()` converts the `RTCIceCandidate` on which it's called into JSON in the form of an [`RTCIceCandidateInit`](../rtcicecandidateinit) object.
 
-Syntax
-------
+## Syntax
 
     json = rtcIceCandidate.toJSON();
 
@@ -14,21 +12,18 @@ An object conforming to the [`RTCIceCandidateInit`](../rtcicecandidateinit) dict
 
 You can then get a stringified version of the object by calling [`stringify()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) on the returned object. See the [example](#example) below.
 
-Example
--------
+## Example
 
 This simple example obtains a JSON string representing an `RTCIceCandidate` found in the variable `candidate`.
 
     var jsonString = candidate.toJSON().stringify();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicecandidate-tojson">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceCandidate.toJSON()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-MouseEvent.relatedTarget
-========================
+# MouseEvent.relatedTarget
 
 The `MouseEvent.relatedTarget` read-only property is the secondary target for the mouse event, if there is one. That is:
 
@@ -9,8 +8,7 @@ For events with no secondary target, `relatedTarget` returns `null`.
 
 [`FocusEvent.relatedTarget`](../focusevent/relatedtarget) is a similar property for focus events.
 
-Syntax
-------
+## Syntax
 
     var target = instanceOfMouseEvent.relatedTarget
 
@@ -18,8 +16,7 @@ Syntax
 
 An [`EventTarget`](../eventtarget) object or `null`.
 
-Example
--------
+## Example
 
 Try moving your mouse cursor into and out of the red and blue boxes.
 
@@ -81,16 +78,14 @@ Try moving your mouse cursor into and out of the red and blue boxes.
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#dom-mouseevent-relatedtarget">UI Events<br />
 <span class="small">The definition of 'MouseEvent.relatedTarget' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#widl-MouseEvent-relatedTarget">Document Object Model (DOM) Level 3 Events Specification<br />
 <span class="small">The definition of 'MouseEvent.relatedTarget' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>No change from <a href="https://www.w3.org/TR/DOM-Level-2-Events/events.html">Document Object Model (DOM) Level 2 Events Specification</a>.</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-MouseEvent">Document Object Model (DOM) Level 2 Events Specification<br />
 <span class="small">The definition of 'MouseEvent.altkey' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -146,10 +141,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`MouseEvent`](../mouseevent)
--   [Comparison of Event Targets](../event/comparison_of_event_targets)
+- [`MouseEvent`](../mouseevent)
+- [Comparison of Event Targets](../event/comparison_of_event_targets)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/relatedTarget" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/relatedTarget</a>

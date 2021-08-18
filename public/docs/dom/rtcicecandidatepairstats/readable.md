@@ -1,14 +1,12 @@
-RTCIceCandidatePairStats.readable
-=================================
+# RTCIceCandidatePairStats.readable
 
 **Deprecated**
 
 This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the [compatibility table](#browser_compatibility) at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.
 
-The *obsolete* [`RTCIceCandidatePairStats`](../rtcicecandidatepairstats) property `readable` reports whether or not the connection described by the candidate pair has received at least one valid incoming ICE request.
+The _obsolete_ [`RTCIceCandidatePairStats`](../rtcicecandidatepairstats) property `readable` reports whether or not the connection described by the candidate pair has received at least one valid incoming ICE request.
 
-Syntax
-------
+## Syntax
 
     isReadable = rtcIceCandidatePairStats.readable;
 
@@ -22,8 +20,7 @@ A Boolean value which is `true` if the connection described by this candidate pa
       /* at least one ICE request has been received */
     }
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

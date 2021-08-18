@@ -1,10 +1,8 @@
-PerformanceElementTiming.url
-============================
+# PerformanceElementTiming.url
 
 The `url` read-only property of the [`PerformanceElementTiming`](../performanceelementtiming) interface returns the initial URL of the resource request when the element is an image.
 
-Syntax
-------
+## Syntax
 
     var url = PerformanceElementTiming.url;
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`DOMString`](../domstring) which is the initial URL of the resources request for images or 0 for text.
 
-Examples
---------
+## Examples
 
 In this example calling `entry.url` returns `https://example.com/image.jpg`.
 
@@ -30,14 +27,12 @@ In this example calling `entry.url` returns `https://example.com/image.jpg`.
 
 This example uses the [`PerformanceObserver`](../performanceobserver) interface to create a list of performance measurement events. In our case we observe the [`PerformanceEntry.entrytype`](../performanceentry/entrytype) `element` in order to use the `PerformanceElementTiming` interface.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/element-timing/#dom-performanceelementtiming-url">Element Timing<br />
 <span class="small">The definition of 'PerformanceElementTiming.url' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

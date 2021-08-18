@@ -1,31 +1,26 @@
-NavigatorOnLine
-===============
+# NavigatorOnLine
 
 The `NavigatorOnLine` interface contains methods and properties related to the connectivity status of the browser.
 
 There is no object of type `NavigatorOnLine`, but other interfaces, like [`Navigator`](navigator) or [`WorkerNavigator`](workernavigator), implement it.
 
-Properties
-----------
+## Properties
 
-*The `NavigatorOnLine` interface doesn't inherit any property.*
+_The `NavigatorOnLine` interface doesn't inherit any property._
 
- [`NavigatorOnLine.onLine`](navigatoronline/online) <span class="badge inline readonly">Read only </span>   
+[`NavigatorOnLine.onLine`](navigatoronline/online) <span class="badge inline readonly">Read only </span>  
 Returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the browser is working online.
 
-Methods
--------
+## Methods
 
-*The `NavigatorOnLine` interface neither implements, nor inherit any method.*
+_The `NavigatorOnLine` interface neither implements, nor inherit any method._
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#browser-state">HTML Living Standard<br />
 <span class="small">The definition of 'NavigatorOnLine' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -119,10 +114,9 @@ From Opera 11.1 until Opera 12.1, the browser returns `true` when 'Work Offline'
 
 1.0
 
-See also
---------
+## See also
 
--   The [`Navigator`](navigator) interface that implements it.
--   [Online and offline events](navigatoronline/online_and_offline_events)
+- The [`Navigator`](navigator) interface that implements it.
+- [Online and offline events](navigatoronline/online_and_offline_events)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine</a>

@@ -1,12 +1,10 @@
-MediaStreamConstraints.video
-============================
+# MediaStreamConstraints.video
 
 The [`MediaStreamConstraints`](../mediastreamconstraints) dictionary's `video` property is used to indicate what kind of video track, if any, should be included in the [`MediaStream`](../mediastream) returned by a call to [`getUserMedia()`](../mediadevices/getusermedia).
 
 To learn more about how constraints work, see [Capabilities, constraints, and settings](../media_streams_api/constraints).
 
-Syntax
-------
+## Syntax
 
     var videoConstraints = true | false | MediaTrackConstraints;
 
@@ -20,8 +18,7 @@ If a Boolean value is specified, it indicates whether or not a video track shoul
 [`MediaTrackConstraints`](../mediatrackconstraints)  
 A constraints dictionary detailing the preferable and/or required values or ranges of values for the track's constrainable properties. If you specify constraints, a video track meeting these constraints is required.
 
-Examples
---------
+## Examples
 
 ### Using a Boolean value
 
@@ -57,14 +54,12 @@ Here we see an event handler for a <span class="page-not-created">`click`</span>
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediastreamconstraints-video">Media Capture and Streams<br />
 <span class="small">The definition of 'MediaStreamConstraints.video' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -120,14 +115,13 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Media Capture and Streams API](../media_streams_api)
--   [Capabilities, constraints, and settings](../media_streams_api/constraints)
--   [`MediaDevices.getUserMedia()`](../mediadevices/getusermedia)
--   [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints)
--   [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints)
--   [`MediaTrackConstraints`](../mediatrackconstraints)
+- [Media Capture and Streams API](../media_streams_api)
+- [Capabilities, constraints, and settings](../media_streams_api/constraints)
+- [`MediaDevices.getUserMedia()`](../mediadevices/getusermedia)
+- [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints)
+- [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints)
+- [`MediaTrackConstraints`](../mediatrackconstraints)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints/video" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints/video</a>

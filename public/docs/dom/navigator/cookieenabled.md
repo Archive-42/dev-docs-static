@@ -1,34 +1,29 @@
-Navigator.cookieEnabled
-=======================
+# Navigator.cookieEnabled
 
 `navigator.cookieEnabled` returns a Boolean value that indicates whether cookies are enabled or not. The property is read-only.
 
-Syntax
-------
+## Syntax
 
     var cookieEnabled = navigator.cookieEnabled;
 
--   `cookieEnabled` is a [Boolean](https://developer.mozilla.org/en-US/docs/Glossary/Boolean): `true` or `false`.
+- `cookieEnabled` is a [Boolean](https://developer.mozilla.org/en-US/docs/Glossary/Boolean): `true` or `false`.
 
 **Note:** When the browser is configured to block third-party cookies, and `navigator.cookieEnabled` is invoked inside a third-party iframe, it returns `true` in Safari, Edge Spartan and IE (while trying to set a cookie in such scenario would fail). It returns `false` in Firefox and Chromium-based browsers.
 
 **Note:** Web browsers may prevent writing certain cookies in certain scenarios. For example, Chrome 80+ does not allow creating cookies with `SameSite=None` attribute, [unless they are created over HTTPS and with `Secure` attribute.](https://www.chromestatus.com/feature/5633521622188032)
 
-Example
--------
+## Example
 
     if (!navigator.cookieEnabled) {
       // The browser does not support or is blocking cookies from being set.
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#dom-navigator-cookieenabled">HTML Living Standard<br />
 <span class="small">The definition of 'Navigator.cookieEnabled' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

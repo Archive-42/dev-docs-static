@@ -1,5 +1,4 @@
-ResizeObserverEntry.borderBoxSize
-=================================
+# ResizeObserverEntry.borderBoxSize
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `borderBoxSize` read-only property of the [`ResizeObserverEntry`](../resizeobserverentry) interface returns an array containing the new border box size of the observed element when the callback is run.
 
-Syntax
-------
+## Syntax
 
     var myBorderBoxSize = ResizeObserverEntry.borderBoxSize;
 
@@ -25,8 +23,7 @@ The length of the observed element's border box in the inline dimension. For box
 
 **Note**: For more explanation of writing modes and block and inline dimensions, read [Handling different text directions](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Handling_different_text_directions).
 
-Examples
---------
+## Examples
 
     const resizeObserver = new ResizeObserver(entries => {
       for (let entry of entries) {
@@ -42,14 +39,12 @@ Examples
 
     resizeObserver.observe(document.querySelector('div'));
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/resize-observer/#dom-resizeobserverentry-borderboxsize">Resize Observer<br />
 <span class="small">The definition of 'borderBoxSize' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

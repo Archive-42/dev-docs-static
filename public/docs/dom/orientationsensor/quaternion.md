@@ -1,10 +1,8 @@
-OrientationSensor.quaternion
-============================
+# OrientationSensor.quaternion
 
 The `quaternion` read-only property of the [`OrientationSensor`](../orientationsensor) interface returns a four element [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) whose elements contain the components of the unit [quaternion](https://developer.mozilla.org/en-US/docs/Glossary/Quaternion) representing the device's orientation.
 
-Syntax
-------
+## Syntax
 
     var quaternion = orientationInstance.quaternion
 
@@ -14,19 +12,16 @@ Because [`OrientationSensor`](../orientationsensor) is a base class, `quaternion
 
 A [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) whose values are the x, y, z, and w components of the quaternion representing the device orientation.
 
-Example
--------
+## Example
 
     // TBD
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/orientation-sensor/#orientationsensor-quaternion">Orientation Sensor<br />
 <span class="small">The definition of 'quaternion' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-ReportingObserver()
-===================
+# ReportingObserver()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `ReportingObserver()` constructor of the [Reporting API](../reporting_api) creates a new [`ReportingObserver`](../reportingobserver) object instance, which can be used to collect and access reports.
 
-Syntax
-------
+## Syntax
 
     new ReportingObserver(callback[, options]);
 
@@ -18,17 +16,16 @@ Syntax
 `callback`  
 A callback function that runs when the observer starts to collect reports (i.e. via [`ReportingObserver.observe()`](observe)). The callback function is given two parameters:
 
--   `reports`: A sequence of [`Report`](../report) objects representing the reports collected in the observer's report queue. This is probably the most common way to retrieve the reports.
--   `observer`: A reference to the same `ReportingObserver` object, allowing for recursive report collection, etc.
+- `reports`: A sequence of [`Report`](../report) objects representing the reports collected in the observer's report queue. This is probably the most common way to retrieve the reports.
+- `observer`: A reference to the same `ReportingObserver` object, allowing for recursive report collection, etc.
 
- `options` <span class="badge inline optional">Optional</span>   
+`options` <span class="badge inline optional">Optional</span>  
 An [`ReportingObserverOptions`](../reportingobserveroptions) object allowing you to set the options for creating the object. The available options are:
 
--   `types`: An array of strings representing the types of report to be collected by this observer. Available types include `deprecation`, `intervention`, and `crash` (although this last type usually isn't retrievable via a `ReportingObserver`).
--   `buffered`: a boolean that defines whether the reports that were generated before the observer was able to be created should be observable (`true`) or not (`false`).
+- `types`: An array of strings representing the types of report to be collected by this observer. Available types include `deprecation`, `intervention`, and `crash` (although this last type usually isn't retrievable via a `ReportingObserver`).
+- `buffered`: a boolean that defines whether the reports that were generated before the observer was able to be created should be observable (`true`) or not (`false`).
 
-Examples
---------
+## Examples
 
     let options = {
       types: ['deprecation'],
@@ -39,14 +36,12 @@ Examples
       reportBtn.onclick = () => displayReports(reports);
     }, options);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/reporting/#dom-reportingobserver-reportingobserver">Reporting API<br />
 <span class="small">The definition of 'ReportingObserver()' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -102,9 +97,8 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   [Reporting API](../reporting_api)
+- [Reporting API](../reporting_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReportingObserver/ReportingObserver" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ReportingObserver/ReportingObserver</a>

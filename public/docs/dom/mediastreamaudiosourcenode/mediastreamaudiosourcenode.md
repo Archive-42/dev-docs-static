@@ -1,12 +1,10 @@
-MediaStreamAudioSourceNode()
-============================
+# MediaStreamAudioSourceNode()
 
 The [Web Audio API](../web_audio_api)'s `MediaStreamAudioSourceNode()` constructor creates and returns a new [`MediaStreamAudioSourceNode`](../mediastreamaudiosourcenode) object which uses the first audio track of a given [`MediaStream`](../mediastream) as its source.
 
 **Note:** Another way to create a `MediaStreamAudioSourceNode` is to call the[`AudioContext.createMediaStreamSource()`](../audiocontext/createmediastreamsource) method, specifying the stream from which you want to obtain audio.
 
-Syntax
-------
+## Syntax
 
     audioSourceNode = new MediaStreamAudioSourceNode(context, options);
 
@@ -30,8 +28,7 @@ A new [`MediaStreamAudioSourceNode`](../mediastreamaudiosourcenode) object repre
 `InvalidStateError`  
 The specified [`MediaStream`](../mediastream) doesn't have any audio tracks.
 
-Examples
---------
+## Examples
 
 This example uses [`getUserMedia()`](../mediadevices/getusermedia) to obtain access to the user's camera, then creates a new [`MediaStreamAudioSourceNode`](../mediastreamaudiosourcenode) from its [`MediaStream`](../mediastream).
 
@@ -60,14 +57,12 @@ This example uses [`getUserMedia()`](../mediadevices/getusermedia) to obtain acc
       console.log('new getUserMedia not supported on your browser!');
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-mediastreamaudiosourcenode-mediastreamaudiosourcenode">Web Audio API<br />
 <span class="small">The definition of 'MediaStreamAudioSourceNode()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

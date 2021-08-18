@@ -1,10 +1,8 @@
-MediaTrackSettings.logicalSurface
-=================================
+# MediaTrackSettings.logicalSurface
 
 The [`MediaTrackSettings`](../mediatracksettings) dictionary's `logicalSurface` property indicates whether or not the display area being captured is a logical surface. Logical surfaces are those which are not necessarily entirely onscreen, or may even be off-screen, such as windows' backing buffers (where only part of the buffer is visible without scrolling the containing window) and offscreen rendering contexts.
 
-Syntax
-------
+## Syntax
 
     isLogicalSurface = mediaTrackSettings.logicalSurface;
 
@@ -16,16 +14,14 @@ The most common scenario in which a display surface may be a logical one is if t
 
 A visible display surface (that is, a surface for which `logicalSurface` returns `false`) is the portion of a logical display surface which is currently visible onscreen.
 
-For example, a user agent *may* choose to allow the user to choose whether to share the entire document (a `browser` with `logicalSurface` value of `true`), or just the currently visible portion of the document (where the `logicalSurface` of the `browser` surface is `false`).
+For example, a user agent _may_ choose to allow the user to choose whether to share the entire document (a `browser` with `logicalSurface` value of `true`), or just the currently visible portion of the document (where the `logicalSurface` of the `browser` surface is `false`).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-screen-share/#dom-mediatrackconstraintset-logicalsurface">Screen Capture<br />
 <span class="small">The definition of 'MediaTrackSettings.logicalSurface' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -81,15 +77,14 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   [Screen Capture API](../screen_capture_api)
--   [Using the screen capture API](../screen_capture_api/using_screen_capture)
--   [Capabilities, constraints, and settings](../media_streams_api/constraints)
--   [`MediaDevices.getDisplayMedia()`](../mediadevices/getdisplaymedia)
--   [`MediaStreamTrack.getConstraints()`](../mediastreamtrack/getconstraints)
--   [`MediaStreamTrack.applyConstraints()`](../mediastreamtrack/applyconstraints)
--   [`MediaStreamTrack.getSettings()`](../mediastreamtrack/getsettings)
+- [Screen Capture API](../screen_capture_api)
+- [Using the screen capture API](../screen_capture_api/using_screen_capture)
+- [Capabilities, constraints, and settings](../media_streams_api/constraints)
+- [`MediaDevices.getDisplayMedia()`](../mediadevices/getdisplaymedia)
+- [`MediaStreamTrack.getConstraints()`](../mediastreamtrack/getconstraints)
+- [`MediaStreamTrack.applyConstraints()`](../mediastreamtrack/applyconstraints)
+- [`MediaStreamTrack.getSettings()`](../mediastreamtrack/getsettings)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings/logicalSurface" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings/logicalSurface</a>

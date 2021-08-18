@@ -1,5 +1,4 @@
-OverconstrainedError.constraint
-===============================
+# OverconstrainedError.constraint
 
 **Draft**
 
@@ -16,8 +15,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `constraint` read-only property of the [`OverconstrainedError`](../overconstrainederror) interface returns the constraint that was supplied in the constructor, meaning the contraint that was not satisfied.
 
-Syntax
-------
+## Syntax
 
     var constraint = Overconstrainederror.constraint;
 
@@ -25,14 +23,12 @@ Syntax
 
 A <span class="page-not-created">`String`</span>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-overconstrainederror-constraint">Media Capture and Streams<br />
 <span class="small">The definition of 'constraint' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

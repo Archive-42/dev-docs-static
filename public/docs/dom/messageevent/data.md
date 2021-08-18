@@ -1,10 +1,8 @@
-MessageEvent.data
-=================
+# MessageEvent.data
 
 The `data` read-only property of the [`MessageEvent`](../messageevent) interface represents the data sent by the message emitter.
 
-Syntax
-------
+## Syntax
 
     var data = messageEvent.data;
 
@@ -12,22 +10,19 @@ Syntax
 
 The data sent by the message emitter; this can be any data type.
 
-Example
--------
+## Example
 
     myWorker.onmessage = function(e) {
       result.textContent = e.data;
       console.log('Message received from worker');
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-messageevent-data">HTML Living Standard<br />
 <span class="small">The definition of 'MessageEvent: data' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -83,9 +78,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`ExtendableMessageEvent`](../extendablemessageevent) — similar to this interface but used in interfaces that needs to give more flexibility to authors.
+- [`ExtendableMessageEvent`](../extendablemessageevent) — similar to this interface but used in interfaces that needs to give more flexibility to authors.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent/data" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent/data</a>

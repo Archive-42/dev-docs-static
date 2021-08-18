@@ -1,24 +1,21 @@
-PerformanceObserverEntryList
-============================
+# PerformanceObserverEntryList
 
-The `PerformanceObserverEntryList` interface is a list of [peformance events](performanceentry) that were explicitly *observed* via the [`observe()`](performanceobserver/observe) method.
+The `PerformanceObserverEntryList` interface is a list of [peformance events](performanceentry) that were explicitly _observed_ via the [`observe()`](performanceobserver/observe) method.
 
 Note: this interface is exposed to [`Window`](window) and [`Worker`](worker).
 
-Methods
--------
+## Methods
 
 [`PerformanceObserverEntryList.getEntries()`](performanceobserverentrylist/getentries)  
-Returns a list of explicitly *observed* [`PerformanceEntry`](performanceentry) objects based on the given *filter*.
+Returns a list of explicitly _observed_ [`PerformanceEntry`](performanceentry) objects based on the given _filter_.
 
 [`PerformanceObserverEntryList.getEntriesByType()`](performanceobserverentrylist/getentriesbytype)  
-Returns a list of explicitly *observed* [`PerformanceEntry`](performanceentry) objects of the given *entry type*.
+Returns a list of explicitly _observed_ [`PerformanceEntry`](performanceentry) objects of the given _entry type_.
 
 [`PerformanceObserverEntryList.getEntriesByName()`](performanceobserverentrylist/getentriesbyname)  
-Returns a list of explicitly *observed* [`PerformanceEntry`](performanceentry) objects based on the given *name* and *entry type*.
+Returns a list of explicitly _observed_ [`PerformanceEntry`](performanceentry) objects based on the given _name_ and _entry type_.
 
-Example
--------
+## Example
 
     // Create observer for all performance event types
     // list is of type PerformanceObserveEntryList
@@ -30,14 +27,12 @@ Example
        }
     })
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/performance-timeline/#idl-def-performanceobserverentrylist">Performance Timeline Level 2<br />
 <span class="small">The definition of 'PerformanceObserverEntryList' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

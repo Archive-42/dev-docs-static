@@ -1,5 +1,4 @@
-MediaTrackConstraints.deviceId
-==============================
+# MediaTrackConstraints.deviceId
 
 The [`MediaTrackConstraints`](../mediatrackconstraints) dictionary's `deviceId` property is a [`ConstrainDOMString`](../constraindomstring) describing the requested or mandatory constraints placed upon the value of the [`deviceId`](../mediatracksettings/deviceid) constrainable property.
 
@@ -7,8 +6,7 @@ If needed, you can determine whether or not this constraint is supported by chec
 
 Because [RTP](https://developer.mozilla.org/en-US/docs/Glossary/RTP) doesn't include this information, tracks associated with a [WebRTC](../webrtc_api) [`RTCPeerConnection`](../rtcpeerconnection) will never include this property.
 
-Syntax
-------
+## Syntax
 
     var constraintsObject = { deviceId: constraint };
 
@@ -24,19 +22,16 @@ Because of this, there's no use for the device ID when calling [`MediaStreamTrac
 
 An exception to the rule that device IDs are the same across browsing sessions: private browsing mode will use a different ID, and will change it each browsing session.
 
-Example
--------
+## Example
 
 See [Example: Constraint exerciser](#) in [Capabilities, constraints, and settings](../media_streams_api/constraints) for an example.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediatrackconstraintset-deviceid">Media Capture and Streams<br />
 <span class="small">The definition of 'deviceId' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -96,14 +91,13 @@ Firefox for Android only supports `deviceId` when used in constraints passed int
 
 7.0
 
-See also
---------
+## See also
 
--   [Media Capture and Streams API](../media_streams_api)
--   [Capabilities, constraints, and settings](../media_streams_api/constraints)
--   [`MediaTrackConstraints`](../mediatrackconstraints)
--   [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints)
--   [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints)
--   [`MediaStreamTrack`](../mediastreamtrack)
+- [Media Capture and Streams API](../media_streams_api)
+- [Capabilities, constraints, and settings](../media_streams_api/constraints)
+- [`MediaTrackConstraints`](../mediatrackconstraints)
+- [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints)
+- [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints)
+- [`MediaStreamTrack`](../mediastreamtrack)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints/deviceId" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints/deviceId</a>

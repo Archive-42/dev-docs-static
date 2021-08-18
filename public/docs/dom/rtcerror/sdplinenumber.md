@@ -1,10 +1,8 @@
-RTCError.sdpLineNumber
-======================
+# RTCError.sdpLineNumber
 
 The [`RTCError`](../rtcerror) interface's read-only property `sdpLineNumber` specifies the line number within the [SDP](https://developer.mozilla.org/en-US/docs/Glossary/SDP) at which a syntax error occurred while parsing it.
 
-Syntax
-------
+## Syntax
 
     let errorLineNumber = rtcError.sdpLineNumber;
 
@@ -14,14 +12,12 @@ An unsigned integer value indicating the line within the SDP at which the syntax
 
 This property is `null` unless the value of [`errorDetail`](errordetail) is `sdp-syntax-error`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcerror-sdplinenumber">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCError.sdpLineNumber' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

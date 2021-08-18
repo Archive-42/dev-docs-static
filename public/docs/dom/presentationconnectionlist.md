@@ -1,5 +1,4 @@
-PresentationConnectionList
-==========================
+# PresentationConnectionList
 
 **Secure context**
 
@@ -12,10 +11,9 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 `PresentationConnectionList` is the collection of incoming presentation connections.
 
-Properties
-----------
+## Properties
 
- <span class="page-not-created">`PresentationConnectionList.connections`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`PresentationConnectionList.connections`</span> <span class="badge inline readonly">Read only </span>  
 Returns the non-terminated set of [`PresentationConnection`](presentationconnection)s in the [set of presentation controllers](https://www.w3.org/TR/presentation-api/#dfn-set-of-presentation-controllers).
 
 ### Event Handlers
@@ -23,14 +21,12 @@ Returns the non-terminated set of [`PresentationConnection`](presentationconnect
 <span class="page-not-created">`PresentationConnectionList.onconnectionavailable`</span>  
 Fired whenever a new [presentation connection](https://www.w3.org/TR/presentation-api/#dfn-presentation-connection) becomes available.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/presentation-api/#interface-presentationconnectionlist">Presentation API<br />
 <span class="small">The definition of 'PresentationConnectionList' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

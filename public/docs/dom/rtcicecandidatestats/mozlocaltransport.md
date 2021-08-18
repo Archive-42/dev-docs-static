@@ -1,5 +1,4 @@
-RTCIceCandidateStats.mozLocalTransport
-======================================
+# RTCIceCandidateStats.mozLocalTransport
 
 **Deprecated**
 
@@ -11,20 +10,17 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 The non-standard Mozilla extension to the [`RTCIceCandidateStats`](../rtcicecandidatestats) dictionary, `mozLocalTransport`, has been supplanted by the standard [`relayProtocol`](relayprotocol) property.
 
-Syntax
-------
+## Syntax
 
 Instead of using `mozLocalTransport`, you should use code like this:
 
     localTransport = rtcIceCandidateStats.relayProtocol;
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

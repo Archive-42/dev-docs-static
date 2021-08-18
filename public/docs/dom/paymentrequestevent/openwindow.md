@@ -1,5 +1,4 @@
-PaymentRequestEvent.openWindow()
-================================
+# PaymentRequestEvent.openWindow()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `openWindow` property of the [`PaymentRequestEvent`](../paymentrequestevent) interface opens the specified URL in a new window, if and only if the given URL is on the same origin as the calling page. It returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with a reference to a [`WindowClient`](../windowclient).
 
-Syntax
-------
+## Syntax
 
     var aPromise = paymentRequestEvent.openWindow(url)
 
@@ -22,14 +20,12 @@ The URL to open in the new window. It must be on the same origin as the calling 
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with a reference to a [`WindowClient`](../windowclient).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-handler/#openwindow-method">Payment Handler API<br />
 <span class="small">The definition of 'openWindow' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

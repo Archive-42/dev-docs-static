@@ -1,5 +1,4 @@
-NavigatorPlugins.plugins
-========================
+# NavigatorPlugins.plugins
 
 **Deprecated**
 
@@ -9,8 +8,7 @@ Returns a [`PluginArray`](../pluginarray) object, listing the [`Plugin`](../plug
 
 In Firefox 29 and later, enumeration of the `navigator.plugins` array may be restricted as a privacy measure. Applications that must check for the presence of a browser plugin should query `navigator.plugins` or [`navigator.mimeTypes`](mimetypes) by exact name instead of enumerating the `navigator.plugins` array and comparing every plugin's name. This privacy change does not disable any plugins; it just hides some plugin names from enumeration.
 
-Syntax
-------
+## Syntax
 
     var plugins = navigator.plugins;
 
@@ -18,8 +16,7 @@ Syntax
 
 The returned value is not a JavaScript array, but has the `length` property and supports accessing individual items using bracket notation (`plugins[2]`), as well as via `item(index)` and `namedItem("name")` methods.
 
-Examples
---------
+## Examples
 
 The following example function returns the version of the Shockwave Flash plugin.
 
@@ -56,19 +53,16 @@ The following example displays information about the installed plugin(s).
       newRow.insertCell().textContent = navigator.plugins[i].version?navigator.plugins[i].version:"";
     }
 
-Notes
------
+## Notes
 
 The [`Plugin`](../plugin) object exposes a small interface for getting information about the various plugins installed in your browser. A list of plugins is also available by entering `about:plugins` in the browser's Location bar.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-plugins">HTML Living Standard<br />
 <span class="small">The definition of 'NavigatorPlugins.plugins' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

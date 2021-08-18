@@ -1,5 +1,4 @@
-msFirstPaint
-============
+# msFirstPaint
 
 **Non-standard**
 
@@ -11,13 +10,11 @@ Put another way, `msFirstPaint` utilizes the browser to measure when the first c
 
 This proprietary property is specific to Internet Explorer and Microsoft Edge.
 
-Syntax
-------
+## Syntax
 
     p = object.msFirstPaint;
 
-Value
------
+## Value
 
 An Integer value that represents the time when the document began to be displayed or 0 if the document could not be loaded.
 
@@ -25,8 +22,7 @@ The numerical value reported represents the number of milliseconds between the r
 
 This property is supported only for documents displayed in IE9 Standards mode.
 
-Example
--------
+## Example
 
 The following example shows how to calculate the time that is required to request the document before the document begins to display for the user.
 

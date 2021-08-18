@@ -1,5 +1,4 @@
-PaymentCurrencyAmount
-=====================
+# PaymentCurrencyAmount
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `PaymentCurrencyAmount` dictionary describes an amount of money in terms of both a number of units and the currency (US dollars, Euro, yen, etc.), and is part of the [Payment Request API](payment_request_api). This is used to specify the prices of both line items on a payment, using [`PaymentItem`](paymentitem) objects, and to provide the cost of a shipping option, using <span class="page-not-created">`PaymentShippingOption`</span>.
 
-Properties
-----------
+## Properties
 
 All properties are required.
 
@@ -20,19 +18,17 @@ A string containing a valid decimal value representing the mount of currency con
 
 ### Obsolete properties
 
-*These properties have been removed from the specification and should no longer be used.*
+_These properties have been removed from the specification and should no longer be used._
 
- [`currencySystem`](paymentcurrencyamount/currencysystem) <span class="badge inline optional">Optional</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`currencySystem`](paymentcurrencyamount/currencysystem) <span class="badge inline optional">Optional</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 A string describing the standard or specification as well as the currency system identifier within that system which was used to provide the `value`. This has been removed; instead of allowing sites to choose the standard to use, ISO 4217 is always used for the `currency` identifier now.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-paymentcurrencyamount">Payment Request API<br />
 <span class="small">The definition of 'PaymentCurrencyAmount' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

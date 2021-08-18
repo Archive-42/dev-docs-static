@@ -1,5 +1,4 @@
-Range
-=====
+# Range
 
 The `Range` interface represents a fragment of a document that can contain nodes and parts of text nodes.
 
@@ -7,39 +6,36 @@ A range can be created by using the [`Document.createRange()`](document/createra
 
 There also is the [`Range()`](range/range) constructor available.
 
-Properties
-----------
+## Properties
 
-*There are no inherited properties.*
+_There are no inherited properties._
 
- [`Range.collapsed`](range/collapsed) <span class="badge inline readonly">Read only </span>   
+[`Range.collapsed`](range/collapsed) <span class="badge inline readonly">Read only </span>  
 Returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the range's start and end points are at the same position.
 
- [`Range.commonAncestorContainer`](range/commonancestorcontainer) <span class="badge inline readonly">Read only </span>   
+[`Range.commonAncestorContainer`](range/commonancestorcontainer) <span class="badge inline readonly">Read only </span>  
 Returns the deepest [`Node`](node) that contains the `startContainer` and `endContainer` nodes.
 
- [`Range.endContainer`](range/endcontainer) <span class="badge inline readonly">Read only </span>   
+[`Range.endContainer`](range/endcontainer) <span class="badge inline readonly">Read only </span>  
 Returns the [`Node`](node) within which the `Range` ends.
 
- [`Range.endOffset`](range/endoffset) <span class="badge inline readonly">Read only </span>   
+[`Range.endOffset`](range/endoffset) <span class="badge inline readonly">Read only </span>  
 Returns a number representing where in the `endContainer` the `Range` ends.
 
- [`Range.startContainer`](range/startcontainer) <span class="badge inline readonly">Read only </span>   
+[`Range.startContainer`](range/startcontainer) <span class="badge inline readonly">Read only </span>  
 Returns the [`Node`](node) within which the `Range` starts.
 
- [`Range.startOffset`](range/startoffset) <span class="badge inline readonly">Read only </span>   
+[`Range.startOffset`](range/startoffset) <span class="badge inline readonly">Read only </span>  
 Returns a number representing where in the `startContainer` the `Range` starts.
 
-Constructor
------------
+## Constructor
 
- [`Range()`](range/range) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Range()`](range/range) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a `Range` object with the global [`Document`](document) as its start and end.
 
-Methods
--------
+## Methods
 
-*There are no inherited methods.*
+_There are no inherited methods._
 
 [`Range.setStart()`](range/setstart)  
 Sets the start position of a `Range`.
@@ -95,29 +91,28 @@ Releases the `Range` from use to improve performance.
 [`Range.toString()`](range/tostring)  
 Returns the text of the `Range`.
 
- [`Range.compareNode()`](range/comparenode) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span><span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`Range.compareNode()`](range/comparenode) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span><span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns a constant representing whether the [`Node`](node) is before, after, inside, or surrounding the range.
 
- [`Range.comparePoint()`](range/comparepoint) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Range.comparePoint()`](range/comparepoint) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns -1, 0, or 1 indicating whether the point occurs before, inside, or after the `Range`.
 
- [`Range.createContextualFragment()`](range/createcontextualfragment)<span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Range.createContextualFragment()`](range/createcontextualfragment)<span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a [`DocumentFragment`](documentfragment) created from a given string of code.
 
- [`Range.getBoundingClientRect()`](range/getboundingclientrect) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Range.getBoundingClientRect()`](range/getboundingclientrect) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a [`DOMRect`](domrect) object which bounds the entire contents of the `Range`; this would be the union of all the rectangles returned by [`range.getClientRects()`](range/getclientrects).
 
- [`Range.getClientRects()`](range/getclientrects) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Range.getClientRects()`](range/getclientrects) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a list of [`DOMRect`](domrect) objects that aggregates the results of [`Element.getClientRects()`](element/getclientrects) for all the elements in the `Range`.
 
- [`Range.intersectsNode()`](range/intersectsnode) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Range.intersectsNode()`](range/intersectsnode) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a `boolean` indicating whether the given node intersects the `Range`.
 
- [`Range.isPointInRange()`](range/ispointinrange) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Range.isPointInRange()`](range/ispointinrange) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a `boolean` indicating whether the given point is in the `Range`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#interface-range">DOM<br />
 <span class="small">The definition of 'Range' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Do not use <code>RangeException</code> anymore, use <code>DOMException</code> instead.<br />
@@ -128,8 +123,7 @@ Added the constructor <code>Range()</code>.</td></tr><tr class="even"><td><a hre
 <span class="small">The definition of 'Extensions to Range' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Added the methods <code>getClientRects()</code> and <code>getBoundingClientRect()</code>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level-2-Range-Interface">Document Object Model (DOM) Level 2 Traversal and Range Specification<br />
 <span class="small">The definition of 'Range' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -1041,9 +1035,8 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [The DOM interfaces index](document_object_model)
+- [The DOM interfaces index](document_object_model)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Range</a>

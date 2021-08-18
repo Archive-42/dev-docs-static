@@ -1,5 +1,4 @@
-PublicKeyCredential.getClientExtensionResults()
-===============================================
+# PublicKeyCredential.getClientExtensionResults()
 
 **Secure context**
 
@@ -13,8 +12,7 @@ During the creation or fetching of a `PublicKeyCredential` (respectively via [`n
 
 **Note:** This method may only be used in top-level contexts and will not be available in an [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) for example.
 
-Syntax
-------
+## Syntax
 
     mapArrayBuffer = publicKeyCredential.getClientExtensionResults()
 
@@ -28,8 +26,7 @@ An [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 
 **Warning!** As of March 2019, only `appId` (used during creation with [`PublicKeyCredentialRequestOptions.extensions`](../publickeycredentialrequestoptions/extensions)) is supported by [Chrome](https://bugs.chromium.org/p/chromium/issues/detail?id=818303) and [Edge](https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/windows-integration/web-authentication#api-surface). Firefox does not seem to [support any extension](https://bugzilla.mozilla.org/show_bug.cgi?id=1370728).
 
-Examples
---------
+## Examples
 
     var publicKey = {
       // Here are the extensions (as "inputs")
@@ -63,14 +60,12 @@ Examples
          console.error(err);
       });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#dom-publickeycredential-getclientextensionresults">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'getClientExtensionResults()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -130,12 +125,11 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [The list of the currently defined extensions](https://www.w3.org/TR/webauthn/#sctn-defined-extensions)
--   [`AuthenticatorAssertionResponse.authenticatorData`](../authenticatorassertionresponse/authenticatordata) which contains the result of the authenticator's extensions processing
--   [`PublicKeyCredentialCreationOptions.extensions`](../publickeycredentialcreationoptions/extensions) which contains the client extensions' input values for the creation of the credential
--   [`PublicKeyCredentialRequestOptions.extensions`](../publickeycredentialrequestoptions/extensions) which contains the client extensions' input values for the retrieval of the credential
+- [The list of the currently defined extensions](https://www.w3.org/TR/webauthn/#sctn-defined-extensions)
+- [`AuthenticatorAssertionResponse.authenticatorData`](../authenticatorassertionresponse/authenticatordata) which contains the result of the authenticator's extensions processing
+- [`PublicKeyCredentialCreationOptions.extensions`](../publickeycredentialcreationoptions/extensions) which contains the client extensions' input values for the creation of the credential
+- [`PublicKeyCredentialRequestOptions.extensions`](../publickeycredentialrequestoptions/extensions) which contains the client extensions' input values for the retrieval of the credential
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredential/getClientExtensionResults" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredential/getClientExtensionResults</a>

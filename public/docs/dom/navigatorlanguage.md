@@ -1,35 +1,30 @@
-NavigatorLanguage
-=================
+# NavigatorLanguage
 
 `NavigatorLanguage` contains methods and properties related to the language of the navigator.
 
 There is no object of type `NavigatorLanguage`, but other interfaces, like [`Navigator`](navigator) or [`WorkerNavigator`](workernavigator), implement it.
 
-Properties
-----------
+## Properties
 
-*The `NavigatorLanguage` interface doesn't inherit any property.*
+_The `NavigatorLanguage` interface doesn't inherit any property._
 
- [`NavigatorLanguage.language`](navigatorlanguage/language) <span class="badge inline readonly">Read only </span>   
+[`NavigatorLanguage.language`](navigatorlanguage/language) <span class="badge inline readonly">Read only </span>  
 Returns a [`DOMString`](domstring) representing the preferred language of the user, usually the language of the browser UI. The `null` value is returned when this is unknown.
 
- [`NavigatorLanguage.languages`](navigatorlanguage/languages) <span class="badge inline readonly">Read only </span>   
+[`NavigatorLanguage.languages`](navigatorlanguage/languages) <span class="badge inline readonly">Read only </span>  
 Returns an array of [`DOMString`](domstring) representing the languages known to the user, by order of preference.
 
-Methods
--------
+## Methods
 
-*The `NavigatorLanguage` interface neither implements, nor inherit any method.*
+_The `NavigatorLanguage` interface neither implements, nor inherit any method._
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#navigatorlanguage">HTML Living Standard<br />
 <span class="small">The definition of 'NavigatorLanguage' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Since the <a href="https://www.w3.org/TR/html52/">HTML5</a> snapshot, the <code>languages</code> property has been added.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/#navigatorlanguage">HTML5<br />
 <span class="small">The definition of 'NavigatorLanguage' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial specification; snapshot of an early version <a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a>.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -153,9 +148,8 @@ In Firefox, the `navigator.languages` property's value is taken from the `intl.a
 
 3.0
 
-See also
---------
+## See also
 
--   The [`Navigator`](navigator) interface that implements it.
+- The [`Navigator`](navigator) interface that implements it.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorLanguage" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NavigatorLanguage</a>

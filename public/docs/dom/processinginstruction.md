@@ -1,5 +1,4 @@
-ProcessingInstruction
-=====================
+# ProcessingInstruction
 
 The `ProcessingInstruction` interface represents a [processing instruction](https://www.w3.org/TR/xml/#sec-pi); that is, a [`Node`](node) which embeds an instruction targeting a specific application but that can be ignored by any other applications which don't recognize the instruction.
 
@@ -9,20 +8,17 @@ User-defined processing instructions cannot begin with "`xml`", as `xml`-prefixe
 
 The `ProcessingInstruction` interface inherits methods and properties from [`Node`](node).
 
-Properties
-----------
+## Properties
 
- `target` ([`DOMString`](domstring)) <span class="badge inline readonly">Read only </span>   
+`target` ([`DOMString`](domstring)) <span class="badge inline readonly">Read only </span>  
 A name identifying the application to which the instruction is targeted.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#processinginstruction">DOM<br />
 <span class="small">The definition of 'ProcessingInstruction' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/xml/#sec-pi">XML specification</a></td><td></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -130,9 +126,8 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   [document.createProcessingInstruction](document/createprocessinginstruction)
+- [document.createProcessingInstruction](document/createprocessinginstruction)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ProcessingInstruction" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ProcessingInstruction</a>

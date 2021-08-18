@@ -1,55 +1,51 @@
-Response
-========
+# Response
 
 The `Response` interface of the [Fetch API](fetch_api) represents the response to a request.
 
 You can create a new `Response` object using the [`Response.Response()`](response/response) constructor, but you are more likely to encounter a `Response` object being returned as the result of another API operation—for example, a service worker [`Fetchevent.respondWith`](fetchevent/respondwith), or a simple [`WindowOrWorkerGlobalScope.fetch()`](windoworworkerglobalscope/fetch).
 
-Constructor
------------
+## Constructor
 
 [`Response()`](response/response)  
 Creates a new `Response` object.
 
-Properties
-----------
+## Properties
 
- [`Response.headers`](response/headers) <span class="badge inline readonly">Read only </span>   
+[`Response.headers`](response/headers) <span class="badge inline readonly">Read only </span>  
 The [`Headers`](headers) object associated with the response.
 
- [`Response.ok`](response/ok) <span class="badge inline readonly">Read only </span>   
+[`Response.ok`](response/ok) <span class="badge inline readonly">Read only </span>  
 A boolean indicating whether the response was successful (status in the range `200`–`299`) or not.
 
- [`Response.redirected`](response/redirected) <span class="badge inline readonly">Read only </span>   
+[`Response.redirected`](response/redirected) <span class="badge inline readonly">Read only </span>  
 Indicates whether or not the response is the result of a redirect (that is, its URL list has more than one entry).
 
- [`Response.status`](response/status) <span class="badge inline readonly">Read only </span>   
+[`Response.status`](response/status) <span class="badge inline readonly">Read only </span>  
 The status code of the response. (This will be `200` for a success).
 
- [`Response.statusText`](response/statustext) <span class="badge inline readonly">Read only </span>   
+[`Response.statusText`](response/statustext) <span class="badge inline readonly">Read only </span>  
 The status message corresponding to the status code. (e.g., `OK` for `200`).
 
 <span class="page-not-created">`Response.trailers`</span>  
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) resolving to a [`Headers`](headers) object, associated with the response with [`Response.headers`](response/headers) for values of the HTTP [`Trailer`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Trailer) header.
 
- [`Response.type`](response/type) <span class="badge inline readonly">Read only </span>   
+[`Response.type`](response/type) <span class="badge inline readonly">Read only </span>  
 The type of the response (e.g., `basic`, `cors`).
 
- [`Response.url`](response/url) <span class="badge inline readonly">Read only </span>   
+[`Response.url`](response/url) <span class="badge inline readonly">Read only </span>  
 The URL of the response.
 
 ### Body Interface Properties
 
 `Response` implements [`Body`](body), so it also has the following properties available to it:
 
- [`Body.body`](body/body) <span class="badge inline readonly">Read only </span>   
+[`Body.body`](body/body) <span class="badge inline readonly">Read only </span>  
 A simple getter exposing a [`ReadableStream`](readablestream) of the body contents.
 
- [`Body.bodyUsed`](body/bodyused) <span class="badge inline readonly">Read only </span>   
+[`Body.bodyUsed`](body/bodyused) <span class="badge inline readonly">Read only </span>  
 Stores a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that declares whether the body has been used in a response yet.
 
-Methods
--------
+## Methods
 
 [`Response.clone()`](response/clone)  
 Creates a clone of a `Response` object.
@@ -79,8 +75,7 @@ Takes a [`Response`](response) stream and reads it to completion. It returns a p
 [`Body.text()`](body/text)  
 Takes a [`Response`](response) stream and reads it to completion. It returns a promise that resolves with a [`USVString`](usvstring) (text).
 
-Examples
---------
+## Examples
 
 ### Fetching an image
 
@@ -118,14 +113,12 @@ Here we call a PHP program file that generates a JSON string, displaying the res
     // Call the function and output value or error message to console
     doAjax().then(console.log).catch(console.log);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fetch.spec.whatwg.org/#response-class">Fetch<br />
 <span class="small">The definition of 'Response' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -545,11 +538,10 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [ServiceWorker API](service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [ServiceWorker API](service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Response</a>

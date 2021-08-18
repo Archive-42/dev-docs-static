@@ -1,5 +1,4 @@
-Navigator.activeVRDisplays
-==========================
+# Navigator.activeVRDisplays
 
 **Deprecated**
 
@@ -7,8 +6,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `activeVRDisplays` read-only property of the [`Navigator`](../navigator) interface returns an array containing every [`VRDisplay`](../vrdisplay) object that is currently presenting ([`VRDisplay.ispresenting`](../vrdisplay/ispresenting) is `true`).
 
-Syntax
-------
+## Syntax
 
     var myActiveDisplays = navigator.activeVRDisplays;
 
@@ -16,8 +14,7 @@ Syntax
 
 An array of [`VRDisplay`](../vrdisplay) objects.
 
-Examples
---------
+## Examples
 
     function showActive() {
       var displays = navigator.activeVRDisplays;
@@ -26,14 +23,12 @@ Examples
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://immersive-web.github.io/webvr/spec/1.1/#navigator-activevrdisplays-attribute">WebVR 1.1<br />
 <span class="small">The definition of 'activeVRDisplays' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -127,10 +122,9 @@ No
 
 12.0-13.0
 
-See also
---------
+## See also
 
--   [WebVR API homepage](../webvr_api)
--   <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
+- [WebVR API homepage](../webvr_api)
+- <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/activeVRDisplays" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/activeVRDisplays</a>

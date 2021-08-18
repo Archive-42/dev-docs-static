@@ -1,5 +1,4 @@
-MediaStream.ended
-=================
+# MediaStream.ended
 
 **Deprecated**
 
@@ -9,8 +8,7 @@ The `ended` read-only property of the [`MediaStream`](../mediastream) interface 
 
 This property has been removed from the specification; you should instead rely on the `ended` event or check the value of [`MediaStreamTrack.readyState`](../mediastreamtrack/readystate) to see if its value is `"ended"` for the track or tracks you want to ensure have finished playing.
 
-Syntax
-------
+## Syntax
 
     var hasEnded = MediaStream.ended;
 
@@ -18,13 +16,11 @@ Syntax
 
 A Boolean value that returns `true` if the end of the stream has been reached.
 
-Specifications
---------------
+## Specifications
 
 No longer part of any specification. This property was part of earlier drafts of the [Media Capture and Streams specification](https://www.w3.org/TR/mediacapture-streams).
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

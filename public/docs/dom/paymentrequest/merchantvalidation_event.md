@@ -1,5 +1,4 @@
-PaymentRequest: merchantvalidation event
-========================================
+# PaymentRequest: merchantvalidation event
 
 **Deprecated**
 
@@ -19,8 +18,7 @@ See [Merchant validation](../payment_request_api/concepts#merchant_validation) i
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../merchantvalidationevent"><code>MerchantValidationEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="onmerchantvalidation"><code>onmerchantvalidation</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 In this example, an event handler is established for the `merchantvalidation` event. It uses the [`fetch()`](../windoworworkerglobalscope/fetch) to send a request to its own server with an argument of the payment method's validation URL, obtained from the event's [`validationURL`](../merchantvalidationevent/validationurl) property. The merchant server should access the validation URL in accordance with the payment method documention. Typically, a client should not access the validation URL.
 
@@ -52,17 +50,16 @@ You can also use the [`onmerchantvalidation`](onmerchantvalidation) event handle
 
 For more information, see [Merchant Validation](../payment_request_api/concepts#merchant_validation) in [Payment processing concepts](../payment_request_api/concepts).
 
-Related events
---------------
+## Related events
 
--   `payerdetailchange`, `paymentmethodchange`, `shippingaddresschange`, and `shippingoptionchange`
+- `payerdetailchange`, `paymentmethodchange`, `shippingaddresschange`, and `shippingoptionchange`
 
 BCD tables only load in the browser
 
--   [Payment Request API](../payment_request_api)
--   [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
--   [`onmerchantvalidation`](onmerchantvalidation) event handler property
--   [Merchant validation](../payment_request_api/concepts#merchant_validation) in [Payment processing concepts](../payment_request_api/concepts)
--   [`PaymentRequest`](../paymentrequest)
+- [Payment Request API](../payment_request_api)
+- [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
+- [`onmerchantvalidation`](onmerchantvalidation) event handler property
+- [Merchant validation](../payment_request_api/concepts#merchant_validation) in [Payment processing concepts](../payment_request_api/concepts)
+- [`PaymentRequest`](../paymentrequest)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/merchantvalidation_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/merchantvalidation_event</a>

@@ -1,12 +1,10 @@
-Range.selectNodeContents()
-==========================
+# Range.selectNodeContents()
 
 The `Range.selectNodeContents()` method sets the [`Range`](../range) to contain the contents of a [`Node`](../node).
 
 The parent `Node` of the start and end of the `Range` will be the reference node. The `startOffset` is 0, and the `endOffset` is the number of child `Node`s or number of characters contained in the reference node.
 
-Syntax
-------
+## Syntax
 
     range.selectNodeContents(referenceNode);
 
@@ -15,8 +13,7 @@ Syntax
 `referenceNode`  
 The [`Node`](../node) whose contents will be selected within a [`Range`](../range).
 
-Example
--------
+## Example
 
     range = document.createRange();
     referenceNode = document.getElementsByTagName("div")[0];
@@ -56,15 +53,13 @@ This example lets the user select and deselect a paragraph with buttons. [`Docum
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-range-selectnodecontents">DOM<br />
 <span class="small">The definition of 'Range.selectNodeContents()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level2-Range-method-selectNodeContents">Document Object Model (DOM) Level 2 Traversal and Range Specification<br />
 <span class="small">The definition of 'Range.selectNodeContents()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -120,9 +115,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [The DOM interfaces index](../document_object_model)
+- [The DOM interfaces index](../document_object_model)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range/selectNodeContents" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Range/selectNodeContents</a>

@@ -1,5 +1,4 @@
-NetworkInformation
-==================
+# NetworkInformation
 
 **Experimental**
 
@@ -10,56 +9,52 @@ The `NetworkInformation` interface provides information about the connection a d
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-Properties
-----------
+## Properties
 
-*This interface also inherits properties of its parent, [`EventTarget`](eventtarget).*
+_This interface also inherits properties of its parent, [`EventTarget`](eventtarget)._
 
- [`NetworkInformation.downlink`](networkinformation/downlink) <span class="badge inline readonly">Read only </span>   
+[`NetworkInformation.downlink`](networkinformation/downlink) <span class="badge inline readonly">Read only </span>  
 Returns the effective bandwidth estimate in megabits per second, rounded to the nearest multiple of 25 kilobits per seconds.
 
- [`NetworkInformation.downlinkMax`](networkinformation/downlinkmax) <span class="badge inline readonly">Read only </span>   
+[`NetworkInformation.downlinkMax`](networkinformation/downlinkmax) <span class="badge inline readonly">Read only </span>  
 Returns the maximum downlink speed, in megabits per second (Mbps), for the underlying connection technology.
 
- [`NetworkInformation.effectiveType`](networkinformation/effectivetype) <span class="badge inline readonly">Read only </span>   
+[`NetworkInformation.effectiveType`](networkinformation/effectivetype) <span class="badge inline readonly">Read only </span>  
 Returns the effective type of the connection meaning one of 'slow-2g', '2g', '3g', or '4g'. This value is determined using a combination of recently observed round-trip time and downlink values.
 
- [`NetworkInformation.rtt`](networkinformation/rtt) <span class="badge inline readonly">Read only </span>   
+[`NetworkInformation.rtt`](networkinformation/rtt) <span class="badge inline readonly">Read only </span>  
 Returns the estimated effective round-trip time of the current connection, rounded to the nearest multiple of 25 milliseconds.
 
- [`NetworkInformation.saveData`](networkinformation/savedata) <span class="badge inline readonly">Read only </span>   
+[`NetworkInformation.saveData`](networkinformation/savedata) <span class="badge inline readonly">Read only </span>  
 Returns `true` if the user has set a reduced data usage option on the user agent.
 
- [`NetworkInformation.type`](networkinformation/type) <span class="badge inline readonly">Read only </span>   
+[`NetworkInformation.type`](networkinformation/type) <span class="badge inline readonly">Read only </span>  
 Returns the type of connection a device is using to communicate with the network. It will be one of the following values:
 
--   `bluetooth`
--   `cellular`
--   `ethernet`
--   `none`
--   `wifi`
--   `wimax`
--   `other`
--   `unknown`
+- `bluetooth`
+- `cellular`
+- `ethernet`
+- `none`
+- `wifi`
+- `wimax`
+- `other`
+- `unknown`
 
 ### Event handlers
 
 [`NetworkInformation.onchange`](networkinformation/onchange)  
 The event that's fired when connection information changes and the `change` is fired on this object.
 
-Methods
--------
+## Methods
 
-*This interface also inherits methods of its parent, [`EventTarget`](eventtarget).*
+_This interface also inherits methods of its parent, [`EventTarget`](eventtarget)._
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/netinfo/#networkinformation-interface">Network Information API<br />
 <span class="small">The definition of 'NetworkInformation' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -355,11 +350,10 @@ No
 
 3.0
 
-See also
---------
+## See also
 
--   [Network Information API](network_information_api)
--   [Online and offline events](navigatoronline/online_and_offline_events)
--   The [`Navigator`](navigator) interface that implements it.
+- [Network Information API](network_information_api)
+- [Online and offline events](navigatoronline/online_and_offline_events)
+- The [`Navigator`](navigator) interface that implements it.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NetworkInformation" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NetworkInformation</a>

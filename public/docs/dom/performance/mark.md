@@ -1,7 +1,6 @@
-performance.mark()
-==================
+# performance.mark()
 
-The `mark()` method creates a [`timestamp`](../domhighrestimestamp) in the browser's *performance entry buffer* with the given name.
+The `mark()` method creates a [`timestamp`](../domhighrestimestamp) in the browser's _performance entry buffer_ with the given name.
 
 The application defined timestamp can be retrieved by one of the [`Performance`](../performance) interface's `getEntries*()` methods ([`getEntries()`](getentries), [`getEntriesByName()`](getentriesbyname) or [`getEntriesByType()`](getentriesbytype)).
 
@@ -9,8 +8,7 @@ The `mark()'s` stores its data internally as [`PerformanceEntry`](../performance
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     performance.mark(name);
 
@@ -23,8 +21,7 @@ A [`DOMString`](../domstring) representing the name of the mark. If the `name` g
 
 void
 
-Example
--------
+## Example
 
 The following example shows how to use `mark()` to create and retrieve [`PerformanceMark`](../performancemark) entries.
 
@@ -49,15 +46,13 @@ The following example shows how to use `mark()` to create and retrieve [`Perform
     // Clear out all of the marks.
     performance.clearMarks();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/user-timing/#dom-performance-mark">User Timing Level 2<br />
 <span class="small">The definition of 'mark()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Clarifies <code>mark()</code> processing model.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/user-timing/#dom-performance-mark">User Timing<br />
 <span class="small">The definition of 'mark()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Basic definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

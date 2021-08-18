@@ -1,5 +1,4 @@
-MouseEvent.which
-================
+# MouseEvent.which
 
 **Non-standard**
 
@@ -7,8 +6,7 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 The `MouseEvent.which` read-only property indicates which button was pressed on the mouse to trigger the event. The standard alternatives to this property are [`MouseEvent.button`](button) and [`MouseEvent.buttons`](buttons).
 
-Syntax
-------
+## Syntax
 
     var buttonPressed = instanceOfMouseEvent.which
 
@@ -16,20 +14,18 @@ Syntax
 
 A number representing a given button:
 
--   `0`: No button
--   `1`: Left button
--   `2`: Middle button (if present)
--   `3`: Right button
+- `0`: No button
+- `1`: Left button
+- `2`: Middle button (if present)
+- `3`: Right button
 
 For a mouse configured for left-handed use, the button actions are reversed. In this case, the values are read from right to left.
 
-Specifications
---------------
+## Specifications
 
 This is not part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -89,9 +85,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`MouseEvent`](../mouseevent)
+- [`MouseEvent`](../mouseevent)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/which" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/which</a>

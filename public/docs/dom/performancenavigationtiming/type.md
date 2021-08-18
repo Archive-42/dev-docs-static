@@ -1,5 +1,4 @@
-PerformanceNavigationTiming.type
-================================
+# PerformanceNavigationTiming.type
 
 **Experimental**
 
@@ -9,12 +8,12 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 The `type` read-only property returns a [`string`](../domstring) representing the type of navigation. The value must be one of the following:
 
 navigate  
-Navigation started by clicking a link, entering the URL in the browser's address bar, form submission, or initializing through a script operation other than reload and back\_forward as listed below.
+Navigation started by clicking a link, entering the URL in the browser's address bar, form submission, or initializing through a script operation other than reload and back_forward as listed below.
 
 reload  
 Navigation is through the browser's reload operation or [`location.reload()`](../location/reload).
 
-back\_forward  
+back_forward  
 Navigation is through the browser's history traversal operation.
 
 prerender  
@@ -22,8 +21,7 @@ Navigation is initiated by a [prerender hint](https://www.w3.org/TR/resource-hin
 
 This property is <span class="badge inline readonly">Read only </span>.
 
-Syntax
-------
+## Syntax
 
     perfEntry.type;
 
@@ -31,8 +29,7 @@ Syntax
 
 A [`string`](../domstring) which is one of the values listed above.
 
-Example
--------
+## Example
 
 The following example illustrates this property's usage.
 
@@ -58,14 +55,12 @@ The following example illustrates this property's usage.
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/navigation-timing/#dom-performancenavigationtiming-type">Navigation Timing Level 2<br />
 <span class="small">The definition of 'type' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

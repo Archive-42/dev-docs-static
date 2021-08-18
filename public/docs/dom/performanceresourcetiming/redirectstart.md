@@ -1,5 +1,4 @@
-PerformanceResourceTiming.redirectStart
-=======================================
+# PerformanceResourceTiming.redirectStart
 
 The `redirectStart` read-only property returns a [`timestamp`](../domhighrestimestamp) representing the start time of the fetch which that initiates the redirect.
 
@@ -7,8 +6,7 @@ If there are HTTP redirects when fetching the resource and if any of the redirec
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     resource.redirectStart;
 
@@ -16,8 +14,7 @@ Syntax
 
 A [`timestamp`](../domhighrestimestamp) representing the start time of the fetch which initiates the redirect.
 
-Example
--------
+## Example
 
 In the following example, the value of the `*Start` and `*End` properties of all "`resource`" [`type`](../performanceentry/entrytype) events are logged.
 
@@ -50,14 +47,12 @@ In the following example, the value of the `*Start` and `*End` properties of all
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/resource-timing-1/#dom-performanceresourcetiming-redirectstart">Resource Timing Level 1<br />
 <span class="small">The definition of 'redirectStart' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,11 +1,10 @@
-RTCIceServer.username
-=====================
+# RTCIceServer.username
 
 **Draft**
 
 This page is not complete.
 
-*I'm experimenting with structure for pages documenting members of dictionaries. Please contact [sheppy](https://developer.mozilla.org/en-US/settings) with any feedback.*
+_I'm experimenting with structure for pages documenting members of dictionaries. Please contact [sheppy](https://developer.mozilla.org/en-US/settings) with any feedback._
 
 **Experimental**
 
@@ -16,8 +15,7 @@ The [`RTCIceServer`](../rtciceserver) dictionary's `username` property is a stri
 
 This value is used when the `RTCIceServer` describes a [TURN](https://developer.mozilla.org/en-US/docs/Glossary/TURN) server.
 
-Syntax
-------
+## Syntax
 
     var iceServer = {
                       ...
@@ -29,8 +27,7 @@ Syntax
 
     iceServer.username = newUsername;
 
-Example
--------
+## Example
 
 This example creates a new [`RTCPeerConnection`](../rtcpeerconnection) which will use a [TURN](https://developer.mozilla.org/en-US/docs/Glossary/TURN) server at `turnserver.example.org` to negotiate connections. Logging into the TURN server will use the username "webrtc" and the creative password "turnpassword".
 
@@ -44,14 +41,12 @@ This example creates a new [`RTCPeerConnection`](../rtcpeerconnection) which wil
       ]
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtciceserver-username">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceServer.username' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -107,11 +102,10 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`RTCIceServer`](../rtciceserver)
--   [`RTCIceServer.credential`](credential)
--   [`RTCIceServer.credentialType`](credentialtype)
+- [`RTCIceServer`](../rtciceserver)
+- [`RTCIceServer.credential`](credential)
+- [`RTCIceServer.credentialType`](credentialtype)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIceServer/username" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIceServer/username</a>

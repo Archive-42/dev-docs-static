@@ -1,5 +1,4 @@
-NDEFReader.onreading
-====================
+# NDEFReader.onreading
 
 **Draft**
 
@@ -16,13 +15,11 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `onreading` property of [`NDEFReader`](../ndefreader) interface of the [Web NFC API](../webnfc_api) is called whenever a new reading is available from compatible NFC devices, e.g. NFC tags supporting NDEF, when these devices are within the reader's magnetic induction field.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/web-nfc/#dom-ndefreader">Web NFC, NDEFReader.onreading</a></td><td>Draft</td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -78,9 +75,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`NDEFReader.onreadingerror`](onreadingerror), property representing handler for `readingerror` events.
+- [`NDEFReader.onreadingerror`](onreadingerror), property representing handler for `readingerror` events.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NDEFReader/onreading" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NDEFReader/onreading</a>

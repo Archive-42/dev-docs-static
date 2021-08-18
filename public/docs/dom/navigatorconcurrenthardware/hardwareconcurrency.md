@@ -1,17 +1,14 @@
-navigator.hardwareConcurrency
-=============================
+# navigator.hardwareConcurrency
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
 The `navigator.hardwareConcurrency` read-only property returns the number of logical processors available to run threads on the user's computer.
 
-Syntax
-------
+## Syntax
 
     logicalProcessors = window.navigator.hardwareConcurrency
 
-Value
------
+## Value
 
 A [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) indicating the number of logical processor cores.
 
@@ -19,8 +16,7 @@ Modern computers have multiple physical processor cores in their CPU (two or fou
 
 The browser may, however, choose to report a lower number of logical cores in order to represent more accurately the number of [`Worker`](../worker)s that can run at once, so don't treat this as an absolute measurement of the number of cores in the user's system.
 
-Examples
---------
+## Examples
 
 In this example, one [`Worker`](../worker) is created for each logical processor reported by the browser and a record is created which includes a reference to the new worker as well as a Boolean value indicating whether or not we're using that worker yet; these objects are, in turn, stored into an array for later use. This creates a pool of workers we can use to process requests later.
 
@@ -34,14 +30,12 @@ In this example, one [`Worker`](../worker) is created for each logical processor
       workerList.push(newWorker);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-hardwareconcurrency">HTML Living Standard<br />
 <span class="small">The definition of 'navigator.hardwareConcurrency' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -97,10 +91,9 @@ No
 
 3.0
 
-See also
---------
+## See also
 
--   [`Navigator`](../navigator)
--   [`WorkerNavigator`](../workernavigator)
+- [`Navigator`](../navigator)
+- [`WorkerNavigator`](../workernavigator)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorConcurrentHardware/hardwareConcurrency" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NavigatorConcurrentHardware/hardwareConcurrency</a>

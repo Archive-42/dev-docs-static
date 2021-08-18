@@ -1,5 +1,4 @@
-NavigatorID.taintEnabled()
-==========================
+# NavigatorID.taintEnabled()
 
 **Deprecated**
 
@@ -9,19 +8,16 @@ The `NavigatorID.taintEnabled()` method always returns `false`.
 
 Tainting was a security method used by JavaScript 1.2. It has long been removed; this method only stays for maintaining compatibility with very old scripts.
 
-Syntax
-------
+## Syntax
 
     result = window.navigator.taintEnabled()
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-taintenabled">HTML Living Standard<br />
 <span class="small">The definition of 'NavigatorID.taintEnabled' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -77,9 +73,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`NavigatorID`](../navigatorid)
+- [`NavigatorID`](../navigatorid)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorID/taintEnabled" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NavigatorID/taintEnabled</a>

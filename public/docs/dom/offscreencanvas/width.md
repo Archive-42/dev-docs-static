@@ -1,5 +1,4 @@
-OffscreenCanvas.width
-=====================
+# OffscreenCanvas.width
 
 **Experimental**
 
@@ -8,14 +7,12 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `width` property returns and sets the width of an [`OffscreenCanvas`](../offscreencanvas) object.
 
-Syntax
-------
+## Syntax
 
     var pxl = offscreen.width;
     offscreen.width = pxl;
 
-Examples
---------
+## Examples
 
 Creating a new offscreen canvas and returning or setting the width of the offscreen canvas:
 
@@ -23,14 +20,12 @@ Creating a new offscreen canvas and returning or setting the width of the offscr
     offscreen.width; // 256
     offscreen.width = 512;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-offscreencanvas-width">HTML Living Standard<br />
 <span class="small">The definition of 'OffscreenCanvas.width' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -90,9 +85,8 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   [`OffscreenCanvas`](../offscreencanvas), the interface this property belongs to.
+- [`OffscreenCanvas`](../offscreencanvas), the interface this property belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas/width" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas/width</a>

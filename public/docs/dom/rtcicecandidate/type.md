@@ -1,12 +1,10 @@
-RTCIceCandidate.type
-====================
+# RTCIceCandidate.type
 
 The **[`RTCIceCandidate`](../rtcicecandidate)** interface's read-only `type` specifies the type of candidate the object represents.
 
 The `type` field's value is set when the [`RTCIceCandidate()`](rtcicecandidate) constructor is used. You can't specify the value of `type` in the options object, but the address is automatically extracted from the [`candidate`](../rtcicecandidateinit/candidate) a-line, if it's formatted properly, being taken from its `cand-type` field.
 
-Syntax
-------
+## Syntax
 
     var type = RTCIceCandidate.type;
 
@@ -30,8 +28,7 @@ The candidate is a relay candidate, obtained from a [TURN](https://developer.moz
 
 If `type` is `null`, that information was missing from the [`candidate`](candidate)'s a-line, which will cause [`RTCPeerConnection.addIceCandidate()`](../rtcpeerconnection/addicecandidate) to throw an `OperationError` exception.
 
-Example
--------
+## Example
 
 In this example, the candidate's [`type`](type) is used to present a modified user interface for host candidates (those where the [`ip`](address) refers directly to the remote peer, rather than an intermediary).
 
@@ -41,14 +38,12 @@ In this example, the candidate's [`type`](type) is used to present a modified us
       hideHostControls();
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicecandidate-type">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceCandidate.type' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -104,12 +99,11 @@ No
 
 11.0
 
-See also
---------
+## See also
 
--   [WebRTC API](../webrtc_api)
--   [Introduction to WebRTC protocols](../webrtc_api/protocols)
--   [WebRTC connectivity](../webrtc_api/connectivity)
--   [`RTCIceCandidate.tcpType`](tcptype)
+- [WebRTC API](../webrtc_api)
+- [Introduction to WebRTC protocols](../webrtc_api/protocols)
+- [WebRTC connectivity](../webrtc_api/connectivity)
+- [`RTCIceCandidate.tcpType`](tcptype)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidate/type" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidate/type</a>

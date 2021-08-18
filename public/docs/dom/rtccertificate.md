@@ -1,21 +1,17 @@
-RTCCertificate
-==============
+# RTCCertificate
 
 The interface of the [WebRTC API](webrtc_api) provides an object represents a certificate that an [`RTCPeerConnection`](rtcpeerconnection) uses to authenticate.
 
-Properties
-----------
+## Properties
 
- <span class="page-not-created">`RTCCertificate.expires`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`RTCCertificate.expires`</span> <span class="badge inline readonly">Read only </span>  
 Returns the expiration date of the certificate.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtccertificate">WebRTC 1.0: Real-time Communication Between Browsers</a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

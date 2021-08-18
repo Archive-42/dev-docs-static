@@ -1,10 +1,8 @@
-Path2D.addPath()
-================
+# Path2D.addPath()
 
-The `Path2D``.addPath()` method of the Canvas 2D API adds one [`Path2D`](../path2d) object to another `Path2D` object.
+The ` Path2D``.addPath() ` method of the Canvas 2D API adds one [`Path2D`](../path2d) object to another `Path2D` object.
 
-Syntax
-------
+## Syntax
 
     void path.addPath(path [, transform]);
 
@@ -13,11 +11,10 @@ Syntax
 `path`  
 A [`Path2D`](../path2d) path to add.
 
- `transform` <span class="badge inline optional">Optional</span>   
+`transform` <span class="badge inline optional">Optional</span>  
 A [`DOMMatrix`](../dommatrix) to be used as the transformation matrix for the path that is added. (Technically a `DOMMatrixInit` object).
 
-Examples
---------
+## Examples
 
 ### Adding a path to an existing path
 
@@ -56,14 +53,12 @@ First, we create two separate [`Path2D`](../path2d) objects, each of which conta
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-path2d-addpath">HTML Living Standard<br />
 <span class="small">The definition of 'Path2D.addPath()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -119,9 +114,8 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   The interface defining this method: [`Path2D`](../path2d)
+- The interface defining this method: [`Path2D`](../path2d)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Path2D/addPath" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Path2D/addPath</a>

@@ -1,5 +1,4 @@
-MouseEvent.x
-============
+# MouseEvent.x
 
 **Experimental**
 
@@ -8,14 +7,12 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MouseEvent.x` property is an alias for the [`MouseEvent.clientX`](clientx) property.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-mouseevent-x">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'MouseEvent.x' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

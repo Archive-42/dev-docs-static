@@ -1,5 +1,4 @@
-PayerErrors.name
-================
+# PayerErrors.name
 
 **Draft**
 
@@ -7,8 +6,7 @@ This page is not complete.
 
 The `name` property is included in a [`PayerErrors`](../payererrors) object if the [`payerName`](../paymentresponse/payername) returned in the response couldn't be validated. The value is a string explaining the problem. If the payer's name validated successfully, the `name` property is omitted from the `PayerErrors` object.
 
-Syntax
-------
+## Syntax
 
     payerName = payerErrors.name;
 
@@ -18,8 +16,7 @@ If this property is present in the [`PayerErrors`](../payererrors) object, the p
 
 If the payer's name is valid, this property is left out of the [`PayerErrors`](../payererrors) object.
 
-Example
--------
+## Example
 
     function validatePayment(response) {
       const correctionPromises
@@ -43,14 +40,12 @@ Example
       //
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-payererrors-name">Payment Request API<br />
 <span class="small">The definition of 'PayerErrors.name' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

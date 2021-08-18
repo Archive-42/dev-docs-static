@@ -1,22 +1,18 @@
-ReadableStreamDefaultReader
-===========================
+# ReadableStreamDefaultReader
 
 The `ReadableStreamDefaultReader` interface of the [Streams API](streams_api) represents a default reader that can be used to read stream data supplied from a network (e.g. a fetch request).
 
-Constructor
------------
+## Constructor
 
 [`ReadableStreamDefaultReader()`](readablestreamdefaultreader/readablestreamdefaultreader)  
 Creates and returns a `ReadableStreamDefaultReader` object instance.
 
-Properties
-----------
+## Properties
 
- [`ReadableStreamDefaultReader.closed`](readablestreamdefaultreader/closed) <span class="badge inline readonly">Read only </span>   
+[`ReadableStreamDefaultReader.closed`](readablestreamdefaultreader/closed) <span class="badge inline readonly">Read only </span>  
 Returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that fulfills when the stream closes or the reader's lock is released, or rejects if the stream throws an error. This property enables you to write code that responds to an end to the streaming process.
 
-Methods
--------
+## Methods
 
 [`ReadableStreamDefaultReader.cancel()`](readablestreamdefaultreader/cancel)  
 Returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves when the stream is canceled. Calling this method signals a loss of interest in the stream by a consumer. The supplied `reason` argument will be given to the underlying source, which may or may not use it.
@@ -27,8 +23,7 @@ Returns a promise providing access to the next chunk in the stream's internal qu
 [`ReadableStreamDefaultReader.releaseLock()`](readablestreamdefaultreader/releaselock)  
 Releases the reader's lock on the stream.
 
-Examples
---------
+## Examples
 
 In the following example, an artifical [`Response`](response) is created to stream HTML fragments fetched from another resource to the browser.
 
@@ -62,14 +57,12 @@ It demonstrates the usage of a [`ReadableStream`](readablestream) in combination
       return new Response(stream, { headers: { "Content-Type": "text/html" } });
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://streams.spec.whatwg.org/#default-reader-class">Streams<br />
 <span class="small">The definition of 'ReadableStreamDefaultReader' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

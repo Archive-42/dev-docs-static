@@ -1,5 +1,4 @@
-Notification.maxActions
-=======================
+# Notification.maxActions
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
@@ -9,8 +8,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `maxActions` attribute of the [`Notification`](../notification) interface returns the maximum number of actions supported by the device and the User Agent. Effectively, this is the maximum number of elements in [`Notification.actions`](actions) array which will be respected by the User Agent.
 
-Syntax
-------
+## Syntax
 
     Notification.maxActions
 
@@ -18,21 +16,18 @@ Syntax
 
 An integer [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) which indicates the largest number of notification actions that can be presented to the user by the User Agent and the device.
 
-Examples
---------
+## Examples
 
 The following snippet logs the maximum number of supported actions.
 
     const maxActions = Notification.maxActions;
     console.log('This device can display at most ' + maxActions + ' actions on each notification.');
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://notifications.spec.whatwg.org/">Notifications API</a></td><td><span class="spec-living">Living Standard</span></td><td>Living standard</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,10 +83,9 @@ No
 
 Yes
 
-See also
---------
+## See also
 
--   [Using the Notifications API](../notifications_api/using_the_notifications_api)
--   [`Notification.actions`](actions)
+- [Using the Notifications API](../notifications_api/using_the_notifications_api)
+- [`Notification.actions`](actions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification/maxActions" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Notification/maxActions</a>

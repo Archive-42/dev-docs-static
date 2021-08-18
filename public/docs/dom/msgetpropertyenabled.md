@@ -1,5 +1,4 @@
-msGetPropertyEnabled
-====================
+# msGetPropertyEnabled
 
 **Non-standard**
 
@@ -17,19 +16,18 @@ This proprietary method is specific to Internet Explorer browser.
 
 **name** \[in\]
 
-Type: *String*
+Type: _String_
 
 The name of the property to enable.
 
 ### Return value
 
-Type: *Boolean*
+Type: _Boolean_
 
-If *false*, the property is not enabled. If *true*, the property is enabled.
+If _false_, the property is not enabled. If _true_, the property is enabled.
 
-See also
---------
+## See also
 
--   [Microsoft API extensions](microsoft_extensions)
+- [Microsoft API extensions](microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/msGetPropertyEnabled" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/msGetPropertyEnabled</a>

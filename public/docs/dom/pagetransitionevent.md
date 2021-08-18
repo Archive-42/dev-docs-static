@@ -1,18 +1,15 @@
-PageTransitionEvent
-===================
+# PageTransitionEvent
 
 The `PageTransitionEvent` event object is available inside handler functions for the `pageshow` and `pagehide` events, fired when a document is being loaded or unloaded.
 
-Properties
-----------
+## Properties
 
-*This interface also inherits properties from its parent, [`Event`](event).*
+_This interface also inherits properties from its parent, [`Event`](event)._
 
- [`PageTransitionEvent.persisted`](pagetransitionevent/persisted) <span class="badge inline readonly">Read only </span>   
+[`PageTransitionEvent.persisted`](pagetransitionevent/persisted) <span class="badge inline readonly">Read only </span>  
 Indicates if the document is loading from a cache.
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -34,14 +31,12 @@ Example
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#the-pagetransitionevent-interface">HTML Living Standard<br />
 <span class="small">The definition of 'PageTransitionEvent' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -125,10 +120,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`pageshow` event](window/pageshow_event)
--   [`pagehide` event](window/pagehide_event)
+- [`pageshow` event](window/pageshow_event)
+- [`pagehide` event](window/pagehide_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PageTransitionEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PageTransitionEvent</a>

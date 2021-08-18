@@ -1,5 +1,4 @@
-Notifications API
-=================
+# Notifications API
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
@@ -9,8 +8,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The Notifications API allows web pages to control the display of system notifications to the end user. These are outside the top-level browsing context viewport, so therefore can be displayed even when the user has switched tabs or moved to a different app. The API is designed to be compatible with existing notification systems, across different platforms.
 
-Concepts and usage
-------------------
+## Concepts and usage
 
 On supported platforms, showing a system notification generally involves two things. First, the user needs to grant the current origin permission to display system notifications, which is generally done when the app or site initialises, using the [`Notification.requestPermission()`](notification/requestpermission) method. This should be done in response to a user gesture, such as clicking a button, for example:
 
@@ -35,8 +33,7 @@ In addition, the Notifications API spec specifies a number of additions to the [
 
 **Note**: To find out more about using notifications in your own app, read [Using the Notifications API](notifications_api/using_the_notifications_api).
 
-Notifications interfaces
-------------------------
+## Notifications interfaces
 
 [`Notification`](notification)  
 Defines a notification object.
@@ -52,13 +49,11 @@ Includes the [`ServiceWorkerGlobalScope.onnotificationclick`](serviceworkergloba
 [`NotificationEvent`](notificationevent)  
 A specific type of event object, based on [`ExtendableEvent`](extendableevent), which represents a notification that has fired.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://notifications.spec.whatwg.org/">Notifications API</a></td><td><span class="spec-living">Living Standard</span></td><td>Living standard</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -820,9 +815,8 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [Using the Notifications API](notifications_api/using_the_notifications_api)
+- [Using the Notifications API](notifications_api/using_the_notifications_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API</a>

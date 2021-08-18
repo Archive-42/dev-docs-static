@@ -1,5 +1,4 @@
-MouseEvent.WEBKIT\_FORCE\_AT\_FORCE\_MOUSE\_DOWN
-================================================
+# MouseEvent.WEBKIT_FORCE_AT_FORCE_MOUSE_DOWN
 
 **Non-standard**
 
@@ -9,16 +8,14 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 Because `WEBKIT_FORCE_AT_FORCE_MOUSE_DOWN` is a static property of `MouseEvent`, you always use it as `MouseEvent.WEBKIT_FORCE_AT_FORCE_MOUSE_DOWN`, rather than as a property of a `MouseEvent` instance.
 
-Specifications
---------------
+## Specifications
 
-*Not part of any specification.* Apple has [a description at the Mac Developer Library](https://developer.apple.com/library/prerelease/mac/documentation/AppleApplications/Conceptual/SafariJSProgTopics/RespondingtoForceTouchEventsfromJavaScript.html).
+_Not part of any specification._ Apple has [a description at the Mac Developer Library](https://developer.apple.com/library/prerelease/mac/documentation/AppleApplications/Conceptual/SafariJSProgTopics/RespondingtoForceTouchEventsfromJavaScript.html).
 
-See also
---------
+## See also
 
--   [`MouseEvent.WEBKIT_FORCE_AT_MOUSE_DOWN`](webkit_force_at_mouse_down)
--   [`MouseEvent.webkitForce`](webkitforce)
--   [`Force_Touch_events`](../force_touch_events)
+- [`MouseEvent.WEBKIT_FORCE_AT_MOUSE_DOWN`](webkit_force_at_mouse_down)
+- [`MouseEvent.webkitForce`](webkitforce)
+- [`Force_Touch_events`](../force_touch_events)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/WEBKIT_FORCE_AT_FORCE_MOUSE_DOWN" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/WEBKIT_FORCE_AT_FORCE_MOUSE_DOWN</a>

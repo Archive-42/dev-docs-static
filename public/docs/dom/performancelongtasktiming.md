@@ -1,5 +1,4 @@
-PerformanceLongTaskTiming
-=========================
+# PerformanceLongTaskTiming
 
 **Experimental**
 
@@ -8,20 +7,17 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `PerformanceLongTaskTiming` interface of the [Long Tasks API](long_tasks_api) reports instances of long tasks.
 
-Properties
-----------
+## Properties
 
- [`PerformanceLongTaskTiming.attribution`](performancelongtasktiming/attribution) <span class="badge inline readonly">Read only </span>   
+[`PerformanceLongTaskTiming.attribution`](performancelongtasktiming/attribution) <span class="badge inline readonly">Read only </span>  
 Returns a sequence of [`TaskAttributionTiming`](taskattributiontiming) instances.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/longtasks/#sec-PerformanceLongTaskTiming">Long Tasks API 1<br />
 <span class="small">The definition of 'PerformanceLongTaskTiming' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

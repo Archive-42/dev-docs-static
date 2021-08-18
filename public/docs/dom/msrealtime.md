@@ -1,5 +1,4 @@
-msRealTime
-==========
+# msRealTime
 
 **Non-standard**
 
@@ -9,15 +8,13 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 This proprietary property is specific to Internet Explorer and Microsoft Edge.
 
-Syntax
-------
+## Syntax
 
     ptr = object.msRealTime;
 
-Value
------
+## Value
 
-Boolean value set to *true* indicates that low-latency playback will be enabled on the media element. Low-latency playback is useful in communication and some gaming scenarios, but is more demanding on power consumption and less reliable for smooth media playback.
+Boolean value set to _true_ indicates that low-latency playback will be enabled on the media element. Low-latency playback is useful in communication and some gaming scenarios, but is more demanding on power consumption and less reliable for smooth media playback.
 
 You must set the `msRealTime` before setting the `src` property in code.
 

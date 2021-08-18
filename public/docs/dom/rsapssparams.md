@@ -1,10 +1,8 @@
-RsaPssParams
-============
+# RsaPssParams
 
 The `RsaPssParams` dictionary of the [Web Crypto API](web_crypto_api) represents the object that should be passed as the `algorithm` parameter into [`SubtleCrypto.sign()`](subtlecrypto/sign) or [`SubtleCrypto.verify()`](subtlecrypto/verify), when using the [RSA-PSS](subtlecrypto/sign#rsa-pss) algorithm.
 
-Properties
-----------
+## Properties
 
 `name`  
 A [`DOMString`](domstring). This should be set to `RSA-PSS`.
@@ -20,23 +18,19 @@ The maximum size of `saltLength` is given by:
 
 So for a key length of 2048 bits and a digest output size of 32 bytes, the maximum size would be 222.
 
-Examples
---------
+## Examples
 
 See the examples for [`SubtleCrypto.sign()`](subtlecrypto/sign) and [`SubtleCrypto.verify()`](subtlecrypto/verify).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/WebCryptoAPI/#dfn-RsaPssParams">Web Cryptography API<br />
 <span class="small">The definition of 'SubtleCrypto.RsaPssParams' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
-See also
---------
+## See also
 
--   [RFC 3447: RSASSA-PSS](https://datatracker.ietf.org/doc/html/rfc3447#section-8.1)
+- [RFC 3447: RSASSA-PSS](https://datatracker.ietf.org/doc/html/rfc3447#section-8.1)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RsaPssParams" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RsaPssParams</a>

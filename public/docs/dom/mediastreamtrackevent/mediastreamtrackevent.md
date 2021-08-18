@@ -1,16 +1,14 @@
-MediaStreamTrackEvent()
-=======================
+# MediaStreamTrackEvent()
 
 The `MediaStreamTrackEvent()` constructor returns a newly created [`MediaStreamTrackEvent`](../mediastreamtrackevent) object, which represents an event announcing that a [`MediaStreamTrack`](../mediastreamtrack) has been added to or removed from a [`MediaStream`](../mediastream).
 
-Syntax
-------
+## Syntax
 
     var trackEvent = new MediaStreamTrackEvent(type, {track: aMediaStreamTrack});
 
 ### Parameters
 
-*The `MediaStreamTrackEvent()` constructor also inherits arguments from [`Event()`](../event/event).*
+_The `MediaStreamTrackEvent()` constructor also inherits arguments from [`Event()`](../event/event)._
 
 `type`  
 A [`DOMString`](../domstring) representing the name of the type of the `MediaStreamTrackEvent`. It is case-sensitive and can be `"addtrack`" or `"removetrack`".
@@ -22,14 +20,12 @@ A [`MediaStreamTrack`](../mediastreamtrack) object representing the track which 
 
 A new [`MediaStreamTrackEvent`](../mediastreamtrackevent), initialized based on the provided options.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediastreamtrackevent">Media Capture and Streams<br />
 <span class="small">The definition of 'MediaStreamTrackEvent()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -85,12 +81,11 @@ Yes
 
 6.0
 
-See also
---------
+## See also
 
--   `addtrack` and `removetrack` events
--   [`MediaStreamTrack`](../mediastreamtrack)
--   [`MediaStream`](../mediastream)
--   [Media Streams API](../media_streams_api)
+- `addtrack` and `removetrack` events
+- [`MediaStreamTrack`](../mediastreamtrack)
+- [`MediaStream`](../mediastream)
+- [Media Streams API](../media_streams_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrackEvent/MediaStreamTrackEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrackEvent/MediaStreamTrackEvent</a>

@@ -1,5 +1,4 @@
-MouseWheelEvent
-===============
+# MouseWheelEvent
 
 **Non-standard**
 
@@ -13,15 +12,13 @@ The `MouseWheelEvent` interface represents events that occur due to the user tur
 
 **Do not use this interface for wheel events.**
 
-Like [`MouseScrollEvent`](mousescrollevent), this interface is non-standard and deprecated. It was used in non-Gecko browsers only. Instead use the standard *[`WheelEvent`](wheelevent).*
+Like [`MouseScrollEvent`](mousescrollevent), this interface is non-standard and deprecated. It was used in non-Gecko browsers only. Instead use the standard _[`WheelEvent`](wheelevent)._
 
-Properties
-----------
+## Properties
 
 <table><thead><tr class="header"><th>Attribute</th><th>Type</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>wheelDelta</code> <span class="badge inline readonly">Read only </span></td><td><code>long</code></td><td>The distance in pixels (defined as so by MSDN, but the actual usage is different, see <code>mousewheel</code>).</td></tr><tr class="even"><td><code>wheelDeltaX</code> <span class="badge inline readonly">Read only </span></td><td><code>long</code>?</td><td>The value along horizontal axis of <code>wheelDelta</code>.</td></tr><tr class="odd"><td><code>wheelDeltaY</code> <span class="badge inline readonly">Read only </span></td><td><code>long</code>?</td><td>The value along vertical axis of <code>wheelDelta</code>.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -155,12 +152,11 @@ No
 
 Yes
 
-See also
---------
+## See also
 
--   An event type which is used by this event object: `mousewheel`
--   A standardized mouse wheel event object: [`WheelEvent`](wheelevent)
--   Gecko's legacy mouse wheel event object: [`MouseScrollEvent`](mousescrollevent)
--   The document in MSDN: [MouseWheelEvent object](https://msdn.microsoft.com/en-us/library/ie/ff974345%28v=vs.85%29.aspx)
+- An event type which is used by this event object: `mousewheel`
+- A standardized mouse wheel event object: [`WheelEvent`](wheelevent)
+- Gecko's legacy mouse wheel event object: [`MouseScrollEvent`](mousescrollevent)
+- The document in MSDN: [MouseWheelEvent object](https://msdn.microsoft.com/en-us/library/ie/ff974345%28v=vs.85%29.aspx)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseWheelEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MouseWheelEvent</a>

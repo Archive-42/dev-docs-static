@@ -1,5 +1,4 @@
-PaymentRequest.onpaymentmethodchange
-====================================
+# PaymentRequest.onpaymentmethodchange
 
 **Secure context**
 
@@ -9,8 +8,7 @@ The [`PaymentRequest`](../paymentrequest) event handler `onpaymentmethodchange` 
 
 This event may not be fired by all payment handlers.
 
-Syntax
-------
+## Syntax
 
     PaymentRequest.addEventListener('paymentmethodchange', paymentMethodChangeEvent => { ... });
 
@@ -22,8 +20,7 @@ An event handler function which is to be called whenever the `paymentmethodchang
 
 The `paymentmethodchange` event is triggered by a user-agent controlled interaction (i.e., the end-user switches from a debit to a credit card in the payment UI). To make sure you receive the event, you should add event listeners to [`PaymentRequest`](../paymentrequest) object after instantiation, but before you call `show()`.
 
-Examples
---------
+## Examples
 
 An example payment method change handler is shown below; this example handles changes made to the payment method when using Apple Pay, specifically:
 
@@ -45,14 +42,12 @@ An example payment method change handler is shown below; this example handles ch
     };
     const response = await request.show();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#onpaymentmethodchange-attribute">Payment Request API<br />
 <span class="small">The definition of 'onpaymentmethodchange' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

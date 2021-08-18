@@ -1,10 +1,8 @@
-MediaStream()
-=============
+# MediaStream()
 
 The `MediaStream()` constructor returns a newly-created [`MediaStream`](../mediastream), which serves as a collection of media tracks, each represented by a [`MediaStreamTrack`](../mediastreamtrack) object. If any parameters are given, the specified tracks are added to the new stream. Otherwise, the stream has no tracks.
 
-Syntax
-------
+## Syntax
 
     newStream = new MediaStream();
     newStream = new MediaStream(stream);
@@ -22,14 +20,12 @@ An [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/G
 
 A newly-created [`MediaStream`](../mediastream) object, either empty, or containing the tracks provided, if any.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#mediastream">Media Capture and Streams<br />
 <span class="small">The definition of 'MediaStream' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -85,9 +81,8 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [`MediaStream`](../mediastream)
+- [`MediaStream`](../mediastream)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/MediaStream" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/MediaStream</a>

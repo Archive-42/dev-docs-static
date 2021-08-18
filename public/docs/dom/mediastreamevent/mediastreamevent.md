@@ -1,5 +1,4 @@
-MediaStreamEvent()
-==================
+# MediaStreamEvent()
 
 **Deprecated**
 
@@ -7,31 +6,28 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `MediaStreamEvent()` constructor creates a new [`MediaStreamEvent`](../mediastreamevent).
 
-Syntax
-------
+## Syntax
 
      var event = new MediaStreamEvent(type, mediaStreamEventInit);
 
 ### Values
 
-*type*  
+_type_  
 Is a [`DOMString`](../domstring) containing the name of the event, like `addstream` or `removestream`.
 
-*mediaStreamEventInit*  
+_mediaStreamEventInit_  
 Is a `MediaStreamEventInit` dictionary, having the following fields:
 
--   `"stream"` of type [`MediaStream`](../mediastream) representing the stream being concerned by the event.
--   `"bubbles"`, optional and defaulting to `false`, inherited from `EventInit`, and indicating if the event must bubble or not.
--   `"cancelable"`, optional and defaulting to `false`, inherited from `EventInit`, and indicating if the event can be canceled or not.
+- `"stream"` of type [`MediaStream`](../mediastream) representing the stream being concerned by the event.
+- `"bubbles"`, optional and defaulting to `false`, inherited from `EventInit`, and indicating if the event must bubble or not.
+- `"cancelable"`, optional and defaulting to `false`, inherited from `EventInit`, and indicating if the event can be canceled or not.
 
-Example
--------
+## Example
 
     // s is a MediaStream
     var event = new MediaStreamEvent("addstream", {"stream": s});
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -87,9 +83,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [WebRTC](../webrtc_api)
+- [WebRTC](../webrtc_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamEvent/MediaStreamEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamEvent/MediaStreamEvent</a>

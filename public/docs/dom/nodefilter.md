@@ -1,19 +1,16 @@
-NodeFilter
-==========
+# NodeFilter
 
 A `NodeFilter` interface represents an object used to filter the nodes in a [`NodeIterator`](nodeiterator) or [`TreeWalker`](treewalker). A `NodeFilter` knows nothing about the document or traversing nodes; it only knows how to evaluate a single node against the provided filter.
 
 **Note:** The browser doesn't provide any object implementing this interface. It is the user who is expected to write one, tailoring the `acceptNode()` method to its needs, and using it with some [`TreeWalker`](treewalker) or [`NodeIterator`](nodeiterator) objects.
 
-Properties
-----------
+## Properties
 
-*This interface neither implements nor inherits any properties.*
+_This interface neither implements nor inherits any properties._
 
-Methods
--------
+## Methods
 
-*This interface doesn't inherit any methods.*
+_This interface doesn't inherit any methods._
 
 [`NodeFilter.acceptNode()`](nodefilter/acceptnode)  
 Returns an `unsigned short` that will be used to tell if a given [`Node`](node) must be accepted or not by the [`NodeIterator`](nodeiterator) or [`TreeWalker`](treewalker) iteration algorithm.
@@ -22,8 +19,7 @@ This method is expected to be written by the user of a `NodeFilter`. Possible re
 
 <table><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><thead><tr class="header"><th>Constant</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>FILTER_ACCEPT</code></td><td>Value returned by the <a href="nodefilter/acceptnode"><code>NodeFilter.acceptNode()</code></a> method when a node should be accepted.</td></tr><tr class="even"><td><code>FILTER_REJECT</code></td><td><p>Value to be returned by the <a href="nodefilter/acceptnode"><code>NodeFilter.acceptNode()</code></a> method when a node should be rejected. For <a href="treewalker"><code>TreeWalker</code></a>, child nodes are also rejected.</p><p>For <a href="nodeiterator"><code>NodeIterator</code></a>, this flag is synonymous with <code>FILTER_SKIP</code>.</p></td></tr><tr class="odd"><td><code>FILTER_SKIP</code></td><td><p>Value to be returned by <a href="nodefilter/acceptnode"><code>NodeFilter.acceptNode()</code></a> for nodes to be skipped by the <a href="nodeiterator"><code>NodeIterator</code></a> or <a href="treewalker"><code>TreeWalker</code></a> object.</p><p>The children of skipped nodes are still considered. This is treated as "skip this node but not its children".</p></td></tr></tbody></table>
 
-Example
--------
+## Example
 
     const nodeIterator = document.createNodeIterator(
       // Node to use as root
@@ -54,15 +50,13 @@ Example
       alert(node.data)
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#interface-nodefilter">DOM<br />
 <span class="small">The definition of 'NodeFilter' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/traversal.html#Traversal-NodeFilter">Document Object Model (DOM) Level 2 Traversal and Range Specification<br />
 <span class="small">The definition of 'NodeFilter' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -144,11 +138,10 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   **Related interfaces**
-    -   [`TreeWalker`](treewalker)
-    -   [`NodeIterator`](nodeiterator).
+- **Related interfaces**
+  - [`TreeWalker`](treewalker)
+  - [`NodeIterator`](nodeiterator).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeFilter" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NodeFilter</a>

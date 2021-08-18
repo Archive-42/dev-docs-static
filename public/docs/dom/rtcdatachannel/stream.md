@@ -1,5 +1,4 @@
-RTCDataChannel.stream
-=====================
+# RTCDataChannel.stream
 
 **Deprecated**
 
@@ -13,8 +12,7 @@ The deprecated (and never part of the official specification) read-only `RTCData
 
 This property has been replaced with the [`RTCDataChannel.id`](id) property. If you have code that uses `stream`, you will need to update, since browsers have begun to remove support for `stream`.
 
-Syntax
-------
+## Syntax
 
     var stream = aDataChannel.stream;
 
@@ -22,15 +20,13 @@ Syntax
 
 An `unsigned short` value (that is, an integer between 0 and 65,535) which uniquely identifies the data channel.
 
-Example
--------
+## Example
 
     var dataChannel = pc.createDataChannel("SampleChannel");
 
     console.log("Data channel stream ID: " + dataChannel.stream);
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -86,12 +82,11 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [WebRTC](../webrtc_api)
--   [Using WebRTC data channels](../webrtc_api/using_data_channels)
--   [`RTCDataChannel`](../rtcdatachannel)
--   [`RTCDataChannel.id`](id)
+- [WebRTC](../webrtc_api)
+- [Using WebRTC data channels](../webrtc_api/using_data_channels)
+- [`RTCDataChannel`](../rtcdatachannel)
+- [`RTCDataChannel.id`](id)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/stream" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/stream</a>

@@ -1,33 +1,29 @@
-PictureInPictureEvent()
-=======================
+# PictureInPictureEvent()
 
 The `PictureInPictureEvent()` constructor returns a newly created [`PictureInPictureEvent`](../pictureinpictureevent) object with an optional [`EventTarget`](../eventtarget). When the event has both a source and a destination, the `relatedTarget` value must be set to the other target.
 
-Syntax
-------
+## Syntax
 
     var pictureInPictureEvent = new PictureInPictureEvent(typeArg[, pictureInPictureInit]);
 
 ### Properties
 
-*The `PictureInPictureEvent()` constructor also inherits arguments from [`Event()`](../event/event).*
+_The `PictureInPictureEvent()` constructor also inherits arguments from [`Event()`](../event/event)._
 
 `typeArg`  
 Is a [`DOMString`](../domstring) representing the name of the event.
 
- `focusEventInit` <span class="badge inline optional">Optional</span>   
+`focusEventInit` <span class="badge inline optional">Optional</span>  
 Is a `PictureInPictureEventInit` dictionary, having the following fields:
 
--   `"relatedTarget"`, optional and defaulting to `null`, is an [`EventTarget`](../eventtarget).
+- `"relatedTarget"`, optional and defaulting to `null`, is an [`EventTarget`](../eventtarget).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/picture-in-picture/#dom-pictureinpictureevent-pictureinpictureevent">Picture-in-Picture API<br />
 <span class="small">The definition of 'PictureInPictureEvent()' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -89,9 +85,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   The [`PictureInPictureEvent`](../pictureinpictureevent) interface it belongs to.
+- The [`PictureInPictureEvent`](../pictureinpictureevent) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PictureInPictureEvent/PictureInPictureEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PictureInPictureEvent/PictureInPictureEvent</a>

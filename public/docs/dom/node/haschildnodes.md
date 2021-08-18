@@ -1,10 +1,8 @@
-Node.hasChildNodes()
-====================
+# Node.hasChildNodes()
 
 The `Node.hasChildNodes()` method returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) value indicating whether the given [`Node`](../node) has [child nodes](childnodes) or not.
 
-Syntax
-------
+## Syntax
 
     bool = node.hasChildNodes();
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that is `true` if the node has child nodes, and `false` otherwise.
 
-Example
--------
+## Example
 
     let foo = document.getElementById('foo');
 
@@ -21,8 +18,7 @@ Example
       // Do something with 'foo.childNodes'
     }
 
-Polyfill
---------
+## Polyfill
 
 Here is one possible polyfill:
 
@@ -34,18 +30,16 @@ Here is one possible polyfill:
 
 There are various ways to determine whether the node has a child node:
 
--   `node.hasChildNodes()`
--   `node.firstChild != null` (or just `node.firstChild`)
--   `node.childNodes && node.childNodes.length` (or `node.childNodes.length > 0`)
+- `node.hasChildNodes()`
+- `node.firstChild != null` (or just `node.firstChild`)
+- `node.childNodes && node.childNodes.length` (or `node.childNodes.length > 0`)
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-node-haschildnodes">DOM<br />
 <span class="small">The definition of 'Node: hasChildNodes' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -101,10 +95,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`Node.childNodes`](childnodes)
--   <span class="page-not-created">`Node.hasAttributes`</span>
+- [`Node.childNodes`](childnodes)
+- <span class="page-not-created">`Node.hasAttributes`</span>
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/hasChildNodes" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/hasChildNodes</a>

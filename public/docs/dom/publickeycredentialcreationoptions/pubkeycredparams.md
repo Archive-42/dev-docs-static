@@ -1,5 +1,4 @@
-PublicKeyCredentialCreationOptions.pubKeyCredParams
-===================================================
+# PublicKeyCredentialCreationOptions.pubKeyCredParams
 
 **Secure context**
 
@@ -9,8 +8,7 @@ The `pubKeyCredParams` property of the [`PublicKeyCredentialCreationOptions`](..
 
 If this array contains multiple elements, they are sorted by descending order of preference.
 
-Syntax
-------
+## Syntax
 
     pubKeyCredParams = publicKeyCredentialCreationOptions.pubKeyCredParams
 
@@ -26,8 +24,7 @@ A numeric identifier for the algorithm to be used to generate the key pair. The 
 
 Though those elements are sorted by preference (the first element being the most preferred), it is up to the client to choose among those elements for building the credential.
 
-Examples
---------
+## Examples
 
     var publicKey = {
       pubKeyCredParams: [
@@ -63,14 +60,12 @@ Examples
          console.error(err);
       });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#dom-publickeycredentialcreationoptions-pubkeycredparams">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'pubKeyCredParams' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -126,9 +121,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [The IANA COSE Algorithms registry](https://www.iana.org/assignments/cose/cose.xhtml#algorithms) which describes the cryptographic algorithms and their corresponding identifier (used as the `"alg"` key here)
+- [The IANA COSE Algorithms registry](https://www.iana.org/assignments/cose/cose.xhtml#algorithms) which describes the cryptographic algorithms and their corresponding identifier (used as the `"alg"` key here)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialCreationOptions/pubKeyCredParams" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialCreationOptions/pubKeyCredParams</a>

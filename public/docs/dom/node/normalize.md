@@ -1,15 +1,12 @@
-Node.normalize()
-================
+# Node.normalize()
 
 The `Node.normalize()` method puts the specified node and all of its sub-tree into a "normalized" form. In a normalized sub-tree, no text nodes in the sub-tree are empty and there are no adjacent text nodes.
 
-Syntax
-------
+## Syntax
 
     element.normalize();
 
-Example
--------
+## Example
 
     let wrapper = document.createElement("div");
 
@@ -25,14 +22,12 @@ Example
     // Now, wrapper.childNodes.length === 1
     // wrapper.childNodes[0].textContent === "Part 1 Part 2 "
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-node-normalize">DOM<br />
 <span class="small">The definition of 'Node: normalize' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,9 +83,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`Text.splitText()`](../text/splittext)
+- [`Text.splitText()`](../text/splittext)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/normalize" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/normalize</a>

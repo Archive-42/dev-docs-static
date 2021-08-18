@@ -1,10 +1,8 @@
-Request.headers
-===============
+# Request.headers
 
 The `headers` read-only property of the [`Request`](../request) interface contains the [`Headers`](../headers) object associated with the request.
 
-Syntax
-------
+## Syntax
 
     var myHeaders = request.headers;
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`Headers`](../headers) object.
 
-Example
--------
+## Example
 
 In the following snippet, we create a new request using the [`Request.Request()`](request) constructor (for an image file in the same directory as the script), then save the request headers in a variable:
 
@@ -36,14 +33,12 @@ To add a header to the [`Headers`](../headers) object we use [`Headers.append`](
 
     myContentType = myRequest.headers.get('Content-Type'); // returns 'image/jpeg'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fetch.spec.whatwg.org/#dom-request-headers">Fetch<br />
 <span class="small">The definition of 'headers' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -107,11 +102,10 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [ServiceWorker API](../service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [ServiceWorker API](../service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request/headers" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Request/headers</a>

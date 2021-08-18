@@ -1,5 +1,4 @@
-PositionSensorVRDevice.resetSensor()
-====================================
+# PositionSensorVRDevice.resetSensor()
 
 **Deprecated**
 
@@ -12,8 +11,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `resetSensor()` method of the [`VRDisplay`](../vrdisplay) interface can be used to reset the sensor if desired, returning the position and orientation values to zero.
 
-Syntax
-------
+## Syntax
 
     PositionSensorVRDevice.resetSensor();
 
@@ -25,8 +23,7 @@ None.
 
 Void.
 
-Examples
---------
+## Examples
 
 Our [positionsensorvrdevice](https://mdn.github.io/webvr-tests/positionsensorvrdevice/) demo uses the WebVR API to update the view of a simple [`2D canvas`](../canvasrenderingcontext2d) scene on each frame of a [`requestAnimationFrame`](../window/requestanimationframe) loop. It features, among other things, a "Reset Sensor" button in the UI, which when pressed runs the `resetSensor()` function on the position sensor. The JavaScript looks like this:
 
@@ -36,8 +33,7 @@ Our [positionsensorvrdevice](https://mdn.github.io/webvr-tests/positionsensorvrd
 
 When the button is pressed, the current position, orientation, etc. of the sensor/head mounted display is set to be 0 — this makes the method useful for calibration when an app is first loaded.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -105,10 +101,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [WebVR API homepage](../webvr_api).
--   <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
+- [WebVR API homepage](../webvr_api).
+- <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PositionSensorVRDevice/resetSensor" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PositionSensorVRDevice/resetSensor</a>

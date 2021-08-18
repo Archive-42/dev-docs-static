@@ -1,5 +1,4 @@
-MimeType
-========
+# MimeType
 
 **Deprecated**
 
@@ -7,8 +6,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `MimeType` interface provides contains information about a MIME type associated with a particular plugin. [`NavigatorPlugins.mimeTypes`](navigatorplugins/mimetypes) returns an array of this object.
 
-Properties
-----------
+## Properties
 
 <span class="page-not-created">`MimeType.type`</span>  
 Returns the MIME type of the associated plugin.
@@ -22,14 +20,12 @@ A string containing valid file extensions for the data displayed by the plugin, 
 <span class="page-not-created">`MimeType.enabledPlugin`</span>  
 Returns an instance of [`Plugin`](plugin) containing information about the plugin itself.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#mimetype">HTML Living Standard<br />
 <span class="small">The definition of 'MimeType' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

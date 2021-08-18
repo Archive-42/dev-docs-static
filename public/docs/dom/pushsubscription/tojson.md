@@ -1,5 +1,4 @@
-PushSubscription.toJSON()
-=========================
+# PushSubscription.toJSON()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `toJSON()` method of the [`PushSubscription`](../pushsubscription) interface is a standard serializer: it returns a JSON representation of the subscription properties, providing a useful shortcut.
 
-Syntax
-------
+## Syntax
 
     mySubscription = subscription.toJSON()
 
@@ -21,8 +19,7 @@ None.
 
 A JSON object. It currently only contains the subscription endpoint, as an `endpoint` member.
 
-Example
--------
+## Example
 
     navigator.serviceWorker.ready.then(function(reg) {
       reg.pushManager.getSubscription().then(function(subscription) {
@@ -31,14 +28,12 @@ Example
       })
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/#dom-pushsubscription-tojson">Push API<br />
 <span class="small">The definition of 'PushSubscription: toJSON' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

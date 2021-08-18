@@ -1,5 +1,4 @@
-NavigatorID.appName
-===================
+# NavigatorID.appName
 
 **Deprecated**
 
@@ -11,8 +10,7 @@ The value of the `NavigatorID.appName` property is always "`Netscape`", in any b
 
 Do not rely on this property to return a real browser name. All browsers return "`Netscape`" as the value of this property.
 
-Syntax
-------
+## Syntax
 
     appName = navigator.appName
 
@@ -20,14 +18,12 @@ Syntax
 
 The string "`Netscape`".
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-appname">HTML Living Standard<br />
 <span class="small">The definition of 'NavigatorID.appName' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -83,10 +79,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`NavigatorID.appCodeName`](appcodename)
--   [`NavigatorID.product`](product)
+- [`NavigatorID.appCodeName`](appcodename)
+- [`NavigatorID.product`](product)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorID/appName" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NavigatorID/appName</a>

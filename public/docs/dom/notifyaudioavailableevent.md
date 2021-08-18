@@ -1,5 +1,4 @@
-NotifyAudioAvailableEvent
-=========================
+# NotifyAudioAvailableEvent
 
 **Non-standard**
 
@@ -11,10 +10,9 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The non-standard, obsolete, `NotifyAudioAvailableEvent` interface defines the event sent to audio elements when the audio buffer is full.
 
-Properties
-----------
+## Properties
 
- `frameBuffer` <span class="badge inline readonly">Read only </span>   
+`frameBuffer` <span class="badge inline readonly">Read only </span>  
 A [`Float32Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array) containing the raw 32-bit floating-point audio data obtained from decoding the audio (e.g., the raw data being sent to the audio hardware vs. encoded audio). The data is a series of audio samples, each sample containing one 32-bit value per audio channel. All audio frames are normalized to contain 1024 samples by default, but could be any length between 512 and 16384 samples if the user has set a different length using the `mozFrameBufferLength` attribute.
 
 `time`  

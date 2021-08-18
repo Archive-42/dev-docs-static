@@ -1,5 +1,4 @@
-ReportingObserver
-=================
+# ReportingObserver
 
 **Experimental**
 
@@ -8,19 +7,16 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `ReportingObserver` interface of the [Reporting API](reporting_api) allows you to collect and access reports.
 
-Constructor
------------
+## Constructor
 
 [`ReportingObserver()`](reportingobserver/reportingobserver)  
 Creates a new `ReportingObserver` object instance, which can be used to collect and access reports.
 
-Properties
-----------
+## Properties
 
-*This interface has no properties defined on it.*
+_This interface has no properties defined on it._
 
-Methods
--------
+## Methods
 
 [`ReportingObserver.disconnect()`](reportingobserver/disconnect)  
 Stops a reporting observer that had previously started observing from collecting reports.
@@ -31,15 +27,13 @@ Instructs a reporting observer to start collecting reports in its report queue.
 [`ReportingObserver.takeRecords()`](reportingobserver/takerecords)  
 Returns the current list of reports contained in the observer's report queue, and empties the queue.
 
-Events
-------
+## Events
 
-*This interface has no events that fire on it.*
+_This interface has no events that fire on it._
 
-Examples
---------
+## Examples
 
-In our [deprecation\_report.html](https://mdn.github.io/dom-examples/reporting-api/deprecation_report.html) example, we create a simple reporting observer to observe usage of deprecated features on our web page:
+In our [deprecation_report.html](https://mdn.github.io/dom-examples/reporting-api/deprecation_report.html) example, we create a simple reporting observer to observe usage of deprecated features on our web page:
 
     let options = {
       types: ['deprecation'],
@@ -74,14 +68,12 @@ This causes a deprecation report to be generated; because of the event handler w
 
 **Note**: If you look at the [complete source code](https://github.com/mdn/dom-examples/blob/master/reporting-api/deprecation_report.html), you'll notice that we actually call the deprecated `getUserMedia()` method twice. After the first time we call [`ReportingObserver.takeRecords()`](reportingobserver/takerecords), which returns the first generated report and empties the queue. Because of this, when the button is pressed only the second report is listed.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/reporting/#interface-reporting-observer">Reporting API<br />
 <span class="small">The definition of 'ReportingObserver' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -267,9 +259,8 @@ No
 
 14.0
 
-See also
---------
+## See also
 
--   [Reporting API](reporting_api)
+- [Reporting API](reporting_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReportingObserver" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ReportingObserver</a>

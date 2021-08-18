@@ -1,5 +1,4 @@
-Performance.timeOrigin
-======================
+# Performance.timeOrigin
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `timeOrigin` read-only property of the [`Performance`](../performance) inter
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     var timeOrigin = performance.timeOrigin
 
@@ -19,14 +17,12 @@ Syntax
 
 A high resolution timestamp.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/hr-time-2/#dom-performance-timeorigin">High Resolution Time Level 2<br />
 <span class="small">The definition of 'timeOrigin' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

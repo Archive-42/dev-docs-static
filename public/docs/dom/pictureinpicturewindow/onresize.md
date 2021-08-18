@@ -1,12 +1,10 @@
-PictureInPictureWindow.onresize
-===============================
+# PictureInPictureWindow.onresize
 
 The `onresize` property of the [`PictureInPictureWindow`](../pictureinpicturewindow) interface is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes [`PictureInPictureWindow.resize`](resize_event) events.
 
 The `resize` event fires after the floating video window has been resized.
 
-Syntax
-------
+## Syntax
 
     pictureInPictureWindow.onresize = functionRef;
 
@@ -14,8 +12,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives a [`FocusEvent`](../focusevent) object as its sole argument.
 
-Examples
---------
+## Examples
 
 ### Window size logger
 
@@ -38,14 +35,12 @@ Examples
         pictureInPictureWindow.onresize = resize;
       });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/picture-in-picture/#dom-pictureinpicturewindow-onresize">Picture-in-Picture API<br />
 <span class="small">The definition of 'PictureInPictureWindow.onresize' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -101,9 +96,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Picture-in-Picture API](../picture-in-picture_api)
+- [Picture-in-Picture API](../picture-in-picture_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PictureInPictureWindow/onresize" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PictureInPictureWindow/onresize</a>

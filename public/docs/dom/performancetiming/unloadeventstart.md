@@ -1,5 +1,4 @@
-PerformanceTiming.unloadEventStart
-==================================
+# PerformanceTiming.unloadEventStart
 
 **Deprecated**
 
@@ -9,21 +8,18 @@ This feature is no longer recommended. Though some browsers might still support 
 
 This interface of this property is deprecated in the [Navigation Timing Level 2 specification](https://w3c.github.io/navigation-timing/#obsolete). Please use the [`PerformanceNavigationTiming`](../performancenavigationtiming) interface instead.
 
-The legacy `PerformanceTiming``.unloadEventStart` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, the `unload` event has been thrown. If there is no previous document, or if the previous document, or one of the needed redirects, is not of the same origin, the value returned is `0`.
+The legacy ` PerformanceTiming``.unloadEventStart ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, the `unload` event has been thrown. If there is no previous document, or if the previous document, or one of the needed redirects, is not of the same origin, the value returned is `0`.
 
-Syntax
-------
+## Syntax
 
     time = performanceTiming.unloadEventStart;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/navigation-timing/#dom-performancetiming-unloadeventstart">Navigation Timing<br />
 <span class="small">The definition of 'PerformanceTiming.unloadEventStart' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -79,9 +75,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The [`PerformanceTiming`](../performancetiming) interface it belongs to.
+- The [`PerformanceTiming`](../performancetiming) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/unloadEventStart" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/unloadEventStart</a>

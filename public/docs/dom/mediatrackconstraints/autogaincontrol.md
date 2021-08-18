@@ -1,5 +1,4 @@
-MediaTrackConstraints.autoGainControl
-=====================================
+# MediaTrackConstraints.autoGainControl
 
 The [`MediaTrackConstraints`](../mediatrackconstraints) dictionary's `autoGainControl` property is a [`ConstrainBoolean`](../constrainboolean) describing the requested or mandatory constraints placed upon the value of the [`autoGainControl`](../mediatracksettings/autogaincontrol) constrainable property.
 
@@ -7,8 +6,7 @@ If needed, you can determine whether or not this constraint is supported by chec
 
 Automatic gain control is typically a feature provided by microphones, although it can be provided by other input sources as well.
 
-Syntax
-------
+## Syntax
 
     var constraintsObject = { autoGainControl: constraint };
 
@@ -18,19 +16,16 @@ Syntax
 
 If this value is a simple `true` or `false`, the user agent will attempt to obtain media with automatic gain control enabled or disabled as specified, if possible, but will not fail if this can't be done. If, instead, the value is given as an object with an `exact` field, that field's Boolean value indicates a required setting for the automatic gain control feature; if it can't be met, then the request will result in an error.
 
-Example
--------
+## Example
 
 See [Example: Constraint exerciser](#) in [Capabilities, constraints, and settings](../media_streams_api/constraints) for an example.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediatrackconstraintset-autogaincontrol">Media Capture and Streams<br />
 <span class="small">The definition of 'autoGainControl' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -90,14 +85,13 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Media Capture and Streams API](../media_streams_api)
--   [Capabilities, constraints, and settings](../media_streams_api/constraints)
--   [`MediaTrackConstraints`](../mediatrackconstraints)
--   [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints)
--   [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints)
--   [`MediaStreamTrack`](../mediastreamtrack)
+- [Media Capture and Streams API](../media_streams_api)
+- [Capabilities, constraints, and settings](../media_streams_api/constraints)
+- [`MediaTrackConstraints`](../mediatrackconstraints)
+- [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints)
+- [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints)
+- [`MediaStreamTrack`](../mediastreamtrack)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints/autoGainControl" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints/autoGainControl</a>

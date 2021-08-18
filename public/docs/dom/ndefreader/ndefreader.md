@@ -1,5 +1,4 @@
-NDEFReader()
-============
+# NDEFReader()
 
 **Draft**
 
@@ -11,8 +10,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `NDEFReader()` constructor of the [Web NFC API](../webnfc_api) returns a newly constructed [`NDEFReader`](../ndefreader) object used to read NDEF messages from compatiable NFC devices, e.g. NDEF tags, within the reader's magnetic induction field.
 
-Syntax
-------
+## Syntax
 
     writer = new NDEFReader();
 
@@ -24,13 +22,11 @@ None.
 
 A new [`NDEFReader`](../ndefreader).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/web-nfc/#dom-ndefreader">Web NFC, NDEFReader</a></td><td>Draft</td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

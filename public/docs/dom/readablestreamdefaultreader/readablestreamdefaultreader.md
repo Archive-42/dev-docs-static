@@ -1,12 +1,10 @@
-ReadableStreamDefaultReader.ReadableStreamDefaultReader()
-=========================================================
+# ReadableStreamDefaultReader.ReadableStreamDefaultReader()
 
 The `ReadableStreamDefaultReader()` constructor creates and returns a `ReadableStreamDefaultReader` object instance.
 
 **Note**: You generally wouldn't use this constructor manually; instead, you'd use the [`ReadableStream.getReader()`](../readablestream/getreader) method.
 
-Syntax
-------
+## Syntax
 
     var readableStreamDefaultReader = new ReadableStreamDefaultReader(stream);
 
@@ -24,8 +22,7 @@ An instance of the [`ReadableStreamDefaultReader`](../readablestreamdefaultreade
 TypeError  
 The supplied `stream` parameter is not a [`ReadableStream`](../readablestream), or it is already locked for reading by another reader.
 
-Examples
---------
+## Examples
 
 In the following simple example, a previously-created custom `ReadableStream` is read using a [`ReadableStreamDefaultReader`](../readablestreamdefaultreader) created using `getReader()`. (see our [Simple random stream example](https://mdn.github.io/dom-examples/streams/simple-random-stream/) for the full code). Each chunk is read sequentially and output to the UI, until the stream has finished being read, at which point we return out of the recursive function and print the entire stream to another part of the UI.
 
@@ -59,14 +56,12 @@ In the following simple example, a previously-created custom `ReadableStream` is
       });
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://streams.spec.whatwg.org/#default-reader-constructor">Streams<br />
 <span class="small">The definition of 'ReadableStreamDefaultReader()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-NDEFRecord.toRecords()
-======================
+# NDEFRecord.toRecords()
 
 **Draft**
 
@@ -18,8 +17,7 @@ The `toRecords()` method of the [`NDEFRecord`](../ndefrecord) interface of [Web 
 
 In practice, it's possible to implement the parsing mechanism manually, but this method simplifies the process.
 
-Syntax
-------
+## Syntax
 
     NDEFRecord.toRecords()
 
@@ -31,19 +29,16 @@ None.
 
 A list of [`NDEFRecord`](../ndefrecord)s.
 
-Exceptions
-----------
+## Exceptions
 
 `NotSupported`  
 The [User Agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) does not know how to parse this combination of [`NDEFRecord.data`](data) and [`NDEFRecord.recordType`](recordtype).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/web-nfc/#dom-ndefrecord-torecords">Web NFC, NDEFRecord.toRecords()</a></td><td>Draft</td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

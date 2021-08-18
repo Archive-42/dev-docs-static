@@ -1,5 +1,4 @@
-Navigator.wakeLock
-==================
+# Navigator.wakeLock
 
 **Experimental**
 
@@ -12,18 +11,15 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `wakeLock` read-only property returns a [`WakeLock`](../wakelock) interface which allows a document to acquire a screen wake lock. While a screen wake lock is active, the user agent will try to prevent the device from dimming the screen, turning it off completely, or showing a screensaver.
 
-Syntax
-------
+## Syntax
 
     const wakeLock = navigator.wakeLock;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/screen-wake-lock/#extensions-to-the-navigator-interface">Screen Wake Lock API</a></td><td>Editor's Draft</td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -79,11 +75,10 @@ No
 
 14.0
 
-See also
---------
+## See also
 
--   [`WakeLock.request()`](../wakelock/request)
--   [Screen Wake Lock API](../screen_wake_lock_api)
--   [Blog post - Stay awake with the Screen Wake Lock API](https://web.dev/wakelock/)
+- [`WakeLock.request()`](../wakelock/request)
+- [Screen Wake Lock API](../screen_wake_lock_api)
+- [Blog post - Stay awake with the Screen Wake Lock API](https://web.dev/wakelock/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/wakeLock" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/wakeLock</a>

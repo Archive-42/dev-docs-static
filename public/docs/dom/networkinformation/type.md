@@ -1,5 +1,4 @@
-NetworkInformation.type
-=======================
+# NetworkInformation.type
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `NetworkInformation.type` read-only property returns the type of connection 
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     var type = netInfo.type
 
@@ -19,23 +17,21 @@ Syntax
 
 An enumerated value that is one of the following values:
 
--   `"bluetooth"`
--   `"cellular"`
--   `"ethernet"`
--   `"none`"
--   `"wifi"`
--   `"wimax"`
--   `"other"`
--   `"unknown"`
+- `"bluetooth"`
+- `"cellular"`
+- `"ethernet"`
+- `"none`"
+- `"wifi"`
+- `"wimax"`
+- `"other"`
+- `"unknown"`
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/netinfo/#dom-networkinformation-type">Network Information API<br />
 <span class="small">The definition of 'type' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

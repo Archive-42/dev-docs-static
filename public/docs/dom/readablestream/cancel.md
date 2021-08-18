@@ -1,18 +1,16 @@
-ReadableStream.cancel()
-=======================
+# ReadableStream.cancel()
 
 The `cancel()` method of the [`ReadableStream`](../readablestream) interface returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves when the stream is canceled.
 
 Cancel is used when you've completely finished with the stream and don't need any more data from it, even if there are chunks enqueued waiting to be read. That data is lost after cancel is called, and the stream is not readable any more. To read those chunks still and not completely get rid of the stream, you'd use [`ReadableStreamDefaultController.close()`](../readablestreamdefaultcontroller/close).
 
-Syntax
-------
+## Syntax
 
     var promise = readableStream.cancel(reason);
 
 ### Parameters
 
-reason <span class="badge inline optional">Optional</span>   
+reason <span class="badge inline optional">Optional</span>  
 A human-readable reason for the cancellation. The underlying source may or may not use it.
 
 ### Return value
@@ -24,8 +22,7 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 TypeError  
 The stream you are trying to cancel is not a [`ReadableStream`](../readablestream), or it is locked.
 
-Examples
---------
+## Examples
 
 In Jake Archibald's [cancelling a fetch](https://jsbin.com/gameboy/edit?js,console) example, a stream is used to fetch the WHATWG HTML spec chunk by chunk; each chunk is searched for the string "service workers". When the search terms is found, `cancel()` is used to cancel the stream — the job is finished so it is no longer needed.
 
@@ -91,14 +88,12 @@ In Jake Archibald's [cancelling a fetch](https://jsbin.com/gameboy/edit?js,conso
       throw err;
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://streams.spec.whatwg.org/#rs-cancel">Streams<br />
 <span class="small">The definition of 'cancel()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

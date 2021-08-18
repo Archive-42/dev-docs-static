@@ -1,12 +1,10 @@
-PaymentRequest: paymentmethodchange event
-=========================================
+# PaymentRequest: paymentmethodchange event
 
 `paymentmethodchange` events are delivered by the [Payment Request API](../payment_request_api) to a [`PaymentRequest`](../paymentrequest) object when the user changes payment methods within a given payment handler. For example, if the user switches from one credit card to another on their [Apple Pay](https://www.apple.com/apple-pay/) account, a `paymentmethodchange` event is fired to let you know about the change.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../paymentmethodchangeevent"><code>PaymentMethodChangeEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="onpaymentmethodchange"><code>onpaymentmethodchange</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 Let's take a look at an example. This code creates a new [`PaymentRequest`](../paymentrequest), adds a handler for the `paymentmethodchange` event by calling the request's [`addEventListener()`](../eventtarget/addeventlistener), then calls [`show()`](show) to present the payment interface to the user.
 
@@ -42,19 +40,16 @@ This begins by looking at the event's [`methodName`](../paymentmethodchangeevent
 
 Before the event handler returns, it calls the event's <span class="page-not-created">`PaymentMethodChangeEvent.updateWith()`</span> method to integrate the changes into the request.
 
-Related events
---------------
+## Related events
 
--   `merchantvalidation`, `shippingaddresschange`, `shippingoptionchange`, and `payerdetailchange`
+- `merchantvalidation`, `shippingaddresschange`, `shippingoptionchange`, and `payerdetailchange`
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dfn-paymentmethodchange">Payment Request API<br />
 <span class="small">The definition of 'paymentmethodchange' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -114,12 +109,11 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Payment Request API](../payment_request_api)
--   [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
--   [`onpaymentmethodchange`](onpaymentmethodchange) event handler property
--   Related events: `merchantvalidation`, `payerdetailchange`, `shippingaddresschange`, `shippingoptionchange`
+- [Payment Request API](../payment_request_api)
+- [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
+- [`onpaymentmethodchange`](onpaymentmethodchange) event handler property
+- Related events: `merchantvalidation`, `payerdetailchange`, `shippingaddresschange`, `shippingoptionchange`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/paymentmethodchange_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/paymentmethodchange_event</a>

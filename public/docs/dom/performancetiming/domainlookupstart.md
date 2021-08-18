@@ -1,5 +1,4 @@
-PerformanceTiming.domainLookupStart
-===================================
+# PerformanceTiming.domainLookupStart
 
 **Deprecated**
 
@@ -9,21 +8,18 @@ This feature is no longer recommended. Though some browsers might still support 
 
 This interface of this property is deprecated in the [Navigation Timing Level 2 specification](https://w3c.github.io/navigation-timing/#obsolete). Please use the [`PerformanceNavigationTiming`](../performancenavigationtiming) interface instead.
 
-The legacy `PerformanceTiming``.domainLookupStart` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, where the domain lookup starts. If a persistent connection is used, or the information is stored in a cache or a local resource, the value will be the same as [`PerformanceTiming.fetchStart`](fetchstart).
+The legacy ` PerformanceTiming``.domainLookupStart ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, where the domain lookup starts. If a persistent connection is used, or the information is stored in a cache or a local resource, the value will be the same as [`PerformanceTiming.fetchStart`](fetchstart).
 
-Syntax
-------
+## Syntax
 
     time = performanceTiming.domainLookupStart;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/navigation-timing/#dom-performancetiming-domainlookupstart">Navigation Timing<br />
 <span class="small">The definition of 'PerformanceTiming.domainLookupStart' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -79,9 +75,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The [`PerformanceTiming`](../performancetiming) interface it belongs to.
+- The [`PerformanceTiming`](../performancetiming) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/domainLookupStart" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/domainLookupStart</a>

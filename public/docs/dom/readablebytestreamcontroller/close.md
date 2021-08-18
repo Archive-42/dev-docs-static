@@ -1,5 +1,4 @@
-ReadableByteStreamController.close()
-====================================
+# ReadableByteStreamController.close()
 
 **Draft**
 
@@ -14,8 +13,7 @@ The `close()` method of the [`ReadableByteStreamController`](../readablebytestre
 
 **Note**: Readers will still be able to read any previously-enqueued chunks from the stream, but once those are read, the stream will become closed.
 
-Syntax
-------
+## Syntax
 
     readableByteStreamController.close();
 
@@ -32,19 +30,16 @@ None.
 TypeError  
 The source object is not a `ReadableByteStreamController`, or the stream is not readable for some other reason.
 
-Examples
---------
+## Examples
 
 TBD.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://streams.spec.whatwg.org/#rbs-controller-close">Streams<br />
 <span class="small">The definition of 'close()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

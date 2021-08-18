@@ -1,5 +1,4 @@
-PresentationConnection
-======================
+# PresentationConnection
 
 **Experimental**
 
@@ -10,21 +9,20 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 This feature is available only in [secure contexts](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts) (HTTPS), in some or all [supporting browsers](#browser_compatibility).
 
-The `PresentationConnection` interface of the [Presentation API](presentation_api) provides methods and properties for managing a single presentation. Each [presentation connection](https://www.w3.org/TR/presentation-api/#dfn-presentation-connection) is represented by a `PresentationConnection` object. Both the [controlling user agent](https://www.w3.org/TR/presentation-api/#dfn-controlling-user-agent) and [receiving user agent](https://www.w3.org/TR/presentation-api/#dfn-receiving-user-agent) *MUST* implement `PresentationConnection`.
+The `PresentationConnection` interface of the [Presentation API](presentation_api) provides methods and properties for managing a single presentation. Each [presentation connection](https://www.w3.org/TR/presentation-api/#dfn-presentation-connection) is represented by a `PresentationConnection` object. Both the [controlling user agent](https://www.w3.org/TR/presentation-api/#dfn-controlling-user-agent) and [receiving user agent](https://www.w3.org/TR/presentation-api/#dfn-receiving-user-agent) _MUST_ implement `PresentationConnection`.
 
-Properties
-----------
+## Properties
 
 [`PresentationConnection.binaryType`](presentationconnection/binarytype)  
-Returns either blob or arrayBuffer. When a `PresentationConnection` object is created, its [`binaryType`](https://www.w3.org/TR/presentation-api/#idl-def-presentationconnection-binarytype) IDL attribute *MUST* be set to the string " [`arraybuffer`](https://www.w3.org/TR/presentation-api/#dom-binarytype-arraybuffer)".
+Returns either blob or arrayBuffer. When a `PresentationConnection` object is created, its [`binaryType`](https://www.w3.org/TR/presentation-api/#idl-def-presentationconnection-binarytype) IDL attribute _MUST_ be set to the string " [`arraybuffer`](https://www.w3.org/TR/presentation-api/#dom-binarytype-arraybuffer)".
 
- [`PresentationConnection.id`](presentationconnection/id) <span class="badge inline readonly">Read only </span>   
+[`PresentationConnection.id`](presentationconnection/id) <span class="badge inline readonly">Read only </span>  
 Provides the presentation connection identifier.
 
- [`PresentationConnection.state`](presentationconnection/state) <span class="badge inline readonly">Read only </span>   
+[`PresentationConnection.state`](presentationconnection/state) <span class="badge inline readonly">Read only </span>  
 Returns the [presentation connection](https://www.w3.org/TR/presentation-api/#dfn-presentation-connection)'s current state.
 
- [`PresentationConnection.url`](presentationconnection/url) <span class="badge inline readonly">Read only </span>   
+[`PresentationConnection.url`](presentationconnection/url) <span class="badge inline readonly">Read only </span>  
 Returns the URL used to create or reconnect to the presentation.
 
 ### Event handlers
@@ -41,8 +39,7 @@ Fired when there is a call to [`PresentationConnection.send()`](presentationconn
 <span class="page-not-created">`PresentationConnection.onterminated`</span>  
 Fired when there is a call to [`PresentationConnection.terminate()`](presentationconnection/terminate).
 
-Methods
--------
+## Methods
 
 [`PresentationConnection.close()`](presentationconnection/close)  
 Closes the current connection and sends a [`PresentationConnectionCloseEvent`](presentationconnectioncloseevent) to <span class="page-not-created">`PresentationConnection.onclosed`</span>.
@@ -53,14 +50,12 @@ Sends either binary or text data between a controlling browsing context and a pr
 [`PresentationConnection.terminate()`](presentationconnection/terminate)  
 Terminates the current connection and fires <span class="page-not-created">`PresentationConnection.onterminated`</span>.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/presentation-api/#interface-presentationconnection">Presentation API<br />
 <span class="small">The definition of 'PresentationConnection interface' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

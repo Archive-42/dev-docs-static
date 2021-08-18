@@ -1,5 +1,4 @@
-PerformanceResourceTiming.redirectEnd
-=====================================
+# PerformanceResourceTiming.redirectEnd
 
 The `redirectEnd` read-only property returns a [`timestamp`](../domhighrestimestamp) immediately after receiving the last byte of the response of the last redirect.
 
@@ -7,8 +6,7 @@ When fetching a resource, if there are multiple HTTP redirects, and any of the r
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     resource.redirectEnd;
 
@@ -16,8 +14,7 @@ Syntax
 
 A [`timestamp`](../domhighrestimestamp) immediately after receiving the last byte of the response of the last redirect.
 
-Example
--------
+## Example
 
 In the following example, the value of the `*Start` and `*End` properties of all "`resource`" [`type`](../performanceentry/entrytype) events are logged.
 
@@ -50,14 +47,12 @@ In the following example, the value of the `*Start` and `*End` properties of all
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/resource-timing-1/#dom-performanceresourcetiming-redirectend">Resource Timing Level 1<br />
 <span class="small">The definition of 'redirectEnd' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

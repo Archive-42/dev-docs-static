@@ -1,16 +1,14 @@
-ReadableStreamDefaultController.enqueue()
-=========================================
+# ReadableStreamDefaultController.enqueue()
 
 The `enqueue()` method of the [`ReadableStreamDefaultController`](../readablestreamdefaultcontroller) interface enqueues a given chunk in the associated stream.
 
-Syntax
-------
+## Syntax
 
     readableStreamDefaultController.enqueue(chunk);
 
 ### Parameters
 
-*chunk*  
+_chunk_  
 The chunk to enqueue.
 
 ### Return value
@@ -22,8 +20,7 @@ The chunk to enqueue.
 TypeError  
 The source object is not a `ReadableStreamDefaultController`.
 
-Examples
---------
+## Examples
 
 In the following simple example, a custom `ReadableStream` is created using a constructor (see our [Simple random stream example](https://mdn.github.io/dom-examples/streams/simple-random-stream/) for the full code). The `start()` function generates a random string of text every second and enqueues it into the stream — see `controller.enqueue(string)`. A `cancel()` function is also provided to stop the generation if [`ReadableStream.cancel()`](../readablestream/cancel) is called for any reason.
 
@@ -59,14 +56,12 @@ When a button is pressed, the generation is stopped, the stream is closed using 
       }
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://streams.spec.whatwg.org/#rs-default-controller-enqueue">Streams<br />
 <span class="small">The definition of 'enqueue()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

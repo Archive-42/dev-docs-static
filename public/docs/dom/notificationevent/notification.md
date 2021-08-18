@@ -1,15 +1,12 @@
-NotificationEvent.notification
-==============================
+# NotificationEvent.notification
 
 The `notification` read-only property of the [`NotificationEvent`](../notificationevent) interface returns the instance of the [`Notification`](../notification) that was clicked to fire the event. The [`Notification`](../notification) provides read-only access to many properties that were set at the instantiation time of the Notification such as `tag` and `data` attributes that allow you to store information for deferred use in the `notificationclick` event.
 
-Returns
--------
+## Returns
 
 A [`Notification`](../notification) object.
 
-Example
--------
+## Example
 
     self.addEventListener('notificationclick', function(event) {
       console.log('On notification click');
@@ -35,14 +32,12 @@ Example
       }));
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://notifications.spec.whatwg.org/#dom-notificationevent-notification">Notifications API<br />
 <span class="small">The definition of 'notification' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Living standard.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

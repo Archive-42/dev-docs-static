@@ -1,65 +1,61 @@
-Request
-=======
+# Request
 
 The `Request` interface of the [Fetch API](fetch_api) represents a resource request.
 
 You can create a new `Request` object using the [`Request()`](request/request) constructor, but you are more likely to encounter a `Request` object being returned as the result of another API operation, such as a service worker [`FetchEvent.request`](fetchevent/request).
 
-Constructor
------------
+## Constructor
 
 [`Request()`](request/request)  
 Creates a new `Request` object.
 
-Properties
-----------
+## Properties
 
- [`Request.cache`](request/cache) <span class="badge inline readonly">Read only </span>   
+[`Request.cache`](request/cache) <span class="badge inline readonly">Read only </span>  
 Contains the cache mode of the request (e.g., `default`, `reload`, `no-cache`).
 
- [`Request.context`](request/context) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Request.context`](request/context) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Contains the context of the request (e.g., `audio`, `image`, `iframe`, etc.)
 
- [`Request.credentials`](request/credentials) <span class="badge inline readonly">Read only </span>   
+[`Request.credentials`](request/credentials) <span class="badge inline readonly">Read only </span>  
 Contains the credentials of the request (e.g., `omit`, `same-origin`, `include`). The default is `same-origin`.
 
- [`Request.destination`](request/destination) <span class="badge inline readonly">Read only </span>   
+[`Request.destination`](request/destination) <span class="badge inline readonly">Read only </span>  
 Returns a string from the [`RequestDestination`](requestdestination) enum describing the request's destination. This is a string indicating the type of content being requested.
 
- [`Request.headers`](request/headers) <span class="badge inline readonly">Read only </span>   
+[`Request.headers`](request/headers) <span class="badge inline readonly">Read only </span>  
 Contains the associated [`Headers`](headers) object of the request.
 
- [`Request.integrity`](request/integrity) <span class="badge inline readonly">Read only </span>   
+[`Request.integrity`](request/integrity) <span class="badge inline readonly">Read only </span>  
 Contains the [subresource integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) value of the request (e.g., `sha256-BpfBw7ivV8q2jLiT13fxDYAe2tJllusRSZ273h2nFSE=`).
 
- [`Request.method`](request/method) <span class="badge inline readonly">Read only </span>   
+[`Request.method`](request/method) <span class="badge inline readonly">Read only </span>  
 Contains the request's method (`GET`, `POST`, etc.)
 
- [`Request.mode`](request/mode) <span class="badge inline readonly">Read only </span>   
+[`Request.mode`](request/mode) <span class="badge inline readonly">Read only </span>  
 Contains the mode of the request (e.g., `cors`, `no-cors`, `same-origin`, `navigate`.)
 
- [`Request.redirect`](request/redirect) <span class="badge inline readonly">Read only </span>   
+[`Request.redirect`](request/redirect) <span class="badge inline readonly">Read only </span>  
 Contains the mode for how redirects are handled. It may be one of `follow`, `error`, or `manual`.
 
- [`Request.referrer`](request/referrer) <span class="badge inline readonly">Read only </span>   
+[`Request.referrer`](request/referrer) <span class="badge inline readonly">Read only </span>  
 Contains the referrer of the request (e.g., `client`).
 
- [`Request.referrerPolicy`](request/referrerpolicy) <span class="badge inline readonly">Read only </span>   
+[`Request.referrerPolicy`](request/referrerpolicy) <span class="badge inline readonly">Read only </span>  
 Contains the referrer policy of the request (e.g., `no-referrer`).
 
- [`Request.url`](request/url) <span class="badge inline readonly">Read only </span>   
+[`Request.url`](request/url) <span class="badge inline readonly">Read only </span>  
 Contains the URL of the request.
 
 `Request` implements [`Body`](body), so it also inherits the following properties:
 
- [`body`](body/body) <span class="badge inline readonly">Read only </span>   
+[`body`](body/body) <span class="badge inline readonly">Read only </span>  
 A simple getter used to expose a [`ReadableStream`](readablestream) of the body contents.
 
- [`bodyUsed`](body/bodyused) <span class="badge inline readonly">Read only </span>   
+[`bodyUsed`](body/bodyused) <span class="badge inline readonly">Read only </span>  
 Stores a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that declares whether the body has been used in a response yet.
 
-Methods
--------
+## Methods
 
 [`Request.clone()`](request/clone)  
 Creates a copy of the current `Request` object.
@@ -83,8 +79,7 @@ Returns a promise that resolves with an [`USVString`](usvstring) (text) represen
 
 **Note**: The [`Body`](body) functions can be run only once; subsequent calls will resolve with empty strings/ArrayBuffers.
 
-Examples
---------
+## Examples
 
 In the following snippet, we create a new request using the `Request()` constructor (for an image file in the same directory as the script), then return some property values of the request:
 
@@ -130,14 +125,12 @@ You could then fetch this api request by passing the `Request` object in as a pa
         console.error(error);
       });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fetch.spec.whatwg.org/#request-class">Fetch<br />
 <span class="small">The definition of 'Request' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -715,11 +708,10 @@ Fragment support added in Opera 46.
 
 Fragment support added in Samsung Internet 7.0.
 
-See also
---------
+## See also
 
--   [ServiceWorker API](service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [ServiceWorker API](service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Request</a>

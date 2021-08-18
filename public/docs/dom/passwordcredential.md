@@ -1,5 +1,4 @@
-PasswordCredential
-==================
+# PasswordCredential
 
 **Experimental**
 
@@ -14,37 +13,33 @@ The interface of the [Credential Management API](credential_management_api) prov
 
 **Note:** This interface is restricted to top-level contexts and cannot be used from an [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe).
 
-Constructor
------------
+## Constructor
 
- [`PasswordCredential()`](passwordcredential/passwordcredential)<span class="notecard inline secure">Secure context</span>   
+[`PasswordCredential()`](passwordcredential/passwordcredential)<span class="notecard inline secure">Secure context</span>  
 Creates a new `PasswordCredential` object.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its ancestor, [`Credential`](credential).*
+_Inherits properties from its ancestor, [`Credential`](credential)._
 
- [`PasswordCredential.iconURL`](passwordcredential/iconurl) <span class="badge inline readonly">Read only </span><span class="notecard inline secure">Secure context</span>   
+[`PasswordCredential.iconURL`](passwordcredential/iconurl) <span class="badge inline readonly">Read only </span><span class="notecard inline secure">Secure context</span>  
 A [`USVString`](usvstring) containing a URL pointing to an image for an icon. This image is intended for display in a credential chooser. The URL must be accessible without authentication.
 
- [`PasswordCredential.name`](passwordcredential/name) <span class="badge inline readonly">Read only </span><span class="notecard inline secure">Secure context</span>   
+[`PasswordCredential.name`](passwordcredential/name) <span class="badge inline readonly">Read only </span><span class="notecard inline secure">Secure context</span>  
 A [`USVString`](usvstring) containing a human-readable public name for display in a credential chooser.
 
- [`PasswordCredential.password`](passwordcredential/password) <span class="badge inline readonly">Read only </span><span class="notecard inline secure">Secure context</span>   
+[`PasswordCredential.password`](passwordcredential/password) <span class="badge inline readonly">Read only </span><span class="notecard inline secure">Secure context</span>  
 A [`USVString`](usvstring) containing the password of the credential.
 
 ### Event handlers
 
 None.
 
-Methods
--------
+## Methods
 
 None.
 
-Examples
---------
+## Examples
 
     var cred = new PasswordCredential({
       id: id,
@@ -58,13 +53,11 @@ Examples
      // Do something else.
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-credential-management/">Credential Management Level 1</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

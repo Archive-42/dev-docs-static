@@ -1,5 +1,4 @@
-PaintWorklet
-============
+# PaintWorklet
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `PaintWorklet` interface of the [CSS Painting API](css_painting_api) programmatically generates an image where a CSS property expects a file. Access this interface through [`CSS.paintWorklet`](css/paintworklet).
 
-Properties
-----------
+## Properties
 
 [`PaintWorklet.devicePixelRatio`](paintworklet/devicepixelratio)  
 Returns the current device's ratio of physical pixels to logical pixels.
@@ -18,19 +16,17 @@ Returns the current device's ratio of physical pixels to logical pixels.
 
 None.
 
-Methods
--------
+## Methods
 
-*This interface inherits methods from [`Worklet`](worklet).*
+_This interface inherits methods from [`Worklet`](worklet)._
 
 [`PaintWorklet.registerPaint()`](paintworklet/registerpaint)  
 Registers a class programmatically generate an image where a CSS property expects a file.
 
 [`CSS.PaintWorklet.addModule()`](worklet/addmodule)  
-The `addModule()` method, inhertied from the *[`Worklet`](worklet)* interface loads the module in the given JavaScript file and adds it to the current PaintWorklet.
+The `addModule()` method, inhertied from the _[`Worklet`](worklet)_ interface loads the module in the given JavaScript file and adds it to the current PaintWorklet.
 
-Examples
---------
+## Examples
 
 The following three examples go together to show creating, loading, and using a `PaintWorklet`.
 
@@ -86,14 +82,12 @@ You can also use the [`@supports`](https://developer.mozilla.org/en-US/docs/Web/
       background-image: paint(checkerboard);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.css-houdini.org/css-paint-api-1/#paintworkletglobalscope">CSS Painting API Level 1<br />
 <span class="small">The definition of 'PaintWorkletGlobalScope' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -201,11 +195,10 @@ No
 
 9.0
 
-See also
---------
+## See also
 
--   [CSS Painting API](css_painting_api)
--   [Houdini APIs](https://developer.mozilla.org/en-US/docs/Web/Houdini)
--   [Houdini overview](https://developer.mozilla.org/en-US/docs/Web/Houdini/learn)
+- [CSS Painting API](css_painting_api)
+- [Houdini APIs](https://developer.mozilla.org/en-US/docs/Web/Houdini)
+- [Houdini overview](https://developer.mozilla.org/en-US/docs/Web/Houdini/learn)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaintWorklet" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaintWorklet</a>

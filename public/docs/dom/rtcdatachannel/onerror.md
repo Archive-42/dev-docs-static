@@ -1,5 +1,4 @@
-RTCDataChannel.onerror
-======================
+# RTCDataChannel.onerror
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `RTCDataChannel.onerror` property is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) which specifies a function to be called when the `error` event is received. When an error occurs on the data channel, the function receives as input an [`ErrorEvent`](../errorevent) object describing the error which occurred.
 
-Syntax
-------
+## Syntax
 
     RTCDataChannel.onerror = function;
 
@@ -17,8 +15,7 @@ Syntax
 
 A function which the browser will call to handle the `error` event when it occurs on the data channel. This function receives as its only input an [`ErrorEvent`](../errorevent) object describing the event which was received. That event object, in turn, describes the error that took place.
 
-Example
--------
+## Example
 
 In the example below, a data channel is established, and an `onerror` handler is added to it. The error handler passes information about the error to a UI library's alert box function to present an error message to the user.
 
@@ -38,14 +35,12 @@ In the example below, a data channel is established, and an `onerror` handler is
 
     /* ... */
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcdatachannel-onerror">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCDataChannel.onerror' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -101,10 +96,9 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [WebRTC](../webrtc_api)
--   The `error` event and its type, [`ErrorEvent`](../errorevent).
+- [WebRTC](../webrtc_api)
+- The `error` event and its type, [`ErrorEvent`](../errorevent).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/onerror" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/onerror</a>

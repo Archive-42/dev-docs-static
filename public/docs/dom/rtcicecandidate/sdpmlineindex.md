@@ -1,5 +1,4 @@
-RTCIceCandidate.sdpMLineIndex
-=============================
+# RTCIceCandidate.sdpMLineIndex
 
 The read-only `sdpMLineIndex` property on the [`RTCIceCandidate`](../rtcicecandidate) interface is a zero-based index of the m-line describing the media associated with the candidate.
 
@@ -7,8 +6,7 @@ This value is specified when creating the [`RTCIceCandidate`](../rtcicecandidate
 
 If you instead call `RTCIceCandidate()` with a string parameter containing the `candidate` m-line text, the value of `sdpMLineIndex` is extracted from the m-line.
 
-Syntax
-------
+## Syntax
 
     var sdpMLineIndex = RTCIceCandidate.sdpMLineIndex;
 
@@ -18,19 +16,16 @@ A number containing a 0-based index into the set of m-lines providing media desc
 
 **Note:** Attempting to add a candidate (using [`addIceCandidate()`](../rtcpeerconnection/addicecandidate)) that has a value of `null` for either `sdpMid` or `sdpMLineIndex` will throw a `TypeError` exception.
 
-Example
--------
+## Example
 
 ...
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicecandidate-sdpmlineindex">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceCandidate.sdpMLineIndex' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,19 +1,16 @@
-Node.isSameNode()
-=================
+# Node.isSameNode()
 
 The `isSameNode()` method for `Node` objects tests whether two nodes are the same (that is, whether they reference the same object).
 
-Syntax
-------
+## Syntax
 
     const isSameNode = node.isSameNode(otherNode)
 
 ### Parameters
 
--   `otherNode` The [`Node`](../node) to test against.
+- `otherNode` The [`Node`](../node) to test against.
 
-Example
--------
+## Example
 
 In this example, we create three [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div) blocks. The first and third have the same contents and attributes, while the second is different. Then we run some JavaScript to compare the nodes using `isSameNode()` and output the results.
 
@@ -36,15 +33,13 @@ In this example, we create three [`<div>`](https://developer.mozilla.org/en-US/d
 
 ### Results
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-node-issamenode">DOM<br />
 <span class="small">The definition of 'Node: isSameNode' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change (was for a long time removed from it).</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#Node3-isSameNode">Document Object Model (DOM) Level 3 Core Specification<br />
 <span class="small">The definition of 'Node.isSameNode()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -104,9 +99,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`Node.isEqualNode()`](isequalnode)
+- [`Node.isEqualNode()`](isequalnode)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/isSameNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/isSameNode</a>

@@ -1,5 +1,4 @@
-MediaStreamAudioDestinationNode
-===============================
+# MediaStreamAudioDestinationNode
 
 The `MediaStreamAudioDestinationNode` interface represents an audio destination consisting of a [WebRTC](webrtc_api) [`MediaStream`](mediastream) with a single `AudioMediaStreamTrack`, which can be used in a similar way to a `MediaStream` obtained from [`Navigator.getUserMedia()`](navigator/getusermedia).
 
@@ -7,27 +6,23 @@ It is an [`AudioNode`](audionode) that acts as an audio destination, created usi
 
 <table><tbody><tr class="odd"><td>Number of inputs</td><td><code>1</code></td></tr><tr class="even"><td>Number of outputs</td><td><code>0</code></td></tr><tr class="odd"><td>Channel count</td><td><code>2</code></td></tr><tr class="even"><td>Channel count mode</td><td><code>"explicit"</code></td></tr><tr class="odd"><td>Channel count interpretation</td><td><code>"speakers"</code></td></tr></tbody></table>
 
-Constructor
------------
+## Constructor
 
 [`MediaStreamAudioDestinationNode.MediaStreamAudioDestinationNode()`](mediastreamaudiodestinationnode/mediastreamaudiodestinationnode)  
 Creates a new `MediaStreamAudioDestinationNode` object instance.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`AudioNode`](audionode)*.
+_Inherits properties from its parent, [`AudioNode`](audionode)_.
 
 [`MediaStreamAudioDestinationNode.stream`](mediastreamaudiodestinationnode/stream)  
 A [`MediaStream`](mediastream) containing a single [`MediaStreamTrack`](mediastreamtrack) whose [`kind`](mediastreamtrack/kind) is `audio` and with the same number of channels as the node. You can use this property to get a stream out of the audio graph and feed it into another construct, such as a [Media Recorder](mediastream_recording_api).
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`AudioNode`](audionode)*.
+_Inherits methods from its parent, [`AudioNode`](audionode)_.
 
-Example
--------
+## Example
 
 In the following simple example, we create a [`MediaStreamAudioDestinationNode`](mediastreamaudiodestinationnode), an [`OscillatorNode`](oscillatornode) and a [`MediaRecorder`](mediarecorder) (the example will therefore only work in Firefox and Chrome at this time.) The `MediaRecorder` is set up to record information from the `MediaStreamDestinationNode`.
 
@@ -85,14 +80,12 @@ From here, you can play and save the opus file.
 
 **Note**: You can [view this example live](https://mdn.github.io/webaudio-examples/create-media-stream-destination/index.html), or [study the source code](https://github.com/mdn/webaudio-examples/blob/master/create-media-stream-destination/index.html), on Github.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#mediastreamaudiodestinationnode">Web Audio API<br />
 <span class="small">The definition of 'MediaStreamAudioDestinationNode' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -208,9 +201,8 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](web_audio_api/using_web_audio_api)
+- [Using the Web Audio API](web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamAudioDestinationNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamAudioDestinationNode</a>

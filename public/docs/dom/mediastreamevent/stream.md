@@ -1,5 +1,4 @@
-MediaStreamEvent.stream
-=======================
+# MediaStreamEvent.stream
 
 **Deprecated**
 
@@ -7,13 +6,11 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The read-only property `MediaStreamEvent.stream` returns the [`MediaStream`](../mediastream) associated with the event.
 
-Syntax
-------
+## Syntax
 
      var stream = event.stream;
 
-Example
--------
+## Example
 
     pc.onaddstream = function( ev ) {
                           alert("A stream (id: '" +
@@ -21,8 +18,7 @@ Example
                                 "') has been added to this connection.");
                        };
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -78,10 +74,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   `addstream`, `removestream`
--   [`RTCPeerConnection`](../rtcpeerconnection)
+- `addstream`, `removestream`
+- [`RTCPeerConnection`](../rtcpeerconnection)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamEvent/stream" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamEvent/stream</a>

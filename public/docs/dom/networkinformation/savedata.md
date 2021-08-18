@@ -1,5 +1,4 @@
-NetworkInformation.saveData
-===========================
+# NetworkInformation.saveData
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `NetworkInformation.saveData` read-only property of the [`NetworkInformation`](../networkinformation) interface returns `true` if the user has set a reduced data usage option on the user agent.
 
-Syntax
-------
+## Syntax
 
     var saveData = NetworkInformation.saveData;
 
@@ -17,13 +15,11 @@ Syntax
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/savedata/#dfn-savedata">Save Data API</a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

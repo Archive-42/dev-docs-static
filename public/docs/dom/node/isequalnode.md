@@ -1,17 +1,14 @@
-Node.isEqualNode()
-==================
+# Node.isEqualNode()
 
 The `Node.isEqualNode()` method tests whether two nodes are equal. Two nodes are equal when they have the same type, defining characteristics (for elements, this would be their ID, number of children, and so forth), its attributes match, and so on. The specific set of data points that must match varies depending on the types of the nodes.
 
-Syntax
-------
+## Syntax
 
     var isEqualNode = node.isEqualNode(otherNode);
 
--   `otherNode`: The [`Node`](../node) to compare equality with.
+- `otherNode`: The [`Node`](../node) to compare equality with.
 
-Example
--------
+## Example
 
 In this example, we create three [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div) blocks. The first and third have the same contents and attributes, while the second is different. Then we run some JavaScript to compare the nodes using `isEqualNode()` and output the results.
 
@@ -34,14 +31,12 @@ In this example, we create three [`<div>`](https://developer.mozilla.org/en-US/d
 
 ### Results
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-node-isequalnode">DOM<br />
 <span class="small">The definition of 'Node.isEqualNode' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -97,9 +92,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`Node.isSameNode()`](issamenode)
+- [`Node.isSameNode()`](issamenode)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/isEqualNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/isEqualNode</a>

@@ -1,5 +1,4 @@
-Navigator.battery
-=================
+# Navigator.battery
 
 **Deprecated**
 
@@ -9,23 +8,20 @@ The `battery` read-only property returns a [`BatteryManager`](../batterymanager)
 
 The `battery` property has been removed in favor of the standard [`Navigator.getBattery()`](getbattery) method, which returns a battery [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
-Syntax
-------
+## Syntax
 
     var battery = navigator.battery;
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.Navigator.battery`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).
 
-See also
---------
+## See also
 
--   [`Navigator.getBattery()`](getbattery)
--   [Battery Status API](../battery_status_api)
--   [Blog post - Using the Battery API](https://hacks.mozilla.org/2012/02/using-the-battery-api-part-of-webapi/)
--   [David Walsh on the JavaScript Battery API](https://davidwalsh.name/battery-api)
+- [`Navigator.getBattery()`](getbattery)
+- [Battery Status API](../battery_status_api)
+- [Blog post - Using the Battery API](https://hacks.mozilla.org/2012/02/using-the-battery-api-part-of-webapi/)
+- [David Walsh on the JavaScript Battery API](https://davidwalsh.name/battery-api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/battery" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/battery</a>

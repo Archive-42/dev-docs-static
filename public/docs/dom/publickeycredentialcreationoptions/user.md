@@ -1,5 +1,4 @@
-PublicKeyCredentialCreationOptions.user
-=======================================
+# PublicKeyCredentialCreationOptions.user
 
 **Secure context**
 
@@ -7,18 +6,16 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `user` property of the [`PublicKeyCredentialCreationOptions`](../publickeycredentialcreationoptions) dictionary is an object describing the user account for which the credentials are generated (via [`navigator.credentials.create()`](../credentialscontainer/create)).
 
-Syntax
-------
+## Syntax
 
     userAccount = publicKeyCredentialCreationOptions.user
 
-Properties
-----------
+## Properties
 
 `displayName`  
 A [`DOMString`](../domstring) which is human readable and intended for display. It may be the full name of the user (e.g. `"John Doe"`). This is not intended to store the login of the user (see `name` below).
 
- `icon` <span class="badge inline optional">Optional</span>   
+`icon` <span class="badge inline optional">Optional</span>  
 An URL as a [`USVString`](../usvstring) value which points to an image resource which can be the avatar image for the user.
 
 `id`  
@@ -27,8 +24,7 @@ A [`BufferSource`](../buffersource) uniquely identifying a given user. This an o
 `name`  
 A [`DOMString`](../domstring) giving a human-readable name for the user's identifier (e.g. `"jdoe@example.com"`).This property is intended for display and may be use to distinguish different account with the same `displayName`.
 
-Examples
---------
+## Examples
 
     var publicKey = {
       challenge: new Uint8Array(26) /* this actually is given from the server */,
@@ -61,14 +57,12 @@ Examples
          console.error(err);
       });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#dom-publickeycredentialcreationoptions-user">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'user' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -124,9 +118,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`AuthenticatorAssertionResponse.userHandle`](../authenticatorassertionresponse/userhandle) which should match the `id` property of `user` for the same user/credential.
+- [`AuthenticatorAssertionResponse.userHandle`](../authenticatorassertionresponse/userhandle) which should match the `id` property of `user` for the same user/credential.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialCreationOptions/user" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialCreationOptions/user</a>

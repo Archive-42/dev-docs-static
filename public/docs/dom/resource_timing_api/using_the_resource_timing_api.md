@@ -1,16 +1,14 @@
-Using the Resource Timing API
-=============================
+# Using the Resource Timing API
 
-The **Resource Timing API** provides a way to retrieve and analyze detailed network timing data regarding the loading of an application's *resource(s)*. An application can use the timing metrics to determine, for example, the length of time it takes to fetch a specific resource such as an [`XMLHttpRequest`](../xmlhttprequest), [`<SVG>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg), image, script, etc.).
+The **Resource Timing API** provides a way to retrieve and analyze detailed network timing data regarding the loading of an application's _resource(s)_. An application can use the timing metrics to determine, for example, the length of time it takes to fetch a specific resource such as an [`XMLHttpRequest`](../xmlhttprequest), [`<SVG>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg), image, script, etc.).
 
-The interface's properties create a *resource loading timeline* with [`high-resolution timestamps`](../domhighrestimestamp) for network events such as redirect start and end times, fetch start, DNS lookup start and end times, response start and end times, etc. The interface also includes other properties that provide data about the size of the fetched resource as well as the *type* of resource that initiated the fetch.
+The interface's properties create a _resource loading timeline_ with [`high-resolution timestamps`](../domhighrestimestamp) for network events such as redirect start and end times, fetch start, DNS lookup start and end times, response start and end times, etc. The interface also includes other properties that provide data about the size of the fetched resource as well as the _type_ of resource that initiated the fetch.
 
 This document shows the use of Resource Timing interfaces. For more details about the interfaces, including examples, see each interface's reference page and the references in the [See also](#see_also) section.
 
-A *live* version of the examples is available on [Github](https://mdn.github.io/dom-examples/performance-apis/Using_the_Resource_Timing_API.html), as is the [source code](https://github.com/mdn/dom-examples/blob/master/performance-apis/Using_the_Resource_Timing_API.html). Pull requests and [bug reports](https://github.com/mdn/dom-examples/issues) are welcome.
+A _live_ version of the examples is available on [Github](https://mdn.github.io/dom-examples/performance-apis/Using_the_Resource_Timing_API.html), as is the [source code](https://github.com/mdn/dom-examples/blob/master/performance-apis/Using_the_Resource_Timing_API.html). Pull requests and [bug reports](https://github.com/mdn/dom-examples/issues) are welcome.
 
-Resource loading phases
------------------------
+## Resource loading phases
 
 An application can get timestamps for the various phases of resource loading such as redirection, DNS lookup, and TCP connection setup. Those phases and their property names are illustrated in Figure 1.
 
@@ -19,8 +17,7 @@ Figure 1. Resource timing properties
 
 An application developer can use the property values to calculate the length of time a phase takes and that information can help diagnose performance issues.
 
-Timing resource loading phases
-------------------------------
+## Timing resource loading phases
 
 The following example illustrates using the resource timing properties to calculate the amount of time the following phases take: redirection ([`redirectStart`](../performanceresourcetiming/redirectstart) and [`redirectEnd`](../performanceresourcetiming/redirectend) ), DNS lookup ([`domainLookupStart`](../performanceresourcetiming/domainlookupstart) and [`domainLookupEnd`](../performanceresourcetiming/domainlookupend)), TCP handshake ([`connectStart`](../performanceresourcetiming/connectstart) and [`connectEnd`](../performanceresourcetiming/connectend)), and response ([`responseStart`](../performanceresourcetiming/responsestart) and [`responseEnd`](../performanceresourcetiming/responseend)). This example also calculates the time from the start of the fetch and request start phases ([`fetchStart`](../performanceresourcetiming/fetchstart) and [`requestStart`](../performanceresourcetiming/requeststart), respectively), until the response has ended ([`responseEnd`](../performanceresourcetiming/responseend)). This timing data provides a detailed profile of the resource loading phases and this data can be used to help identify performance bottlenecks.
 
@@ -75,10 +72,9 @@ The following example illustrates using the resource timing properties to calcul
       }
     }
 
-Resource size measurements
---------------------------
+## Resource size measurements
 
-The size of an application's resources can affect an application's performance so getting accurate data on resource size can be important (especially for non-hosted resources). The [`PerformanceResourceTiming`](../performanceresourcetiming) interface has three properties that can be used to obtain size data about a resource. The [`transferSize`](../performanceresourcetiming/transfersize) property returns the size (in octets) of the fetched resource including the response header fields plus the response payload body. The [`encodedBodySize`](../performanceresourcetiming/encodedbodysize) property returns the size (in octets) received from the fetch (HTTP or cache), of the *payload body*, **before** removing any applied content-codings. [`decodedBodySize`](../performanceresourcetiming/decodedbodysize) returns the size (in octets) received from the fetch (HTTP or cache) of the *message body*, **after** removing any applied content-codings.
+The size of an application's resources can affect an application's performance so getting accurate data on resource size can be important (especially for non-hosted resources). The [`PerformanceResourceTiming`](../performanceresourcetiming) interface has three properties that can be used to obtain size data about a resource. The [`transferSize`](../performanceresourcetiming/transfersize) property returns the size (in octets) of the fetched resource including the response header fields plus the response payload body. The [`encodedBodySize`](../performanceresourcetiming/encodedbodysize) property returns the size (in octets) received from the fetch (HTTP or cache), of the _payload body_, **before** removing any applied content-codings. [`decodedBodySize`](../performanceresourcetiming/decodedbodysize) returns the size (in octets) received from the fetch (HTTP or cache) of the _message body_, **after** removing any applied content-codings.
 
 The following example demonstrates using these three properties.
 
@@ -117,10 +113,9 @@ The following example demonstrates using these three properties.
       }
     }
 
-Managing the resource buffer
-----------------------------
+## Managing the resource buffer
 
-Although the browser is required to support at least 150 resource timing performance entries in its *resource timing buffer*, some applications may use more resources than that limit. To help the developer manage the buffer size, Resource Timing defines two methods that extend the [`Performance`](../performance) interface. The [`clearResourceTimings()`](../performance/clearresourcetimings) method removes all "`resource`" type performance entries from the browser's resource performance entry buffer. The [`setResourceTimingBufferSize()`](../performance/setresourcetimingbuffersize) method sets the resource performance entry buffer size to the specified number of resource [`performance entries`](../performanceentry).
+Although the browser is required to support at least 150 resource timing performance entries in its _resource timing buffer_, some applications may use more resources than that limit. To help the developer manage the buffer size, Resource Timing defines two methods that extend the [`Performance`](../performance) interface. The [`clearResourceTimings()`](../performance/clearresourcetimings) method removes all "`resource`" type performance entries from the browser's resource performance entry buffer. The [`setResourceTimingBufferSize()`](../performance/setresourcetimingbuffersize) method sets the resource performance entry buffer size to the specified number of resource [`performance entries`](../performanceentry).
 
 The following example demonstrates the usage of these two methods.
 
@@ -181,19 +176,17 @@ The [`Performance`](../performance) interface has a [`onresourcetimingbufferfull
       performance.onresourcetimingbufferfull = buffer_full;
     }
 
-Coping with CORS
-----------------
+## Coping with CORS
 
 When [CORS](https://developer.mozilla.org/en-US/docs/Glossary/CORS) is in effect, many of the timing properties' values are returned as zero unless the server's access policy permits these values to be shared. This requires the server providing the resource to send the [`Timing-Allow-Origin`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Timing-Allow-Origin) HTTP response header with a value specifying the origin or origins which are allowed to get the restricted timestamp values.
 
 The properties which are returned as 0 by default when loading a resource from a domain other than the one of the web page itself: `redirectStart`, `redirectEnd`, `domainLookupStart`, `domainLookupEnd`, `connectStart`, `connectEnd`, `secureConnectionStart`, `requestStart`, and `responseStart`.
 
-See also
---------
+## See also
 
--   [Firefox Performance Tool](https://developer.mozilla.org/en-US/docs/Tools/Performance)
--   [Resource Timing Standard](https://w3c.github.io/resource-timing/); W3C Editor's Draft
--   [Resource Timing practical tips](https://www.stevesouders.com/blog/2014/08/21/resource-timing-practical-tips/); Steve Souders; 2014 August 21
--   [Measuring network performance with Resource Timing API](https://googledevelopers.blogspot.ca/2013/12/measuring-network-performance-with.html); Ilya Grigorik; 2013 December 11
+- [Firefox Performance Tool](https://developer.mozilla.org/en-US/docs/Tools/Performance)
+- [Resource Timing Standard](https://w3c.github.io/resource-timing/); W3C Editor's Draft
+- [Resource Timing practical tips](https://www.stevesouders.com/blog/2014/08/21/resource-timing-practical-tips/); Steve Souders; 2014 August 21
+- [Measuring network performance with Resource Timing API](https://googledevelopers.blogspot.ca/2013/12/measuring-network-performance-with.html); Ilya Grigorik; 2013 December 11
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API/Using_the_Resource_Timing_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Resource_Timing_API/Using_the_Resource_Timing_API</a>

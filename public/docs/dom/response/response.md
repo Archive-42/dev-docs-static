@@ -1,34 +1,31 @@
-Response()
-==========
+# Response()
 
 The `Response()` constructor creates a new [`Response`](../response) object.
 
-Syntax
-------
+## Syntax
 
     var myResponse = new Response(body, init);
 
 ### Parameters
 
- *body* <span class="badge inline optional">Optional</span>   
+_body_ <span class="badge inline optional">Optional</span>  
 An object defining a body for the response. This can be `null` (which is the default value), or one of:
 
--   [`Blob`](../blob)
--   [`BufferSource`](../buffersource)
--   [`FormData`](../formdata)
--   [`ReadableStream`](../readablestream)
--   [`URLSearchParams`](../urlsearchparams)
--   [`USVString`](../usvstring)
+- [`Blob`](../blob)
+- [`BufferSource`](../buffersource)
+- [`FormData`](../formdata)
+- [`ReadableStream`](../readablestream)
+- [`URLSearchParams`](../urlsearchparams)
+- [`USVString`](../usvstring)
 
- *init* <span class="badge inline optional">Optional</span>   
+_init_ <span class="badge inline optional">Optional</span>  
 An options object containing any custom settings that you want to apply to the response, or an empty object (which is the default value). The possible options are:
 
--   `status`: The status code for the response, e.g., `200`.
--   `statusText`: The status message associated with the status code, e.g., `OK`.
--   `headers`: Any headers you want to add to your response, contained within a [`Headers`](../headers) object or object literal of [`ByteString`](../bytestring) key/value pairs (see [HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) for a reference).
+- `status`: The status code for the response, e.g., `200`.
+- `statusText`: The status message associated with the status code, e.g., `OK`.
+- `headers`: Any headers you want to add to your response, contained within a [`Headers`](../headers) object or object literal of [`ByteString`](../bytestring) key/value pairs (see [HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) for a reference).
 
-Examples
---------
+## Examples
 
 In our [Fetch Response example](https://github.com/mdn/fetch-examples/tree/master/fetch-response) (see [Fetch Response live](https://mdn.github.io/fetch-examples/fetch-response/)) we create a new `Response` object using the constructor, passing it a new [`Blob`](../blob) as a body, and an init object containing a custom `status` and `statusText`:
 
@@ -36,14 +33,12 @@ In our [Fetch Response example](https://github.com/mdn/fetch-examples/tree/maste
     var init = { "status" : 200 , "statusText" : "SuperSmashingGreat!" };
     var myResponse = new Response(myBlob,init);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fetch.spec.whatwg.org/#dom-response">Fetch<br />
 <span class="small">The definition of 'Response()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -161,11 +156,10 @@ No
 
 Yes
 
-See also
---------
+## See also
 
--   [ServiceWorker API](../service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [ServiceWorker API](../service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response/Response" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Response/Response</a>

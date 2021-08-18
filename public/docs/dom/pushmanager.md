@@ -1,5 +1,4 @@
-PushManager
-===========
+# PushManager
 
 The `PushManager` interface of the [Push API](push_api) provides a way to receive notifications from third-party servers as well as request URLs for push notifications.
 
@@ -7,14 +6,12 @@ This interface is accessed via the [`ServiceWorkerRegistration.pushManager`](ser
 
 **Note**: This interface replaces functionality previously offered by the obsolete [`PushRegistrationManager`](pushregistrationmanager) interface.
 
-Properties
-----------
+## Properties
 
 [`PushManager.supportedContentEncodings`](pushmanager/supportedcontentencodings)  
 Returns an array of supported content codings that can be used to encrypt the payload of a push message.
 
-Methods
--------
+## Methods
 
 [`PushManager.getSubscription()`](pushmanager/getsubscription)  
 Retrieves an existing push subscription. It returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to a [`PushSubscription`](pushsubscription) object containing details of an existing subscription. If no existing subscription exists, this resolves to a `null` value.
@@ -27,20 +24,19 @@ Subscribes to a push service. It returns a [`Promise`](https://developer.mozilla
 
 ### Deprecated methods
 
- [`PushManager.hasPermission()`](pushmanager/haspermission) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`PushManager.hasPermission()`](pushmanager/haspermission) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to the `PushPermissionStatus` of the requesting webapp, which will be one of `granted`, `denied`, or `default`. Replaced by [`PushManager.permissionState()`](pushmanager/permissionstate).
 
- [`PushManager.register()`](pushmanager/register) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`PushManager.register()`](pushmanager/register) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Subscribes to a push subscription. Replaced by [`PushManager.subscribe()`](pushmanager/subscribe).
 
- [`PushManager.registrations()`](pushmanager/registrations) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`PushManager.registrations()`](pushmanager/registrations) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Retrieves existing push subscriptions. Replaced by [`PushManager.getSubscription()`](pushmanager/getsubscription).
 
- [`PushManager.unregister()`](pushmanager/unregister) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`PushManager.unregister()`](pushmanager/unregister) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Unregisters and deletes a specified subscription endpoint. In the updated API, a subscription is unregistered by calling the [`PushSubscription.unsubscribe()`](pushsubscription/unsubscribe) method.
 
-Example
--------
+## Example
 
     this.onpush = function(event) {
       console.log(event.data);
@@ -66,14 +62,12 @@ Example
         );
       });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/#pushmanager-interface">Push API<br />
 <span class="small">The definition of 'PushManager' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -405,10 +399,9 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [Push API](push_api)
--   [Service Worker API](service_worker_api)
+- [Push API](push_api)
+- [Service Worker API](service_worker_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PushManager" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PushManager</a>

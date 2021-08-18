@@ -1,10 +1,8 @@
-RTCIceTransport.component
-=========================
+# RTCIceTransport.component
 
 The read-only **[`RTCIceTransport`](../rtcicetransport)** property `component` specifies whether the object is serving to transport RTP or RTCP. The value is one of the strings in [`RTCIceComponent`](../rtcicecomponent).
 
-Syntax
-------
+## Syntax
 
     iceComponent = RTCIceTransport.component;
 
@@ -18,14 +16,12 @@ Identifies an ICE transport which is being used for the [Real-time Transport Pro
 `"rtcp"`  
 Identifies an ICE transport being used for RTCP, which is defined in [RFC 3550, section 6](https://tools.ietf.org/html/rfc3550#section-6). This value of `RTCIceComponent` corresponds to the component ID 2.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-icetransport-component">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceTransport.component' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

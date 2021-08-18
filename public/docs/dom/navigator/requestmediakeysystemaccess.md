@@ -1,12 +1,10 @@
-Navigator.requestMediaKeySystemAccess()
-=======================================
+# Navigator.requestMediaKeySystemAccess()
 
 The `Navigator.requestMediaKeySystemAccess()` method returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which delivers a [`MediaKeySystemAccess`](../mediakeysystemaccess) object that can be used to access a particular media key system, which can in turn be used to create keys for decrypting a media stream. This method is part of the [Encrypted Media Extensions API](../encrypted_media_extensions_api), which brings support for encrypted media and DRM-protected video to the web.
 
-This method may have user-visible effects such as asking for permission to access one or more system resources. Consider that when deciding when to call `requestMediaKeySystemAccess``()`; you don't want those requests to happen at inconvenient times. As a general rule, this function should be called only when it's about time to create and use a [`MediaKeys`](../mediakeys) object by calling the returned [`MediaKeySystemAccess`](../mediakeysystemaccess) object's [`createMediaKeys()`](../mediakeysystemaccess/createmediakeys) method.
+This method may have user-visible effects such as asking for permission to access one or more system resources. Consider that when deciding when to call ` requestMediaKeySystemAccess``() `; you don't want those requests to happen at inconvenient times. As a general rule, this function should be called only when it's about time to create and use a [`MediaKeys`](../mediakeys) object by calling the returned [`MediaKeySystemAccess`](../mediakeysystemaccess) object's [`createMediaKeys()`](../mediakeysystemaccess/createmediakeys) method.
 
-Syntax
-------
+## Syntax
 
     promise = navigator.requestMediaKeySystemAccess(keySystem, supportedConfigurations);
 
@@ -35,14 +33,12 @@ Either the specified `keySystem` isn't supported by the platform or the browser,
 `TypeError`  
 Either `keySystem` is an empty string or the `supportedConfigurations` array is empty.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#navigator-extension-requestmediakeysystemaccess">Encrypted Media Extensions<br />
 <span class="small">The definition of 'requestMediaKeySystemAccess()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -160,11 +156,10 @@ The code above works in Firefox up to version 55, but version 55 onwards will ou
 
 In this revised example, the audio and video capabilities include possible codecs which should be permitted, and therefore are valid requests.
 
-See also
---------
+## See also
 
--   [Encrypted Media Extensions API](../encrypted_media_extensions_api)
--   [Media Capture and Streams API](../media_streams_api)
--   [WebRTC API](../webrtc_api)
+- [Encrypted Media Extensions API](../encrypted_media_extensions_api)
+- [Media Capture and Streams API](../media_streams_api)
+- [WebRTC API](../webrtc_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/requestMediaKeySystemAccess" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/requestMediaKeySystemAccess</a>

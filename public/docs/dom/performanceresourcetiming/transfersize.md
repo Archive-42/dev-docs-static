@@ -1,5 +1,4 @@
-PerformanceResourceTiming.transferSize
-======================================
+# PerformanceResourceTiming.transferSize
 
 The `transferSize` read-only property represents the size (in octets) of the fetched resource. The size includes the response header fields plus the response payload body (as defined by [RFC7230](https://httpwg.github.io/specs/rfc7230.html#message.body)).
 
@@ -7,8 +6,7 @@ The `transferSize` read-only property represents the size (in octets) of the fet
 
 If the resource is fetched from a local cache, or if it is a cross-origin resource, this property returns zero.
 
-Syntax
-------
+## Syntax
 
     resource.transferSize;
 
@@ -16,8 +14,7 @@ Syntax
 
 A `number` representing the size (in octets) of the fetched resource. The size includes the response header fields plus the [response payload body](https://httpwg.github.io/specs/rfc7230.html#message.body) (RFC7230).
 
-Example
--------
+## Example
 
 The following example, the value of size properties of all "`resource`" [`type`](../performanceentry/entrytype) events are logged.
 
@@ -47,14 +44,12 @@ The following example, the value of size properties of all "`resource`" [`type`]
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-transfersize">Resource Timing Level 2<br />
 <span class="small">The definition of 'transferSize' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

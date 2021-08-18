@@ -1,11 +1,8 @@
-RTCIceCandidateStats.url
-========================
+# RTCIceCandidateStats.url
 
-  
-The [`RTCIceCandidateStats`](../rtcicecandidatestats) dictionary's `url` property specifies the URL of the [ICE](https://developer.mozilla.org/en-US/docs/Glossary/ICE) server from which the described candidate was obtained. This property is *only* available for local candidates.
+The [`RTCIceCandidateStats`](../rtcicecandidatestats) dictionary's `url` property specifies the URL of the [ICE](https://developer.mozilla.org/en-US/docs/Glossary/ICE) server from which the described candidate was obtained. This property is _only_ available for local candidates.
 
-Syntax
-------
+## Syntax
 
     url = rtcIceCandidateStats.url;
 
@@ -15,14 +12,12 @@ A [`DOMString`](../domstring) specifying the URL of the ICE server from which th
 
 **Note:** This property does not exist for remote candidates.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcicecandidatestats-url">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCIceCandidateStats.url' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

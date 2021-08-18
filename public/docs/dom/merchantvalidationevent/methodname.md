@@ -1,5 +1,4 @@
-MerchantValidationEvent.methodName
-==================================
+# MerchantValidationEvent.methodName
 
 **Deprecated**
 
@@ -15,8 +14,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The [`MerchantValidationEvent`](../merchantvalidationevent) property `methodName` is a read-only value which returns a string indicating the payment method identifier which represents the payment handler that requires merchant validation.
 
-Syntax
-------
+## Syntax
 
     methodID = merchantValidationEvent.methodName;
 
@@ -24,8 +22,7 @@ Syntax
 
 A read-only [`DOMString`](../domstring) which uniquely identifies the payment handler which is requesting merchant validation. See [Merchant validation](#) in [Payment processing concepts](../payment_request_api/concepts) for more information on the process.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -85,11 +82,10 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Payment Request API](../payment_request_api)
--   [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
--   [Payment processing concepts](../payment_request_api/concepts)
+- [Payment Request API](../payment_request_api)
+- [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
+- [Payment processing concepts](../payment_request_api/concepts)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MerchantValidationEvent/methodName" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MerchantValidationEvent/methodName</a>

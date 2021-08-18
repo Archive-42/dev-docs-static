@@ -1,5 +1,4 @@
-MouseScrollEvent
-================
+# MouseScrollEvent
 
 **Non-standard**
 
@@ -13,33 +12,28 @@ The `MouseScrollEvent` interface represents events that occur due to the user mo
 
 **Do not use this interface for wheel events.**
 
-Like [`MouseWheelEvent`](mousewheelevent), this interface is non-standard and deprecated. It was used in Gecko-based browsers only. Instead use the standard *[`WheelEvent`](wheelevent).*
+Like [`MouseWheelEvent`](mousewheelevent), this interface is non-standard and deprecated. It was used in Gecko-based browsers only. Instead use the standard _[`WheelEvent`](wheelevent)._
 
-Method overview
----------------
+## Method overview
 
 <table><tbody><tr class="odd"><td><code>void initMouseScrollEvent(in DOMString typeArg, in boolean canBubbleArg, in boolean cancelableArg, in nsIDOMAbstractView viewArg, in long detailArg, in long screenXArg, in long screenYArg, in long clientXArg, in long clientYArg, in boolean ctrlKeyArg, in boolean altKeyArg, in boolean shiftKeyArg, in boolean metaKeyArg, in unsigned short buttonArg, in nsIDOMEventTarget relatedTargetArg, in long axis);</code></td></tr></tbody></table>
 
-Attributes
-----------
+## Attributes
 
 <table><thead><tr class="header"><th>Attribute</th><th>Type</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>axis</code> <span class="badge inline readonly">Read only </span></td><td><code>long</code></td><td>Indicates scroll direction.</td></tr></tbody></table>
 
-Constants
----------
+## Constants
 
 ### Delta modes
 
 <table><thead><tr class="header"><th>Constant</th><th>Value</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>HORIZONTAL_AXIS</code></td><td><code>0x01</code></td><td>The event is caused by horizontal wheel operation.</td></tr><tr class="even"><td><code>VERTICAL_AXIS</code></td><td><code>0x02</code></td><td>The event is caused by vertical wheel operation.</td></tr></tbody></table>
 
-Methods
--------
+## Methods
 
 `initMouseScrollEvent()`  
 See [nsIDOMMouseScrollEvent::initMouseScrollEvent()](https://developer.mozilla.org/en-US/docs/XPCOM_Interface_Reference/nsIDOMMouseScrollEvent#initMouseScrollEvent%28%29).
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -95,12 +89,11 @@ No
 
 No
 
-See also
---------
+## See also
 
--   `DOMMouseScroll`
--   `MozMousePixelScroll`
--   Non-gecko browsers' legacy mouse wheel event object: [`MouseWheelEvent`](mousewheelevent)
--   Standardized mouse wheel event object: [`WheelEvent`](wheelevent)
+- `DOMMouseScroll`
+- `MozMousePixelScroll`
+- Non-gecko browsers' legacy mouse wheel event object: [`MouseWheelEvent`](mousewheelevent)
+- Standardized mouse wheel event object: [`WheelEvent`](wheelevent)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseScrollEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MouseScrollEvent</a>

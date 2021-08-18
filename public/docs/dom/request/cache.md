@@ -1,10 +1,8 @@
-Request.cache
-=============
+# Request.cache
 
 The `cache` read-only property of the [`Request`](../request) interface contains the cache mode of the request. It controls how the request will interact with the browser's [HTTP cache](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching).
 
-Syntax
-------
+## Syntax
 
     var currentCacheMode = request.cache;
 
@@ -12,26 +10,26 @@ Syntax
 
 A `RequestCache` value. The available values are:
 
--   `default` — The browser looks for a matching request in its HTTP cache.
-    -   If there is a match and it is [fresh](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching#freshness), it will be returned from the cache.
-    -   If there is a match but it is stale, the browser will make a [conditional request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Conditional_requests) to the remote server. If the server indicates that the resource has not changed, it will be returned from the cache. Otherwise the resource will be downloaded from the server and the cache will be updated.
-    -   If there is no match, the browser will make a normal request, and will update the cache with the downloaded resource.
--   `no-store` — The browser fetches the resource from the remote server without first looking in the cache, *and will not* update the cache with the downloaded resource.
--   `reload` — The browser fetches the resource from the remote server without first looking in the cache, *but then will* update the cache with the downloaded resource.
--   `no-cache` — The browser looks for a matching request in its HTTP cache.
-    -   If there is a match, *fresh or stale,* the browser will make a [conditional request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Conditional_requests) to the remote server. If the server indicates that the resource has not changed, it will be returned from the cache. Otherwise the resource will be downloaded from the server and the cache will be updated.
-    -   If there is no match, the browser will make a normal request, and will update the cache with the downloaded resource.
--   `force-cache` — The browser looks for a matching request in its HTTP cache.
-    -   If there is a match, *fresh or stale*, it will be returned from the cache.
-    -   If there is no match, the browser will make a normal request, and will update the cache with the downloaded resource.
--   `only-if-cached` — The browser looks for a matching request in its HTTP cache.
-    -   If there is a match, *fresh or stale*, it will be returned from the cache.
-    -   If there is no match, the browser will respond with a [504 Gateway timeout](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504) status.
+- `default` — The browser looks for a matching request in its HTTP cache.
+  - If there is a match and it is [fresh](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching#freshness), it will be returned from the cache.
+  - If there is a match but it is stale, the browser will make a [conditional request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Conditional_requests) to the remote server. If the server indicates that the resource has not changed, it will be returned from the cache. Otherwise the resource will be downloaded from the server and the cache will be updated.
+  - If there is no match, the browser will make a normal request, and will update the cache with the downloaded resource.
+- `no-store` — The browser fetches the resource from the remote server without first looking in the cache, _and will not_ update the cache with the downloaded resource.
+- `reload` — The browser fetches the resource from the remote server without first looking in the cache, _but then will_ update the cache with the downloaded resource.
+- `no-cache` — The browser looks for a matching request in its HTTP cache.
+  - If there is a match, _fresh or stale,_ the browser will make a [conditional request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Conditional_requests) to the remote server. If the server indicates that the resource has not changed, it will be returned from the cache. Otherwise the resource will be downloaded from the server and the cache will be updated.
+  - If there is no match, the browser will make a normal request, and will update the cache with the downloaded resource.
+- `force-cache` — The browser looks for a matching request in its HTTP cache.
+  - If there is a match, _fresh or stale_, it will be returned from the cache.
+  - If there is no match, the browser will make a normal request, and will update the cache with the downloaded resource.
+- `only-if-cached` — The browser looks for a matching request in its HTTP cache.
 
-    The `"only-if-cached"` mode can only be used if the request's `mode` is `"same-origin"`. Cached redirects will be followed if the request's `redirect` property is `"follow"` and the redirects do not violate the `"same-origin"` mode.
+  - If there is a match, _fresh or stale_, it will be returned from the cache.
+  - If there is no match, the browser will respond with a [504 Gateway timeout](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504) status.
 
-Example
--------
+  The `"only-if-cached"` mode can only be used if the request's `mode` is `"same-origin"`. Cached redirects will be followed if the request's `redirect` property is `"follow"` and the redirects do not violate the `"same-origin"` mode.
+
+## Example
 
     // Download a resource with cache busting, to bypass the cache
     // completely.
@@ -88,14 +86,12 @@ Example
       .then(function(response) { /* consume the (possibly stale) response */ })
       .catch(error => { /* Can be an AbortError/DOMError or a TypeError */ });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fetch.spec.whatwg.org/#dom-request-cache">Fetch<br />
 <span class="small">The definition of 'cache' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -177,11 +173,10 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [ServiceWorker API](../service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [ServiceWorker API](../service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request/cache" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Request/cache</a>

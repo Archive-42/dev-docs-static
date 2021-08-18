@@ -1,5 +1,4 @@
-MSCandidateWindowShow
-=====================
+# MSCandidateWindowShow
 
 **Non-standard**
 
@@ -9,8 +8,7 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 This proprietary method is specific to Internet Explorer.
 
-General info
-------------
+## General info
 
 Synchronous  
 No
@@ -25,8 +23,7 @@ No
 
 Windows 8.1 and Windows 7 IMEs for certain languages on Internet Explorer for the desktop might not support this event. On Internet Explorer in the new Windows UI, this event is supported in Windows 8.1 IMEs of all languages.
 
-Syntax
-------
+## Syntax
 
 <table><tbody><tr class="odd"><td>Event Property</td><td>object.oncandidatewindowshow = handler;</td></tr><tr class="even"><td>addEventListener Method</td><td>object.addEventListener("MSCandidateWindowShow", handler, useCapture)</td></tr></tbody></table>
 
@@ -34,7 +31,7 @@ Syntax
 
 **pEvtObj** \[in\]
 
-Type: *IHTMLEventObj*
+Type: _IHTMLEventObj_
 
 Pointer to an `IHTMLEventObj `interface for the current event.
 
@@ -57,10 +54,9 @@ in IE11, developers can detect the opening of the IME candidate window by listen
 
 When the IME candidate window changes position or closes, it fires `MSCandidateWindowUpdate` or `MSCandidateWindowHide` events. Developers could listen to them and shift the suggestion UI accordingly.
 
-See also
---------
+## See also
 
--   [Microsoft API extensions](microsoft_extensions)
--   [IME handling guide for Gecko](https://developer.mozilla.org/en-US/docs/Mozilla/IME_handling_guide)
+- [Microsoft API extensions](microsoft_extensions)
+- [IME handling guide for Gecko](https://developer.mozilla.org/en-US/docs/Mozilla/IME_handling_guide)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MSCandidateWindowShow" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MSCandidateWindowShow</a>

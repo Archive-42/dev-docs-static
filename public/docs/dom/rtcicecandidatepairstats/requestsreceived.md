@@ -1,10 +1,8 @@
-RTCIceCandidatePairStats.requestsReceived
-=========================================
+# RTCIceCandidatePairStats.requestsReceived
 
 The [`RTCIceCandidatePairStats`](../rtcicecandidatepairstats) dictionary's `requestsReceived` property indicates the total number of [STUN](https://developer.mozilla.org/en-US/docs/Glossary/STUN) connectivity check requests that have been received so far on the connection described by this pairing of candidates.
 
-Syntax
-------
+## Syntax
 
     requestsReceived = rtcIceCandidatePairStats.requestsReceived;
 
@@ -14,16 +12,14 @@ An integer value which specifies the number of STUN connectivity and/or consent 
 
 Because there's no way to tell the difference between requests made to check connectivity and requests made to check consent, the returned figure includes both.
 
-**Note:** The reported number of requests includes retransmissions. If a request had to be repeated due to network issues, it will be counted multiple times here. This differs from [`requestsSent`](requestssent), which *does not* include retransmisions.
+**Note:** The reported number of requests includes retransmissions. If a request had to be repeated due to network issues, it will be counted multiple times here. This differs from [`requestsSent`](requestssent), which _does not_ include retransmisions.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcicecandidatepairstats-requestsreceived">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCIceCandidatePairStats.requestsReceived' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

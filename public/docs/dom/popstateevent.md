@@ -1,5 +1,4 @@
-PopStateEvent
-=============
+# PopStateEvent
 
 `PopStateEvent` is an event handler for the `popstate` event on the window.
 
@@ -9,15 +8,13 @@ A `popstate` event is dispatched to the window every time the active history ent
 
 **Note**: Browsers used to handle the `popstate` event differently on page load, but now they behave the same. Firefox never emitted a popstate event on page load. Chrome did until version 34, while Safari did until version 10.0.
 
-Syntax
-------
+## Syntax
 
     window.onpopstate = funcRef;
 
--   `funcRef` is a handler function.
+- `funcRef` is a handler function.
 
-The popstate event
-------------------
+## The popstate event
 
 As an example, a page at `http://example.com/example.html` running the following code will generate alerts as indicated:
 
@@ -34,14 +31,12 @@ As an example, a page at `http://example.com/example.html` running the following
 
 Note that even though the original history entry (for `http://example.com/example.html`) has no state object associated with it, a `popstate` event is still fired when we activate that entry after the second call to `history.back()`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#popstateevent">HTML Living Standard<br />
 <span class="small">The definition of 'PopStateEvent' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -123,10 +118,9 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   [Manipulating the browser history](history_api)
--   [Ajax navigation example](history_api/example)
+- [Manipulating the browser history](history_api)
+- [Ajax navigation example](history_api/example)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PopStateEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PopStateEvent</a>

@@ -1,12 +1,10 @@
-PerformanceObserverEntryList.getEntries()
-=========================================
+# PerformanceObserverEntryList.getEntries()
 
-The `getEntries()` method of the [`PerformanceObserverEntryList`](../performanceobserverentrylist) interface returns a list of explicitly *observed* [performance entry](../performanceentry) objects for a given filter. The list's members are determined by the set of [entry types](../performanceentry/entrytype) specified in the call to the [`observe()`](../performanceobserver/observe) method. The list is available in the observer's callback function (as the first parameter in the callback).
+The `getEntries()` method of the [`PerformanceObserverEntryList`](../performanceobserverentrylist) interface returns a list of explicitly _observed_ [performance entry](../performanceentry) objects for a given filter. The list's members are determined by the set of [entry types](../performanceentry/entrytype) specified in the call to the [`observe()`](../performanceobserver/observe) method. The list is available in the observer's callback function (as the first parameter in the callback).
 
 This method is exposed to [`Window`](../window) and [`Worker`](../worker) interfaces.
 
-Syntax
-------
+## Syntax
 
 General syntax:
 
@@ -19,21 +17,20 @@ Specific usage:
 
 ### Parameters
 
- `PerformanceEntryFilterOptions`<span class="badge inline optional">Optional</span>   
+`PerformanceEntryFilterOptions`<span class="badge inline optional">Optional</span>  
 Is a `PerformanceEntryFilterOptions` dictionary, having the following fields:
 
--   `"name"`, the name of a performance entry.
--   `"entryType"`, the entry type. The valid entry types are listed in the [`PerformanceEntry.entryType`](../performanceentry/entrytype) method.
--   `"initiatorType"`, the type of the initiating resource (for example an HTML element). The values are defined by the [`PerformanceResourceTiming.initiatorType`](../performanceresourcetiming/initiatortype) interface.
+- `"name"`, the name of a performance entry.
+- `"entryType"`, the entry type. The valid entry types are listed in the [`PerformanceEntry.entryType`](../performanceentry/entrytype) method.
+- `"initiatorType"`, the type of the initiating resource (for example an HTML element). The values are defined by the [`PerformanceResourceTiming.initiatorType`](../performanceresourcetiming/initiatortype) interface.
 
 This parameter is currently not supported on Chrome or Opera.
 
 ### Return value
 
-A list of explicitly *observed* [`PerformanceEntry`](../performanceentry) objects that meets the criteria of the filter. The items will be in chronological order based on the entries' [`startTime`](../performanceentry/starttime). If no objects that meet the filter are found, an empty list is returned. If no argument is given, all entries are returned.
+A list of explicitly _observed_ [`PerformanceEntry`](../performanceentry) objects that meets the criteria of the filter. The items will be in chronological order based on the entries' [`startTime`](../performanceentry/starttime). If no objects that meet the filter are found, an empty list is returned. If no argument is given, all entries are returned.
 
-Example
--------
+## Example
 
     function print_perf_entry(pe) {
       console.log("name: "        + pe.name      +
@@ -77,14 +74,12 @@ Example
     // subscribe to frame event only
     observe_frame.observe({entryTypes: ['frame']});
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/performance-timeline/#dom-performanceobserverentrylist-getentries">Performance Timeline Level 2<br />
 <span class="small">The definition of 'getEntries()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

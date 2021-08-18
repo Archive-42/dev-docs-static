@@ -1,5 +1,4 @@
-NetworkInformation.downlink
-===========================
+# NetworkInformation.downlink
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `downlink` read-only property of the [`NetworkInformation`](../networkinform
 
 Note that Chrome-based browsers do not conform to the specification, and [arbitrarily cap](https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/platform/network/network_state_notifier.cc;l=460;drc=49bf35554c123bbc44a0ef52675144eba2dd7bbc?originalUrl=https:%2F%2Fcs.chromium.org%2F) the reported downlink at a maximum of 10 Mbps as an anti-fingerprinting measure. Similar caps exist for the reported latency.
 
-Syntax
-------
+## Syntax
 
     var downLink = NetworkInformation.downlink
 
@@ -19,14 +17,12 @@ Syntax
 
 A <span class="page-not-created">`double`</span>.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/netinfo/#dom-networkinformation-downlink">Network Information API<br />
 <span class="small">The definition of 'downlink' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

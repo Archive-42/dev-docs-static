@@ -1,5 +1,4 @@
-PerformanceEntry.startTime
-==========================
+# PerformanceEntry.startTime
 
 The `startTime` property returns the first recorded [`timestamp`](../domhighrestimestamp) of the [`performance entry`](../performanceentry).
 
@@ -7,16 +6,15 @@ The `startTime` property returns the first recorded [`timestamp`](../domhighrest
 
 The value returned by this property depends on the performance entry's [`type`](entrytype):
 
--   "`frame`" - returns the [`timestamp`](../domhighrestimestamp) when the frame was started.
--   "`mark`" - returns the [`timestamp`](../domhighrestimestamp) when the mark was created by a call to [`performance.mark()`](../performance/mark).
--   "`measure`" - returns the [`timestamp`](../domhighrestimestamp) when the measure was created by a call to [`performance.measure()`](../performance/measure).
--   "`navigation`" - returns the [`timestamp`](../domhighrestimestamp) with a value of "`0`".
--   "`resource`" - returns the [`timestamp`](../domhighrestimestamp) immediately before the browser [`starts     fetching the resource`](../performanceresourcetiming/fetchstart).
+- "`frame`" - returns the [`timestamp`](../domhighrestimestamp) when the frame was started.
+- "`mark`" - returns the [`timestamp`](../domhighrestimestamp) when the mark was created by a call to [`performance.mark()`](../performance/mark).
+- "`measure`" - returns the [`timestamp`](../domhighrestimestamp) when the measure was created by a call to [`performance.measure()`](../performance/measure).
+- "`navigation`" - returns the [`timestamp`](../domhighrestimestamp) with a value of "`0`".
+- "`resource`" - returns the [`timestamp`](../domhighrestimestamp) immediately before the browser [`starts fetching the resource`](../performanceresourcetiming/fetchstart).
 
 This property is <span class="badge inline readonly">Read only </span>.
 
-Syntax
-------
+## Syntax
 
     entry.startTime;
 
@@ -26,8 +24,7 @@ A [`DOMHighResTimeStamp`](../domhighrestimestamp) representing the first timesta
 
 Note: if the performance entry has an [`entryType`](entrytype) of "`resource`" (i.e. the entry is a [`PerformanceResourceTiming`](../performanceresourcetiming) object), this property returns the [`PerformanceResourceTiming.fetchStart`](../performanceresourcetiming/fetchstart) [`timestamp`](../domhighrestimestamp).
 
-Example
--------
+## Example
 
 The following example shows the use of the `startTime` property.
 
@@ -75,15 +72,13 @@ The following example shows the use of the `startTime` property.
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/performance-timeline/#dom-performanceentry-starttime">Performance Timeline Level 2<br />
 <span class="small">The definition of 'startTime' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/performance-timeline/#dom-performanceentry-starttime">Performance Timeline<br />
 <span class="small">The definition of 'startTime' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

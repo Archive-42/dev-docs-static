@@ -1,10 +1,8 @@
-OscillatorNode.type
-===================
+# OscillatorNode.type
 
 The `type` property of the [`OscillatorNode`](../oscillatornode) interface specifies what shape of [waveform](https://en.wikipedia.org/wiki/Waveform) the oscillator will output. There are several common waveforms available, as well as an option to specify a custom waveform shape. The shape of the waveform will affect the tone that is produced.
 
-Syntax
-------
+## Syntax
 
     OscillatorNode.type = type;
 
@@ -32,8 +30,7 @@ A custom waveform. You never set `type` to `custom` manually; instead, use the [
 `InvalidStateError`  
 The value `custom` was specified. To set a custom waveform, just call [`setPeriodicWave()`](setperiodicwave). Doing so automatically sets the type for you.
 
-Example
--------
+## Example
 
 The following example shows basic usage of an [`AudioContext`](../audiocontext) to create an oscillator node. For an applied example, check out our [Violent Theremin demo](https://mdn.github.io/violent-theremin/) ([see app.js](https://github.com/mdn/violent-theremin/blob/gh-pages/scripts/app.js) for relevant code).
 
@@ -47,14 +44,12 @@ The following example shows basic usage of an [`AudioContext`](../audiocontext) 
     oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // value in hertz
     oscillator.start();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-oscillatornode-type">Web Audio API<br />
 <span class="small">The definition of 'type' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -110,9 +105,8 @@ No
 
 1.5
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](../web_audio_api/using_web_audio_api)
+- [Using the Web Audio API](../web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode/type" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode/type</a>

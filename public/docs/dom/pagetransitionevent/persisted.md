@@ -1,10 +1,8 @@
-PageTransitionEvent.persisted
-=============================
+# PageTransitionEvent.persisted
 
 The `persisted` read-only property indicates if a webpage is loading from a cache.
 
-Syntax
-------
+## Syntax
 
     window.addEventListener('pageshow', function(event) {
       if (event.persisted) {
@@ -16,14 +14,12 @@ Syntax
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-pagetransitionevent-persisted">HTML Living Standard<br />
 <span class="small">The definition of 'PageTransitionEvent: persisted' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

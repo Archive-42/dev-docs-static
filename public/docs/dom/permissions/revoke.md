@@ -1,5 +1,4 @@
-Permissions.revoke()
-====================
+# Permissions.revoke()
 
 **Deprecated**
 
@@ -7,8 +6,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `Permissions.revoke()` method of the [`Permissions`](../permissions) interface reverts a currently set permission back to its default state, which is usually `prompt`.
 
-Syntax
-------
+## Syntax
 
 This method is called on the global [`Permissions`](../permissions) object [`navigator.permissions`](../navigator/permissions).
 
@@ -19,9 +17,9 @@ This method is called on the global [`Permissions`](../permissions) object [`nav
 `descriptor`  
 An object based on the `PermissionDescriptor` dictionary that sets options for the operation consisting of a comma-separated list of name-value pairs. The available options are:
 
--   `name`: The name of the API whose permissions you want to query. Valid values are `'geolocation'`, `'midi'`, `'notifications'`, and `'push'`.
--   `userVisibleOnly`: (Push only, not supported in Firefox — see the [Browser compatibility](#browser_compatibility) section below) Indicates whether you want to show a notification for every message or be able to send silent push notifications. The default is `false`.
--   `sysex`: (MIDI only) Indicates whether you need and/or receive system exclusive messages. The default is `false`.
+- `name`: The name of the API whose permissions you want to query. Valid values are `'geolocation'`, `'midi'`, `'notifications'`, and `'push'`.
+- `userVisibleOnly`: (Push only, not supported in Firefox — see the [Browser compatibility](#browser_compatibility) section below) Indicates whether you want to show a notification for every message or be able to send silent push notifications. The default is `false`.
+- `sysex`: (MIDI only) Indicates whether you need and/or receive system exclusive messages. The default is `false`.
 
 **Note**: As of Firefox 44, the permissions for [Notifications](../notifications_api) and [Push](../push_api) have been merged. If permission is granted (e.g. by the user, in the relevant permissions dialog), `navigator.permissions.query()` will return `true` for both `notifications` and `push`.
 
@@ -36,8 +34,7 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 `TypeError`  
 Retrieving the `PermissionDescriptor` information failed in some way, or the permission doesn't exist or is currently unsupported (e.g. `midi`, or `push` with `userVisibleOnly`).
 
-Example
--------
+## Example
 
 This function can be used by an app to request that its own Geolocation API permission be revoked.
 
@@ -47,8 +44,7 @@ This function can be used by an app to request that its own Geolocation API perm
       });
     }
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-RTCConfiguration.iceServers
-===========================
+# RTCConfiguration.iceServers
 
 ### Value
 
@@ -37,8 +36,8 @@ The configuration below opens a new peer connection, specifying two servers for 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcconfiguration-iceservers">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCConfiguration.iceServers' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
--   [Introduction to WebRTC protocols](../webrtc_api/protocols)
--   [Lifetime of a WebRTC connection](../webrtc_api/session_lifetime#establishing_the_connection)
--   [Establishing a connection: The WebRTC perfect negotiation pattern](../webrtc_api/perfect_negotiation)
+- [Introduction to WebRTC protocols](../webrtc_api/protocols)
+- [Lifetime of a WebRTC connection](../webrtc_api/session_lifetime#establishing_the_connection)
+- [Establishing a connection: The WebRTC perfect negotiation pattern](../webrtc_api/perfect_negotiation)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCConfiguration/iceServers" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCConfiguration/iceServers</a>

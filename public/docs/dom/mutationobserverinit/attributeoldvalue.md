@@ -1,10 +1,8 @@
-MutationObserverInit.attributeOldValue
-======================================
+# MutationObserverInit.attributeOldValue
 
 The **[`MutationObserverInit`](../mutationobserverinit)** dictionary's optional `attributeOldValue` property is used to specify whether or not to record the prior value of the altered attribute in [`MutationRecord`](../mutationrecord) objects denoting attribute value changes.
 
-Syntax
-------
+## Syntax
 
     var options = {
       attributeOldValue: true | false
@@ -16,8 +14,7 @@ A Boolean value indicating whether or not the prior value of a changed attribute
 
 When using `attributeOldValue`, setting the [`attributes`](attributes) option to `true` is optional.
 
-Example
--------
+## Example
 
 In this example, a Mutation Observer is set up to watch for changes to the `status` and `username` attributes in any elements contained within a subtree that displays the names of users in a chat room. This lets the code, for example, reflect changes to users' nicknames, or to mark them as away from keyboard (AFK) or offline.
 
@@ -45,14 +42,12 @@ The `callback()` function—which will be passed into the [`observe()`](../mutat
 
 When `observe()` is called, the specified options are `attributes` and `attributeOldValue`, which means that changes to attribute values will be reported, and each mutation record will include the <span class="page-not-created">`oldValue`</span> property specifying the attribute's previous value.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-mutationobserverinit-attributeoldvalue">DOM<br />
 <span class="small">The definition of 'MutationObserverInit.attributeOldValue' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-ReadableByteStreamController
-============================
+# ReadableByteStreamController
 
 **Experimental**
 
@@ -8,22 +7,19 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `ReadableByteStreamController` interface of the [Streams API](streams_api) represents a controller allowing control of a [`ReadableStream`](readablestream)'s state and internal queue. Byte stream controllers are for byte streams.
 
-Constructor
------------
+## Constructor
 
 None. `ReadableByteStreamController` instances are created automatically during `ReadableStream` construction.
 
-Properties
-----------
+## Properties
 
- [`ReadableByteStreamController.byobRequest`](readablebytestreamcontroller/byobrequest) <span class="badge inline readonly">Read only </span>   
+[`ReadableByteStreamController.byobRequest`](readablebytestreamcontroller/byobrequest) <span class="badge inline readonly">Read only </span>  
 Returns the current BYOB pull request.
 
- [`ReadableByteStreamController.desiredSize`](readablebytestreamcontroller/desiredsize) <span class="badge inline readonly">Read only </span>   
+[`ReadableByteStreamController.desiredSize`](readablebytestreamcontroller/desiredsize) <span class="badge inline readonly">Read only </span>  
 Returns the desired size required to fill the stream's internal queue.
 
-Methods
--------
+## Methods
 
 [`ReadableByteStreamController.close()`](readablebytestreamcontroller/close)  
 Closes the associated stream.
@@ -34,19 +30,16 @@ Enqueues a given chunk in the associated stream.
 [`ReadableByteStreamController.error()`](readablebytestreamcontroller/error)  
 Causes any future interactions with the associated stream to error.
 
-Examples
---------
+## Examples
 
 TBD.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://streams.spec.whatwg.org/#rbs-controller-class">Streams<br />
 <span class="small">The definition of 'ReadableByteStreamController' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

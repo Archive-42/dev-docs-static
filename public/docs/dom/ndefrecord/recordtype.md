@@ -1,5 +1,4 @@
-NDEFRecord.recordType
-=====================
+# NDEFRecord.recordType
 
 **Draft**
 
@@ -16,8 +15,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `recordType` property ofthe [`NDEFRecord`](../ndefrecord) interface is [`USVString`](../usvstring) containing the NDEF record type.
 
-Syntax
-------
+## Syntax
 
     NDEFRecord.recordType
 
@@ -52,13 +50,11 @@ Represents a local type name, frequently used to specify NDEF record embedded wi
 external type name  
 Represents a custom record type name that can be creted by organizations themselves for custom needs.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/web-nfc/#dom-ndefrecord-recordtype">Web NFC, NDEFRecord.recordType</a></td><td>Draft</td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

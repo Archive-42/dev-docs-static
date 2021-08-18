@@ -1,5 +1,4 @@
-PermissionStatus.onchange
-=========================
+# PermissionStatus.onchange
 
 **Experimental**
 
@@ -8,14 +7,12 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `onchange` event handler of the [`PermissionStatus`](../permissionstatus) interface is called whenever the [`PermissionStatus.state`](state) property changes.
 
-Syntax
-------
+## Syntax
 
     PermissionStatus.onchange = function() { ... }
     PermissionStatus.addEventListener('change', function() { ... })
 
-Example
--------
+## Example
 
     navigator.permissions.query({name:'geolocation'}).then(function(permissionStatus) {
       console.log('geolocation permission state is ', permissionStatus.state);
@@ -24,14 +21,12 @@ Example
       };
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/permissions/#dom-permissionstatus-onchange">Permissions<br />
 <span class="small">The definition of 'onchange' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,10 +1,8 @@
-ResizeObserver.unobserve()
-==========================
+# ResizeObserver.unobserve()
 
 The `unobserve()` method of the [`ResizeObserver`](../resizeobserver) interface ends the observing of a specified [`Element`](../element) or [`SVGElement`](../svgelement).
 
-Syntax
-------
+## Syntax
 
     void unobserve(target);
 
@@ -21,8 +19,7 @@ Void.
 
 None.
 
-Examples
---------
+## Examples
 
 The following snippet is taken from the [resize-observer-text.html](https://mdn.github.io/dom-examples/resize-observer/resize-observer-text.html) ([see source](https://github.com/mdn/dom-examples/blob/master/resize-observer/resize-observer-text.html)) example:
 
@@ -55,14 +52,12 @@ The following snippet is taken from the [resize-observer-text.html](https://mdn.
       }
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/resize-observer/#dom-resizeobserver-unobserve">Resize Observer<br />
 <span class="small">The definition of 'unobserve()' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

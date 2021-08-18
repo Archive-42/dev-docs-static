@@ -1,12 +1,10 @@
-Permissions API
-===============
+# Permissions API
 
 The **Permissions API** provides a consistent programmatic way to query the status of API permissions attributed to the current context. For example, the Permissions API can be used to determine if permission to access a particular API has been granted or denied.
 
 **Note:** This feature is available in [Web Workers](web_workers_api) (although not current versions of Firefox, as [WorkerNavigator.permissions](workernavigator/permissions) is not implemented).
 
-Concepts and usage
-------------------
+## Concepts and usage
 
 Historically different APIs handle their own permissions inconsistently — for example the [Notifications API](notifications_api) allows for explicit checking of permission status and requesting permission, whereas the [Geolocation API](geolocation) doesn't (which causes problems if the user denied the initial permission request). The Permissions API provides the tools to allow developers to implement a better user experience as far as permissions are concerned.
 
@@ -16,24 +14,22 @@ Once you have this object you can then perform permission-related tasks, for exa
 
 Not all APIs' permission statuses can be queried using the Permissions API. Notable APIs that are Permissions-aware include:
 
--   [Clipboard API](clipboard_api)
--   [Notifications API](notifications_api)
--   [Push API](push_api)
--   Web MIDI API
+- [Clipboard API](clipboard_api)
+- [Notifications API](notifications_api)
+- [Push API](push_api)
+- Web MIDI API
 
 More APIs will gain Permissions API support over time.
 
-Examples
---------
+## Examples
 
 We have made a simple example available called Location Finder. You can [run the example live](https://chrisdavidmills.github.io/location-finder-permissions-api/), or [view the source code on Github](https://github.com/chrisdavidmills/location-finder-permissions-api/tree/gh-pages).
 
 Read more about how it works in our article [Using the Permissions API](permissions_api/using_the_permissions_api).
 
-Interfaces
-----------
+## Interfaces
 
- [`Navigator.permissions`](navigator/permissions) and [`WorkerNavigator.permissions`](workernavigator/permissions) <span class="badge inline readonly">Read only </span>   
+[`Navigator.permissions`](navigator/permissions) and [`WorkerNavigator.permissions`](workernavigator/permissions) <span class="badge inline readonly">Read only </span>  
 Provides access to the [`Permissions`](permissions) object from the main context and worker context respectively.
 
 [`Permissions`](permissions)  
@@ -42,13 +38,11 @@ Provides the core Permission API functionality, such as methods for querying and
 [`PermissionStatus`](permissionstatus)  
 Provides access to the current status of a permission, and an event handler to respond to changes in permission status.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/permissions/">Permissions</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -630,12 +624,11 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Using the Permissions API](permissions_api/using_the_permissions_api)
--   [Using the Permissions API to Detect How Often Users Allow or Deny Camera Access](https://blog.addpipe.com/using-permissions-api-to-detect-getusermedia-responses/)
--   [`Notification.permission`](notification/permission)
--   [Privacy, permissions, and information security](https://developer.mozilla.org/en-US/docs/Web/Privacy)
+- [Using the Permissions API](permissions_api/using_the_permissions_api)
+- [Using the Permissions API to Detect How Often Users Allow or Deny Camera Access](https://blog.addpipe.com/using-permissions-api-to-detect-getusermedia-responses/)
+- [`Notification.permission`](notification/permission)
+- [Privacy, permissions, and information security](https://developer.mozilla.org/en-US/docs/Web/Privacy)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API</a>

@@ -1,10 +1,8 @@
-RTCIceCandidatePairStats.transportId
-====================================
+# RTCIceCandidatePairStats.transportId
 
 The `transportId` property uniquely identifies the [`RTCIceTransport`](../rtcicetransport) that was inspected to obtain the transport-related statistics contained in the [`RTCIceCandidatePairStats`](../rtcicecandidatepairstats) object.
 
-Syntax
-------
+## Syntax
 
     transportId = rtcIceCandidatePairStats.transportId;
 
@@ -14,14 +12,12 @@ A [`DOMString`](../domstring) which uniquely identifies the `RTCIceTransport` ob
 
 The transport-related statistics come from the <span class="page-not-created">`RTCTransportStats`</span> dictionary's properties.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcicecandidatepairstats-transportid">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCIceCandidatePairStats.transportId' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

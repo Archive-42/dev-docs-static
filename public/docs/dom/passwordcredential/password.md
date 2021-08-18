@@ -1,5 +1,4 @@
-PasswordCredential.password
-===========================
+# PasswordCredential.password
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `password` read-only property of the [`PasswordCredential`](../passwordcredential) interface returns a [`USVString`](../usvstring) containing the password of the credential.
 
-Syntax
-------
+## Syntax
 
     password =passwordCredential.password
 
@@ -17,14 +15,12 @@ Syntax
 
 A [`USVString`](../usvstring) containing a password.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-credential-management/#dom-passwordcredential-password">Credential Management Level 1<br />
 <span class="small">The definition of 'password' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

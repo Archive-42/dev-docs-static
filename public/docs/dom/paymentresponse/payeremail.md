@@ -1,5 +1,4 @@
-PaymentResponse.payerEmail
-==========================
+# PaymentResponse.payerEmail
 
 **Secure context**
 
@@ -12,18 +11,15 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `payerEmail` read-only property of the [`PaymentResponse`](../paymentresponse) interface returns the email address supplied by the user. This option is only present when the `requestPayerEmail` option is set to `true` in the <span class="page-not-created">`PaymentOptions`</span> object passed to the [`PaymentRequest`](../paymentrequest/paymentrequest) constructor.
 
-Syntax
-------
+## Syntax
 
     var payerEmail = PaymentResponse.payerEmail;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/">Payment Request API</a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

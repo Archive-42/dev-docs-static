@@ -1,12 +1,10 @@
-performance.toJSON()
-====================
+# performance.toJSON()
 
 The `toJSON()` method of the [`Performance`](../performance) interface is a standard serializer: it returns a JSON representation of the performance object's properties.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     myPerf = performance.toJSON()
 
@@ -19,21 +17,18 @@ None
 myPerf  
 A JSON object that is the serialization of the [`Performance`](../performance) object.
 
-Example
--------
+## Example
 
     var js;
     js = window.performance.toJSON();
     console.log("json = " + JSON.stringify(js));
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/hr-time-2/#dom-performance-tojson">High Resolution Time Level 2<br />
 <span class="small">The definition of 'toJSON() serializer' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Defines <code>toJson()</code>.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

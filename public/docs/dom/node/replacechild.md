@@ -1,12 +1,10 @@
-Node.replaceChild()
-===================
+# Node.replaceChild()
 
 The `Node.replaceChild()` method replaces a child node within the given (parent) node.
 
 Note the idiosyncratic argument order (new before old). `ChildNode.replaceWith()` may be easier to read and use.
 
-Syntax
-------
+## Syntax
 
     let oldChild = parentNode.replaceChild(newChild, oldChild);
 
@@ -22,8 +20,7 @@ The child to be replaced.
 
 The returned value is the replaced node. This is the same node as `oldChild`.
 
-Example
--------
+## Example
 
     // Given:
     // <div>
@@ -55,14 +52,12 @@ Example
     //   <span id="newSpan">new replacement span element.</span>
     // </div>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-node-replacechild">DOM<br />
 <span class="small">The definition of 'Node: replaceChild' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -118,10 +113,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`Node.removeChild`](removechild)
--   [`ChildNode.replaceWith`](../childnode/replacewith)
+- [`Node.removeChild`](removechild)
+- [`ChildNode.replaceWith`](../childnode/replacewith)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/replaceChild</a>

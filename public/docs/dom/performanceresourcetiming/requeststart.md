@@ -1,14 +1,12 @@
-PerformanceResourceTiming.requestStart
-======================================
+# PerformanceResourceTiming.requestStart
 
 The `requestStart` read-only property returns a [`timestamp`](../domhighrestimestamp) of the time immediately before the browser starts requesting the resource from the server, cache, or local resource. If the transport connection fails and the browser retires the request, the value returned will be the start of the retry request.
 
-There is no *end* property for `requestStart`.
+There is no _end_ property for `requestStart`.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     resource.requestStart;
 
@@ -16,8 +14,7 @@ Syntax
 
 A [`DOMHighResTimeStamp`](../domhighrestimestamp) representing the time immediately before the browser starts requesting the resource from the server
 
-Example
--------
+## Example
 
 In the following example, the value of the `*Start` and `*End` properties of all "`resource`" [`type`](../performanceentry/entrytype) events are logged.
 
@@ -50,14 +47,12 @@ In the following example, the value of the `*Start` and `*End` properties of all
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/resource-timing-1/#dom-performanceresourcetiming-requeststart">Resource Timing Level 1<br />
 <span class="small">The definition of 'requestStart' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

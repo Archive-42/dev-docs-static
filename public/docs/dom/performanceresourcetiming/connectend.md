@@ -1,12 +1,10 @@
-PerformanceResourceTiming.connectEnd
-====================================
+# PerformanceResourceTiming.connectEnd
 
 The `connectEnd` read-only property returns the [`timestamp`](../domhighrestimestamp) immediately after the browser finishes establishing the connection to the server to retrieve the resource. The timestamp value includes the time interval to establish the transport connection, as well as other time intervals such as SSL handshake and SOCKS authentication.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     resource.connectEnd;
 
@@ -14,8 +12,7 @@ Syntax
 
 A [`DOMHighResTimeStamp`](../domhighrestimestamp) representing the time after a connection is established.
 
-Example
--------
+## Example
 
 In the following example, the value of the `*Start` and `*End` properties of all "`resource`" [`type`](../performanceentry/entrytype) events are logged.
 
@@ -48,14 +45,12 @@ In the following example, the value of the `*Start` and `*End` properties of all
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/resource-timing-1/#dom-performanceresourcetiming-connectend">Resource Timing Level 1<br />
 <span class="small">The definition of 'connectEnd' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

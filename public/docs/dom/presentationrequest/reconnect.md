@@ -1,7 +1,6 @@
-PresentationRequest.reconnect()
-===============================
+# PresentationRequest.reconnect()
 
-When the `reconnect(presentationId)` method is called on a `PresentationRequest` presentationRequest, the [user agent](https://www.w3.org/TR/presentation-api/#dfn-user-agents) *MUST* run the following steps to reconnect to a presentation:
+When the `reconnect(presentationId)` method is called on a `PresentationRequest` presentationRequest, the [user agent](https://www.w3.org/TR/presentation-api/#dfn-user-agents) _MUST_ run the following steps to reconnect to a presentation:
 
 Input  
 presentationRequest, the [`PresentationRequest`](https://www.w3.org/TR/presentation-api/#idl-def-presentationrequest) object that `reconnect()` was called on.
@@ -37,8 +36,7 @@ P, a [Promise](https://www.w3.org/TR/presentation-api/#dfn-promise)
     9.  Abort all remaining steps.
 10. [Reject](https://www.w3.org/TR/presentation-api/#dfn-rejecting-a-promise) P with a [`NotFoundError`](https://www.w3.org/TR/presentation-api/#dfn-notfounderror) exception.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

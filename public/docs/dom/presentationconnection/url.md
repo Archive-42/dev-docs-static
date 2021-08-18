@@ -1,5 +1,4 @@
-PresentationConnection.url
-==========================
+# PresentationConnection.url
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `url` readonly property of the [`PresentationConnection`](../presentationconnection) interface returns the URL used to create or reconnect to the presentation.
 
-Syntax
-------
+## Syntax
 
     var url = PresentationConnection.url
 
@@ -17,14 +15,12 @@ Syntax
 
 A [`USVString`](../usvstring) containing a URL.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/presentation-api/#dom-presentationconnection-url">Presentation API<br />
 <span class="small">The definition of 'url' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

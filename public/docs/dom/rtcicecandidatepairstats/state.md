@@ -1,10 +1,8 @@
-RTCIceCandidatePairStats.state
-==============================
+# RTCIceCandidatePairStats.state
 
 The `state` property in an [`RTCIceCandidatePairStats`](../rtcicecandidatepairstats) object indicates the state of the check list of which the candidate pair is a member.
 
-Syntax
-------
+## Syntax
 
     state = rtcIceCandidatePairStats.state;
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`DOMString`](../domstring) whose value is one of those found in the [`RTCStatsIceCandidatePairState`](../rtcstatsicecandidatepairstate) enumerated type.
 
-ICE check lists
----------------
+## ICE check lists
 
 During ICE negotiation, the ICE layer builds up a **check list**, which is a list of potential pairings of ICE candidates. Each pair has a state, whose value is represented by `RTCStatsIceCandidatePairState`.
 
@@ -25,14 +22,12 @@ Each time a candidate pair is done being checked, the next-highest priority cand
 
 The ICE check list state for any given pair of ICE candidates can be found in the corresponding the `state` property.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcicecandidatepairstats-state">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCIceCandidatePairStats.state' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

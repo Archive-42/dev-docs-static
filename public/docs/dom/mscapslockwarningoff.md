@@ -1,5 +1,4 @@
-msCapsLockWarningOff
-====================
+# msCapsLockWarningOff
 
 **Non-standard**
 
@@ -11,27 +10,23 @@ This proprietary property is specific to Internet Explorer and Microsoft Edge.
 
 Starting with Internet Explorer 10, input type=password fields will automatically display a warning if the caps lock is on. This property enables this warning to be disabled.
 
-Syntax
-------
+## Syntax
 
     document.msCapsLockWarningOff = true;
 
-Value
------
+## Value
 
 Type: **boolean**
 
-*False*: Default. Automatic caps lock warning is turned on.
+_False_: Default. Automatic caps lock warning is turned on.
 
-*True*: Automatic caps lock warning is turned off.
+_True_: Automatic caps lock warning is turned off.
 
-Example
--------
+## Example
 
 Fiddle: <https://jsfiddle.net/jonathansampson/mqcHA/1/>
 
-Example 2
----------
+## Example 2
 
     <html>
     <head>

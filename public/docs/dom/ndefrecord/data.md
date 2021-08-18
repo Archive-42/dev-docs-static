@@ -1,5 +1,4 @@
-NDEFRecord.data
-===============
+# NDEFRecord.data
 
 **Draft**
 
@@ -18,8 +17,7 @@ The `data` property of the [`NDEFRecord`](../ndefrecord) interface is [`DataView
 
 It provides access to a raw content of the record and thus data consumer might need to decode it.
 
-Syntax
-------
+## Syntax
 
     NDEFRecord.data
 
@@ -27,13 +25,11 @@ Syntax
 
 A [`DataView`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView) that contains encoded payload data of the record.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/web-nfc/#dom-ndefrecord-data">Web NFC, NDEFRecord.data</a></td><td>Draft</td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-PaymentRequestEvent.total
-=========================
+# PaymentRequestEvent.total
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `total` readonly property of the [`PaymentRequestEvent`](../paymentrequestevent) interface returns a [`PaymentCurrencyAmount`](../paymentcurrencyamount) object containing the total amount being requested for payment.
 
-Syntax
-------
+## Syntax
 
     var paymentCurrencyAmount = paymentRequestEvent.total
 
@@ -17,14 +15,12 @@ Syntax
 
 A [`PaymentCurrencyAmount`](../paymentcurrencyamount) object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-handler/#total-attribute">Payment Handler API<br />
 <span class="small">The definition of 'total' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

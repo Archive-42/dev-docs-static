@@ -1,5 +1,4 @@
-MSRangeCollection
-=================
+# MSRangeCollection
 
 **Non-standard**
 
@@ -11,10 +10,9 @@ The `MSRangeCollection` object is an array of one or more Range objects.
 
 The MSRangeCollection object does not inherit from any class or interface and does not define any members.
 
-See also
---------
+## See also
 
--   [Array Object](https://developer.mozilla.org/en-US/docs/Glossary/array)
--   [Microsoft API extensions](microsoft_extensions)
+- [Array Object](https://developer.mozilla.org/en-US/docs/Glossary/array)
+- [Microsoft API extensions](microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MSRangeCollection" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MSRangeCollection</a>

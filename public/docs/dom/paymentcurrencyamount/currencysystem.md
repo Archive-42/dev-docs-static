@@ -1,5 +1,4 @@
-PaymentCurrencyAmount.currencySystem
-====================================
+# PaymentCurrencyAmount.currencySystem
 
 **Deprecated**
 
@@ -7,16 +6,15 @@ This feature is no longer recommended. Though some browsers might still support 
 
 **Warning**
 
-This property has been removed from the specification and should no longer be used; the currency is now *always* specified using ISO 4127.
+This property has been removed from the specification and should no longer be used; the currency is now _always_ specified using ISO 4127.
 
 **Secure context**
 
 This feature is available only in [secure contexts](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts) (HTTPS), in some or all [supporting browsers](#browser_compatibility).
 
-The *obsolete* [`PaymentCurrencyAmount`](../paymentcurrencyamount) property `currencySystem` is a string which specifies the standard being used to specify the [`currency`](currency) the [`value`](value) is specified in. For example, the default is `urn:iso:std:iso:4217`, which specifies that the standard used is [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+The _obsolete_ [`PaymentCurrencyAmount`](../paymentcurrencyamount) property `currencySystem` is a string which specifies the standard being used to specify the [`currency`](currency) the [`value`](value) is specified in. For example, the default is `urn:iso:std:iso:4217`, which specifies that the standard used is [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 
-Syntax
-------
+## Syntax
 
     currencySystem = paymentCurrencyAmount.currencySystem;
 
@@ -26,15 +24,13 @@ A [`DOMString`](../domstring) which specifies the currency standard used to spec
 
 This obsolete property was removed in the [May 3, 2018 update](https://www.w3.org/TR/2018/CR-payment-request-20180503) of the Payment Request API specification.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-paymentcurrencyamount">Payment Request API<br />
 <span class="small">The definition of 'PaymentCurrencyAmount' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>No longer part of the specification</td></tr><tr class="even"><td><a href="https://w3c.github.io/payment-request/#dom-paymentcurrencyamount">Payment Request API</a><br />
 <span class="small"><a href="https://www.w3.org/TR/2018/CR-payment-request-20180320/#dom-paymentcurrencyamount-currencysystem">The definition of 'PaymentCurrencyAmount.currencySystem' in that specification.</a></span></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>The March 20, 2018 version of the specification; the last one to include this property</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -94,11 +90,10 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Payment Request API](../payment_request_api)
--   [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
--   [Payment processing concepts](../payment_request_api/concepts)
+- [Payment Request API](../payment_request_api)
+- [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
+- [Payment processing concepts](../payment_request_api/concepts)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentCurrencyAmount/currencySystem" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentCurrencyAmount/currencySystem</a>

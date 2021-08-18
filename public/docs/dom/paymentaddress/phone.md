@@ -1,10 +1,8 @@
-PaymentAddress.phone
-====================
+# PaymentAddress.phone
 
 The read-only `phone` property of the [`PaymentAddress`](../paymentaddress) interface returns a string containing the telephone number of the recipient or contact person.
 
-Syntax
-------
+## Syntax
 
     var paymentPhone = PaymentAddress.phone;
 
@@ -12,14 +10,12 @@ Syntax
 
 A [`DOMString`](../domstring) containing the telephone number for the recipient of the shipment or of the responsible party for payment. If no phone number is available, this value is an empty string.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-paymentaddress-phone">Payment Request API<br />
 <span class="small">The definition of 'PaymentAddress.phone' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

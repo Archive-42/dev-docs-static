@@ -1,12 +1,10 @@
-RTCIceTransport.state
-=====================
+# RTCIceTransport.state
 
 The read-only **[`RTCIceTransport`](../rtcicetransport)** property `state` returns the current state of the ICE transport, so you can determine the state of ICE gathering in which the ICE agent currently is operating.
 
 This differs from the [`gatheringState`](gatheringstate), which only indicates whether or not ICE gathering is currently underway.
 
-Syntax
-------
+## Syntax
 
     iceState = iceTransport.state;
 
@@ -32,19 +30,17 @@ The transport has finished gathering local candidates and has received a notific
 The ICE agent has determined that connectivity has been lost for this [`RTCIceTransport`](../rtcicetransport). This is not a failure state (that's `"failed"`). A value of `"disconnected"` means that a transient issue has occurred that has broken the connection, but that should resolve itself automatically without your code having to take any action. See [The disconnected state](#the_disconnected_state) for additional details.
 
 `"failed"`  
-The `RTCIceTransport` has finished the gathering process, has received the "no more candidates" notification from the remote peer, and has finished checking pairs of candidates, without successfully finding a pair that is both valid and for which consent can be obtained. *This is a terminal state, indicating that the connection cannot be achieved or maintained.*
+The `RTCIceTransport` has finished the gathering process, has received the "no more candidates" notification from the remote peer, and has finished checking pairs of candidates, without successfully finding a pair that is both valid and for which consent can be obtained. _This is a terminal state, indicating that the connection cannot be achieved or maintained._
 
 `"closed"`  
 The transport has shut down and is no longer responding to STUN requests.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#rtcicetransportstate">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceTransportState' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

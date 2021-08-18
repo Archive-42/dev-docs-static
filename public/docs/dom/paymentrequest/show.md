@@ -1,5 +1,4 @@
-PaymentRequest.show()
-=====================
+# PaymentRequest.show()
 
 **Secure context**
 
@@ -17,14 +16,13 @@ If your architecture doesn't necessarily have all of the data ready to go at the
 
 Processing the result and, if necessary, calling [`PaymentResponse.retry()`](../paymentresponse/retry) to retry a failed payment can all be done either asynchronously or synchronously, depending on your needs. For the best user experience, asynchronous solutions are typically the best way to go. Most examples on MDN and elsewhere use `async`/`await` to wait asynchronously while results are validated and so forth.
 
-Syntax
-------
+## Syntax
 
     paymentPromise = paymentRequest.show(detailsPromise);
 
 ### Parameters
 
- `detailsPromise` <span class="badge inline optional">Optional</span>   
+`detailsPromise` <span class="badge inline optional">Optional</span>  
 An optional [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that you can provide if your architecture requires that the payment request's details need to be updated between instantiating the payment interface and the user beginning to interact with it. The promise should resolve with a [`PaymentDetailsUpdate`](../paymentdetailsupdate) object containing the updated information.
 
 ### Return value
@@ -34,7 +32,7 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 ### Exceptions
 
 `AbortError`  
-The returned promise rejects with an `AbortError` if the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) is already showing a payment panel. Only one payment panel may be visible at a time *across all documents loaded by the user agent*.
+The returned promise rejects with an `AbortError` if the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) is already showing a payment panel. Only one payment panel may be visible at a time _across all documents loaded by the user agent_.
 
 The promise is also rejected with `AbortError` if the user cancels the payment request.
 
@@ -47,8 +45,7 @@ The promise rejects with a `NotSupportedError` if the user agent does not suppor
 `SecurityError`  
 The promise rejects with a `SecurityError` if the call to `show()` was not in response to a user action, such as a `click` or `keyup` event. Other reasons a `SecurityError` may be thrown are at the discretion of the user agent, and may include situations such as too many calls to `show()` being made in a short time or `show()` being called while payment requests are blocked by parental controls.
 
-Usage notes
------------
+## Usage notes
 
 The most common patterns for using `show()` involve either the `async`/`await` syntax or the use of `show().then().catch()` to handle the response and any possible rejection. Those look like this:
 
@@ -129,8 +126,7 @@ You could even have `checkAllValues()` be a synchronous function, although that 
 
 See the article [Using promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises) for more information if you need more information about working with promises.
 
-Examples
---------
+## Examples
 
 In the following example, a `PaymentRequest` object is instantiated before the `show()` method is called. This method triggers the user agent's built-in process for retrieving payment information from the user. The `show()` method returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to a [`PaymentResponse`](../paymentresponse) object when the user interaction is complete. The developer then uses the information in the `PaymentResponse` object to format and send payment data to the server. You should send the payment information to the server asynchronously so that the final call to [`paymentResponse.complete()`](../paymentresponse/complete) can indicate the success or failure of the payment.
 
@@ -178,14 +174,12 @@ The following example shows how to update the payment sheet as it's being presen
 
     document.getElementById("buyButton").onclick = requestPayment;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#show-method">Payment Request API<br />
 <span class="small">The definition of 'show(optional detailsPromise)' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -245,14 +239,13 @@ Available only in nightly builds.
 
 6.0
 
-See also
---------
+## See also
 
--   [Payment Request API](../payment_request_api)
--   [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
--   [`PaymentRequest.abort()`](abort)
--   <span class="page-not-created">`PaymentRequest.retry()`</span>
--   <span class="page-not-created">`PaymentRequest.complete()`</span>
--   [`PaymentResponse`](../paymentresponse)
+- [Payment Request API](../payment_request_api)
+- [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
+- [`PaymentRequest.abort()`](abort)
+- <span class="page-not-created">`PaymentRequest.retry()`</span>
+- <span class="page-not-created">`PaymentRequest.complete()`</span>
+- [`PaymentResponse`](../paymentresponse)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/show" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/show</a>

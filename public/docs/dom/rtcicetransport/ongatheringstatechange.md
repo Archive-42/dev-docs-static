@@ -1,10 +1,8 @@
-RTCIceTransport.ongatheringstatechange
-======================================
+# RTCIceTransport.ongatheringstatechange
 
 The `ongatheringstatechange` event handler for the [`RTCIceTransport`](../rtcicetransport) interface specifies an event handler that is to be called when the `gatheringstatechange` event occurs on the transport. This event is delivered whenever the transport's [`gatheringState`](gatheringstate) property changes.
 
-Syntax
-------
+## Syntax
 
     RTCIceTransport.ongatheringstatechange = stateChangeHandler;
 
@@ -23,8 +21,7 @@ The transport is in the process of gathering candidates.
 `"complete"`  
 The transport has finished gathering ICE candidates and has sent the end-of-candidates indicator to the remote device. The transport won't gather any further candidates unless an [ICE restart](../webrtc_api/session_lifetime#ice_restart) occurs, at which point the gathering process starts over from scratch.
 
-Example
--------
+## Example
 
 This snippet establishes a handler for the `gatheringstatechange` event that checks to see if the state has changed to `"complete"`, indicating that all ICE candidates from both the local and remote peers have been received and processed.
 
@@ -36,14 +33,12 @@ This snippet establishes a handler for the `gatheringstatechange` event that che
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicetransport-ongatheringstatechange">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceTransport.ongatheringstatechange' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -99,10 +94,9 @@ No
 
 11.0
 
-See also
---------
+## See also
 
--   The `gatheringstatechange` event and its type, [`Event`](../event).
--   The other event handlers for `RTCIceTransport`: [`onstatechange`](onstatechange) and [`onselectedcandidatepairchange`](onselectedcandidatepairchange)
+- The `gatheringstatechange` event and its type, [`Event`](../event).
+- The other event handlers for `RTCIceTransport`: [`onstatechange`](onstatechange) and [`onselectedcandidatepairchange`](onselectedcandidatepairchange)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIceTransport/ongatheringstatechange" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIceTransport/ongatheringstatechange</a>

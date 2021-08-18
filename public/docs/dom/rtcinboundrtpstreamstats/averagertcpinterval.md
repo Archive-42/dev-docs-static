@@ -1,10 +1,8 @@
-RTCInboundRtpStreamStats.averageRtcpInterval
-============================================
+# RTCInboundRtpStreamStats.averageRtcpInterval
 
 The `averageRtcpInterval` property of the [`RTCInboundRtpStreamStats`](../rtcinboundrtpstreamstats) dictionary is a floating-point value indicating the average [RTCP](https://developer.mozilla.org/en-US/docs/Glossary/RTCP) transmission interval, in seconds. The RTCP interval is the amount of time that should elapse between transmissions of RTCP packets.
 
-Syntax
-------
+## Syntax
 
     var averageRtcpInterval = rtcInboundRtpStreamStats.averageRtcpInterval;
 
@@ -16,14 +14,12 @@ Because the interval's value is determined in part by the number of active sende
 
 The sending endpoint computes this value when sending compound RTCP packets, which must contain at least an RTCP RR or SR packet and an SDES packet with the CNAME item.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcinboundrtpstreamstats-averagertcpinterval">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCInboundRtpStreamStats.averageRtcpInterval' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.RTCInboundRtpStreamStats.averageRtcpInterval`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).

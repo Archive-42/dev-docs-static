@@ -1,5 +1,4 @@
-PublicKeyCredential.id
-======================
+# PublicKeyCredential.id
 
 **Secure context**
 
@@ -11,8 +10,7 @@ This property is a [base64url encoded](https://developer.mozilla.org/en-US/docs/
 
 **Note:** This property may only be used in top-level contexts and will not be available in an [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) for example.
 
-Syntax
-------
+## Syntax
 
     id = publicKeyCredential.id
 
@@ -20,8 +18,7 @@ Syntax
 
 A [`DOMString`](../domstring) being the [base64url encoded](https://developer.mozilla.org/en-US/docs/Glossary/Base64) version of [`PublicKeyCredential.rawId`](rawid).
 
-Examples
---------
+## Examples
 
     var publicKey = {
       challenge: new Uint8Array(26) /* this actually is given from the server */,
@@ -54,22 +51,19 @@ Examples
          console.error(err);
       });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#iface-pkcredential">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'id' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Specified in the context of <code>PublicKeyCredential</code>. Overrides the getter defined in <code>Credential</code>.</td></tr><tr class="even"><td><a href="https://w3c.github.io/webappsec-credential-management/#dom-credential-id">Credential Management Level 1<br />
 <span class="small">The definition of 'id' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.PublicKeyCredential.id`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).
 
-See also
---------
+## See also
 
--   [`Credential.id`](../credential/id)
+- [`Credential.id`](../credential/id)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredential/id" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredential/id</a>

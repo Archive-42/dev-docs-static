@@ -1,5 +1,4 @@
-Page Visibility API
-===================
+# Page Visibility API
 
 With tabbed browsing, there is a reasonable chance that any given webpage is in the background and thus not visible to the user. The Page Visibility API provides events you can watch for to know when a document becomes visible or hidden, as well as features to look at the current visibility state of the page.
 
@@ -13,10 +12,10 @@ Visibility states of an [`<iframe>`](https://developer.mozilla.org/en-US/docs/We
 
 Let's consider a few use cases for the Page Visibility API.
 
--   A site has an image carousel that shouldn't advance to the next slide unless the user is viewing the page
--   An application showing a dashboard of information doesn't want to poll the server for updates when the page isn't visible
--   A page wants to detect when it is being prerendered so it can keep accurate count of page views
--   A site wants to switch off sounds when a device is in standby mode (user pushes power button to turn screen off)
+- A site has an image carousel that shouldn't advance to the next slide unless the user is viewing the page
+- An application showing a dashboard of information doesn't want to poll the server for updates when the page isn't visible
+- A page wants to detect when it is being prerendered so it can keep accurate count of page views
+- A site wants to switch off sounds when a device is in standby mode (user pushes power button to turn screen off)
 
 Developers have historically used imperfect proxies to detect this. For example, watching for `blur` and `focus` events on the window helps you know when your page is not the active page, but it does not tell you that your page is actually hidden to the user. The Page Visibility API addresses this.
 
@@ -26,23 +25,22 @@ Developers have historically used imperfect proxies to detect this. For example,
 
 Separately from the Page Visibility API, user agents typically have a number of policies in place to mitigate the performance impact of background or hidden tabs. These may include:
 
--   Most browsers stop sending [`requestAnimationFrame()`](window/requestanimationframe) callbacks to background tabs or hidden [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe)s in order to improve performance and battery life.
--   Timers such as [`setTimeout()`](windoworworkerglobalscope/settimeout) are throttled in background/inactive tabs to help improve performance. See [Reasons for delays longer than specified](windoworworkerglobalscope/settimeout#reasons_for_delays_longer_than_specified) for more details.
--   Budget-based background timeout throttling is now available in modern browsers (Firefox 58+, Chrome 57+), placing an additional limit on background timer CPU usage. This operates in a similar way across modern browsers, with the details being as follows:
-    -   In Firefox, windows in background tabs each have their own time budget in milliseconds — a max and a min value of +50 ms and -150 ms, respectively. Chrome is very similar except that the budget is specified in seconds.
-    -   Windows are subjected to throttling after 30 seconds, with the same throttling delay rules as specified for window timers (again, see [Reasons for delays longer than specified](windoworworkerglobalscope/settimeout#reasons_for_delays_longer_than_specified)). In Chrome, this value is 10 seconds.
-    -   Timer tasks are only permitted when the budget is non-negative.
-    -   Once a timer's code has finished running, the duration of time it took to execute is subtracted from its window's timeout budget.
-    -   The budget regenerates at a rate of 10 ms per second, in both Firefox and Chrome.
+- Most browsers stop sending [`requestAnimationFrame()`](window/requestanimationframe) callbacks to background tabs or hidden [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe)s in order to improve performance and battery life.
+- Timers such as [`setTimeout()`](windoworworkerglobalscope/settimeout) are throttled in background/inactive tabs to help improve performance. See [Reasons for delays longer than specified](windoworworkerglobalscope/settimeout#reasons_for_delays_longer_than_specified) for more details.
+- Budget-based background timeout throttling is now available in modern browsers (Firefox 58+, Chrome 57+), placing an additional limit on background timer CPU usage. This operates in a similar way across modern browsers, with the details being as follows:
+  - In Firefox, windows in background tabs each have their own time budget in milliseconds — a max and a min value of +50 ms and -150 ms, respectively. Chrome is very similar except that the budget is specified in seconds.
+  - Windows are subjected to throttling after 30 seconds, with the same throttling delay rules as specified for window timers (again, see [Reasons for delays longer than specified](windoworworkerglobalscope/settimeout#reasons_for_delays_longer_than_specified)). In Chrome, this value is 10 seconds.
+  - Timer tasks are only permitted when the budget is non-negative.
+  - Once a timer's code has finished running, the duration of time it took to execute is subtracted from its window's timeout budget.
+  - The budget regenerates at a rate of 10 ms per second, in both Firefox and Chrome.
 
 Some processes are exempt from this throttling behavior. In these cases, you can use the Page Visibility API to reduce the tabs' performance impact while they're hidden.
 
--   Tabs which are playing audio are considered foreground and aren’t throttled.
--   Tabs running code that's using real-time network connections ([WebSockets](websockets_api) and [WebRTC](webrtc_api)) go unthrottled in order to avoid closing these connections timing out and getting unexpectedly closed.
--   [IndexedDB](indexeddb_api) processes are also left unthrottled in order to avoid timeouts.
+- Tabs which are playing audio are considered foreground and aren’t throttled.
+- Tabs running code that's using real-time network connections ([WebSockets](websockets_api) and [WebRTC](webrtc_api)) go unthrottled in order to avoid closing these connections timing out and getting unexpectedly closed.
+- [IndexedDB](indexeddb_api) processes are also left unthrottled in order to avoid timeouts.
 
-Example
--------
+## Example
 
 View [live example](http://daniemon.com/tech/webapps/page-visibility/) (video with sound).
 
@@ -93,15 +91,14 @@ The example, which pauses the video when you switch to another tab and plays aga
 
     }
 
-Properties added to the Document interface
-------------------------------------------
+## Properties added to the Document interface
 
 The Page Visibility API adds the following properties to the [`Document`](document) interface:
 
- [`Document.hidden`](document/hidden) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span> <span class="badge inline readonly">Read only </span>   
+[`Document.hidden`](document/hidden) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span> <span class="badge inline readonly">Read only </span>  
 Returns `true` if the page is in a state considered to be hidden to the user, and `false` otherwise.
 
- [`Document.visibilityState`](document/visibilitystate) <span class="badge inline readonly">Read only </span>   
+[`Document.visibilityState`](document/visibilitystate) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) indicating the document's current visibility state. Possible values are:
 
 `visible`  
@@ -136,13 +133,11 @@ An [`EventListener`](eventlistener) providing the code to be called when the `vi
 
     document.addEventListener("visibilitychange", handleVisibilityChange, false);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/page-visibility/">Page Visibility (Second Edition)</a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -244,10 +239,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   Description of the [Page Visibility API](https://blogs.msdn.com/b/ie/archive/2011/07/08/using-pc-hardware-more-efficiently-in-html5-new-web-performance-apis-part-2.aspx) on the IEBlog.
--   Description of the [Page Visibility API](https://code.google.com/chrome/whitepapers/pagevisibility.html) by Google
+- Description of the [Page Visibility API](https://blogs.msdn.com/b/ie/archive/2011/07/08/using-pc-hardware-more-efficiently-in-html5-new-web-performance-apis-part-2.aspx) on the IEBlog.
+- Description of the [Page Visibility API](https://code.google.com/chrome/whitepapers/pagevisibility.html) by Google
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API</a>

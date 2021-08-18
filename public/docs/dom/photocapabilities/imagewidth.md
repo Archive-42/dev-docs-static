@@ -1,5 +1,4 @@
-PhotoCapabilities.imageWidth
-============================
+# PhotoCapabilities.imageWidth
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `imageWidth` read-only property of the [`PhotoCapabilities`](../photocapabilities) interface returns a [`MediaSettingsRange`](../mediasettingsrange) object indicating the image width range supported by the user agent.
 
-Syntax
-------
+## Syntax
 
     var mediaSettingsRange = photoCapabilities.imageWidth
 
@@ -17,14 +15,12 @@ Syntax
 
 A [`MediaSettingsRange`](../mediasettingsrange) is an object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-image/#dom-photocapabilities-imagewidth">MediaStream Image Capture<br />
 <span class="small">The definition of 'imageWidth' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

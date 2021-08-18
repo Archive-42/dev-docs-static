@@ -1,12 +1,10 @@
-PerformanceObserver.supportedEntryTypes
-=======================================
+# PerformanceObserver.supportedEntryTypes
 
 The `supportedEntryTypes` read-only property of the [`PerformanceObserver`](../performanceobserver) interface returns an array of the [`entryType`](../performanceentry/entrytype) values supported by the user agent.
 
 As the list of supported entries varies per browser and is evolving, this property allows web developers to check which are available.
 
-Syntax
-------
+## Syntax
 
     var supportedEntryTypes = PerformanceObserver.supportedEntryTypes;
 
@@ -14,8 +12,7 @@ Syntax
 
 An array of [`PerformanceEntry.entryType`](../performanceentry/entrytype) values.
 
-Example
--------
+## Example
 
 ### Using the console to check supported types
 
@@ -39,14 +36,12 @@ The following function checks for support of an array of possible entry types. T
 
     detectSupport(["resource", "mark", "frame"]);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/performance-timeline/#supportedentrytypes-attribute">Performance Timeline Level 2<br />
 <span class="small">The definition of 'PerformanceObserver.supportedEntryTypes' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition of <code>PerformanceObserver</code> interface.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

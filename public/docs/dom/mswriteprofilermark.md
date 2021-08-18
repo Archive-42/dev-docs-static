@@ -1,5 +1,4 @@
-msWriteProfilerMark
-===================
+# msWriteProfilerMark
 
 **Non-standard**
 
@@ -9,19 +8,18 @@ The `msWriteProfilerMark` method writes a profiling event.
 
 This proprietary method is specific to Internet Explorer and Microsoft Edge.
 
-Syntax
-------
+## Syntax
 
      window.msWriteProfilerMark("start-render");
 
 ### Parameters
 
- *bstrProfilerMarkName*\[in\]  
+_bstrProfilerMarkName_\[in\]  
 An event name. Type = **String**. This parameter may be null.
 
 ### Return value
 
-Type: **HRESULT**. If this method succeeds, it returns ***S\_OK***. Otherwise, it returns an ***HRESULT*** error code.
+Type: **HRESULT**. If this method succeeds, it returns **_S_OK_**. Otherwise, it returns an **_HRESULT_** error code.
 
 ### Notes
 
@@ -37,16 +35,14 @@ The `bstrProfilerMarkName `property has a 32-character limit when called from sc
 
 This method is useful to profile real website performance by using the operating system metrics as a baseline.
 
-Example
--------
+## Example
 
     if (msWriteProfilerMark) {
      msWriteProfilerMark("Mark1");
     }
 
-See also
---------
+## See also
 
--   [Microsoft API extensions](microsoft_extensions)
+- [Microsoft API extensions](microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/msWriteProfilerMark" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/msWriteProfilerMark</a>

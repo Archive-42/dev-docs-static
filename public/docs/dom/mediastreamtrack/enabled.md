@@ -1,5 +1,4 @@
-MediaStreamTrack.enabled
-========================
+# MediaStreamTrack.enabled
 
 The `enabled` property on the [`MediaStreamTrack`](../mediastreamtrack) interface is a Boolean value which is `true` if the track is allowed to render the source stream or `false` if it is not. This can be used to intentionally mute a track. When enabled, a track's data is output from the source to the destination; otherwise, empty frames are output.
 
@@ -9,8 +8,7 @@ The value of `enabled`, in essence, represents what a typical user would conside
 
 **Note:** If the track has been disconnected, the value of this property can be changed, but has no effect.
 
-Syntax
-------
+## Syntax
 
     const enabledFlag = track.enabled
     track.enabled = [true | false]
@@ -23,13 +21,11 @@ Empty audio frames have every sample's value set to 0. Empty video frames have e
 
 **Note:** When implementing a mute/unmute feature, you should use the `enabled` property.
 
-Usage notes
------------
+## Usage notes
 
 If the [`MediaStreamTrack`](../mediastreamtrack) represents the video input from a camera, disabling the track by setting `enabled` to `false` also updates device activity indicators to show that the camera is not currently recording or streaming. For example, the green "in use" light next to the camera in iMac and MacBook computers turns off while the track is muted in this way.
 
-Example
--------
+## Example
 
 This example demonstrates a `click` event handler for a pause button.
 
@@ -44,14 +40,12 @@ This creates a variable, `newState`, which is the opposite of the current value 
 
 Finally, the new value of `enabled` is saved, making the change take effect.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediastreamtrack-enabled">Media Capture and Streams<br />
 <span class="small">The definition of 'enabled' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -107,12 +101,11 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [MediaStream API](../media_streams_api)
--   [`MediaStream`](../mediastream)
--   [`MediaStreamTrack`](../mediastreamtrack)
--   [WebRTC](../webrtc_api)
+- [MediaStream API](../media_streams_api)
+- [`MediaStream`](../mediastream)
+- [`MediaStreamTrack`](../mediastreamtrack)
+- [WebRTC](../webrtc_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/enabled" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/enabled</a>

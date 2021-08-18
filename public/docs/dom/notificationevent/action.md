@@ -1,15 +1,12 @@
-NotificationEvent.action
-========================
+# NotificationEvent.action
 
 Returns the string ID of the notification button the user clicked. This value returns an empty string if the user clicked the notification somewhere other than an action button, or the notification does not have a button. The notification id is set during the creation of the Notification via the actions array attribute and can't be modified unless the notification is replaced.
 
-Returns
--------
+## Returns
 
 A [`DOMString`](../domstring) object.
 
-Example
--------
+## Example
 
     self.registration.showNotification("New articles available", {
       actions: [{action: "get", title: "Get now."}]
@@ -24,14 +21,12 @@ Example
       }
     }, false);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://notifications.spec.whatwg.org/#dom-notification-actions">Notifications API<br />
 <span class="small">The definition of 'action' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Living standard.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

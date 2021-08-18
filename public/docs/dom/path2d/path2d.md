@@ -1,5 +1,4 @@
-Path2D()
-========
+# Path2D()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `Path2D()` constructor returns a newly instantiated `Path2D` object, optionally with another path as an argument (creates a copy), or optionally with a string consisting of [SVG path](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths) data.
 
-Syntax
-------
+## Syntax
 
     new Path2D();
     new Path2D(path);
@@ -17,14 +15,13 @@ Syntax
 
 ### Parameters
 
- `path` <span class="badge inline optional">Optional</span>   
+`path` <span class="badge inline optional">Optional</span>  
 When invoked with another `Path2D` object, a copy of the `path` argument is created.
 
- `d` <span class="badge inline optional">Optional</span>   
+`d` <span class="badge inline optional">Optional</span>  
 When invoked with a string consisting of [SVG path](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths) data, a new path is created from that description.
 
-Examples
---------
+## Examples
 
 ### Creating and copying paths
 
@@ -52,14 +49,12 @@ This example creates a `Path2D` path using [SVG path data](https://developer.moz
     let p = new Path2D('M10 10 h 80 v 80 h -80 Z');
     ctx.fill(p);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-path2d">HTML Living Standard<br />
 <span class="small">The definition of 'Path2D()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -117,9 +112,8 @@ No
 
 3.0
 
-See also
---------
+## See also
 
--   [`Path2D`](../path2d), the interface this constructor belongs to
+- [`Path2D`](../path2d), the interface this constructor belongs to
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Path2D/Path2D" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Path2D/Path2D</a>

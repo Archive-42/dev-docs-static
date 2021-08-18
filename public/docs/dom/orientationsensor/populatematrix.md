@@ -1,5 +1,4 @@
-OrientationSensor.populateMatrix()
-==================================
+# OrientationSensor.populateMatrix()
 
 The `populateMatrix` method of the [`OrientationSensor`](../orientationsensor) interface populates the given target matrix with the rotation matrix based on the latest sensor reading. The rotation matrix is shown below.
 
@@ -7,15 +6,14 @@ The `populateMatrix` method of the [`OrientationSensor`](../orientationsensor) i
 
 where:
 
--   W = cos(θ/2)
--   X = Vx \* sin(θ/2)
--   Y = Vy \* sin(θ/2)
--   Z = Vz \* sin(θ/2)
+- W = cos(θ/2)
+- X = Vx \* sin(θ/2)
+- Y = Vy \* sin(θ/2)
+- Z = Vz \* sin(θ/2)
 
 If a feature policy blocks use of a feature it is because your code is inconsistent with the policies set on your server. This is not something that would ever be shown to a user. See [`Feature-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy) for implementation instructions.
 
-Syntax
-------
+## Syntax
 
     orientationInstance.populateMatrix(targetMatrix)
 
@@ -23,26 +21,23 @@ Because [`OrientationSensor`](../orientationsensor) is a base class, `populateMa
 
 ### Parameters
 
-*targetMatrix*  
+_targetMatrix_  
 TBD
 
 ### Return value
 
 [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 
-Example
--------
+## Example
 
     // TBD
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/orientation-sensor/#orientationsensor-populatematrix">Orientation Sensor<br />
 <span class="small">The definition of 'populateMatrix' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

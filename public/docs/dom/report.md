@@ -1,5 +1,4 @@
-Report
-======
+# Report
 
 **Experimental**
 
@@ -10,36 +9,32 @@ The `Report` interface of the [Reporting API](reporting_api) represents a single
 
 Reports can be accessed in a number of ways:
 
--   Via the [`ReportingObserver.takeRecords()`](reportingobserver/takerecords) method — this returns all reports in an observer's report queue, and then empties the queue.
--   Via the `reports` parameter of the callback function passed into the `ReportingObserver()` constructor upon creation of a new observer instance. This contains the list of reports currently contained in the observer's report queue.
--   By sending requests to the endpoints defined via the [`Report-To`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Report-To) HTTP header.
+- Via the [`ReportingObserver.takeRecords()`](reportingobserver/takerecords) method — this returns all reports in an observer's report queue, and then empties the queue.
+- Via the `reports` parameter of the callback function passed into the `ReportingObserver()` constructor upon creation of a new observer instance. This contains the list of reports currently contained in the observer's report queue.
+- By sending requests to the endpoints defined via the [`Report-To`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Report-To) HTTP header.
 
-Properties
-----------
+## Properties
 
- [`Report.body`](report/body) <span class="badge inline readonly">Read only </span>   
+[`Report.body`](report/body) <span class="badge inline readonly">Read only </span>  
 The body of the report, which is a `ReportBody` object containing the detailed report information.
 
- [`Report.type`](report/type) <span class="badge inline readonly">Read only </span>   
+[`Report.type`](report/type) <span class="badge inline readonly">Read only </span>  
 The type of report generated, e.g. `deprecation` or `intervention`.
 
- [`Report.url`](report/url) <span class="badge inline readonly">Read only </span>   
+[`Report.url`](report/url) <span class="badge inline readonly">Read only </span>  
 The URL of the document that generated the report.
 
-Methods
--------
+## Methods
 
-*This interface has no methods defined on it.*
+_This interface has no methods defined on it._
 
-Events
-------
+## Events
 
-*This interface has no events that fire on it.*
+_This interface has no events that fire on it._
 
-Examples
---------
+## Examples
 
-In our [deprecation\_report.html](https://mdn.github.io/dom-examples/reporting-api/deprecation_report.html) example, we create a simple reporting observer to observe usage of deprecated features on our web page:
+In our [deprecation_report.html](https://mdn.github.io/dom-examples/reporting-api/deprecation_report.html) example, we create a simple reporting observer to observe usage of deprecated features on our web page:
 
     let options = {
       types: ['deprecation'],
@@ -84,21 +79,18 @@ The report details are displayed via the `displayReports()` fuction, which takes
 
 The `reports` parameter contains an array of all the reports in the observer's report queue. We loop over each report using a basic `for` loop, then iterate over each entry of in the report's body using a `for...in` structure, displaying each key/value pair inside a list item.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/reporting/#dom-report">Reporting API<br />
 <span class="small">The definition of 'Report' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.Report`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).
 
-See also
---------
+## See also
 
--   [Reporting API](reporting_api)
+- [Reporting API](reporting_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Report" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Report</a>

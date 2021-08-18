@@ -1,5 +1,4 @@
-PublicKeyCredential.response
-============================
+# PublicKeyCredential.response
 
 **Secure context**
 
@@ -9,20 +8,19 @@ The `response` read-only property of the [`PublicKeyCredential`](../publickeycre
 
 An `AuthenticatorResponse` is either:
 
--   an [`AuthenticatorAttestationResponse`](../authenticatorattestationresponse) (when the `PublicKeyCredential` is created via [`CredentialsContainer.create()`](../credentialscontainer/create))
--   an [`AuthenticatorAssertionResponse`](../authenticatorassertionresponse) (when the `PublicKeyCredential` is obtained via [`CredentialsContainer.get()`](../credentialscontainer/get)).
+- an [`AuthenticatorAttestationResponse`](../authenticatorattestationresponse) (when the `PublicKeyCredential` is created via [`CredentialsContainer.create()`](../credentialscontainer/create))
+- an [`AuthenticatorAssertionResponse`](../authenticatorassertionresponse) (when the `PublicKeyCredential` is obtained via [`CredentialsContainer.get()`](../credentialscontainer/get)).
 
-In order to validate the *creation* of credentials, a relying party's server needs both:
+In order to validate the _creation_ of credentials, a relying party's server needs both:
 
--   this response
--   the extensions of the client (given by [`PublicKeyCredential.getClientExtensionResults()`](getclientextensionresults)) to validate the demand.
+- this response
+- the extensions of the client (given by [`PublicKeyCredential.getClientExtensionResults()`](getclientextensionresults)) to validate the demand.
 
 **Note:** When validating the fetching of existing credentials, the whole `PublicKeyCredential` object and the client extensions are necessary for the relying party's server.
 
 **Note:** This property may only be used in top-level contexts and will not be available in an [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) for example.
 
-Syntax
-------
+## Syntax
 
     response = publicKeyCredential.response
 
@@ -30,8 +28,7 @@ Syntax
 
 An [`AuthenticatorResponse`](../authenticatorresponse) object containing the data a relying party's script will receive and which should be sent to the relying party's server in order to validate the demand for creation or fetching. This object contains data from the client ([`AuthenticatorResponse/clientDataJSON`](../authenticatorresponse/clientdatajson)) and from the authenticator.
 
-Examples
---------
+## Examples
 
     var options = {
       challenge: new Uint8Array(16) /* from the server */,
@@ -63,14 +60,12 @@ Examples
       // Deal with any error
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#dom-publickeycredential-response">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'response' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

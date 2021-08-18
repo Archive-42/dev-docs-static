@@ -1,11 +1,8 @@
-RTCIceCandidateStats.deleted
-============================
+# RTCIceCandidateStats.deleted
 
-  
 The [`RTCIceCandidateStats`](../rtcicecandidatestats) dictionary's `deleted` property indicates whether or not the candidate has been deleted or released.
 
-Syntax
-------
+## Syntax
 
     isDeleted = rtcIceCandidateStats.deleted;
 
@@ -24,8 +21,7 @@ A value of `true` means the candidate's [TURN](https://developer.mozilla.org/en-
 
 The net result is the same; the candidate is no longer under consideration if this value is `true`.
 
-Example
--------
+## Example
 
 In this example, [`setInterval()`](../windoworworkerglobalscope/setinterval) is used to set up a function that runs periodically to display the latest statistics for candidates. Only candidates which have not been deleted are included in the output.
 
@@ -53,14 +49,12 @@ In this example, [`setInterval()`](../windoworworkerglobalscope/setinterval) is 
       });
     }, 1000);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcicecandidatestats-deleted">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCIceCandidateStats.deleted' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-PaymentRequestEvent.instrumentKey
-=================================
+# PaymentRequestEvent.instrumentKey
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `instrumentKey` read-only property of the [`PaymentRequestEvent`](../paymentrequestevent) interface returns a <span class="page-not-created">`PaymentInstrument`</span> object reflecting the payment instrument selected by the user or an empty string if the user has not registered or chosen a payment instrument.
 
-Syntax
-------
+## Syntax
 
     var instrumentKey = paymentRequestEvent.instrumentKey
 
@@ -17,14 +15,12 @@ Syntax
 
 A <span class="page-not-created">`PaymentInstrument`</span> object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-handler/#instrumentkey-attribute">Payment Handler API<br />
 <span class="small">The definition of 'instrumentKey' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-MerchantValidationEvent
-=======================
+# MerchantValidationEvent
 
 **Deprecated**
 
@@ -17,29 +16,25 @@ The `MerchantValidationEvent` interface of the [Payment Request API](payment_req
 
 To learn more about merchant validation, see [Merchant validation](payment_request_api/concepts#merchant_validation) in [Payment processing concepts](payment_request_api/concepts).
 
-Constructor
------------
+## Constructor
 
- [`MerchantValidationEvent()`](merchantvalidationevent/merchantvalidationevent) <span class="notecard inline secure">Secure context</span>   
+[`MerchantValidationEvent()`](merchantvalidationevent/merchantvalidationevent) <span class="notecard inline secure">Secure context</span>  
 Creates a new `MerchantValidationEvent` object describing a `merchantvalidation` event that will be sent to the payment handler to request that it validate the merchant.
 
-Properties
-----------
+## Properties
 
- [`MerchantValidationEvent.methodName`](merchantvalidationevent/methodname) <span class="notecard inline secure">Secure context</span>   
+[`MerchantValidationEvent.methodName`](merchantvalidationevent/methodname) <span class="notecard inline secure">Secure context</span>  
 A [`DOMString`](domstring) providing a unique payment method identifier for the payment handler that's requiring validation. This may be either one of the standard payment method identifier strings or a URL that both identifies and handles requests for the payment handler, such as `https://apple.com/apple-pay`.
 
- [`MerchantValidationEvent.validationURL`](merchantvalidationevent/validationurl) <span class="notecard inline secure">Secure context</span>   
+[`MerchantValidationEvent.validationURL`](merchantvalidationevent/validationurl) <span class="notecard inline secure">Secure context</span>  
 A [`USVString`](usvstring) specifying a URL from which the site or app can fetch payment handler specific validation information. Once this data is retrieved, the data (or a promise resolving to the validation data) should be passed into [`complete()`](merchantvalidationevent/complete) to validate that the payment request is coming from an authorized merchant.
 
-Methods
--------
+## Methods
 
- [`MerchantValidationEvent.complete()`](merchantvalidationevent/complete) <span class="notecard inline secure">Secure context</span>   
+[`MerchantValidationEvent.complete()`](merchantvalidationevent/complete) <span class="notecard inline secure">Secure context</span>  
 Pass the data retrieved from the URL specified by [`validationURL`](merchantvalidationevent/validationurl) into `complete()` to complete the validation process for the [`PaymentRequest`](paymentrequest).
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-MediaStreamTrackAudioSourceNode
-===============================
+# MediaStreamTrackAudioSourceNode
 
 The `MediaStreamTrackAudioSourceNode` interface is a type of [`AudioNode`](audionode) which represents a source of audio data taken from a specific [`MediaStreamTrack`](mediastreamtrack) obtained through the [WebRTC](webrtc_api) or [Media Capture and Streams](media_streams_api) APIs. The audio itself might be input from a microphone or other audio sampling device, or might be received through a [`RTCPeerConnection`](rtcpeerconnection), among other posible options.
 
@@ -7,24 +6,20 @@ A `MediaStreamTrackAudioSourceNode` has no inputs and exactly one output, and is
 
 <table><tbody><tr class="odd"><td>Number of inputs</td><td><code>0</code></td></tr><tr class="even"><td>Number of outputs</td><td><code>1</code></td></tr><tr class="odd"><td>Channel count</td><td>defined by the first audio <a href="mediastreamtrack"><code>MediaStreamTrack</code></a> passed to the <a href="audiocontext/createmediastreamtracksource"><code>AudioContext.createMediaStreamTrackSource()</code></a> method that created it.</td></tr></tbody></table>
 
-Constructor
------------
+## Constructor
 
 [`new MediaStreamTrackAudioSourceNode()`](mediastreamtrackaudiosourcenode/mediastreamtrackaudiosourcenode)  
 Creates a new `MediaStreamTrackAudioSourceNode` object instance with the specified options.
 
-Properties
-----------
+## Properties
 
-*The `MediaStreamTrackAudioSourceNode` interface has no properties of its own; however, it inherits the properties of its parent, [`AudioNode`](audionode).*
+_The `MediaStreamTrackAudioSourceNode` interface has no properties of its own; however, it inherits the properties of its parent, [`AudioNode`](audionode)._
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`AudioNode`](audionode)*.
+_Inherits methods from its parent, [`AudioNode`](audionode)_.
 
-Example
--------
+## Example
 
 In this example, we grab a media (audio + video) stream from [`navigator.getUserMedia`](navigator/getusermedia), feed the media into a [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) element to play then mute the audio, but then also feed the audio into a [`MediaStreamAudioSourceNode`](mediastreamaudiosourcenode). Next, we feed this source audio into a low pass [`BiquadFilterNode`](biquadfilternode) (which effectively serves as a bass booster), then a [`AudioDestinationNode`](audiodestinationnode).
 
@@ -88,14 +83,12 @@ The range slider below the [`<video>`](https://developer.mozilla.org/en-US/docs/
 
 **Note**: As a consequence of calling `createMediaStreamSource()`, audio playback from the media stream will be re-routed into the processing graph of the [`AudioContext`](audiocontext). So playing/pausing the stream can still be done through the media element API and the player controls.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#mediastreamtrackaudiosourcenode">Web Audio API<br />
 <span class="small">The definition of 'MediaStreamTrackAudioSourceNode' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -207,12 +200,11 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](web_audio_api/using_web_audio_api)
--   [WebRTC API](webrtc_api)
--   [Media Capture and Streams API (Media Streams)](media_streams_api)
--   [`MediaStreamAudioSourceNode`](mediastreamaudiosourcenode)
+- [Using the Web Audio API](web_audio_api/using_web_audio_api)
+- [WebRTC API](webrtc_api)
+- [Media Capture and Streams API (Media Streams)](media_streams_api)
+- [`MediaStreamAudioSourceNode`](mediastreamaudiosourcenode)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrackAudioSourceNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrackAudioSourceNode</a>

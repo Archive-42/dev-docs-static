@@ -1,5 +1,4 @@
-msIsBoxed
-=========
+# msIsBoxed
 
 **Non-standard**
 
@@ -11,16 +10,14 @@ This proprietary property is specific to Internet Explorer and Microsoft Edge.
 
 Returns true if the video is in letterbox or pillarbox mode. Letterbox format displays black bars on the top and bottom of a video to fill in between the wide screen format of a video, and the aspect ratio of the screen. Typically the video's left and right edges go to the full width of the screen. Pillarbox format displays black bars on the left and right of a video to fill in the difference between a video and a wider screen. With pillarbox format, the top and bottom edges of the video go to the full height of the screen.
 
-Syntax
-------
+## Syntax
 
     isBoxed = object.msIsBoxed
 
-Value
------
+## Value
 
-Boolean value set to *true* activates boxed mode for the video player.
+Boolean value set to _true_ activates boxed mode for the video player.
 
-Boolean value set to *false* means the video player is zoomed to fill the screen.
+Boolean value set to _false_ means the video player is zoomed to fill the screen.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MsIsBoxed" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MsIsBoxed</a>

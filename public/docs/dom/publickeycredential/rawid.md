@@ -1,5 +1,4 @@
-PublicKeyCredential.rawId
-=========================
+# PublicKeyCredential.rawId
 
 **Secure context**
 
@@ -11,8 +10,7 @@ The [`PublicKeyCredential.id`](id) property is a [base64url encoded](https://dev
 
 **Note:** This property may only be used in top-level contexts and will not be available in an [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) for example.
 
-Syntax
-------
+## Syntax
 
     rawId = publicKeyCredential.rawId
 
@@ -20,8 +18,7 @@ Syntax
 
 A [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) containing the identifier of the credentials. This identifier is expected to be globally unique and is appointed for the current `PublicKeyCredential` and its associated [`AuthenticatorAssertionResponse`](../authenticatorassertionresponse).
 
-Examples
---------
+## Examples
 
     var options = {
       challenge: new Uint8Array(26) /* from the server */,
@@ -50,14 +47,12 @@ Examples
       // Deal with any error
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#dom-publickeycredential-rawid">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'rawId' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

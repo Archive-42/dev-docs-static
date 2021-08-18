@@ -1,5 +1,4 @@
-Navigator.getVRDisplays()
-=========================
+# Navigator.getVRDisplays()
 
 **Deprecated**
 
@@ -7,8 +6,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `getVRDisplays()` method of the [`Navigator`](../navigator) interface returns a promise that resolves to an array of [`VRDisplay`](../vrdisplay) objects representing any available VR displays connected to the computer.
 
-Syntax
-------
+## Syntax
 
     navigator.getVRDisplays().then(function(displays) {
       // Do something with the available VR displays
@@ -22,8 +20,7 @@ None.
 
 A promise that resolves to an array of [`VRDisplay`](../vrdisplay) objects.
 
-Examples
---------
+## Examples
 
     if(navigator.getVRDisplays) {
       console.log('WebVR 1.1 supported');
@@ -39,14 +36,12 @@ Examples
 
 **Note**: You can see this complete code at [raw-webgl-example](https://github.com/mdn/webvr-tests/blob/master/raw-webgl-example/webgl-demo.js).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://immersive-web.github.io/webvr/spec/1.1/#navigator-getvrdisplays-attribute">WebVR 1.1<br />
 <span class="small">The definition of 'getVRDisplays()' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -114,10 +109,9 @@ Yes-13.0
 
 Currently supported only by Google Daydream.
 
-See also
---------
+## See also
 
--   [WebVR API homepage](../webvr_api)
--   <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
+- [WebVR API homepage](../webvr_api)
+- <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getVRDisplays" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getVRDisplays</a>

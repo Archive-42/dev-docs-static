@@ -1,10 +1,8 @@
-RTCIceCandidatePairStats.consentRequestsSent
-============================================
+# RTCIceCandidatePairStats.consentRequestsSent
 
 The [`RTCIceCandidatePairStats`](../rtcicecandidatepairstats) property `consentRequestsSent` specifies the number of consent requests that have been sent by this peer to the remote peer on the connection described by the pair of candidates.
 
-Syntax
-------
+## Syntax
 
     consentRequestsSent = rtcIceCandidatePairStats.consentRequestsSent;
 
@@ -12,14 +10,12 @@ Syntax
 
 An integer indicating the number of consent requests this peer has sent to the other peer over the connection described by the pair of candidates referenced by this `RTCIceCandidatePairStats` object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcicecandidatepairstats-consentrequestssent">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCIceCandidatePairStats.consentRequestsSent' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

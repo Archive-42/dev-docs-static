@@ -1,5 +1,4 @@
-MIDIInput
-=========
+# MIDIInput
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 Use the `MIDIInput` interface of the [Web MIDI API](web_midi_api) to access and pass messages to a MIDI input port.
 
-Properties
-----------
+## Properties
 
 None.
 
@@ -18,13 +16,11 @@ None.
 <span class="page-not-created">`MIDIInput.onmidimessage`</span>  
 When the current port receives a <span class="page-not-created">`MIDIMessage`</span> it triggers a call to this event handler.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-midi-api/#midiinput-interface">Web MIDI API</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

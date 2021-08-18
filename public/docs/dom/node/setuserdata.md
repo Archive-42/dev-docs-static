@@ -1,5 +1,4 @@
-Node.setUserData()
-==================
+# Node.setUserData()
 
 **Deprecated**
 
@@ -11,19 +10,17 @@ This method offers the convenience of associating data with specific nodes witho
 
 The `Node.getUserData` and [`Node.setUserData`](setuserdata) methods are no longer available from Web content. [`HTMLElement.dataset`](../htmlorforeignelement/dataset) or [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) can be used instead.
 
-Syntax
-------
+## Syntax
 
     var prevUserData = someNode.setUserData(userKey, userData, handler);
 
 ### Parameters
 
--   `userKey` is used as the key by which one may subsequently obtain the stored data. More than one key can be set for a given node.
--   `handler` is a callback which will be called any time the node is being cloned, imported, renamed, as well as if deleted or adopted; a function can be used or an object implementing the `handle` method (part of the [`UserDataHandler`](../userdatahandler) interface). The handler will be passed five arguments: an operation type integer (e.g., 1 to indicate a clone operation), the user key, the data on the node, the source node (`null` if being deleted), the destination node (the newly created node or `null` if none).If no handler is desired, one must specify `null`.
--   `userData` is the object to associate to `userKey` on someNode. If `null`, any previously registered object and UserDataHandler associated to `userKey` on this node will be removed.
+- `userKey` is used as the key by which one may subsequently obtain the stored data. More than one key can be set for a given node.
+- `handler` is a callback which will be called any time the node is being cloned, imported, renamed, as well as if deleted or adopted; a function can be used or an object implementing the `handle` method (part of the [`UserDataHandler`](../userdatahandler) interface). The handler will be passed five arguments: an operation type integer (e.g., 1 to indicate a clone operation), the user key, the data on the node, the source node (`null` if being deleted), the destination node (the newly created node or `null` if none).If no handler is desired, one must specify `null`.
+- `userData` is the object to associate to `userKey` on someNode. If `null`, any previously registered object and UserDataHandler associated to `userKey` on this node will be removed.
 
-Example
--------
+## Example
 
     var d = document.implementation.createDocument('', 'test', null);
     d.documentElement.setUserData('key', 15, {handle:function (o, k, d, s, ds) {console.log(o+'::'+k+'::'+d+'::'+s+'::'+ds)}}); // 2::key::15::[object Element]::[object Element]
@@ -31,14 +28,12 @@ Example
     var e = document.importNode(d.documentElement, true); // causes handler to be called
     console.log(e.getUserData('key')); // null since user data is not copied
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#Node3-setUserData">Document Object Model (DOM) Level 3 Core Specification<br />
 <span class="small">The definition of 'Node.setUserData()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -94,11 +89,10 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`Node.getUserData()`](getuserdata)
--   [`UserDataHandler`](../userdatahandler)
--   [`DOMUserData`](../domuserdata)
+- [`Node.getUserData()`](getuserdata)
+- [`UserDataHandler`](../userdatahandler)
+- [`DOMUserData`](../domuserdata)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/setUserData" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/setUserData</a>

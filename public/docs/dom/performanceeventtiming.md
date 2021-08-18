@@ -1,47 +1,45 @@
-PerformanceEventTiming
-======================
+# PerformanceEventTiming
 
 The `PerformanceEventTiming` interface of the Event Timing API provides timing information for the event types listed below.
 
--   `auxclick`
--   `beforeinput`
--   `click`
--   `compositionend`
--   `compositionstart`
--   `compositionupdate`
--   `contextmenu`
--   `dblclick`
--   `dragend`
--   `dragenter`
--   `dragleave`
--   `dragover`
--   `dragstart`
--   `drop`
--   `input`
--   `keydown`
--   `keypress`
--   `keyup`
--   `mousedown`
--   `mouseenter`
--   `mouseleave`
--   `mouseout`
--   `mouseover`
--   `mouseup`
--   `pointerover`
--   `pointerenter`
--   `pointerdown`
--   `pointerup`
--   `pointercancel`
--   `pointerout`
--   `pointerleave`
--   `gotpointercapture`
--   `lostpointercapture`
--   `touchstart`
--   `touchend`
--   `touchcancel`
+- `auxclick`
+- `beforeinput`
+- `click`
+- `compositionend`
+- `compositionstart`
+- `compositionupdate`
+- `contextmenu`
+- `dblclick`
+- `dragend`
+- `dragenter`
+- `dragleave`
+- `dragover`
+- `dragstart`
+- `drop`
+- `input`
+- `keydown`
+- `keypress`
+- `keyup`
+- `mousedown`
+- `mouseenter`
+- `mouseleave`
+- `mouseout`
+- `mouseover`
+- `mouseup`
+- `pointerover`
+- `pointerenter`
+- `pointerdown`
+- `pointerup`
+- `pointercancel`
+- `pointerout`
+- `pointerleave`
+- `gotpointercapture`
+- `lostpointercapture`
+- `touchstart`
+- `touchend`
+- `touchcancel`
 
-Properties
-----------
+## Properties
 
 `PerformanceEventTiming.processingStart`  
 Returns the time at which event dispatch started.
@@ -55,14 +53,12 @@ Returns the associated event's cancelable attribute.
 `PerformanceEventTiming.target`  
 Returns the associated event's last target, if it is not removed.
 
-Methods
--------
+## Methods
 
 `PerformanceEventTiming.toJSON()`  
 Converts the PerformanceEventTiming object to JSON.
 
-Examples
---------
+## Examples
 
 The following example shows how to use the API for all events:
 
@@ -130,14 +126,12 @@ We can also directly query the [first input delay](https://web.dev/fid). The fir
       // Do nothing if the browser doesn't support this API.
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/event-timing/#sec-performance-event-timing">Event Timing API<br />
 <span class="small">The definition of 'PerformanceEventTiming' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-PaymentRequest.shippingOption
-=============================
+# PaymentRequest.shippingOption
 
 **Secure context**
 
@@ -14,14 +13,12 @@ The `shippingOption` read-only attribute of the [`PaymentRequest`](../paymentreq
 
 This attribute is only populated if the constructor is called with the `requestShipping` flag set to `true`. If `requestShipping` was `false` (or missing), `shippingOption` returns `null`, even the developer provides a selected a shipping option.
 
-Syntax
-------
+## Syntax
 
     // Returns the id of the selected PaymentShippingOption
-    var shippingOption = request.shippingOption; 
+    var shippingOption = request.shippingOption;
 
-Example
--------
+## Example
 
 In the example below, the [`PaymentRequest.onshippingoptionchange`](onshippingoptionchange) and the <span class="page-not-created">`PaymentRequest.onshippingaoptionchange`</span> events are dispatched. In each calls to `updateDetails()` are made, one using a promise, and the other with a plain JS object. This demotrates synchrounous and asynchronous updates to a payment sheet.
 
@@ -55,14 +52,12 @@ In the example below, the [`PaymentRequest.onshippingoptionchange`](onshippingop
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#shippingoption-attribute">Payment Request API<br />
 <span class="small">The definition of 'shippingOption' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-ResizeObserver
-==============
+# ResizeObserver
 
 The `ResizeObserver` interface reports changes to the dimensions of an [`Element`](element)'s content or border box, or the bounding box of an [`SVGElement`](svgelement).
 
@@ -7,19 +6,16 @@ The `ResizeObserver` interface reports changes to the dimensions of an [`Element
 
 `ResizeObserver` avoids infinite callback loops and cyclic dependencies that are often created when resizing via a callback function. It does this by only processing elements deeper in the DOM in subsequent frames. Implementations should, if they follow the specification, invoke resize events before paint and after layout.
 
-Constructor
------------
+## Constructor
 
 [`ResizeObserver()`](resizeobserver/resizeobserver)  
 Creates and returns a new `ResizeObserver` object.
 
-Properties
-----------
+## Properties
 
 None.
 
-Methods
--------
+## Methods
 
 [`ResizeObserver.disconnect()`](resizeobserver/disconnect)  
 Unobserves all observed [`Element`](element) targets of a particular observer.
@@ -30,8 +26,7 @@ Initiates the observing of a specified [`Element`](element).
 [`ResizeObserver.unobserve()`](resizeobserver/unobserve)  
 Ends the observing of a specified [`Element`](element).
 
-Examples
---------
+## Examples
 
 In the [resize-observer-text.html](https://mdn.github.io/dom-examples/resize-observer/resize-observer-text.html) ([see source](https://github.com/mdn/dom-examples/blob/master/resize-observer/resize-observer-text.html)) example, we use the resize observer to change the [`font-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size) of a header and paragraph as a slider’s value is changed causing the containing `<div>` to change width. This shows that you can respond to changes in an element’s size, even if they have nothing to do with the viewport.
 
@@ -56,7 +51,7 @@ The JavaScript looks like so:
         if(entry.contentBoxSize) {
           // Firefox implements `contentBoxSize` as a single content rect, rather than an array
           const contentBoxSize = Array.isArray(entry.contentBoxSize) ? entry.contentBoxSize[0] : entry.contentBoxSize;
-          
+
           h1Elem.style.fontSize = Math.max(1.5, contentBoxSize.inlineSize / 200) + 'rem';
           pElem.style.fontSize = Math.max(1, contentBoxSize.inlineSize / 600) + 'rem';
         } else {
@@ -64,7 +59,7 @@ The JavaScript looks like so:
           pElem.style.fontSize = Math.max(1, entry.contentRect.width / 600) + 'rem';
         }
       }
-      
+
       console.log('Size changed');
     });
 
@@ -78,14 +73,12 @@ The JavaScript looks like so:
       }
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/resize-observer/#resize-observer-interface">Resize Observer<br />
 <span class="small">The definition of 'ResizeObserver' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -245,11 +238,10 @@ No
 
 9.0
 
-See also
---------
+## See also
 
--   [The box model](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model)
--   [`PerformanceObserver`](performanceobserver)
--   [`IntersectionObserver`](intersectionobserver) (part of the [Intersection Observer API](intersection_observer_api))
+- [The box model](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model)
+- [`PerformanceObserver`](performanceobserver)
+- [`IntersectionObserver`](intersectionobserver) (part of the [Intersection Observer API](intersection_observer_api))
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver</a>

@@ -1,60 +1,53 @@
-MessageEvent
-============
+# MessageEvent
 
 The `MessageEvent` interface represents a message received by a target object.
 
 This is used to represent messages in:
 
--   [Server-sent events](server-sent_events) (see [`EventSource.onmessage`](eventsource/onmessage)).
--   [Web sockets](websockets_api) (see the `onmessage` property of the [WebSocket](websocket) interface).
--   Cross-document messaging (see [`Window.postMessage()`](window/postmessage) and <span class="page-not-created">`Window.onmessage`</span>).
--   [Channel messaging](channel_messaging_api) (see [`MessagePort.postMessage()`](messageport/postmessage) and [`MessagePort.onmessage`](messageport/onmessage)).
--   Cross-worker/document messaging (see the above two entries, but also [`Worker.postMessage()`](worker/postmessage), [`Worker.onmessage`](worker/onmessage), [`ServiceWorkerGlobalScope.onmessage`](serviceworkerglobalscope/onmessage), etc.)
--   [Broadcast channels](broadcast_channel_api) (see [`Broadcastchannel.postMessage()`](broadcastchannel/postmessage)) and [`BroadcastChannel.onmessage`](broadcastchannel/onmessage)).
--   WebRTC data channels (see [`RTCDataChannel.onmessage`](rtcdatachannel/onmessage)).
+- [Server-sent events](server-sent_events) (see [`EventSource.onmessage`](eventsource/onmessage)).
+- [Web sockets](websockets_api) (see the `onmessage` property of the [WebSocket](websocket) interface).
+- Cross-document messaging (see [`Window.postMessage()`](window/postmessage) and <span class="page-not-created">`Window.onmessage`</span>).
+- [Channel messaging](channel_messaging_api) (see [`MessagePort.postMessage()`](messageport/postmessage) and [`MessagePort.onmessage`](messageport/onmessage)).
+- Cross-worker/document messaging (see the above two entries, but also [`Worker.postMessage()`](worker/postmessage), [`Worker.onmessage`](worker/onmessage), [`ServiceWorkerGlobalScope.onmessage`](serviceworkerglobalscope/onmessage), etc.)
+- [Broadcast channels](broadcast_channel_api) (see [`Broadcastchannel.postMessage()`](broadcastchannel/postmessage)) and [`BroadcastChannel.onmessage`](broadcastchannel/onmessage)).
+- WebRTC data channels (see [`RTCDataChannel.onmessage`](rtcdatachannel/onmessage)).
 
 The action triggered by this event is defined in a function set as the event handler for the relevant `message` event (e.g. using an `onmessage` handler as listed above).
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-  
-
-Constructor
------------
+## Constructor
 
 [`MessageEvent()`](messageevent/messageevent)  
 Creates a new `MessageEvent`.
 
-Properties
-----------
+## Properties
 
-*This interface also inherits properties from its parent, [`Event`](event).*
+_This interface also inherits properties from its parent, [`Event`](event)._
 
- [`MessageEvent.data`](messageevent/data) <span class="badge inline readonly">Read only </span>   
+[`MessageEvent.data`](messageevent/data) <span class="badge inline readonly">Read only </span>  
 The data sent by the message emitter.
 
- [`MessageEvent.origin`](messageevent/origin) <span class="badge inline readonly">Read only </span>   
+[`MessageEvent.origin`](messageevent/origin) <span class="badge inline readonly">Read only </span>  
 A [`USVString`](usvstring) representing the origin of the message emitter.
 
- [`MessageEvent.lastEventId`](messageevent/lasteventid) <span class="badge inline readonly">Read only </span>   
+[`MessageEvent.lastEventId`](messageevent/lasteventid) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) representing a unique ID for the event.
 
- [`MessageEvent.source`](messageevent/source) <span class="badge inline readonly">Read only </span>   
+[`MessageEvent.source`](messageevent/source) <span class="badge inline readonly">Read only </span>  
 A `MessageEventSource` (which can be a <span class="page-not-created">`WindowProxy`</span>, [`MessagePort`](messageport), or [`ServiceWorker`](serviceworker) object) representing the message emitter.
 
- [`MessageEvent.ports`](messageevent/ports) <span class="badge inline readonly">Read only </span>   
+[`MessageEvent.ports`](messageevent/ports) <span class="badge inline readonly">Read only </span>  
 An array of [`MessagePort`](messageport) objects representing the ports associated with the channel the message is being sent through (where appropriate, e.g. in channel messaging or when sending a message to a shared worker).
 
-Methods
--------
+## Methods
 
-*This interface also inherits methods from its parent, [`Event`](event).*
+_This interface also inherits methods from its parent, [`Event`](event)._
 
- <span class="page-not-created">`initMessageEvent()`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`initMessageEvent()`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Initializes a message event. **Do not use this anymore** — **use the [`MessageEvent()`](messageevent/messageevent) constructor instead.**
 
-Examples
---------
+## Examples
 
 In our [Basic shared worker example](https://github.com/mdn/simple-shared-worker) ([run shared worker](https://mdn.github.io/simple-shared-worker/)), we have two HTML pages, each of which uses some JavaScript to perform a simple calculation. The different scripts are using the same worker file to perform the calculation — they can both access it, even if their pages are running inside different windows.
 
@@ -96,14 +89,12 @@ Inside the worker we use the [`SharedWorkerGlobalScope.onconnect`](sharedworkerg
       port.start(); // Required when using addEventListener. Otherwise called implicitly by onmessage setter.
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#messageevent">HTML Living Standard<br />
 <span class="small">The definition of 'MessageEvent' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -341,9 +332,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`ExtendableMessageEvent`](extendablemessageevent) — similar to this interface but used in interfaces that needs to give more flexibility to authors.
+- [`ExtendableMessageEvent`](extendablemessageevent) — similar to this interface but used in interfaces that needs to give more flexibility to authors.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent</a>

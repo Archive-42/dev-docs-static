@@ -1,5 +1,4 @@
-RTCIdentityAssertion
-====================
+# RTCIdentityAssertion
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `RTCIdentityAssertion` interface of the [WebRTC API](webrtc_api) represents the identity of the a remote peer of the current connection. If no peer has yet been set and verified this interface returns `null`. Once set it can't be changed.
 
-Properties
-----------
+## Properties
 
 <span class="page-not-created">`RTCIdentityAssertion.idp`</span>  
 Indicates the provider of the identity assertion.
@@ -17,13 +15,11 @@ Indicates the provider of the identity assertion.
 <span class="page-not-created">`RTCIdentityAssertion.name`</span>  
 Indicates the name of the identity assertion provider.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/">WebRTC 1.0: Real-time Communication Between Browsers</a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-PointerEvent.getCoalescedEvents()
-=================================
+# PointerEvent.getCoalescedEvents()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `getCoalescedEvents()` method of the [`PointerEvent`](../pointerevent) interface returns a sequence of all `PointerEvent` instances that were coalesced into the dispatched `pointermove` event.
 
-Syntax
-------
+## Syntax
 
     var pointerEvents[] = PointerEvent.getCoalescedEvents()
 
@@ -21,14 +19,12 @@ None.
 
 A sequence of [`PointerEvent`](../pointerevent) instances.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/pointerevents/#dom-pointerevent-getcoalescedevents">Pointer Events – Level 3<br />
 <span class="small">The definition of 'getCoalescedEvents()' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

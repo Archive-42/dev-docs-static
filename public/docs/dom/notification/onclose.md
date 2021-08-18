@@ -1,5 +1,4 @@
-Notification.onclose
-====================
+# Notification.onclose
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
@@ -9,13 +8,11 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `onclose` property of the [`Notification`](../notification) interface specifies an event listener to receive [`close`](../htmldialogelement/close_event) events. These events occur when a [`Notification`](../notification) is closed.
 
-Syntax
-------
+## Syntax
 
     Notification.onclose = function() { ... };
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -71,10 +68,9 @@ No
 
 Yes
 
-See also
---------
+## See also
 
--   [`Notification`](../notification)
--   [Using the Notifications API](../notifications_api/using_the_notifications_api)
+- [`Notification`](../notification)
+- [Using the Notifications API](../notifications_api/using_the_notifications_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification/onclose" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Notification/onclose</a>

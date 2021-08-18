@@ -1,5 +1,4 @@
-ReportingObserver.observe()
-===========================
+# ReportingObserver.observe()
 
 **Experimental**
 
@@ -8,13 +7,11 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `observe()` method of the [`ReportingObserver`](../reportingobserver) interface instructs a reporting observer to start collecting reports in its report queue.
 
-Syntax
-------
+## Syntax
 
     reportingObserverInstance.observe()
 
-Examples
---------
+## Examples
 
     let options = {
       types: ['deprecation'],
@@ -27,14 +24,12 @@ Examples
 
     observer.observe()
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/reporting/#dom-reportingobserver-observe">Reporting API<br />
 <span class="small">The definition of 'ReportingObserver.observe()' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -90,9 +85,8 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   [Reporting API](../reporting_api)
+- [Reporting API](../reporting_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReportingObserver/observe" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ReportingObserver/observe</a>

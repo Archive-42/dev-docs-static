@@ -1,5 +1,4 @@
-MediaTrackSettings.noiseSuppression
-===================================
+# MediaTrackSettings.noiseSuppression
 
 The [`MediaTrackSettings`](../mediatracksettings) dictionary's `noiseSuppression` property is a Boolean value whose value indicates whether or not noise suppression technology is enabled on an audio track. This lets you determine what value was selected to comply with your specified constraints for this property's value as described in the [`MediaTrackConstraints.noiseSuppression`](../mediatrackconstraints/noisesuppression) property you provided when calling either [`getUserMedia()`](../mediadevices/getusermedia) or [`MediaStreamTrack.applyConstraints()`](../mediastreamtrack/applyconstraints).
 
@@ -7,8 +6,7 @@ Noise suppression automatically filters the audio to remove background noise, hu
 
 If needed, you can determine whether or not this constraint is supported by checking the value of [`MediaTrackSupportedConstraints.noiseSuppression`](../mediatracksupportedconstraints/noisesuppression) as returned by a call to [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints). However, typically this is unnecessary since browsers will ignore any constraints they're unfamiliar with.
 
-Syntax
-------
+## Syntax
 
     var noiseSuppression = MediaTrackSettings.noiseSuppression;
 
@@ -16,19 +14,16 @@ Syntax
 
 A Boolean value which is `true` if the input track has noise suppression enabled or `false` if AGC is disabled.
 
-Example
--------
+## Example
 
 See [Example: Constraint exerciser](#) in [Capabilities, constraints, and settings](../media_streams_api/constraints) for an example.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediatracksettings-noisesuppression">Media Capture and Streams<br />
 <span class="small">The definition of 'noiseSuppression' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,12 +83,11 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Media Capture and Streams API](../media_streams_api)
--   [Capabilities, constraints, and settings](../media_streams_api/constraints)
--   [`MediaTrackConstraints.noiseSuppression`](../mediatrackconstraints/noisesuppression)
--   [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints)
+- [Media Capture and Streams API](../media_streams_api)
+- [Capabilities, constraints, and settings](../media_streams_api/constraints)
+- [`MediaTrackConstraints.noiseSuppression`](../mediatrackconstraints/noisesuppression)
+- [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings/noiseSuppression" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings/noiseSuppression</a>

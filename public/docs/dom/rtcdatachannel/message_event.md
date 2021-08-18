@@ -1,5 +1,4 @@
-RTCDataChannel: message event
-=============================
+# RTCDataChannel: message event
 
 The WebRTC `message` event is sent to the [`onmessage`](onmessage) event handler on an [`RTCDataChannel`](../rtcdatachannel) object when a message has been received from the remote peer.
 
@@ -7,8 +6,7 @@ The WebRTC `message` event is sent to the [`onmessage`](onmessage) event handler
 
 **Note:** The `message` event uses as its event object type the [`MessageEvent`](../messageevent) interface defined by the HTML specification.
 
-Examples
---------
+## Examples
 
 For a given [`RTCDataChannel`](../rtcdatachannel), `dc`, created for a peer connection using its [`createDataChannel()`](../rtcpeerconnection/createdatachannel) method, this code sets up a handler for incoming messages and acts on them by adding the data contained within the message to the current document as a new [`<p>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p) (paragraph) element.
 
@@ -32,14 +30,12 @@ You can also use an `RTCDataChannel` object's [`onmessage`](onmessage) event han
       document.body.appendChild(newParagraph);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#event-datachannel-message">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'the &lt;code&gt;message&lt;/code&gt; event' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -95,12 +91,11 @@ Yes
 
 6.0
 
-See also
---------
+## See also
 
--   [WebRTC API](../webrtc_api)
--   [A simple RTCDataChannel example](../webrtc_api/simple_rtcdatachannel_sample)
--   Related events: [`open`](open_event), [`close`](close_event), and [`error`](error_event)
--   [`RTCDataChannel.send()`](send)
+- [WebRTC API](../webrtc_api)
+- [A simple RTCDataChannel example](../webrtc_api/simple_rtcdatachannel_sample)
+- Related events: [`open`](open_event), [`close`](close_event), and [`error`](error_event)
+- [`RTCDataChannel.send()`](send)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/message_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/message_event</a>

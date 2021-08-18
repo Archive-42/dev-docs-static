@@ -1,10 +1,8 @@
-RTCInboundRtpStreamStats.lastPacketReceivedTimestamp
-====================================================
+# RTCInboundRtpStreamStats.lastPacketReceivedTimestamp
 
 The `lastPacketReceivedTimestamp` property of the [`RTCInboundRtpStreamStats`](../rtcinboundrtpstreamstats) dictionary indicates the time at which the most recently received packet arrived from this source.
 
-Syntax
-------
+## Syntax
 
     var lastPacketTimestamp = rtcInboundRtpStreamStats.lastPacketReceivedTimestamp;
 
@@ -14,14 +12,12 @@ A [`DOMHighResTimeStamp`](../domhighrestimestamp) which specifies the time at wh
 
 **Note:** This value differs from the [`timestamp`](../rtcstats/timestamp), which represents the time at which the statistics object was created.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcinboundrtpstreamstats-lastpacketreceivedtimestamp">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCInboundRtpStreamStats.lastPacketReceivedTimestamp' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.RTCInboundRtpStreamStats.lastPacketReceivedTimestamp`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).

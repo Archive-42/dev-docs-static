@@ -1,5 +1,4 @@
-PerformanceTiming.responseEnd
-=============================
+# PerformanceTiming.responseEnd
 
 **Deprecated**
 
@@ -9,21 +8,18 @@ This feature is no longer recommended. Though some browsers might still support 
 
 This interface of this property is deprecated in the [Navigation Timing Level 2 specification](https://w3c.github.io/navigation-timing/#obsolete). Please use the [`PerformanceNavigationTiming`](../performancenavigationtiming) interface instead.
 
-The legacy `PerformanceTiming``.responseEnd` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, when the browser received the last byte of the response, or when the connection is closed if this happened first, from the server from a cache or from a local resource.
+The legacy ` PerformanceTiming``.responseEnd ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, when the browser received the last byte of the response, or when the connection is closed if this happened first, from the server from a cache or from a local resource.
 
-Syntax
-------
+## Syntax
 
     time = performanceTiming.responseEnd;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/navigation-timing/#dom-performancetiming-responseEnd">Navigation Timing<br />
 <span class="small">The definition of 'PerformanceTiming.responseEnd' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -79,9 +75,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The [`PerformanceTiming`](../performancetiming) interface it belongs to.
+- The [`PerformanceTiming`](../performancetiming) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/responseEnd" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/responseEnd</a>

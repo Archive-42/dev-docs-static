@@ -1,5 +1,4 @@
-MouseEvent
-==========
+# MouseEvent
 
 The `MouseEvent` interface represents events that occur due to the user interacting with a pointing device (such as a mouse). Common events using this interface include `click`, `dblclick`, `mouseup`, `mousedown`.
 
@@ -7,111 +6,106 @@ The `MouseEvent` interface represents events that occur due to the user interact
 
 Several more specific events are based on `MouseEvent`, including [`WheelEvent`](wheelevent) and [`DragEvent`](dragevent).
 
-Constructor
------------
+## Constructor
 
 [`MouseEvent()`](mouseevent/mouseevent)  
 Creates a `MouseEvent` object.
 
-Properties
-----------
+## Properties
 
-*This interface also inherits properties of its parents, [`UIEvent`](uievent) and [`Event`](event).*
+_This interface also inherits properties of its parents, [`UIEvent`](uievent) and [`Event`](event)._
 
- [`MouseEvent.altKey`](mouseevent/altkey) <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.altKey`](mouseevent/altkey) <span class="badge inline readonly">Read only </span>  
 Returns `true` if the alt key was down when the mouse event was fired.
 
- [`MouseEvent.button`](mouseevent/button) <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.button`](mouseevent/button) <span class="badge inline readonly">Read only </span>  
 The button number that was pressed (if applicable) when the mouse event was fired.
 
- [`MouseEvent.buttons`](mouseevent/buttons) <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.buttons`](mouseevent/buttons) <span class="badge inline readonly">Read only </span>  
 The buttons being depressed (if any) when the mouse event was fired.
 
- [`MouseEvent.clientX`](mouseevent/clientx) <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.clientX`](mouseevent/clientx) <span class="badge inline readonly">Read only </span>  
 The X coordinate of the mouse pointer in local (DOM content) coordinates.
 
- [`MouseEvent.clientY`](mouseevent/clienty) <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.clientY`](mouseevent/clienty) <span class="badge inline readonly">Read only </span>  
 The Y coordinate of the mouse pointer in local (DOM content) coordinates.
 
- [`MouseEvent.ctrlKey`](mouseevent/ctrlkey) <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.ctrlKey`](mouseevent/ctrlkey) <span class="badge inline readonly">Read only </span>  
 Returns `true` if the control key was down when the mouse event was fired.
 
- [`MouseEvent.metaKey`](mouseevent/metakey) <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.metaKey`](mouseevent/metakey) <span class="badge inline readonly">Read only </span>  
 Returns `true` if the meta key was down when the mouse event was fired.
 
- [`MouseEvent.movementX`](mouseevent/movementx) <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.movementX`](mouseevent/movementx) <span class="badge inline readonly">Read only </span>  
 The X coordinate of the mouse pointer relative to the position of the last `mousemove` event.
 
- [`MouseEvent.movementY`](mouseevent/movementy) <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.movementY`](mouseevent/movementy) <span class="badge inline readonly">Read only </span>  
 The Y coordinate of the mouse pointer relative to the position of the last `mousemove` event.
 
- [`MouseEvent.offsetX`](mouseevent/offsetx) <span class="badge inline readonly">Read only </span><span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`MouseEvent.offsetX`](mouseevent/offsetx) <span class="badge inline readonly">Read only </span><span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 The X coordinate of the mouse pointer relative to the position of the padding edge of the target node.
 
- [`MouseEvent.offsetY`](mouseevent/offsety) <span class="badge inline readonly">Read only </span><span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`MouseEvent.offsetY`](mouseevent/offsety) <span class="badge inline readonly">Read only </span><span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 The Y coordinate of the mouse pointer relative to the position of the padding edge of the target node.
 
- [`MouseEvent.pageX`](mouseevent/pagex) <span class="badge inline readonly">Read only </span><span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`MouseEvent.pageX`](mouseevent/pagex) <span class="badge inline readonly">Read only </span><span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 The X coordinate of the mouse pointer relative to the whole document.
 
- [`MouseEvent.pageY`](mouseevent/pagey) <span class="badge inline readonly">Read only </span><span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`MouseEvent.pageY`](mouseevent/pagey) <span class="badge inline readonly">Read only </span><span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 The Y coordinate of the mouse pointer relative to the whole document.
 
- [`MouseEvent.region`](mouseevent/region) <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.region`](mouseevent/region) <span class="badge inline readonly">Read only </span>  
 Returns the id of the hit region affected by the event. If no hit region is affected, `null` is returned.
 
- [`MouseEvent.relatedTarget`](mouseevent/relatedtarget) <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.relatedTarget`](mouseevent/relatedtarget) <span class="badge inline readonly">Read only </span>  
 The secondary target for the event, if there is one.
 
- [`MouseEvent.screenX`](mouseevent/screenx) <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.screenX`](mouseevent/screenx) <span class="badge inline readonly">Read only </span>  
 The X coordinate of the mouse pointer in global (screen) coordinates.
 
- [`MouseEvent.screenY`](mouseevent/screeny) <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.screenY`](mouseevent/screeny) <span class="badge inline readonly">Read only </span>  
 The Y coordinate of the mouse pointer in global (screen) coordinates.
 
- [`MouseEvent.shiftKey`](mouseevent/shiftkey) <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.shiftKey`](mouseevent/shiftkey) <span class="badge inline readonly">Read only </span>  
 Returns `true` if the shift key was down when the mouse event was fired.
 
- [`MouseEvent.which`](mouseevent/which) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.which`](mouseevent/which) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="badge inline readonly">Read only </span>  
 The button being pressed when the mouse event was fired.
 
- <span class="page-not-created">`MouseEvent.mozPressure`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`MouseEvent.mozPressure`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span> <span class="badge inline readonly">Read only </span>  
 The amount of pressure applied to a touch or tablet device when generating the event; this value ranges between `0.0` (minimum pressure) and `1.0` (maximum pressure). Instead of using this deprecated (and non-standard) property, you should instead use [`PointerEvent`](pointerevent) and look at its [`pressure`](pointerevent/pressure) property.
 
- [`MouseEvent.mozInputSource`](mouseevent/mozinputsource) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.mozInputSource`](mouseevent/mozinputsource) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="badge inline readonly">Read only </span>  
 The type of device that generated the event (one of the `MOZ_SOURCE_*` constants listed below). This lets you, for example, determine whether a mouse event was generated by an actual mouse or by a touch event (which might affect the degree of accuracy with which you interpret the coordinates associated with the event).
 
- [`MouseEvent.webkitForce`](mouseevent/webkitforce) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="badge inline readonly">Read only </span>   
+[`MouseEvent.webkitForce`](mouseevent/webkitforce) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="badge inline readonly">Read only </span>  
 The amount of pressure applied when clicking
 
- [`MouseEvent.x`](mouseevent/x) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>   
+[`MouseEvent.x`](mouseevent/x) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>  
 Alias for [`MouseEvent.clientX`](mouseevent/clientx).
 
- [`MouseEvent.y`](mouseevent/y) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>   
+[`MouseEvent.y`](mouseevent/y) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>  
 Alias for [`MouseEvent.clientY`](mouseevent/clienty)
 
-Constants
----------
+## Constants
 
- [`MouseEvent.WEBKIT_FORCE_AT_MOUSE_DOWN`](mouseevent/webkit_force_at_mouse_down) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span><span class="badge inline readonly">Read only </span>   
+[`MouseEvent.WEBKIT_FORCE_AT_MOUSE_DOWN`](mouseevent/webkit_force_at_mouse_down) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span><span class="badge inline readonly">Read only </span>  
 Minimum force necessary for a normal click
 
- [`MouseEvent.WEBKIT_FORCE_AT_FORCE_MOUSE_DOWN`](mouseevent/webkit_force_at_force_mouse_down) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span><span class="badge inline readonly">Read only </span>   
+[`MouseEvent.WEBKIT_FORCE_AT_FORCE_MOUSE_DOWN`](mouseevent/webkit_force_at_force_mouse_down) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span><span class="badge inline readonly">Read only </span>  
 Minimum force necessary for a force click
 
-Methods
--------
+## Methods
 
-*This interface also inherits methods of its parents, [`UIEvent`](uievent) and [`Event`](event).*
+_This interface also inherits methods of its parents, [`UIEvent`](uievent) and [`Event`](event)._
 
 [`MouseEvent.getModifierState()`](mouseevent/getmodifierstate)  
 Returns the current state of the specified modifier key. See [`KeyboardEvent.getModifierState()`](keyboardevent/getmodifierstate) for details.
 
- [`MouseEvent.initMouseEvent()`](mouseevent/initmouseevent) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`MouseEvent.initMouseEvent()`](mouseevent/initmouseevent) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Initializes the value of a `MouseEvent` created. If the event has already being dispatched, this method does nothing.
 
-Example
--------
+## Example
 
 This example demonstrates simulating a click (programmatically generating a click event) on a checkbox using DOM methods. Event state (canceled or not) is then determined with the return value of method [`EventTarget.dispatchEvent()`](eventtarget/dispatchevent).
 
@@ -142,8 +136,7 @@ This example demonstrates simulating a click (programmatically generating a clic
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#extensions-to-the-mouseevent-interface">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'MouseEvent' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Redefines <code>MouseEvent</code> from long to double. This means that a <code>PointerEvent</code> whose <code>pointerType</code> is mouse will be a double.</td></tr><tr class="even"><td><a href="https://w3c.github.io/pointerlock/#extensions-to-the-mouseevent-interface">Pointer Lock<br />
@@ -153,8 +146,7 @@ Specifications
 <span class="small">The definition of 'MouseEvent' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>From <a href="https://www.w3.org/TR/DOM-Level-2-Events/events.html">Document Object Model (DOM) Level 2 Events Specification</a>, added the <code>MouseEvent()</code> constructor, the <code>getModifierState()</code> method and the <code>buttons</code> property.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-MouseEvent">Document Object Model (DOM) Level 2 Events Specification<br />
 <span class="small">The definition of 'MouseEvent' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -872,10 +864,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   Its direct parent, [`UIEvent`](uievent).
--   [`PointerEvent`](pointerevent): For advanced pointer events, including multi-touch
+- Its direct parent, [`UIEvent`](uievent).
+- [`PointerEvent`](pointerevent): For advanced pointer events, including multi-touch
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent</a>

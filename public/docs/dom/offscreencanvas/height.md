@@ -1,5 +1,4 @@
-OffscreenCanvas.height
-======================
+# OffscreenCanvas.height
 
 **Experimental**
 
@@ -8,14 +7,12 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `height` property returns and sets the height of an [`OffscreenCanvas`](../offscreencanvas) object.
 
-Syntax
-------
+## Syntax
 
     var pxl = offscreen.height;
     offscreen.height = pxl;
 
-Examples
---------
+## Examples
 
 Creating a new offscreen canvas and returning or setting the height of the offscreen canvas:
 
@@ -23,14 +20,12 @@ Creating a new offscreen canvas and returning or setting the height of the offsc
     offscreen.height; // 256
     offscreen.height = 512;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-offscreencanvas-height">HTML Living Standard<br />
 <span class="small">The definition of 'OffscreenCanvas.height' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -90,9 +85,8 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   [`OffscreenCanvas`](../offscreencanvas), the interface this property belongs to.
+- [`OffscreenCanvas`](../offscreencanvas), the interface this property belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas/height" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas/height</a>

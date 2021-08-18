@@ -1,10 +1,8 @@
-PresentationConnectionAvailableEvent
-====================================
+# PresentationConnectionAvailableEvent
 
 The `PresentationConnectionAvailableInit()` constructor creates a new [`PresentationConnectionAvailableEvent`](../presentationconnectionavailableevent).
 
-Syntax
-------
+## Syntax
 
     var pcaEvent = new PresentationConnectionAvailableInit(typeArg, eventInit)
 
@@ -20,8 +18,7 @@ A `PresentationConnectionAvailableInit` dictionary, which only contains a refere
 
 An instance of the [`PresentationConnectionAvailableEvent`](../presentationconnectionavailableevent) interface.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

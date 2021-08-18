@@ -1,30 +1,27 @@
-MediaStream
-===========
+# MediaStream
 
 The `MediaStream` interface represents a stream of media content. A stream consists of several **tracks** such as video or audio tracks. Each track is specified as an instance of [`MediaStreamTrack`](mediastreamtrack).You can obtain a MediaStream object either by using the constructor or by calling [`MediaDevices.getUserMedia()`](mediadevices/getusermedia).
 
 Some user agents subclass this interface to provide more precise information or functionality, like in [`CanvasCaptureMediaStreamTrack`](canvascapturemediastreamtrack).
 
-Constructor
------------
+## Constructor
 
 [`MediaStream()`](mediastream/mediastream)  
 Creates and returns a new MediaStream object. You can create an empty stream, a stream which is based upon an existing stream, or a stream that contains a specified list of tracks (specified as an array of [`MediaStreamTrack`](mediastreamtrack) objects).
 
-Properties
-----------
+## Properties
 
-*This interface inherits properties from its parent, [`EventTarget`](eventtarget).*
+_This interface inherits properties from its parent, [`EventTarget`](eventtarget)._
 
- [`MediaStream.active`](mediastream/active) <span class="badge inline readonly">Read only </span>   
+[`MediaStream.active`](mediastream/active) <span class="badge inline readonly">Read only </span>  
 A Boolean value that returns `true` if the `MediaStream` is active, or `false` otherwise.
 
- [`MediaStream.ended`](mediastream/ended) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`MediaStream.ended`](mediastream/ended) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 A Boolean value set to `true` if the end of the stream has been reached. This has been removed from the specification; you should instead check the value of [`MediaStreamTrack.readyState`](mediastreamtrack/readystate) to see if its value is `ended` for the track or tracks you want to ensure have finished playing.
 
 <!-- -->
 
- [`MediaStream.id`](mediastream/id) <span class="badge inline readonly">Read only </span>   
+[`MediaStream.id`](mediastream/id) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) containing 36 characters denoting a universally unique identifier (UUID) for the object.
 
 ### Event handlers
@@ -35,10 +32,9 @@ An [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_ha
 [`MediaStream.onremovetrack`](mediastream/onremovetrack)  
 An [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) containing the action to perform when a `removetrack` event is fired when a [`MediaStreamTrack`](mediastreamtrack) object is removed from it.
 
-Methods
--------
+## Methods
 
-*This interface inherits methods from its parent, [`EventTarget`](eventtarget).*
+_This interface inherits methods from its parent, [`EventTarget`](eventtarget)._
 
 [`MediaStream.addTrack()`](mediastream/addtrack)  
 Stores a copy of the [`MediaStreamTrack`](mediastreamtrack) given as argument. If the track has already been added to the `MediaStream` object, nothing happens.
@@ -71,8 +67,7 @@ Returns a list of the [`MediaStreamTrack`](mediastreamtrack) objects stored in t
 <span class="page-not-created">`MediaStream.removeTrack()`</span>  
 Removes the [`MediaStreamTrack`](mediastreamtrack) given as argument. If the track is not part of the `MediaStream` object, nothing happens.
 
-Events
-------
+## Events
 
 [`addtrack`](mediastream/addtrack_event)  
 Fired when a new [`MediaStreamTrack`](mediastreamtrack) object is added.  
@@ -92,14 +87,12 @@ Fired when the MediaStream is activated.
 <span class="page-not-created">`inactive`</span>  
 Fired when the MediaStream is inactivated.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediastream">Media Capture and Streams<br />
 <span class="small">The definition of 'MediaStream' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -737,12 +730,11 @@ No
 
 Yes-5.0
 
-See also
---------
+## See also
 
--   Using the MediaStream API
--   [WebRTC API](webrtc_api)
--   [Web Audio API](web_audio_api)
--   [`MediaStreamTrack`](mediastreamtrack)
+- Using the MediaStream API
+- [WebRTC API](webrtc_api)
+- [Web Audio API](web_audio_api)
+- [`MediaStreamTrack`](mediastreamtrack)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStream" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStream</a>

@@ -1,5 +1,4 @@
-NDEFRecord.encoding
-===================
+# NDEFRecord.encoding
 
 **Draft**
 
@@ -16,8 +15,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `encoding` property ofthe [`NDEFRecord`](../ndefrecord) interface is [`USVString`](../usvstring) containing the name of the encoding used to encode NDEF payload if it contains textual data.
 
-Syntax
-------
+## Syntax
 
     NDEFRecord.encoding
 
@@ -25,13 +23,11 @@ Syntax
 
 A [`USVString`](../usvstring) which can be one of the following: `"utf-8"`, `"utf-16"`, `"utf-16le"` or `"utf-16be"`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/web-nfc/#dom-ndefrecord-encoding">Web NFC, NDEFRecord.encoding</a></td><td>Draft</td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,42 +1,37 @@
-MediaStreamAudioDestinationNode.MediaStreamAudioDestinationNode()
-=================================================================
+# MediaStreamAudioDestinationNode.MediaStreamAudioDestinationNode()
 
 The `MediaStreamAudioDestinationNode()` constructor of the [Web Audio API](../web_audio_api) creates a new [`MediaStreamAudioDestinationNode`](../mediastreamaudiodestinationnode) object instance.
 
-Syntax
-------
+## Syntax
 
     var myAudioDest = new MediaStreamAudioDestinationNode(context, options);
 
 ### Parameters
 
-*Inherits parameters from the [`AudioNodeOptions`](../audionodeoptions) dictionary*.
+_Inherits parameters from the [`AudioNodeOptions`](../audionodeoptions) dictionary_.
 
-*context*  
+_context_  
 An [`AudioContext`](../audiocontext) representing the audio context you want the node to be associated with.
 
-*options <span class="badge inline optional">Optional</span>*  
+_options <span class="badge inline optional">Optional</span>_  
 An `AudioNodeOptions` dictionary object defining the properties you want the `MediaStreamAudioDestinationNode` to have.
 
 ### Return value
 
 A new [`MediaStreamAudioDestinationNode`](../mediastreamaudiodestinationnode) object instance.
 
-Example
--------
+## Example
 
     var ac = new AudioContext();
 
     var myDestination = new MediaStreamAudioDestinationNode(ac);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#mediastreamaudiodestinationnode">Web Audio API<br />
 <span class="small">The definition of 'MediaStreamAudioDestinationNode' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

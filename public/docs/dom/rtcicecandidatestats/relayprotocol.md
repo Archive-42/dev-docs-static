@@ -1,12 +1,10 @@
-RTCIceCandidateStats.relayProtocol
-==================================
+# RTCIceCandidateStats.relayProtocol
 
 The [`RTCIceCandidateStats`](../rtcicecandidatestats) dictionary's `relayProtocol` property specifies the protocol being used by a local [ICE](https://developer.mozilla.org/en-US/docs/Glossary/ICE) candidate to communicate with the [TURN](https://developer.mozilla.org/en-US/docs/Glossary/TURN) server.
 
 The ICE protocl being used by the candidate otherwise can be obtained from the [`protocol`](protocol) property.
 
-Syntax
-------
+## Syntax
 
     relayProtocol = rtcIceCandidateStats.relayProtocol;
 
@@ -25,14 +23,12 @@ UDP (User Datagram Protocol) is being used to communicate with the TURN server.
 
 **Note:** This property is only present on [`RTCIceCandidateStats`](../rtcicecandidatestats) objects that represent local candidates.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcicecandidatestats-relayprotocol">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCIceCandidateStats.relayProtocol' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

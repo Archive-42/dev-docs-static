@@ -1,5 +1,4 @@
-Navigator.msSaveBlob
-====================
+# Navigator.msSaveBlob
 
 **Non-standard**
 
@@ -11,8 +10,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `Navigator.msSaveBlob()` method saves the [`File`](../file) or [`Blob`](../blob) to disk. This method behaves in the same way as [`Navigator.msSaveOrOpenBlob()`](mssaveoropenblob) except that this disables the file open option.
 
-Syntax
-------
+## Syntax
 
     navigator.msSaveBlob(blob, defaultName);
 
@@ -28,8 +26,7 @@ The file name to be used when saving file.
 
 True is returned as long as the download notification bar is displayed, or false if a failure occurred.
 
-Notes
------
+## Notes
 
 When a site calls this method, the behavior is the same as when Windows Internet Explorer downloads a file with the following in the header, where `X-Download-Options` removes the file open button from the browser file download dialog:
 
@@ -38,13 +35,11 @@ When a site calls this method, the behavior is the same as when Windows Internet
     Content-Disposition: attachment;filename=<defaultName>
     X-Download-Options: noopen
 
-Specifications
---------------
+## Specifications
 
 Not part of any specifications.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.Navigator.msSaveBlob`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).

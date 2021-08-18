@@ -1,10 +1,8 @@
-MediaStream.getVideoTracks()
-============================
+# MediaStream.getVideoTracks()
 
 The `getVideoTracks()` method of the [`MediaStream`](../mediastream) interface returns a sequence of [`MediaStreamTrack`](../mediastreamtrack) objects representing the video tracks in this stream.
 
-Syntax
-------
+## Syntax
 
     var mediaStreamTracks[] = mediaStream.getVideoTracks();
 
@@ -20,8 +18,7 @@ An array of [`MediaStreamTrack`](../mediastreamtrack) objects, one for each vide
 
 Early versions of this API included a special `VideoStreamTrack` interface which was used as the type for each entry in the list of video streams; however, this has since been merged into the main [`MediaStreamTrack`](../mediastreamtrack) interface.
 
-Example
--------
+## Example
 
 The following example, extracted from [Chrome's Image Capture / Photo Resolution Sample](https://googlechrome.github.io/samples/image-capture/photo-resolution.html), uses `getVideoTracks()` to retrieve a track for passing to the [`ImageCapture()`](../imagecapture/imagecapture) constructor.
 
@@ -37,14 +34,12 @@ The following example, extracted from [Chrome's Image Capture / Photo Resolution
       return imageCapture.getPhotoCapabilities();
     })
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediastream-getvideotracks">Media Capture and Streams<br />
 <span class="small">The definition of 'getVideoTracks()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

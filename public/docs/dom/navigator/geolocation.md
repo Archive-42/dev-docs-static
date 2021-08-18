@@ -1,5 +1,4 @@
-Navigator.geolocation
-=====================
+# Navigator.geolocation
 
 **Secure context**
 
@@ -9,19 +8,16 @@ The `Navigator.geolocation` read-only property returns a [`Geolocation`](../geol
 
 **Note:** For security reasons, when a web page tries to access location information, the user is notified and asked to grant permission. Be aware that each browser has its own policies and methods for requesting this permission.
 
-Syntax
-------
+## Syntax
 
     geo = navigator.geolocation
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/geolocation-api/#dom-navigator-geolocation">Geolocation API<br />
 <span class="small">The definition of 'Navigator.geolocation' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -129,9 +125,8 @@ Yes
 
 5.0
 
-See also
---------
+## See also
 
--   [Using the Geolocation API](../geolocation_api/using_the_geolocation_api)
+- [Using the Geolocation API](../geolocation_api/using_the_geolocation_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/geolocation" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/geolocation</a>

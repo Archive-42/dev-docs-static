@@ -1,5 +1,4 @@
-RTCIdentityEvent.assertion
-==========================
+# RTCIdentityEvent.assertion
 
 **Deprecated**
 
@@ -9,13 +8,11 @@ The read-only property `RTCIdentityEvent.assertion` returns the [`DOMString`](..
 
 Firefox implements the interface this property belongs to under the following name: `RTCPeerConnectionIdentityEvent.` It is likely that it will correct this name when it will unprefix [`RTCPeerConnection`](../rtcpeerconnection), once spec and implementation will have been stabilized.
 
-Syntax
-------
+## Syntax
 
      var blob = event.assertion;
 
-Example
--------
+## Example
 
     pc.onidentityresult = function( ev ) {
                              alert("A new identity assertion (blob: '" +
@@ -23,8 +20,7 @@ Example
                                    "') has been generated.");
                           }
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -80,10 +76,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   `identityresult`
--   [`RTCPeerConnection`](../rtcpeerconnection)
+- `identityresult`
+- [`RTCPeerConnection`](../rtcpeerconnection)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIdentityEvent/assertion" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIdentityEvent/assertion</a>

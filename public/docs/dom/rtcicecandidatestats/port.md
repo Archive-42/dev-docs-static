@@ -1,10 +1,8 @@
-RTCIceCandidateStats.port
-=========================
+# RTCIceCandidateStats.port
 
 The [`RTCIceCandidateStats`](../rtcicecandidatestats) dictionary's `port` property specifies the network port used by the candidate.
 
-Syntax
-------
+## Syntax
 
     candidatePort = rtcIceCandidateStats.port;
 
@@ -12,14 +10,12 @@ Syntax
 
 An integer value indicating the network port used by the [`RTCIceCandidate`](../rtcicecandidate) described by the `RTCIceCandidateStats` object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcicecandidatestats-port">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCIceCandidateStats.port' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

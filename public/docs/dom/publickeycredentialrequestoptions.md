@@ -1,5 +1,4 @@
-PublicKeyCredentialRequestOptions
-=================================
+# PublicKeyCredentialRequestOptions
 
 **Secure context**
 
@@ -7,34 +6,31 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `PublicKeyCredentialRequestOptions` dictionary of the [Web Authentication API](web_authentication_api) holds the options passed to [`navigator.credentials.get()`](credentialscontainer/get) in order to fetch a given [`PublicKeyCredential`](publickeycredential).
 
-Properties
-----------
+## Properties
 
 [`PublicKeyCredentialRequestOptions.challenge`](publickeycredentialrequestoptions/challenge)  
 A [`BufferSource`](buffersource), emitted by the relying party's server and used as a [cryptographic challenge](https://en.wikipedia.org/wiki/Challenge%E2%80%93response_authentication). This value will be signed by the authenticator and the signature will be sent back as part of [`AuthenticatorAssertionResponse.signature`](authenticatorassertionresponse/signature).
 
- [`PublicKeyCredentialRequestOptions.timeout`](publickeycredentialrequestoptions/timeout) <span class="badge inline optional">Optional</span>   
+[`PublicKeyCredentialRequestOptions.timeout`](publickeycredentialrequestoptions/timeout) <span class="badge inline optional">Optional</span>  
 A numerical hint, in milliseconds, which indicates the time the caller is willing to wait for the retrieval operation to complete. This hint may be overridden by the browser.
 
- [`PublicKeyCredentialRequestOptions.rpId`](publickeycredentialrequestoptions/rpid) <span class="badge inline optional">Optional</span>   
+[`PublicKeyCredentialRequestOptions.rpId`](publickeycredentialrequestoptions/rpid) <span class="badge inline optional">Optional</span>  
 A [`USVString`](usvstring) which indicates the relying party's identifier (ex. `"login.example.org"`). If this option is not provided, the client will use the current origin's domain.
 
- [`PublicKeyCredentialRequestOptions.allowCredentials`](publickeycredentialrequestoptions/allowcredentials) <span class="badge inline optional">Optional</span>   
+[`PublicKeyCredentialRequestOptions.allowCredentials`](publickeycredentialrequestoptions/allowcredentials) <span class="badge inline optional">Optional</span>  
 An [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of credentials descriptor which restricts the acceptable existing credentials for retrieval.
 
- [`PublicKeyCredentialRequestOptions.userVerification`](publickeycredentialrequestoptions/userverification) <span class="badge inline optional">Optional</span>   
+[`PublicKeyCredentialRequestOptions.userVerification`](publickeycredentialrequestoptions/userverification) <span class="badge inline optional">Optional</span>  
 A string qualifying how the user verification should be part of the authentication process.
 
- [`PublicKeyCredentialRequestOptions.extensions`](publickeycredentialrequestoptions/extensions) <span class="badge inline optional">Optional</span>   
+[`PublicKeyCredentialRequestOptions.extensions`](publickeycredentialrequestoptions/extensions) <span class="badge inline optional">Optional</span>  
 An object with several client extensions' inputs. Those extensions are used to request additional processing (e.g. dealing with legacy FIDO APIs credentials, prompting a specific text on the authenticator, etc.).
 
-Methods
--------
+## Methods
 
 None.
 
-Examples
---------
+## Examples
 
     var options = {
       challenge: new Uint8Array([/* bytes sent from the server */]),
@@ -69,14 +65,12 @@ Examples
          console.error(err);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#dictdef-publickeycredentialrequestoptions">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'PublicKeyCredentialRequestOptions dictionary' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -288,9 +282,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`PublicKeyCredentialCreationOptions`](publickeycredentialcreationoptions): the dictionary which provides option for the public key credential creation
+- [`PublicKeyCredentialCreationOptions`](publickeycredentialcreationoptions): the dictionary which provides option for the public key credential creation
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialRequestOptions" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialRequestOptions</a>

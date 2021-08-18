@@ -1,5 +1,4 @@
-PaymentRequest.abort()
-======================
+# PaymentRequest.abort()
 
 **Secure context**
 
@@ -12,8 +11,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `PaymentRequest.abort()` method of the [`PaymentRequest`](../paymentrequest) interface causes the user agent to end the payment request and to remove any user interface that might be shown.
 
-Syntax
-------
+## Syntax
 
     PaymentRequest.abort();
 
@@ -25,8 +23,7 @@ Void.
 
 None
 
-Examples
---------
+## Examples
 
 The following example sets up a timeout to clear the payment request that might have been abandoned or neglected.
 
@@ -42,14 +39,12 @@ The following example sets up a timeout to clear the payment request that might 
       });
     }, 20 * 60 * 1000);  /* 20 minutes */
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-paymentrequest-abort">Payment Request API<br />
 <span class="small">The definition of 'abort()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -109,9 +104,8 @@ Available only in nightly builds.
 
 6.0
 
-See also
---------
+## See also
 
--   [`PaymentRequest.abort()`](abort)
+- [`PaymentRequest.abort()`](abort)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/abort" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/abort</a>

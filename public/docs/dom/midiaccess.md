@@ -1,5 +1,4 @@
-MIDIAccess
-==========
+# MIDIAccess
 
 **Experimental**
 
@@ -8,16 +7,15 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MIDIAccess` interface of the [Web MIDI API](web_midi_api) provides methods for listing MIDI input and output devices, and obtaining access to those devices.
 
-Properties
-----------
+## Properties
 
- <span class="page-not-created">`MIDIAccess.inputs`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`MIDIAccess.inputs`</span> <span class="badge inline readonly">Read only </span>  
 Returns an instance of [`MIDIInputMap`](midiinputmap) which provides access to any available MIDI input ports.
 
- <span class="page-not-created">`MIDIAccess.outputs`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`MIDIAccess.outputs`</span> <span class="badge inline readonly">Read only </span>  
 Returns an instance of [`MIDIOutputMap`](midioutputmap) which provides access to any available MIDI output ports.
 
- <span class="page-not-created">`MIDIAccess.sysexEnabled`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`MIDIAccess.sysexEnabled`</span> <span class="badge inline readonly">Read only </span>  
 A boolean attribute indicating whether system exclusive support is enabled on the current MIDIAccess instance.
 
 ### Event Handlers
@@ -25,8 +23,7 @@ A boolean attribute indicating whether system exclusive support is enabled on th
 <span class="page-not-created">`MIDIAccess.onstatechange`</span>  
 Called whenever a new MIDI port is added or an existing port changes state.
 
-Examples
---------
+## Examples
 
     navigator.requestMIDIAccess()
       .then(function(access) {
@@ -42,13 +39,11 @@ Examples
          };
       });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-midi-api/#midiaccess-interface">Web MIDI API</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

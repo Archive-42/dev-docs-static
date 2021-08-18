@@ -1,27 +1,24 @@
-performance.clearMeasures()
-===========================
+# performance.clearMeasures()
 
-The `clearMeasures()` method removes the *named measure* from the browser's performance entry buffer. If the method is called with no arguments, all [`performance entries`](../performanceentry) with an [`entry type`](../performanceentry/entrytype) of "`measure`" will be removed from the performance entry buffer.
+The `clearMeasures()` method removes the _named measure_ from the browser's performance entry buffer. If the method is called with no arguments, all [`performance entries`](../performanceentry) with an [`entry type`](../performanceentry/entrytype) of "`measure`" will be removed from the performance entry buffer.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     performance.clearMeasures();
     performance.clearMeasures(name);
 
 ### Arguments
 
-name <span class="badge inline optional">Optional</span>   
+name <span class="badge inline optional">Optional</span>  
 A [`DOMString`](../domstring) representing the name of the timestamp. If this argument is omitted, all [`performance entries`](../performanceentry) with an [`entry type`](../performanceentry/entrytype) of "`measure`" will be removed.
 
 ### Return value
 
 void
 
-Example
--------
+## Example
 
 The following example shows both uses of the `clearMeasures()` method.
 
@@ -51,15 +48,13 @@ The following example shows both uses of the `clearMeasures()` method.
     performance.clearMeasures();
     logMeasureCount() // "Found this many entries: 0"
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/user-timing/#dom-performance-clearmeasures">User Timing Level 2<br />
 <span class="small">The definition of 'clearMeasures()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Clarifies <code>clearMeasures()</code>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/user-timing/#dom-performance-clearmeasures">User Timing<br />
 <span class="small">The definition of 'clearMeasures()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Basic definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

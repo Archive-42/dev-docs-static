@@ -1,5 +1,4 @@
-Request.context
-===============
+# Request.context
 
 **Deprecated**
 
@@ -11,8 +10,7 @@ The context of a request is only relevant in the [ServiceWorker API](../service_
 
 **Note**: You can find a full list of the different available contexts including associated context frame types, CSP directives, and platform feature examples in the [Fetch spec request context](https://fetch.spec.whatwg.org/#concept-request-context) section.
 
-Syntax
-------
+## Syntax
 
     var myContext = request.context;
 
@@ -20,16 +18,14 @@ Syntax
 
 A <span class="page-not-created">`RequestContext`</span> value.
 
-Example
--------
+## Example
 
 In the following snippet, we create a new request using the [`Request.Request()`](request) constructor (for an image file in the same directory as the script), then save the request context in a variable:
 
     var myRequest = new Request('flowers.jpg');
     var myContext = myRequest.context; // returns the empty string by default
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -87,11 +83,10 @@ No
 
 4.0-5.0
 
-See also
---------
+## See also
 
--   [ServiceWorker API](../service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [ServiceWorker API](../service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request/context" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Request/context</a>

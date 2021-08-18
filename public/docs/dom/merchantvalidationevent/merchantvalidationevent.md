@@ -1,5 +1,4 @@
-MerchantValidationEvent()
-=========================
+# MerchantValidationEvent()
 
 **Deprecated**
 
@@ -15,8 +14,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `MerchantValidationEvent()` constructor creates a new [`MerchantValidationEvent`](../merchantvalidationevent) object. You should not have to create these events yourself; instead, just handle the `merchantvalidation` event.
 
-Syntax
-------
+## Syntax
 
     merchantValidationEvent = new MerchantValidationEvent(type, options);
 
@@ -25,13 +23,13 @@ Syntax
 `type`  
 A [`DOMString`](../domstring) which must be `merchantvalidation`, the only type of event which uses the `MerchantValidationEvent` interface.
 
- `options` <span class="badge inline optional">Optional</span>   
+`options` <span class="badge inline optional">Optional</span>  
 An optional dictionary which may contain zero or more of the following properties:
 
- `methodName` <span class="badge inline optional">Optional</span>   
+`methodName` <span class="badge inline optional">Optional</span>  
 A [`DOMString`](../domstring) containing the payment method identifier for the payment handler being used. This is an empty string by default.
 
- `validationURL` <span class="badge inline optional">Optional</span>   
+`validationURL` <span class="badge inline optional">Optional</span>  
 The URL from which to retrieve payment handler specific verification information used to validate the merchant. This is an empty string by default.
 
 ### Return value
@@ -46,8 +44,7 @@ The string specified as `validationURL` could not be parsed as a URL.
 `RangeError`  
 The specified `methodName` does not correspond to a known and supported merchant or is not a well-formed standard payment method identifier.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -107,11 +104,10 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Payment Request API](../payment_request_api)
--   [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
--   [Payment processing concepts](../payment_request_api/concepts)
+- [Payment Request API](../payment_request_api)
+- [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
+- [Payment processing concepts](../payment_request_api/concepts)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MerchantValidationEvent/MerchantValidationEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MerchantValidationEvent/MerchantValidationEvent</a>

@@ -1,5 +1,4 @@
-Range.comparePoint()
-====================
+# Range.comparePoint()
 
 **Experimental**
 
@@ -8,10 +7,9 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `Range.comparePoint()` method returns `-1`, `0`, or `1` depending on whether the `referenceNode` is before, the same as, or after the [`Range`](../range).
 
-If the *reference node* is a [`Node`](../node) of type [`Text`](../text), [`Comment`](../comment), or [`CDATASection`](../cdatasection), then offset is the number of characters from the start of *reference node*. For other [`Node`](../node) types, offset is the number of child nodes between the start of the *reference node*.
+If the _reference node_ is a [`Node`](../node) of type [`Text`](../text), [`Comment`](../comment), or [`CDATASection`](../cdatasection), then offset is the number of characters from the start of _reference node_. For other [`Node`](../node) types, offset is the number of child nodes between the start of the _reference node_.
 
-Syntax
-------
+## Syntax
 
     returnValue = range.comparePoint(referenceNode, offset)
 
@@ -21,23 +19,20 @@ Syntax
 The [`Node`](../node) to compare with the [`Range`](../range).
 
 `offset`  
-An integer greater than or equal to zero representing the offset inside the *referenceNode*.
+An integer greater than or equal to zero representing the offset inside the _referenceNode_.
 
-Example
--------
+## Example
 
     range = document.createRange();
     range.selectNode(document.getElementsByTagName('div').item(0));
     returnValue = range.comparePoint(document.getElementsByTagName('p').item(0), 1);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-range-comparepoint">DOM<br />
 <span class="small">The definition of 'Range.comparePoint()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -93,9 +88,8 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [The DOM interfaces index](../document_object_model)
+- [The DOM interfaces index](../document_object_model)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range/comparePoint" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Range/comparePoint</a>

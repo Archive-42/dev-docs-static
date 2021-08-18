@@ -1,12 +1,10 @@
-performance.getEntries()
-========================
+# performance.getEntries()
 
-The `getEntries()` method returns a list of all [`PerformanceEntry`](../performanceentry) objects for the page. The list's members (*entries*) can be created by making performance *marks* or *measures* (for example by calling the [`mark()`](mark) method) at explicit points in time. If you are only interested in performance entries of certain types or that have certain names, see [`getEntriesByType()`](getentriesbytype) and [`getEntriesByName()`](getentriesbyname).
+The `getEntries()` method returns a list of all [`PerformanceEntry`](../performanceentry) objects for the page. The list's members (_entries_) can be created by making performance _marks_ or _measures_ (for example by calling the [`mark()`](mark) method) at explicit points in time. If you are only interested in performance entries of certain types or that have certain names, see [`getEntriesByType()`](getentriesbytype) and [`getEntriesByName()`](getentriesbyname).
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
 General syntax:
 
@@ -17,8 +15,7 @@ General syntax:
 entries  
 An array of [`PerformanceEntry`](../performanceentry) objects. The items will be in chronological order based on the entries' [`startTime`](../performanceentry/starttime).
 
-Example
--------
+## Example
 
     function use_PerformanceEntry_methods() {
       console.log("PerformanceEntry tests ...");
@@ -62,15 +59,13 @@ Example
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/performance-timeline/#dom-performance-getentries">Performance Timeline Level 2<br />
 <span class="small">The definition of 'getEntries()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/performance-timeline/#dom-performance-getentries">Performance Timeline<br />
 <span class="small">The definition of 'getEntries()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

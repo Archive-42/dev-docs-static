@@ -1,5 +1,4 @@
-Path2D
-======
+# Path2D
 
 **Experimental**
 
@@ -8,14 +7,12 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `Path2D` interface of the Canvas 2D API is used to declare a path that can then be used on a [`CanvasRenderingContext2D`](canvasrenderingcontext2d) object. The [path methods](canvasrenderingcontext2d#paths) of the `CanvasRenderingContext2D` interface are also present on this interface, which gives you the convenience of being able to retain and replay your path whenever desired.
 
-Constructors
-------------
+## Constructors
 
 [`Path2D()`](path2d/path2d)  
 `Path2D` constructor. Creates a new `Path2D` object.
 
-Methods
--------
+## Methods
 
 [`Path2D.addPath()`](path2d/addpath)  
 Adds a path to the current path.
@@ -47,14 +44,12 @@ Adds an elliptical arc to the path which is centered at (`x, y`) position with t
 [`Path2D.rect()`](canvasrenderingcontext2d/rect)  
 Creates a path for a rectangle at position (`x, y`) with a size that is determined by `width` and `height`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#path2d-objects">HTML Living Standard<br />
 <span class="small">The definition of 'Path2D' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -164,9 +159,8 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   [`CanvasRenderingContext2D`](canvasrenderingcontext2d)
+- [`CanvasRenderingContext2D`](canvasrenderingcontext2d)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Path2D" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Path2D</a>

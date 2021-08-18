@@ -1,5 +1,4 @@
-NavigatorStorage
-================
+# NavigatorStorage
 
 **Secure context**
 
@@ -11,24 +10,20 @@ The `NavigatorStorage` [mixin](https://developer.mozilla.org/en-US/docs/Glossary
 
 There are many APIs which provide ways for Web content to store data on a user's computer, including [cookies](https://developer.mozilla.org/en-US/docs/Glossary/Cookie), the Web Storage API ([`Window.localStorage`](window/localstorage) and [`Window.sessionStorage`](window/sessionstorage)), and [IndexedDB](indexeddb_api). The Storage Standard is designed to serve as a common basis for the implementation of all of those APIs and storage technologies, so that their constraints and configurations can be understood and controlled using a common set of methods and properties.
 
-Properties
-----------
+## Properties
 
- [`storage`](navigatorstorage/storage) <span class="badge inline readonly">Read only </span><span class="notecard inline secure">Secure context</span>   
+[`storage`](navigatorstorage/storage) <span class="badge inline readonly">Read only </span><span class="notecard inline secure">Secure context</span>  
 Returns the [`StorageManager`](storagemanager) singleton object which is used to access the Storage Manager. Through the returned object, you can control persistence of data stores as well as get estimates of how much space is left for your site or appliation to store data.
 
-Methods
--------
+## Methods
 
-*The `NavigatorStorage` mixin has no methods.*
+_The `NavigatorStorage` mixin has no methods._
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://storage.spec.whatwg.org/">Storage</a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -110,12 +105,11 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [`Navigator`](navigator)
--   [`navigator.storage`](navigatorstorage/storage)
--   [`WorkerNavigator`](workernavigator)
--   [`StorageManager`](storagemanager)
+- [`Navigator`](navigator)
+- [`navigator.storage`](navigatorstorage/storage)
+- [`WorkerNavigator`](workernavigator)
+- [`StorageManager`](storagemanager)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorStorage" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NavigatorStorage</a>

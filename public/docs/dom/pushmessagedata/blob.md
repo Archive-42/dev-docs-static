@@ -1,5 +1,4 @@
-PushMessageData.blob()
-======================
+# PushMessageData.blob()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `blob()`method of the [`PushMessageData`](../pushmessagedata) interface extracts push message data as a [`Blob`](../blob) object.
 
-Syntax
-------
+## Syntax
 
     var myBlob = PushEvent.data.blob();
 
@@ -21,8 +19,7 @@ None.
 
 A [`Blob`](../blob).
 
-Examples
---------
+## Examples
 
     self.addEventListener('push', function(event) {
       var blob = event.data.blob();
@@ -30,14 +27,12 @@ Examples
       // do something with your Blob
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/#dom-pushmessagedata-blob">Push API<br />
 <span class="small">The definition of 'blob()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

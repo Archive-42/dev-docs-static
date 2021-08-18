@@ -1,7 +1,6 @@
-Node.insertBefore()
-===================
+# Node.insertBefore()
 
-The `Node.insertBefore()` method inserts a node before a *reference node* as a child of a specified *parent node*.
+The `Node.insertBefore()` method inserts a node before a _reference node_ as a child of a specified _parent node_.
 
 If the given node already exists in the document, `insertBefore()` moves it from its current position to the new position. (That is, it will automatically be removed from its existing parent before appending it to the specified new parent.)
 
@@ -11,8 +10,7 @@ This means that a node cannot be in two locations of the document simultaneously
 
 If the given child is a [`DocumentFragment`](../documentfragment), the entire contents of the `DocumentFragment` are moved into the child list of the specified parent node.
 
-Syntax
-------
+## Syntax
 
     let insertedNode = parentNode.insertBefore(newNode, referenceNode)
 
@@ -34,8 +32,7 @@ The node before which `newNode` is inserted. If this is `null`, then `newNode` i
 
 Returns the added child (unless `newNode` is a [`DocumentFragment`](../documentfragment), in which case the empty [`DocumentFragment`](../documentfragment) is returned).
 
-Example
--------
+## Example
 
 ### Example 1
 
@@ -110,10 +107,9 @@ Insert an element before the first child element, using the [`firstChild`](first
 
 When the element does not have a first child, then `firstChild` is `null`. The element is still appended to the parent, after the last child.
 
-Since the parent element did not have a first child, it did not have a last child, either. Consequently, the newly inserted element is the *only* element.
+Since the parent element did not have a first child, it did not have a last child, either. Consequently, the newly inserted element is the _only_ element.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-node-insertbefore">DOM<br />
 <span class="small">The definition of 'Node.insertBefore' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Fixes errors in the insertion algorithm</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/dom/#dom-node-insertbefore">DOM4<br />
@@ -122,8 +118,7 @@ Specifications
 <span class="small">The definition of 'Node.insertBefore' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>No notable changes</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#method-insertBefore">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'Node.insertBefore' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Introduced</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -179,16 +174,15 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`Node.removeChild()`](removechild)
--   [`Node.replaceChild()`](replacechild)
--   [`Node.appendChild()`](appendchild)
--   [`Node.hasChildNodes()`](haschildnodes)
--   [`Element.insertAdjacentElement()`](../element/insertadjacentelement)
--   [`Element.prepend()`](../element/prepend)
--   [`ChildNode.before()`](../childnode/before)
--   [`ChildNode.after()`](../childnode/after)
+- [`Node.removeChild()`](removechild)
+- [`Node.replaceChild()`](replacechild)
+- [`Node.appendChild()`](appendchild)
+- [`Node.hasChildNodes()`](haschildnodes)
+- [`Element.insertAdjacentElement()`](../element/insertadjacentelement)
+- [`Element.prepend()`](../element/prepend)
+- [`ChildNode.before()`](../childnode/before)
+- [`ChildNode.after()`](../childnode/after)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore</a>

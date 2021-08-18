@@ -1,12 +1,10 @@
-MutationObserver.observe()
-==========================
+# MutationObserver.observe()
 
 The [`MutationObserver`](../mutationobserver) method `observe()` configures the `MutationObserver` callback to begin receiving notifications of changes to the DOM that match the given options. Depending on the configuration, the observer may watch a single [`Node`](../node) in the DOM tree, or that node and some or all of its descendant nodes.
 
 To stop the `MutationObserver` (so that none of its callbacks will be triggered any longer), call [`MutationObserver.disconnect()`](disconnect).
 
-Syntax
-------
+## Syntax
 
     mutationObserver.observe(target, options)
 
@@ -20,25 +18,25 @@ A [`MutationObserverInit`](../mutationobserverinit) object providing options tha
 
 Options are as follows:
 
- [`subtree`](../mutationobserverinit/subtree) <span class="badge inline optional">Optional</span>   
+[`subtree`](../mutationobserverinit/subtree) <span class="badge inline optional">Optional</span>  
 Set to `true` to extend monitoring to the entire subtree of nodes rooted at `target`. All of the other `MutationObserverInit` properties are then extended to all of the nodes in the subtree instead of applying solely to the `target` node. The default value is `false`.
 
- [`childList`](../mutationobserverinit/childlist) <span class="badge inline optional">Optional</span>   
+[`childList`](../mutationobserverinit/childlist) <span class="badge inline optional">Optional</span>  
 Set to `true` to monitor the target node (and, if `subtree` is `true`, its descendants) for the addition of new child nodes or removal of existing child nodes. The default value is `false`.
 
- [`attributes`](../mutationobserverinit/attributes) <span class="badge inline optional">Optional</span>   
+[`attributes`](../mutationobserverinit/attributes) <span class="badge inline optional">Optional</span>  
 Set to `true` to watch for changes to the value of attributes on the node or nodes being monitored. The default value is `true` if either of `attributeFilter` or `attributeOldValue` is specified, otherwise the default value is `false`.
 
- [`attributeFilter`](../mutationobserverinit/attributefilter) <span class="badge inline optional">Optional</span>   
+[`attributeFilter`](../mutationobserverinit/attributefilter) <span class="badge inline optional">Optional</span>  
 An array of specific attribute names to be monitored. If this property isn't included, changes to all attributes cause mutation notifications.
 
- [`attributeOldValue`](../mutationobserverinit/attributeoldvalue) <span class="badge inline optional">Optional</span>   
+[`attributeOldValue`](../mutationobserverinit/attributeoldvalue) <span class="badge inline optional">Optional</span>  
 Set to `true` to record the previous value of any attribute that changes when monitoring the node or nodes for attribute changes; see [Monitoring attribute values](#) in [MutationObserver](../mutationobserver) for details on watching for attribute changes and value recording. The default value is `false`.
 
- [`characterData`](../mutationobserverinit/characterdata) <span class="badge inline optional">Optional</span>   
+[`characterData`](../mutationobserverinit/characterdata) <span class="badge inline optional">Optional</span>  
 Set to `true` to monitor the specified target node (and, if `subtree` is `true`, its descendants) for changes to the character data contained within the node or nodes. The default value is `true` if `characterDataOldValue` is specified, otherwise the default value is `false`.
 
- [`characterDataOldValue`](../mutationobserverinit/characterdataoldvalue) <span class="badge inline optional">Optional</span>   
+[`characterDataOldValue`](../mutationobserverinit/characterdataoldvalue) <span class="badge inline optional">Optional</span>  
 Set to `true` to record the previous value of a node's text whenever the text changes on nodes being monitored. For details and an example, see [Monitoring text content changes](#) in [MutationObserver](../mutationobserver). The default value is `false`.
 
 ### Return value
@@ -50,20 +48,19 @@ Set to `true` to record the previous value of a node's text whenever the text ch
 [`TypeError`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError)  
 Thrown in any of the following circumstances:
 
--   The `options` are configured such that nothing will actually be monitored.  
-    (For example, if [`MutationObserverInit.childList`](../mutationobserverinit/childlist), [`MutationObserverInit.attributes`](../mutationobserverinit/attributes), and [`MutationObserverInit.characterData`](../mutationobserverinit/characterdata) are all `false`.)
--   The value of `options.attributes` is `false` (indicating that attribute changes are not to be monitored), but `attributeOldValue` is `true` and/or `attributeFilter` is present.
--   The <span class="page-not-created">`characterDataOldValue`</span> option is `true` but [`MutationObserverInit.characterData`](../mutationobserverinit/characterdata) is `false` (indicating that character changes are not to be monitored).
+- The `options` are configured such that nothing will actually be monitored.  
+  (For example, if [`MutationObserverInit.childList`](../mutationobserverinit/childlist), [`MutationObserverInit.attributes`](../mutationobserverinit/attributes), and [`MutationObserverInit.characterData`](../mutationobserverinit/characterdata) are all `false`.)
+- The value of `options.attributes` is `false` (indicating that attribute changes are not to be monitored), but `attributeOldValue` is `true` and/or `attributeFilter` is present.
+- The <span class="page-not-created">`characterDataOldValue`</span> option is `true` but [`MutationObserverInit.characterData`](../mutationobserverinit/characterdata) is `false` (indicating that character changes are not to be monitored).
 
-Usage notes
------------
+## Usage notes
 
 ### Reusing MutationObservers
 
 You can call `observe()` multiple times on the same `MutationObserver` to watch for changes to different parts of the DOM tree and/or different types of changes. There are some caveats to note:
 
--   If you call `observe()` on a node that's already being observed by the same `MutationObserver`, all existing observers are automatically removed from all targets being observed before the new observer is activated.
--   If the same `MutationObserver` is not already in use on the target, then the existing observers are left alone and the new one is added.
+- If you call `observe()` on a node that's already being observed by the same `MutationObserver`, all existing observers are automatically removed from all targets being observed before the new observer is activated.
+- If the same `MutationObserver` is not already in use on the target, then the existing observers are left alone and the new one is added.
 
 ### Observation follows nodes when disconnected
 
@@ -73,8 +70,7 @@ In other words, until you've been notified that nodes are being split off from y
 
 Theoretically, this means that if you keep track of the [`MutationRecord`](../mutationrecord) objects describing the changes that occur, you should be able to "undo" the changes, rewinding the DOM back to its initial state.
 
-Example
--------
+## Example
 
 In this example, we demonstrate how to call the method `observe()` on an instance of [`MutationObserver`](../mutationobserver), once it has been set up, passing it a target element and a [`MutationObserverInit`](../mutationobserverinit) options object.
 
@@ -91,14 +87,12 @@ In this example, we demonstrate how to call the method `observe()` on an instanc
     // passing it the element to observe, and the options object
     observer.observe(elementToObserve, {subtree: true, childList: true});
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-mutationobserver-observe">DOM<br />
 <span class="small">The definition of 'MutationObserver.observe()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

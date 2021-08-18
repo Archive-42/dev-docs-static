@@ -1,5 +1,4 @@
-NDEFRecord.id
-=============
+# NDEFRecord.id
 
 **Draft**
 
@@ -18,8 +17,7 @@ The `id` property ofthe [`NDEFRecord`](../ndefrecord) interface is [`USVString`]
 
 This identifier is created by the generator of the record which is solely responsible for enforcing record identifier uniqueness. Web NFC does not sign the NFC content, thus record consumer should not make any assumptions about integrity or authenticity of the identifier or any other part of the records.
 
-Syntax
-------
+## Syntax
 
     NDEFRecord.id
 
@@ -27,13 +25,11 @@ Syntax
 
 A [`USVString`](../usvstring).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/web-nfc/#dom-ndefrecord-id">Web NFC, NDEFRecord</a></td><td>Draft</td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

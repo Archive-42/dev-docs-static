@@ -1,10 +1,8 @@
-Navigator.buildID
-=================
+# Navigator.buildID
 
 Returns the build identifier of the browser. In modern browsers this property now returns a fixed timestamp as a privacy measure, e.g. `20181001000000` in Firefox 64 onwards.
 
-Syntax
-------
+## Syntax
 
     buildID = navigator.buildID;
 
@@ -12,18 +10,15 @@ Syntax
 
 A string representing the build identifier of the application. The build ID is in the form `YYYYMMDDHHMMSS`.
 
-Example
--------
+## Example
 
     console.log(window.navigator.buildID);
 
-Specifications
---------------
+## Specifications
 
 Not part of any public standard.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -87,9 +82,8 @@ Yes
 
 No
 
-See also
---------
+## See also
 
--   [navigator.buildID now returns a fixed timestamp](https://github.com/mdn/kuma/issues/7647)
+- [navigator.buildID now returns a fixed timestamp](https://github.com/mdn/kuma/issues/7647)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/buildID" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/buildID</a>

@@ -1,5 +1,4 @@
-PerformanceNavigationTiming.loadEventStart
-==========================================
+# PerformanceNavigationTiming.loadEventStart
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `loadEventStart` read-only property returns a [`timestamp`](../domhighrestimestamp) representing the time value equal to the time immediately before the load event of the current document is fired.
 
-Syntax
-------
+## Syntax
 
     perfEntry.loadEventStart;
 
@@ -17,8 +15,7 @@ Syntax
 
 A [`timestamp`](../domhighrestimestamp) representing a time value equal to the time immediately before the load event of the current document is fired.
 
-Example
--------
+## Example
 
 The following example illustrates this property's usage.
 
@@ -44,14 +41,12 @@ The following example illustrates this property's usage.
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/navigation-timing/#dom-performancenavigationtiming-loadeventstart">Navigation Timing Level 2<br />
 <span class="small">The definition of 'loadEventStart' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

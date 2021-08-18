@@ -1,5 +1,4 @@
-MSSiteModeEvent
-===============
+# MSSiteModeEvent
 
 **Non-standard**
 
@@ -11,7 +10,7 @@ This proprietary method is specific to Internet Explorer and Microsoft Edge.
 
 ### DOM Information
 
-*Inheritance Hierarchy*
+_Inheritance Hierarchy_
 
 [Event](event)
 
@@ -27,8 +26,7 @@ MSSiteModeEvent
 
 Although this event inherits from the [Event](event) object, it cannot be created by using `createEvent`.
 
-Example
--------
+## Example
 
     interface MSSiteModeEvent extends Event {
         buttonID: number;
@@ -39,9 +37,8 @@ Example
         new(): MSSiteModeEvent;
     }
 
-See also
---------
+## See also
 
--   [Microsoft API extensions](microsoft_extensions)
+- [Microsoft API extensions](microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MSSiteModeEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MSSiteModeEvent</a>

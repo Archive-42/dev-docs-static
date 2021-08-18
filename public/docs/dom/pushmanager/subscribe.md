@@ -1,5 +1,4 @@
-PushManager.subscribe()
-=======================
+# PushManager.subscribe()
 
 **Experimental**
 
@@ -10,27 +9,25 @@ The `subscribe()` method of the [`PushManager`](../pushmanager) interface subscr
 
 It returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to a [`PushSubscription`](../pushsubscription) object containing details of a push subscription. A new push subscription is created if the current service worker does not have an existing subscription.
 
-Syntax
-------
+## Syntax
 
     PushManager.subscribe(options).then(function(pushSubscription) { ... } );
 
 ### Parameters
 
- `options` <span class="badge inline optional">Optional</span>   
+`options` <span class="badge inline optional">Optional</span>  
 An object containing optional configuration parameters. It can have the following properties:
 
--   `userVisibleOnly`: A boolean indicating that the returned push subscription will only be used for messages whose effect is made visible to the user.
--   `applicationServerKey`: A Base64-encoded [`DOMString`](../domstring) or [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) containing an [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) P-256 public key that the push server will use to authenticate your application server. If specified, all messages from your application server must use the [VAPID](https://datatracker.ietf.org/doc/html/rfc8292) authentication scheme, and include a JWT signed with the corresponding private key. This key ***IS NOT*** the same ECDH key that you use to encrypt the data. For more information, see "[Using VAPID with WebPush](https://blog.mozilla.org/services/2016/04/04/using-vapid-with-webpush/)".
+- `userVisibleOnly`: A boolean indicating that the returned push subscription will only be used for messages whose effect is made visible to the user.
+- `applicationServerKey`: A Base64-encoded [`DOMString`](../domstring) or [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) containing an [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) P-256 public key that the push server will use to authenticate your application server. If specified, all messages from your application server must use the [VAPID](https://datatracker.ietf.org/doc/html/rfc8292) authentication scheme, and include a JWT signed with the corresponding private key. This key **_IS NOT_** the same ECDH key that you use to encrypt the data. For more information, see "[Using VAPID with WebPush](https://blog.mozilla.org/services/2016/04/04/using-vapid-with-webpush/)".
 
-***Note:** This parameter is required in some browsers like Chrome and Edge.*
+**\*Note:** This parameter is required in some browsers like Chrome and Edge.\*
 
 ### Returns
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to a [`PushSubscription`](../pushsubscription) object.
 
-Example
--------
+## Example
 
     this.onpush = function(event) {
       console.log(event.data);
@@ -76,14 +73,12 @@ Example
 
 This is not only best practice — you should not be spamming users with notifications they didn't agree to — but going forward browsers will explicitly disallow notifications not triggered in response to a user gesture. Firefox is already doing this from version 72, for example.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/#dom-pushmanager-subscribe">Push API<br />
 <span class="small">The definition of 'subscribe()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

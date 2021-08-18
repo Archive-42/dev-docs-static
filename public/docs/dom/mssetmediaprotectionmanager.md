@@ -1,5 +1,4 @@
-msSetMediaProtectionManager
-===========================
+# msSetMediaProtectionManager
 
 **Non-standard**
 
@@ -9,8 +8,7 @@ The `msSetMediaProtectionManager` method specifies the media protection manager 
 
 This proprietary method is specific to Internet Explorer and Microsoft Edge.
 
-Syntax
-------
+## Syntax
 
     HTMLMediaElement.msSetMediaProtectionManager(mediaProtectionManager);
 

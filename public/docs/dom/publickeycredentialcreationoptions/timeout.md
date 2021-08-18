@@ -1,5 +1,4 @@
-PublicKeyCredentialCreationOptions.timeout
-==========================================
+# PublicKeyCredentialCreationOptions.timeout
 
 **Secure context**
 
@@ -7,12 +6,11 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `timeout` property, of the [`PublicKeyCredentialCreationOptions`](../publickeycredentialcreationoptions) dictionary, represents an hint, given in milliseconds, for the time the script is willing to wait for the completion of the creation operation.
 
-This property is optional and merely is a *hint* which may be overridden by the browser.
+This property is optional and merely is a _hint_ which may be overridden by the browser.
 
 **Note:** An analogous option exists for the fetching operation ([`navigators.credentials.get()`](../credentialscontainer/get)), see [`PublicKeyCredentialRequestOptions.timeout`](../publickeycredentialrequestoptions/timeout).
 
-Syntax
-------
+## Syntax
 
     timeout = publicKeyCredentialCreationOptions.timeout
 
@@ -20,8 +18,7 @@ Syntax
 
 A numerical hint, expressed in milliseconds, giving the time to wait for the creation operation to complete.
 
-Examples
---------
+## Examples
 
     var publicKey = {
       timeout: 60000, // Accepting to wait for a minute before giving up.
@@ -52,14 +49,12 @@ Examples
          console.error(err);
       });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#dom-publickeycredentialcreationoptions-timeout">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'timeout' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -115,9 +110,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`PublicKeyCredentialRequestOptions.timeout`](../publickeycredentialrequestoptions/timeout), the analogous option property used when fetching a credential.
+- [`PublicKeyCredentialRequestOptions.timeout`](../publickeycredentialrequestoptions/timeout), the analogous option property used when fetching a credential.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialCreationOptions/timeout" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialCreationOptions/timeout</a>

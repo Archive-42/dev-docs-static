@@ -1,5 +1,4 @@
-PaymentAddress.toJSON()
-=======================
+# PaymentAddress.toJSON()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `toJSON()` property of the [`PaymentAddress`](../paymentaddress) interface is a standard serializer that returns a JSON representation of the PaymentAddress object's properties.
 
-Syntax
-------
+## Syntax
 
     var json = PaymentAddress.toJSON()
 
@@ -21,14 +19,12 @@ None.
 
 A JSON object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://heycam.github.io/webidl/#default-tojson-steps">Web IDL<br />
 <span class="small">The definition of 'toJSON()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

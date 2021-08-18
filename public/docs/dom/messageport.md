@@ -1,14 +1,12 @@
-MessagePort
-===========
+# MessagePort
 
 The `MessagePort` interface of the [Channel Messaging API](channel_messaging_api) represents one of the two ports of a [`MessageChannel`](messagechannel), allowing messages to be sent from one port and listening out for them arriving at the other.
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`EventTarget`](eventtarget)*
+_Inherits methods from its parent, [`EventTarget`](eventtarget)_
 
 [`postMessage()`](messageport/postmessage)  
 Sends a message from the port, and optionally, transfers ownership of objects to other browsing contexts.
@@ -19,10 +17,9 @@ Starts the sending of messages queued on the port (only needed when using [`Even
 [`close()`](messageport/close)  
 Disconnects the port, so it is no longer active.
 
-Event handlers
---------------
+## Event handlers
 
-*Inherits event handlers from its parent, [`EventTarget`](eventtarget)*
+_Inherits event handlers from its parent, [`EventTarget`](eventtarget)_
 
 [`onmessage`](messageport/onmessage)  
 An [`EventListener`](eventlistener) called when [`MessageEvent`](messageevent) of type `message` is fired on the port—that is, when the port receives a message.
@@ -30,8 +27,7 @@ An [`EventListener`](eventlistener) called when [`MessageEvent`](messageevent) o
 [`onmessageerror`](messageport/onmessageerror)  
 An [`EventListener`](eventlistener) called when a [`MessageEvent`](messageevent) of type <span class="page-not-created">`MessageError`</span> is fired—that is, when it receives a message that cannot be deserialized.
 
-Events
-------
+## Events
 
 [`message`](messageport/message_event)  
 Fired when a `MessagePort` object receives a message.  
@@ -41,8 +37,7 @@ Also available via the [`onmessage`](messageport/onmessage) property.
 Fired when a `MessagePort` object receives a message that can't be deserialized.  
 Also available via the [`onmessageerror`](messageport/onmessageerror) property.
 
-Example
--------
+## Example
 
 In the following example, you can see a new channel being created using the [`MessageChannel()`](messagechannel/messagechannel) constructor.
 
@@ -72,14 +67,12 @@ When a message is received back from the IFrame, the `onMessage` function output
 
 For a full working example, see our [channel messaging basic demo](https://github.com/mdn/dom-examples/tree/master/channel-messaging-basic) on Github ([run it live too](https://mdn.github.io/dom-examples/channel-messaging-basic/)).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/web-messaging.html#message-ports">HTML Living Standard<br />
 <span class="small">The definition of 'Message ports' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -343,9 +336,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using channel messaging](channel_messaging_api/using_channel_messaging)
+- [Using channel messaging](channel_messaging_api/using_channel_messaging)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MessagePort" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MessagePort</a>

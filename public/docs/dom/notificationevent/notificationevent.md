@@ -1,5 +1,4 @@
-NotificationEvent.NotificationEvent()
-=====================================
+# NotificationEvent.NotificationEvent()
 
 **Draft**
 
@@ -7,8 +6,7 @@ This page is not complete.
 
 The `NotificationEvent()` constructor creates a new [`NotificationEvent`](../notificationevent) object.
 
-Syntax
-------
+## Syntax
 
     var myNotificationEvent = new NotificationEvent(type, NotificationEventInit);
 
@@ -17,24 +15,21 @@ Syntax
 `type`  
 TBD
 
- `NotificationEventInit` <span class="badge inline optional">Optional</span>   
+`NotificationEventInit` <span class="badge inline optional">Optional</span>  
 A dictionary object containing a [`Notification`](../notification) object to be used as the notification the event is dispatched on. In later drafts of the specification, this parameter is not optional.
 
-Example
--------
+## Example
 
     var n = new Notification('Hello');
     var init = { notification: n };
     var myNotificationEvent = new NotificationEvent(type, init);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://notifications.spec.whatwg.org/#dom-notificationevent-notificationevent">Notifications API<br />
 <span class="small">The definition of 'NotificationEvent() constructor' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Living standard.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

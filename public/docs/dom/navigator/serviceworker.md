@@ -1,12 +1,10 @@
-Navigator.serviceWorker
-=======================
+# Navigator.serviceWorker
 
 The `Navigator.serviceWorker` read-only property returns the [`ServiceWorkerContainer`](../serviceworkercontainer) object for the [associated document](https://html.spec.whatwg.org/multipage/browsers.html#concept-document-window), which provides access to registration, removal, upgrade, and communication with the [`ServiceWorker`](../serviceworker).
 
 The feature may not be available in private mode.
 
-Syntax
-------
+## Syntax
 
     const workerContainerInstance = navigator.serviceWorker;
 
@@ -14,8 +12,7 @@ Syntax
 
 [`ServiceWorkerContainer`](../serviceworkercontainer).
 
-Examples
---------
+## Examples
 
 This code checks if the browser supports service workers.
 
@@ -23,14 +20,12 @@ This code checks if the browser supports service workers.
       // Supported!
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/ServiceWorker/#navigator-serviceworker">Service Workers<br />
 <span class="small">The definition of 'navigator.serviceWorker' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,10 +83,9 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [Service Worker API](../service_worker_api)
--   [Using Service Workers](../service_worker_api/using_service_workers)
+- [Service Worker API](../service_worker_api)
+- [Using Service Workers](../service_worker_api/using_service_workers)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/serviceWorker" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/serviceWorker</a>

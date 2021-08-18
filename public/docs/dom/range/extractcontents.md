@@ -1,5 +1,4 @@
-Range.extractContents()
-=======================
+# Range.extractContents()
 
 The `Range.extractContents()` method moves contents of the [`Range`](../range) from the document tree into a [`DocumentFragment`](../documentfragment).
 
@@ -7,13 +6,11 @@ Event listeners added using DOM Events are not retained during extraction. HTML 
 
 Partially selected nodes are cloned to include the parent tags necessary to make the document fragment valid.
 
-Syntax
-------
+## Syntax
 
     documentFragment = range.extractContents();
 
-Example
--------
+## Example
 
 ### Basic example
 
@@ -76,15 +73,13 @@ This example lets you move items between two containers. Select one or more item
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-range-extractcontents">DOM<br />
 <span class="small">The definition of 'Range.extractContents()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level2-Range-method-extractContents">Document Object Model (DOM) Level 2 Traversal and Range Specification<br />
 <span class="small">The definition of 'Range.extractContents()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -140,9 +135,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [The DOM interfaces index](../document_object_model)
+- [The DOM interfaces index](../document_object_model)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range/extractContents" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Range/extractContents</a>

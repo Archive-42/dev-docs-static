@@ -1,12 +1,10 @@
-MediaStreamConstraints.audio
-============================
+# MediaStreamConstraints.audio
 
 The [`MediaStreamConstraints`](../mediastreamconstraints) dictionary's `audio` property is used to indicate what kind of audio track, if any, should be included in the [`MediaStream`](../mediastream) returned by a call to [`getUserMedia()`](../mediadevices/getusermedia).
 
 To learn more about how constraints work, see [Capabilities, constraints, and settings](../media_streams_api/constraints).
 
-Syntax
-------
+## Syntax
 
     var audioConstraints = true | false | MediaTrackConstraints;
 
@@ -20,8 +18,7 @@ If a Boolean value is specified, it indicates whether or not an audio track shou
 [`MediaTrackConstraints`](../mediatrackconstraints)  
 A constraints dictionary detailing the preferable and/or required values or ranges of values for the track's constrainable properties. If you specify constraints, an audio track meeting the constraints is required.
 
-Examples
---------
+## Examples
 
 For browsers with [Feature Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy) enabled, the samples below need the `microphone` feature enabled. See [Security](../mediadevices/getusermedia#security) in [MediaDevices.getUserMedia()](../mediadevices/getusermedia) for details and examples on how to configure this.
 
@@ -58,14 +55,12 @@ Here we see an event handler for a [`click`](../element/click_event) event which
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediastreamconstraints-audio">Media Capture and Streams<br />
 <span class="small">The definition of 'MediaStreamConstraints.audio' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -121,14 +116,13 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Media Capture and Streams API](../media_streams_api)
--   [Capabilities, constraints, and settings](../media_streams_api/constraints)
--   [`MediaDevices.getUserMedia()`](../mediadevices/getusermedia)
--   [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints)
--   [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints)
--   [`MediaTrackConstraints`](../mediatrackconstraints)
+- [Media Capture and Streams API](../media_streams_api)
+- [Capabilities, constraints, and settings](../media_streams_api/constraints)
+- [`MediaDevices.getUserMedia()`](../mediadevices/getusermedia)
+- [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints)
+- [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints)
+- [`MediaTrackConstraints`](../mediatrackconstraints)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints/audio" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamConstraints/audio</a>

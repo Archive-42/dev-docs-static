@@ -1,12 +1,10 @@
-MediaTrackSettings
-==================
+# MediaTrackSettings
 
 The `MediaTrackSettings` dictionary is used to return the current values configured for each of a [`MediaStreamTrack`](mediastreamtrack)'s settings. These values will adhere as closely as possible to any constraints previously described using a [`MediaTrackConstraints`](mediatrackconstraints) object and set using [`applyConstraints()`](mediastreamtrack/applyconstraints), and will adhere to the default constraints for any properties whose constraints haven't been changed, or whose customized constraints couldn't be matched.
 
 To learn more about how constraints and settings work, see [Capabilities, constraints, and settings](media_streams_api/constraints).
 
-Properties
-----------
+## Properties
 
 Some or all of the following will be included in the object, either because it's not supported by the browser or because it's not available due to context. For example, because [RTP](https://developer.mozilla.org/en-US/docs/Glossary/RTP) doesn't provide some of these values during negotiation of a WebRTC connection, a track associated with a [`RTCPeerConnection`](rtcpeerconnection) will not include certain values, such as [`facingMode`](mediatracksettings/facingmode) or [`groupId`](mediatracksettings/groupid).
 
@@ -116,15 +114,13 @@ The stream contains a single window selected by the user for sharing.
 [`logicalSurface`](mediatracksettings/logicalsurface)  
 A Boolean value which, if `true`, indicates that the video contained in the stream's video track contains a background rendering context, rather than a user-visible one. This is `false` if the video being captured is coming from a foreground (user-visible) source.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#media-track-settings">Media Capture and Streams<br />
 <span class="small">The definition of 'MediaTrackSettings' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://w3c.github.io/mediacapture-screen-share/#extensions-to-mediatracksettings">Screen Capture<br />
 <span class="small">The definition of 'MediaTrackSettings extensions' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Defines the <code>displaySurface</code>, <code>logicalSurface</code>, and <code>cursor</code> members</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -682,13 +678,12 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`MediaDevices.getUserMedia()`](mediadevices/getusermedia)
--   [`MediaDevices.getDisplayMedia()`](mediadevices/getdisplaymedia)
--   [`MediaStreamTrack.getConstraints()`](mediastreamtrack/getconstraints)
--   [`MediaStreamTrack.applyConstraints()`](mediastreamtrack/applyconstraints)
--   [`MediaStreamTrack.getSettings()`](mediastreamtrack/getsettings)
+- [`MediaDevices.getUserMedia()`](mediadevices/getusermedia)
+- [`MediaDevices.getDisplayMedia()`](mediadevices/getdisplaymedia)
+- [`MediaStreamTrack.getConstraints()`](mediastreamtrack/getconstraints)
+- [`MediaStreamTrack.applyConstraints()`](mediastreamtrack/applyconstraints)
+- [`MediaStreamTrack.getSettings()`](mediastreamtrack/getsettings)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings</a>

@@ -1,5 +1,4 @@
-Navigator.getBattery()
-======================
+# Navigator.getBattery()
 
 **Deprecated**
 
@@ -9,8 +8,7 @@ The `getBattery()` method provides information about the system's battery. It re
 
 **Note:** In some browsers access to this feature is controlled by [`Feature-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy) directive [`battery`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/battery).
 
-Syntax
-------
+## Syntax
 
     var batteryPromise = navigator.getBattery();
 
@@ -18,8 +16,7 @@ Syntax
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which, when resolved, calls its fulfillment handler with a single parameter: a [`BatteryManager`](../batterymanager) object which you can use to get information about the battery's state.
 
-Exceptions
-----------
+## Exceptions
 
 This method doesn't throw true exceptions; instead, it rejects the returned promise, passing into it a [`DOMException`](../domexception) whose `name` is one of the following:
 
@@ -31,8 +28,7 @@ The User Agent does not expose battery information to insecure contexts and this
 **Note:** No User Agent currently throws this exception, but the specification describes the following behaviors:  
 This document is not allowed to use this feature. For example, it might not be explicitly allowed or restricted via [`Feature-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy) [`battery`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/battery) feature.
 
-Example
--------
+## Example
 
 This example fetches the current charging state of the battery and establishes a handler for the `chargingchange` event, so that the charging state is recorded whenever it changes.
 
@@ -48,14 +44,12 @@ This example fetches the current charging state of the battery and establishes a
 
 For more examples and details, see [Battery Status API](../battery_status_api).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/battery/#dom-navigator-getbattery">Battery Status API<br />
 <span class="small">The definition of 'Navigator.getBattery()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -111,10 +105,9 @@ No
 
 3.0
 
-See also
---------
+## See also
 
--   [Battery Status API](../battery_status_api)
--   `Feature-Policy` [`battery`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/battery) feature
+- [Battery Status API](../battery_status_api)
+- `Feature-Policy` [`battery`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/battery) feature
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getBattery" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getBattery</a>

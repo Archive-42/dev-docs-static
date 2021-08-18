@@ -1,5 +1,4 @@
-PasswordCredential.name
-=======================
+# PasswordCredential.name
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `name` read-only property of the [`PasswordCredential`](../passwordcredential) interface returns a [`USVSTring`](../usvstring) containing a human-readable public name for display in a credential chooser.
 
-Syntax
-------
+## Syntax
 
     name =passwordCredential.name
 
@@ -17,14 +15,12 @@ Syntax
 
 A [`USVString`](../usvstring) containing a name.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-credential-management/#dom-credentialuserdata-name">Credential Management Level 1<br />
 <span class="small">The definition of 'name' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

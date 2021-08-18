@@ -1,5 +1,4 @@
-PushManager.supportedContentEncodings
-=====================================
+# PushManager.supportedContentEncodings
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `supportedContentEncodings` read-only property of the [`PushManager`](../pushmanager) interface returns an array of supported content codings that can be used to encrypt the payload of a push message.
 
-Syntax
-------
+## Syntax
 
     var encodings[] = PushManager.supportedContentEncodings
 
@@ -17,14 +15,12 @@ Syntax
 
 An array of strings.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/#dom-pushmanager-supportedcontentencodings">Push API<br />
 <span class="small">The definition of 'supportedContentEncodings' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

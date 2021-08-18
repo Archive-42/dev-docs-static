@@ -1,5 +1,4 @@
-MerchantValidationEvent.validationURL
-=====================================
+# MerchantValidationEvent.validationURL
 
 **Deprecated**
 
@@ -17,8 +16,7 @@ The [`MerchantValidationEvent`](../merchantvalidationevent) property `validation
 
 This data should be passed into the [`complete()`](complete) method to let the user agent complete the transaction.
 
-Syntax
-------
+## Syntax
 
     validationURL = merchantValidationEvent.validationURL;
 
@@ -28,8 +26,7 @@ A read-only [`USVString`](../usvstring) giving the URL from which to load paymen
 
 See [Merchant validation](#) in [Payment processing concepts](../payment_request_api/concepts) for more information on the merchant validation process.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -89,11 +86,10 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Payment Request API](../payment_request_api)
--   [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
--   [Payment processing concepts](../payment_request_api/concepts)
+- [Payment Request API](../payment_request_api)
+- [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
+- [Payment processing concepts](../payment_request_api/concepts)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MerchantValidationEvent/validationURL" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MerchantValidationEvent/validationURL</a>

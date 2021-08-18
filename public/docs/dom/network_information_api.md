@@ -1,5 +1,4 @@
-Network Information API
-=======================
+# Network Information API
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The Network Information API provides information about the system's connection i
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-Examples
---------
+## Examples
 
 ### Detect connection changes
 
@@ -39,20 +37,17 @@ The connection object is useful for deciding whether to preload resources that t
       }
     }
 
-Interfaces
-----------
+## Interfaces
 
 [`NetworkInformation`](networkinformation)  
 Provides information about the connection a device is using to communicate with the network and provides a means for scripts to be notified if the connection type changes. The `NetworkInformation` interfaces cannot be instantiated. It is instead accessed through the [`Navigator`](navigator) interface.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/netinfo/">Network Information API<br />
 <span class="small">The definition of 'Network Information API' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial specification</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -410,11 +405,10 @@ BCD tables only load in the browser
 
 BCD tables only load in the browser
 
-See also
---------
+## See also
 
--   [Network Information API Specification](https://w3c.github.io/netinfo/)ED
--   [Online and offline events](navigatoronline/online_and_offline_events)
--   [`window.navigator.connection`](navigator/connection)
+- [Network Information API Specification](https://w3c.github.io/netinfo/)ED
+- [Online and offline events](navigatoronline/online_and_offline_events)
+- [`window.navigator.connection`](navigator/connection)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API</a>

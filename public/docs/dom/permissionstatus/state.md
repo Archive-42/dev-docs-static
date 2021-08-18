@@ -1,5 +1,4 @@
-PermissionStatus.state
-======================
+# PermissionStatus.state
 
 **Experimental**
 
@@ -8,13 +7,11 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `state` read-only property of the [`PermissionStatus`](../permissionstatus) interface returns the state of a requested permission. This property returns one of `'granted'`, `'denied'`, or `'prompt'`.
 
-Syntax
-------
+## Syntax
 
     var permission = PermissionStatus.state;
 
-Example
--------
+## Example
 
     navigator.permissions.query({name:'geolocation'}).then(function(permissionStatus) {
       console.log('geolocation permission state is ', permissionStatus.state);
@@ -23,14 +20,12 @@ Example
       };
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/permissions/#dom-permissionstatus-state">Permissions<br />
 <span class="small">The definition of 'state' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

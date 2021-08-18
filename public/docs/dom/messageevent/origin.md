@@ -1,10 +1,8 @@
-MessageEvent.origin
-===================
+# MessageEvent.origin
 
 The `origin` read-only property of the [`MessageEvent`](../messageevent) interface is a [`USVString`](../usvstring) representing the origin of the message emitter.
 
-Syntax
-------
+## Syntax
 
     var origin = messageEvent.origin;
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`USVString`](../usvstring) representing the origin.
 
-Example
--------
+## Example
 
     myWorker.onmessage = function(e) {
       result.textContent = e.data;
@@ -21,14 +18,12 @@ Example
       console.log(e.origin);
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-messageevent-origin">HTML Living Standard<br />
 <span class="small">The definition of 'MessageEvent: origin' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -110,9 +105,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`ExtendableMessageEvent`](../extendablemessageevent) — similar to this interface but used in interfaces that needs to give more flexibility to authors.
+- [`ExtendableMessageEvent`](../extendablemessageevent) — similar to this interface but used in interfaces that needs to give more flexibility to authors.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent/origin" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent/origin</a>

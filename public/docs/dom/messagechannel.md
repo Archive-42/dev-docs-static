@@ -1,27 +1,23 @@
-MessageChannel
-==============
+# MessageChannel
 
 The `MessageChannel` interface of the [Channel Messaging API](channel_messaging_api) allows us to create a new message channel and send data through it via its two [`MessagePort`](messageport) properties.
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-Properties
-----------
+## Properties
 
- [`MessageChannel.port1`](messagechannel/port1) <span class="badge inline readonly">Read only </span>   
+[`MessageChannel.port1`](messagechannel/port1) <span class="badge inline readonly">Read only </span>  
 Returns port1 of the channel.
 
- [`MessageChannel.port2`](messagechannel/port2) <span class="badge inline readonly">Read only </span>   
+[`MessageChannel.port2`](messagechannel/port2) <span class="badge inline readonly">Read only </span>  
 Returns port2 of the channel.
 
-Constructor
------------
+## Constructor
 
 [`MessageChannel()`](messagechannel/messagechannel)  
 Returns a new `MessageChannel` object with two new [`MessagePort`](messageport) objects.
 
-Example
--------
+## Example
 
 In the following example, you can see a new channel being created using the [`MessageChannel.MessageChannel`](messagechannel) constructor.
 
@@ -51,14 +47,12 @@ When a message is received back from the IFrame, the `onMessage` function output
 
 For a full working example, see our [channel messaging basic demo](https://github.com/mdn/dom-examples/tree/master/channel-messaging-basic) on Github ([run it live too](https://mdn.github.io/dom-examples/channel-messaging-basic/)).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/web-messaging.html#message-channels">HTML Living Standard<br />
 <span class="small">The definition of 'Message channels' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -192,9 +186,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [Using channel messaging](channel_messaging_api/using_channel_messaging)
+- [Using channel messaging](channel_messaging_api/using_channel_messaging)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MessageChannel" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MessageChannel</a>

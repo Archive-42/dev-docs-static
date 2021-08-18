@@ -1,5 +1,4 @@
-OscillatorNode
-==============
+# OscillatorNode
 
 The `OscillatorNode` interface represents a periodic waveform, such as a sine wave. It is an [`AudioScheduledSourceNode`](audioscheduledsourcenode) audio-processing module that causes a specified frequency of a given wave to be created—in effect, a constant tone.
 
@@ -7,16 +6,14 @@ An `OscillatorNode` is created using the [`BaseAudioContext.createOscillator()`]
 
 <table><tbody><tr class="odd"><td>Number of inputs</td><td><code>0</code></td></tr><tr class="even"><td>Number of outputs</td><td><code>1</code></td></tr><tr class="odd"><td>Channel count mode</td><td><code>max</code></td></tr><tr class="even"><td>Channel count</td><td><code>2</code> (not used in the default count mode)</td></tr><tr class="odd"><td>Channel interpretation</td><td><code>speakers</code></td></tr></tbody></table>
 
-Constructor
------------
+## Constructor
 
 [`OscillatorNode()`](oscillatornode/oscillatornode)  
 Creates a new instance of an `OscillatorNode` object, optionally providing an object specifying default values for the node's [properties](#properties). If the default values are acceptable, you can call the [`BaseAudioContext.createOscillator()`](baseaudiocontext/createoscillator) factory method.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`AudioScheduledSourceNode`](audioscheduledsourcenode), and adds the following properties:*
+_Inherits properties from its parent, [`AudioScheduledSourceNode`](audioscheduledsourcenode), and adds the following properties:_
 
 [`OscillatorNode.frequency`](oscillatornode/frequency)  
 An [a-rate](audioparam#a-rate) [`AudioParam`](audioparam) representing the frequency of oscillation in hertz (though the `AudioParam` returned is read-only, the value it represents is not). The default value is 440 Hz (a standard middle-A note).
@@ -32,10 +29,9 @@ A string which specifies the shape of waveform to play; this can be one of a num
 [`OscillatorNode.onended`](oscillatornode/onended)  
 Sets the event handler for the `ended` event, which fires when the tone has stopped playing.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`AudioScheduledSourceNode`](audioscheduledsourcenode), and adds the following:*
+_Inherits methods from its parent, [`AudioScheduledSourceNode`](audioscheduledsourcenode), and adds the following:_
 
 [`OscillatorNode.setPeriodicWave()`](oscillatornode/setperiodicwave)  
 Sets a [`PeriodicWave`](periodicwave) which describes a periodic waveform to be used instead of one of the standard waveforms; calling this sets the `type` to `custom`.
@@ -46,8 +42,7 @@ Specifies the exact time to start playing the tone.
 [`OscillatorNode.stop()`](oscillatornode/stop)  
 Specifies the time to stop playing the tone.
 
-Examples
---------
+## Examples
 
 The following example shows basic usage of an [`AudioContext`](audiocontext) to create an oscillator node and to start playing a tone on it. For an applied example, check out our [Violent Theremin demo](https://mdn.github.io/violent-theremin/) ([see app.js](https://github.com/mdn/violent-theremin/blob/gh-pages/scripts/app.js) for relevant code).
 
@@ -62,14 +57,12 @@ The following example shows basic usage of an [`AudioContext`](audiocontext) to 
     oscillator.connect(audioCtx.destination);
     oscillator.start();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#oscillatornode">Web Audio API<br />
 <span class="small">The definition of 'OscillatorNode' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -263,9 +256,8 @@ No
 
 1.5
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](web_audio_api/using_web_audio_api)
+- [Using the Web Audio API](web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode</a>

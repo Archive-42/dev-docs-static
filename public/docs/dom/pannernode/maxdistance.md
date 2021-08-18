@@ -1,12 +1,10 @@
-PannerNode.maxDistance
-======================
+# PannerNode.maxDistance
 
 The `maxDistance` property of the [`PannerNode`](../pannernode) interface is a double value representing the maximum distance between the audio source and the listener, after which the volume is not reduced any further. This value is used only by the `linear` distance model.
 
 The `maxDistance` property's default value is `10000`.
 
-Syntax
-------
+## Syntax
 
     var audioCtx = new AudioContext();
     var panner = audioCtx.createPanner();
@@ -21,8 +19,7 @@ A double. The default is `10000`, and non-positive values are not allowed.
 `RangeError`  
 The property has been given a value that is outside the accepted range.
 
-Example
--------
+## Example
 
 In the following example, you can see an example of how the `createPanner()` method, [`AudioListener`](../audiolistener) and [`PannerNode`](../pannernode) would be used to control audio spatialisation. Generally you will define the position in 3D space that your audio listener and panner (source) occupy initially, and then update the position of one or both of these as the application is used. You might be moving a character around inside a game world for example, and wanting delivery of audio to change realistically as your character moves closer to or further away from a music player such as a stereo. In the example you can see this being controlled by the functions `moveRight()`, `moveLeft()`, etc., which set new values for the panner position via the `PositionPanner()` function.
 
@@ -117,14 +114,12 @@ Note how we have used some feature detection to either give the browser the newe
 
 In terms of working out what position values to apply to the listener and panner, to make the sound appropriate to what the visuals are doing on screen, there is quite a bit of math involved, but you will soon get used to it with a bit of experimentation.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-pannernode-maxdistance">Web Audio API<br />
 <span class="small">The definition of 'maxDistance' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -180,9 +175,8 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](../web_audio_api/using_web_audio_api)
+- [Using the Web Audio API](../web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/maxDistance" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/maxDistance</a>

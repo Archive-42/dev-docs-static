@@ -1,5 +1,4 @@
-Navigator.getUserMedia()
-========================
+# Navigator.getUserMedia()
 
 **Deprecated**
 
@@ -11,8 +10,7 @@ If permission is granted, a `MediaStream` whose video and/or audio tracks come f
 
 This is a legacy method. Please use the newer [`navigator.mediaDevices.getUserMedia()`](../mediadevices/getusermedia) instead. While technically not deprecated, this old callback version is marked as such, since the specification strongly encourages using the newer promise returning version.
 
-Syntax
-------
+## Syntax
 
     navigator.getUserMedia(constraints, successCallback, errorCallback);
 
@@ -43,8 +41,7 @@ When the call fails, the function specified in the `errorCallback` is invokedwit
 
 {{page("/en-US/docs/Web/API/MediaDevices/getUserMedia", "Errors")}}
 
-Examples
---------
+## Examples
 
 ### Width and height
 
@@ -71,8 +68,7 @@ Here's an example of using `getUserMedia()`, including code to cope with various
        console.log("getUserMedia not supported");
     }
 
-Permissions
------------
+## Permissions
 
 To use `getUserMedia()` in an installable app (for example, a [Firefox OS app](https://developer.mozilla.org/en-US/docs/Web/Apps/Build/Building_apps_for_Firefox_OS/Firefox_OS_app_beginners_tutorial)), you need to specify one or both of the following fields inside your manifest file:
 
@@ -87,8 +83,7 @@ To use `getUserMedia()` in an installable app (for example, a [Firefox OS app](h
 
 See [permission: audio-capture](https://developer.mozilla.org/en-US/docs/Web/Apps/Developing/App_permissions#audio-capture) and [permission: video-capture](https://developer.mozilla.org/en-US/docs/Web/Apps/Developing/App_permissions#video-capture) for more information.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -168,12 +163,11 @@ The constraint syntax described here is available as of Firefox 38. Earlier vers
 
 New code should use [`Navigator.mediaDevices.getUserMedia()`](../mediadevices/getusermedia) instead.
 
-See also
---------
+## See also
 
--   [`MediaDevices.getUserMedia()`](../mediadevices/getusermedia) that replaces this deprecated method.
--   [WebRTC](../webrtc_api) - the introductory page to the API
--   [MediaStream API](../media_streams_api) - the API for the media stream objects
--   [Taking webcam photos](../webrtc_api/taking_still_photos) - a tutorial on using `getUserMedia() for taking photos rather than video.`
+- [`MediaDevices.getUserMedia()`](../mediadevices/getusermedia) that replaces this deprecated method.
+- [WebRTC](../webrtc_api) - the introductory page to the API
+- [MediaStream API](../media_streams_api) - the API for the media stream objects
+- [Taking webcam photos](../webrtc_api/taking_still_photos) - a tutorial on using `getUserMedia() for taking photos rather than video.`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia</a>

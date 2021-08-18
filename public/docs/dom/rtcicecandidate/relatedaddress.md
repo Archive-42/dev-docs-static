@@ -1,5 +1,4 @@
-RTCIceCandidate.relatedAddress
-==============================
+# RTCIceCandidate.relatedAddress
 
 The **[`RTCIceCandidate`](../rtcicecandidate)** interface's read-only `relatedAddress` property is a string indicating the **related address** of a relay or reflexive candidate. If the candidate is a host candidate (that is, its [`ip`](address) is in fact the real IP address of the remote peer), `relatedAddress` is `null`.
 
@@ -7,8 +6,7 @@ The `relatedAddress` field's value is set when the [`RTCIceCandidate()`](rtcicec
 
 The related address and port ([`relatedPort`](relatedport)) are not used at all by [ICE](https://developer.mozilla.org/en-US/docs/Glossary/ICE) itself; they are provided for analysis and diagnostic purposes only, and their inclusion may be blocked by security systems, so do not rely on them having non-`null` values.
 
-Syntax
-------
+## Syntax
 
     var relAddress = RTCIceCandidate.relatedAddress;
 
@@ -18,8 +16,7 @@ A [`DOMString`](../domstring) which contains the candidate's related address. Fo
 
 For host candidates, `relatedAddress` is `null`, meaning the field is not included in the candidate's a-line.
 
-Usage notes
------------
+## Usage notes
 
 The related address is included in ICE candidates despite not being used by ICE itself. `relatedAddress` can be used for diagnostic purposes; by observing the relationships between the various types of candidates and their addresses and related addresses. `relatedAddress` can also be used by Quality-of-Service (QoS) mechanisms.
 
@@ -29,8 +26,7 @@ Here's an [SDP](https://developer.mozilla.org/en-US/docs/Glossary/SDP) attribute
 
 The remote address, `relatedAddress`, is the dotted quad (for IPv4) or colon-delineated 64-bit address (for IPv6) immediately following the text `"raddr"`, or `"192.168.2.77"`.
 
-Example
--------
+## Example
 
 In this example, the candidate's [`type`](type) is checked, and then debugging output is presented, based on the candidate type, including the candidate's [`ip`](address) and `relatedAddress`.
 
@@ -52,14 +48,12 @@ In this example, the candidate's [`type`](type) is checked, and then debugging o
         break;
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicecandidate-relatedaddress">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceCandidate.relatedAddress' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -115,14 +109,13 @@ No
 
 11.0
 
-See also
---------
+## See also
 
--   [WebRTC API](../webrtc_api)
--   [Introduction to WebRTC protocols](../webrtc_api/protocols)
--   [WebRTC connectivity](../webrtc_api/connectivity)
--   [Lifetime of a WebRTC session](../webrtc_api/session_lifetime)
--   <span class="page-not-created">`RTCIceCanddiate.relatedPort`</span>
--   [`RTCIceCandidate.address`](address) and [`RTCIceCandidate.port`](port)
+- [WebRTC API](../webrtc_api)
+- [Introduction to WebRTC protocols](../webrtc_api/protocols)
+- [WebRTC connectivity](../webrtc_api/connectivity)
+- [Lifetime of a WebRTC session](../webrtc_api/session_lifetime)
+- <span class="page-not-created">`RTCIceCanddiate.relatedPort`</span>
+- [`RTCIceCandidate.address`](address) and [`RTCIceCandidate.port`](port)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidate/relatedAddress" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidate/relatedAddress</a>

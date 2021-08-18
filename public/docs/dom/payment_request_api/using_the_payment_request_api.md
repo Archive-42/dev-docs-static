@@ -1,5 +1,4 @@
-Using the Payment Request API
-=============================
+# Using the Payment Request API
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The [Payment Request API](../payment_request_api) provides a browser-based method of connecting users and their preferred payment systems and platforms to merchants that they want to pay for goods and services. This article is a guide to making use of the [Payment Request API](../payment_request_api), with examples and suggested best practices.
 
-The basics of making a payment
-------------------------------
+## The basics of making a payment
 
 This section details the basics of using the Payment Request API to make a payment.
 
@@ -18,9 +16,9 @@ This section details the basics of using the Payment Request API to make a payme
 
 A payment request always starts with the creation of a new [`PaymentRequest`](../paymentrequest) object — using the [`PaymentRequest()`](../paymentrequest/paymentrequest) constructor. This takes two mandatory parameters and one option parameter:
 
--   `methodData` — an object containing information concerning the payment provider, such as what payment methods are supported, etc.
--   `details` — an object containing information concerning the specific payment, such as the total payment amount, tax, shipping cost, etc.
--   `options` (optional) — an object containing addtional options related to the payment.
+- `methodData` — an object containing information concerning the payment provider, such as what payment methods are supported, etc.
+- `details` — an object containing information concerning the specific payment, such as the total payment amount, tax, shipping cost, etc.
+- `options` (optional) — an object containing addtional options related to the payment.
 
 So for example, you could create a new `PaymentRequest` instance like so:
 
@@ -101,8 +99,7 @@ There are some other useful payment request methods worth knowing about.
 
 [`PaymentRequest.abort()`](../paymentrequest/abort) can be used to abort the payment request if required.
 
-Detecting availability of the Payment Request API
--------------------------------------------------
+## Detecting availability of the Payment Request API
 
 You can effectively detect support for the Payment Request API by checking if the user's browser supports [`PaymentRequest`](../paymentrequest), i.e. `if (window.PaymentRequest)`.
 
@@ -130,8 +127,7 @@ In the following snippet, a merchant page performs this check, and if it returns
 
 **Note**: See our [Feature detect support demo](https://mdn.github.io/dom-examples/payment-request/feature-detect-support.html) for the full code.
 
-Checking whether users can make payments
-----------------------------------------
+## Checking whether users can make payments
 
 Checking whether users can make payments is always useful. Here's a couple of related techniques.
 
@@ -214,8 +210,7 @@ If the checkout flow needs to know whether [`PaymentRequest.canMakePayment()`](.
 
 **Note**: See our [Checking user can make payments before prices are known demo](https://mdn.github.io/dom-examples/payment-request/check-user-can-make-payment.html) for the full code.
 
-Recommending a payment app when user has no apps
-------------------------------------------------
+## Recommending a payment app when user has no apps
 
 If you select to pay with the BobPay demo payment provider on this merchant page, it tries to call `PaymentRequest.show()`, while intercepting the `NOTSUPPORTEDERR` exception. If this payment method is not supported, it redirects to the signup page for BobPay.
 
@@ -246,8 +241,7 @@ The code looks something like this:
 
 **Note**: See our [Recommending a payment app when user has no apps demo](https://mdn.github.io/dom-examples/payment-request/recommend-payment-app.html) for the full code.
 
-Showing additional user interface after successful payments
------------------------------------------------------------
+## Showing additional user interface after successful payments
 
 If the merchant desires to collect additional information not part of the API (e.g., additional delivery instructions), the merchant can show a page with additional `<input type="text">` fields after the checkout.
 
@@ -270,8 +264,7 @@ If the merchant desires to collect additional information not part of the API (e
 
 **Note**: See our [Show additional user interface after successful payment demo](https://mdn.github.io/dom-examples/payment-request/show-additional-ui-after-payment.html) for the full code.
 
-Pre-authorizing transactions
-----------------------------
+## Pre-authorizing transactions
 
 Some use cases (e.g., paying for fuel at a service station) involve pre-authorization of payment. One way to do this is through a Payment Handler (see the [Payment Handler API](https://w3c.github.io/payment-handler/)). At time of writing, that specification includes a `CanMakePayment` event that a Payment Handler could make use of to return authorization status.
 
@@ -305,12 +298,11 @@ This payment handler would need to live in a service worker at `https://example.
 
 **Note**: See our [Pre-authorizing transactions demo](https://mdn.github.io/dom-examples/payment-request/pre-authorize-transaction.html) for the full code.
 
-See also
---------
+## See also
 
--   [Google PaymentRequest Samples](https://googlechrome.github.io/samples/paymentrequest/)
--   [Google PaymentRequest codelab](https://g.co/PaymentRequestCodeLab)
--   Ecommerce website demo and source code [VeggieShop](https://github.com/pjbazin/wpwg-demo)
--   Web Payment App demo and source code [WhiteCollar](https://github.com/pjbazin/wpwg-demo/tree/master/WhiteCollar)
+- [Google PaymentRequest Samples](https://googlechrome.github.io/samples/paymentrequest/)
+- [Google PaymentRequest codelab](https://g.co/PaymentRequestCodeLab)
+- Ecommerce website demo and source code [VeggieShop](https://github.com/pjbazin/wpwg-demo)
+- Web Payment App demo and source code [WhiteCollar](https://github.com/pjbazin/wpwg-demo/tree/master/WhiteCollar)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Payment_Request_API/Using_the_Payment_Request_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Payment_Request_API/Using_the_Payment_Request_API</a>

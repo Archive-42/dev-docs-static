@@ -1,10 +1,8 @@
-PresentationConnection.close()
-==============================
+# PresentationConnection.close()
 
 When the `close()` method is called on a [`PresentationConnection`](../presentationconnection), the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) begins the process of closing the connection by sending an empty `closeMessage` with the `closeReason` set to `closed`.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

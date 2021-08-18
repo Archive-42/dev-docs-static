@@ -1,10 +1,8 @@
-OfflineAudioContext.OfflineAudioContext()
-=========================================
+# OfflineAudioContext.OfflineAudioContext()
 
 The `OfflineAudioContext()` constructor—part of the [Web Audio API](../web_audio_api)—creates and returns a new [`OfflineAudioContext`](../offlineaudiocontext) object instance, which can then be used to render audio to an [`AudioBuffer`](../audiobuffer) rather than to an audio output device.
 
-Syntax
-------
+## Syntax
 
     var offlineAudioCtx = new OfflineAudioContext(numberOfChannels, length, sampleRate);
 
@@ -31,8 +29,7 @@ A new [`OfflineAudioContext`](../offlineaudiocontext) object whose associated `A
 
 Like a regular `AudioContext`, an `OfflineAudioContext` can be the target of events, therefore it implements the [`EventTarget`](../eventtarget) interface.
 
-Example
--------
+## Example
 
     const offlineCtx = new OfflineAudioContext({
       numberOfChannels: 2,
@@ -44,14 +41,12 @@ Example
 
 For a full working example, see our [offline-audio-context-promise](https://mdn.github.io/webaudio-examples/offline-audio-context-promise/) Github repo (see the [source code](https://github.com/mdn/webaudio-examples/blob/master/offline-audio-context-promise/index.html) too.)
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-offlineaudiocontext-offlineaudiocontext">Web Audio API<br />
 <span class="small">The definition of 'OfflineAudioContext()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

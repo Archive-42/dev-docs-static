@@ -1,5 +1,4 @@
-PaymentResponse: payerdetailchange event
-========================================
+# PaymentResponse: payerdetailchange event
 
 **Secure context**
 
@@ -11,8 +10,7 @@ The event handler for `payerdetailchange` should check each value in the form th
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../paymentrequestupdateevent"><code>PaymentRequestUpdateEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><code>onpayerdetailchange</code></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 In the example below, `onpayerdetailchange` is used to set up a listener for the `payerdetailchange` event in order to validate the information entered by the user, requesting that any mistakes be corrected
 
@@ -93,14 +91,12 @@ You could also set up the event handler using the `addEventListener()` method:
       ...
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dfn-payerdetailchange">Payment Request API<br />
 <span class="small">The definition of 'payerdetailchange event' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -160,15 +156,14 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Payment Request API](../payment_request_api)
--   [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
--   [`PaymentResponse`](../paymentresponse)
--   `payerdetailchange`
--   `paymentmethodchange`
--   `shippingaddresschange`
--   `shippingoptionchange`
+- [Payment Request API](../payment_request_api)
+- [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
+- [`PaymentResponse`](../paymentresponse)
+- `payerdetailchange`
+- `paymentmethodchange`
+- `shippingaddresschange`
+- `shippingoptionchange`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentResponse/payerdetailchange_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentResponse/payerdetailchange_event</a>

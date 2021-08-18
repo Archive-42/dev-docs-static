@@ -1,15 +1,12 @@
-PeformanceObserver.disconnect()
-===============================
+# PeformanceObserver.disconnect()
 
 The `disconnect()` method of the [`PerformanceObserver`](../performanceobserver) interface is used to stop the performance observer from receiving any [performance entry](../performanceentry) events.
 
-Syntax
-------
+## Syntax
 
     performanceObserver.disconnect();
 
-Example
--------
+## Example
 
     var observer = new PerformanceObserver(function(list, obj) {
       var entries = list.getEntries();
@@ -28,14 +25,12 @@ Example
     var observer2 = new PerformanceObserver(perf_observer);
     observer2.observe({entryTypes: ["measure"]});
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/performance-timeline/#dom-performanceobserver-disconnect">Performance Timeline Level 2<br />
 <span class="small">The definition of 'disconnect()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition of <code>disconnect()</code> method.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

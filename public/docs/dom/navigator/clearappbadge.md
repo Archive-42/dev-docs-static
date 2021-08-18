@@ -1,10 +1,8 @@
-Navigator.clearAppBadge()
-=========================
+# Navigator.clearAppBadge()
 
-The `clearAppBadge()` method of the [`Navigator`](../navigator) interface clears a badge on the current app's icon by setting it to `nothing`. The value `nothing` indictes that no badge is currently set, and the status of the badge is *cleared*.
+The `clearAppBadge()` method of the [`Navigator`](../navigator) interface clears a badge on the current app's icon by setting it to `nothing`. The value `nothing` indictes that no badge is currently set, and the status of the badge is _cleared_.
 
-Syntax
-------
+## Syntax
 
     let promise = Navigator.clearAppBadge();
 
@@ -21,21 +19,18 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 `NotSupportedError`  
 The [`Navigator`](../navigator) does not have a document that this action can be acted on.
 
-Examples
---------
+## Examples
 
 Once all messages in an application have been read, call `clearAppBadge()` to clear the badge and remove the notification.
 
     navigator.clearAppBadge()
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/badging/#clearappbadge-method">Badging API<br />
 <span class="small">The definition of 'clearAppBadge' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -91,9 +86,8 @@ No
 
 13.0
 
-See also
---------
+## See also
 
--   [Badging for app icons](https://web.dev/badging-api/)
+- [Badging for app icons](https://web.dev/badging-api/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/clearAppBadge" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/clearAppBadge</a>

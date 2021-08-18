@@ -1,5 +1,4 @@
-msGraphicsTrustStatus
-=====================
+# msGraphicsTrustStatus
 
 **Non-standard**
 
@@ -9,13 +8,11 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 This proprietary property is specific to Internet Explorer and Microsoft Edge.
 
-Syntax
-------
+## Syntax
 
     status = object.msGraphicsTrustStatus;
 
-Example
--------
+## Example
 
         //Specifies the output device id that the audio will be sent to.
         msAudioDeviceType: string;

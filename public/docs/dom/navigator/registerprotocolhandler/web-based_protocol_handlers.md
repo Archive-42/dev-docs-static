@@ -1,19 +1,16 @@
-Web-based protocol handlers
-===========================
+# Web-based protocol handlers
 
-Background
-----------
+## Background
 
 It's fairly common to find web pages link to resources using non-`http` protocols. An example is the `mailto:` protocol:
 
     <a href="mailto:webmaster@example.com">Web Master</a>
 
-Web authors can use a `mailto:` link when they want to provide a convenient way for users to send an email, directly from the webpage. When the link is activated, the browser should launch the default desktop application for handling email. You can think of this as a *desktop-based* protocol handler.
+Web authors can use a `mailto:` link when they want to provide a convenient way for users to send an email, directly from the webpage. When the link is activated, the browser should launch the default desktop application for handling email. You can think of this as a _desktop-based_ protocol handler.
 
 Web-based protocol handlers allow web-based applications to participate in the process too. This is becoming more important as more types of applications migrate to the web. In fact, there are many web-based email handling applications that could process a `mailto` link.
 
-Registering
------------
+## Registering
 
 Setting up a web application as a protocol handler is not a difficult process. Basically, the web application uses `registerProtocolHandler()` to register itself with the browser as a potential handler for a given protocol. For example:
 
@@ -23,9 +20,9 @@ Setting up a web application as a protocol handler is not a difficult process. B
 
 Where the parameters are:
 
--   The protocol.
--   The URL template, used as the handler. The "%s" is replaced with the `href` of the link and a GET is executed on the resultant URL.
--   The user friendly name for the protocol handler.
+- The protocol.
+- The URL template, used as the handler. The "%s" is replaced with the `href` of the link and a GET is executed on the resultant URL.
+- The user friendly name for the protocol handler.
 
 When a browser executes this code, it should display a prompt to the user, asking permission to allow the web application to register as a handler for the protocol. Firefox displays a prompt in the notification bar area:
 
@@ -53,8 +50,7 @@ Registering the same protocol handler more than once will pop up a different not
     </body>
     </html>
 
-Activating
-----------
+## Activating
 
 Now, anytime the user activates a link that uses the registered protocol, the browser will route the action to the URL supplied when the web application registered. Firefox will, by default, prompt the user before handling off the action.
 
@@ -70,8 +66,7 @@ Now, anytime the user activates a link that uses the registered protocol, the br
     </body>
     </html>
 
-Handling
---------
+## Handling
 
 The next phase is handling the action. The browser extracts the `href` from the activated link, combines it with the URL template supplied during handler registration and performs an HTTP GET on the URL. So, using the above examples, the browser would perform a GET on this URL:
 
@@ -104,17 +99,15 @@ Server side code can extract the query string parameters and perform the desired
     </body>
     </html>
 
-References
-----------
+## References
 
--   [http://www.w3.org/TR/2011/WD-html5-20110525/timers.html\#custom-handlers](https://www.w3.org/TR/2011/WD-html5-20110525/timers.html#custom-handlers)
+- [http://www.w3.org/TR/2011/WD-html5-20110525/timers.html\#custom-handlers](https://www.w3.org/TR/2011/WD-html5-20110525/timers.html#custom-handlers)
 
-See also
---------
+## See also
 
--   [window.navigator.registerContentHandler](../registercontenthandler)
--   [nsIProtocolHandler](https://developer.mozilla.org/en-US/docs/XPCOM_Interface_Reference/nsIProtocolHandler) (XUL only)
--   [RegisterProtocolHandler Enhancing the Federated Web](https://blog.mozilla.com/webdev/2010/07/26/registerprotocolhandler-enhancing-the-federated-web/) at Mozilla Webdev
--   [Register a custom protocolHandler](https://developers.google.com/web/updates/2011/06/Registering-a-custom-protocol-handler) at Google Developers.
+- [window.navigator.registerContentHandler](../registercontenthandler)
+- [nsIProtocolHandler](https://developer.mozilla.org/en-US/docs/XPCOM_Interface_Reference/nsIProtocolHandler) (XUL only)
+- [RegisterProtocolHandler Enhancing the Federated Web](https://blog.mozilla.com/webdev/2010/07/26/registerprotocolhandler-enhancing-the-federated-web/) at Mozilla Webdev
+- [Register a custom protocolHandler](https://developers.google.com/web/updates/2011/06/Registering-a-custom-protocol-handler) at Google Developers.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/registerProtocolHandler/Web-based_protocol_handlers" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/registerProtocolHandler/Web-based_protocol_handlers</a>

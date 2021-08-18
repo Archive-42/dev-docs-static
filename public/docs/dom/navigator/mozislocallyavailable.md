@@ -1,5 +1,4 @@
-Navigator.mozIsLocallyAvailable()
-=================================
+# Navigator.mozIsLocallyAvailable()
 
 **Non-standard**
 
@@ -15,8 +14,7 @@ The `Navigator.mozIsLocallyAvailable()` method allows add-ons to determine wheth
 
 Security exceptions can occur if the requested URI is not from the same origin.
 
-Syntax
-------
+## Syntax
 
     navigator.mozIsLocallyAvailable(uri, ifOffline);
 
@@ -28,8 +26,7 @@ The URI of the resource whose availability is to be checked, as a string.
 `ifOffline`  
 Allows you to specify whether or not the offline resources cache should be checked; specify `true` to consider the offline resources cache.
 
-Example
--------
+## Example
 
     var available = navigator.mozIsLocallyAvailable("my-image-file.png", true);
     if (available) {
@@ -38,13 +35,11 @@ Example
       console.log("Certain needed resources are not available offline");
     }
 
-Specifications
---------------
+## Specifications
 
 Not part of any specifications.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

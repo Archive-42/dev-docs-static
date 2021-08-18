@@ -1,12 +1,10 @@
-PerformanceResourceTiming.workerStart
-=====================================
+# PerformanceResourceTiming.workerStart
 
 The `workerStart` read-only property of the [`PerformanceResourceTiming`](../performanceresourcetiming) interface returns a [`DOMHighResTimeStamp`](../domhighrestimestamp) immediately before dispatching the [`FetchEvent`](../fetchevent) if a Service Worker thread is already running, or immediately before starting the Service Worker thread if it is not already running. If the resource is not intercepted by a Service Worker the property will always return 0.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     resource.workerStart;
 
@@ -14,8 +12,7 @@ Syntax
 
 A [`DOMHighResTimeStamp`](../domhighrestimestamp).
 
-Example
--------
+## Example
 
 In the following example, the value of the `*Start` and `*End` properties of all "`resource`" [`type`](../performanceentry/entrytype) events are logged.
 
@@ -49,14 +46,12 @@ In the following example, the value of the `*Start` and `*End` properties of all
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-workerstart">Resource Timing Level 2<br />
 <span class="small">The definition of 'workerStart' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

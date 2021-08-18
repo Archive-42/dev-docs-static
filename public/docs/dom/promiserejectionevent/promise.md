@@ -1,10 +1,8 @@
-PromiseRejectionEvent.promise
-=============================
+# PromiseRejectionEvent.promise
 
 The [`PromiseRejectionEvent`](../promiserejectionevent) interface's `promise` read-only property indicates the JavaScript [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which was rejected. You can examine the event's [`PromiseRejectionEvent.reason`](reason) property to learn why the promise was rejected.
 
-Syntax
-------
+## Syntax
 
     promise = PromiseRejectionEvent.promise
 
@@ -12,8 +10,7 @@ Syntax
 
 The JavaScript [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which was rejected, and whose rejection went unhandled.
 
-Examples
---------
+## Examples
 
 This example listens for unhandled promises and, if the [`reason`](reason) is an object with a `code` field containing the text "Module not ready", it sets up an idle callback that will retry the task that failed to execute correctly.
 
@@ -29,14 +26,12 @@ This example listens for unhandled promises and, if the [`reason`](reason) is an
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#dom-promiserejectionevent-promise">HTML Living Standard<br />
 <span class="small">The definition of 'PromiseRejectionEvent.promise' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -94,13 +89,12 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [Promise rejection events](#) in [Using Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
--   [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
--   [`PromiseRejectionEvent`](../promiserejectionevent)
--   `rejectionhandled`
--   `unhandledrejection`
+- [Promise rejection events](#) in [Using Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+- [`PromiseRejectionEvent`](../promiserejectionevent)
+- `rejectionhandled`
+- `unhandledrejection`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PromiseRejectionEvent/promise" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PromiseRejectionEvent/promise</a>

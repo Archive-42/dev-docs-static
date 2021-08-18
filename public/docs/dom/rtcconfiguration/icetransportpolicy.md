@@ -1,12 +1,10 @@
-RTCConfiguration.iceTransportPolicy
-===================================
+# RTCConfiguration.iceTransportPolicy
 
 The [WebRTC Device API](../webrtc_api) dictionary [`RTCConfiguration`](../rtcconfiguration)'s `iceTransportPolicy` property is a string indicating the transport selection policy the [ICE](https://developer.mozilla.org/en-US/docs/Glossary/ICE) agent should use during negotiation of connections. Its value must come from the <span class="page-not-created">`RTCIceTransportPolicy`</span> enumerated type.
 
 If this property isn't included in the `RTCConfiguration`, the default value, `all`, is used.
 
-Syntax
-------
+## Syntax
 
     let rtcConfiguration = {
       iceTransportPolicy: policy
@@ -27,8 +25,7 @@ The ICE agent only considers media relay candidates when evaluating candidates. 
 
 This can be used to prevent the remote endpoint from receiving the user's IP addresses, which may be important in some security situations. For example, in a video calling application, the app may want to prevent unknown callers from learning the callee's IP addresses until the callee has agreed to receive the call.
 
-Examples
---------
+## Examples
 
 In this example, a new connection is configured to only accept relay candidates.
 
@@ -43,14 +40,12 @@ In this example, a new connection is configured to only accept relay candidates.
 
     let pc = new RTCPeerConnection(config);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcconfiguration-icetransportpolicy">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCCandidate.iceTransportPolicy' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

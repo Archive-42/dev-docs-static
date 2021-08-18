@@ -1,5 +1,4 @@
-NavigatorID.platform
-====================
+# NavigatorID.platform
 
 **Deprecated**
 
@@ -7,8 +6,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 Returns a string representing the platform of the browser. The specification allows browsers to always return the empty string, so don't rely on this property to get a reliable answer.
 
-Syntax
-------
+## Syntax
 
     platform = navigator.platform
 
@@ -18,24 +16,20 @@ A [`DOMString`](../domstring) identifying the platform on which the browser is r
 
 For example: "`MacIntel`", "`Win32`", "`FreeBSD i386`", "`WebTV OS`"
 
-Example
--------
+## Example
 
     console.log(navigator.platform);
 
-Usage notes
------------
+## Usage notes
 
 Most browsers, including Chrome, Edge, and Firefox 63 and later, return `"Win32"` even if running on a 64-bit version of Windows. Internet Explorer and versions of Firefox prior to version 63 still report `"Win64"`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-platform">HTML Living Standard<br />
 <span class="small">The definition of 'NavigatorID.platform' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

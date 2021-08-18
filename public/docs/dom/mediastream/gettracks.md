@@ -1,5 +1,4 @@
-MediaStream.getTracks()
-=======================
+# MediaStream.getTracks()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The **`getTracks()`** method of the [`MediaStream`](../mediastream) interface returns a sequence that represents all the [`MediaStreamTrack`](../mediastreamtrack) objects in this stream's `track set`, regardless of [`MediaStreamTrack.kind`](../mediastreamtrack/kind).
 
-Syntax
-------
+## Syntax
 
     var mediaStreamTracks = mediaStream.getTracks()
 
@@ -21,8 +19,7 @@ None.
 
 An array of [`MediaStreamTrack`](../mediastreamtrack) objects.
 
-Example
--------
+## Example
 
     navigator.mediaDevices.getUserMedia({audio: false, video: true})
     .then(mediaStream => {
@@ -34,14 +31,12 @@ Example
       }, 5000)
     })
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediastream-gettracks">Media Capture and Streams<br />
 <span class="small">The definition of 'getTracks()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

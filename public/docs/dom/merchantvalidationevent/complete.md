@@ -1,5 +1,4 @@
-MerchantValidationEvent.complete()
-==================================
+# MerchantValidationEvent.complete()
 
 **Deprecated**
 
@@ -15,15 +14,14 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The [`MerchantValidationEvent`](../merchantvalidationevent) method `complete()` takes merchant-specific information previously received from the [`validationURL`](validationurl) and uses it to validate the merchant. All you have to do is call `complete()` from your handler for the `merchantvalidation` event, passing in the data fetched from the `validationURL`.
 
-Syntax
-------
+## Syntax
 
     merchantValidationEvent.complete(validationData);
     merchantValidationEvent.complete(merchantSessionPromise);
 
 ### Parameters
 
- `validationData` or `merchantSessionPromise`   
+`validationData` or `merchantSessionPromise`  
 An object containing the data needed to complete the merchant validation process, or a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which resolves to the validation data.
 
 ### Return value
@@ -37,8 +35,7 @@ This exception may be passed into the rejection handler for the promise:
 `InvalidStateError`  
 The event did not come directly from the user agent, but was instead dispatched by other code. another payment request is currently being processed, the current payment request is not currently being displayed to the user, or payment information is currently being updated.
 
-Example
--------
+## Example
 
 In this example, we see the client-side code needed to support merchant validation for a payment request called `payRequest`:
 
@@ -53,8 +50,7 @@ In this example, we see the client-side code needed to support merchant validati
 
 This code sets up a handler for the `merchantvalidation` event. The event handler calls a function, `getValidationData()`, which retrieves the data from the validation URL, then passes that data (or a promise to deliver the data) into `complete()`.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -114,11 +110,10 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Payment Request API](../payment_request_api)
--   [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
--   [Payment processing concepts](../payment_request_api/concepts)
+- [Payment Request API](../payment_request_api)
+- [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
+- [Payment processing concepts](../payment_request_api/concepts)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MerchantValidationEvent/complete" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MerchantValidationEvent/complete</a>

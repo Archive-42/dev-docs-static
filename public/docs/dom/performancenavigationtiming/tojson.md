@@ -1,15 +1,13 @@
-PerformanceNavigationTiming.toJSON()
-====================================
+# PerformanceNavigationTiming.toJSON()
 
 **Experimental**
 
 **This is an [experimental technology](https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental)**  
 Check the [Browser compatibility table](#browser_compatibility) carefully before using this in production.
 
-The `toJSON()` method is a *serializer* - it returns a JSON representation of the [`PerformanceNavigationTiming`](../performancenavigationtiming) object.
+The `toJSON()` method is a _serializer_ - it returns a JSON representation of the [`PerformanceNavigationTiming`](../performancenavigationtiming) object.
 
-Syntax
-------
+## Syntax
 
     json = resourcePerfEntry.toJSON();
 
@@ -22,8 +20,7 @@ None
 json  
 A JSON object that is the serialization of the [`PerformanceNavigationTiming`](../performancenavigationtiming) object as a map with entries from the closest inherited interface and with entries for each of the serializable attributes.
 
-Example
--------
+## Example
 
     // Get a resource performance entry
     var perfEntries = performance.getEntriesByType("navigation");
@@ -34,14 +31,12 @@ Example
     var s = JSON.stringify(json);
     console.log("PerformanceNavigationTiming.toJSON() = " + s);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/navigation-timing/#dom-performancenavigationtiming-tojson">Navigation Timing Level 2<br />
 <span class="small">The definition of 'toJSON()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

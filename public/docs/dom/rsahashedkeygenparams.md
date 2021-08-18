@@ -1,10 +1,8 @@
-RsaHashedKeyGenParams
-=====================
+# RsaHashedKeyGenParams
 
-The `RsaHashedKeyGenParams` dictionary of the [Web Crypto API](web_crypto_api) represents the object that should be passed as the `algorithm` parameter into [`SubtleCrypto.generateKey()`](subtlecrypto/generatekey), when generating any RSA-based key pair: that is, when the algorithm is identified as any of [RSASSA-PKCS1-v1\_5](subtlecrypto/sign#rsassa-pkcs1-v1_5), [RSA-PSS](subtlecrypto/sign#rsa-pss), or [RSA-OAEP](subtlecrypto/encrypt#rsa-oaep).
+The `RsaHashedKeyGenParams` dictionary of the [Web Crypto API](web_crypto_api) represents the object that should be passed as the `algorithm` parameter into [`SubtleCrypto.generateKey()`](subtlecrypto/generatekey), when generating any RSA-based key pair: that is, when the algorithm is identified as any of [RSASSA-PKCS1-v1_5](subtlecrypto/sign#rsassa-pkcs1-v1_5), [RSA-PSS](subtlecrypto/sign#rsa-pss), or [RSA-OAEP](subtlecrypto/encrypt#rsa-oaep).
 
-Properties
-----------
+## Properties
 
 `name`  
 A [`DOMString`](domstring). This should be set to `RSASSA-PKCS1-v1_5`, `RSA-PSS`, or `RSA-OAEP`, depending on the algorithm you want to use.
@@ -20,23 +18,19 @@ A [`DOMString`](domstring) representing the name of the [digest function](subtle
 
 **Warning**: Although you can technically pass `SHA-1` as a value here, this is strongly discouraged as SHA-1 is considered vulnerable.
 
-Examples
---------
+## Examples
 
 See the examples for [`SubtleCrypto.generateKey()`](subtlecrypto/generatekey).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/WebCryptoAPI/#dfn-RsaHashedKeyGenParams">Web Cryptography API<br />
 <span class="small">The definition of 'SubtleCrypto.RsaHashedKeyGenParams' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
-See also
---------
+## See also
 
--   [`SubtleCrypto.generateKey()`](subtlecrypto/generatekey).
+- [`SubtleCrypto.generateKey()`](subtlecrypto/generatekey).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RsaHashedKeyGenParams" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RsaHashedKeyGenParams</a>

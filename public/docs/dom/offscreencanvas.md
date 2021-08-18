@@ -1,5 +1,4 @@
-OffscreenCanvas
-===============
+# OffscreenCanvas
 
 **Experimental**
 
@@ -10,14 +9,12 @@ The `OffscreenCanvas` interface provides a canvas that can be rendered off scree
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-Constructors
-------------
+## Constructors
 
 [`OffscreenCanvas()`](offscreencanvas/offscreencanvas)  
 `OffscreenCanvas` constructor. Creates a new `OffscreenCanvas` object.
 
-Properties
-----------
+## Properties
 
 [`OffscreenCanvas.height`](offscreencanvas/height)  
 The height of the offscreen canvas.
@@ -25,8 +22,7 @@ The height of the offscreen canvas.
 [`OffscreenCanvas.width`](offscreencanvas/width)  
 The width of the offscreen canvas.
 
-Methods
--------
+## Methods
 
 [`OffscreenCanvas.getContext()`](offscreencanvas/getcontext)  
 Returns a rendering context for the offscreen canvas.
@@ -37,8 +33,7 @@ Creates a [`Blob`](blob) object representing the image contained in the canvas.
 [`OffscreenCanvas.transferToImageBitmap()`](offscreencanvas/transfertoimagebitmap)  
 Creates an [`ImageBitmap`](imagebitmap) object from the most recently rendered image of the `OffscreenCanvas`.
 
-Examples
---------
+## Examples
 
 ### Synchronous display of frames produced by an `OffscreenCanvas`
 
@@ -105,14 +100,12 @@ You can also use requestAnimationFrame in workers
       requestAnimationFrame(render);
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/scripting.html#the-offscreencanvas-interface">HTML Living Standard<br />
 <span class="small">The definition of 'OffscreenCanvas' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -352,14 +345,13 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   [WebGL Off the Main Thread – Mozilla Hacks](https://hacks.mozilla.org/2016/01/webgl-off-the-main-thread/)
--   [`CanvasRenderingContext2D`](canvasrenderingcontext2d)
--   [`ImageBitmap`](imagebitmap)
--   [`ImageBitmapRenderingContext`](imagebitmaprenderingcontext)
--   [`HTMLCanvasElement.transferControlToOffscreen()`](htmlcanvaselement/transfercontroltooffscreen)
--   [`WebGLRenderingContext.commit()`](webglrenderingcontext/commit)
+- [WebGL Off the Main Thread – Mozilla Hacks](https://hacks.mozilla.org/2016/01/webgl-off-the-main-thread/)
+- [`CanvasRenderingContext2D`](canvasrenderingcontext2d)
+- [`ImageBitmap`](imagebitmap)
+- [`ImageBitmapRenderingContext`](imagebitmaprenderingcontext)
+- [`HTMLCanvasElement.transferControlToOffscreen()`](htmlcanvaselement/transfercontroltooffscreen)
+- [`WebGLRenderingContext.commit()`](webglrenderingcontext/commit)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas</a>

@@ -1,17 +1,14 @@
-Node.nodeType
-=============
+# Node.nodeType
 
 The read-only `Node.nodeType` property is an integer that identifies what the node is. It distinguishes different kind of nodes from each other, such as [`elements`](../element), [`text`](../text) and [`comments`](../comment).
 
-Syntax
-------
+## Syntax
 
     var type = node.nodeType;
 
 Returns an integer which specifies the type of the node. Possible values are listed in [Node type constants](#node_type_constants).
 
-Constants
----------
+## Constants
 
 ### Node type constants
 
@@ -23,8 +20,7 @@ The following constants have been deprecated and should not be used anymore.
 
 <table><tbody><tr class="odd"><td>Constant</td><td>Value</td><td>Description</td></tr><tr class="even"><td><code>Node.ENTITY_REFERENCE_NODE</code></td><td>5</td><td>An XML Entity Reference node, such as <code>&amp;foo;</code>. Removed in <a href="https://www.w3.org/TR/dom/">DOM4</a>.</td></tr><tr class="odd"><td><code>Node.ENTITY_NODE</code></td><td>6</td><td>An XML <code>&lt;!ENTITY …&gt;</code> node. Removed in <a href="https://www.w3.org/TR/dom/">DOM4</a>.</td></tr><tr class="even"><td><code>Node.NOTATION_NODE</code></td><td>12</td><td>An XML <code>&lt;!NOTATION …&gt;</code> node. Removed in <a href="https://www.w3.org/TR/dom/">DOM4</a>.</td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 ### Different types of nodes
 
@@ -48,8 +44,7 @@ This example checks if the first node inside the document element is a comment, 
       console.warn("You should comment your code!");
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-node-nodetype">DOM<br />
 <span class="small">The definition of 'Node.nodeType' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Deprecated <code>ATTRIBUTE_NODE</code>, <code>ENTITY_REFERENCE_NODE</code> and <code>NOTATION_NODE</code> types.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-1950641247">Document Object Model (DOM) Level 3 Core Specification<br />
@@ -57,8 +52,7 @@ Specifications
 <span class="small">The definition of 'Node.nodeType' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>No changes.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-111237558">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'Node.nodeType' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

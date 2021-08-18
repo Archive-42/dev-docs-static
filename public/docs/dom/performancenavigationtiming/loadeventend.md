@@ -1,5 +1,4 @@
-PerformanceNavigationTiming.loadEventEnd
-========================================
+# PerformanceNavigationTiming.loadEventEnd
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `loadEventEnd` read-only property returns a [`timestamp`](../domhighrestimestamp) which is equal to the time when the load event of the current document is completed.
 
-Syntax
-------
+## Syntax
 
     perfEntry.loadEventEnd;
 
@@ -17,8 +15,7 @@ Syntax
 
 A [`timestamp`](../domhighrestimestamp) representing the time when the load event of the current document is completed.
 
-Example
--------
+## Example
 
 The following example illustrates this property's usage.
 
@@ -44,14 +41,12 @@ The following example illustrates this property's usage.
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/navigation-timing/#dom-performancenavigationtiming-loadeventend">Navigation Timing Level 2<br />
 <span class="small">The definition of 'loadEventEnd' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

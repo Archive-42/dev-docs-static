@@ -1,10 +1,8 @@
-RTCIceTransportState
-====================
+# RTCIceTransportState
 
 The `RTCIceTransportState` enumerated type defines the string values which may be returned by the [`state`](rtcicetransport/state) property on [`RTCIceTransport`](rtcicetransport) objects. The transport state indicates which stage of the candidate gathering process is currently underway.
 
-Values
-------
+## Values
 
 `"new"`  
 The [`RTCIceTransport`](rtcicetransport) is currently gathering local candidates, or is waiting for the remote device to begin to transmit the remote candidates, or both. In this state, checking of candidates to look for those which might be acceptable has not yet begun.
@@ -24,35 +22,32 @@ The transport has finished gathering local candidates and has received a notific
 The ICE agent has determined that connectivity has been lost for this [`RTCIceTransport`](rtcicetransport). This is not a failure state (that's `"failed"`). A value of `"disconnected"` means that a transient issue has occurred that has broken the connection, but that should resolve itself automatically without your code having to take any action. See [The disconnected state](#the_disconnected_state) for additional details.
 
 `"failed"`  
-The `RTCIceTransport` has finished the gathering process, has received the "no more candidates" notification from the remote peer, and has finished checking pairs of candidates, without successfully finding a pair that is both valid and for which consent can be obtained. *This is a terminal state, indicating that the connection cannot be achieved or maintained.*
+The `RTCIceTransport` has finished the gathering process, has received the "no more candidates" notification from the remote peer, and has finished checking pairs of candidates, without successfully finding a pair that is both valid and for which consent can be obtained. _This is a terminal state, indicating that the connection cannot be achieved or maintained._
 
 `"closed"`  
 The transport has shut down and is no longer responding to STUN requests.
 
-Usage notes
------------
+## Usage notes
 
 If an ICE restart occurs, the candidate gathering and connectivity check process is started over again; this will cause a transition from the `"connected"` state if the restart occurred while the state was `"completed"`. If the restart occurred during a transient `"disconnected"` state, the state transitions to `"checking"`
 
 ### The disconnected state
 
-`"disconnected"` is a transient state that occurs when the connection between the two peers fails in a manner that the WebRTC infrastructure can automatically correct once the connection is available again. It is *not* a failure state. Instead, you can think of `"disconnected"` as being similar to `"checking"` but with the added information that the connection had been working but at the moment is not.
+`"disconnected"` is a transient state that occurs when the connection between the two peers fails in a manner that the WebRTC infrastructure can automatically correct once the connection is available again. It is _not_ a failure state. Instead, you can think of `"disconnected"` as being similar to `"checking"` but with the added information that the connection had been working but at the moment is not.
 
 Every [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) and platform may have its own scenarios that can trigger the `"disconnected"` state. Possible causes include:
 
--   The network interface being used by the connection has gone offline.
--   [STUN](https://developer.mozilla.org/en-US/docs/Glossary/STUN) requests being sent to the remote device have gone unanswered repeatedly.
+- The network interface being used by the connection has gone offline.
+- [STUN](https://developer.mozilla.org/en-US/docs/Glossary/STUN) requests being sent to the remote device have gone unanswered repeatedly.
 
 The `"disconnected"` state can also occur when the transport has finished checking all existing candidate pairs and has not found a pair that will work—or a valid pair was found but rejected due to consent to use the pair being denied. In this scenario, the transport is still continuing to gather candidates, and/or to wait for candidates to be sent by the remote peer.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#rtcicerole">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceRole' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.RTCIceRole`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).

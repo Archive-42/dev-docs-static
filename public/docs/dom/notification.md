@@ -1,5 +1,4 @@
-Notification
-============
+# Notification
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
@@ -9,14 +8,12 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `Notification` interface of the [Notifications API](notifications_api) is used to configure and display desktop notifications to the user. These notifications' appearance and specific functionality vary across platforms but generally they provide a way to asynchronously provide information to the user.
 
-Constructor
------------
+## Constructor
 
 [`Notification()`](notification/notification)  
 Creates a new instance of the `Notification` object.
 
-Properties
-----------
+## Properties
 
 ### Static properties
 
@@ -26,9 +23,9 @@ These properties are available only on the `Notification` object itself.
 
 A string representing the current permission to display notifications. Possible values are:
 
--   `denied` — The user refuses to have notifications displayed.
--   `granted` — The user accepts having notifications displayed.
--   `default` — The user choice is unknown and therefore the browser will act as if the value were denied.
+- `denied` — The user refuses to have notifications displayed.
+- `granted` — The user accepts having notifications displayed.
+- `default` — The user choice is unknown and therefore the browser will act as if the value were denied.
 
 [`Notification.maxActions`](notification/maxactions) <span class="badge inline readonly">Read only </span>
 
@@ -36,49 +33,49 @@ A string representing the current permission to display notifications. Possible 
 
 These properties are available only on instances of the `Notification` object.
 
- [`Notification.actions`](notification/actions) <span class="badge inline readonly">Read only </span>   
+[`Notification.actions`](notification/actions) <span class="badge inline readonly">Read only </span>  
 The actions array of the notification as specified in the constructor's `options` parameter.
 
- [`Notification.badge`](notification/badge) <span class="badge inline readonly">Read only </span>   
+[`Notification.badge`](notification/badge) <span class="badge inline readonly">Read only </span>  
 The URL of the image used to represent the notification when there is not enough space to display the notification itself.
 
- [`Notification.body`](notification/body) <span class="badge inline readonly">Read only </span>   
+[`Notification.body`](notification/body) <span class="badge inline readonly">Read only </span>  
 The body string of the notification as specified in the constructor's `options` parameter.
 
- [`Notification.data`](notification/data) <span class="badge inline readonly">Read only </span>   
+[`Notification.data`](notification/data) <span class="badge inline readonly">Read only </span>  
 Returns a structured clone of the notification’s data.
 
- [`Notification.dir`](notification/dir) <span class="badge inline readonly">Read only </span>   
+[`Notification.dir`](notification/dir) <span class="badge inline readonly">Read only </span>  
 The text direction of the notification as specified in the constructor's `options` parameter.
 
- [`Notification.lang`](notification/lang) <span class="badge inline readonly">Read only </span>   
+[`Notification.lang`](notification/lang) <span class="badge inline readonly">Read only </span>  
 The language code of the notification as specified in the constructor's `options` parameter.
 
- [`Notification.tag`](notification/tag) <span class="badge inline readonly">Read only </span>   
+[`Notification.tag`](notification/tag) <span class="badge inline readonly">Read only </span>  
 The ID of the notification (if any) as specified in the constructor's `options` parameter.
 
- [`Notification.icon`](notification/icon) <span class="badge inline readonly">Read only </span>   
+[`Notification.icon`](notification/icon) <span class="badge inline readonly">Read only </span>  
 The URL of the image used as an icon of the notification as specified in the constructor's `options` parameter.
 
- [`Notification.image`](notification/image) <span class="badge inline readonly">Read only </span>   
+[`Notification.image`](notification/image) <span class="badge inline readonly">Read only </span>  
 The URL of an image to be displayed as part of the notification, as specified in the constructor's `options` parameter.
 
- [`Notification.renotify`](notification/renotify) <span class="badge inline readonly">Read only </span>   
+[`Notification.renotify`](notification/renotify) <span class="badge inline readonly">Read only </span>  
 Specifies whether the user should be notified after a new notification replaces an old one.
 
- [`Notification.requireInteraction`](notification/requireinteraction) <span class="badge inline readonly">Read only </span>   
+[`Notification.requireInteraction`](notification/requireinteraction) <span class="badge inline readonly">Read only </span>  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating that a notification should remain active until the user clicks or dismisses it, rather than closing automatically.
 
- [`Notification.silent`](notification/silent) <span class="badge inline readonly">Read only </span>   
+[`Notification.silent`](notification/silent) <span class="badge inline readonly">Read only </span>  
 Specifies whether the notification should be silent — i.e., no sounds or vibrations should be issued, regardless of the device settings.
 
- [`Notification.timestamp`](notification/timestamp) <span class="badge inline readonly">Read only </span>   
+[`Notification.timestamp`](notification/timestamp) <span class="badge inline readonly">Read only </span>  
 Specifies the time at which a notification is created or applicable (past, present, or future).
 
- [`Notification.title`](notification/title) <span class="badge inline readonly">Read only </span>   
+[`Notification.title`](notification/title) <span class="badge inline readonly">Read only </span>  
 The title of the notification as specified in the first parameter of the constructor.
 
- [`Notification.vibrate`](notification/vibrate) <span class="badge inline readonly">Read only </span>   
+[`Notification.vibrate`](notification/vibrate) <span class="badge inline readonly">Read only </span>  
 Specifies a vibration pattern for devices with vibration hardware to emit.
 
 #### Event handlers
@@ -95,8 +92,7 @@ A handler for the <span class="page-not-created">`error`</span> event. It is tri
 [`Notification.onshow`](notification/onshow)  
 A handler for the [`show`](element/show_event) event. It is triggered when the notification is displayed.
 
-Methods
--------
+## Methods
 
 ### Static methods
 
@@ -112,8 +108,7 @@ These properties are available only on an instance of the `Notification` object 
 [`Notification.close()`](notification/close)  
 Programmatically closes a notification instance.
 
-Examples
---------
+## Examples
 
 Assume this basic HTML:
 
@@ -151,13 +146,11 @@ We no longer show a live sample on this page, as Chrome and Firefox no longer al
 
 **Note**: In the above example we spawn notifications in response to a user gesture (clicking a button). This is not only best practice — you should not be spamming users with notifications they didn't agree to — but going forward browsers will explicitly disallow notifications not triggered in response to a user gesture. Firefox is already doing this from version 72, for example.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://notifications.spec.whatwg.org/">Notifications API</a></td><td><span class="spec-living">Living Standard</span></td><td>Living standard</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -919,9 +912,8 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [Using the Notifications API](notifications_api/using_the_notifications_api)
+- [Using the Notifications API](notifications_api/using_the_notifications_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Notification</a>

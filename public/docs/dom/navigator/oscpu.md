@@ -1,5 +1,4 @@
-Navigator.oscpu
-===============
+# Navigator.oscpu
 
 **Deprecated**
 
@@ -7,8 +6,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `Navigator.oscpu` property returns a string that identifies the current operating system.
 
-Syntax
-------
+## Syntax
 
     oscpuInfo = navigator.oscpu
 
@@ -20,8 +18,7 @@ A [`DOMString`](../domstring) providing a string which identifies the operating 
 
 1.  x.y refers to the version of the operating system
 
-Example
--------
+## Example
 
     function osInfo() {
       alert(window.navigator.oscpu);
@@ -29,19 +26,16 @@ Example
 
     osInfo(); // alerts "Windows NT 6.0" for example
 
-Usage notes
------------
+## Usage notes
 
 Unless your code is privileged (chrome or at least has the UniversalBrowserRead privilege), it may get the value of the `general.oscpu.override` preference instead of the true platform.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-oscpu">HTML Living Standard<br />
 <span class="small">The definition of 'NavigatorID: oscpu' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

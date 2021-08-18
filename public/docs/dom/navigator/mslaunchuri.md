@@ -1,5 +1,4 @@
-Navigator.msLaunchUri()
-=======================
+# Navigator.msLaunchUri()
 
 **Non-standard**
 
@@ -9,8 +8,7 @@ The `msLaunchUri()` method is a Microsoft extension to the [`Navigator`](../navi
 
 This proprietary method is specific to Internet Explorer, and Microsoft Edge versions 18 and lower.
 
-Syntax
-------
+## Syntax
 
     navigator.msLaunchUri(uri, successCallback, noHandlerCallback);
 
@@ -19,18 +17,17 @@ Syntax
 `uri`  
 A [`DOMString`](../domstring) specifying the URL containing including the protocol of the document or resource to be displayed.
 
- `successCallback`<span class="badge inline optional">Optional</span>   
+`successCallback`<span class="badge inline optional">Optional</span>  
 A function matching the signature of <span class="page-not-created">`MSLaunchUriCallback`</span> to be executed if the protocol handler is present.
 
- `noHandlerCallback`<span class="badge inline optional">Optional</span>   
-A function matching <span class="page-not-created">`MSLaunchUriCallback`</span> to be executed if the protocol handler is *not* present.
+`noHandlerCallback`<span class="badge inline optional">Optional</span>  
+A function matching <span class="page-not-created">`MSLaunchUriCallback`</span> to be executed if the protocol handler is _not_ present.
 
 ### Return value
 
 `undefined`.
 
-Usage notes
------------
+## Usage notes
 
 If a default protocol handler is available on the system that matches the URI, the `successCallback` is invoked, otherwise, the `noHandlerCallback` is called.
 
@@ -38,10 +35,9 @@ To help protect a user's privacy, Windows displays a prompt for the user to allo
 
 If the user's system does not have a program registered to handle a specific protocol, and a `noHandlerCallback` is provided, Windows Internet Explorer will invoke the `noHandlerCallback`. This enables developers to provide a custom fallback experience for the user. If a handler doesn't exist, and the developer doesn't provide a `noHandlerCallback`, then Internet Explorer displays a dialog that asks the user if they want to allow the action. If the user allows it, the user is then prompted to look in the Windows Store for an app to handle the protocol. If multiple programs are registered on the system for the given protocol and no default has been chosen, Windows prompts the user to choose one.
 
-See also
---------
+## See also
 
--   <span class="page-not-created">`MSLaunchUriCallback`</span>
--   [Microsoft API extensions](../microsoft_extensions)
+- <span class="page-not-created">`MSLaunchUriCallback`</span>
+- [Microsoft API extensions](../microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/msLaunchUri" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/msLaunchUri</a>

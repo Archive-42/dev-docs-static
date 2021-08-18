@@ -1,12 +1,10 @@
-MutationObserverInit.subtree
-============================
+# MutationObserverInit.subtree
 
-The **[`MutationObserverInit`](../mutationobserverinit)** dictionary's optional `subtree` property can be set to `true` to monitor the targeted node *and* all of its descendants. The default value, `false`, indicates only the target node itself is to be monitored for changes.
+The **[`MutationObserverInit`](../mutationobserverinit)** dictionary's optional `subtree` property can be set to `true` to monitor the targeted node _and_ all of its descendants. The default value, `false`, indicates only the target node itself is to be monitored for changes.
 
 `subtree` can be used in concert with the other options to extend monitoring of attributes, text content, and child lists to the entire subtree rooted at the target node.
 
-Syntax
-------
+## Syntax
 
     var options = {
       subtree: true | false
@@ -32,17 +30,14 @@ To monitor the entire subtree for attribute changes, set `subtree` to `true`:
       subtree: true
     };
 
-Example
--------
+## Example
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-mutationobserverinit-subtree">DOM<br />
 <span class="small">The definition of 'MutationObserverInit.subtree' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

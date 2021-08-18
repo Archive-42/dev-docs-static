@@ -1,5 +1,4 @@
-RelativeOrientationSensor
-=========================
+# RelativeOrientationSensor
 
 The `RelativeOrientationSensor` interface of the [Sensor APIs](sensor_apis) describes the device's physical orientation without regard to the Earth's reference coordinate system.
 
@@ -7,28 +6,24 @@ To use this sensor, the user must grant permission to the `'accelerometer'`, and
 
 If a feature policy blocks use of a feature it is because your code is inconsistent with the policies set on your server. This is not something that would ever be shown to a user. See [`Feature-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy) for implementation instructions.
 
-Constructor
------------
+## Constructor
 
 [`RelativeOrientationSensor.RelativeOrientationSensor()`](relativeorientationsensor/relativeorientationsensor)  
 Creates a new `RelativeOrientationSensor` object.
 
-Properties
-----------
+## Properties
 
-*No specific properties; inherits methods from its ancestors [`OrientationSensor`](orientationsensor) and [`Sensor`](sensor).*
+_No specific properties; inherits methods from its ancestors [`OrientationSensor`](orientationsensor) and [`Sensor`](sensor)._
 
 ### Event handlers
 
-*No specific event handlers; inherits methods from its ancestor, [`Sensor`](sensor).*
+_No specific event handlers; inherits methods from its ancestor, [`Sensor`](sensor)._
 
-Methods
--------
+## Methods
 
-*No specific methods; inherits methods from its ancestors [`OrientationSensor`](orientationsensor) and [`Sensor`](sensor).*
+_No specific methods; inherits methods from its ancestors [`OrientationSensor`](orientationsensor) and [`Sensor`](sensor)._
 
-Examples
---------
+## Examples
 
 ### Basic Example
 
@@ -66,14 +61,12 @@ Using orientation sensors requires requsting permissions for multiple device sen
              }
        });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/orientation-sensor/#relativeorientationsensor-interface">Orientation Sensor<br />
 <span class="small">The definition of 'RelativeOrientationSensor' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

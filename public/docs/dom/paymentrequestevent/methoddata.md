@@ -1,5 +1,4 @@
-PaymentRequestEvent.methodData
-==============================
+# PaymentRequestEvent.methodData
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `methodData` read-only property of the [`PaymentRequestEvent`](../paymentrequestevent) interface returns an array of <span class="page-not-created">`PaymentMethodData`</span> objects containing payment method identifers for the payment methods that the web site accepts and any associated payment method specific data.
 
-Syntax
-------
+## Syntax
 
     var methodData[] = paymentRequestEvent.methodData
 
@@ -17,14 +15,12 @@ Syntax
 
 An array of <span class="page-not-created">`PaymentMethodData`</span> objects.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-handler/#methoddata-attribute">Payment Handler API<br />
 <span class="small">The definition of 'methodData' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

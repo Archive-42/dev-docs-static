@@ -1,5 +1,4 @@
-PaymentRequest.onmerchantvalidation
-===================================
+# PaymentRequest.onmerchantvalidation
 
 **Deprecated**
 
@@ -17,8 +16,7 @@ The [`PaymentRequest`](../paymentrequest) event handler `onmerchantvalidation` i
 
 This event is not be fired by all payment handlers. In particular, it's used by Apple Pay.
 
-Syntax
-------
+## Syntax
 
     paymentRequest.onmerchantvalidation = eventHandlerFunction;
 
@@ -26,8 +24,7 @@ Syntax
 
 An event handler function which is to be called whenever the `merchantvalidation` event is fired at the [`PaymentRequest`](../paymentrequest), indicating that the payment handler requires the merchant to validate themselves as allowed to use this payment handler.
 
-Examples
---------
+## Examples
 
 An example merchant validation handler for the [`PaymentRequest`](../paymentrequest) object `request` looks like this:
 
@@ -44,8 +41,7 @@ An example merchant validation handler for the [`PaymentRequest`](../paymentrequ
 
 For more information, see [Merchant Validation](#) in [Payment processing concepts](../payment_request_api/concepts).
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

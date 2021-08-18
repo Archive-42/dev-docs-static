@@ -1,20 +1,17 @@
-OfflineAudioContext
-===================
+# OfflineAudioContext
 
 The `OfflineAudioContext` interface is an [`AudioContext`](audiocontext) interface representing an audio-processing graph built from linked together [`AudioNode`](audionode)s. In contrast with a standard [`AudioContext`](audiocontext), an `OfflineAudioContext` doesn't render the audio to the device hardware; instead, it generates it, as fast as it can, and outputs the result to an [`AudioBuffer`](audiobuffer).
 
-Constructor
------------
+## Constructor
 
 [`OfflineAudioContext.OfflineAudioContext()`](offlineaudiocontext/offlineaudiocontext)  
 Creates a new `OfflineAudioContext` instance.
 
-Properties
-----------
+## Properties
 
-*Also inherits properties from its parent interface, [`BaseAudioContext`](baseaudiocontext).*
+_Also inherits properties from its parent interface, [`BaseAudioContext`](baseaudiocontext)._
 
- [`OfflineAudioContext.length`](offlineaudiocontext/length) <span class="badge inline readonly">Read only </span>   
+[`OfflineAudioContext.length`](offlineaudiocontext/length) <span class="badge inline readonly">Read only </span>  
 An integer representing the size of the buffer in sample-frames.
 
 ### Event handlers
@@ -22,10 +19,9 @@ An integer representing the size of the buffer in sample-frames.
 [`OfflineAudioContext.oncomplete`](offlineaudiocontext/oncomplete)  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) called when processing is terminated, that is when the `complete` event (of type [`OfflineAudioCompletionEvent`](offlineaudiocompletionevent)) is raised, after the event-based version of [`OfflineAudioContext.startRendering()`](offlineaudiocontext/startrendering) is used.
 
-Methods
--------
+## Methods
 
-*Also inherits methods from its parent interface, [`BaseAudioContext`](baseaudiocontext).*
+_Also inherits methods from its parent interface, [`BaseAudioContext`](baseaudiocontext)._
 
 [`OfflineAudioContext.suspend()`](offlineaudiocontext/suspend)  
 Schedules a suspension of the time progression in the audio context at the specified time and returns a promise.
@@ -40,8 +36,7 @@ Resumes the progression of time in an audio context that has previously been sus
 
 **Note**: The `resume()` method is still available — it is now defined on the [`BaseAudioContext`](baseaudiocontext) interface (see [`AudioContext.resume`](audiocontext/resume)) and thus can be accessed by both the [`AudioContext`](audiocontext) and [`OfflineAudioContext`](offlineaudiocontext) interfaces.
 
-Events
-------
+## Events
 
 Listen to these events using `addEventListener()` or by assigning an event listener to the `oneventname` property of this interface:
 
@@ -49,8 +44,7 @@ Listen to these events using `addEventListener()` or by assigning an event liste
 Fired when the rendering of an offline audio context is complete.  
 Also available using the `oncomplete` event handler property.
 
-Examples
---------
+## Examples
 
 In this simple example, we declare both an [`AudioContext`](audiocontext) and an `OfflineAudioContext` object. We use the `AudioContext` to load an audio track via XHR ([`BaseAudioContext.decodeAudioData`](baseaudiocontext/decodeaudiodata)), then the `OfflineAudioContext` to render the audio into an [`AudioBufferSourceNode`](audiobuffersourcenode) and play the track through. After the offline audio graph is set up, you need to render it to an [`AudioBuffer`](audiobuffer) using [`OfflineAudioContext.startRendering`](offlineaudiocontext/startrendering).
 
@@ -110,14 +104,12 @@ At this point we create another audio context, create an [`AudioBufferSourceNode
 
     getData();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#OfflineAudioContext">Web Audio API<br />
 <span class="small">The definition of 'OfflineAudioContext' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -391,9 +383,8 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](web_audio_api/using_web_audio_api)
+- [Using the Web Audio API](web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/OfflineAudioContext" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/OfflineAudioContext</a>

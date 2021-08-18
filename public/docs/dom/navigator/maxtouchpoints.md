@@ -1,29 +1,24 @@
-Navigator.maxTouchPoints
-========================
+# Navigator.maxTouchPoints
 
 The `maxTouchPoints` read-only property of the [`Navigator`](../navigator) interface returns the maximum number of simultaneous touch contact points are supported by the current device.
 
-Syntax
-------
+## Syntax
 
     touchPoints = navigator.maxTouchPoints;
 
-Example
--------
+## Example
 
     if (navigator.maxTouchPoints > 1) {
       // browser supports multi-touch
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/pointerevents2/#extensions-to-the-navigator-interface">Pointer Events – Level 2<br />
 <span class="small">The definition of 'maxTouchPoints' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Non-stable version.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/pointerevents1/#extensions-to-the-navigator-interface">Pointer Events<br />
 <span class="small">The definition of 'maxTouchPoints' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

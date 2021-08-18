@@ -1,5 +1,4 @@
-RTCDataChannel.close()
-======================
+# RTCDataChannel.close()
 
 The `RTCDataChannel.close()` method closes the [`RTCDataChannel`](../rtcdatachannel). Either peer is permitted to call this method to initiate closure of the channel.
 
@@ -17,23 +16,19 @@ The sequence of events which occurs in response to this method being called:
 
 In Firefox, the [`RTCDataChannel`](../rtcdatachannel) interface was implemented under the name `DataChannel` until Firefox 24, so this method was called `DataChannel.close()`.
 
-Syntax
-------
+## Syntax
 
     RTCDataChannel.close();
 
-Parameters
-----------
+## Parameters
 
 None.
 
-Return value
-------------
+## Return value
 
 `undefined`.
 
-Example
--------
+## Example
 
     var pc = new RTCPeerConnection();
     var dc = pc.createDataChannel("my channel");
@@ -53,14 +48,12 @@ Example
 
     // Now negotiate the connection and so forth...
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcdatachannel-close">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCDataChannel.close()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -116,12 +109,11 @@ Yes
 
 6.0
 
-See also
---------
+## See also
 
--   [WebRTC](../webrtc_api)
--   [`RTCDataChannel`](../rtcdatachannel)
--   [`RTCDataChannel.readyState`](readystate)
--   `close` event
+- [WebRTC](../webrtc_api)
+- [`RTCDataChannel`](../rtcdatachannel)
+- [`RTCDataChannel.readyState`](readystate)
+- `close` event
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/close" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/close</a>

@@ -1,5 +1,4 @@
-PublicKeyCredentialRequestOptions.userVerification
-==================================================
+# PublicKeyCredentialRequestOptions.userVerification
 
 **Secure context**
 
@@ -9,8 +8,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 **Note:** An analogous option exists for the creation operation ([`navigators.credentials.create()`](../credentialscontainer/create)), see the `userVerification` property of [`PublicKeyCredentialCreationOptions.authenticatorSelection`](../publickeycredentialcreationoptions/authenticatorselection).
 
-Syntax
-------
+## Syntax
 
     userVerification = publicKeyCredentialRequestOptions.userVerification
 
@@ -18,14 +16,13 @@ Syntax
 
 A string qualifying how the user verification should be part of the authentication process. The values may be:
 
--   `"required"`: user verification is required, the operation will fail if the [response](../authenticatorassertionresponse) does not have the UV flag (as part of [`AuthenticatorAssertionResponse.authenticatorData`](../authenticatorassertionresponse/authenticatordata))
--   `"preferred"`: user verification is preferred, the operation will not fail if the [response](../authenticatorassertionresponse) does not have the UV flag (as part of [`AuthenticatorAssertionResponse.authenticatorData`](../authenticatorassertionresponse/authenticatordata))
--   `"discouraged"`: user verification should not be employed as to minimize the user interaction during the process.
+- `"required"`: user verification is required, the operation will fail if the [response](../authenticatorassertionresponse) does not have the UV flag (as part of [`AuthenticatorAssertionResponse.authenticatorData`](../authenticatorassertionresponse/authenticatordata))
+- `"preferred"`: user verification is preferred, the operation will not fail if the [response](../authenticatorassertionresponse) does not have the UV flag (as part of [`AuthenticatorAssertionResponse.authenticatorData`](../authenticatorassertionresponse/authenticatordata))
+- `"discouraged"`: user verification should not be employed as to minimize the user interaction during the process.
 
 The default value is `"preferred"`.
 
-Examples
---------
+## Examples
 
     var options = {
       userVerification: "preferred",
@@ -40,14 +37,12 @@ Examples
          console.error(err);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#dom-publickeycredentialrequestoptions-userverification">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'userVerification' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -103,9 +98,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`PublicKeyCredentialCreationOptions.authenticatorSelection`](../publickeycredentialcreationoptions/authenticatorselection) whose `userVerification` property serves the same purpose for credential creation.
+- [`PublicKeyCredentialCreationOptions.authenticatorSelection`](../publickeycredentialcreationoptions/authenticatorselection) whose `userVerification` property serves the same purpose for credential creation.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialRequestOptions/userVerification" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialRequestOptions/userVerification</a>

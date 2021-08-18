@@ -1,5 +1,4 @@
-msPlayToSource
-==============
+# msPlayToSource
 
 **Non-standard**
 
@@ -9,22 +8,19 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 This proprietary property is specific to Internet Explorer and Microsoft Edge.
 
-Syntax
-------
+## Syntax
 
     ptr = object.msPlayToSource;
 
-Value
------
+## Value
 
-*PlayTo* is a means through which an app can connect local playback/display for audio, video, and img elements to a remote device. For more information, see the [Windows.Media.PlayTo](https://docs.microsoft.com/en-us/uwp/api/windows.media.playto) APIs.
+_PlayTo_ is a means through which an app can connect local playback/display for audio, video, and img elements to a remote device. For more information, see the [Windows.Media.PlayTo](https://docs.microsoft.com/en-us/uwp/api/windows.media.playto) APIs.
 
 `msPlayToSource` is used in the `sourceRequested` handler -- get the `PlayToSource` object from an audio, video, or img element using the `msPlayToSource` property and pass it to `e.setSource`, then set the `PlayToSource.next` property to the `msPlayToSource` of another element for continual playing.
 
 The property value for `msPlayToSource` is the source associated with the media element.
 
-Example
--------
+## Example
 
     <video id="videoplayer" src="http://www.contoso.com/clip.mp4" controls autoplay />
     <script type="text/javascript">

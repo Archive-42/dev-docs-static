@@ -1,5 +1,4 @@
-NDEFReader.scan()
-=================
+# NDEFReader.scan()
 
 **Draft**
 
@@ -16,22 +15,21 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `scan()` method of [`NDEFReader`](../ndefreader) interface reads NDEF records from compatible NFC devices, e.g., NDEF NFC tags.
 
-Syntax
-------
+## Syntax
 
     var readerPromise = NDEFReader.scan(options);
 
 ### Parameters
 
- `options` <span class="badge inline optional">Optional</span>   
--   `signal` -- optional [`AbortSignal`](../abortsignal) that allows to cancel this `scan()` operation.
+`options` <span class="badge inline optional">Optional</span>
+
+- `signal` -- optional [`AbortSignal`](../abortsignal) that allows to cancel this `scan()` operation.
 
 ### Return value
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with `undefined` immediately after scheduling read operations for the NFC adapter.
 
-Exceptions
-----------
+## Exceptions
 
 This method doesn't throw true exceptions; instead, it rejects the returned promise, passing into it a [`DOMException`](../domexception) whose `name` is one of the following:
 
@@ -47,13 +45,11 @@ The permission for this operation was rejected.
 `NotSupportedError`  
 There is no NFC adapter compatible with Web NFC, or a connection can not be established.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/web-nfc/#dom-ndefreader-scan">Web NFC, scan()</a></td><td>Draft</td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

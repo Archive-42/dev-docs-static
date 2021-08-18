@@ -1,32 +1,29 @@
-PeriodicWave.PeriodicWave()
-===========================
+# PeriodicWave.PeriodicWave()
 
 The `PeriodicWave()` constructor of the [Web Audio API](../web_audio_api) creates a new [`PeriodicWave`](../periodicwave) object instance.
 
-Syntax
-------
+## Syntax
 
     var myWave = new PeriodicWave(context, options);
 
 ### Parameters
 
-*Inherits parameters from the [`AudioNodeOptions`](../audionodeoptions) dictionary*.
+_Inherits parameters from the [`AudioNodeOptions`](../audionodeoptions) dictionary_.
 
 `context`  
 A [`BaseAudioContext`](../baseaudiocontext) representing the audio context you want the node to be associated with.
 
- `options` <span class="badge inline optional">Optional</span>   
+`options` <span class="badge inline optional">Optional</span>  
 A `PeriodicWaveOptions` dictionary object defining the properties you want the `PeriodicWave` to have (It also inherits the options defined in the [PeriodicWaveConstraints](https://webaudio.github.io/web-audio-api/#idl-def-PeriodicWaveConstraints) dictionary.):
 
--   `real`: A [`Float32Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array) containing the cosine terms that you want to use to form the wave (equivalent to the `real` parameter of [`BaseAudioContext.createPeriodicWave`](../baseaudiocontext/createperiodicwave)).
--   `imag`: A [`Float32Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array) containing the sine terms that you want to use to form the wave (equivalent to the `imag` parameter of [`BaseAudioContext.createPeriodicWave`](../baseaudiocontext/createperiodicwave)).
+- `real`: A [`Float32Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array) containing the cosine terms that you want to use to form the wave (equivalent to the `real` parameter of [`BaseAudioContext.createPeriodicWave`](../baseaudiocontext/createperiodicwave)).
+- `imag`: A [`Float32Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array) containing the sine terms that you want to use to form the wave (equivalent to the `imag` parameter of [`BaseAudioContext.createPeriodicWave`](../baseaudiocontext/createperiodicwave)).
 
 ### Return value
 
 A new [`PeriodicWave`](../periodicwave) object instance.
 
-Example
--------
+## Example
 
     var real = new Float32Array(2);
     var imag = new Float32Array(2);
@@ -45,14 +42,12 @@ Example
 
     var wave = new PeriodicWave(ac, options);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#periodicwave">Web Audio API<br />
 <span class="small">The definition of 'PeriodicWave' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

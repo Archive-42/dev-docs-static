@@ -1,5 +1,4 @@
-PerformanceServerTiming
-=======================
+# PerformanceServerTiming
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
@@ -11,26 +10,23 @@ The `PerformanceServerTiming` interface surfaces server metrics that are sent wi
 
 This interface is restricted to the same origin, but you can use the [`Timing-Allow-Origin`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Timing-Allow-Origin) header to specify the domains that are allowed to access the server metrics. Note that this interface is only available in secure contexts (HTTPS) in some browsers.
 
-Properties
-----------
+## Properties
 
- [`PerformanceServerTiming.description`](performanceservertiming/description)<span class="badge inline readonly">Read only </span>   
+[`PerformanceServerTiming.description`](performanceservertiming/description)<span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) value of the server-specified metric description, or an empty string.
 
- [`PerformanceServerTiming.duration`](performanceservertiming/duration)<span class="badge inline readonly">Read only </span>   
+[`PerformanceServerTiming.duration`](performanceservertiming/duration)<span class="badge inline readonly">Read only </span>  
 A double that contains the server-specified metric duration, or value `0.0`.
 
- [`PerformanceServerTiming.name`](performanceservertiming/name)<span class="badge inline readonly">Read only </span>   
+[`PerformanceServerTiming.name`](performanceservertiming/name)<span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) value of the server-specified metric name.
 
-Methods
--------
+## Methods
 
 [`PerformanceServerTiming.toJSON()`](performanceservertiming/tojson)  
 Returns a [`DOMString`](domstring) that is the JSON representation of the `PerformanceServerTiming` object.
 
-Example
--------
+## Example
 
 Given a server that sends the [`Server-Timing`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server-Timing) header, for example a node.js server like this:
 
@@ -61,14 +57,12 @@ The `PerformanceServerTiming` entries are now observable from JavaScript via the
     // 1: PerformanceServerTiming {name: "db", duration: 53, description: ""}
     // 2: PerformanceServerTiming {name: "app", duration: 47.2, description: ""}
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/server-timing/#the-performanceservertiming-interface">Server Timing<br />
 <span class="small">The definition of 'PerformanceServerTiming' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -228,10 +222,9 @@ No
 
 9.0
 
-See also
---------
+## See also
 
--   [`Server-Timing`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server-Timing)
--   [`PerformanceResourceTiming.serverTiming`](performanceresourcetiming/servertiming)
+- [`Server-Timing`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server-Timing)
+- [`PerformanceResourceTiming.serverTiming`](performanceresourcetiming/servertiming)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceServerTiming" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PerformanceServerTiming</a>

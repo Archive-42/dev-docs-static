@@ -1,12 +1,10 @@
-performance.getEntriesByType()
-==============================
+# performance.getEntriesByType()
 
-The `getEntriesByType()` method returns a list of [`PerformanceEntry`](../performanceentry) objects for a given *type*. The list's members (*entries*) can be created by making performance *marks* or *measures* (for example by calling the [`mark()`](mark) method) at explicit points in time.
+The `getEntriesByType()` method returns a list of [`PerformanceEntry`](../performanceentry) objects for a given _type_. The list's members (_entries_) can be created by making performance _marks_ or _measures_ (for example by calling the [`mark()`](mark) method) at explicit points in time.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     entries = window.performance.getEntriesByType(type);
 
@@ -20,8 +18,7 @@ The type of entry to retrieve such as "`mark`". The valid entry types are listed
 entries  
 A list of [`PerformanceEntry`](../performanceentry) objects that have the specified `type`. The items will be in chronological order based on the entries' [`startTime`](../performanceentry/starttime). If no objects have the specified `type`, or no argument is provided, an empty list is returned.
 
-Example
--------
+## Example
 
     function usePerformanceEntryMethods() {
       log("PerformanceEntry tests ...");
@@ -72,15 +69,13 @@ Example
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/performance-timeline/#dom-performance-getentriesbytype">Performance Timeline Level 2<br />
 <span class="small">The definition of 'getEntriesByType()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/performance-timeline/#dom-performance-getentriesbytype">Performance Timeline<br />
 <span class="small">The definition of 'getEntriesByType()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

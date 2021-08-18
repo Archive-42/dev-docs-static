@@ -1,10 +1,8 @@
-PresentationConnection.terminate()
-==================================
+# PresentationConnection.terminate()
 
 When the `terminate()` method is called on a [`PresentationConnection`](../presentationconnection), the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) begins the process of terminating the presentation. The exact process differs depending on whether `terminate()` is called in the controlling or the presenting context.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,12 +1,10 @@
-RTCIceCandidate.priority
-========================
+# RTCIceCandidate.priority
 
 The **[`RTCIceCandidate`](../rtcicecandidate)** interface's read-only `priority` property specifies the candidate's priority according to the remote peer; the higher this value is, the better the remote peer considers the candidate to be.
 
 As is the case with most of `RTCIceCandidate`'s properties, the value of `priority` is extracted from the `candidate` a-line string specified when creating the `RTCIceCandidate`. The a-line string is obtained either from the [`RTCIceCandidateInit`](../rtcicecandidateinit) property [`candidate`](../rtcicecandidateinit/candidate) or from an a-line string passed into [`RTCPeerConnection.addIceCandidate()`](../rtcpeerconnection/addicecandidate) instead of an `RTCIceCandidate`.
 
-Syntax
-------
+## Syntax
 
     var priority = RTCIceCandidate.priority;
 
@@ -18,8 +16,7 @@ A long, unsigned integer value indicating the priority of the candidate accordin
 
 **Note:** If `priority` is `null`, passing the candidate to [`addIceCandidate()`](../rtcpeerconnection/addicecandidate) will fail, throwing an `OperationError` exception. This applies only if the candidate implements the `priority` property.
 
-Usage notes
------------
+## Usage notes
 
 Consider this [SDP](https://developer.mozilla.org/en-US/docs/Glossary/SDP) attribute line (a-line) which describes an ICE candidate:
 
@@ -27,8 +24,7 @@ Consider this [SDP](https://developer.mozilla.org/en-US/docs/Glossary/SDP) attri
 
 The priority is the number after the protocol, so it's the fourth field in the candidate string. In this example, the priority is 2043278322.
 
-Example
--------
+## Example
 
 This candidate examines the `priority` of the candidate and, if it's greater than the priority of a previously-seen candidate, remembers the candidate for later use.
 
@@ -47,14 +43,12 @@ This candidate examines the `priority` of the candidate and, if it's greater tha
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicecandidate-priority">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceCandidate.priority' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

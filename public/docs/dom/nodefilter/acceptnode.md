@@ -1,5 +1,4 @@
-NodeFilter.acceptNode()
-=======================
+# NodeFilter.acceptNode()
 
 The `NodeFilter.acceptNode()` method returns an `unsigned short` that will be used to tell if a given [`Node`](../node) must be accepted or not by the [`NodeIterator`](../nodeiterator) or [`TreeWalker`](../treewalker) iteration algorithm. This method is expected to be written by the user of a `NodeFilter`. Possible return values are:
 
@@ -9,18 +8,16 @@ The function should return `NodeFilter.FILTER_ACCEPT`, which causes the TreeWalk
 
 The browser doesn't provide any object implementing this method. It is the user who is expected to write an object implementing the [`NodeFilter`](../nodefilter) interface, tailoring the `acceptNode()` method to its needs, and using it with some [`TreeWalker`](../treewalker) or [`NodeIterator`](../nodeiterator) objects.
 
-Syntax
-------
+## Syntax
 
     result = nodeFilter.acceptNode(node)
 
 ### Parameters
 
-*node*  
+_node_  
 Is a [`Node`](../node) being the object to check against the filter.
 
-Example
--------
+## Example
 
     var nodeIterator = document.createNodeIterator(
       // Node to use as root
@@ -50,15 +47,13 @@ Example
       alert(node.data);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-nodefilter-acceptnode">DOM<br />
 <span class="small">The definition of 'NodeFilter.acceptNode()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change from <a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/">Document Object Model (DOM) Level 2 Traversal and Range Specification</a></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/traversal.html#Traversal-NodeFilter">Document Object Model (DOM) Level 2 Traversal and Range Specification<br />
 <span class="small">The definition of 'NodeFilter.acceptNode()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -114,9 +109,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The interface it belongs to: [`NodeFilter`](../nodefilter).
+- The interface it belongs to: [`NodeFilter`](../nodefilter).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeFilter/acceptNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NodeFilter/acceptNode</a>

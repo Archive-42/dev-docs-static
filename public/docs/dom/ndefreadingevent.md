@@ -1,5 +1,4 @@
-NDEFReadingEvent
-================
+# NDEFReadingEvent
 
 **Draft**
 
@@ -16,35 +15,30 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `NDEFReadingEvent` interface represents events dispatched on new NFC readings obtained by [`NDEFReader`](ndefreader).
 
-Constructor
------------
+## Constructor
 
 <span class="page-not-created">`NDEFReadingEvent.NDEFReadingEvent()`</span>  
 Creates an `NDEFReadingEvent` event with the given parameters.
 
-Properties
-----------
+## Properties
 
-*Also inherits properties from its parent [`Event`](event)*.
+_Also inherits properties from its parent [`Event`](event)_.
 
- <span class="page-not-created">`NDEFReadingEvent.serialNumber`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`NDEFReadingEvent.serialNumber`</span> <span class="badge inline readonly">Read only </span>  
 Represents the serial number of the device used for anti-collision and identification, or empty string in case none is available.
 
- <span class="page-not-created">`NDEFReadingEvent.message`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`NDEFReadingEvent.message`</span> <span class="badge inline readonly">Read only </span>  
 Represents the received message as an [`NDEFMessage`](ndefmessage) object.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent [`Event`](event)*.
+_Inherits methods from its parent [`Event`](event)_.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/web-nfc/#dom-ndefreadingevent">Web NFC, NDEFReadingEvent</a></td><td>Draft</td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -204,9 +198,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`NDEFReader`](ndefreader), interface that this event is fired on.
+- [`NDEFReader`](ndefreader), interface that this event is fired on.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NDEFReadingEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NDEFReadingEvent</a>

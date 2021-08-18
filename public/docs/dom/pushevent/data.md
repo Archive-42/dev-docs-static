@@ -1,5 +1,4 @@
-PushEvent.data
-==============
+# PushEvent.data
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `data` read-only property of the `PushEvent` interface returns a reference to a [`PushMessageData`](../pushmessagedata) object containing data sent to the [`PushSubscription`](../pushsubscription).
 
-Syntax
-------
+## Syntax
 
     var myPushData = PushEvent.data;
 
@@ -47,14 +45,12 @@ The following example takes data from a PushEvent and displays it on all of the 
       });
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/#dom-pushevent-data">Push API<br />
 <span class="small">The definition of 'data' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

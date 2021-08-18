@@ -1,14 +1,12 @@
-Pinch zoom gestures
-===================
+# Pinch zoom gestures
 
-Adding *gestures* to an application can significantly improve the user experience. There are many types of gestures, from the simple single-touch *swipe* gesture to the more complex multi-touch *twist* gesture, where the touch points (aka *pointers*) move in different directions.
+Adding _gestures_ to an application can significantly improve the user experience. There are many types of gestures, from the simple single-touch _swipe_ gesture to the more complex multi-touch _twist_ gesture, where the touch points (aka _pointers_) move in different directions.
 
-This example shows how to detect the *pinch/zoom* gesture, which uses [`pointer events`](../pointer_events) to detect whether the user moves two pointers closer or farther apart from each other.
+This example shows how to detect the _pinch/zoom_ gesture, which uses [`pointer events`](../pointer_events) to detect whether the user moves two pointers closer or farther apart from each other.
 
-A *live* version of this application is available on [GitHub](https://mdn.github.io/dom-examples/pointerevents/Pinch_zoom_gestures.html). The [source code is available on GitHub](https://github.com/mdn/dom-examples/blob/master/pointerevents/Pinch_zoom_gestures.html); pull requests and [bug reports](https://github.com/mdn/dom-examples/issues) are welcome.
+A _live_ version of this application is available on [GitHub](https://mdn.github.io/dom-examples/pointerevents/Pinch_zoom_gestures.html). The [source code is available on GitHub](https://github.com/mdn/dom-examples/blob/master/pointerevents/Pinch_zoom_gestures.html); pull requests and [bug reports](https://github.com/mdn/dom-examples/issues) are welcome.
 
-Example
--------
+## Example
 
 In this example, you use the [`pointer events`](../pointer_events) to simultaneously detect two pointing devices of any type, including fingers, mice, and pens. The pinch in (zoom out) gesture, which moves the two pointers toward each other, changes the target element's background color to `lightblue`. The pinch out (zoom in) gesture, which moves the two pointers away from each other, changes the target element's background color to `pink`.
 
@@ -55,7 +53,7 @@ Event handlers are registered for the following pointer events: `pointerdown`, `
 
 ### Pointer down
 
-The `pointerdown` event is fired when a pointer (mouse, pen/stylus or touch point on a touchscreen) makes contact with the *contact surface*. In this application, the event's state must be cached in case this down event is part of a two-pointer pinch/zoom gesture.
+The `pointerdown` event is fired when a pointer (mouse, pen/stylus or touch point on a touchscreen) makes contact with the _contact surface_. In this application, the event's state must be cached in case this down event is part of a two-pointer pinch/zoom gesture.
 
     function pointerdown_handler(ev) {
      // The pointerdown event signals the start of a touch interaction.
@@ -115,7 +113,7 @@ When this event is processed, the target's border is set to `dashed` to provide 
 
 ### Pointer up
 
-The `pointerup` event is fired when a pointer is raised from the *contact surface*. When this occurs, the event is removed from the event cache and the target element's background color and border are restored to their original values.
+The `pointerup` event is fired when a pointer is raised from the _contact surface_. When this occurs, the event is removed from the event cache and the target element's background color and border are restored to their original values.
 
 In this application, this handler is also used for `pointercancel`, `pointerleave` and `pointerout` events.
 
@@ -195,11 +193,10 @@ These functions are used to send event activity to the application's window (to 
      o.innerHTML = "";
     }
 
-See also
---------
+## See also
 
--   [Pointer Events now in Firefox Nightly](https://hacks.mozilla.org/2015/08/pointer-events-now-in-firefox-nightly/); Mozilla Hacks; by Matt Brubeck and Jason Weathersby; 2015-Aug-04
--   [jQuery Pointer Events Polyfill](https://github.com/jquery/PEP)
--   [Gestures](https://material.io/design/interaction/gestures.html); Material Design
+- [Pointer Events now in Firefox Nightly](https://hacks.mozilla.org/2015/08/pointer-events-now-in-firefox-nightly/); Mozilla Hacks; by Matt Brubeck and Jason Weathersby; 2015-Aug-04
+- [jQuery Pointer Events Polyfill](https://github.com/jquery/PEP)
+- [Gestures](https://material.io/design/interaction/gestures.html); Material Design
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events/Pinch_zoom_gestures" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events/Pinch_zoom_gestures</a>

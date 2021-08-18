@@ -1,10 +1,8 @@
-RTCIceCandidateInit.candidate
-=============================
+# RTCIceCandidateInit.candidate
 
 The optional property `candidate` in the **[`RTCIceCandidateInit`](../rtcicecandidateinit)** dictionary specifies the value of the [`RTCIceCandidate`](../rtcicecandidate) object's [`candidate`](../rtcicecandidate/candidate) property.
 
-Value
------
+## Value
 
 A [`DOMString`](../domstring) describing the properties of the candidate, taken directly from the [SDP](https://developer.mozilla.org/en-US/docs/Glossary/SDP) attribute `"candidate"`. The candidate string specifies the network connectivity information for the candidate. If the `candidate` is an empty string (`""`), the end of the candidate list has been reached; this candidate is known as the "end-of-candidates" marker.
 
@@ -16,16 +14,15 @@ the corresponding `candidate` string's value will be `"candidate:4234997325 1 ud
 
 The [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) always prefers candidates with the highest [`priority`](../rtcicecandidate/priority), all else being equal. In the example above, the priority is `2043278322`. The attributes are all separated by a single space character, and are in a specific order. The complete list of attributes for this example candidate is:
 
--   [`foundation`](../rtcicecandidate/foundation) = 4234997325
--   [`component`](../rtcicecandidate/component) = `"rtp"` (the number 1 is encoded to this string; 2 becomes `"rtcp"`)
--   [`protocol`](../rtcicecandidate/protocol) = `"udp"`
--   [`priority`](../rtcicecandidate/priority) = 2043278322
--   [`ip`](../rtcicecandidate/address) = `"192.168.0.56"`
--   [`port`](../rtcicecandidate/port) = 44323
--   [`type`](../rtcicecandidate/type) = `"host"`
+- [`foundation`](../rtcicecandidate/foundation) = 4234997325
+- [`component`](../rtcicecandidate/component) = `"rtp"` (the number 1 is encoded to this string; 2 becomes `"rtcp"`)
+- [`protocol`](../rtcicecandidate/protocol) = `"udp"`
+- [`priority`](../rtcicecandidate/priority) = 2043278322
+- [`ip`](../rtcicecandidate/address) = `"192.168.0.56"`
+- [`port`](../rtcicecandidate/port) = 44323
+- [`type`](../rtcicecandidate/type) = `"host"`
 
-Example
--------
+## Example
 
 When a new ICE candidate is received by your signaling code from the remote peer, you need to construct the `RTCIceCandidate` object that encapsulates it. This is done in the event handler for the `icecandidate` event. If your client-side signaling layer builds and transmits a JSON string including the candidate to the remote peer, the remote peer might handle receiving that JSON message like this:
 
@@ -49,14 +46,12 @@ It's helpful to note that for backward compatibility with older versions of the 
       });
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicecandidateinit-candidate">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceCandidateInit.candidate' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -116,13 +111,12 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [WebRTC API](../webrtc_api)
--   [`RTCIceCandidate.candidate`](../rtcicecandidate/candidate)
--   [`RTCPeerConnection.addIceCandidate()`](../rtcpeerconnection/addicecandidate)
--   `icecandidate`
--   [Lifetime of a WebRTC session](../webrtc_api/session_lifetime)
+- [WebRTC API](../webrtc_api)
+- [`RTCIceCandidate.candidate`](../rtcicecandidate/candidate)
+- [`RTCPeerConnection.addIceCandidate()`](../rtcpeerconnection/addicecandidate)
+- `icecandidate`
+- [Lifetime of a WebRTC session](../webrtc_api/session_lifetime)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidateInit/candidate" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidateInit/candidate</a>

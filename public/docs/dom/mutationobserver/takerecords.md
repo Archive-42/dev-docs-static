@@ -1,10 +1,8 @@
-MutationObserver.takeRecords()
-==============================
+# MutationObserver.takeRecords()
 
 The [`MutationObserver`](../mutationobserver) method `takeRecords()` returns a list of all matching DOM changes that have been detected but not yet processed by the observer's callback function, leaving the mutation queue empty. The most common use case for this is to immediately fetch all pending mutation records immediately prior to disconnecting the observer, so that any pending mutations can be processed when stopping down the observer.
 
-Syntax
-------
+## Syntax
 
     const mutationRecords = mutationObserver.takeRecords()
 
@@ -18,8 +16,7 @@ An array [`MutationRecord`](../mutationrecord) objects, each describing one chan
 
 **Note:** The queue of mutations which have occurred, but not been delivered to the observer's callback is left empty after calling `takeRecords()`.
 
-Example
--------
+## Example
 
 In this example, we demonstrate how to handle any undelivered [`MutationRecord`](../mutationrecord)s by calling `takeRecords()` just before disconnecting the observer.
 
@@ -46,14 +43,12 @@ In this example, we demonstrate how to handle any undelivered [`MutationRecord`]
 
 The code in lines 12–17 fetches any unprocessed mutation records, then invokes the callback with the records so that they can be processed. This is done immediately prior to calling [`disconnect()`](disconnect) to stop observing the DOM.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-mutationobserver-takerecords">DOM<br />
 <span class="small">The definition of 'MutationObserver.takeRecords()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

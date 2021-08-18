@@ -1,12 +1,10 @@
-MediaStream.addTrack()
-======================
+# MediaStream.addTrack()
 
 The `MediaStream.addTrack()` method adds a new track to the stream. The track is specified as a parameter of type [`MediaStreamTrack`](../mediastreamtrack).
 
 If the specified track is already in the stream's track set, this method has no effect.
 
-Syntax
-------
+## Syntax
 
     stream.addTrack(track);
 
@@ -19,17 +17,14 @@ A [`MediaStreamTrack`](../mediastreamtrack) to add to the stream.
 
 [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 
-Example
--------
+## Example
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediastream-addtrack">Media Capture and Streams<br />
 <span class="small">The definition of 'addTrack()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -85,9 +80,8 @@ No
 
 1.5
 
-See also
---------
+## See also
 
--   [`MediaStream`](../mediastream), the interface it belongs to.
+- [`MediaStream`](../mediastream), the interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/addTrack" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/addTrack</a>

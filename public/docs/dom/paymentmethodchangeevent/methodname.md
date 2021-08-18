@@ -1,5 +1,4 @@
-PaymentMethodChangeEvent.methodName
-===================================
+# PaymentMethodChangeEvent.methodName
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The read-only `methodName` property of the [`PaymentMethodChangeEvent`](../paymentmethodchangeevent) interface is a string which uniquely identifies the payment handler currently selected by the user. The payment handler may be a payment technology, such as Apple Pay or Android Pay, and each payment handler may support multiple payment methods; changes to the payment method within the payment handler are described by the `PaymentMethodChangeEvent`.
 
-Syntax
-------
+## Syntax
 
     var methodName = paymentMethodChangeEvent.methodName;
 
@@ -18,8 +16,7 @@ A [`DOMString`](../domstring) which uniquely identifies the currently-selected p
 
 The default value is the empty string, `""`.
 
-Example
--------
+## Example
 
 This example uses the `paymentmethodchange` event to watch for changes to the payment method selected for Apple Pay, in order to compute a discount if the user chooses to use a Visa card as their payment method.
 
@@ -41,14 +38,12 @@ This example uses the `paymentmethodchange` event to watch for changes to the pa
     };
     const response = await request.show();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-paymentmethodchangeevent-methodname">Payment Request API<br />
 <span class="small">The definition of 'PaymentMethodChangeEvent.methodName' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

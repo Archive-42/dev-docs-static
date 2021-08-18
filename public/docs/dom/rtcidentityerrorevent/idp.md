@@ -1,5 +1,4 @@
-RTCIdentityErrorEvent.idp
-=========================
+# RTCIdentityErrorEvent.idp
 
 **Deprecated**
 
@@ -9,14 +8,12 @@ The read-only property `RTCIdentityErrorEvent.idp` returns the [`DOMString`](../
 
 Firefox implements the interface of this property under the following name: `RTCPeerConnectionIdentityErrorEvent.` It is likely that it will correct this name when it will unprefix [`RTCPeerConnection`](../rtcpeerconnection), once spec and implementation will have been stabilized.
 
-Syntax
-------
+## Syntax
 
     var idp = event.idp;
     event.idp = "developer.mozilla.org";
 
-Example
--------
+## Example
 
     pc.onidpassertionerror = function( ev ) {
                                alert("The idp named '" +
@@ -25,8 +22,7 @@ Example
                                      "while generating an assertion.");
                              }
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -82,10 +78,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   `idpassertionerror`, `idpvalidationerror`
--   [`RTCPeerConnection`](../rtcpeerconnection)
+- `idpassertionerror`, `idpvalidationerror`
+- [`RTCPeerConnection`](../rtcpeerconnection)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIdentityErrorEvent/idp" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIdentityErrorEvent/idp</a>

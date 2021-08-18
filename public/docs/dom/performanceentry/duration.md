@@ -1,5 +1,4 @@
-PerformanceEntry.duration
-=========================
+# PerformanceEntry.duration
 
 The `duration` property returns a [`timestamp`](../domhighrestimestamp) that is the duration of the [`performance entry`](../performanceentry).
 
@@ -7,16 +6,15 @@ The `duration` property returns a [`timestamp`](../domhighrestimestamp) that is 
 
 The value returned by this property depends on the performance entry's [`type`](entrytype):
 
--   "`frame`" - returns a [`timestamp`](../domhighrestimestamp) indicating the difference between the `startTime`s of two successive frames.
--   "`mark`" - returns "`0`" (a mark has no duration).
--   "`measure`" - returns the [`timestamp`](../domhighrestimestamp) that is the duration of the measure.
--   "`navigation`" - returns the [`timestamp`](../domhighrestimestamp) that is the difference between the [`PerformanceNavigationTiming.loadEventEnd`](../performancenavigationtiming/loadeventend) and [`PerformanceEntry.startTime`](starttime) properties, respectively.
--   "`resource`" - returns the difference between the resource's [`responseEnd`](../performanceresourcetiming/responseend) [`timestamp`](../domhighrestimestamp) and its [`startTime`](starttime) [`timestamp`](../domhighrestimestamp).
+- "`frame`" - returns a [`timestamp`](../domhighrestimestamp) indicating the difference between the `startTime`s of two successive frames.
+- "`mark`" - returns "`0`" (a mark has no duration).
+- "`measure`" - returns the [`timestamp`](../domhighrestimestamp) that is the duration of the measure.
+- "`navigation`" - returns the [`timestamp`](../domhighrestimestamp) that is the difference between the [`PerformanceNavigationTiming.loadEventEnd`](../performancenavigationtiming/loadeventend) and [`PerformanceEntry.startTime`](starttime) properties, respectively.
+- "`resource`" - returns the difference between the resource's [`responseEnd`](../performanceresourcetiming/responseend) [`timestamp`](../domhighrestimestamp) and its [`startTime`](starttime) [`timestamp`](../domhighrestimestamp).
 
 This property is <span class="badge inline readonly">Read only </span>.
 
-Syntax
-------
+## Syntax
 
     entry.duration;
 
@@ -26,8 +24,7 @@ A [`DOMHighResTimeStamp`](../domhighrestimestamp) representing the duration of t
 
 Note: if the performance entry has an [`entryType`](entrytype) of "`resource`" (i.e. the entry is a [`PerformanceResourceTiming`](../performanceresourcetiming) object), this property returns the difference between the [`PerformanceResourceTiming.responseEnd`](../performanceresourcetiming/responseend) and [`PerformanceEntry.startTime`](starttime) [`timestamps`](../domhighrestimestamp).
 
-Example
--------
+## Example
 
 The following example shows the use of the `duration` property.
 
@@ -75,15 +72,13 @@ The following example shows the use of the `duration` property.
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/performance-timeline/#dom-performanceentry-duration">Performance Timeline Level 2<br />
 <span class="small">The definition of 'duration' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/performance-timeline/#dom-performanceentry-duration">Performance Timeline<br />
 <span class="small">The definition of 'duration' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,10 +1,8 @@
-ResizeObserver.observe()
-========================
+# ResizeObserver.observe()
 
 The `observe()` method of the [`ResizeObserver`](../resizeobserver) interface starts observing the specified [`Element`](../element) or [`SVGElement`](../svgelement).
 
-Syntax
-------
+## Syntax
 
     resizeObserver.observe(target, options);
 
@@ -13,7 +11,7 @@ Syntax
 `target`  
 A reference to an [`Element`](../element) or [`SVGElement`](../svgelement) to be observed.
 
-options <span class="badge inline optional">Optional</span>   
+options <span class="badge inline optional">Optional</span>  
 An options object allowing you to set options for the observation. Currently this only has one possible option that can be set:
 
 `box`  
@@ -27,8 +25,7 @@ Void.
 
 None.
 
-Examples
---------
+## Examples
 
 The following snippet is taken from the [resize-observer-text.html](https://mdn.github.io/dom-examples/resize-observer/resize-observer-text.html) ([see source](https://github.com/mdn/dom-examples/blob/master/resize-observer/resize-observer-text.html)) example:
 
@@ -57,14 +54,12 @@ An `observe()` call with an options object would look like so:
 
     resizeObserver.observe(divElem, { box : 'border-box' });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/resize-observer/#dom-resizeobserver-observe">Resize Observer<br />
 <span class="small">The definition of 'observe()' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

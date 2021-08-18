@@ -1,10 +1,8 @@
-RTCIceCandidatePairStats.requestsSent
-=====================================
+# RTCIceCandidatePairStats.requestsSent
 
 The [`RTCIceCandidatePairStats`](../rtcicecandidatepairstats) dictionary's `requestsSent` property indicates the total number of [STUN](https://developer.mozilla.org/en-US/docs/Glossary/STUN) connectivity check requests that have been sent so far on the connection described by this pair of candidates.
 
-Syntax
-------
+## Syntax
 
     requestsSent = rtcIceCandidatePairStats.requestsSent;
 
@@ -12,16 +10,14 @@ Syntax
 
 An integer value which specifies the number of STUN connectivity requests that have been sent to date on the connection described by this pair of [ICE](https://developer.mozilla.org/en-US/docs/Glossary/ICE) candidates.
 
-**Note:** The reported number of requests *does not* include retransmissions. If a request had to be repeated due to network issues, it will be counted multiple times here. This differs from [`requestsReceived`](requestsreceived), which *does* include retransmisions.
+**Note:** The reported number of requests _does not_ include retransmissions. If a request had to be repeated due to network issues, it will be counted multiple times here. This differs from [`requestsReceived`](requestsreceived), which _does_ include retransmisions.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcicecandidatepairstats-requestssent">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCIceCandidatePairStats.requestsSent' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

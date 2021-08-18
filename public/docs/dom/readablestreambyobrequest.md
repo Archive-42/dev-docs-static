@@ -1,5 +1,4 @@
-ReadableStreamBYOBRequest
-=========================
+# ReadableStreamBYOBRequest
 
 **Experimental**
 
@@ -14,19 +13,16 @@ The `ReadableStreamBYOBRequest` interface of the [Streams API](streams_api) repr
 
 A view, as mentioned below, refers to a typed array representing the destination region to which the associated `ReadableByteStreamController` controller can write generated data.
 
-Constructor
------------
+## Constructor
 
 None. `ReadableStreamBYOBRequest` instance is created automatically by `ReadableByteStreamController` as needed.
 
-Properties
-----------
+## Properties
 
- [`ReadableStreamBYOBRequest.view`](readablestreambyobrequest/view) <span class="badge inline readonly">Read only </span>   
+[`ReadableStreamBYOBRequest.view`](readablestreambyobrequest/view) <span class="badge inline readonly">Read only </span>  
 Returns the current view.
 
-Methods
--------
+## Methods
 
 [`ReadableStreamBYOBRequest.respond()`](readablestreambyobrequest/respond)  
 xxx
@@ -34,19 +30,16 @@ xxx
 [`ReadableStreamBYOBRequest.respondWithNewView()`](readablestreambyobrequest/respondwithnewview)  
 xxx
 
-Examples
---------
+## Examples
 
 TBD.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://streams.spec.whatwg.org/#rs-byob-request-class">Streams<br />
 <span class="small">The definition of 'ReadableStreamBYOBRequest' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

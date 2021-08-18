@@ -1,5 +1,4 @@
-PerformanceResourceTiming.domainLookupEnd
-=========================================
+# PerformanceResourceTiming.domainLookupEnd
 
 The `domainLookupEnd` read-only property returns the [`timestamp`](../domhighrestimestamp) immediately after the browser finishes the domain name lookup for the resource.
 
@@ -7,8 +6,7 @@ If the user agent has the domain information in cache, [`domainLookupStart`](dom
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     resource.domainLookupEnd;
 
@@ -16,8 +14,7 @@ Syntax
 
 A [`DOMHighResTimeStamp`](../domhighrestimestamp) representing the time immediately after the browser finishes the domain name lookup for the resource.
 
-Example
--------
+## Example
 
 In the following example, the value of the `*Start` and `*End` properties of all "`resource`" [`type`](../performanceentry/entrytype) events are logged.
 
@@ -50,14 +47,12 @@ In the following example, the value of the `*Start` and `*End` properties of all
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/resource-timing-1/#dom-performanceresourcetiming-domainlookupend">Resource Timing Level 1<br />
 <span class="small">The definition of 'domainLookupEnd' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

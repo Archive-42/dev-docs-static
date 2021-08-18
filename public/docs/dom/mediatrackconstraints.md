@@ -1,5 +1,4 @@
-MediaTrackConstraints
-=====================
+# MediaTrackConstraints
 
 The `MediaTrackConstraints` dictionary is used to describe a set of capabilities and the value or values each can take on. A constraints dictionary is passed into [`applyConstraints()`](mediastreamtrack/applyconstraints) to allow a script to establish a set of exact (required) values or ranges and/or preferred values or ranges of values for the track, and the most recently-requested set of custom constraints can be retrieved by calling [`getConstraints()`](mediastreamtrack/getconstraints).
 
@@ -7,8 +6,7 @@ For each constraint, you can typically specify an exact value you need, an ideal
 
 To learn more about how constraints work, see [Capabilities, constraints, and settings](media_streams_api/constraints).
 
-Properties
-----------
+## Properties
 
 Some combination—but not necessarily all—of the following properties will exist on the object. This may be because a given browser doesn't support the property, or because it doesn't apply. For example, because [RTP](https://developer.mozilla.org/en-US/docs/Glossary/RTP) doesn't provide some of these values during negotiation of a WebRTC connection, a track associated with a [`RTCPeerConnection`](rtcpeerconnection) will not include certain values, such as [`facingMode`](mediatrackconstraints/facingmode) or [`groupId`](mediatrackconstraints/groupid).
 
@@ -58,7 +56,7 @@ A [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/G
 A [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) specifying one of `"none"`, `"manual"`, `"single-shot"`, or `"continuous"`.
 
 <span id="pointsofinterest">pointsOfInterest</span>  
-The pixel coordinates on the sensor of one or more points of interest. This is either an object in the form { x:*value*, y:*value* } or an array of such objects, where *value* is a double-precision integer.
+The pixel coordinates on the sensor of one or more points of interest. This is either an object in the form { x:_value_, y:_value_ } or an array of such objects, where _value_ is a double-precision integer.
 
 <span id="exposurecompensation">exposureCompensation</span>  
 A [`ConstrainDouble`](constraindouble) (a double-precision integer) specifying f-stop adjustment by up to ±3.
@@ -144,13 +142,11 @@ The stream contains a single window selected by the user for sharing.
 [`logicalSurface`](mediatrackconstraints/logicalsurface)  
 A [`ConstrainBoolean`](constrainboolean) value which may contain a single Boolean value or a set of them, indicating whether or not to allow the user to choose source surfaces which do not directly correspond to display areas. These may include backing buffers for windows to allow capture of window contents that are hidden by other windows in front of them, or buffers containing larger documents that need to be scrolled through to see the entire contents in their windows.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediatrackconstraints">Media Capture and Streams</a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr><tr class="even"><td><a href="https://w3c.github.io/mediacapture-image/#mediatrackconstraintset-section">MediaStream Image Capture</a></td><td><span class="spec-wd">Working Draft</span></td><td>Adds image constraints.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -686,18 +682,17 @@ Yes
 
 7.0
 
-See also
---------
+## See also
 
--   [Media Capture and Streams API](media_streams_api)
--   [Capabilities, constraints, and settings](media_streams_api/constraints)
--   [Screen Capture API](screen_capture_api)
--   [Using the Screen Capture API](screen_capture_api/using_screen_capture)
--   [`MediaDevices.getUserMedia()`](mediadevices/getusermedia)
--   [`MediaStreamTrack.getConstraints()`](mediastreamtrack/getconstraints)
--   [`MediaStreamTrack.applyConstraints()`](mediastreamtrack/applyconstraints)
--   [`MediaDevices.getSupportedConstraints()`](mediadevices/getsupportedconstraints)
--   [`MediaTrackSupportedConstraints`](mediatracksupportedconstraints)
--   [`MediaStreamTrack.getSettings()`](mediastreamtrack/getsettings)
+- [Media Capture and Streams API](media_streams_api)
+- [Capabilities, constraints, and settings](media_streams_api/constraints)
+- [Screen Capture API](screen_capture_api)
+- [Using the Screen Capture API](screen_capture_api/using_screen_capture)
+- [`MediaDevices.getUserMedia()`](mediadevices/getusermedia)
+- [`MediaStreamTrack.getConstraints()`](mediastreamtrack/getconstraints)
+- [`MediaStreamTrack.applyConstraints()`](mediastreamtrack/applyconstraints)
+- [`MediaDevices.getSupportedConstraints()`](mediadevices/getsupportedconstraints)
+- [`MediaTrackSupportedConstraints`](mediatracksupportedconstraints)
+- [`MediaStreamTrack.getSettings()`](mediastreamtrack/getsettings)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints</a>

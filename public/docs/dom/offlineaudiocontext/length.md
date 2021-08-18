@@ -1,10 +1,8 @@
-OfflineAudioContext.length
-==========================
+# OfflineAudioContext.length
 
 The `length` property of the [`OfflineAudioContext`](../offlineaudiocontext) interface returns an integer representing the size of the buffer in sample-frames.
 
-Syntax
-------
+## Syntax
 
     var length = OfflineAudioContext.length;
 
@@ -12,14 +10,12 @@ Syntax
 
 An integer representing the size of the buffer in sample-frames.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-offlineaudiocontext-length">Web Audio API<br />
 <span class="small">The definition of 'length' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

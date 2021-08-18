@@ -1,10 +1,8 @@
-PointerEvent.pressure
-=====================
+# PointerEvent.pressure
 
 The `pressure` read-only property of the [`PointerEvent`](../pointerevent) interface indicates the normalized pressure of the pointer input.
 
-Syntax
-------
+## Syntax
 
     var pressure = pointerEvent.pressure;
 
@@ -13,8 +11,7 @@ Syntax
 `pressure`  
 The normalized pressure of the pointer input in the range of `0` to `1`, inclusive, where `0` and `1` represent the minimum and maximum pressure the hardware is capable of detecting, respectively. For hardware that does not support pressure, such as a mouse, the value is `0.5` when the pointer is active buttons state and `0` otherwise.
 
-Example
--------
+## Example
 
 In this snippet, when a `pointerdown` event is fired, different functions are called depending on the value of the event's `pressure` property.
 
@@ -31,15 +28,13 @@ In this snippet, when a `pointerdown` event is fired, different functions are ca
       }
     }, false);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/pointerevents2/#dom-pointerevent-pressure">Pointer Events – Level 2<br />
 <span class="small">The definition of 'pressure' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Non-stable version.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/pointerevents1/#widl-PointerEventInit-pressure">Pointer Events<br />
 <span class="small">The definition of 'pressure' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -103,9 +98,8 @@ Returns 0 instead of 0.5 on hardware that doesn't support pressure.
 
 6.0
 
-See also
---------
+## See also
 
--   [`Touch.force`](../touch/force)
+- [`Touch.force`](../touch/force)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/pressure" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/pressure</a>

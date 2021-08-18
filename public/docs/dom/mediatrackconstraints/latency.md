@@ -1,5 +1,4 @@
-MediaTrackConstraints.latency
-=============================
+# MediaTrackConstraints.latency
 
 The [`MediaTrackConstraints`](../mediatrackconstraints) dictionary's `latency` property is a [`ConstrainDouble`](../constraindouble) describing the requested or mandatory constraints placed upon the value of the [`latency`](../mediatracksettings/latency) constrainable property.
 
@@ -7,8 +6,7 @@ If needed, you can determine whether or not this constraint is supported by chec
 
 Because [RTP](https://developer.mozilla.org/en-US/docs/Glossary/RTP) doesn't include this information, tracks associated with a [WebRTC](../webrtc_api) [`RTCPeerConnection`](../rtcpeerconnection) will never include this property.
 
-Syntax
-------
+## Syntax
 
     var constraintsObject = { latency: constraint };
 
@@ -22,19 +20,16 @@ If this property's value is a number, the user agent will attempt to obtain medi
 
 Latency is always prone to some variation due to hardware usage demands, network constraints, and so forth, so even in an "exact" match, some variation should be expected.
 
-Example
--------
+## Example
 
 See [Example: Constraint exerciser](#) in [Capabilities, constraints, and settings](../media_streams_api/constraints) for an example.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediatrackconstraintset-latency">Media Capture and Streams<br />
 <span class="small">The definition of 'latency' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -90,14 +85,13 @@ Yes
 
 7.0
 
-See also
---------
+## See also
 
--   [Media Capture and Streams API](../media_streams_api)
--   [Capabilities, constraints, and settings](../media_streams_api/constraints)
--   [`MediaTrackConstraints`](../mediatrackconstraints)
--   [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints)
--   [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints)
--   [`MediaStreamTrack`](../mediastreamtrack)
+- [Media Capture and Streams API](../media_streams_api)
+- [Capabilities, constraints, and settings](../media_streams_api/constraints)
+- [`MediaTrackConstraints`](../mediatrackconstraints)
+- [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints)
+- [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints)
+- [`MediaStreamTrack`](../mediastreamtrack)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints/latency" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints/latency</a>

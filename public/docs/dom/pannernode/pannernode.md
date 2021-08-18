@@ -1,37 +1,35 @@
-PannerNode.PannerNode()
-=======================
+# PannerNode.PannerNode()
 
 The `PannerNode()` constructor of the [Web Audio API](../web_audio_api) creates a new [`PannerNode`](../pannernode) object instance.
 
-Syntax
-------
+## Syntax
 
     var myPanner = new PannerNode(context, options);
 
 ### Parameters
 
-*Inherits parameters from the [`AudioNodeOptions`](../audionodeoptions) dictionary*.
+_Inherits parameters from the [`AudioNodeOptions`](../audionodeoptions) dictionary_.
 
-*context*  
+_context_  
 A [`BaseAudioContext`](../baseaudiocontext) representing the audio context you want the node to be associated with.
 
- *options* <span class="badge inline optional">Optional</span>   
+_options_ <span class="badge inline optional">Optional</span>  
 A `PannerOptions` dictionary object defining the properties you want the `PannerNode` to have (It also inherits the options defined in the [AudioNodeOptions](https://webaudio.github.io/web-audio-api/#idl-def-AudioNodeOptions) dictionary.):
 
--   `panningModel`: The [`PannerNode.panningModel`](panningmodel) you want the [`PannerNode`](../pannernode) to have (the default is `equalpower`.)
--   `distanceModel`: The [`PannerNode.distanceModel`](distancemodel) you want the [`PannerNode`](../pannernode) to have (the default is `inverse`.)
--   `positionX`: The [`PannerNode.positionX`](positionx) you want the [`PannerNode`](../pannernode) to have (the default is `0`.)
--   `positionY`: The [`PannerNode.positionY`](positiony) you want the [`PannerNode`](../pannernode) to have (the default is `0`.)
--   `positionZ`: The [`PannerNode.positionZ`](positionz) you want the [`PannerNode`](../pannernode) to have (the default is `0`.)
--   `orientationX`: The [`PannerNode.orientationX`](orientationx) you want the [`PannerNode`](../pannernode) to have (the default is `1`.)
--   `orientationY`: The [`PannerNode.orientationY`](orientationy) you want the [`PannerNode`](../pannernode) to have (the default is `0`.)
--   `orientationZ`: The [`PannerNode.orientationZ`](orientationz) you want the [`PannerNode`](../pannernode) to have (the default is `0`.)
--   `refDistance`: The [`PannerNode.refDistance`](refdistance) you want the [`PannerNode`](../pannernode) to have. The default is `1`, and negative values are not allowed.
--   `maxDistance`: The [`PannerNode.maxDistance`](maxdistance) you want the [`PannerNode`](../pannernode) to have. The default is `10000`, and non-positive values are not allowed.
--   `rollOffFactor`: The [`PannerNode.rollOffFactor`](rollofffactor) you want the [`PannerNode`](../pannernode) to have. The default is `1`, and negative values are not allowed.
--   `coneInnerAngle`: The [`PannerNode.coneInnerAngle`](coneinnerangle) you want the [`PannerNode`](../pannernode) to have (the default is `360`.)
--   `coneOuterAngle`: The [`PannerNode.coneOuterAngle`](coneouterangle) you want the [`PannerNode`](../pannernode) to have (the default is `360`.)
--   `coneOuterGain`: The [`PannerNode.coneOuterGain`](coneoutergain) you want the [`PannerNode`](../pannernode) to have. The default is `0`, and its value can be in the range 0–1.
+- `panningModel`: The [`PannerNode.panningModel`](panningmodel) you want the [`PannerNode`](../pannernode) to have (the default is `equalpower`.)
+- `distanceModel`: The [`PannerNode.distanceModel`](distancemodel) you want the [`PannerNode`](../pannernode) to have (the default is `inverse`.)
+- `positionX`: The [`PannerNode.positionX`](positionx) you want the [`PannerNode`](../pannernode) to have (the default is `0`.)
+- `positionY`: The [`PannerNode.positionY`](positiony) you want the [`PannerNode`](../pannernode) to have (the default is `0`.)
+- `positionZ`: The [`PannerNode.positionZ`](positionz) you want the [`PannerNode`](../pannernode) to have (the default is `0`.)
+- `orientationX`: The [`PannerNode.orientationX`](orientationx) you want the [`PannerNode`](../pannernode) to have (the default is `1`.)
+- `orientationY`: The [`PannerNode.orientationY`](orientationy) you want the [`PannerNode`](../pannernode) to have (the default is `0`.)
+- `orientationZ`: The [`PannerNode.orientationZ`](orientationz) you want the [`PannerNode`](../pannernode) to have (the default is `0`.)
+- `refDistance`: The [`PannerNode.refDistance`](refdistance) you want the [`PannerNode`](../pannernode) to have. The default is `1`, and negative values are not allowed.
+- `maxDistance`: The [`PannerNode.maxDistance`](maxdistance) you want the [`PannerNode`](../pannernode) to have. The default is `10000`, and non-positive values are not allowed.
+- `rollOffFactor`: The [`PannerNode.rollOffFactor`](rollofffactor) you want the [`PannerNode`](../pannernode) to have. The default is `1`, and negative values are not allowed.
+- `coneInnerAngle`: The [`PannerNode.coneInnerAngle`](coneinnerangle) you want the [`PannerNode`](../pannernode) to have (the default is `360`.)
+- `coneOuterAngle`: The [`PannerNode.coneOuterAngle`](coneouterangle) you want the [`PannerNode`](../pannernode) to have (the default is `360`.)
+- `coneOuterGain`: The [`PannerNode.coneOuterGain`](coneoutergain) you want the [`PannerNode`](../pannernode) to have. The default is `0`, and its value can be in the range 0–1.
 
 ### Return value
 
@@ -45,8 +43,7 @@ The `refDistance`, `maxDistance`, or `rolloffFactor` properties have been given 
 `InvalidStateError`  
 The `coneOuterGain` property has been given a value outside the accepted range (0–1).
 
-Example
--------
+## Example
 
     var ctx = new AudioContext();
 
@@ -57,14 +54,12 @@ Example
 
     var myPanner = new PannerNode(ctx, options);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-pannernode-pannernode">Web Audio API<br />
 <span class="small">The definition of 'PannerNode()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

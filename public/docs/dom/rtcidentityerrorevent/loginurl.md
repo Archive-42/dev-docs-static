@@ -1,5 +1,4 @@
-RTCIdentityErrorEvent.loginUrl
-==============================
+# RTCIdentityErrorEvent.loginUrl
 
 **Deprecated**
 
@@ -9,14 +8,12 @@ The read-only property `RTCIdentityErrorEvent.loginUrl` is a [`DOMString`](../do
 
 Firefox implements the interface of this property under the following name: `RTCPeerConnectionIdentityErrorEvent.` It is likely that it will correct this name when it will unprefix [`RTCPeerConnection`](../rtcpeerconnection), once spec and implementation will have been stabilized.
 
-Syntax
-------
+## Syntax
 
     var loginUrl = event.loginUrl;
     event.loginUrl = "https://developer.mozilla.org/fakeURL";
 
-Example
--------
+## Example
 
     pc.onidpassertionerror = function( ev ) {
                                alert("The idp requested an authentication" +
@@ -25,8 +22,7 @@ Example
                                      "'.");
                              }
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -82,10 +78,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   `idpassertionerror`, `idpvalidationerror`
--   [`RTCPeerConnection`](../rtcpeerconnection)
+- `idpassertionerror`, `idpvalidationerror`
+- [`RTCPeerConnection`](../rtcpeerconnection)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIdentityErrorEvent/loginUrl" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIdentityErrorEvent/loginUrl</a>

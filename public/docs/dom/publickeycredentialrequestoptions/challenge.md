@@ -1,5 +1,4 @@
-PublicKeyCredentialRequestOptions.challenge
-===========================================
+# PublicKeyCredentialRequestOptions.challenge
 
 **Secure context**
 
@@ -11,8 +10,7 @@ The `challenge` property of the [`PublicKeyCredentialRequestOptions`](../publick
 
 **Note:** A challenge will be at least 16 bytes long.
 
-Syntax
-------
+## Syntax
 
     challenge = publicKeyCredentialRequestOptions.challenge
 
@@ -20,8 +18,7 @@ Syntax
 
 A [`BufferSource`](../buffersource) which is at least 16 bytes long. Contains a cryptographic challenge emitted from the relying party's server which must be signed by the authenticator's private key and sent back (within the [response](../authenticatorassertionresponse/signature)) to the relying party's server for verification.
 
-Examples
---------
+## Examples
 
     var options = {
       challenge: new Uint8Array([/* bytes sent from the server */])
@@ -35,14 +32,12 @@ Examples
          console.error(err);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#dom-publickeycredentialrequestoptions-challenge">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'challenge' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -98,11 +93,10 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`AuthenticatorAssertionResponse.signature`](../authenticatorassertionresponse/signature) which is produced using the challenge and the private key of the authenticator when fetching a credential.
--   [`PublicKeyCredentialCreationOptions.challenge`](../publickeycredentialcreationoptions/challenge), the analogous option property used when creating a credential.
--   [`AuthenticatorAttestationResponse.attestationObject`](../authenticatorattestationresponse/attestationobject) which contains the signature of the challenge within its `attStmt` property when creating a credential.
+- [`AuthenticatorAssertionResponse.signature`](../authenticatorassertionresponse/signature) which is produced using the challenge and the private key of the authenticator when fetching a credential.
+- [`PublicKeyCredentialCreationOptions.challenge`](../publickeycredentialcreationoptions/challenge), the analogous option property used when creating a credential.
+- [`AuthenticatorAttestationResponse.attestationObject`](../authenticatorattestationresponse/attestationobject) which contains the signature of the challenge within its `attStmt` property when creating a credential.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialRequestOptions/challenge" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialRequestOptions/challenge</a>

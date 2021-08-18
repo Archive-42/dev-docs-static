@@ -1,10 +1,8 @@
-PictureInPictureWindow.height
-=============================
+# PictureInPictureWindow.height
 
 The read-only [`PictureInPictureWindow`](../pictureinpicturewindow) property `height` returns the height of the floating video window in pixels.
 
-Syntax
-------
+## Syntax
 
     let height = pictureInPictureWindow.height;
 
@@ -12,14 +10,12 @@ Syntax
 
 An integer value indicating the height of the floating video window in pixels. This property is read-only, and has no default value.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/picture-in-picture/#dom-pictureinpicturewindow-height">Picture-in-Picture API<br />
 <span class="small">The definition of 'PictureInPicture.height' in that specification.</span></a></td><td><span class="spec-">Unknown</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -75,10 +71,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Picture-in-Picture API](../picture-in-picture_api)
--   [`PictureInPictureWindow.width`](width)
+- [Picture-in-Picture API](../picture-in-picture_api)
+- [`PictureInPictureWindow.width`](width)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PictureInPictureWindow/height" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PictureInPictureWindow/height</a>

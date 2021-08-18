@@ -1,21 +1,18 @@
-PushSubscriptionOptions
-=======================
+# PushSubscriptionOptions
 
 The `PushSubscriptionOptions` interface of the [Push API](push_api) represents the options associated with a push subscription.
 
 The read-only `PushSubscriptionOptions` object is returned by calling [`PushSubscription.options`](pushsubscription/options) on a [`PushSubscription`](pushsubscription). This interface has no constructor of its own.
 
-Properties
-----------
+## Properties
 
- [`PushSubscriptionOptions.userVisibleOnly`](pushsubscriptionoptions/uservisibleonly)<span class="badge inline readonly">Read only </span>   
+[`PushSubscriptionOptions.userVisibleOnly`](pushsubscriptionoptions/uservisibleonly)<span class="badge inline readonly">Read only </span>  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating that the returned push subscription will only be used for messages whose effect is made visible to the user.
 
- [`PushSubscriptionOptions.applicationServerKey`](pushsubscriptionoptions/applicationserverkey)<span class="badge inline readonly">Read only </span>   
+[`PushSubscriptionOptions.applicationServerKey`](pushsubscriptionoptions/applicationserverkey)<span class="badge inline readonly">Read only </span>  
 A public key your push server will use to send messages to client apps via a push server.
 
-Examples
---------
+## Examples
 
 Calling [`PushSubscription.options`](pushsubscription/options) on a [`PushSubscription`](pushsubscription) returns a `PushSubscriptionOptions` object. In the example below this is printed to the console.
 
@@ -26,14 +23,12 @@ Calling [`PushSubscription.options`](pushsubscription/options) on a [`PushSubscr
       })
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/#dom-pushsubscriptionoptions">Push API<br />
 <span class="small">The definition of 'PushSubscriptionOptions' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

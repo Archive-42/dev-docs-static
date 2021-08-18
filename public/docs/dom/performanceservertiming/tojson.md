@@ -1,10 +1,8 @@
-PerformanceServerTiming.toJSON
-==============================
+# PerformanceServerTiming.toJSON
 
 The `toJSON()` method of the [`PerformanceServerTiming`](../performanceservertiming) interface returns a [`DOMString`](../domstring) that is the JSON representation of the [`PerformanceServerTiming`](../performanceservertiming) object.
 
-Syntax
-------
+## Syntax
 
     var json = PerformanceServerTiming.toJSON()
 
@@ -20,14 +18,12 @@ A [`DomString`](../domstring) containing JSON.
 
 None.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/server-timing/#dom-performanceservertiming-tojson">Server Timing<br />
 <span class="small">The definition of 'toJSON' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

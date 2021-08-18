@@ -1,5 +1,4 @@
-PaymentRequest.shippingAddress
-==============================
+# PaymentRequest.shippingAddress
 
 **Secure context**
 
@@ -12,13 +11,11 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `shippingAddress` read-only property of the [`PaymentRequest`](../paymentrequest) interface returns the shipping address provided by the user. It is `null` by default.
 
-Syntax
-------
+## Syntax
 
     var paymentAddress = PaymentRequest.shippingAddress;
 
-Example
--------
+## Example
 
 Generally, the user agent will fill the `shippingAddress` property value. You can trigger this by setting `PaymentOptions.requestShipping` to `true` when calling the `PaymentRequest` constructor.
 
@@ -66,14 +63,12 @@ In the example below, the cost of shipping varies by geography. When the [`Payme
       resolve(details);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#shippingaddress-attribute">Payment Request API<br />
 <span class="small">The definition of 'shippingaddress' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-PaymentResponse.details
-=======================
+# PaymentResponse.details
 
 **Secure context**
 
@@ -14,13 +13,11 @@ The `details` read-only property of the [`PaymentResponse`](../paymentresponse) 
 
 This data is returned by the payment app that satisfies the payment request, and must conform to the structure defined in the [`BasicCardResponse`](../basiccardresponse) dictionary.
 
-Syntax
-------
+## Syntax
 
     var detailsObject = PaymentResponse.details;
 
-Example
--------
+## Example
 
 The following example extracts the details from the [`PaymentResponse`](../paymentresponse) object to the promise returned from [`PaymentRequest.show()`](../paymentrequest/show). In a real-world implementation this data would then be sent to a payment server.
 
@@ -36,13 +33,11 @@ The following example extracts the details from the [`PaymentResponse`](../payme
       // Send information to the server
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/">Payment Request API</a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

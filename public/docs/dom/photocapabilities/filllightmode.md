@@ -1,10 +1,8 @@
-PhotoCapabilities.fillLightMode
-===============================
+# PhotoCapabilities.fillLightMode
 
 The `fillLightMode` read-only property of the [`PhotoCapabilities`](../photocapabilities) interface returns all available fill light options of the source device. Options may include `auto`, `off`, or `flash`.
 
-Syntax
-------
+## Syntax
 
     const lightModes = photoCapabilities.fillLightMode
 
@@ -21,14 +19,12 @@ No fill light will be used.
 `flash`  
 Always use the device's fill light.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-image/#dom-photocapabilities-filllightmode">MediaStream Image Capture<br />
 <span class="small">The definition of 'fillLightMode' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

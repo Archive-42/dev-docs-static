@@ -1,10 +1,8 @@
-RTCIceCandidateStats.localCandidateId
-=====================================
+# RTCIceCandidateStats.localCandidateId
 
 The [`RTCIceCandidatePairStats`](../rtcicecandidatepairstats) property `localCandidateId` is a string that uniquely identifies the local [ICE](https://developer.mozilla.org/en-US/docs/Glossary/ICE) candidate which was analyzed to generate the [`RTCIceCandidateStats`](../rtcicecandidatestats) used to compute the statistics for this pair of candidates.
 
-Syntax
-------
+## Syntax
 
     localCandidateId = rtcIceCandidatePairStats.localCandidateId;
 
@@ -14,14 +12,12 @@ A [`DOMString`](../domstring) giving a unique identifier for the local [`RTCIceC
 
 This candidate is the source of one of the two [`RTCIceCandidateStats`](../rtcicecandidatestats) objects that were used to compute the contents of this [`RTCIceCandidatePairStats`](../rtcicecandidatepairstats) object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcicecandidatepairstats-localcandidateid">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCIceCandidatePairStats.localCandidateId' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

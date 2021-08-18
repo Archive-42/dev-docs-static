@@ -1,10 +1,8 @@
-RTCIceCandidatePairStats.lastPacketReceivedTimestamp
-====================================================
+# RTCIceCandidatePairStats.lastPacketReceivedTimestamp
 
 The [`RTCIceCandidatePairStats`](../rtcicecandidatepairstats) property `lastPacketReceivedTimestamp` indicates the time at which the connection described by the candidate pair last received a packet. [STUN](https://developer.mozilla.org/en-US/docs/Glossary/STUN) packets are not included.
 
-Syntax
-------
+## Syntax
 
     lastPacketReceivedTimestamp = rtcIceCandidatePairStats.lastPacketReceivedTimestamp;
 
@@ -12,14 +10,12 @@ Syntax
 
 A [`DOMHighResTimeStamp`](../domhighrestimestamp) object indicating the timestamp at which the connection described by pair of candidates last received a packet, STUN packets excluded.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcicecandidatepairstats-lastpacketreceivedtimestamp">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCIceCandidatePairStats.lastPacketReceivedTimestamp' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

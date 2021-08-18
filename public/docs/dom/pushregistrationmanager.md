@@ -1,5 +1,4 @@
-PushRegistrationManager
-=======================
+# PushRegistrationManager
 
 **Deprecated**
 
@@ -7,8 +6,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 Returns an interface to register or unregister a push registration, get an active registration, or check the permission status of the registration. This interface has been superseded by [`PushManager`](pushmanager).
 
-Methods
--------
+## Methods
 
 <span class="page-not-created">`PushRegistrationManager.register()`</span>  
 Returns a promise that resolves to a <span class="page-not-created">`PushRegistration`</span> with details of a new registration.
@@ -22,8 +20,7 @@ Returns a promise that resolves the <span class="page-not-created">`PushRegistra
 <span class="page-not-created">`PushRegistrationManager.hasPermission()`</span>  
 Returns a promise that resolves to the <span class="page-not-created">`PushPermissionStatus`</span> of the requesting webapp.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

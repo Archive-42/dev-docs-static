@@ -1,17 +1,14 @@
-MessagePort.onmessage
-=====================
+# MessagePort.onmessage
 
 The `onmessage` event handler of the [`MessagePort`](../messageport) interface is an [`EventListener`](../eventlistener), called whenever an [`MessageEvent`](../messageevent) of type `message` is fired on the port — that is, when the port receives a message.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     channel.onmessage = function() { ... };
 
-Example
--------
+## Example
 
 In the following code block, you can see a new channel being created using the [`MessageChannel.MessageChannel`](../messagechannel) constructor. When the IFrame has loaded, we pass [`MessageChannel.port2`](../messagechannel/port2) to the IFrame using [`MessagePort.postMessage`](postmessage) along with a message. The `handleMessage` handler then responds to a message being sent back from the IFrame using `onmessage`, putting it into a paragraph — [`MessageChannel.port1`](../messagechannel/port1) is listened to, to check when the message arrives.
 
@@ -30,18 +27,16 @@ In the following code block, you can see a new channel being created using the [
     channel.port1.onmessage = handleMessage;
     function handleMessage(e) {
       para.innerHTML = e.data;
-    }   
+    }
 
 For a full working example, see our [channel messaging basic demo](https://github.com/mdn/channel-messaging-basic-demo) on Github ([run it live too](https://mdn.github.io/channel-messaging-basic-demo/)).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/web-messaging.html#handler-messageport-onmessage">HTML Living Standard<br />
 <span class="small">The definition of 'onmessage' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -97,9 +92,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [Using channel messaging](../channel_messaging_api/using_channel_messaging)
+- [Using channel messaging](../channel_messaging_api/using_channel_messaging)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MessagePort/onmessage" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MessagePort/onmessage</a>

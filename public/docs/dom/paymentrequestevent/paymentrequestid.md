@@ -1,5 +1,4 @@
-PaymentRequestEvent.paymentRequestId
-====================================
+# PaymentRequestEvent.paymentRequestId
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `paymentRequestId` read-only property of the [`PaymentRequestEvent`](../paymentrequestevent) interface returns the ID of the [`PaymentRequest`](../paymentrequest) object.
 
-Syntax
-------
+## Syntax
 
     var id = paymentRequestEvent.paymentRequestId
 
@@ -17,14 +15,12 @@ Syntax
 
 A DOMString contains the ID.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-handler/#paymentrequestid-attribute">Payment Handler API<br />
 <span class="small">The definition of 'paymentRequestId' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-MouseEvent.pageX
-================
+# MouseEvent.pageX
 
 The `pageX` read-only property of the [`MouseEvent`](../mouseevent) interface returns the X (horizontal) coordinate (in pixels) at which the mouse was clicked, relative to the left edge of the entire document. This includes any portion of the document not currently visible.
 
@@ -9,19 +8,17 @@ Originally, this property was defined as a `long` integer. The [CSSOM View Modul
 
 See [Page](https://developer.mozilla.org/en-US/docs/Web/CSS/CSSOM_View/Coordinate_systems#page) in [Coordinate systems](https://developer.mozilla.org/en-US/docs/Web/CSS/CSSOM_View/Coordinate_systems) for some additional information about coordinates specified in this fashion.
 
-Syntax
-------
+## Syntax
 
     var pageX = MouseEvent.pageX;
 
 ### Value
 
-A floating-point number of pixels from the left edge of the *document* at which the mouse was clicked, regardless of any scrolling or viewport positioning that may be in effect.
+A floating-point number of pixels from the left edge of the _document_ at which the mouse was clicked, regardless of any scrolling or viewport positioning that may be in effect.
 
 This property was originally specified in the Touch Events specification as a long integer, but was redefined in the CSSOM View Module to be a double-precision floating-point number to allow for subpixel precision. Even though numeric types both are represented by `Number` in JavaScript, they may be handled differently internally in the browser's code, resulting in potential behavior differences. See [Browser compatibility](#browser_compatibility) to learn which browsers have been updated to use the revised data type.
 
-Example
--------
+## Example
 
 #### More examples
 
@@ -81,8 +78,7 @@ The CSS used for this example is shown below.
 
 Try this out here:
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-mouseevent-pagex">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'pageX' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Redefined from <code>long</code> to <code>double</code>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/touch-events/#widl-Touch-pageX">Touch Events<br />
@@ -90,8 +86,7 @@ Specifications
 
 Prior to being added to the CSSOM View specification, `pageX` and `pageY` were available on the [`UIEvent`](../uievent) interface in a limited subset of browsers for a short time.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -173,9 +168,8 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [`MouseEvent.pageY`](pagey)
+- [`MouseEvent.pageY`](pagey)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/pageX" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/pageX</a>

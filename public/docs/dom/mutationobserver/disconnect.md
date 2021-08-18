@@ -1,10 +1,8 @@
-MutationObserver.disconnect()
-=============================
+# MutationObserver.disconnect()
 
 The [`MutationObserver`](../mutationobserver) method `disconnect()` tells the observer to stop watching for mutations. The observer can be reused by calling its [`observe()`](observe) method again.
 
-Syntax
-------
+## Syntax
 
     mutationObserver.disconnect()
 
@@ -16,15 +14,13 @@ None.
 
 `undefined`.
 
-**Note:** All notifications of mutations that have already been *detected*, but *not yet reported* to the observer, are discarded.
+**Note:** All notifications of mutations that have already been _detected_, but _not yet reported_ to the observer, are discarded.
 
-Usage notes
------------
+## Usage notes
 
 If the element being observed is removed from the DOM, and then subsequently released by the browser's garbage collection mechanism, the `MutationObserver` is likewise deleted.
 
-Example
--------
+## Example
 
 This example creates an observer, then disconnects from it, leaving it available for possible reuse.
 
@@ -41,14 +37,12 @@ This example creates an observer, then disconnects from it, leaving it available
 
     observer.disconnect();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-mutationobserver-disconnect">DOM<br />
 <span class="small">The definition of 'MutationObserver.disconnect()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

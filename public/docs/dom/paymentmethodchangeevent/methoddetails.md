@@ -1,5 +1,4 @@
-PaymentMethodChangeEvent.methodDetails
-======================================
+# PaymentMethodChangeEvent.methodDetails
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The read-only `methodDetails` property of the [`PaymentMethodChangeEvent`](../paymentmethodchangeevent) interface is an object containing any data the payment handler may provide to describe the change the user has made to their payment method. The value is `null` if no details are available.
 
-Syntax
-------
+## Syntax
 
     details = paymentMethodChangeEvent.methodName;
 
@@ -18,8 +16,7 @@ An object containing any data needed to describe the changes made to the payment
 
 The default value is `null`, indicating that no additional details are available.
 
-Example
--------
+## Example
 
 This example uses the `paymentmethodchange` event to watch for changes to the payment method selected for Apple Pay, in order to compute a discount if the user chooses to use a Visa card as their payment method.
 
@@ -43,14 +40,12 @@ This example uses the `paymentmethodchange` event to watch for changes to the pa
 
 Note that the `methodDetails` property is being used by the `calculateDiscount()` function to compute any payment discount, then [`updateWith()`](../paymentrequestupdateevent/updatewith) is called to update the event with the computed update.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-paymentmethodchangeevent-methoddetails">Payment Request API<br />
 <span class="small">The definition of 'PaymentMethodChangeEvent.methodDetails' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-OffscreenCanvas.transferToImageBitmap()
-=======================================
+# OffscreenCanvas.transferToImageBitmap()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `OffscreenCanvas.transferToImageBitmap()` method creates an [`ImageBitmap`](../imagebitmap) object from the most recently rendered image of the `OffscreenCanvas`.
 
-Syntax
-------
+## Syntax
 
     ImageBitmap OffscreenCanvas.transferToImageBitmap()
 
@@ -17,8 +15,7 @@ Syntax
 
 An [`ImageBitmap`](../imagebitmap).
 
-Examples
---------
+## Examples
 
     var offscreen = new OffscreenCanvas(256, 256);
     var gl = offscreen.getContext("webgl");
@@ -28,14 +25,12 @@ Examples
     offscreen.transferToImageBitmap();
     // ImageBitmap { width: 256, height: 256 }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-offscreencanvas-transfertoimagebitmap">HTML Living Standard<br />
 <span class="small">The definition of 'OffscreenCanvas.transferToImageBitmap()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -95,10 +90,9 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   The interface defining this method, [`OffscreenCanvas`](../offscreencanvas)
--   [`ImageBitmapRenderingContext.transferFromImageBitmap`](../imagebitmaprenderingcontext/transferfromimagebitmap)
+- The interface defining this method, [`OffscreenCanvas`](../offscreencanvas)
+- [`ImageBitmapRenderingContext.transferFromImageBitmap`](../imagebitmaprenderingcontext/transferfromimagebitmap)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas/transferToImageBitmap" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas/transferToImageBitmap</a>

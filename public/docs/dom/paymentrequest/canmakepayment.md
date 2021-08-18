@@ -1,5 +1,4 @@
-PaymentRequest.canMakePayment()
-===============================
+# PaymentRequest.canMakePayment()
 
 **Secure context**
 
@@ -9,8 +8,7 @@ The [`PaymentRequest`](../paymentrequest) method `canMakePayment()` determines w
 
 For instance, you might call `canMakePayment()` to determine if the browser will let the user pay using Payment Request API, and if it won't, you could fall back to another payment method, or offer a list of methods that aren't handled by Payment Request API (or even provide instructions for paying by mail or by phone).
 
-Syntax
-------
+## Syntax
 
     paymentRequest.canMakePayment()
         .then( canPay => { ... })
@@ -28,8 +26,7 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 None
 
-Examples
---------
+## Examples
 
 In the following example, is [excerpted from a demo](https://rsolomakhin.github.io/samples/paymentrequest/can-make-payment/) that asynchronously builds a `PaymentRequest` object for both Apple Pay and credit cards. It wraps the call to `canMakePayment()` in feature detection, and calls an appropriate callback depending on the resolution of the `Promise`.
 
@@ -69,14 +66,12 @@ In the following example, is [excerpted from a demo](https://rsolomakhin.github.
       // Otherwise, make payments using HTML form element
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#canmakepayment-method">Payment Request API<br />
 <span class="small">The definition of 'canMakePayment()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -136,9 +131,8 @@ Available only in nightly builds.
 
 6.0
 
-See also
---------
+## See also
 
--   [`PaymentRequest.show()`](show)
+- [`PaymentRequest.show()`](show)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/canMakePayment" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/canMakePayment</a>

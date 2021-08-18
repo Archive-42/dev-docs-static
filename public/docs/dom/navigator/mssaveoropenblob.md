@@ -1,5 +1,4 @@
-Navigator.msSaveOrOpenBlob
-==========================
+# Navigator.msSaveOrOpenBlob
 
 **Non-standard**
 
@@ -11,8 +10,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `Navigator.msSaveOrOpenBlob()` method saves the [`File`](../file) or [`Blob`](../blob) to disk. This method behaves in the same way as [`Navigator.msSaveBlob()`](mssaveblob) except that this enables the file open option.
 
-Syntax
-------
+## Syntax
 
     navigator.msSaveOrOpenBlob(blob, defaultName);
 
@@ -28,8 +26,7 @@ The file name to be used when saving file.
 
 True is returned as long as the download notification bar is displayed, or false if a failure occurred.
 
-Notes
------
+## Notes
 
 When a site calls this method, the behavior is the same as when Windows Internet Explorer downloads a file with the following in the header:
 
@@ -37,13 +34,11 @@ When a site calls this method, the behavior is the same as when Windows Internet
     Content-Type: <blob.type>
     Content-Disposition: attachment;filename=<defaultName>
 
-Specifications
---------------
+## Specifications
 
 Not part of any specifications.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.Navigator.msSaveOrOpenBlob`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).

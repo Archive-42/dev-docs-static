@@ -1,12 +1,10 @@
-RTCDataChannel: bufferedamountlow event
-=======================================
+# RTCDataChannel: bufferedamountlow event
 
 A `bufferedamountlow` event is sent to an [`RTCDataChannel`](../rtcdatachannel) when the number of bytes currently in the outbound data transfer buffer falls below the threshold specified in [`bufferedAmountLowThreshold`](bufferedamountlowthreshold). `bufferedamountlow` events aren't sent if `bufferedAmountLowThreshold` is 0.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../event"><code>Event</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="onbufferedamountlow"><code>onbufferedamountlow</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 This example sets up a handler for `bufferedamountlow` to request more data any time the data channel's buffer falls below the number of bytes specified by [`bufferedAmountLowThreshold`](bufferedamountlowthreshold), which we have set to 65536. In other words, we'll try to keep at least 64kB of data in the buffer, reading 64kB at a time from the source.
 
@@ -32,14 +30,12 @@ You can also set up a listener for `bufferedamountlow` using its event handler p
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#event-datachannel-bufferedamountlow">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'bufferedamountlow' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -109,12 +105,11 @@ No
 
 The default for `rtcpMuxPolicy is require.`
 
-See also
---------
+## See also
 
--   [WebRTC API](../webrtc_api)
--   [`RTCDataChannel`](../rtcdatachannel)
--   [`RTCDataChannel.onbufferedamountlow`](onbufferedamountlow)
--   [`RTCDataChannel.bufferedAmountLowThreshold`](bufferedamountlowthreshold)
+- [WebRTC API](../webrtc_api)
+- [`RTCDataChannel`](../rtcdatachannel)
+- [`RTCDataChannel.onbufferedamountlow`](onbufferedamountlow)
+- [`RTCDataChannel.bufferedAmountLowThreshold`](bufferedamountlowthreshold)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/bufferedamountlow_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/bufferedamountlow_event</a>

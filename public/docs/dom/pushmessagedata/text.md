@@ -1,5 +1,4 @@
-PushMessageData.text()
-======================
+# PushMessageData.text()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `text()`method of the [`PushMessageData`](../pushmessagedata) interface extracts push message data as a plain text string.
 
-Syntax
-------
+## Syntax
 
     var myText = pushEvent.data.text();
 
@@ -21,8 +19,7 @@ None.
 
 A [`USVString`](../usvstring).
 
-Examples
---------
+## Examples
 
     self.addEventListener('push', function(event) {
       var textObj = event.data.text();
@@ -30,14 +27,12 @@ Examples
       // do something with your text
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/#dom-pushmessagedata-text">Push API<br />
 <span class="small">The definition of 'text()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

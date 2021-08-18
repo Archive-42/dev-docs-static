@@ -1,5 +1,4 @@
-Range.surroundContents()
-========================
+# Range.surroundContents()
 
 The `Range.surroundContents()` method moves content of the [`Range`](../range) into a new node, placing the new node at the start of the specified range.
 
@@ -7,8 +6,7 @@ This method is nearly equivalent to `newNode.appendChild(range.extractContents()
 
 An exception will be thrown, however, if the [`Range`](../range) splits a non-[`Text`](../text) node with only one of its boundary points. That is, unlike the alternative above, if there are partially selected nodes, they will not be cloned and instead the operation will fail.
 
-Syntax
-------
+## Syntax
 
     range.surroundContents(newParent);
 
@@ -17,8 +15,7 @@ Syntax
 `newParent`  
 A [`Node`](../node) with which to surround the contents.
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -34,15 +31,13 @@ Example
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-range-surroundcontents">DOM<br />
 <span class="small">The definition of 'Range.surroundContents()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level2-Range-method-surroundContents">Document Object Model (DOM) Level 2 Traversal and Range Specification<br />
 <span class="small">The definition of 'Range.surroundContents()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -98,9 +93,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [The DOM interfaces index](../document_object_model)
+- [The DOM interfaces index](../document_object_model)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range/surroundContents" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Range/surroundContents</a>

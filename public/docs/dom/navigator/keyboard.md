@@ -1,5 +1,4 @@
-Navigator.keyboard
-==================
+# Navigator.keyboard
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `keyboard` read-only property of the [`Navigator`](../navigator) interface returns a [`Keyboard`](../keyboard) object which provides access to functions that retrieve keyboard layout maps and toggle capturing of key presses from the physical keyboard.
 
-Syntax
-------
+## Syntax
 
     var keyboard = navigator.keyboard
 
@@ -17,14 +15,12 @@ Syntax
 
 A [`Keyboard`](../keyboard) object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/keyboard-map/#navigator-interface">Keyboard Map<br />
 <span class="small">The definition of 'keyboard' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,10 +1,8 @@
-NodeList.keys()
-===============
+# NodeList.keys()
 
 The `NodeList.keys()` method returns an [`iterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) allowing to go through all keys contained in this object. The keys are `unsigned integer`.
 
-Syntax
-------
+## Syntax
 
     nodeList.keys();
 
@@ -12,8 +10,7 @@ Syntax
 
 Returns an [`iterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols).
 
-Example
--------
+## Example
 
     var node = document.createElement("div");
     var kid1 = document.createElement("p");
@@ -37,8 +34,7 @@ The result is:
     1
     2
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -94,10 +90,9 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [`Node`](../node)
--   [`NodeList`](../nodelist)
+- [`Node`](../node)
+- [`NodeList`](../nodelist)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeList/keys" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NodeList/keys</a>

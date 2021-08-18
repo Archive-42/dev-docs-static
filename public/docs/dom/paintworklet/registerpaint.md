@@ -1,5 +1,4 @@
-PaintWorkletGlobalScope.registerPaint
-=====================================
+# PaintWorkletGlobalScope.registerPaint
 
 **Draft**
 
@@ -7,8 +6,7 @@ This page is not complete.
 
 The `PaintWorkletGlobalScope.registerPaint()` method of the [`PaintWorklet`](../paintworklet) interface registers a class programmatically generate an image where a CSS property expects a file.
 
-Syntax
-------
+## Syntax
 
     registerPaint(name, class);
 
@@ -32,8 +30,7 @@ Thrown when one of the arguments is invalid or missing.
 InvalidModificationError  
 Thrown when the a worklet already exists with the specified name.
 
-Examples
---------
+## Examples
 
 The following shows registering an example worklet module. This should be in a separate js file. Note that `registerPaint()` is called without a reference to `PaintWorkletGlobalScope`. The file itself is loaded through `CSS.paintWorklet.addModule()` (documented here on the parent class of PaintWorklet, at [`Worklet.addModule()`](../worklet/addmodule).
 
@@ -71,14 +68,12 @@ You can then use the `paint()` CSS function in your CSS anywhere an `<image>` va
        background-image: paint(checkerboard);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.css-houdini.org/css-paint-api-1/#dom-paintworkletglobalscope-registerpaint">CSS Painting API Level 1<br />
 <span class="small">The definition of 'PaintWorkletGlobalScope.registerPaint' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -134,11 +129,10 @@ No
 
 9.0
 
-See also
---------
+## See also
 
--   [CSS Painting API](../css_painting_api)
--   [Houdini APIs](https://developer.mozilla.org/en-US/docs/Web/Houdini)
--   [Houdini overview](https://developer.mozilla.org/en-US/docs/Web/Houdini/learn)
+- [CSS Painting API](../css_painting_api)
+- [Houdini APIs](https://developer.mozilla.org/en-US/docs/Web/Houdini)
+- [Houdini overview](https://developer.mozilla.org/en-US/docs/Web/Houdini/learn)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaintWorklet/registerPaint" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaintWorklet/registerPaint</a>

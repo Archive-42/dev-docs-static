@@ -1,15 +1,12 @@
-MediaStream.id
-==============
+# MediaStream.id
 
 The `MediaStream.id()` read-only property is a [`DOMString`](../domstring) containing 36 characters denoting a unique identifier (GUID) for the object.
 
-Syntax
-------
+## Syntax
 
     var id = mediaStream.id;
 
-Example
--------
+## Example
 
     var p = navigator.mediaDevices.getUserMedia({ audio: true, video: true });
 
@@ -17,14 +14,12 @@ Example
        console.log(stream.id);
     })
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediastream-id">Media Capture and Streams<br />
 <span class="small">The definition of 'MediaStream.id' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -80,9 +75,8 @@ Yes-41
 
 Yes-6.0
 
-See also
---------
+## See also
 
--   [`MediaStream`](../mediastream), the interface this property belongs to.
+- [`MediaStream`](../mediastream), the interface this property belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/id" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/id</a>

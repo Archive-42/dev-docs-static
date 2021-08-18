@@ -1,5 +1,4 @@
-PushSubscription.expirationTime
-===============================
+# PushSubscription.expirationTime
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `expirationTime` read-only property of the [`PushSubscription`](../pushsubscription) interface returns a [`DOMHighResTimeStamp`](../domhighrestimestamp) of the subscription expiration time associated with the push subscription, if there is one, or null otherwise.
 
-Syntax
-------
+## Syntax
 
     var expirationTime = pushSubscription.expirationTime
 
@@ -17,14 +15,12 @@ Syntax
 
 A [`DOMHighResTimeStamp`](../domhighrestimestamp).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/#dom-pushsubscription-expirationtime">Push API<br />
 <span class="small">The definition of 'expirationTime' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

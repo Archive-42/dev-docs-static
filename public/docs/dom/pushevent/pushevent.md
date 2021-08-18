@@ -1,5 +1,4 @@
-PushEvent.PushEvent()
-=====================
+# PushEvent.PushEvent()
 
 **Experimental**
 
@@ -8,23 +7,21 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `PushEvent()` constructor creates a new [`PushEvent`](../pushevent) object. Note that the this constructor is exposed only to a service worker context.
 
-Syntax
-------
+## Syntax
 
     var myPushEvent = new PushEvent(type, eventInitDict);
 
 ### Parameters
 
-*type*  
+_type_  
 A [`DOMString`](../domstring) defining the type of `PushEvent`. This can be `push` or `pushsubscriptionchange`.
 
- *eventInitDict* <span class="badge inline optional">Optional</span>   
+_eventInitDict_ <span class="badge inline optional">Optional</span>  
 An options object containing any initialization data you want to populate the `PushEvent` object with. The options are:
 
--   `data`: The data you want the `PushEvent` to contain, if any. When the constructor is invoked, the [`PushEvent.data`](data) property of the resulting object will be set to a new [`PushMessageData`](../pushmessagedata) object containing bytes extracted from the `eventInitDict data` member.
+- `data`: The data you want the `PushEvent` to contain, if any. When the constructor is invoked, the [`PushEvent.data`](data) property of the resulting object will be set to a new [`PushMessageData`](../pushmessagedata) object containing bytes extracted from the `eventInitDict data` member.
 
-Example
--------
+## Example
 
     var dataInit = {
       data : 'Some sample text'
@@ -34,8 +31,7 @@ Example
 
     myPushEvent.data.text(); // should return 'Some sample text'
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -97,10 +93,9 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [Push API](../push_api)
--   [Service Worker API](../service_worker_api)
+- [Push API](../push_api)
+- [Service Worker API](../service_worker_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PushEvent/PushEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PushEvent/PushEvent</a>

@@ -1,12 +1,10 @@
-RTCIceCandidatePairStats.availableIncomingBitrate
-=================================================
+# RTCIceCandidatePairStats.availableIncomingBitrate
 
 The [`RTCIceCandidatePairStats`](../rtcicecandidatepairstats) property `availableIncomingBitrate` returns a value indicative of the available inbound capacity of the network connection represented by the candidate pair. The higher the value, the more bandwidth you can assume is available for incoming data.
 
 You can get the incoming outgoing bitrate from [`availableoutgoingBitrate`](availableoutgoingbitrate).
 
-Syntax
-------
+## Syntax
 
     availableIncomingBitrate = rtcIceCandidatePairStats.availableIncomingBitrate;
 
@@ -18,14 +16,12 @@ The value returned is calculated by adding up the available bit rate for every [
 
 **Note:** The returned value is computed using a method similar—but not identical—to the Transport Independent Application Specific Maximum (TIAS) described in [RFC 3890: 6.2](https://tools.ietf.org/html/rfc3890).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcicecandidatepairstats-availableincomingbitrate">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCIceCandidatePairStats.availableIncomingBitrate' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

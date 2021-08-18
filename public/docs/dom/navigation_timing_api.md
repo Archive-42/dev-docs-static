@@ -1,19 +1,16 @@
-Navigation Timing API
-=====================
+# Navigation Timing API
 
 The **Navigation Timing API** provides data that can be used to measure the performance of a web site. Unlike JavaScript-based libraries that have historically been used to collect similar information, the Navigation Timing API can be much more accurate and reliable.
 
 **This article currently describes Navigation Timing Level 1.** There is a specification for Level 2, but it is not yet covered here.
 
-Concepts and usage
-------------------
+## Concepts and usage
 
 You can use the Navigation Timing API to gather performance data on the client side, which you can then transmit to a server using [`XMLHttpRequest`](xmlhttprequest) or other techniques.
 
 This API lets you measure data that was previously difficult to obtain, such as the amount of time needed to unload the previous page, how long domain lookups take, the total time spent executing the window's `load` handler, and so forth.
 
-Interfaces
-----------
+## Interfaces
 
 [`Performance`](performance)  
 The [`window.performance`](window/performance) property returns a `Performance` object. While this interface is defined by the High Resolution Time API, the Navigation Timing API adds two properties: [`timing`](performance/timing) and [`navigation`](performance/navigation), of the types below.
@@ -21,16 +18,15 @@ The [`window.performance`](window/performance) property returns a `Performance` 
 [`PerformanceNavigationTiming`](performancenavigationtiming)  
 Provides methods and properties to store and retrieve metrics regarding the browser's document navigation events. For example, this interface can be used to determine how much time it takes to load or unload a document.
 
- <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span> [`PerformanceTiming`](performancetiming)   
+<span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span> [`PerformanceTiming`](performancetiming)  
 Used as the type for the value of [`timing`](performance/timing), objects of this type contain timing information that can provide insight into web page performance.
 
- <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span> [`PerformanceNavigation`](performancenavigation)   
+<span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span> [`PerformanceNavigation`](performancenavigation)  
 The type used to return the value of [`navigation`](performance/navigation), which contains information explaining the context of the load operation described by this `Performance` instance.
 
 The Navigation Timing API can be used to gather performance data on the client side to be sent to a server via XHR as well as measure data that was very difficult to measure by other means such as time to unload a previous page, domain look up time, `window.onload` total time, etc.
 
-Examples
---------
+## Examples
 
 ### Calculate the total page load time
 
@@ -57,13 +53,11 @@ As another example of an interesting piece of data you can obtain using the Navi
 
 This is obtained by starting with the time at which loading of the DOM and its dependencies is complete ([`domComplete`](performancetiming/domcomplete)) and subtracting from it the time at which parsing of the DOM began ([`domLoading`](performancetiming/domloading)).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/navigation-timing/">Navigation Timing Level 2</a></td><td><span class="spec-wd">Working Draft</span></td><td>Adds <code>PerformanceNavigationTiming</code></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/navigation-timing/">Navigation Timing</a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-Navigator.onLine
-================
+# Navigator.onLine
 
 Returns the online status of the browser. The property returns a boolean value, with `true` meaning online and `false` meaning offline. The property sends updates whenever the browser's ability to connect to the network changes. The update occurs when the user follows links or when a script requests a remote page. For example, the property should return `false` when users click links soon after they lose internet connection.
 
@@ -11,8 +10,7 @@ In Firefox and Internet Explorer, switching the browser to offline mode sends a 
 
 You can see changes in the network state by listening for the events on [`window.ononline`](../document/ononline) and [`window.onoffline`](../document/onoffline).
 
-Syntax
-------
+## Syntax
 
     online = window.navigator.onLine;
 
@@ -20,8 +18,7 @@ Syntax
 
 `online` is a boolean `true` or `false`.
 
-Examples
---------
+## Examples
 
 ### Basic usage
 
@@ -43,14 +40,12 @@ To see changes in the network state, use `addEventListener` to listen for the ev
 
     window.addEventListener('online', function(e) { console.log('online'); });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/browsers.html#dom-navigator-online">HTML Living Standard<br />
 <span class="small">The definition of 'navigator.onLine' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -118,16 +113,14 @@ From Opera 11.1 until Opera 12.1, the browser returns `true` when 'Work Offline'
 
 1.0
 
-Notes
------
+## Notes
 
 See [Online/Offline Events](online_and_offline_events) for a more detailed description of this property as well as new offline-related features introduced in Firefox 3.
 
-See also
---------
+## See also
 
--   [HTML5 Rocks: Working Off the Grid With HTML5 Offline](https://www.html5rocks.com/en/mobile/workingoffthegrid.html)
--   [HTML5 Rocks: "Offline": What does it mean and why should I care?](https://www.html5rocks.com/en/tutorials/offline/whats-offline/)
--   [Mozilla Blog: Offline Web Applications](https://hacks.mozilla.org/2010/01/offline-web-applications/)
+- [HTML5 Rocks: Working Off the Grid With HTML5 Offline](https://www.html5rocks.com/en/mobile/workingoffthegrid.html)
+- [HTML5 Rocks: "Offline": What does it mean and why should I care?](https://www.html5rocks.com/en/tutorials/offline/whats-offline/)
+- [Mozilla Blog: Offline Web Applications](https://hacks.mozilla.org/2010/01/offline-web-applications/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/onLine" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/onLine</a>

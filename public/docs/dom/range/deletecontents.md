@@ -1,31 +1,26 @@
-Range.deleteContents()
-======================
+# Range.deleteContents()
 
 The `Range.deleteContents()` method removes the contents of the [`Range`](../range) from the [`Document`](../document).
 
 Unlike [`Range.extractContents()`](extractcontents), this method does not return a [`DocumentFragment`](../documentfragment) containing the deleted content.
 
-Syntax
-------
+## Syntax
 
     range.deleteContents()
 
-Example
--------
+## Example
 
     range = document.createRange();
     range.selectNode(document.getElementsByTagName("div").item(0));
     range.deleteContents();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-range-deletecontents">DOM<br />
 <span class="small">The definition of 'Range.deleteContents()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level2-Range-method-deleteContents">Document Object Model (DOM) Level 2 Traversal and Range Specification<br />
 <span class="small">The definition of 'Range.deleteContents()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -81,9 +76,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [The DOM interfaces index](../document_object_model)
+- [The DOM interfaces index](../document_object_model)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range/deleteContents" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Range/deleteContents</a>

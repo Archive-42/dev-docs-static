@@ -1,5 +1,4 @@
-MediaSource.sourceBuffers
-=========================
+# MediaSource.sourceBuffers
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `sourceBuffers` read-only property of the [`MediaSource`](../mediasource) interface returns a [`SourceBufferList`](../sourcebufferlist) object containing the list of [`SourceBuffer`](../sourcebuffer) objects associated with this `MediaSource`.
 
-Syntax
-------
+## Syntax
 
     var mySourceBuffers = mediaSource.sourceBuffers;
 
@@ -17,8 +15,7 @@ Syntax
 
 A [`SourceBufferList`](../sourcebufferlist).
 
-Example
--------
+## Example
 
 The following snippet is based on a simple example written by Nick Desaulniers ([view the full demo live](https://nickdesaulniers.github.io/netfix/demo/bufferAll.html), or [download the source](https://github.com/nickdesaulniers/netfix/blob/gh-pages/demo/bufferAll.html) for further investigation.)
 
@@ -39,14 +36,12 @@ The following snippet is based on a simple example written by Nick Desaulniers (
 
     ...
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/media-source/#idl-def-mediasource-sourcebuffers">Media Source Extensions<br />
 <span class="small">The definition of 'sourceBuffers' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -104,10 +99,9 @@ No
 
 1.5
 
-See also
---------
+## See also
 
--   [`SourceBuffer`](../sourcebuffer)
--   [`SourceBufferList`](../sourcebufferlist)
+- [`SourceBuffer`](../sourcebuffer)
+- [`SourceBufferList`](../sourcebufferlist)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/sourceBuffers" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/sourceBuffers</a>

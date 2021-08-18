@@ -1,17 +1,14 @@
-Node.parentNode
-===============
+# Node.parentNode
 
 The `Node.parentNode` read-only property returns the parent of the specified node in the DOM tree.
 
-Syntax
-------
+## Syntax
 
     parentNode = node.parentNode
 
 `parentNode` is the parent of the current node. The parent of an element is an `Element` node, a `Document` node, or a `DocumentFragment` node.
 
-Example
--------
+## Example
 
     if (node.parentNode) {
       // remove a node from the tree, unless
@@ -19,21 +16,18 @@ Example
       node.parentNode.removeChild(node);
     }
 
-Notes
------
+## Notes
 
 `Document` and `DocumentFragment` [nodes](nodetype) can never have a parent, so `parentNode` will always return `null`.
 
 It also returns `null` if the node has just been created and is not yet attached to the tree.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-node-parentnode">DOM<br />
 <span class="small">The definition of 'Node: parentNode' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -89,15 +83,14 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`Node.firstChild`](firstchild)
--   [`Node.lastChild`](lastchild)
--   [`Node.childNodes`](childnodes)
--   [`Node.nextSibling`](nextsibling)
--   [`Node.parentElement`](parentelement)
--   [`Node.previousSibling`](previoussibling)
--   [`Node.removeChild`](removechild)
+- [`Node.firstChild`](firstchild)
+- [`Node.lastChild`](lastchild)
+- [`Node.childNodes`](childnodes)
+- [`Node.nextSibling`](nextsibling)
+- [`Node.parentElement`](parentelement)
+- [`Node.previousSibling`](previoussibling)
+- [`Node.removeChild`](removechild)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/parentNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/parentNode</a>

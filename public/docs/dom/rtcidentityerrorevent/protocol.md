@@ -1,5 +1,4 @@
-RTCIdentityErrorEvent.protocol
-==============================
+# RTCIdentityErrorEvent.protocol
 
 **Deprecated**
 
@@ -9,14 +8,12 @@ The read-only property `RTCIdentityErrorEvent.protocol` is a [`DOMString`](../do
 
 Firefox implements the interface of this property under the following name: `RTCPeerConnectionIdentityErrorEvent.` It is likely that it will correct this name when it will unprefix [`RTCPeerConnection`](../rtcpeerconnection), once spec and implementation will have been stabilized.
 
-Syntax
-------
+## Syntax
 
     var protocol = event.protocol;
     event.protocol = "idp.html";
 
-Example
--------
+## Example
 
     pc.onidpassertionerror = function( ev ) {
                                alert("The idp uses the following protocol '" +
@@ -24,8 +21,7 @@ Example
                                      ".");
                              }
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -81,10 +77,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   `idpassertionerror`, `idpvalidationerror`
--   [`RTCPeerConnection`](../rtcpeerconnection)
+- `idpassertionerror`, `idpvalidationerror`
+- [`RTCPeerConnection`](../rtcpeerconnection)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIdentityErrorEvent/protocol" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIdentityErrorEvent/protocol</a>

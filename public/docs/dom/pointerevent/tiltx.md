@@ -1,12 +1,10 @@
-PointerEvent.tiltX
-==================
+# PointerEvent.tiltX
 
-The `tiltX` read-only property of the [`PointerEvent`](../pointerevent) interface is the angle (in degrees) between the *Y-Z plane* of the pointer and the screen. This property is typically only useful for a pen/stylus pointer type.
+The `tiltX` read-only property of the [`PointerEvent`](../pointerevent) interface is the angle (in degrees) between the _Y-Z plane_ of the pointer and the screen. This property is typically only useful for a pen/stylus pointer type.
 
 For an illustration of this property see [Figure 2 in the specification](https://w3c.github.io/pointerevents/#dom-pointerevent-tiltx).
 
-Syntax
-------
+## Syntax
 
     var tiltX = pointerEvent.tiltX;
 
@@ -15,8 +13,7 @@ Syntax
 `tiltX`  
 The angle in degrees between the Y-Z plane of the pointer (stylus) and the screen. The range of values is `-90` to `90`, inclusive, where a positive value is a tilt to the right. For devices that do not support this property, the value is `0`.
 
-Example
--------
+## Example
 
 This example illustrates simple accessing of the `tiltX` and [`tiltY`](tilty) properties.
 
@@ -24,15 +21,13 @@ This example illustrates simple accessing of the `tiltX` and [`tiltY`](tilty) pr
       process_tilt(event.tiltX, event.tiltY);
     }, false);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/pointerevents2/#dom-pointerevent-tiltx">Pointer Events – Level 2<br />
 <span class="small">The definition of 'tiltX' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Non-stable version.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/pointerevents1/#widl-PointerEventInit-tiltX">Pointer Events<br />
 <span class="small">The definition of 'tiltX' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

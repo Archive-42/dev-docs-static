@@ -1,5 +1,4 @@
-PhotoCapabilities.imageHeight
-=============================
+# PhotoCapabilities.imageHeight
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `imageHeight` read-only property of the [`PhotoCapabilities`](../photocapabilities) interface returns a [`MediaSettingsRange`](../mediasettingsrange) object indicating the image height range supported by the user agent.
 
-Syntax
-------
+## Syntax
 
     var mediaSettingsRange = photoCapabilities.imageHeight
 
@@ -17,14 +15,12 @@ Syntax
 
 A [`MediaSettingsRange`](../mediasettingsrange) object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-image/#dom-photocapabilities-imageheight">MediaStream Image Capture<br />
 <span class="small">The definition of 'imageHeight' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,21 +1,17 @@
-PerformanceServerTiming.duration
-================================
+# PerformanceServerTiming.duration
 
 The `duration` read-only property returns a double that contains the server-specified metric duration, or value `0.0`.
 
-Syntax
-------
+## Syntax
 
     serverTiming.duration;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/server-timing/#dom-performanceservertiming-duration">Server Timing<br />
 <span class="small">The definition of 'duration' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -71,10 +67,9 @@ No
 
 9.0
 
-See also
---------
+## See also
 
--   [`PerformanceServerTiming`](../performanceservertiming)
--   [`Server-Timing`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server-Timing)
+- [`PerformanceServerTiming`](../performanceservertiming)
+- [`Server-Timing`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server-Timing)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceServerTiming/duration" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PerformanceServerTiming/duration</a>

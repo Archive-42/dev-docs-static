@@ -1,5 +1,4 @@
-RTCDataChannel.binaryType
-=========================
+# RTCDataChannel.binaryType
 
 **Experimental**
 
@@ -14,8 +13,7 @@ The property `binaryType` on the [`RTCDataChannel`](../rtcdatachannel) interface
 
 When a binary message is received on the data channel, the resulting `message` event's [`MessageEvent.data`](../messageevent/data) property is an object of the type specified by the `binaryType`.
 
-Syntax
-------
+## Syntax
 
     var type = aDataChannel.binaryType;
 
@@ -31,8 +29,7 @@ Received binary messages' contents will be contained in [`Blob`](../blob) object
 `"arraybuffer"`  
 Received binary messages' contents will be contained in [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) objects.
 
-Example
--------
+## Example
 
 This code configures a data channel to receive binary data in [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) objects, and establishes a listener for `message` events which constructs a string representing the received data as a list of hexadecimal byte values.
 
@@ -48,14 +45,12 @@ This code configures a data channel to receive binary data in [`ArrayBuffer`](ht
       });
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-datachannel-binarytype">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCDataChannel.binaryType' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -111,12 +106,11 @@ Yes
 
 2.0
 
-See also
---------
+## See also
 
--   [WebRTC](../webrtc_api)
--   [Using WebRTC data channels](../webrtc_api/using_data_channels)
--   [`RTCDataChannel`](../rtcdatachannel)
--   [`RTCDataChannel.send()`](send)
+- [WebRTC](../webrtc_api)
+- [Using WebRTC data channels](../webrtc_api/using_data_channels)
+- [`RTCDataChannel`](../rtcdatachannel)
+- [`RTCDataChannel.send()`](send)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/binaryType" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/binaryType</a>

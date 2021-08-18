@@ -1,5 +1,4 @@
-PushEvent
-=========
+# PushEvent
 
 **Experimental**
 
@@ -8,26 +7,23 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `PushEvent` interface of the [Push API](push_api) represents a push message that has been received. This event is sent to the [global scope](serviceworkerglobalscope) of a [`ServiceWorker`](serviceworker). It contains the information sent from an application server to a [`PushSubscription`](pushsubscription).
 
-Constructor
------------
+## Constructor
 
 [`PushEvent.PushEvent()`](pushevent/pushevent)  
 Creates a new `PushEvent` object.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`ExtendableEvent`](extendableevent). Additional properties:*
+_Inherits properties from its parent, [`ExtendableEvent`](extendableevent). Additional properties:_
 
- [`PushEvent.data`](pushevent/data) <span class="badge inline readonly">Read only </span>   
+[`PushEvent.data`](pushevent/data) <span class="badge inline readonly">Read only </span>  
 Returns a reference to a [`PushMessageData`](pushmessagedata) object containing data sent to the [`PushSubscription`](pushsubscription).
 
 **Methods**
 
-*Inherits methods from its parent, [`ExtendableEvent`](extendableevent)*.
+_Inherits methods from its parent, [`ExtendableEvent`](extendableevent)_.
 
-Examples
---------
+## Examples
 
 The following example takes data from a `PushEvent` and displays it on all of the service worker's clients.
 
@@ -57,14 +53,12 @@ The following example takes data from a `PushEvent` and displays it on all of th
       });
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/#pushevent-interface">Push API<br />
 <span class="small">The definition of 'PushEvent' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -192,10 +186,9 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [Push API](push_api)
--   [Service Worker API](service_worker_api)
+- [Push API](push_api)
+- [Service Worker API](service_worker_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PushEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PushEvent</a>

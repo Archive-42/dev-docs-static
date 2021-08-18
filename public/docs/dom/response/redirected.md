@@ -1,12 +1,10 @@
-Response.redirected
-===================
+# Response.redirected
 
 The read-only `redirected` property of the [`Response`](../response) interface indicates whether or not the response is the result of a request you made which was redirected.
 
 Relying on redirected to filter out redirects makes it easy for a forged redirect to prevent your content from working as expected. Instead, you should actually instead do the filtering when you call [`fetch()`](../windoworworkerglobalscope/fetch). See the example [Disallowing redirects](#disallowing_redirects), which shows this being done.
 
-Syntax
-------
+## Syntax
 
     var isRedirected = Response.redirected;
 
@@ -14,8 +12,7 @@ Syntax
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) which is `true` if the response indicates that your request was redirected.
 
-Examples
---------
+## Examples
 
 ### Detecting redirects
 
@@ -45,14 +42,12 @@ Because using redirected to manually filter out redirects can allow forgery of r
       document.getElementById("img-element-id").src = imgObjectURL;
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fetch.spec.whatwg.org/#dom-response-redirected">Fetch<br />
 <span class="small">The definition of 'redirected' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -108,12 +103,11 @@ No
 
 8.0
 
-See also
---------
+## See also
 
--   [Fetch API](../fetch_api)
--   [ServiceWorker API](../service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [Fetch API](../fetch_api)
+- [ServiceWorker API](../service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response/redirected" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Response/redirected</a>

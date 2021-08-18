@@ -1,5 +1,4 @@
-PaymentRequest: shippingoptionchange event
-==========================================
+# PaymentRequest: shippingoptionchange event
 
 **Secure context**
 
@@ -9,8 +8,7 @@ For payment requests that request shipping information, and for which shipping o
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../paymentrequestupdateevent"><code>PaymentRequestUpdateEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="onshippingoptionchange"><code>onshippingoptionchange</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 This code snippet sets up a handler for the `shippingoptionchange` event. The code recalculates the total charge for the payment based on the selected shipping option. For example, if there are three options (such as "Free ground shipping", "2-day air", and "Next day"), each time the user chooses one of those options, this event handler is called to recalculate the total based on the changed shipping option.
 
@@ -38,14 +36,13 @@ You can also create an event handler for `shippingoptionchange` using its corres
       event.updateWith({ total });
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dfn-shippingoptionchange">Payment Request API<br />
 <span class="small">The definition of 'shippingoptionchange' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
 BCD tables only load in the browser
 
--   [`onshippingoptionchange`](onshippingoptionchange) event handler property
+- [`onshippingoptionchange`](onshippingoptionchange) event handler property
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/shippingoptionchange_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/shippingoptionchange_event</a>

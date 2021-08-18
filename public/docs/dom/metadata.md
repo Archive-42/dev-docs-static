@@ -1,5 +1,4 @@
-Metadata
-========
+# Metadata
 
 **Experimental**
 
@@ -14,24 +13,21 @@ The `Metadata` interface is used by the File and Directory Entries API to contai
 
 This interface isn't available through the global scope; instead, you obtain a `Metadata` object describing a [`FileSystemEntry`](filesystementry) using the method [`FileSystemEntry.getMetadata()`](filesystementry/getmetadata).
 
-Properties
-----------
+## Properties
 
- [`modificationTime`](metadata/modificationtime) <span class="badge inline readonly">Read only </span>   
+[`modificationTime`](metadata/modificationtime) <span class="badge inline readonly">Read only </span>  
 A [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) object indicating the date and time the entry was modified.
 
- [`size`](metadata/size) <span class="badge inline readonly">Read only </span>   
+[`size`](metadata/size) <span class="badge inline readonly">Read only </span>  
 A 64-bit unsigned integer indicating the size of the entry in bytes.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/entries-api/">File and Directory Entries API</a></td><td><span class="spec-draft">Draft</span></td><td>Draft of proposed API</td></tr></tbody></table>
 
 This API has no official W3C or WHATWG specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -139,12 +135,11 @@ No
 
 Yes
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](file_and_directory_entries_api)
--   [Introduction to the File System API](file_and_directory_entries_api/introduction)
--   [`FileSystemEntry`](filesystementry)
--   [`FileSystemFileEntry`](filesystemfileentry) and [`FileSystemDirectoryEntry`](filesystemdirectoryentry)
+- [File and Directory Entries API](file_and_directory_entries_api)
+- [Introduction to the File System API](file_and_directory_entries_api/introduction)
+- [`FileSystemEntry`](filesystementry)
+- [`FileSystemFileEntry`](filesystemfileentry) and [`FileSystemDirectoryEntry`](filesystemdirectoryentry)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Metadata" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Metadata</a>

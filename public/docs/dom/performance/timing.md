@@ -1,5 +1,4 @@
-Performance.timing
-==================
+# Performance.timing
 
 **Deprecated**
 
@@ -7,22 +6,19 @@ This feature is no longer recommended. Though some browsers might still support 
 
 This property is deprecated in the [Navigation Timing Level 2 specification](https://w3c.github.io/navigation-timing/#obsolete). Please use the [`PerformanceNavigationTiming`](../performancenavigationtiming) interface instead.
 
-The legacy `Performance``.timing` read-only property returns a [`PerformanceTiming`](../performancetiming) object containing latency-related performance information.
+The legacy ` Performance``.timing ` read-only property returns a [`PerformanceTiming`](../performancetiming) object containing latency-related performance information.
 
 This property is not available in workers.
 
-Syntax
-------
+## Syntax
 
     timingInfo = performance.timing;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/navigation-timing/#obsolete">Navigation Timing Level 2</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -78,9 +74,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The [`Performance`](../performance) interface it belongs to.
+- The [`Performance`](../performance) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance/timing" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Performance/timing</a>

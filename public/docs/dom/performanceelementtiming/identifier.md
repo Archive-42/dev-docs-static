@@ -1,10 +1,8 @@
-PerformanceElementTiming.identifier
-===================================
+# PerformanceElementTiming.identifier
 
 The `identifier` read-only property of the [`PerformanceElementTiming`](../performanceelementtiming) interface returns the value of the `elementtiming` attribute on the element.
 
-Syntax
-------
+## Syntax
 
     var identifier = PerformanceElementTiming.identifier;
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Examples
---------
+## Examples
 
 In this example the value of `elementtiming` is `big-image`. Calling `entry.indentifier` therefore returns the string `big-image`.
 
@@ -30,14 +27,12 @@ In this example the value of `elementtiming` is `big-image`. Calling `entry.inde
 
 This example uses the [`PerformanceObserver`](../performanceobserver) interface to create a list of performance measurement events. In our case we observe the [`PerformanceEntry.entrytype`](../performanceentry/entrytype) `element` in order to use the `PerformanceElementTiming` interface.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/element-timing/#dom-performanceelementtiming-identifier">Element Timing<br />
 <span class="small">The definition of 'PerformanceElementTiming.identifier' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-PaymentRequest.PaymentRequest()
-===============================
+# PaymentRequest.PaymentRequest()
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `PaymentRequest()` constructor creates a new [`PaymentRequest`](../paymentrequest) object which will be used to handle the process of generating, validating, and submitting a payment request.
 
-Syntax
-------
+## Syntax
 
     var paymentRequest = new PaymentRequest(methodData, details, [options]);
 
@@ -29,7 +27,7 @@ Provides information about the requested transaction. This parameter contains th
 `total`  
 The total amount of the payment request.
 
- `id` <span class="badge inline optional">Optional</span>   
+`id` <span class="badge inline optional">Optional</span>  
 A free-form identifier for this payment request. If a value is not supplied, the browser will construct one.
 
 `displayItems`  
@@ -50,7 +48,7 @@ A JSON-serializable object that provides optional information that might be need
 `total`  
 A total amount for the payment request that overrides value in details.total. This is typically used when `details.modifiers.additionalItems` adds a discount or a surchase to the request.
 
- `options` <span class="badge inline optional">Optional</span>   
+`options` <span class="badge inline optional">Optional</span>  
 Lets you set options that control the behavior of the user agent. This parameter contains the following fields:
 
 `requestPayerName`  
@@ -72,8 +70,7 @@ Lets you specify how the user interface refers to shipping when the word 'shippi
 
 A new [`PaymentRequest`](../paymentrequest) object, configured for use as configured by the input parameters.
 
-Examples
---------
+## Examples
 
 The following example shows minimal functionality and focuses instead on showing the complete context of instantiating a `PaymentRequest` object.
 
@@ -119,14 +116,12 @@ The following example shows minimal functionality and focuses instead on showing
       // Catch any other errors.
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#constructor">Payment Request API<br />
 <span class="small">The definition of 'PaymentRequest() constructor' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

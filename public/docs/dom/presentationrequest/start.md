@@ -1,5 +1,4 @@
-PresentationRequest.start()
-===========================
+# PresentationRequest.start()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `start()` property of the [`PresentationRequest`](../presentationrequest) interface returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with a [`PresentationConnection`](../presentationconnection) after the user agent prompts the user to select a display and grant permission to use that display.
 
-Syntax
-------
+## Syntax
 
     var promise = presentationRequest.start()
     promise.then(function(PresentationConnection) { ... })
@@ -23,14 +21,12 @@ None.
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with a [`PresentationConnection`](../presentationconnection).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/presentation-api/#dom-presentationrequest-start">Presentation API<br />
 <span class="small">The definition of 'start()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

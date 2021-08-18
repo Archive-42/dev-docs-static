@@ -1,5 +1,4 @@
-Navigator.deviceMemory
-======================
+# Navigator.deviceMemory
 
 **Secure context**
 
@@ -14,8 +13,7 @@ The `deviceMemory` read-only property of the [`Navigator`](../navigator) interfa
 
 The reported value is imprecise to curtail fingerprinting. It’s approximated by rounding down to the nearest power of 2, then dividing that number by 1024. It is then clamped within lower and upper bounds to protect the privacy of owners of very low- or high-memory devices.
 
-Syntax
-------
+## Syntax
 
     memoryAmount = navigator.deviceMemory
 
@@ -23,20 +21,17 @@ Syntax
 
 A floating point number; one of `0.25`, `0.5`, `1`, `2`, `4`, `8`.
 
-Example
--------
+## Example
 
     const memory = navigator.deviceMemory
     console.log (`This device has at least ${memory}GiB of RAM.`)
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/device-memory/#sec-device-memory-js-api">Device Memory 1<br />
 <span class="small">The definition of 'deviceMemory' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -92,10 +87,9 @@ No
 
 8.0
 
-See also
---------
+## See also
 
--   [Device Memory API](../device_memory_api)
--   [`Device-Memory`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Device-Memory) HTTP header
+- [Device Memory API](../device_memory_api)
+- [`Device-Memory`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Device-Memory) HTTP header
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/deviceMemory" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/deviceMemory</a>

@@ -1,5 +1,4 @@
-PaymentRequestEvent.paymentRequestOrigin
-========================================
+# PaymentRequestEvent.paymentRequestOrigin
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `paymentRequestOrigin` read-only property of the [`PaymentRequestEvent`](../paymentrequestevent) interface returns the origin where the [`PaymentRequest`](../paymentrequest) object was initialized.
 
-Syntax
-------
+## Syntax
 
     var aUsvString = paymentRequestEvent.paymentRequestOrigin
 
@@ -17,14 +15,12 @@ Syntax
 
 A USVString.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-handler/#paymentrequestorigin-attribute">Payment Handler API<br />
 <span class="small">The definition of 'paymentRequestOrigin' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

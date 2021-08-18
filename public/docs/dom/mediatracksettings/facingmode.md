@@ -1,5 +1,4 @@
-MediaTrackSettings.facingMode
-=============================
+# MediaTrackSettings.facingMode
 
 The [`MediaTrackSettings`](../mediatracksettings) dictionary's `facingMode` property is a [`DOMString`](../domstring) indicating the direction in which the camera producing the video track represented by the [`MediaStreamTrack`](../mediastreamtrack) is currently facing. This lets you determine what value was selected to comply with your specified constraints for this property's value as described in the [`MediaTrackConstraints.facingMode`](../mediatrackconstraints/facingmode) property you provided when calling either [`getUserMedia()`](../mediadevices/getusermedia) or [`MediaStreamTrack.applyConstraints()`](../mediastreamtrack/applyconstraints).
 
@@ -7,8 +6,7 @@ If needed, you can determine whether or not this constraint is supported by chec
 
 Because [RTP](https://developer.mozilla.org/en-US/docs/Glossary/RTP) doesn't include this information, tracks associated with a [WebRTC](../webrtc_api) [`RTCPeerConnection`](../rtcpeerconnection) will never include this property.
 
-Syntax
-------
+## Syntax
 
     var facingMode = MediaTrackSettings.facingMode;
 
@@ -32,19 +30,16 @@ The video source is facing toward the user but to their left, such as a camera a
 `"right"`  
 The video source is facing toward the user but to their right, such as a camera aimed toward the user but over their right shoulder.
 
-Example
--------
+## Example
 
 See [Example: Constraint exerciser](#) in [Capabilities, constraints, and settings](../media_streams_api/constraints) for an example.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediatracksettings-facingmode">Media Capture and Streams<br />
 <span class="small">The definition of 'facingMode' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -100,12 +95,11 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Media Capture and Streams API](../media_streams_api)
--   [Capabilities, constraints, and settings](../media_streams_api/constraints)
--   [`MediaTrackConstraints.facingMode`](../mediatrackconstraints/facingmode)
--   [`MediaTrackSettings`](../mediatracksettings)
+- [Media Capture and Streams API](../media_streams_api)
+- [Capabilities, constraints, and settings](../media_streams_api/constraints)
+- [`MediaTrackConstraints.facingMode`](../mediatrackconstraints/facingmode)
+- [`MediaTrackSettings`](../mediatracksettings)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings/facingMode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings/facingMode</a>

@@ -1,5 +1,4 @@
-RTCDataChannel.maxRetransmits
-=============================
+# RTCDataChannel.maxRetransmits
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The read-only `RTCDataChannel` property `maxRetransmits` returns the maximum number of times the browser should try to retransmit a message before giving up, as set when the data channel was created, or `null`, which indicates that there is no maximum. This can only be set when the [`RTCDataChannel`](../rtcdatachannel) is created by calling [`RTCPeerConnection.createDataChannel()`](../rtcpeerconnection/createdatachannel), using the `maxRetransmits` field in the specified `options`.
 
-Syntax
-------
+## Syntax
 
     var tries = aDataChannel.maxRetransmits;
 
@@ -17,19 +15,16 @@ Syntax
 
 The maximum number of times the browser will try to retransmit a message before giving up, or `null` if not set when [`RTCPeerConnection.createDataChannel()`](../rtcpeerconnection/createdatachannel) was called. The default is `null`.
 
-Example
--------
+## Example
 
     // TBD
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-datachannel-maxretransmits">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCDataChannel.maxRetransmits' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -85,12 +80,11 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [WebRTC](../webrtc_api)
--   [`RTCDataChannel`](../rtcdatachannel)
--   [`RTCDataChannel.maxPacketLifetime`](maxpacketlifetime)
--   [`RTCPeerConnection.createDataChannel()`](../rtcpeerconnection/createdatachannel)
+- [WebRTC](../webrtc_api)
+- [`RTCDataChannel`](../rtcdatachannel)
+- [`RTCDataChannel.maxPacketLifetime`](maxpacketlifetime)
+- [`RTCPeerConnection.createDataChannel()`](../rtcpeerconnection/createdatachannel)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/maxRetransmits" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/maxRetransmits</a>

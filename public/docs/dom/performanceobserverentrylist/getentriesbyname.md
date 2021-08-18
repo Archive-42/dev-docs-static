@@ -1,29 +1,26 @@
-PerformanceObserverEntryList.getEntriesByName()
-===============================================
+# PerformanceObserverEntryList.getEntriesByName()
 
-The `getEntriesByName()` method of the [`PerformanceObserverEntryList`](../performanceobserverentrylist) interface returns a list of explicitly *observed* [performance entry](../performanceentry) objects for a given *[`name`](../performanceentry/name)* and *[`entry type`](../performanceentry/entrytype)*. The list's members are determined by the set of [entry types](../performanceentry/entrytype) specified in the call to the [`observe()`](../performanceobserver/observe) method. The list is available in the observer's callback function (as the first parameter in the callback).
+The `getEntriesByName()` method of the [`PerformanceObserverEntryList`](../performanceobserverentrylist) interface returns a list of explicitly _observed_ [performance entry](../performanceentry) objects for a given _[`name`](../performanceentry/name)_ and _[`entry type`](../performanceentry/entrytype)_. The list's members are determined by the set of [entry types](../performanceentry/entrytype) specified in the call to the [`observe()`](../performanceobserver/observe) method. The list is available in the observer's callback function (as the first parameter in the callback).
 
 This method is exposed to [`Window`](../window) and [`Worker`](../worker) interfaces.
 
-Syntax
-------
+## Syntax
 
     entries = list.getEntriesByName(name, type);
 
 ### Parameters
 
-*`name`*  
+_`name`_  
 A [`DOMString`](../domstring) representing the name of the entry to retrieve.
 
- *`type`* <span class="badge inline optional">Optional</span>   
+_`type`_ <span class="badge inline optional">Optional</span>  
 A [`DOMString`](../domstring) representing the type of entry to retrieve such as "`mark`". The valid entry types are listed in [`PerformanceEntry.entryType`](../performanceentry/entrytype).
 
 ### Return value
 
-A list of explicitly *observed* [performance entry](../performanceentry) objects that have the specified `name` and `type`. If the `type` argument is not specified, only the `name` will be used to determine the entries to return. The items will be in chronological order based on the entries' [`startTime`](../performanceentry/starttime). If no objects meet the specified criteria, an empty list is returned.
+A list of explicitly _observed_ [performance entry](../performanceentry) objects that have the specified `name` and `type`. If the `type` argument is not specified, only the `name` will be used to determine the entries to return. The items will be in chronological order based on the entries' [`startTime`](../performanceentry/starttime). If no objects meet the specified criteria, an empty list is returned.
 
-Example
--------
+## Example
 
     function print_perf_entry(pe) {
       console.log("name: "        + pe.name      +
@@ -67,14 +64,12 @@ Example
     // subscribe to only the 'frame' event
     observe_frame.observe({entryTypes: ['frame']});
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/performance-timeline/#dom-performanceobserverentrylist-getentriesbyname">Performance Timeline Level 2<br />
 <span class="small">The definition of 'getEntriesByName()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition of <code>getEntriesByName()</code> method.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

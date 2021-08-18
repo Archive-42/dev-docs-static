@@ -1,10 +1,8 @@
-MediaTrackSettings.displaySurface
-=================================
+# MediaTrackSettings.displaySurface
 
 The [`MediaTrackSettings`](../mediatracksettings) dictionary's `displaySurface` property indicates the type of display surface being captured.
 
-Syntax
-------
+## Syntax
 
     displaySurface = mediaTrackSettings.displaySurface;
 
@@ -26,14 +24,12 @@ The stream's video track presents the contents of a single window selected by th
 
 Not all user agents support all of these surface types.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-screen-share/#dom-mediatrackconstraintset-displaysurface">Screen Capture<br />
 <span class="small">The definition of 'MediaTrackSettings.displaySurface' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -89,15 +85,14 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   [Screen Capture API](../screen_capture_api)
--   [Using the screen capture API](../screen_capture_api/using_screen_capture)
--   [Capabilities, constraints, and settings](../media_streams_api/constraints)
--   [`MediaDevices.getDisplayMedia()`](../mediadevices/getdisplaymedia)
--   [`MediaStreamTrack.getConstraints()`](../mediastreamtrack/getconstraints)
--   [`MediaStreamTrack.applyConstraints()`](../mediastreamtrack/applyconstraints)
--   [`MediaStreamTrack.getSettings()`](../mediastreamtrack/getsettings)
+- [Screen Capture API](../screen_capture_api)
+- [Using the screen capture API](../screen_capture_api/using_screen_capture)
+- [Capabilities, constraints, and settings](../media_streams_api/constraints)
+- [`MediaDevices.getDisplayMedia()`](../mediadevices/getdisplaymedia)
+- [`MediaStreamTrack.getConstraints()`](../mediastreamtrack/getconstraints)
+- [`MediaStreamTrack.applyConstraints()`](../mediastreamtrack/applyconstraints)
+- [`MediaStreamTrack.getSettings()`](../mediastreamtrack/getsettings)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings/displaySurface" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings/displaySurface</a>

@@ -1,5 +1,4 @@
-PresentationRequest
-===================
+# PresentationRequest
 
 **Experimental**
 
@@ -10,18 +9,16 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 This feature is available only in [secure contexts](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts) (HTTPS), in some or all [supporting browsers](#browser_compatibility).
 
-A `PresentationRequest` object is used to initiate or reconnect to a presentation made by a [controlling browsing context](https://www.w3.org/TR/presentation-api/#dfn-controlling-browsing-context). The `PresentationRequest` object *MUST* be implemented in a [controlling browsing context](https://www.w3.org/TR/presentation-api/#dfn-controlling-browsing-context) provided by a [controlling user agent](https://www.w3.org/TR/presentation-api/#dfn-controlling-user-agent).
+A `PresentationRequest` object is used to initiate or reconnect to a presentation made by a [controlling browsing context](https://www.w3.org/TR/presentation-api/#dfn-controlling-browsing-context). The `PresentationRequest` object _MUST_ be implemented in a [controlling browsing context](https://www.w3.org/TR/presentation-api/#dfn-controlling-browsing-context) provided by a [controlling user agent](https://www.w3.org/TR/presentation-api/#dfn-controlling-user-agent).
 
-When a `PresentationRequest` is constructed, the given `urls` *MUST* be used as the list of presentation request URLs which are each a possible [presentation URL](https://www.w3.org/TR/presentation-api/#dfn-presentation-url) for the `PresentationRequest` instance.
+When a `PresentationRequest` is constructed, the given `urls` _MUST_ be used as the list of presentation request URLs which are each a possible [presentation URL](https://www.w3.org/TR/presentation-api/#dfn-presentation-url) for the `PresentationRequest` instance.
 
-Constructor
------------
+## Constructor
 
 [`PresentationRequest()`](presentationrequest/presentationrequest)  
 Creates a `PresentationRequest`.
 
-Properties
-----------
+## Properties
 
 None
 
@@ -30,26 +27,23 @@ None
 [`PresentationRequest.onconnectionavailable`](presentationrequest/onconnectionavailable)  
 Fires on a successful call to [`PresentationRequest.start()`](presentationrequest/start) or <span class="page-not-created">`PresentationRequest.join()`</span>. This method provides a object with a reference to the created or joined object.
 
-Methods
--------
+## Methods
 
 [`PresentationRequest.start()`](presentationrequest/start)  
 Returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with a [`PresentationConnection`](presentationconnection) after the user agent prompts the user to select a display and grant permission to use that display.
 
 [`PresentationRequest.reconnect()`](presentationrequest/reconnect)  
-When the `reconnect(presentationId)` method is called on a `PresentationRequest` presentationRequest, the [user agent](https://www.w3.org/TR/presentation-api/#dfn-user-agents) *MUST* run the following steps to reconnect to a presentation.
+When the `reconnect(presentationId)` method is called on a `PresentationRequest` presentationRequest, the [user agent](https://www.w3.org/TR/presentation-api/#dfn-user-agents) _MUST_ run the following steps to reconnect to a presentation.
 
 [`PresentationRequest.getAvailability()`](presentationrequest/getavailability)  
-When the `getAvailability()` method is called, the user agent *MUST* run the steps as the link.
+When the `getAvailability()` method is called, the user agent _MUST_ run the steps as the link.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/presentation-api/#interface-presentationrequest">Presentation API<br />
 <span class="small">The definition of 'PresentationRequest interface' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

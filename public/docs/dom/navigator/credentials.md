@@ -1,5 +1,4 @@
-Navigator.credentials
-=====================
+# Navigator.credentials
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `credentials` property of the [`Navigator`](../navigator) interface returns the [`CredentialsContainer`](../credentialscontainer) interface, which exposes methods to request credentials. The [`CredentialsContainer`](../credentialscontainer) interface also notifies the user agent when an interesting event occurs, such as a successful sign-in or sign-out. This interface can be used for feature detection.
 
-Syntax
-------
+## Syntax
 
     var credentialsContainer = navigator.credentials
 
@@ -16,8 +14,7 @@ Syntax
 
 The [`CredentialsContainer`](../credentialscontainer) interface.
 
-Example
--------
+## Example
 
     if ('credentials' in navigator) {
       navigator.credentials.get({password: true})
@@ -28,13 +25,11 @@ Example
       //Handle sign-in the way you did before.
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-credential-management/">Credential Management Level 1</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

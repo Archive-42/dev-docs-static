@@ -1,15 +1,12 @@
-Node.firstChild
-===============
+# Node.firstChild
 
 The `Node.firstChild` read-only property returns the node's first child in the tree, or `null` if the node has no children. If the node is a `Document`, it returns the first node in the list of its direct children.
 
-Syntax
-------
+## Syntax
 
     var childNode = node.firstChild;
 
-Example
--------
+## Example
 
 This example demonstrates the use of `firstChild` and how whitespace nodes might interfere with using this property.
 
@@ -39,8 +36,7 @@ Now the console will show 'SPAN'.
 
 To avoid the issue with `node.firstChild` returning `#text` or `#comment` nodes, [`Element.firstElementChild`](../element/firstelementchild) can be used to return only the first element node. However, `node.firstElementChild` requires a shim for Internet Explorer 9 and earlier.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-node-firstchild">DOM<br />
 <span class="small">The definition of 'Node.firstChild' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-169727388">Document Object Model (DOM) Level 3 Core Specification<br />
@@ -48,8 +44,7 @@ Specifications
 <span class="small">The definition of 'Node.firstChild' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>No change</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-169727388">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'Node.firstChild' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,10 +1,8 @@
-MediaStream.active
-==================
+# MediaStream.active
 
 The `active` read-only property of the [`MediaStream`](../mediastream) interface returns a Boolean value which is `true` if the stream is currently active; otherwise, it returns `false`. A stream is considered **active** if at least one of its [`MediaStreamTrack`](../mediastreamtrack)s is not in the <span class="page-not-created">`MediaStreamTrack.ended`</span> state. Once every track has ended, the stream's `active` property becomes `false`.
 
-Syntax
-------
+## Syntax
 
     const isActive = MediaStream.active;
 
@@ -12,8 +10,7 @@ Syntax
 
 A Boolean value which is `true` if the stream is currently active; otherwise, the value is `false`.
 
-Example
--------
+## Example
 
 In this example, a new stream whose source is the user's local camera and microphone is requested using [`getUserMedia()`](../mediadevices/getusermedia). When that stream becomes available (that is, when the returned [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) is fulfilled, a button on the page is updated based on whether or not the stream is currently active.
 
@@ -27,14 +24,12 @@ In this example, a new stream whose source is the user's local camera and microp
       startBtn.disabled = stream.active;
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediastream-active">Media Capture and Streams<br />
 <span class="small">The definition of 'active' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

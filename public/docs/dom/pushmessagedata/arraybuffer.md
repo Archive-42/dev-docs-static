@@ -1,5 +1,4 @@
-PushMessageData.arrayBuffer()
-=============================
+# PushMessageData.arrayBuffer()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `arrayBuffer()`method of the [`PushMessageData`](../pushmessagedata) interface extracts push message data as an [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) object.
 
-Syntax
-------
+## Syntax
 
     var myArrayBuffer = PushEvent.data.arrayBuffer();
 
@@ -21,8 +19,7 @@ None.
 
 An [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
 
-Examples
---------
+## Examples
 
     self.addEventListener('push', function(event) {
       var buffer = event.data.arrayBuffer();
@@ -30,14 +27,12 @@ Examples
       // do something with your array buffer
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/#dom-pushmessagedata-arraybuffer">Push API<br />
 <span class="small">The definition of 'arrayBuffer()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

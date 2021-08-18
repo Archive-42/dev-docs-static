@@ -1,12 +1,10 @@
-Navigator.vibrate()
-===================
+# Navigator.vibrate()
 
 The `Navigator.vibrate()` method pulses the vibration hardware on the device, if such hardware exists. If the device doesn't support vibration, this method has no effect. If a vibration pattern is already in progress when this method is called, the previous pattern is halted and the new one begins instead.
 
 If the method was unable to vibrate because of invalid parameters, it will return `false`, else it returns `true`. If the pattern leads to a too long vibration, it is truncated: the max length depends on the implementation.
 
-Syntax
-------
+## Syntax
 
     var successBool = window.navigator.vibrate(pattern);
 
@@ -15,19 +13,16 @@ Provides a pattern of vibration and pause intervals. Each value indicates a numb
 
 Passing a value of `0`, an empty array, or an array containing all zeros will cancel any currently ongoing vibration pattern.
 
-Examples
---------
+## Examples
 
     window.navigator.vibrate(200); // vibrate for 200ms
     window.navigator.vibrate([100,30,100,30,100,30,200,30,200,30,200,30,100,30,100,30,100]); // Vibrate 'SOS' in Morse.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dev.w3.org/2009/dap/vibration/">Vibration API</a></td><td><span class="spec-rec">Recommendation</span></td><td>Linked to spec is the latest editor's draft; W3C version is a REC.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -103,9 +98,8 @@ No
 
 \["Beginning in Samsung Internet 6.0, this is not supported in cross-origin iframes.", "Beginning in Samsung Internet 8.0, this method requires a user gesture. Otherwise it returns `false`."\]
 
-See also
---------
+## See also
 
--   [Vibration API](../vibration_api)
+- [Vibration API](../vibration_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate</a>

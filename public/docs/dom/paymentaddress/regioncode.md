@@ -1,5 +1,4 @@
-PaymentAddress.regionCode
-=========================
+# PaymentAddress.regionCode
 
 **Deprecated**
 
@@ -11,8 +10,7 @@ The code is derived from the ISO 3166-2 standard, which defines codes for identi
 
 If the browser can't determine the region code, or the country doesn't use regions for postal addresses, it returns an empty string.
 
-Syntax
-------
+## Syntax
 
     var regionCode = paymentAddress.regionCode;
 
@@ -22,7 +20,7 @@ A [`DOMString`](../domstring) indicating the one to three character alphanumeric
 
 BCD tables only load in the browser
 
--   [United Nations: UN/LOCODE Country Subdivisions ISO 3166-2](https://www.unece.org/cefact/locode/subdivisions.html)
--   [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) on Wikipedia
+- [United Nations: UN/LOCODE Country Subdivisions ISO 3166-2](https://www.unece.org/cefact/locode/subdivisions.html)
+- [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) on Wikipedia
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentAddress/regionCode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentAddress/regionCode</a>

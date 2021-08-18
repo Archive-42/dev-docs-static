@@ -1,5 +1,4 @@
-Navigator.productSub
-====================
+# Navigator.productSub
 
 **Deprecated**
 
@@ -7,15 +6,13 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `Navigator.productSub` read-only property returns the build number of the current browser.
 
-Syntax
-------
+## Syntax
 
     prodSub = window.navigator.productSub
 
--   `prodSub` is a string.
+- `prodSub` is a string.
 
-Example
--------
+## Example
 
     <script>
     function prodsub() {
@@ -27,21 +24,18 @@ Example
     <button onclick="prodsub();">productSub</button>
     // returns: 20010725
 
-Notes
------
+## Notes
 
 On IE, this property returns undefined.
 
 On Apple Safari and Google Chrome this property always returns `20030107`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-productsub">HTML Living Standard<br />
 <span class="small">The definition of 'NavigatorID: productSub' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

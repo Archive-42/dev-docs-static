@@ -1,12 +1,10 @@
-MediaStreamTrack.onunmute
-=========================
+# MediaStreamTrack.onunmute
 
 [`MediaStreamTrack`](../mediastreamtrack)'s `onunmute` event handler is called when the `unmute` event is received. Such an event is sent when the track is again able to send data.
 
 When the `onunmute` event handler is called, the track's [`muted`](muted) flag is `false`.
 
-Syntax
-------
+## Syntax
 
     track.onunmute = unmuteHandler;
 
@@ -14,8 +12,7 @@ Syntax
 
 `unmuteHandler` is a function which is called when the `MediaStreamTrack` receives the `unmute` event. The event handler receives as input a single parameter: an [`Event`](../event) whose <span class="page-not-created">`kind`</span> is `"unmute"`.
 
-Example
--------
+## Example
 
 This example creates an `unmute` event handler which changes the state of a visual indicator to display the Emoji character representing a "speaker" icon.
 
@@ -23,14 +20,12 @@ This example creates an `unmute` event handler which changes the state of a visu
       playStateIcon.innerHTML = "&#x1F508;";
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediastreamtrack-onunmute">Media Capture and Streams<br />
 <span class="small">The definition of 'MediaStreamTrack.onunmute' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -86,11 +81,10 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   The `unmute` event and its type, [`Event`](../event).
--   [`MediaStreamTrack.muted`](muted) to determine if a track is currently muted
--   [`MediaStreamTrack.onmute`](onmute), the event handler for the [`MediaStreamTrack.mute_event`](mute_event) event.
+- The `unmute` event and its type, [`Event`](../event).
+- [`MediaStreamTrack.muted`](muted) to determine if a track is currently muted
+- [`MediaStreamTrack.onmute`](onmute), the event handler for the [`MediaStreamTrack.mute_event`](mute_event) event.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/onunmute" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/onunmute</a>

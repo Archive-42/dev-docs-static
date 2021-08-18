@@ -1,5 +1,4 @@
-Using the Permissions API
-=========================
+# Using the Permissions API
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 This article provides a basic guide to using the W3C Permissions API, which provides a programmatic way to query the status of API permissions attributed to the current context.
 
-The trouble with asking for permission...
------------------------------------------
+## The trouble with asking for permission...
 
 Let's face it, permissions on the Web are a necessary evil, and they are not much fun to deal with as developers.
 
@@ -19,14 +17,13 @@ The [Permissions API](../permissions_api) provides the tools to allow developers
 
 At the moment, implementation of the API is at an early stage, so support in browsers is pretty spotty:
 
--   It can only be found in Chrome 44 and later and Firefox 43 and later.
--   The only supported method right now is [`Permissions.query()`](../permissions/query), which queries permission status.
--   The only two APIs currently recognized by the Permissions API in Chrome are [Geolocation](../geolocation) and Notification, with Firefox also recognizing [Push](../push_api) and WebMIDI.
+- It can only be found in Chrome 44 and later and Firefox 43 and later.
+- The only supported method right now is [`Permissions.query()`](../permissions/query), which queries permission status.
+- The only two APIs currently recognized by the Permissions API in Chrome are [Geolocation](../geolocation) and Notification, with Firefox also recognizing [Push](../push_api) and WebMIDI.
 
 More features will be added as time progresses.
 
-A simple example
-----------------
+## A simple example
 
 For this article, we have put together a simple demo called Location Finder. It uses Geolocation to query the user's current location and plot it out on a Google Map:
 
@@ -108,13 +105,12 @@ The `revoke()` function has been disabled by default starting in Firefox 51, sin
 
 You'll notice that there is an `onchange` event handler in the code above, attached to the [`PermissionStatus`](../permissionstatus) object — this allows us to respond to any changes in the permission status for the API we are interested in. At the moment we are just reporting the change in state.
 
-Conclusion and future work
---------------------------
+## Conclusion and future work
 
 At the moment this doesn't offer much more than what we had already. If we choose to never share our location from the permission prompt (deny permission), then we can't get back to the permission prompt without using the browser menu options:
 
--   **Firefox**: *Tools &gt; Page Info &gt; Permissions &gt; Access Your Location*. Select *Always Ask*.
--   **Chrome**: *Hamburger Menu &gt; Settings &gt; Show advanced settings*. In the *Privacy* section, click *Content Settings*. In the resulting dialog, find the *Location* section and select *Ask when a site tries to...* . Finally, click *Manage Exceptions* and remove the permissions you granted to the sites you are interested in.
+- **Firefox**: _Tools &gt; Page Info &gt; Permissions &gt; Access Your Location_. Select _Always Ask_.
+- **Chrome**: _Hamburger Menu &gt; Settings &gt; Show advanced settings_. In the _Privacy_ section, click _Content Settings_. In the resulting dialog, find the _Location_ section and select _Ask when a site tries to..._ . Finally, click _Manage Exceptions_ and remove the permissions you granted to the sites you are interested in.
 
 However, future additions to browser functionality should provide the `request()` method, which will allow us to programmatically request permissions, any time we like. These should hopefully be available soon.
 

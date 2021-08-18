@@ -1,5 +1,4 @@
-NDEFRecord
-==========
+# NDEFRecord
 
 **Draft**
 
@@ -16,47 +15,42 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `NDEFRecord` interface of the [Web NFC API](web_nfc_api) is an abstract interface that represents data that can be read from or written to compatible NFC devices, e.g. NFC tags supporting NDEF.
 
-Constructor
------------
+## Constructor
 
- [`NDEFRecord()`](ndefrecord/ndefrecord) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`NDEFRecord()`](ndefrecord/ndefrecord) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a new `NDEFRecord` with configuration specified in the parameters or default ones if no parameters are specified.
 
-Attributes
-----------
+## Attributes
 
- [`NDEFRecord.recordType`](ndefrecord/recordtype) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="badge inline readonly">Read only </span>   
+[`NDEFRecord.recordType`](ndefrecord/recordtype) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="badge inline readonly">Read only </span>  
 Represents the NDEF record type.
 
- [`NDEFRecord.mediaType`](ndefrecord/mediatype) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="badge inline readonly">Read only </span>   
+[`NDEFRecord.mediaType`](ndefrecord/mediatype) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="badge inline readonly">Read only </span>  
 Represents the [MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type) of the NDEF record payload.
 
- [`NDEFRecord.id`](ndefrecord/id) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="badge inline readonly">Read only </span>   
+[`NDEFRecord.id`](ndefrecord/id) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="badge inline readonly">Read only </span>  
 Represents the identificator of the record.  
 **Note:** the uniqueness of the identifier is enforced only by the generator of the record.
 
- [`NDEFRecord.data`](ndefrecord/data) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="badge inline readonly">Read only </span>   
+[`NDEFRecord.data`](ndefrecord/data) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="badge inline readonly">Read only </span>  
 Represents the payload of the record.
 
- [`NDEFRecord.encoding`](ndefrecord/encoding) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="badge inline readonly">Read only </span>   
+[`NDEFRecord.encoding`](ndefrecord/encoding) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="badge inline readonly">Read only </span>  
 Represents the encoding name used for encoding the payload in the case it is textual data.
 
- [`NDEFRecord.lang`](ndefrecord/lang) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="badge inline readonly">Read only </span>   
+[`NDEFRecord.lang`](ndefrecord/lang) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="badge inline readonly">Read only </span>  
 Represents a language tag of the content, if it was encoded.
 
-Methods
--------
+## Methods
 
- [`NDEFRecord.toRecords()`](ndefrecord/torecords) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`NDEFRecord.toRecords()`](ndefrecord/torecords) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Coverts [`NDEFRecord.data`](ndefrecord/data) to sequence of records.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/web-nfc/#dom-ndefrecord">Web NFC, NDEFRecord</a></td><td>Draft</td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

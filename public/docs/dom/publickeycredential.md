@@ -1,5 +1,4 @@
-PublicKeyCredential
-===================
+# PublicKeyCredential
 
 **Secure context**
 
@@ -9,32 +8,29 @@ The `PublicKeyCredential` interface provides information about a public key / pr
 
 **Note:** This API is restricted to top-level contexts. Use from within an [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) element will not have any effect.
 
-Properties
-----------
+## Properties
 
- `PublicKeyCredential.type` <span class="badge inline readonly">Read only </span><span class="notecard inline secure">Secure context</span>   
+`PublicKeyCredential.type` <span class="badge inline readonly">Read only </span><span class="notecard inline secure">Secure context</span>  
 Inherited from [`Credential`](credential). Always set to `public-key` for `PublicKeyCredential` instances.
 
- [`PublicKeyCredential.id`](publickeycredential/id) <span class="badge inline readonly">Read only </span><span class="notecard inline secure">Secure context</span>   
+[`PublicKeyCredential.id`](publickeycredential/id) <span class="badge inline readonly">Read only </span><span class="notecard inline secure">Secure context</span>  
 Inherited from [`Credential`](credential) and overridden to be the [base64url encoding](https://developer.mozilla.org/en-US/docs/Glossary/Base64) of [`PublicKeyCredential.rawId`](publickeycredential/rawid).
 
- [`PublicKeyCredential.rawId`](publickeycredential/rawid) <span class="badge inline readonly">Read only </span><span class="notecard inline secure">Secure context</span>   
+[`PublicKeyCredential.rawId`](publickeycredential/rawid) <span class="badge inline readonly">Read only </span><span class="notecard inline secure">Secure context</span>  
 An [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) that holds the globally unique identifier for this `PublicKeyCredential`. This identifier can be used to look up credentials for future calls to [`CredentialsContainer.get`](credentialscontainer/get).
 
- [`PublicKeyCredential.response`](publickeycredential/response) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>   
+[`PublicKeyCredential.response`](publickeycredential/response) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>  
 An instance of an [`AuthenticatorResponse`](authenticatorresponse) object. It is either of type [`AuthenticatorAttestationResponse`](authenticatorattestationresponse) if the `PublicKeyCredential` was the results of a [`navigator.credentials.create()`](credentialscontainer/create) call, or of type [`AuthenticatorAssertionResponse`](authenticatorassertionresponse) if the `PublicKeyCredential` was the result of a [`navigator.credentials.get()`](credentialscontainer/get) call.
 
-Methods
--------
+## Methods
 
- [`PublicKeyCredential.getClientExtensionResults()`](publickeycredential/getclientextensionresults)<span class="notecard inline secure">Secure context</span>   
+[`PublicKeyCredential.getClientExtensionResults()`](publickeycredential/getclientextensionresults)<span class="notecard inline secure">Secure context</span>  
 If any extensions were requested, this method will return the results of processing those extensions.
 
- [`PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()`](publickeycredential/isuserverifyingplatformauthenticatoravailable)<span class="notecard inline secure">Secure context</span>   
-A static method returning a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which resolves to `true` if an authenticator bound to the platform is capable of *verifying* the user.
+[`PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()`](publickeycredential/isuserverifyingplatformauthenticatoravailable)<span class="notecard inline secure">Secure context</span>  
+A static method returning a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which resolves to `true` if an authenticator bound to the platform is capable of _verifying_ the user.
 
-Examples
---------
+## Examples
 
 ### Creating a new instance of PublicKeyCredential
 
@@ -83,14 +79,12 @@ Here, we fetch an existing credential from an authenticator, using [`navigator.c
          console.error(err);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#iface-pkcredential">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'PublicKeyCredential interface' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -270,9 +264,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   The parent interface [`Credential`](credential)
+- The parent interface [`Credential`](credential)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredential" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredential</a>

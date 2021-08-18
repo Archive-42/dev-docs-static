@@ -1,5 +1,4 @@
-Notification.requestPermission()
-================================
+# Notification.requestPermission()
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
@@ -13,8 +12,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `requestPermission()` method of the [`Notification`](../notification) interface requests permission from the user for the current origin to display notifications.
 
-Syntax
-------
+## Syntax
 
 The latest spec has updated this method to a promise-based syntax that works like this:
 
@@ -26,19 +24,18 @@ Previously, the syntax was based on a simple callback; this version is now depre
 
 ### Parameters
 
- `callback` <span class="badge inline optional">Optional</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+`callback` <span class="badge inline optional">Optional</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 An optional callback function that is called with the permission value. Deprecated in favor of the promise return value.
 
 ### Returns
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to a [`DOMString`](../domstring) with the permission picked by the user. Possible values for this string are:
 
--   `granted`
--   `denied`
--   `default`
+- `granted`
+- `denied`
+- `default`
 
-Examples
---------
+## Examples
 
 Assume this basic HTML:
 
@@ -76,13 +73,11 @@ We no longer show a live sample on this page, as Chrome and Firefox no longer al
 
 **Note**: In the above example we spawn notifications in response to a user gesture (clicking a button). This is not only best practice — you should not be spamming users with notifications they didn't agree to — but going forward browsers will explicitly disallow notifications not triggered in response to a user gesture. Firefox is already doing this from version 72, for example.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://notifications.spec.whatwg.org/">Notifications API</a></td><td><span class="spec-living">Living Standard</span></td><td>Living standard</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -140,9 +135,8 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [Using the Notifications API](../notifications_api/using_the_notifications_api)
+- [Using the Notifications API](../notifications_api/using_the_notifications_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification/requestPermission" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Notification/requestPermission</a>

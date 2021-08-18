@@ -1,5 +1,4 @@
-msPutPropertyEnabled
-====================
+# msPutPropertyEnabled
 
 **Non-standard**
 
@@ -21,12 +20,11 @@ boolean\[in\]: True = Enable the property. False = Disable the property.
 
 ### Return value
 
-Type = HRESULT: If this method succeeds, it returns S\_OK. Otherwise, it returns an HRESULT error code.
+Type = HRESULT: If this method succeeds, it returns S_OK. Otherwise, it returns an HRESULT error code.
 
-See also
---------
+## See also
 
--   [CSS Style Declaration](cssstyledeclaration)
--   [Microsoft API extensions](microsoft_extensions)
+- [CSS Style Declaration](cssstyledeclaration)
+- [Microsoft API extensions](microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/msPutPropertyEnabled" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/msPutPropertyEnabled</a>

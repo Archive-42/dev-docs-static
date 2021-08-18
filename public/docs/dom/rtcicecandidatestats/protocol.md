@@ -1,10 +1,8 @@
-RTCIceCandidateStats.protocol
-=============================
+# RTCIceCandidateStats.protocol
 
 The [`RTCIceCandidateStats`](../rtcicecandidatestats) dictionary's `protocol` property specifies the protocol the specified candidate would use for communication with the remote peer.
 
-Syntax
-------
+## Syntax
 
     protocol = rtcIceCandidateStats.protocol;
 
@@ -18,14 +16,12 @@ The candidate, if selected, would use [TCP](https://developer.mozilla.org/en-US/
 `udp`  
 The candidate will use the [UDP](https://developer.mozilla.org/en-US/docs/Glossary/UDP) transport protocol for its data. This is the preferred protocol for media interactions because of its better performance profile.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcicecandidatestats-protocol">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCIceCandidateStats.protocol' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

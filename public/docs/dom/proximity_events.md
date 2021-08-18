@@ -1,5 +1,4 @@
-Proximity Events
-================
+# Proximity Events
 
 **Deprecated**
 
@@ -13,8 +12,8 @@ The **proximity events** are a handy way to know when a user is close to a devic
 
 There are two proximity events (see links for documentation.):
 
--   [`UserProximityEvent`](userproximityevent), handled by `window.onuserproximity`
--   [`DeviceProximityEvent`](deviceproximityevent), handled by `window.ondeviceproximity`
+- [`UserProximityEvent`](userproximityevent), handled by `window.onuserproximity`
+- [`DeviceProximityEvent`](deviceproximityevent), handled by `window.ondeviceproximity`
 
 The difference between them is that [`UserProximityEvent`](userproximityevent) simply notifies `true` when the user is considered "close", while [`DeviceProximityEvent`](deviceproximityevent) provides an estimate of the actual distance to a nearby object.
 
@@ -22,8 +21,7 @@ The difference between them is that [`UserProximityEvent`](userproximityevent) s
 
 Obviously, the API requires the device to have a proximity sensor, which are mostly available only on mobile devices. Devices without such a sensor may support those events but will never fire them.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/proximity/">Proximity Sensor<br />
 <span class="small">The definition of 'Proximity Events' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial specification</td></tr></tbody></table>

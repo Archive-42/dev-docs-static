@@ -1,5 +1,4 @@
-MSGraphicsTrust
-===============
+# MSGraphicsTrust
 
 **Non-standard**
 
@@ -9,15 +8,14 @@ The `msGraphicsTrust()` constructor returns an object that provides properties f
 
 This proprietary method is specific to Internet Explorer and Microsoft Edge.
 
-Syntax
-------
+## Syntax
 
     var trustObject = media.msGraphicsTrustStatus;
 
 ### Parameters
 
 constrictionActive  
-A read-only property which returns *true* when protected media is forced to play in a lower resolution.
+A read-only property which returns _true_ when protected media is forced to play in a lower resolution.
 
 status  
 A read-only property which returns an enum with the driver status when playing protected content.
@@ -26,8 +24,7 @@ A read-only property which returns an enum with the driver status when playing p
 
 The MSGraphicsTrust does not inherit from any class or interface.
 
-Example
--------
+## Example
 
     var trustObject = media.msGraphicsTrustStatus;
 

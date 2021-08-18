@@ -1,5 +1,4 @@
-NDEFReader: onreadingerror
-==========================
+# NDEFReader: onreadingerror
 
 **Draft**
 
@@ -16,13 +15,11 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `onreadingerror` property of the [`NDEFReader`](../ndefreader) interface of the [Web NFC API](../webnfc_api) is called whenever an error occurs during reading of NFC tags, e.g. when tags leave the reader's magnetic induction field.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/web-nfc/#dom-ndefreader-onreadingerror">Web NFC</a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

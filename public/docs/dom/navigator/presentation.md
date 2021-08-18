@@ -1,5 +1,4 @@
-Navigator.presentation
-======================
+# Navigator.presentation
 
 **Experimental**
 
@@ -12,8 +11,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `presentation` property of [`Navigator`](../navigator) serves as the entry point for the [Presentation API](../presentation_api) and returns a reference to [`Presentation`](../presentation) object.
 
-Syntax
-------
+## Syntax
 
     const presentation = navigator.presentation
 
@@ -21,14 +19,12 @@ Syntax
 
 A reference to [`Presentation`](../presentation) object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/presentation-api/#dom-navigator-presentation">Presentation API<br />
 <span class="small">The definition of 'Navigator.presentation' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -86,10 +82,9 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [Presentation API](../presentation_api)
--   [`Presentation`](../presentation)
+- [Presentation API](../presentation_api)
+- [`Presentation`](../presentation)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/presentation" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/presentation</a>

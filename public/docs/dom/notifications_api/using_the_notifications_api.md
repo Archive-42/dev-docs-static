@@ -1,5 +1,4 @@
-Using the Notifications API
-===========================
+# Using the Notifications API
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
@@ -15,15 +14,13 @@ Typically, system notifications refer to the operating system's standard notific
 
 The system notification system will vary of course by platform and browser, but this is ok, and the Notifications API is written to be general enough for compatibility with most system notification systems.
 
-Examples
---------
+## Examples
 
 One of the most obvious use cases for web notifications is a web-based mail or IRC application that needs to notify the user when a new message is received, even if the user is doing something else with another application. Many examples of this now exist, such as [Slack](https://slack.com/).
 
 We've written a real world example — a to-do list app — to give more of an idea of how web notifications can be used. It stores data locally using [IndexedDB](../indexeddb_api) and notifies users when tasks are due using system notifications. [Download the To-do list code](https://github.com/mdn/to-do-notifications/tree/gh-pages), or [view the app running live](https://mdn.github.io/to-do-notifications/).
 
-Requesting permission
----------------------
+## Requesting permission
 
 Before an app can send a notification, the user must grant the application the right to do so. This is a common requirement when an API tries to interact with something outside a web page — at least once, the user needs to specifically grant that application permission to present notifications, thereby letting the user control which apps/sites are allowed to display notifications.
 
@@ -116,8 +113,7 @@ Above we said that we had to check whether the browser supports the promise vers
 
 We basically try to see if the `.then()` method is available on `requestPermission()`. If so, we move on and return `true`. If it fails, we return `false` in the `catch() {}` block.
 
-Creating a notification
------------------------
+## Creating a notification
 
 Creating a notification is easy; just use the [`Notification`](../notification) constructor. This constructor expects a title to display within the notification and some options to enhance the notification such as an [`icon`](../notification/icon) or a text [`body`](../notification/body).
 
@@ -127,8 +123,7 @@ For example, in the to-do-list example we use the following snippet to create a 
     var text = 'HEY! Your task "' + title + '" is now overdue.';
     var notification = new Notification('To do list', { body: text, icon: img });
 
-Closing notifications
----------------------
+## Closing notifications
 
 Used [`close()`](../notification/close) to remove a notification that is no longer relevant to the user (e.g. the user already read the notification on the webpage, in the case of a messaging app, or the following song is already playing in a music app to notifies upon song changes). Most modern browsers dismiss notifications automatically after a few moments (around four seconds) but this isn't something you should generally be concerned about as it's up to the user and user agent. The dismissal may also happen at the operating system level and users should remain in control of this. Old versions of Chrome didn't remove notifications automatically so you can do so after a [`setTimeout()`](../windoworworkerglobalscope/settimeout) only for those legacy versions in order to not remove notifications from notification trays on other browsers.
 
@@ -144,8 +139,7 @@ Used [`close()`](../notification/close) to remove a notification that is no long
 
 **Note**: When you receive a "close" event, there is no guarantee that it's the user who closed the notification. This is in line with the specification, which states: "When a notification is closed, either by the underlying notifications platform or by the user, the close steps for it must be run."
 
-Notification events
--------------------
+## Notification events
 
 There are four events that are triggered on the [`Notification`](../notification) instance:
 
@@ -163,8 +157,7 @@ Triggered when the notification is displayed to the user.
 
 These events can be tracked using the [`onclick`](../notification/onclick), [`onclose`](../notification/onclose), [`onerror`](../notification/onerror), and [`onshow`](../notification/onshow) handlers. Because [`Notification`](../notification) also inherits from [`EventTarget`](../eventtarget), it's possible to use the [`addEventListener()`](../eventtarget/addeventlistener) method on it.
 
-Replacing existing notifications
---------------------------------
+## Replacing existing notifications
 
 It is usually undesirable for a user to receive a lot of notifications in a short space of time — for example, what if a messenger application notified a user for each incoming message, and they were being sent a lot? To avoid spamming the user with too many notifications, it's possible to modify the pending notifications queue, replacing single or multiple pending notifications with a new one.
 
@@ -231,13 +224,11 @@ It's possible to handle multiple notifications this way:
 
 See the live result below:
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://notifications.spec.whatwg.org/">Notifications API</a></td><td><span class="spec-living">Living Standard</span></td><td>Living standard</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -999,9 +990,8 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [`Notification`](../notification)
+- [`Notification`](../notification)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API/Using_the_Notifications_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API/Using_the_Notifications_API</a>

@@ -1,23 +1,20 @@
-PerformanceResourceTiming.encodedBodySize
-=========================================
+# PerformanceResourceTiming.encodedBodySize
 
-The `encodedBodySize` read-only property represents the size (in octets) received from the fetch (HTTP or cache), of the *payload body*, before removing any applied content-codings.
+The `encodedBodySize` read-only property represents the size (in octets) received from the fetch (HTTP or cache), of the _payload body_, before removing any applied content-codings.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
 If the resource is retrieved from an application cache or a local resource, it must return the size of the payload body before removing any applied content-codings.
 
-Syntax
-------
+## Syntax
 
     resource.encodedBodySize;
 
 ### Return value
 
-A `number` representing the size (in octets) received from the fetch (HTTP or cache), of the *payload body*, before removing any applied content-codings.
+A `number` representing the size (in octets) received from the fetch (HTTP or cache), of the _payload body_, before removing any applied content-codings.
 
-Example
--------
+## Example
 
 The following example, the value of the size properties of all "`resource`" [`type`](../performanceentry/entrytype) events are logged.
 
@@ -47,14 +44,12 @@ The following example, the value of the size properties of all "`resource`" [`ty
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-encodedbodysize">Resource Timing Level 2<br />
 <span class="small">The definition of 'encodedBodySize' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

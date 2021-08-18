@@ -1,5 +1,4 @@
-PaymentResponse.complete()
-==========================
+# PaymentResponse.complete()
 
 **Secure context**
 
@@ -7,14 +6,13 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The [`PaymentRequest`](../paymentrequest) method `complete()` of the [Payment Request API](../payment_request_api) notifies the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) that the user interaction is over, and causes any remaining user interface to be closed. This method must be called after the user accepts the payment request and the [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) returned by the [`PaymentRequest.show()`](../paymentrequest/show) method is resolved.
 
-Syntax
-------
+## Syntax
 
     completePromise = paymentRequest.complete(result);
 
 ### Parameters
 
- `result` <span class="badge inline optional">Optional</span>   
+`result` <span class="badge inline optional">Optional</span>  
 A [`DOMString`](../domstring) indicating the state of the payment operation upon completion. It must be one of the following:
 
 `success`  
@@ -24,7 +22,7 @@ The payment was successfully processed. The user agent may or may not present so
 The payment was not successfully processed. The failure may or may not be announced to the user by the user agent, depending on its design.
 
 `unknown`  
-The success or failure status of the transaction is unknown or irrelevant, and the user agent should not present any notification, even if it normally would. *This is the default value.*
+The success or failure status of the transaction is unknown or irrelevant, and the user agent should not present any notification, even if it normally would. _This is the default value._
 
 **Note:** In older versions of the specification, an empty string, `""`, was used instead of `unknown` to indicate a completion without a known result state. See the [Browser compatibility](#browser_compatibility) section below for details.
 
@@ -40,8 +38,7 @@ The document in which the payment request is taking place became inactive while 
 `InvalidStateError`  
 The payment has already completed, or `complete()` was called while a request to retry the payment is pending. You can't treat a payment as complete after requesting that the payment be tried again.
 
-Examples
---------
+## Examples
 
 The following example sends payment information to a secure server using the [Fetch API](../fetch_api). It calls `complete()` with an answer appropriate to the status in the response.
 
@@ -69,14 +66,12 @@ The following example sends payment information to a secure server using the [Fe
       console.error("Uh oh, something bad happened", err.message);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-paymentresponse-complete">Payment Request API<br />
 <span class="small">The definition of 'PaymentResponse: complete' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

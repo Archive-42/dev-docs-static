@@ -1,5 +1,4 @@
-PushSubscription.getKey()
-=========================
+# PushSubscription.getKey()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `getKey()` method of the [`PushSubscription`](../pushsubscription) interface returns an [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) representing a client public key, which can then be sent to a server and used in encrypting push message data.
 
-Syntax
-------
+## Syntax
 
     var key = subscription.getKey(name);
 
@@ -18,15 +16,14 @@ Syntax
 name  
 A [`DOMString`](../domstring) representing the encryption method used to generate a client key. The value can be:
 
--   `p256dh`: An [Elliptic curve Diffie–Hellman](https://en.wikipedia.org/wiki/Elliptic_curve_Diffie%E2%80%93Hellman) public key on the P-256 curve (that is, the NIST secp256r1 elliptic curve). The resulting key is an uncompressed point in ANSI X9.62 format.
--   `auth`: An authentication secret, as described in<span class="h1"> [Message Encryption for Web Push](https://datatracker.ietf.org/doc/html/draft-ietf-webpush-encryption-08).</span>
+- `p256dh`: An [Elliptic curve Diffie–Hellman](https://en.wikipedia.org/wiki/Elliptic_curve_Diffie%E2%80%93Hellman) public key on the P-256 curve (that is, the NIST secp256r1 elliptic curve). The resulting key is an uncompressed point in ANSI X9.62 format.
+- `auth`: An authentication secret, as described in<span class="h1"> [Message Encryption for Web Push](https://datatracker.ietf.org/doc/html/draft-ietf-webpush-encryption-08).</span>
 
 ### Returns
 
 An [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
 
-Example
--------
+## Example
 
     reg.pushManager.getSubscription()
       .then(function(subscription) {
@@ -55,13 +52,11 @@ Example
 
         ...
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/">Push API</a></td><td><span class="spec-wd">Working Draft</span></td><td>This is the Push API spec, but note that <code>getKey()</code> is not currently specified in here. It is currently Firefox-only experimental.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

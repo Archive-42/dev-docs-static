@@ -1,5 +1,4 @@
-Navigator.connection
-====================
+# Navigator.connection
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `Navigator.connection` read-only property returns a [`NetworkInformation`](../networkinformation) object containing information about the system's connection, such as the current bandwidth of the user's device or whether the connection is metered. This could be used to select high definition content or low definition content based on the user's connection.
 
-Syntax
-------
+## Syntax
 
     var networkInformation = navigator.connection
 
@@ -17,14 +15,12 @@ Syntax
 
 A [`NetworkInformation`](../networkinformation) object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/netinfo/#connection-attribute">Network Information API<br />
 <span class="small">The definition of 'Navigator.connection' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial specification</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -82,9 +78,8 @@ No
 
 3.0
 
-See also
---------
+## See also
 
--   [Online and offline events](../navigatoronline/online_and_offline_events)
+- [Online and offline events](../navigatoronline/online_and_offline_events)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/connection" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/connection</a>

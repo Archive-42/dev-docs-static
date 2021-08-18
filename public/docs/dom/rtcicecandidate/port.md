@@ -1,12 +1,10 @@
-RTCIceCandidate.port
-====================
+# RTCIceCandidate.port
 
 The **[`RTCIceCandidate`](../rtcicecandidate)** interface's read-only `port` property contains the port number on the device at the address given by [`ip`](address) at which the candidate's peer can be reached.
 
-As is the case with most of `RTCIceCandidate`'s properties, the value of `port` is extracted from the `candidate` a-line string specified when creating the `RTCIceCandidate`. The a-line string is obtained either from the [`RTCIceCandidateInit`](../rtcicecandidateinit) property [`candidate`](../rtcicecandidateinit/candidate) or from a-line string passed into the constructor upon using [`new   RTCIceCandidate()`](rtcicecandidate).
+As is the case with most of `RTCIceCandidate`'s properties, the value of `port` is extracted from the `candidate` a-line string specified when creating the `RTCIceCandidate`. The a-line string is obtained either from the [`RTCIceCandidateInit`](../rtcicecandidateinit) property [`candidate`](../rtcicecandidateinit/candidate) or from a-line string passed into the constructor upon using [`new RTCIceCandidate()`](rtcicecandidate).
 
-Syntax
-------
+## Syntax
 
     var port = RTCIceCandidate.port;
 
@@ -18,8 +16,7 @@ A 16-bit number indicating the port number on the device at the address indicate
 
 **Note:** If `port` is `null`, passing the candidate to [`addIceCandidate()`](../rtcpeerconnection/addicecandidate) will fail, throwing an `OperationError` exception. This applies only if the candidate implements `port`.
 
-Usage notes
------------
+## Usage notes
 
 Consider this [SDP](https://developer.mozilla.org/en-US/docs/Glossary/SDP) attribute line (a-line) which describes an ICE candidate:
 
@@ -27,8 +24,7 @@ Consider this [SDP](https://developer.mozilla.org/en-US/docs/Glossary/SDP) attri
 
 The port number is found in the sixth field, which is `"44323"`. In this case, the value of `port` will be 44323.
 
-Example
--------
+## Example
 
 This code snippet fetches the IP address and port number of the candidate, storing them into an object for future use.
 
@@ -37,14 +33,12 @@ This code snippet fetches the IP address and port number of the candidate, stori
       port: candidate.port
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicecandidate-port">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceCandidate.port' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

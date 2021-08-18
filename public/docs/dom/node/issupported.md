@@ -1,5 +1,4 @@
-Node.isSupported()
-==================
+# Node.isSupported()
 
 **Deprecated**
 
@@ -7,21 +6,19 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `Node.isSupported()`returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) flag containing the result of a test whether the DOM implementation implements a specific feature and this feature is supported by the specific node.
 
-Syntax
-------
+## Syntax
 
     boolValue = element.isSupported(feature, version)
 
 ### Parameters
 
-*feature*  
+_feature_  
 Is a [`DOMString`](../domstring) containing the name of the feature to test. This is the same name which can be passed to the method `hasFeature` on [DOMImplementation](../document/implementation). Possible values defined within the core DOM specification are listed on the DOM Level 2 [Conformance Section](https://www.w3.org/TR/DOM-Level-2-Core/introduction.html#ID-Conformance).
 
-*version*  
+_version_  
 Is a [`DOMString`](../domstring) containing the version number of the feature to test. In DOM Level 2, version 1, this is the string `2.0`. If the version is not specified, supporting any version of the feature will cause the method to return true.
 
-Example
--------
+## Example
 
     <div id="doc">
     </div>
@@ -32,15 +29,13 @@ Example
      var output = main.isSupported('HTML', '2.0');
     </script>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#Level-2-Core-Node-supports">Document Object Model (DOM) Level 3 Core Specification<br />
 <span class="small">The definition of 'Node.isSupported()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>No change from <a href="https://www.w3.org/TR/DOM-Level-2-Core/">Document Object Model (DOM) Level 2 Core Specification</a>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Core/core.html#Level-2-Core-Node-supports">Document Object Model (DOM) Level 2 Core Specification<br />
 <span class="small">The definition of 'Node.isSupported()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -96,9 +91,8 @@ No
 
 1.0-2.0
 
-See also
---------
+## See also
 
--   The [`Node`](../node) interface it belongs to.
+- The [`Node`](../node) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/isSupported" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/isSupported</a>

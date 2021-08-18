@@ -1,5 +1,4 @@
-Range.getBoundingClientRect()
-=============================
+# Range.getBoundingClientRect()
 
 **Experimental**
 
@@ -10,13 +9,11 @@ The `Range.getBoundingClientRect()` method returns a [`DOMRect`](../domrect) obj
 
 This method is useful for determining the viewport coordinates of the cursor or selection inside a text box. See [`Element.getBoundingClientRect()`](../element/getboundingclientrect) for details on the returned value.
 
-Syntax
-------
+## Syntax
 
     boundingRect = range.getBoundingClientRect()
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -50,14 +47,12 @@ Example
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-range-getboundingclientrect">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'Range.getBoundingClientRect()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -113,11 +108,10 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`Range.getClientRects()`](getclientrects) - finer-grained result for non-rectangular ranges (e.g., when the selection wraps onto the next line);
--   [`Element.getBoundingClientRect()`](../element/getboundingclientrect)
--   [`Document.caretPositionFromPoint()`](../document/caretpositionfrompoint) - to get the (node, offset) from viewport coordinates.
+- [`Range.getClientRects()`](getclientrects) - finer-grained result for non-rectangular ranges (e.g., when the selection wraps onto the next line);
+- [`Element.getBoundingClientRect()`](../element/getboundingclientrect)
+- [`Document.caretPositionFromPoint()`](../document/caretpositionfrompoint) - to get the (node, offset) from viewport coordinates.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range/getBoundingClientRect" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Range/getBoundingClientRect</a>

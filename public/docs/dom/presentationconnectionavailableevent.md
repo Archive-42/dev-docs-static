@@ -1,5 +1,4 @@
-PresentationConnectionAvailableEvent
-====================================
+# PresentationConnectionAvailableEvent
 
 **Experimental**
 
@@ -14,26 +13,22 @@ The `PresentationConnectionAvailableEvent` interface of the [Presentation API](p
 
 A [controlling user agent](https://www.w3.org/TR/presentation-api/#dfn-controlling-user-agent) [fires](https://www.w3.org/TR/presentation-api/#dfn-firing-an-event) a [trusted event](https://www.w3.org/TR/presentation-api/#dfn-trusted-event) named [`connectionavailable`](https://www.w3.org/TR/presentation-api/#dfn-connectionavailable) on a [`PresentationRequest`](https://www.w3.org/TR/presentation-api/#idl-def-presentationrequest) when a connection associated with the object is created. It is fired at the [`PresentationRequest`](https://www.w3.org/TR/presentation-api/#idl-def-presentationrequest) instance, using the [`PresentationConnectionAvailableEvent`](https://www.w3.org/TR/presentation-api/#idl-def-presentationconnectionavailableevent) interface, with the [`connection`](https://www.w3.org/TR/presentation-api/#idl-def-presentationconnectionavailableevent-connection) attribute set to the [`PresentationConnection`](https://www.w3.org/TR/presentation-api/#idl-def-presentationconnection) object that was created. The event is fired for each connection that is created for the [controller](https://www.w3.org/TR/presentation-api/#dfn-controller), either by the [controller](https://www.w3.org/TR/presentation-api/#dfn-controller) calling `start()` or `reconnect()`, or by the [controlling user agent](https://www.w3.org/TR/presentation-api/#dfn-controlling-user-agent) creating a connection on the controller's behalf via [`defaultRequest`](https://www.w3.org/TR/presentation-api/#dom-presentation-defaultrequest).
 
-Constructor
------------
+## Constructor
 
 [`PresentationConnectionAvailableEvent()`](presentationconnectionavailableevent/presentationconnectionavailableevent)  
 Creates a new PresentationConnectionAvailableEvent.
 
-Properties
-----------
+## Properties
 
- [`PresentationConnectionAvailableEvent.connection`](presentationconnectionavailableevent/connection) <span class="badge inline readonly">Read only </span>   
+[`PresentationConnectionAvailableEvent.connection`](presentationconnectionavailableevent/connection) <span class="badge inline readonly">Read only </span>  
 Returns a references to the [`PresentationConnection`](presentationconnection) object that fired the event.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/presentation-api/#interface-presentationconnectionavailableevent">Presentation API<br />
 <span class="small">The definition of 'PresentationConnectionAvailableEvent interface' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

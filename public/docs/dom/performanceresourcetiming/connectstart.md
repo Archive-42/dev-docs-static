@@ -1,12 +1,10 @@
-PerformanceResourceTiming.connectStart
-======================================
+# PerformanceResourceTiming.connectStart
 
 The `connectStart` read-only property returns the [`timestamp`](../domhighrestimestamp) immediately before the user agent starts establishing the connection to the server to retrieve the resource.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     resource.connectStart;
 
@@ -14,8 +12,7 @@ Syntax
 
 A [`DOMHighResTimeStamp`](../domhighrestimestamp) immediately before the browser starts to establish the connection to the server to retrieve the resource.
 
-Example
--------
+## Example
 
 In the following example, the value of the `*Start` and `*End` properties of all "`resource`" [`type`](../performanceentry/entrytype) events are logged.
 
@@ -48,14 +45,12 @@ In the following example, the value of the `*Start` and `*End` properties of all
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/resource-timing-1/#dom-performanceresourcetiming-connectstart">Resource Timing Level 1<br />
 <span class="small">The definition of 'connectStart' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

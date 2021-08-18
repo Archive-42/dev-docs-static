@@ -1,34 +1,29 @@
-NavigatorLanguage.language
-==========================
+# NavigatorLanguage.language
 
 The `NavigatorLanguage.language` read-only property returns a string representing the preferred language of the user, usually the language of the browser UI.
 
-Syntax
-------
+## Syntax
 
     const lang = navigator.language
 
 ### Value
 
-A [`DOMString`](../domstring). *`lang`* stores a string representing the language version as defined in [BCP 47](https://tools.ietf.org/rfc/bcp/bcp47.txt). Examples of valid language codes include "en", "en-US", "fr", "fr-FR", "es-ES", etc.
+A [`DOMString`](../domstring). _`lang`_ stores a string representing the language version as defined in [BCP 47](https://tools.ietf.org/rfc/bcp/bcp47.txt). Examples of valid language codes include "en", "en-US", "fr", "fr-FR", "es-ES", etc.
 
 Note that in Safari on iOS prior to 10.2, the country code returned is lowercase: "en-us", "fr-fr" etc.
 
-Example
--------
+## Example
 
     if (/^en\b/.test(navigator.language)) {
       doLangSelect(window.navigator.language);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-language">HTML Living Standard<br />
 <span class="small">The definition of 'NavigatorLanguage: language' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,10 +83,9 @@ Closest available (non-standard) properties are `userLanguage` and `browserLangu
 
 1.0
 
-See also
---------
+## See also
 
--   [`navigator.languages`](languages)
--   [`navigator`](../navigator)
+- [`navigator.languages`](languages)
+- [`navigator`](../navigator)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorLanguage/language" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NavigatorLanguage/language</a>

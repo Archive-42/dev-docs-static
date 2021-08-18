@@ -1,16 +1,13 @@
-MutationObserver
-================
+# MutationObserver
 
 The [`MutationObserver`](mutationobserver) interface provides the ability to watch for changes being made to the [DOM](document_object_model) tree. It is designed as a replacement for the older [Mutation Events](mutationevent) feature, which was part of the DOM3 Events specification.
 
-Constructor
------------
+## Constructor
 
 [`MutationObserver()`](mutationobserver/mutationobserver)  
 Creates and returns a new `MutationObserver` which will invoke a specified callback function when DOM changes occur.
 
-Methods
--------
+## Methods
 
 [`disconnect()`](mutationobserver/disconnect)  
 Stops the `MutationObserver` instance from receiving further notifications until and unless [`observe()`](mutationobserver/observe) is called again.
@@ -21,13 +18,11 @@ Configures the `MutationObserver` to begin receiving notifications through its c
 [`takeRecords()`](mutationobserver/takerecords)  
 Removes all pending notifications from the `MutationObserver`'s notification queue and returns them in a new [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of [`MutationRecord`](mutationrecord) objects.
 
-Mutation Observer & customize resize event listener & demo
-----------------------------------------------------------
+## Mutation Observer & customize resize event listener & demo
 
 <https://codepen.io/webgeeker/full/YjrZgg/>
 
-Example
--------
+## Example
 
 The following example was adapted from [this blog post](https://hacks.mozilla.org/2012/05/dom-mutationobserver-reacting-to-dom-changes-without-killing-browser-performance/).
 
@@ -59,14 +54,12 @@ The following example was adapted from [this blog post](https://hacks.mozilla.or
     // Later, you can stop observing
     observer.disconnect();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#interface-mutationobserver">DOM<br />
 <span class="small">The definition of 'MutationObserver' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -250,14 +243,13 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`PerformanceObserver`](performanceobserver)
--   [`ResizeObserver`](resizeobserver)
--   [`IntersectionObserver`](intersectionobserver)
--   [A brief overview](https://updates.html5rocks.com/2012/02/Detect-DOM-changes-with-Mutation-Observers)
--   [A more in-depth discussion](https://hacks.mozilla.org/2012/05/dom-mutationobserver-reacting-to-dom-changes-without-killing-browser-performance/)
--   [A screencast by Chromium developer Rafael Weinstein](https://www.youtube.com/watch?v=eRZ4pO0gVWw)
+- [`PerformanceObserver`](performanceobserver)
+- [`ResizeObserver`](resizeobserver)
+- [`IntersectionObserver`](intersectionobserver)
+- [A brief overview](https://updates.html5rocks.com/2012/02/Detect-DOM-changes-with-Mutation-Observers)
+- [A more in-depth discussion](https://hacks.mozilla.org/2012/05/dom-mutationobserver-reacting-to-dom-changes-without-killing-browser-performance/)
+- [A screencast by Chromium developer Rafael Weinstein](https://www.youtube.com/watch?v=eRZ4pO0gVWw)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver</a>

@@ -1,5 +1,4 @@
-RTCIceServer.url
-================
+# RTCIceServer.url
 
 **Deprecated**
 
@@ -9,7 +8,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 This page is not complete.
 
-*I'm experimenting with structure for pages documenting members of dictionaries. Please contact [sheppy](https://developer.mozilla.org/en-US/settings) with any feedback.*
+_I'm experimenting with structure for pages documenting members of dictionaries. Please contact [sheppy](https://developer.mozilla.org/en-US/settings) with any feedback._
 
 **Experimental**
 
@@ -20,8 +19,7 @@ The **obsolete** [`RTCIceServer`](../rtciceserver) dictionary's `url` property s
 
 This property has been removed from the specification; while it's still supported by many browsers, it should no longer be used. You should instead use the newer [`urls`](urls) property, which allows you to optionally specify multiple URLs for the server. Try to update any existing code to use that property instead.
 
-Syntax
-------
+## Syntax
 
     var iceServer = {
                       ...
@@ -35,8 +33,7 @@ Syntax
 
 The value of this property is a [`DOMString`](../domstring) containing the full URL of a server to use during ICE negotiation.
 
-Example
--------
+## Example
 
 This example creates a new [`RTCPeerConnection`](../rtcpeerconnection) which will use a [STUN](https://developer.mozilla.org/en-US/docs/Glossary/STUN) server at `stunserver.example.org` to negotiate connections.
 
@@ -50,8 +47,7 @@ This example creates a new [`RTCPeerConnection`](../rtcpeerconnection) which wil
 
 Unfortunately, the only way to tell ICE that the server has a backup domain name of `stunserver2.example.org` is to add a new entry to the `iceServers` array for it. The [`urls`](urls) property lets you include them both in one server, which is more readily maintainable.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -107,9 +103,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`RTCIceServer`](../rtciceserver)
+- [`RTCIceServer`](../rtciceserver)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIceServer/url" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIceServer/url</a>

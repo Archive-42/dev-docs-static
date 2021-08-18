@@ -1,23 +1,21 @@
-OscillatorNode.OscillatorNode()
-===============================
+# OscillatorNode.OscillatorNode()
 
 The `OscillatorNode()` constructor of the [Web Audio API](../web_audio_api) creates a new [`OscillatorNode`](../oscillatornode) object which is an [`AudioNode`](../audionode) that represents a periodic waveform, like a sine wave, optionally setting the node's properties' values to match values in a specified object.
 
 If the default values of the properties are acceptable, you can optionally use the [`BaseAudioContext.createOscillator`](../baseaudiocontext/createoscillator) factory method instead.
 
-Syntax
-------
+## Syntax
 
     var oscillatorNode = new OscillatorNode(context, options)
 
 ### Parameters
 
-*Inherits parameters from the [`AudioNodeOptions`](../audionodeoptions) dictionary*.
+_Inherits parameters from the [`AudioNodeOptions`](../audionodeoptions) dictionary_.
 
 `context`  
 A reference to an [`AudioContext`](../audiocontext).
 
- `options` <span class="badge inline optional">Optional</span>   
+`options` <span class="badge inline optional">Optional</span>  
 An object whose properties specify the initial values for the oscillator node's properties. Any properties omitted from the object will take on the default value as documented.
 
 `type`  
@@ -36,14 +34,12 @@ An arbitrary period waveform described by a [`PeriodicWave`](../periodicwave) ob
 
 A new [`OscillatorNode`](../oscillatornode) object instance.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-oscillatornode-oscillatornode">Web Audio API<br />
 <span class="small">The definition of 'OscillatorNode()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-PaymentRequestEvent.modifiers
-=============================
+# PaymentRequestEvent.modifiers
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `modifiers` read-only property of the [`PaymentRequestEvent`](../paymentrequestevent) interface returns an array of objects containing changes to payment details.
 
-Syntax
-------
+## Syntax
 
     var modifiers[] = paymentDetailsEvent.modifiers
 
@@ -17,14 +15,12 @@ Syntax
 
 An array of modifier objects.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-handler/#modifiers-attribute">Payment Handler API<br />
 <span class="small">The definition of 'modifiers' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

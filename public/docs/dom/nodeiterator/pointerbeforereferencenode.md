@@ -1,5 +1,4 @@
-NodeIterator.pointerBeforeReferenceNode
-=======================================
+# NodeIterator.pointerBeforeReferenceNode
 
 **Experimental**
 
@@ -8,13 +7,11 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `NodeIterator.pointerBeforeReferenceNode` read-only property returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) flag that indicates whether the [`NodeFilter`](../nodefilter) is anchored before (if this value is `true`) or after (if this value is `false`) the anchor node indicated by the [`NodeIterator.referenceNode`](referencenode) property.
 
-Syntax
-------
+## Syntax
 
     flag = nodeIterator.pointerBeforeReferenceNode;
 
-Example
--------
+## Example
 
     var nodeIterator = document.createNodeIterator(
         document.body,
@@ -24,14 +21,12 @@ Example
     );
     flag = nodeIterator.pointerBeforeReferenceNode;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-nodeiterator-pointerbeforereferencenode">DOM<br />
 <span class="small">The definition of 'NodeIterator.pointerBeforeReferenceNode' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -87,9 +82,8 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   The interface it belongs to: [`NodeIterator`](../nodeiterator)
+- The interface it belongs to: [`NodeIterator`](../nodeiterator)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeIterator/pointerBeforeReferenceNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NodeIterator/pointerBeforeReferenceNode</a>

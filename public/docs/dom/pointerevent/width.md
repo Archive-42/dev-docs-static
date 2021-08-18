@@ -1,12 +1,10 @@
-PointerEvent.width
-==================
+# PointerEvent.width
 
 The `width` read-only property of the [`PointerEvent`](../pointerevent) interface represents the width of the pointer's contact geometry along the x-axis, measured in CSS pixels. Depending on the source of the pointer device (such as a finger), for a given pointer, each event may produce a different value.
 
 If the input hardware cannot report the contact geometry to the browser, the width defaults to `1`.
 
-Syntax
-------
+## Syntax
 
     var contactWidth = pointerEvent.width;
 
@@ -15,8 +13,7 @@ Syntax
 `contactWidth`  
 The width of the event's contact area (in CSS pixels).
 
-Example
--------
+## Example
 
 This example illustrates using the [`PointerEvent`](../pointerevent) interface's [`width`](width) and [`height`](height) properties to calculate the contact area.
 
@@ -25,15 +22,13 @@ This example illustrates using the [`PointerEvent`](../pointerevent) interface's
        var area = ev.width * ev.height;
      }, false);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/pointerevents2/#dom-pointerevent-width">Pointer Events – Level 2<br />
 <span class="small">The definition of 'width' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Non-stable version.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/pointerevents1/#widl-PointerEvent-width">Pointer Events<br />
 <span class="small">The definition of 'width' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

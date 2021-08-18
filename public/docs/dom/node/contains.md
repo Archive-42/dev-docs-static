@@ -1,15 +1,12 @@
-Node.contains()
-===============
+# Node.contains()
 
 The `Node.contains()` method returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) value indicating whether a node is a descendant of a given node, i.e. the node itself, one of its direct children ([`childNodes`](childnodes)), one of the children's direct children, and so on.
 
-Syntax
-------
+## Syntax
 
     node.contains( otherNode )
 
-Example
--------
+## Example
 
 This function checks to see if an element is in the page's body. As `contains` is inclusive and determining if the body contains itself isn't the intention of `isInPage` this case explicitly returns `false`.
 
@@ -17,14 +14,12 @@ This function checks to see if an element is in the page's body. As `contains` i
       return (node === document.body) ? false : document.body.contains(node);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-node-contains">DOM<br />
 <span class="small">The definition of 'Node.contains()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -82,10 +77,9 @@ Only supported for [`HTMLElement`](https://developer.mozilla.org/docs/Web/API/HT
 
 1.0
 
-See also
---------
+## See also
 
--   [`Node.compareDocumentPosition`](comparedocumentposition)
--   [`Node.hasChildNodes`](haschildnodes)
+- [`Node.compareDocumentPosition`](comparedocumentposition)
+- [`Node.hasChildNodes`](haschildnodes)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/contains" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/contains</a>

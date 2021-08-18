@@ -1,12 +1,10 @@
-MutationObserverInit.attributeFilter
-====================================
+# MutationObserverInit.attributeFilter
 
 The **[`MutationObserverInit`](../mutationobserverinit)** dictionary's optional `attributeFilter` property is an array of strings specifying the names of the attributes whose values are to be monitored for changes. If this property is specified, there's no need to also set [`attributes`](attributes) to `true`, as it's implied.
 
 If the [`attributes`](attributes) permission is `true` but no `attributeFilter` is included in the options object, all attributes' values are watched for changes.
 
-Syntax
-------
+## Syntax
 
     var options = {
       attributeFilter: [ "list", "of", "attribute", "names" ]
@@ -18,8 +16,7 @@ An array of [`DOMString`](../domstring) objects, each specifying the name of one
 
 If this property exists on the options object when the [`MutationObserver()`](../mutationobserver/mutationobserver) constructor is used to create a new `MutationObserver`, attribute monitoring is enabled regardless of whether or not the [`attributes`](attributes) property is `true`.
 
-Example
--------
+## Example
 
 In this example, a Mutation Observer is set up to watch for changes to the `status` and `username` attributes in any elements contained within a subtree that displays the names of users in a chat room. This lets the code, for example, reflect changes to users' nicknames, or to mark them as away from keyboard (AFK) or offline.
 
@@ -55,14 +52,12 @@ Note the use of <span class="page-not-created">`MutationRecord.oldValue`</span> 
 
 When `observe()` is called, the specified options include both `attributeFilter` and [`subtree`](subtree), so that we monitor the attribute values for all of the nodes contained within the subtree rooted at the node with the ID `"userlist"`. The [`attributeOldValue`](attributeoldvalue) option is set to `true` because we want the prior value of the changed attributes recorded and reported in the mutation records we receive.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-mutationobserverinit-attributefilter">DOM<br />
 <span class="small">The definition of 'MutationObserverInit: attributeFilter' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

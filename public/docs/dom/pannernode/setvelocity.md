@@ -1,5 +1,4 @@
-PannerNode.setVelocity()
-========================
+# PannerNode.setVelocity()
 
 **Deprecated**
 
@@ -11,10 +10,9 @@ This method was removed from the specification because of gaps in its design and
 
 The velocity relative to the listener is used to control the pitch change needed to conform with the [Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) due to the relative speed.
 
-As the vector controls both the direction of travel and its velocity, the three parameters `x`, `y` and `z` are expressed in *meters per second`.`* The default value of the velocity vector is `(0,` `0,` `0)`.
+As the vector controls both the direction of travel and its velocity, the three parameters `x`, `y` and `z` are expressed in _meters per second`.`_ The default value of the velocity vector is `(0,` `0,` `0)`.
 
-Syntax
-------
+## Syntax
 
     var audioCtx = new AudioContext();
     var panner = audioCtx.createPanner();
@@ -24,8 +22,7 @@ Syntax
 
 Void.
 
-Example
--------
+## Example
 
 In the following example, you can see an example of how the `createPanner()` method, [`AudioListener`](../audiolistener) and [`PannerNode`](../pannernode) would be used to control audio spatialisation. Generally you will define the position in 3D space that your audio listener and panner (source) occupy initially, and then update the position of one or both of these as the application is used. You might be moving a character around inside a game world for example, and wanting delivery of audio to change realistically as your character moves closer to or further away from a music player such as a stereo. In the example you can see this being controlled by the functions `moveRight()`, `moveLeft()`, etc., which set new values for the panner position via the `PositionPanner()` function.
 
@@ -120,8 +117,7 @@ Note how we have used some feature detection to either give the browser the newe
 
 In terms of working out what position values to apply to the listener and panner, to make the sound appropriate to what the visuals are doing on screen, there is quite a bit of math involved, but you will soon get used to it with a bit of experimentation.
 
-Parameters
-----------
+## Parameters
 
 `x`  
 The x value of the panner's velocity vector.
@@ -132,8 +128,7 @@ The y value of the panner's velocity vector.
 `z`  
 The z value of the panner's velocity vector.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -189,9 +184,8 @@ No
 
 1.0-6.0
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](../web_audio_api/using_web_audio_api)
+- [Using the Web Audio API](../web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/setVelocity" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/setVelocity</a>

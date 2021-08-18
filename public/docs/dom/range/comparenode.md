@@ -1,5 +1,4 @@
-Range.compareNode()
-===================
+# Range.compareNode()
 
 **Deprecated**
 
@@ -13,16 +12,16 @@ The `Range.compareNode()` returns a constant indicating the position of the [`No
 
 The possible values are:
 
- `NODE_BEFORE` (`0`)  
+`NODE_BEFORE` (`0`)  
 Node starts before the Range
 
- `NODE_AFTER` (`1`)  
+`NODE_AFTER` (`1`)  
 Node ends after the Range
 
- `NODE_BEFORE_AND_AFTER` (`2`)  
+`NODE_BEFORE_AND_AFTER` (`2`)  
 Node starts before and ends after the Range
 
- `NODE_INSIDE` (`3`)  
+`NODE_INSIDE` (`3`)  
 Node starts after and ends before the Range, i.e. the Node is completely selected by the Range.
 
 **Warning:** This method [has been removed](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/3/Site_compatibility) from [Gecko 1.9](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/3) and will not exist in future versions of Firefox, which was the only browser implementing it; you should switch to [`Range.compareBoundaryPoints()`](compareboundarypoints) as soon as possible.
@@ -50,35 +49,30 @@ The following function can be used as replacement:
       return 3;
     }
 
-Syntax
-------
+## Syntax
 
     returnValue = range.compareNode( referenceNode );
 
 ### Parameters
 
-*referenceNode*  
+_referenceNode_  
 The [`Node`](../node) to compare with the `Range`.
 
-Example
--------
+## Example
 
     range = document.createRange();
     range.selectNode(document.getElementsByTagName("div").item(0));
     returnValue = range.compareNode(document.getElementsByTagName("p").item(0));
 
-Notes
------
+## Notes
 
 This method is obsolete; you should use the W3C DOM [`Range.compareBoundaryPoints()`](compareboundarypoints) method.
 
-Specifications
---------------
+## Specifications
 
 This method is not standard and therefore not part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -134,9 +128,8 @@ No
 
 1.0-5.0
 
-See also
---------
+## See also
 
--   [The DOM interfaces index](../document_object_model)
+- [The DOM interfaces index](../document_object_model)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range/compareNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Range/compareNode</a>

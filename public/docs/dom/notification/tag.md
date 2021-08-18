@@ -1,5 +1,4 @@
-Notification.tag
-================
+# Notification.tag
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
@@ -11,8 +10,7 @@ The `tag` read-only property of the [`Notification`](../notification) interface 
 
 The idea of notification tags is that more than one notification can share the same tag, linking them together. One notification can then be programmatically replaced with another to avoid the users' screen being filled up with a huge number of similar notifications.
 
-Syntax
-------
+## Syntax
 
     var tag = Notification.tag;
 
@@ -20,19 +18,16 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Examples
---------
+## Examples
 
 Our [Using the Notifications API](../notifications_api/using_the_notifications_api#dealing_with_repeated_notifications) article has a good example of tag usage.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://notifications.spec.whatwg.org/#dom-notification-tag">Notifications API<br />
 <span class="small">The definition of 'tag' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Living standard</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,9 +83,8 @@ No
 
 Yes
 
-See also
---------
+## See also
 
--   [Using the Notifications API](../notifications_api/using_the_notifications_api)
+- [Using the Notifications API](../notifications_api/using_the_notifications_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification/tag" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Notification/tag</a>

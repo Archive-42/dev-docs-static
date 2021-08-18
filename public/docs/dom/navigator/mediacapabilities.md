@@ -1,5 +1,4 @@
-Navigator.mediaCapabilities
-===========================
+# Navigator.mediaCapabilities
 
 **Experimental**
 
@@ -8,18 +7,15 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `Navigator.mediaCapabilities` read-only property returns a [`MediaCapabilities`](../mediacapabilities) object that can expose information about the decoding and encoding capabilities for a given format and output capabilities as defined by the [Media Capabilities API](../media_capabilities_api).
 
-Syntax
-------
+## Syntax
 
     mediaCapabilitiesObj = globalObj.navigator.mediaCapabilities
 
-Value
------
+## Value
 
 A [`MediaCapabilities`](../mediacapabilities) object.
 
-Examples
---------
+## Examples
 
     navigator.mediaCapabilities.decodingInfo({
         type : 'file',
@@ -36,13 +32,11 @@ Examples
             (result.powerEfficient ? '' : 'not ') + 'power efficient.')
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/media-capabilities/">Media Capabilities</a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -98,10 +92,9 @@ No
 
 9.0
 
-See also
---------
+## See also
 
--   [Media Capabilities API](../media_capabilities_api)
--   [`Navigator`](../navigator)
+- [Media Capabilities API](../media_capabilities_api)
+- [`Navigator`](../navigator)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/mediaCapabilities" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/mediaCapabilities</a>

@@ -1,12 +1,10 @@
-RTCIceCandidate.sdpMid
-======================
+# RTCIceCandidate.sdpMid
 
 The read-only property `sdpMid` on the [`RTCIceCandidate`](../rtcicecandidate) interface returns a [`DOMString`](../domstring) specifying the media stream identification tag of the media component with which the candidate is associated. This ID uniquely identifies a given stream for the component with which the candidate is associated.
 
 This property can be configured by specifying the value of the [`sdpMid`](../rtcicecandidateinit/sdpmid) property when constructing the new candidate object using [`RTCIceCandidate()`](rtcicecandidate). If you call the constructor with an m-line string instead of an `RTCIceCandidateInit` object, the value of `sdpMid` is extracted from the specified candidate m-line string.
 
-Syntax
-------
+## Syntax
 
     var sdpMid = RTCIceCandidate.sdpMid;
 
@@ -16,19 +14,16 @@ A [`DOMString`](../domstring) which uniquely identifies the source media compone
 
 **Note:** Attempting to add a candidate (using [`addIceCandidate()`](../rtcpeerconnection/addicecandidate)) that has a value of `null` for either `sdpMid` or `sdpMLineIndex` will throw a `TypeError` exception.
 
-Example
--------
+## Example
 
 ...
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicecandidate-sdpmid">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceCandidate.sdpMid' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

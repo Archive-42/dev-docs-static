@@ -1,10 +1,8 @@
-PaymentAddress.addressLine
-==========================
+# PaymentAddress.addressLine
 
 The `addressLine` read-only property of the [`PaymentAddress`](../paymentaddress) interface is an array of [`DOMString`](../domstring) objects, each specifying a line of the address that is not covered by one of the other properties of `PaymentAddress`. These lines may include the street name, house number, apartment number, rural delivery route, descriptive instructions, or post office box.
 
-Syntax
-------
+## Syntax
 
     var paymentAddressLines = PaymentAddress.addressLine;
 
@@ -23,14 +21,12 @@ Suite 441, 4th floor
 London SE1 0HS  
 United Kingdom
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-paymentaddress-addressline">Payment Request API<br />
 <span class="small">The definition of 'PaymentAddress.addressLine' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,10 +1,8 @@
-PaymentAddress.dependentLocality
-================================
+# PaymentAddress.dependentLocality
 
-The read-only `dependentLocality` property of the [`PaymentAddress`](../paymentaddress) interface is a string containing a sublocality designation within a city, such as a neighborhood, borough, district, or, in the United Kingdom, a dependent locality. Also known as a *post town*.
+The read-only `dependentLocality` property of the [`PaymentAddress`](../paymentaddress) interface is a string containing a sublocality designation within a city, such as a neighborhood, borough, district, or, in the United Kingdom, a dependent locality. Also known as a _post town_.
 
-Syntax
-------
+## Syntax
 
     var paymentDependentLocality = PaymentAddress.dependentLocality;
 
@@ -14,14 +12,12 @@ A [`DOMString`](../domstring) indicating the sublocality portion of the address.
 
 A sublocality is an area within a city, such as a neighborhood, borough, or district. In the United Kingdom, this is used to indicate the **post town** in the United Kingdom (known officially by the Royal Mail as the **dependent locality**). This is a disambiguating feature of addresses in places where a city may have areas that duplicate street names.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-paymentaddress-dependentlocality">Payment Request API<br />
 <span class="small">The definition of 'PaymentAddress.dependentLocality' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

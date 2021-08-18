@@ -1,5 +1,4 @@
-NetworkInformation.rtt
-======================
+# NetworkInformation.rtt
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `NetworkInformation.rtt` read-only property returns the estimated effective 
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     rtt = NetworkInformation.rtt
 
@@ -19,14 +17,12 @@ Syntax
 
 A number.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/netinfo/#dom-networkinformation-rtt">Network Information API<br />
 <span class="small">The definition of 'rtt' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

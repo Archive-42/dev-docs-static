@@ -1,5 +1,4 @@
-MediaTrackSupportedConstraints.volume
-=====================================
+# MediaTrackSupportedConstraints.volume
 
 **Deprecated**
 
@@ -9,8 +8,7 @@ The [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints) dictio
 
 You can access the supported constraints dictionary by calling `navigator.mediaDevices.getSupportedConstraints()`.
 
-Syntax
-------
+## Syntax
 
     volumeConstraintSupported = supportedConstraintsDictionary.volume;
 
@@ -18,8 +16,7 @@ Syntax
 
 This property is present in the dictionary (and its value is always `true`) if the user agent supports the `volume` constraint. If the property isn't present, this property is missing from the supported constraints dictionary, and you'll get [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) if you try to look at its value.
 
-Example
--------
+## Example
 
     let result = document.getElementById("result");
 
@@ -31,8 +28,7 @@ Example
 
 ### Result
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,12 +84,11 @@ Yes
 
 6.0
 
-See also
---------
+## See also
 
--   [Media Capture and Streams API](../media_streams_api)
--   [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints)
--   [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints)
--   [`MediaStreamTrack`](../mediastreamtrack)
+- [Media Capture and Streams API](../media_streams_api)
+- [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints)
+- [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints)
+- [`MediaStreamTrack`](../mediastreamtrack)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSupportedConstraints/volume" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSupportedConstraints/volume</a>

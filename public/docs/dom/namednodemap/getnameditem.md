@@ -1,19 +1,16 @@
-NamedNodeMap.getNamedItem()
-===========================
+# NamedNodeMap.getNamedItem()
 
 The `getNamedItem()` method of the [`NamedNodeMap`](../namednodemap) interface returns the [`Attr`](../attr) corresponding to the given name, or null if there is no corresponding attribute.
 
-Syntax
-------
+## Syntax
 
     myAttr = attrs.getNamedItem(name)
 
 ### Parameters
 
--   `name` is the name of the desired attribute
+- `name` is the name of the desired attribute
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

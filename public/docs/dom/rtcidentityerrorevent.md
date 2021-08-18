@@ -1,5 +1,4 @@
-RTCIdentityErrorEvent
-=====================
+# RTCIdentityErrorEvent
 
 **Deprecated**
 
@@ -9,27 +8,24 @@ The `RTCIdentityErrorEvent` interface represents an error associated with the id
 
 Firefox implements this interface under the following name: `RTCPeerConnectionIdentityErrorEvent.` It is likely that it will correct this name when it will unprefix [`RTCPeerConnection`](rtcpeerconnection), once spec and implementation will have been stabilized.
 
-Properties
-----------
+## Properties
 
-*A [`RTCIdentityErrorEvent`](rtcidentityerrorevent) being an [`Event`](event), this event also implements these properties*.
+_A [`RTCIdentityErrorEvent`](rtcidentityerrorevent) being an [`Event`](event), this event also implements these properties_.
 
- [`RTCIdentityErrorEvent.idp`](rtcidentityerrorevent/idp) <span class="badge inline readonly">Read only </span>   
+[`RTCIdentityErrorEvent.idp`](rtcidentityerrorevent/idp) <span class="badge inline readonly">Read only </span>  
 Is a [`DOMString`](domstring) describing the [domain name](https://developer.mozilla.org/en-US/docs/Glossary/Domain_name) of the identity provider (idp) generating the error response.
 
- [`RTCIdentityErrorEvent.loginUrl`](rtcidentityerrorevent/loginurl) <span class="badge inline readonly">Read only </span>   
+[`RTCIdentityErrorEvent.loginUrl`](rtcidentityerrorevent/loginurl) <span class="badge inline readonly">Read only </span>  
 Is a [`DOMString`](domstring) giving the URL where the user can complete the authentication. It can be `null` and is provided by the identity provider (idp).
 
- [`RTCIdentityErrorEvent.protocol`](rtcidentityerrorevent/protocol) <span class="badge inline readonly">Read only </span>   
+[`RTCIdentityErrorEvent.protocol`](rtcidentityerrorevent/protocol) <span class="badge inline readonly">Read only </span>  
 Is a [`DOMString`](domstring) describing the Idp protocol in use.
 
-Methods
--------
+## Methods
 
-*A [`RTCIdentityErrorEvent`](rtcidentityerrorevent) being an [`Event`](event), this event also implements these properties. There is no specific [`RTCIdentityErrorEvent`](rtcidentityerrorevent) method.*
+_A [`RTCIdentityErrorEvent`](rtcidentityerrorevent) being an [`Event`](event), this event also implements these properties. There is no specific [`RTCIdentityErrorEvent`](rtcidentityerrorevent) method._
 
-Examples
---------
+## Examples
 
     pc.onidpassertionerror = function( ev ) {
                                alert("The idp named '" +
@@ -38,8 +34,7 @@ Examples
                                      "while generating an assertion.");
                              }
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -173,10 +168,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [WebRTC](webrtc_api)
--   Its usual target: [`RTCPeerConnection`](rtcpeerconnection).
+- [WebRTC](webrtc_api)
+- Its usual target: [`RTCPeerConnection`](rtcpeerconnection).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIdentityErrorEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIdentityErrorEvent</a>

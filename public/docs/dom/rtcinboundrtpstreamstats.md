@@ -1,10 +1,8 @@
-RTCInboundRtpStreamStats
-========================
+# RTCInboundRtpStreamStats
 
 The [WebRTC API](webrtc_api)'s `RTCInboundRtpStreamStats` dictionary, based upon <span class="page-not-created">`RTCReceivedRtpStreamStats`</span> and [`RTCStats`](rtcstats), contains statistics related to the receiving end of an RTP stream on the local end of the [`RTCPeerConnection`](rtcpeerconnection).
 
-Properties
-----------
+## Properties
 
 The `RTCInboundRtpStreamStats` dictionary is based on the <span class="page-not-created">`RTCReceivedRtpStreamStats`</span> dictionary, whose properties are also available.
 
@@ -24,7 +22,7 @@ An integer value indicating the total number of RTP FEC packets received for thi
 An integer value which indicates the total number of Full Intra Request (FIR) packets which this receiver has sent to the sender. This is an indicator of how often the stream has lagged, requiring frames to be skipped in order to catch up. This value is only available for video streams.
 
 [`framesDecoded`](rtcinboundrtpstreamstats/framesdecoded)  
-A long integer value indicating the total number of frames of video which have been correctly decoded so far for this media source. This is the number of frames that would have been rendered if none were dropped. *Only valid for video streams.*
+A long integer value indicating the total number of frames of video which have been correctly decoded so far for this media source. This is the number of frames that would have been rendered if none were dropped. _Only valid for video streams._
 
 [`lastPacketReceivedTimestamp`](rtcinboundrtpstreamstats/lastpacketreceivedtimestamp)  
 A [`DOMHighResTimeStamp`](domhighrestimestamp) indicating the time at which the last packet was received for this source. The [`timestamp`](rtcstats/timestamp) property, on the other hand, indicates the time at which the statistics object was generated.
@@ -45,7 +43,7 @@ A record of key-value pairs with strings as the keys mapped to 32-bit integer va
 An integer specifying the number of times the receiver has notified the sender that some amount of encoded video data for one or more frames has been lost, using Picture Loss Indication (PLI) packets. This is only available for video streams.
 
 [`qpSum`](rtcinboundrtpstreamstats/qpsum)  
-A 64-bit value containing the sum of the QP values for every frame decoded by this RTP receiver. You can determine the average QP per frame by dividing this value by [`framesDecoded`](rtcinboundrtpstreamstats/framesdecoded). *Valid only for video streams.*
+A 64-bit value containing the sum of the QP values for every frame decoded by this RTP receiver. You can determine the average QP per frame by dividing this value by [`framesDecoded`](rtcinboundrtpstreamstats/framesdecoded). _Valid only for video streams._
 
 [`receiverId`](rtcinboundrtpstreamstats/receiverid)  
 A string indicating which identifies the <span class="page-not-created">`RTCAudioReceiverStats`</span> or <span class="page-not-created">`RTCVideoReceiverStats`</span> object associated with the stream's receiver. This ID is stable across multiple calls to `getStats()`.
@@ -59,25 +57,21 @@ An integer indicating the number of times the receiver sent a Slice Loss Indicat
 [`trackId`](rtcinboundrtpstreamstats/trackid)  
 A string which identifies the statistics object representing the receiving track; this object is one of two types: <span class="page-not-created">`RTCReceiverAudioTrackAttachmentStats`</span> or <span class="page-not-created">`RTCReceiverVideoTrackAttachmentStats`</span>. This ID is stable across multiple calls to `getStats()`.
 
-Examples
---------
+## Examples
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#inboundrtpstats-dict*">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCInboundRtpStreamStats' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.RTCInboundRtpStreamStats`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).
 
-See also
---------
+## See also
 
--   [`RTCStats`](rtcstats)
--   [`RTCStatsReport`](rtcstatsreport)
+- [`RTCStats`](rtcstats)
+- [`RTCStatsReport`](rtcstatsreport)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCInboundRtpStreamStats" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCInboundRtpStreamStats</a>

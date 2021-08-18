@@ -1,11 +1,10 @@
-RTCIceServers.urls
-==================
+# RTCIceServers.urls
 
 **Draft**
 
 This page is not complete.
 
-*I'm experimenting with structure for pages documenting members of dictionaries. Please contact [sheppy](https://developer.mozilla.org/en-US/settings) with any feedback.*
+_I'm experimenting with structure for pages documenting members of dictionaries. Please contact [sheppy](https://developer.mozilla.org/en-US/settings) with any feedback._
 
 **Experimental**
 
@@ -14,8 +13,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The [`RTCIceServer`](../rtciceserver) dictionary's `urls` property specifies the URL or URLs of the servers to be used for ICE negotiations. These are typically STUN and/or TURN servers.
 
-Syntax
-------
+## Syntax
 
     var iceServer = {
                       urls = iceServerUrl | [ url1, ..., urlN ],
@@ -27,8 +25,7 @@ Syntax
 
 The value of this property may be specified as a single URL or as an array of multiple URLs.
 
-Examples
---------
+## Examples
 
 Let's look a few examples of varying complexity.
 
@@ -95,14 +92,12 @@ Finally, this example creates a new [`RTCPeerConnection`](../rtcpeerconnection) 
 
 Two ICE servers are provided. One is a TURN server which can be accessed both over TURN and TURNS. The other is a STUN server. Any number of servers could be listed of any combination of types.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtciceserver-urls">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceServer.urls' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -158,9 +153,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`RTCIceServer`](../rtciceserver)
+- [`RTCIceServer`](../rtciceserver)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIceServer/urls" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIceServer/urls</a>

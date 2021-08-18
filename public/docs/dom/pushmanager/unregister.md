@@ -1,5 +1,4 @@
-PushManager.unregister()
-========================
+# PushManager.unregister()
 
 **Deprecated**
 
@@ -7,8 +6,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `unregister()` method was used to ask the system to unregister and delete the specified endpoint. In the updated API, a subscription is can be unregistered via the [`PushSubscription.unsubscribe()`](../pushsubscription/unsubscribe) method.
 
-Syntax
-------
+## Syntax
 
     var request = navigator.push.unregister(pushEndpoint);
 
@@ -33,8 +31,7 @@ A string representing the URL of the unregistered endpoint.
 `version`  
 `Undefined` when `unregister.onsuccess` is called.
 
-Example
--------
+## Example
 
     var req = navigator.push.unregister(pushEndpoint);
 
@@ -47,13 +44,11 @@ Example
       debug("Error unregistering the endpoint: " + JSON.stringify(e));
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/">Push API</a></td><td><span class="spec-wd">Working Draft</span></td><td>Defines the <code>PushManager</code> interface.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -113,10 +108,9 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [`PushManager`](../pushmanager)
--   <span class="page-not-created">`DOMRequest`</span>
+- [`PushManager`](../pushmanager)
+- <span class="page-not-created">`DOMRequest`</span>
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PushManager/unregister" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PushManager/unregister</a>

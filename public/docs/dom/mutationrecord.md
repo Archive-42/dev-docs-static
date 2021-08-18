@@ -1,10 +1,8 @@
-MutationRecord
-==============
+# MutationRecord
 
 A `MutationRecord` represents an individual DOM mutation. It is the object that is passed to [`MutationObserver`](mutationobserver)'s callback.
 
-Properties
-----------
+## Properties
 
 <table><colgroup><col style="width: 33%" /><col style="width: 33%" /><col style="width: 33%" /></colgroup><thead><tr class="header"><th>Property</th><th>Type</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><span class="page-not-created"><code>MutationRecord.type</code></span></td><td><code>String</code></td><td>Returns <code>"attributes"</code> if the mutation was an attribute mutation,<br />
 <code>"characterData"</code> if it was a mutation to a <code>CharacterData</code> node,<br />
@@ -16,14 +14,12 @@ For <code>attributes</code>, it is the value of the changed attribute before the
 For <code>characterData</code>, it is the data of the changed node before the change.<br />
 For <code>childList</code>, it is <code>null</code>.</p><div class="note notecard"><p>Note that for this to work as expected, <code>attributeOldValue</code> or <code>characterDataOldValue</code> must be set to <code>true</code> in the corresponding <a href="mutationobserverinit">MutationObserverInit</a> parameter of the <code>MutationObserver</code> <a href="mutationobserver/observe">observe</a> method</p></div></td></tr></tbody></table>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#mutationrecord">DOM<br />
 <span class="small">The definition of 'MutationRecord' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,12 +1,10 @@
-PerformanceEntry.toJSON()
-=========================
+# PerformanceEntry.toJSON()
 
-The `toJSON()` method is a *serializer*; it returns a JSON representation of the [`performance entry`](../performanceentry) object.
+The `toJSON()` method is a _serializer_; it returns a JSON representation of the [`performance entry`](../performanceentry) object.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     json = perfEntry.toJSON();
 
@@ -19,8 +17,7 @@ None
 json  
 A JSON object that is the serialization of the [`PerformanceEntry`](../performanceentry) object.
 
-Example
--------
+## Example
 
 The following example shows the use of the `toJSON()` method.
 
@@ -68,14 +65,12 @@ The following example shows the use of the `toJSON()` method.
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/performance-timeline/#dom-performanceentry-tojson">Performance Timeline Level 2<br />
 <span class="small">The definition of 'toJSON' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition of <code>toJSON()</code> method.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

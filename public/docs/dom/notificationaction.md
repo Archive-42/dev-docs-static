@@ -1,5 +1,4 @@
-NotificationAction
-==================
+# NotificationAction
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
@@ -9,24 +8,22 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `NotificationAction` interface of the [Notifications API](notifications_api) is used to represent action buttons the user can click to interact with notifications. These buttons' appearance and specific functionality vary across platforms but generally they provide a way to asynchronously show actions to the user in a notification.
 
-Properties
-----------
+## Properties
 
 ### Instance properties
 
 These properties are available only on instances of the `Notification` object.
 
- <span class="page-not-created">`NotificationAction.action`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`NotificationAction.action`</span> <span class="badge inline readonly">Read only </span>  
 The name of the action, which can be used to identify the clicked action similar to [input names](index).
 
- <span class="page-not-created">`NotificationAction.title`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`NotificationAction.title`</span> <span class="badge inline readonly">Read only </span>  
 The string describing the action that is displayed to the user.
 
- <span class="page-not-created">`NotificationAction.icon`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`NotificationAction.icon`</span> <span class="badge inline readonly">Read only </span>  
 The URL of the image used to represent the notification when there is not enough space to display the notification itself.
 
-Example
--------
+## Example
 
 Notifications can fire `notificationclick` events on the [`ServiceWorkerGlobalScope`](serviceworkerglobalscope).
 
@@ -52,13 +49,11 @@ Here a service worker shows a notification with a single "Archive" action, allow
       }
     }, false);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://notifications.spec.whatwg.org/">Notifications API</a></td><td><span class="spec-living">Living Standard</span></td><td>Living standard</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -820,9 +815,8 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [Using the Notifications API](notifications_api/using_the_notifications_api)
+- [Using the Notifications API](notifications_api/using_the_notifications_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NotificationAction" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NotificationAction</a>

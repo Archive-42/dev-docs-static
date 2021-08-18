@@ -1,5 +1,4 @@
-ReadableStreamDefaultReader.releaseLock()
-=========================================
+# ReadableStreamDefaultReader.releaseLock()
 
 The `releaseLock()` method of the [`ReadableStreamDefaultReader`](../readablestreamdefaultreader) interface releases the reader's lock on the stream.
 
@@ -7,8 +6,7 @@ If the associated stream is errored when the lock is released, the reader will a
 
 A reader’s lock cannot be released while it still has a pending read request, i.e., if a promise returned by the reader’s [`ReadableStreamDefaultReader.read()`](read) method has not finished. This will result in a `TypeError` being thrown.
 
-Syntax
-------
+## Syntax
 
     readableStreamDefaultReader.releaseLock();
 
@@ -25,8 +23,7 @@ None.
 TypeError  
 The source object is not a `ReadableStreamDefaultReader`, or a read request is pending.
 
-Examples
---------
+## Examples
 
     function fetchStream() {
       const reader = stream.getReader();
@@ -38,14 +35,12 @@ Examples
       ...
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://streams.spec.whatwg.org/#default-reader-release-lock">Streams<br />
 <span class="small">The definition of 'releaseLock()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

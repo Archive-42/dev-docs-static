@@ -1,10 +1,8 @@
-ReadableStreamDefaultReader.read()
-==================================
+# ReadableStreamDefaultReader.read()
 
 The `read()` method of the [`ReadableStreamDefaultReader`](../readablestreamdefaultreader) interface returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) providing access to the next chunk in the stream's internal queue.
 
-Syntax
-------
+## Syntax
 
     var promise = readableStreamDefaultReader.read();
 
@@ -16,17 +14,16 @@ None.
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), which fulfills/rejects with a result depending on the state of the stream. The different possibilities are as follows:
 
--   If a chunk is available, the promise will be fulfilled with an object of the form `{ value: theChunk, done: false }`.
--   If the stream becomes closed, the promise will be fulfilled with an object of the form `{ value: undefined, done: true }`.
--   If the stream becomes errored, the promise will be rejected with the relevant error.
+- If a chunk is available, the promise will be fulfilled with an object of the form `{ value: theChunk, done: false }`.
+- If the stream becomes closed, the promise will be fulfilled with an object of the form `{ value: undefined, done: true }`.
+- If the stream becomes errored, the promise will be rejected with the relevant error.
 
 ### Exceptions
 
 TypeError  
 The source object is not a `ReadableStreamDefaultReader`, or the stream has no owner.
 
-Examples
---------
+## Examples
 
 ### Example 1 - simple example
 
@@ -104,14 +101,12 @@ This example shows how you might fetch a text file and handle it as a stream of 
       processLine(line);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://streams.spec.whatwg.org/#default-reader-read">Streams<br />
 <span class="small">The definition of 'read()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

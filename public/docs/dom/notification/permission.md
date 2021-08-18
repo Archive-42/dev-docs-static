@@ -1,5 +1,4 @@
-Notification.permission
-=======================
+# Notification.permission
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
@@ -9,8 +8,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `permission` read-only property of the [`Notification`](../notification) interface indicates the current permission granted by the user for the current origin to display web notifications.
 
-Syntax
-------
+## Syntax
 
     var permission = Notification.permission;
 
@@ -18,12 +16,11 @@ Syntax
 
 A [`DOMString`](../domstring) representing the current permission. The value can be:
 
--   `granted`: The user has explicitly granted permission for the current origin to display system notifications.
--   `denied`: The user has explicitly denied permission for the current origin to display system notifications.
--   `default`: The user decision is unknown; in this case the application will act as if permission was `denied`.
+- `granted`: The user has explicitly granted permission for the current origin to display system notifications.
+- `denied`: The user has explicitly denied permission for the current origin to display system notifications.
+- `default`: The user decision is unknown; in this case the application will act as if permission was `denied`.
 
-Examples
---------
+## Examples
 
 The following snippet could be used if you wanted to first check whether notifications are supported, then check if permission has been granted for the current origin to send notifications, then request permission if required, before then sending a notification.
 
@@ -53,14 +50,12 @@ The following snippet could be used if you wanted to first check whether notific
       // want to be respectful there is no need to bother them any more.
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://notifications.spec.whatwg.org/#dom-notification-permission">Notifications API<br />
 <span class="small">The definition of 'permission' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Living standard</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -116,12 +111,11 @@ No
 
 Yes
 
-See also
---------
+## See also
 
--   [Notifications API](../notifications_api)
--   [Using the Notifications API](../notifications_api/using_the_notifications_api)
--   [Permissions API](../permissions_api)
--   [Using the Permissions API](../permissions_api/using_the_permissions_api)
+- [Notifications API](../notifications_api)
+- [Using the Notifications API](../notifications_api/using_the_notifications_api)
+- [Permissions API](../permissions_api)
+- [Using the Permissions API](../permissions_api/using_the_permissions_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification/permission" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Notification/permission</a>

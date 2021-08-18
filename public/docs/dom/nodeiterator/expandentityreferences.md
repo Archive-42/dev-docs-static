@@ -1,5 +1,4 @@
-NodeIterator.expandEntityReferences
-===================================
+# NodeIterator.expandEntityReferences
 
 **Deprecated**
 
@@ -9,13 +8,11 @@ The `NodeIterator.expandEntityReferences` read-only property returns a [`Boolean
 
 If this value is `false`, the children of entity reference nodes (as well as all of their descendants) are rejected. This takes precedence over the value of the [`NodeIterator.whatToShow`](whattoshow) method and the associated filter.
 
-Syntax
-------
+## Syntax
 
     expand = nodeIterator.expandEntityReferences;
 
-Example
--------
+## Example
 
     var nodeIterator = document.createNodeIterator(
         document.body,
@@ -25,14 +22,12 @@ Example
     );
     expand = nodeIterator.expandEntityReferences;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/traversal.html#Traversal-NodeIterator-expandEntityReferences">Document Object Model (DOM) Level 2 Traversal and Range Specification<br />
 <span class="small">The definition of 'NodeIterator.expandEntityReferences' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,9 +83,8 @@ Samsung Internet
 
 1.0-4.0
 
-See also
---------
+## See also
 
--   The interface this property belongs to: [`NodeIterator`](../nodeiterator).
+- The interface this property belongs to: [`NodeIterator`](../nodeiterator).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeIterator/expandEntityReferences" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NodeIterator/expandEntityReferences</a>

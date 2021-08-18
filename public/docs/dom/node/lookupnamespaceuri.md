@@ -1,10 +1,8 @@
-Node.lookupNamespaceURI()
-=========================
+# Node.lookupNamespaceURI()
 
 The `Node.lookupNamespaceURI()` method accepts a prefix and returns the namespace URI associated with it on the given node if found (and `null` if not).
 
-Syntax
-------
+## Syntax
 
     var namespace = node.lookupNamespaceURI(prefix);
 
@@ -17,14 +15,12 @@ The prefix to look for. If this parameter is `null`, the method will return the 
 
 A [`DOMString`](../domstring) containing the namespace URI. If the prefix is not found, it returns `null`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-node-lookupnamespaceuri">DOM<br />
 <span class="small">The definition of 'Node: lookupNamespaceURI' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

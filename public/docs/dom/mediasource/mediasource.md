@@ -1,5 +1,4 @@
-MediaSource.MediaSource()
-=========================
+# MediaSource.MediaSource()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MediaSource()` constructor of the [`MediaSource`](../mediasource) interface constructs and returns a new `MediaSource` object with no associated source buffers.
 
-Syntax
-------
+## Syntax
 
     var mediaSource = new MediaSource();
 
@@ -17,8 +15,7 @@ Syntax
 
 None.
 
-Example
--------
+## Example
 
 The following snippet is taken from a simple example written by Nick Desaulniers ([view the full demo live](https://nickdesaulniers.github.io/netfix/demo/bufferAll.html), or [download the source](https://github.com/nickdesaulniers/netfix/blob/gh-pages/demo/bufferAll.html) for further investigation.)
 
@@ -40,8 +37,7 @@ The following snippet is taken from a simple example written by Nick Desaulniers
 
     ...
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -101,10 +97,9 @@ No
 
 2.0
 
-See also
---------
+## See also
 
--   [`SourceBuffer`](../sourcebuffer)
--   [`SourceBufferList`](../sourcebufferlist)
+- [`SourceBuffer`](../sourcebuffer)
+- [`SourceBufferList`](../sourcebufferlist)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/MediaSource" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/MediaSource</a>

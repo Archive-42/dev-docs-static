@@ -1,10 +1,8 @@
-Node.nodeValue
-==============
+# Node.nodeValue
 
 The `nodeValue` property of the [`Node`](../node) interface returns or sets the value of the current node.
 
-Syntax
-------
+## Syntax
 
     str = node.nodeValue;
     node.nodeValue = str;
@@ -19,14 +17,12 @@ The following table shows the return values for different elements:
 
 When `nodeValue` is defined to be `null`, setting it has no effect.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-node-nodevalue">DOM<br />
 <span class="small">The definition of 'Node: nodeValue' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

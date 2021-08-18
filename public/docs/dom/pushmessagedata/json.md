@@ -1,5 +1,4 @@
-PushMessageData.json()
-======================
+# PushMessageData.json()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `json()`method of the [`PushMessageData`](../pushmessagedata) interface extracts push message data by parsing it as a [JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) string and returning the result.
 
-Syntax
-------
+## Syntax
 
     var myData = pushEvent.data.json();
 
@@ -21,8 +19,7 @@ None.
 
 The result of parsing push event data as JSON. This could be anything that can be represented by JSON — an object, an array, a string, a number...
 
-Examples
---------
+## Examples
 
     self.addEventListener('push', function(event) {
       var myData = event.data.json();
@@ -30,14 +27,12 @@ Examples
       // do something with your data
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/#dom-pushmessagedata-json">Push API<br />
 <span class="small">The definition of 'json()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

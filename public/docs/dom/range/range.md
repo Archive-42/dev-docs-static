@@ -1,5 +1,4 @@
-Range()
-=======
+# Range()
 
 **Experimental**
 
@@ -8,13 +7,11 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `Range()` constructor returns a newly created [`Range`](../range) object whose start and end is the global [`Document`](../document) object.
 
-Syntax
-------
+## Syntax
 
     range = new Range()
 
-Example
--------
+## Example
 
 In this example we create a new range with the `Range()` constructor, and set its beginning and end positions using the [`Range.setStartBefore()`](setstartbefore) and [`Range.setEndAfter()`](setendafter) methods. We then select the range using [`window.getSelection()`](../window/getselection) and [`Selection.addRange()`](../selection/addrange).
 
@@ -46,14 +43,12 @@ In this example we create a new range with the `Range()` constructor, and set it
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-range-range">DOM<br />
 <span class="small">The definition of 'Range.Range()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -109,10 +104,9 @@ No
 
 2.0
 
-See also
---------
+## See also
 
--   [The DOM interfaces index](../document_object_model)
--   [`Document.createRange()`](../document/createrange)
+- [The DOM interfaces index](../document_object_model)
+- [`Document.createRange()`](../document/createrange)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range/Range" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Range/Range</a>

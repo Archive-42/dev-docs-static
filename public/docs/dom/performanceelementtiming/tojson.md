@@ -1,10 +1,8 @@
-PerformanceElementTiming.toJSON()
-=================================
+# PerformanceElementTiming.toJSON()
 
 The `toJSON()` method of the [`PerformanceElementTiming`](../performanceelementtiming) interface is a standard serializer. It returns a JSON representation of the object's properties.
 
-Syntax
-------
+## Syntax
 
     var json = PerformanceElementTiming.toJSON();
 
@@ -13,8 +11,7 @@ Syntax
 json  
 A JSON object that is the serialization of the `PerformanceElementTiming` object.
 
-Examples
---------
+## Examples
 
 In this example calling `entry.toJSON()` returns a JSON representation of the `PerformanceElementTiming` object, with the information about the image element.
 
@@ -31,14 +28,12 @@ In this example calling `entry.toJSON()` returns a JSON representation of the `P
 
 This example uses the [`PerformanceObserver`](../performanceobserver) interface to create a list of performance measurement events. In our case we observe the [`PerformanceEntry.entrytype`](../performanceentry/entrytype) `element` in order to use the `PerformanceElementTiming` interface.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/element-timing/#dom-performanceelementtiming-tojson">Element Timing<br />
 <span class="small">The definition of 'PerformanceElementTiming.toJson()' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

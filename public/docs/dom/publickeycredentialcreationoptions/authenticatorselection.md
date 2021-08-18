@@ -1,5 +1,4 @@
-PublicKeyCredentialCreationOptions.authenticatorSelection
-=========================================================
+# PublicKeyCredentialCreationOptions.authenticatorSelection
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 `authenticatorSelection`, an optional property of the [`PublicKeyCredentialCreationOptions`](../publickeycredentialcreationoptions) dictionary, is an object giving criteria to filter out the authenticators to be used for the creation operation.
 
-Syntax
-------
+## Syntax
 
     authenticatorSelection = publicKeyCredentialCreationOptions.authenticatorSelection
 
@@ -16,18 +14,18 @@ Syntax
 
 An object with the following properties:
 
- `authenticatorAttachment`<span class="badge inline optional">Optional</span>   
+`authenticatorAttachment`<span class="badge inline optional">Optional</span>  
 A string which is either "`platform`" or "`cross-platform`". The former describes an authenticator which is bound to the client and which is generally not removable. The latter describes a device which may be used across different platform (such as a USB or NFC device).
 
- `requireResidentKey`<span class="badge inline optional">Optional</span>   
+`requireResidentKey`<span class="badge inline optional">Optional</span>  
 A boolean which indicated that the credential private key must be stored in the authenticator, the client or in a client device. The default value is `false`.
 
- `userVerification`<span class="badge inline optional">Optional</span>   
+`userVerification`<span class="badge inline optional">Optional</span>  
 A string qualifying how the user verification should be part of the authentication process. The values may be:
 
--   "`required`": user verification is required, the operation will fail if the [response](../authenticatorattestationresponse) does not have the UV flag (as part of the `authenticatorData` property of [`AuthenticatorAttestationResponse.attestationObject`](../authenticatorattestationresponse/attestationobject))
--   "`preferred`": user verification is preferred, the operation will not fail if the [response](../authenticatorattestationresponse) does not have the UV flag (as part of the `authenticatorData` property of [`AuthenticatorAttestationResponse.attestationObject`](../authenticatorattestationresponse/attestationobject))
--   "`discouraged`": user verification should not be employed as to minimize the user interaction during the process.
+- "`required`": user verification is required, the operation will fail if the [response](../authenticatorattestationresponse) does not have the UV flag (as part of the `authenticatorData` property of [`AuthenticatorAttestationResponse.attestationObject`](../authenticatorattestationresponse/attestationobject))
+- "`preferred`": user verification is preferred, the operation will not fail if the [response](../authenticatorattestationresponse) does not have the UV flag (as part of the `authenticatorData` property of [`AuthenticatorAttestationResponse.attestationObject`](../authenticatorattestationresponse/attestationobject))
+- "`discouraged`": user verification should not be employed as to minimize the user interaction during the process.
 
 The default value is "`preferred`".
 
@@ -35,8 +33,7 @@ The authenticator used for the creation of the public key credential must comply
 
 **Note:** See [`PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()`](../publickeycredential/isuserverifyingplatformauthenticatoravailable) which resolves to `true` when a user-verifiying platform authenticator is available.
 
-Examples
---------
+## Examples
 
     var publicKey = {
       authenticatorSelection:{
@@ -68,14 +65,12 @@ Examples
          console.error(err);
       });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#dom-publickeycredentialcreationoptions-authenticatorselection">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'authenticatorSelection' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -131,10 +126,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()`](../publickeycredential/isuserverifyingplatformauthenticatoravailable)
--   [`AuthenticatorAssertionResponse.authenticatorData`](../authenticatorassertionresponse/authenticatordata) whose structure contains the UV flag (please note that for the creation operation, [`AuthenticatorAttestationResponse.attestationObject`](../authenticatorattestationresponse/attestationobject) only contains a CBOR encoded version of this data and does not give an immediate access to the flag).
+- [`PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()`](../publickeycredential/isuserverifyingplatformauthenticatoravailable)
+- [`AuthenticatorAssertionResponse.authenticatorData`](../authenticatorassertionresponse/authenticatordata) whose structure contains the UV flag (please note that for the creation operation, [`AuthenticatorAttestationResponse.attestationObject`](../authenticatorattestationresponse/attestationobject) only contains a CBOR encoded version of this data and does not give an immediate access to the flag).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialCreationOptions/authenticatorSelection" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialCreationOptions/authenticatorSelection</a>

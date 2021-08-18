@@ -1,5 +1,4 @@
-RTCDataChannel: error event
-===========================
+# RTCDataChannel: error event
 
 A WebRTC [`error`](error_event) event is sent to an [`RTCDataChannel`](../rtcdatachannel) object's [`onerror`](onerror) error handler when an error occurs on the data channel.
 
@@ -7,8 +6,7 @@ A WebRTC [`error`](error_event) event is sent to an [`RTCDataChannel`](../rtcdat
 
 The [`RTCErrorEvent`](../rtcerrorevent) object provides details about the error that occurred; see that article for details.
 
-Examples
---------
+## Examples
 
     // Strings for each of the SCTP cause codes found in RFC
     // 4960, section 3.3.10:
@@ -85,14 +83,12 @@ You can also set up an event handler for `error` events using the `RTCDataChanne
 
 **Note:** Since `RTCError` is not one of the legacy errors, the value of [`RTCError.code`](../domexception/code) is always 0.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#event-datachannel-error">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'error event' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -148,11 +144,10 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [WebRTC API](../webrtc_api)
--   [A simple RTCDataChannel example](../webrtc_api/simple_rtcdatachannel_sample)
--   Related events: [`open`](open_event), [`message`](message_event), and [`close`](close_event)
+- [WebRTC API](../webrtc_api)
+- [A simple RTCDataChannel example](../webrtc_api/simple_rtcdatachannel_sample)
+- Related events: [`open`](open_event), [`message`](message_event), and [`close`](close_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/error_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/error_event</a>

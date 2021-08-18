@@ -1,5 +1,4 @@
-MouseEvent.initMouseEvent()
-===========================
+# MouseEvent.initMouseEvent()
 
 **Deprecated**
 
@@ -15,8 +14,7 @@ Events initialized in this way must have been created with the [`Document.create
 
 Instead use specific event constructors, like [`MouseEvent()`](mouseevent). The page on [Creating and triggering events](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events) gives more information about the way to use these.
 
-Syntax
-------
+## Syntax
 
     event.initMouseEvent(type, canBubble, cancelable, view,
                          detail, screenX, screenY, clientX, clientY,
@@ -70,8 +68,7 @@ the event's mouse [`button`](button).
 `relatedTarget`  
 the event's [related EventTarget](relatedtarget). Only used with some event types (e.g., `mouseover` and `mouseout`). In other cases, pass `null`.
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -98,15 +95,13 @@ Example
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#idl-interface-MouseEvent-initializers">Document Object Model (DOM) Level 3 Events Specification<br />
 <span class="small">The definition of 'MouseEvent.initMouseEvent()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>From <a href="https://www.w3.org/TR/DOM-Level-2-Events/events.html">Document Object Model (DOM) Level 2 Events Specification</a>, deprecated.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-Event-initMouseEvent">Document Object Model (DOM) Level 2 Events Specification<br />
 <span class="small">The definition of 'MouseEvent.initMouseEvent()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -162,10 +157,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`MouseEvent()`](mouseevent) constructor, the modern standard way of creating a [`MouseEvent`](../mouseevent)
--   [`Event.initEvent()`](../event/initevent) is a simpler method serving a similar purpose. It is also obsolete and shouldn't be used any more.
+- [`MouseEvent()`](mouseevent) constructor, the modern standard way of creating a [`MouseEvent`](../mouseevent)
+- [`Event.initEvent()`](../event/initevent) is a simpler method serving a similar purpose. It is also obsolete and shouldn't be used any more.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/initMouseEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/initMouseEvent</a>

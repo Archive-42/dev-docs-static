@@ -1,5 +1,4 @@
-NavigatorLanguage.languages
-===========================
+# NavigatorLanguage.languages
 
 **Experimental**
 
@@ -14,25 +13,21 @@ When its value changes, as the user's preferred languages are changed a `languag
 
 The `Accept-Language` HTTP header in every HTTP request from the user's browser uses the same value for the `navigator.languages` property except for the extra `qvalues` (quality values) field (e.g. `en-US;q=0.8`).
 
-Syntax
-------
+## Syntax
 
     preferredLanguages = globalObj.navigator.languages
 
-Examples
---------
+## Examples
 
     navigator.language   //"en-US"
     navigator.languages  //["en-US", "zh-CN", "ja-JP"]
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-languages">HTML Living Standard<br />
 <span class="small">The definition of 'NavigatorLanguage: languages' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -100,11 +95,10 @@ In Firefox, the `navigator.languages` property's value is taken from the `intl.a
 
 3.0
 
-See also
---------
+## See also
 
--   [`navigator.language`](language)
--   [`Navigator`](../navigator)
--   [`Window.onlanguagechange`](../windoweventhandlers/onlanguagechange)
+- [`navigator.language`](language)
+- [`Navigator`](../navigator)
+- [`Window.onlanguagechange`](../windoweventhandlers/onlanguagechange)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorLanguage/languages" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NavigatorLanguage/languages</a>

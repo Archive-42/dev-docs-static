@@ -1,70 +1,68 @@
-RTCDataChannel
-==============
+# RTCDataChannel
 
-Properties
-----------
+## Properties
 
 The `RTCDataChannel` interface represents a network channel which can be used for bidirectional peer-to-peer transfers of arbitrary data. Every data channel is associated with an [`RTCPeerConnection`](rtcpeerconnection), and each peer connection can have up to a theoretical maximum of 65,534 data channels (the actual limit may vary from browser to browser).
 
 To create a data channel and ask a remote peer to join you, call the [`RTCPeerConnection`](rtcpeerconnection)'s [`createDataChannel()`](rtcpeerconnection/createdatachannel) method. The peer being invited to exchange data receives a `datachannel` event (which has type [`RTCDataChannelEvent`](rtcdatachannelevent)) to let it know the data channel has been added to the connection.
 
-*Also inherits properties from: [`EventTarget`](eventtarget)*
+_Also inherits properties from: [`EventTarget`](eventtarget)_
 
- [`binaryType`](rtcdatachannel/binarytype) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`binaryType`](rtcdatachannel/binarytype) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 The property `binaryType` on the `RTCDataChannel` interface is a `DOMString` which specifies the type of JavaScript object which should be used to represent binary data received on the `RTCDataChannel`. Values allowed by the `WebSocket.binaryType` property are also permitted here: `"blob"` if `Blob` objects are being used or `"arraybuffer"` if `ArrayBuffer` objects are being used. The default is `"blob"`.
 
- [`bufferedAmount`](rtcdatachannel/bufferedamount) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
+[`bufferedAmount`](rtcdatachannel/bufferedamount) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
 The read-only `RTCDataChannel` property `bufferedAmount` returns the number of bytes of data currently queued to be sent over the data channel.
 
- [`bufferedAmountLowThreshold`](rtcdatachannel/bufferedamountlowthreshold) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`bufferedAmountLowThreshold`](rtcdatachannel/bufferedamountlowthreshold) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 The `RTCDataChannel` property `bufferedAmountLowThreshold` is used to specify the number of bytes of buffered outgoing data that is considered "low." The default value is 0.
 
- [`id`](rtcdatachannel/id) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
+[`id`](rtcdatachannel/id) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
 The read-only `RTCDataChannel` property `id` returns an ID number (between 0 and 65,534) which uniquely identifies the `RTCDataChannel`.
 
- [`label`](rtcdatachannel/label) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
+[`label`](rtcdatachannel/label) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
 The read-only `RTCDataChannel` property `label` returns a `DOMString` containing a name describing the data channel. These labels are not required to be unique.
 
- [`maxPacketLifeTime`](rtcdatachannel/maxpacketlifetime) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
+[`maxPacketLifeTime`](rtcdatachannel/maxpacketlifetime) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
 The read-only `RTCDataChannel` property `maxPacketLifeTime` returns the amount of time, in milliseconds, the browser is allowed to take to attempt to transmit a message, as set when the data channel was created, or `null`.
 
- [`maxRetransmits`](rtcdatachannel/maxretransmits) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
+[`maxRetransmits`](rtcdatachannel/maxretransmits) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
 The read-only `RTCDataChannel` property `maxRetransmits` returns the maximum number of times the browser should try to retransmit a message before giving up, as set when the data channel was created, or `null`, which indicates that there is no maximum.
 
- [`negotiated`](rtcdatachannel/negotiated) undefined  
+[`negotiated`](rtcdatachannel/negotiated) undefined  
 The read-only `RTCDataChannel` property `negotiated` indicates whether the `RTCDataChannel`'s connection was negotiated by the Web app (`true`) or by the WebRTC layer (`false`).
 
- [`ordered`](rtcdatachannel/ordered) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
+[`ordered`](rtcdatachannel/ordered) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
 The read-only `RTCDataChannel` property `ordered` indicates whether or not the data channel guarantees in-order delivery of messages; the default is `true`, which indicates that the data channel is indeed ordered.
 
- [`protocol`](rtcdatachannel/protocol) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
+[`protocol`](rtcdatachannel/protocol) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
 The read-only `RTCDataChannel` property `protocol` returns a `DOMString` containing the name of the subprotocol in use. If no protocol was specified when the data channel was created, then this property's value is "" (the empty string).
 
- [`readyState`](rtcdatachannel/readystate) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
+[`readyState`](rtcdatachannel/readystate) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> undefined  
 The read-only `RTCDataChannel` property `readyState` returns an enum of type `RTCDataChannelState` which indicates the state of the data channel's underlying data connection.
 
- <s>[`reliable`](rtcdatachannel/reliable)</s> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="icon obsolete" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an obsolete API and is no longer guaranteed to work. </span> undefined  
+<s>[`reliable`](rtcdatachannel/reliable)</s> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="icon obsolete" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an obsolete API and is no longer guaranteed to work. </span> undefined  
 The read-only `RTCDataChannel` property `reliable` indicates whether or not the data channel is reliable.
 
- <s>[`stream`](rtcdatachannel/stream)</s> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon obsolete" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an obsolete API and is no longer guaranteed to work. </span> undefined  
+<s>[`stream`](rtcdatachannel/stream)</s> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon obsolete" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an obsolete API and is no longer guaranteed to work. </span> undefined  
 The deprecated (and never part of the official specification) read-only `RTCDataChannel` property `stream` returns an ID number (between 0 and 65,535) which uniquely identifies the `RTCDataChannel`.
 
- [`onbufferedamountlow`](rtcdatachannel/onbufferedamountlow) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`onbufferedamountlow`](rtcdatachannel/onbufferedamountlow) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 The `RTCDataChannel.onbufferedamountlow` property is an `EventHandler` which specifies a function the browser calls when the `bufferedamountlow` event is sent to the `RTCDataChannel`. This event, which is represented by a simple `Event` object, is sent when the amount of data buffered to be sent falls to or below the threshold specified by the channel's `RTCDataChannel.bufferedAmountLowThreshold`.
 
- [`onclose`](rtcdatachannel/onclose) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`onclose`](rtcdatachannel/onclose) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 The `RTCDataChannel.onclose` property is an `EventHandler` which specifies a function to be called by the browser when the `close` event is received by the `RTCDataChannel`. This is a simple `Event` which indicates that the data channel has closed down.
 
- [`onclosing`](rtcdatachannel/onclosing) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`onclosing`](rtcdatachannel/onclosing) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 The `RTCDataChannel.onclosing` property is an `EventHandler` which specifies a function to be called by the browser when the `closing` event is received by the `RTCDataChannel`. This is a simple `Event` which indicates that the data channel is being closed, that is, `RTCDataChannel` transitions to "closing" state. For example, after `RTCDataChannel.close` was called but the underlying data transport might not have been closed yet.
 
- [`onerror`](rtcdatachannel/onerror) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`onerror`](rtcdatachannel/onerror) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 The `RTCDataChannel.onerror` property is an `EventHandler` which specifies a function to be called when the `error` event is received. When an error occurs on the data channel, the function receives as input an `ErrorEvent` object describing the error which occurred.
 
- [`onmessage`](rtcdatachannel/onmessage) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`onmessage`](rtcdatachannel/onmessage) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 The `RTCDataChannel.onmessage` property stores an `EventHandler` which specifies a function to be called when the `message` event is fired on the channel. This event is represented by the `MessageEvent` interface. This event is sent to the channel when a message is received from the other peer.
 
- [`onopen`](rtcdatachannel/onopen) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`onopen`](rtcdatachannel/onopen) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 The `RTCDataChannel.onopen` property is an `EventHandler` which specifies a function to be called when the `open` event is fired; this is a simple `Event` which is sent when the data channel's underlying data transport—the link over which the `RTCDataChannel`'s messages flow—is established or re-established.
 
 [`close()`](rtcdatachannel/close)  
@@ -73,8 +71,7 @@ The `RTCDataChannel.close()` method closes the `RTCDataChannel`. Either peer is 
 [`send()`](rtcdatachannel/send)  
 The `send()` method of the `RTCDataChannel` interface sends data across the data channel to the remote peer.
 
-Events
-------
+## Events
 
 [`bufferedamountlow`](rtcdatachannel/bufferedamountlow_event)  
 Sent to the channel's [`onbufferedamountlow`](rtcdatachannel/onbufferedamountlow) event handler when the number of bytes of data in the outgoing data buffer falls below the value specified by [`bufferedAmountLowThreshold`](rtcdatachannel/bufferedamountlowthreshold).
@@ -91,13 +88,11 @@ Sent to the [`onmessage`](rtcdatachannel/onmessage) event handler when a message
 [`open`](rtcdatachannel/open_event)  
 Sent to the [`onopen`](rtcdatachannel/onopen) event handler when the data channel is first opened, or when an existing data channel's underlying connection re-opens.
 
-Data format
------------
+## Data format
 
 The underlying data format is defined by the IEEE draft specification `draft-ietf-mmusic-sctp-sdp`. The current format specifies its protocol as either `"UDP/DTLS/SCTP"` (UDP carrying DTLS carrying SCTP) or `"TCP/DTLS/SCTP"` (TCP carrying DTLS carrying SCTP). Older browsers may only specify `"DTLS/SCTP"`.
 
-Example
--------
+## Example
 
     var pc = new RTCPeerConnection();
     var dc = pc.createDataChannel("my channel");
@@ -114,14 +109,12 @@ Example
       console.log("datachannel close");
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#rtcdatachannel">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCDataChannel' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -937,9 +930,8 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [WebRTC API](https://developer.mozilla.org/en-US/docs/Web/Guide/API/WebRTC_API)
+- [WebRTC API](https://developer.mozilla.org/en-US/docs/Web/Guide/API/WebRTC_API)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel</a>

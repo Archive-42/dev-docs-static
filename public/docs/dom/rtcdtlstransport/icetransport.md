@@ -1,5 +1,4 @@
-RTCDtlsTransport.iceTransport
-=============================
+# RTCDtlsTransport.iceTransport
 
 **Draft**
 
@@ -7,8 +6,7 @@ This page is not complete.
 
 The read-only **[`RTCDtlsTransport`](../rtcdtlstransport)** property `iceTransport` contains a reference to the underlying [`RTCIceTransport`](../rtcicetransport).
 
-Syntax
-------
+## Syntax
 
     var iceTransport = rtcDtlsTransport.iceTransport;
 
@@ -16,19 +14,16 @@ Syntax
 
 The underlying [`RTCIceTransport`](../rtcicetransport) instance.
 
-Examples
---------
+## Examples
 
 TBD
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcdtlstransport-icetransport">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCDtlsTransport.iceTransport' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,10 +83,9 @@ No
 
 11.0
 
-See also
---------
+## See also
 
--   [`RTCDtlsTransport`](../rtcdtlstransport)
--   [`RTCIceTransport`](../rtcicetransport)
+- [`RTCDtlsTransport`](../rtcdtlstransport)
+- [`RTCIceTransport`](../rtcicetransport)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDtlsTransport/iceTransport" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDtlsTransport/iceTransport</a>

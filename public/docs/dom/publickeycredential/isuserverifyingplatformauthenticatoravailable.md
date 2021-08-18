@@ -1,5 +1,4 @@
-PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()
-===================================================================
+# PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()
 
 **Secure context**
 
@@ -9,14 +8,13 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 A user-verifying platform authenticator is a kind of multi-factor authenticator that is part of the client device (it is generally not removable) and that involves an action from the user in order to identify them. Common user-verifying platform authenticators include:
 
--   Touch ID or Face ID (macOS and iOS)
--   Windows Hello (Windows)
--   Device unlock (fingerprint, face, PIN, etc.) on Android
+- Touch ID or Face ID (macOS and iOS)
+- Windows Hello (Windows)
+- Device unlock (fingerprint, face, PIN, etc.) on Android
 
 **Note:** This method may only be used in top-level contexts and will not be available in an [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) for example.
 
-Syntax
-------
+## Syntax
 
     PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()
 
@@ -32,8 +30,7 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 **Note:** In earlier versions of the specification, the boolean also conveyed the consent of the user to disclose such an authenticator existed.
 
-Examples
---------
+## Examples
 
     PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()
       .then(function(available){
@@ -49,14 +46,12 @@ Examples
         console.error(err);
       });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#dom-publickeycredential-isuserverifyingplatformauthenticatoravailable">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'isUserVerifyingPlatformAuthenticatorAvailable' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -116,10 +111,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Windows Hello](https://docs.microsoft.com/en-us/windows-hardware/design/device-experiences/windows-hello)
--   [Web Authentication and Windows Hello - MSDN Guide](https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/windows-integration/web-authentication) and especially the [special considerations mentioning `isUserVerifyingPlatformAuthenticator()`](https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/windows-integration/web-authentication#special-considerations-for-windows-hello)
+- [Windows Hello](https://docs.microsoft.com/en-us/windows-hardware/design/device-experiences/windows-hello)
+- [Web Authentication and Windows Hello - MSDN Guide](https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/windows-integration/web-authentication) and especially the [special considerations mentioning `isUserVerifyingPlatformAuthenticator()`](https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/windows-integration/web-authentication#special-considerations-for-windows-hello)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredential/isUserVerifyingPlatformAuthenticatorAvailable" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredential/isUserVerifyingPlatformAuthenticatorAvailable</a>

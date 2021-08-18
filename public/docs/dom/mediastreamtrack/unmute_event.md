@@ -1,5 +1,4 @@
-MediaStreamTrack: unmute event
-==============================
+# MediaStreamTrack: unmute event
 
 The `unmute` event is sent to a [`MediaStreamTrack`](../mediastreamtrack) when the track's source is once again able to provide media data after a period of not being able to do so. This ends the [`muted`](muted) state that began with the [`mute`](mute_event) event.
 
@@ -7,8 +6,7 @@ The `unmute` event is sent to a [`MediaStreamTrack`](../mediastreamtrack) when t
 
 **Note:** The condition that most people think of as "muted" (that is, a user-controllable way to silence a track) is actually managed using the [`MediaStreamTrack.enabled`](enabled) property, for which there are no events.
 
-Examples
---------
+## Examples
 
 In this example, event handlers are established for the [`mute`](mute_event) and `unmute` events in order to detect when the media is not flowing from the source for the [`MediaStreamTrack`](../mediastreamtrack) stored in the variable `musicTrack`.
 
@@ -32,14 +30,12 @@ You can also use the [`onunmute`](onunmute) event handler property to set up a h
       document.getElementById("timeline-widget").style.backgroundColor = "#fff";
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#event-mediastreamtrack-unmute">Media Capture and Streams<br />
 <span class="small">The definition of 'unmute' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -95,10 +91,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`onunmute`](onunmute) event handler property
--   [`mute`](mute_event) event
+- [`onunmute`](onunmute) event handler property
+- [`mute`](mute_event) event
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/unmute_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/unmute_event</a>

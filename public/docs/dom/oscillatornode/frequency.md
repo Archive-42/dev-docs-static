@@ -1,10 +1,8 @@
-OscillatorNode.frequency
-========================
+# OscillatorNode.frequency
 
 The `frequency` property of the [`OscillatorNode`](../oscillatornode) interface is an [a-rate](../audioparam#a-rate) [`AudioParam`](../audioparam) representing the frequency of oscillation in hertz.
 
-Syntax
-------
+## Syntax
 
     var oscillator = audioCtx.createOscillator();
     oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // value in hertz
@@ -15,8 +13,7 @@ Syntax
 
 An [a-rate](../audioparam#a-rate) [`AudioParam`](../audioparam).
 
-Example
--------
+## Example
 
 The following example shows basic usage of an [`AudioContext`](../audiocontext) to create an oscillator node. For an applied example, check out our [Violent Theremin demo](https://mdn.github.io/violent-theremin/) ([see app.js](https://github.com/mdn/violent-theremin/blob/gh-pages/scripts/app.js) for relevant code).
 
@@ -30,14 +27,12 @@ The following example shows basic usage of an [`AudioContext`](../audiocontext) 
     oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // value in hertz
     oscillator.start();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-oscillatornode-frequency">Web Audio API<br />
 <span class="small">The definition of 'frequency' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -93,9 +88,8 @@ No
 
 1.5
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](../web_audio_api/using_web_audio_api)
+- [Using the Web Audio API](../web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode/frequency" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode/frequency</a>

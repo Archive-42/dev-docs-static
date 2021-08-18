@@ -1,10 +1,8 @@
-PresentationAvailability.onchange
-=================================
+# PresentationAvailability.onchange
 
 The `onchange` attribute is an [event handler](https://www.w3.org/TR/presentation-api/#dfn-event-handler) whose corresponding [event handler event type](https://www.w3.org/TR/presentation-api/#dfn-event-handler-event-type) is `change`.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

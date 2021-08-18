@@ -1,10 +1,8 @@
-PerformanceElementTiming.id
-===========================
+# PerformanceElementTiming.id
 
 The `id` read-only property of the [`PerformanceElementTiming`](../performanceelementtiming) interface returns the [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-id) of the associated element.
 
-Syntax
-------
+## Syntax
 
     var id = PerformanceElementTiming.id;
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Examples
---------
+## Examples
 
 In this example calling `entry.id` will log to the console `myImage`, this being the [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-id) of the image element.
 
@@ -30,14 +27,12 @@ In this example calling `entry.id` will log to the console `myImage`, this being
 
 This example uses the [`PerformanceObserver`](../performanceobserver) interface to create a list of performance measurement events. In our case we observe the [`PerformanceEntry.entrytype`](../performanceentry/entrytype) `element` in order to use the `PerformanceElementTiming` interface.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/element-timing/#dom-performanceelementtiming-id">Element Timing<br />
 <span class="small">The definition of 'PerformanceElementTiming.id' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

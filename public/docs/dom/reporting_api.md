@@ -1,5 +1,4 @@
-Reporting API
-=============
+# Reporting API
 
 **Draft**
 
@@ -12,16 +11,15 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The Reporting API provides a generic reporting mechanism for web applications to use to make reports available based on various platform features (for example [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP), [Feature-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy), or feature deprecation reports) in a consistent manner.
 
-Concepts and usage
-------------------
+## Concepts and usage
 
 There are a number of different features and problems on the web platform that generate information useful to web developers when they are trying to fix bugs or improve their websites in other ways. Such information can include:
 
--   [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) violations.
--   [Feature-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy) violations.
--   Deprecated feature usage (when you are using something that will stop working soon in browsers).
--   Occurrence of crashes.
--   Occurrence of user-agent interventions (when the browser blocks something your code is trying to do because it is deemed a security risk for example, or just plain annoying, like auto-playing audio).
+- [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) violations.
+- [Feature-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy) violations.
+- Deprecated feature usage (when you are using something that will stop working soon in browsers).
+- Occurrence of crashes.
+- Occurrence of user-agent interventions (when the browser blocks something your code is trying to do because it is deemed a security risk for example, or just plain annoying, like auto-playing audio).
 
 The Reporting API's purpose is to provide a consistent reporting mechanism that can be used to make such information available to developers in the form of reports represented by JavaScript objects. There are a few ways to use it, which are detailed in the sections below.
 
@@ -43,8 +41,8 @@ Reports can also be obtained via [`ReportingObserver`](reportingobserver) object
 
 A `ReportingObserver` object is created using the [`ReportingObserver()`](reportingobserver/reportingobserver) constructor, which is passed two parameters:
 
--   A callback function that has available as parameters the reports available in the observer's report queue, and a copy of the same `ReportingObserver` object, so observation can be controlled directly from inside the callback. The callback runs when observation starts
--   An options dictionary that allows you to specify the type of reports to collect, and whether the reports that were generated before the observer was able to be created should be observable (`buffered: true`).
+- A callback function that has available as parameters the reports available in the observer's report queue, and a copy of the same `ReportingObserver` object, so observation can be controlled directly from inside the callback. The callback runs when observation starts
+- An options dictionary that allows you to specify the type of reports to collect, and whether the reports that were generated before the observer was able to be created should be observable (`buffered: true`).
 
 Methods are then available on the observer to start collecting reports ([`ReportingObserver.observe()`](reportingobserver/observe)), retrieve the reports currently in the report queue ([`ReportingObserver.takeRecords()`](reportingobserver/takerecords)), and disconnect the observer so it can no longer collect records ([`ReportingObserver.disconnect()`](reportingobserver/disconnect)).
 
@@ -52,8 +50,7 @@ Methods are then available on the observer to start collecting reports ([`Report
 
 The Reporting API spec also defines a Generate Test Report [WebDriver](https://developer.mozilla.org/en-US/docs/Web/WebDriver) extension, which allows you to simulate report generation during automation. Reports generated via WebDriver are observed by any registered `ReportObserver` objects present in the loaded website. This is not yet documented.
 
-Reporting API interfaces
-------------------------
+## Reporting API interfaces
 
 [`ReportingObserver`](reportingobserver)  
 Create `ReportingObserver` instances using its constructor, which can then be used to collect and access reports.
@@ -79,10 +76,9 @@ Indicates that a request made by the website has been denied by the browser, e.g
 Crash report  
 Indicates that the website stopped running due to a browser crash. Indicated by a [`Report.body`](report/body) property with a [`CrashReportBody`](crashreportbody) return value.
 
-Examples
---------
+## Examples
 
-In our [deprecation\_report.html](https://mdn.github.io/dom-examples/reporting-api/deprecation_report.html) example, we create a simple reporting observer to observe usage of deprecated features on our web page:
+In our [deprecation_report.html](https://mdn.github.io/dom-examples/reporting-api/deprecation_report.html) example, we create a simple reporting observer to observe usage of deprecated features on our web page:
 
     let options = {
       types: ['deprecation'],
@@ -117,23 +113,20 @@ This causes a deprecation report to be generated; because of the event handler w
 
 **Note**: If you look at the [complete source code](https://github.com/mdn/dom-examples/blob/master/reporting-api/deprecation_report.html), you'll notice that we actually call the deprecated `getUserMedia()` method twice. After the first time we call [`ReportingObserver.takeRecords()`](reportingobserver/takerecords), which returns the first generated report and empties the queue. Because of this, when the button is pressed only the second report is listed.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/reporting/#intro">Reporting API spec</a></td><td></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
--   JavaScript API: `dom.reporting.enabled` (enabled in nightly only)
--   HTTP header: `dom.reporting.header.enabled`
+- JavaScript API: `dom.reporting.enabled` (enabled in nightly only)
+- HTTP header: `dom.reporting.header.enabled`
 
 Chrome is also working on an implementation: [information about Chrome implementation](https://developers.google.com/web/updates/2018/09/reportingapi).
 
-See also
---------
+## See also
 
--   [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
--   `Feature-Policy`
+- [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+- `Feature-Policy`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Reporting_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Reporting_API</a>

@@ -1,12 +1,10 @@
-MediaStreamTrack.muted
-======================
+# MediaStreamTrack.muted
 
 The `muted` read-only property of the [`MediaStreamTrack`](../mediastreamtrack) interface returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) value indicating whether or not the track is currently unable to provide media output.
 
 To implement a way for users to mute and unmute a track, use the [`enabled`](enabled) property. When a track is disabled by setting `enabled` to `false`, it generates only empty frames (audio frames in which every sample is 0, or video frames in which every pixel is black).
 
-Syntax
-------
+## Syntax
 
     const mutedFlag = track.muted
 
@@ -16,8 +14,7 @@ A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 When possible, avoid polling `muted` to monitor the track's muting status. Instead, add event listeners for the `mute` and `unmute` events.
 
-Example
--------
+## Example
 
 This example counts the number of tracks in an array of [`MediaStreamTrack`](../mediastreamtrack) objects which are currently muted.
 
@@ -29,14 +26,12 @@ This example counts the number of tracks in an array of [`MediaStreamTrack`](../
       }
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediastreamtrack-muted">Media Capture and Streams<br />
 <span class="small">The definition of 'muted' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

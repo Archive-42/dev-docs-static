@@ -1,5 +1,4 @@
-Permissions.query()
-===================
+# Permissions.query()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `Permissions.query()` method of the [`Permissions`](../permissions) interface returns the state of a user permission on the global scope.
 
-Syntax
-------
+## Syntax
 
     navigator.permissions.query(PermissionDescriptor).then(function(permissionStatus) { ... })
 
@@ -18,9 +16,9 @@ Syntax
 `PermissionDescriptor`  
 An object that sets options for the `query` operation consisting of a comma-separated list of name-value pairs. The available options are:
 
--   `name`: The name of the API whose permissions you want to query. An up-to-date list of permission names can be found in the spec under the [PermissionName enum](https://w3c.github.io/permissions/#enumdef-permissionname), but bear in mind that the actual permissions supported by browsers is currently much smaller than this. Firefox for example currently supports `geolocation`, `notifications`, `push`, and `persistent-storage` (see our [`Permissions.webidl` file](https://dxr.mozilla.org/mozilla-central/source/dom/webidl/Permissions.webidl#10)).
--   `userVisibleOnly`: (Push only, not supported in Firefox — see the Browser Support section below) Indicates whether you want to show a notification for every message or be able to send silent push notifications. The default is `false`.
--   `sysex`: (Midi only) Indicates whether you need and/or receive system exclusive messages. The default is `false`.
+- `name`: The name of the API whose permissions you want to query. An up-to-date list of permission names can be found in the spec under the [PermissionName enum](https://w3c.github.io/permissions/#enumdef-permissionname), but bear in mind that the actual permissions supported by browsers is currently much smaller than this. Firefox for example currently supports `geolocation`, `notifications`, `push`, and `persistent-storage` (see our [`Permissions.webidl` file](https://dxr.mozilla.org/mozilla-central/source/dom/webidl/Permissions.webidl#10)).
+- `userVisibleOnly`: (Push only, not supported in Firefox — see the Browser Support section below) Indicates whether you want to show a notification for every message or be able to send silent push notifications. The default is `false`.
+- `sysex`: (Midi only) Indicates whether you need and/or receive system exclusive messages. The default is `false`.
 
 **Note**: As of Firefox 44, the permissions for [Notifications](../notifications_api) and [Push](../push_api) have been merged. If permission is granted (e.g. by the user, in the relevant permissions dialog), `navigator.permissions.query()` will return `true` for both `notifications` and `push`.
 
@@ -34,8 +32,7 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 <table><thead><tr class="header"><th>Exception</th><th>Explanation</th></tr></thead><tbody><tr class="odd"><td><code>TypeError</code></td><td>Retrieving the <code>PermissionDescriptor</code> information failed in some way, or the permission doesn't exist or is currently unsupported (e.g. <code>midi</code>, or <code>push</code> with <code>userVisibleOnly</code>).</td></tr></tbody></table>
 
-Example
--------
+## Example
 
     navigator.permissions.query({name:'geolocation'}).then(function(result) {
      if (result.state == 'granted') {
@@ -46,14 +43,12 @@ Example
      // Don't do anything if the permission was denied.
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/permissions/#dom-permissions-query">Permissions<br />
 <span class="small">The definition of 'query()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

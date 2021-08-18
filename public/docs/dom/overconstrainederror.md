@@ -1,5 +1,4 @@
-OverconstrainedError
-====================
+# OverconstrainedError
 
 **Secure context**
 
@@ -12,37 +11,32 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `OverconstrainedError` interface of the [Media Capture and Streams API](media_streams_api) indicates that the set of desired capabilities for the current [`MediaStreamTrack`](mediastreamtrack) cannot currently be met. When this event is thrown on a MediaStreamTrack, it is muted until either the current constraints can be established or until satisfiable constraints are applied.
 
-Constructor
------------
+## Constructor
 
 [`OverconstrainedError.OverconstrainedError()`](overconstrainederror/overconstrainederror)  
 Creates a new `OverconstrainedError` object.
 
-Properties
-----------
+## Properties
 
- [`OverconstrainedError.constraint`](overconstrainederror/constraint) <span class="badge inline readonly">Read only </span>   
+[`OverconstrainedError.constraint`](overconstrainederror/constraint) <span class="badge inline readonly">Read only </span>  
 Returns the constraint that was supplied in the constructor, meaning the constraint that was not satisfied.
 
- [`DOMException.message`](domexception/message) <span class="badge inline readonly">Read only </span>   
+[`DOMException.message`](domexception/message) <span class="badge inline readonly">Read only </span>  
 Returns the text supplied in the constructor.
 
- [`DOMException.name`](domexception/name) <span class="badge inline readonly">Read only </span>   
+[`DOMException.name`](domexception/name) <span class="badge inline readonly">Read only </span>  
 Will always return `OverconstrainedError`.
 
-Methods
--------
+## Methods
 
 None.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#overconstrainederror-interface">Media Capture and Streams<br />
 <span class="small">The definition of 'OverconstrainedError' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

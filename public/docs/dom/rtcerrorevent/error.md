@@ -1,10 +1,8 @@
-RTCErrorEvent.error
-===================
+# RTCErrorEvent.error
 
 The read-only [`RTCErrorEvent`](../rtcerrorevent) property `error` contains an [`RTCError`](../rtcerror) object describing the details of the error which the event is announcing.
 
-Syntax
-------
+## Syntax
 
     let errorInfo = rtcErrorEvent.error;
 
@@ -14,8 +12,7 @@ An [`RTCError`](../rtcerror) object whose properties provide details about the e
 
 {{page("/en-US/docs/Web/API/RTCError", "property-list")}}
 
-Examples
---------
+## Examples
 
 In this example, a handler is established for an [`RTCDataChannel`](../rtcdatachannel)'s [`error`](../rtcdatachannel/error_event) event.
 
@@ -45,14 +42,12 @@ The above example uses [`addEventListener()`](../eventtarget/addeventlistener) t
       /* and so forth */
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcerrorevent-error">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCErrorEvent.error' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

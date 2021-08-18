@@ -1,5 +1,4 @@
-PushManager.getSubscription()
-=============================
+# PushManager.getSubscription()
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `PushManager.getSubscription()` method of the [`PushManager`](../pushmanager
 
 It returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to a [`PushSubscription`](../pushsubscription) object containing details of an existing subscription. If no existing subscription exists, this resolves to a `null` value.
 
-Syntax
-------
+## Syntax
 
     PushManager.getSubscription().then(function(pushSubscription) { ... } );
 
@@ -23,8 +21,7 @@ None.
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to a [`PushSubscription`](../pushsubscription) object or `null`.
 
-Example
--------
+## Example
 
 This code snippet is taken from a [push messaging and notification sample](https://github.com/GoogleChrome/samples/blob/gh-pages/push-messaging-and-notifications). (No live demo is available.)
 
@@ -59,14 +56,12 @@ This code snippet is taken from a [push messaging and notification sample](https
           });
       });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/#dom-pushmanager-getsubscription">Push API<br />
 <span class="small">The definition of 'getSubscription()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

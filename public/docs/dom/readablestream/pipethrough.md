@@ -1,5 +1,4 @@
-ReadableStream.pipeThrough()
-============================
+# ReadableStream.pipeThrough()
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `pipeThrough()` method of the [`ReadableStream`](../readablestream) interfac
 
 Piping a stream will generally lock it for the duration of the pipe, preventing other readers from locking it.
 
-Syntax
-------
+## Syntax
 
     pipeThrough(transformStream);
     pipeThrough(transformStream, options);
@@ -21,7 +19,7 @@ Syntax
 transformStream  
 A [`TransformStream`](../transformstream) (or an object with the structure `{writable, readable}`) consisting of a readable stream and a writable stream working together to transform some data from one form to another. Data writen to the `writable` stream can be read in some transformed state by the `readable` stream. For example, a [`TextDecoder`](../textdecoder), has bytes written to it and strings read from it, while a video decoder has encoded bytes written to it and uncompressed video frames read from it.
 
-options <span class="badge inline optional">Optional</span>   
+options <span class="badge inline optional">Optional</span>  
 The options that should be used when piping to the `writable` stream. Available options are:
 
 1.  `preventClose`: If this is set to `true`, the source `ReadableStream` closing will no longer cause the destination `WritableStream` to be closed. The method will return a fulfilled promise once this process completes, unless an error is encountered while closing the destination in which case it will be rejected with that error.
@@ -38,8 +36,7 @@ The `readable` side of the `transformStream`.
 TypeError  
 The `writable` and/or `readable` property of `transformStream` are undefined.
 
-Examples
---------
+## Examples
 
 In the following example (see [Unpack chunks of a PNG](https://mdn.github.io/dom-examples/streams/png-transform-stream/) for the full code running live, and [png-transform-stream](https://github.com/mdn/dom-examples/tree/master/streams/png-transform-stream) for the source code), an image is fetched and its body retrieved as a [`ReadableStream`](../readablestream). Next, we log the contents of the readable stream, use `pipeThrough()` to send it to a new function that creates a gray-scaled version of the stream, then log the new stream's contents too.
 
@@ -52,14 +49,12 @@ In the following example (see [Unpack chunks of a PNG](https://mdn.github.io/dom
     .then(body => body.pipeThrough(new PNGTransformStream()))
     .then(rs => logReadableStream('PNG Chunk Stream', rs))
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://streams.spec.whatwg.org/#rs-pipe-through">Streams<br />
 <span class="small">The definition of 'pipeThrough()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,22 +1,18 @@
-ReadableStream
-==============
+# ReadableStream
 
 The `ReadableStream` interface of the [Streams API](streams_api) represents a readable stream of byte data. The [Fetch API](fetch_api) offers a concrete instance of a `ReadableStream` through the [`body`](body/body) property of a [`Response`](response) object.
 
-Constructor
------------
+## Constructor
 
 [`ReadableStream()`](readablestream/readablestream)  
 Creates and returns a readable stream object from the given handlers.
 
-Properties
-----------
+## Properties
 
- [`ReadableStream.locked`](readablestream/locked) <span class="badge inline readonly">Read only </span>   
+[`ReadableStream.locked`](readablestream/locked) <span class="badge inline readonly">Read only </span>  
 The `locked` getter returns whether or not the readable stream is <a href="https://streams.spec.whatwg.org/#locked-to-a-reader" id="ref-for-locked-to-a-reader②">locked to a reader</a>.
 
-Methods
--------
+## Methods
 
 [`ReadableStream.cancel()`](readablestream/cancel)  
 Returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves when the stream is canceled. Calling this method signals a loss of interest in the stream by a consumer. The supplied `reason` argument will be given to the underlying source, which may or may not use it.
@@ -33,8 +29,7 @@ Pipes the current ReadableStream to a given [`WritableStream`](writablestream) a
 [`ReadableStream.tee()`](readablestream/tee)  
 The `tee` method <a href="https://streams.spec.whatwg.org/#tee-a-readable-stream" id="ref-for-tee-a-readable-stream②">tees</a> this readable stream, returning a two-element array containing the two resulting branches as new [`ReadableStream`](readablestream) instances. Each of those streams receives the same incoming data.
 
-Examples
---------
+## Examples
 
 ### Fetch stream
 
@@ -100,14 +95,12 @@ Converting an [(async) iterator](https://developer.mozilla.org/en-US/docs/Web/Ja
 
 This works with both async and non-async iterators.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://streams.spec.whatwg.org/#rs-class">Streams<br />
 <span class="small">The definition of 'ReadableStream' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -345,9 +338,8 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [WHATWG Stream Visualiser](https://whatwg-stream-visualizer.glitch.me/), for a basic visualisation of readable, writable, and transform streams.
+- [WHATWG Stream Visualiser](https://whatwg-stream-visualizer.glitch.me/), for a basic visualisation of readable, writable, and transform streams.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream</a>

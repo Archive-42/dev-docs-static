@@ -1,10 +1,8 @@
-RTCIceCandidateType
-===================
+# RTCIceCandidateType
 
 The [WebRTC API's](webrtc_api) `RTCIceCandidateType` enumerated type provides a set of [`DOMString`](domstring) values representing the types of [ICE](https://developer.mozilla.org/en-US/docs/Glossary/ICE) candidate that can arrive. These strings are taken directly from the `candidate` a-line in [SDP](https://developer.mozilla.org/en-US/docs/Glossary/SDP).
 
-Values
-------
+## Values
 
 These candidate types are listed in order of priority; the higher in the list they are, the more efficient they are.
 
@@ -20,19 +18,16 @@ The candidate is a peer reflexive candidate; the `ip` is an intermediary address
 `relay`  
 The candidate is a relay candidate, obtained from a [TURN](https://developer.mozilla.org/en-US/docs/Glossary/TURN) server. The relay candidate's IP address is an address the TURN server uses to forward the media between the two peers.
 
-Usage notes
------------
+## Usage notes
 
 The `RTCIceCandidateType` enumeration is used by the [`type`](rtcicecandidate/type) property of [`RTCIceCandidate`](rtcicecandidate) objects, as well as when reporting statistics on candidates using [`RTCIceCandidateStats.candidateType`](rtcicecandidatestats/candidatetype).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicecandidatetype">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceCandidateType' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-PositionSensorVRDevice
-======================
+# PositionSensorVRDevice
 
 **Deprecated**
 
@@ -12,8 +11,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `PositionSensorVRDevice` interface of the [WebVR API](webvr_api) represents VR hardware's position sensor. You can access information such as the current position and orientation of the sensor in relation to the head mounted display through the [`PositionSensorVRDevice.getState()`](positionsensorvrdevice/getstate) method.
 
-Methods
--------
+## Methods
 
 [`PositionSensorVRDevice.getState()`](positionsensorvrdevice/getstate)  
 Returns the current state of the position sensor for the current frame (e.g. within the current [`window.requestAnimationFrame`](window/requestanimationframe) callback) or for the previous frame, contained with a [`VRPose`](vrpose) object. This is the method you'd normally want to use, versus `getImmediateState()`.
@@ -24,22 +22,20 @@ Returns the current instantaneous position sensor state. This is intended to onl
 [`PositionSensorVRDevice.resetSensor()`](positionsensorvrdevice/resetsensor)  
 Can be used to reset the sensor if desired, returning the position and orientation values to zero.
 
-Properties
-----------
+## Properties
 
-*This interface doesn't define any properties of its own, but it does inherit the properties of its parent interface, [`VRDisplay`](vrdisplay).*
+_This interface doesn't define any properties of its own, but it does inherit the properties of its parent interface, [`VRDisplay`](vrdisplay)._
 
- [`VRDisplay.hardwareUnitId`](vrdisplay/hardwareunitid) <span class="badge inline readonly">Read only </span>   
+[`VRDisplay.hardwareUnitId`](vrdisplay/hardwareunitid) <span class="badge inline readonly">Read only </span>  
 Returns the distinct hardware ID for the overall hardware unit that this `VRDevice` is a part of. All devices that are part of the same physical piece of hardware will have the same `hardwareUnitId`.
 
- [`VRDisplay.displayId`](vrdisplay/displayid) <span class="badge inline readonly">Read only </span>   
+[`VRDisplay.displayId`](vrdisplay/displayid) <span class="badge inline readonly">Read only </span>  
 Returns the ID for this specific `VRDevice`. The ID shouldn’t change across browser restarts, allowing configuration data to be saved based on it.
 
- [`VRDisplay.displayName`](vrdisplay/displayname) <span class="badge inline readonly">Read only </span>   
+[`VRDisplay.displayName`](vrdisplay/displayname) <span class="badge inline readonly">Read only </span>  
 A human-readable name to identify the `VRDevice`.
 
-Examples
---------
+## Examples
 
 The following example is taken from our [positionsensorvrdevice](https://mdn.github.io/webvr-tests/positionsensorvrdevice/) demo, which uses the WebVR API to update the view of a simple [`2D canvas`](canvasrenderingcontext2d) scene on each frame of a [`requestAnimationFrame`](window/requestanimationframe) loop.
 
@@ -71,10 +67,9 @@ The following example is taken from our [positionsensorvrdevice](https://mdn.git
 
 Here we are grabbing a [`VRPose`](vrpose) object using [`PositionSensorVRDevice.getState()`](positionsensorvrdevice/getstate) and storing it in `posState`. We then check to make sure that position and orientation info is present in the current frame using [`VRPose.hasPosition`](vrpose/hasposition) and [`VRPose.hasOrientation`](vrpose/hasorientation) (these return `null` if, for example the head mounted display is turned off or not pointing at the position sensor, which would cause an error.)
 
-We then output the x, y and z position and orientation values for informational purposes, and use those values to update the `xPos`, `yPos`, `zPos, ``xOrient`, `yOrient`, and `zOrient` variables, which are used to update the scene rendering on each frame.
+We then output the x, y and z position and orientation values for informational purposes, and use those values to update the `xPos`, `yPos`, ` zPos, ``xOrient `, `yOrient`, and `zOrient` variables, which are used to update the scene rendering on each frame.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -256,10 +251,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [WebVR API homepage](webvr_api).
--   <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
+- [WebVR API homepage](webvr_api).
+- <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PositionSensorVRDevice" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PositionSensorVRDevice</a>

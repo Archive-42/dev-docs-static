@@ -1,10 +1,8 @@
-Navigator.sendBeacon()
-======================
+# Navigator.sendBeacon()
 
 The `navigator.sendBeacon()` method [asynchronously](https://developer.mozilla.org/en-US/docs/Glossary/Asynchronous) sends a small amount of data over [HTTP](https://developer.mozilla.org/en-US/docs/Glossary/HTTP) to a web server. It’s intended to be used for sending analytics data to a web server, and avoids some of the problems with legacy techniques for sending analytics, such as the use of [`XMLHttpRequest`](../xmlhttprequest).
 
-Syntax
-------
+## Syntax
 
     navigator.sendBeacon(url);
     navigator.sendBeacon(url, data);
@@ -14,15 +12,14 @@ Syntax
 `url`  
 The URL that will receive the data. Can be relative or absolute.
 
- `data` <span class="badge inline optional">Optional</span>   
+`data` <span class="badge inline optional">Optional</span>  
 A [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer), [`ArrayBufferView`](../arraybufferview), [`Blob`](../blob), [`DOMString`](../domstring), [`FormData`](../formdata), or [`URLSearchParams`](../urlsearchparams) object containing the data to send.
 
 ### Return values
 
 The `sendBeacon()` method returns `true` if the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) successfully queued the `data` for transfer. Otherwise, it returns `false`.
 
-Description
------------
+## Description
 
 This method is intended for analytics and diagnostics code to send data to a server.
 
@@ -30,17 +27,17 @@ A problem with sending analytics is that a site often wants to send analytics wh
 
 In the past, web pages have tried to delay page unload long enough to send data. To do this they have used workarounds such as:
 
--   Submitting the data with a blocking synchronous `XMLHttpRequest` call.
--   Creating an [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element and setting its `src`. Most user agents will delay the unload to load the image.
--   Creating a no-op loop for several seconds.
+- Submitting the data with a blocking synchronous `XMLHttpRequest` call.
+- Creating an [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element and setting its `src`. Most user agents will delay the unload to load the image.
+- Creating a no-op loop for several seconds.
 
 All these methods block unloading the document, which slows down navigation to the next page. There's nothing the next page can do to avoid this, so the new page seems slow, even though it's the fault of the previous page.
 
 With the `sendBeacon()` method, the data is transmitted asynchronously when the user agent has an opportunity to do so, without delaying unload or the next navigation. This means:
 
--   The data is sent reliably
--   It's sent asynchronously
--   It doesn't impact the loading of the next page
+- The data is sent reliably
+- It's sent asynchronously
+- It doesn't impact the loading of the next page
 
 ### Sending analytics at the end of a session
 
@@ -68,8 +65,7 @@ Firefox will also exclude pages from the bfcache if they contain `beforeunload` 
 
 To support browsers which don't implement `visibilitychange`, use the [`pagehide`](../window/pagehide_event) event. Like `beforeunload` and `unload`, this event is not reliably fired, especially on mobile. However, it is compatible with the bfcache.
 
-Examples
---------
+## Examples
 
 The following example specifies a handler for the `visibilitychange` event. The handler calls `sendBeacon()` to send analytics.
 
@@ -79,14 +75,12 @@ The following example specifies a handler for the `visibilitychange` event. The 
       }
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/beacon/#sendbeacon-method">Beacon<br />
 <span class="small">The definition of 'sendBeacon()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -154,14 +148,13 @@ Starting in Opera 46, this method cannot send a `Blob` whose type is not CORS sa
 
 Starting in Samsung Internet 7.0, this method cannot send a `Blob` whose type is not CORS safelisted. This is a temporary change until a mitigation can be found for the security issues that this creates. For more information see [Chrome bug 720283](https://crbug.com/720283).
 
-See also
---------
+## See also
 
--   The [`visibilitychange`](../document/visibilitychange_event) event.
--   [Beacon API](../beacon_api) overview page.
--   [Don't lose user and app state, use Page Visibility](https://www.igvita.com/2015/11/20/dont-lose-user-and-app-state-use-page-visibility/) explains in detail why you should use `visibilitychange`, not `beforeunload`/`unload`.
--   [Page Lifecycle API](https://developers.google.com/web/updates/2018/07/page-lifecycle-api#developer-recommendations-for-each-state) gives best-practices guidance on handling page lifecyle behavior in your web applications.
--   [PageLifecycle.js](https://github.com/GoogleChromeLabs/page-lifecycle): a JavaScript library that deals with cross-browser inconsistencies in page lifecyle behavior.
--   [Back/forward cache](https://web.dev/bfcache/) explains what the back/forward cache is, and its implications for various page lifecycle events.
+- The [`visibilitychange`](../document/visibilitychange_event) event.
+- [Beacon API](../beacon_api) overview page.
+- [Don't lose user and app state, use Page Visibility](https://www.igvita.com/2015/11/20/dont-lose-user-and-app-state-use-page-visibility/) explains in detail why you should use `visibilitychange`, not `beforeunload`/`unload`.
+- [Page Lifecycle API](https://developers.google.com/web/updates/2018/07/page-lifecycle-api#developer-recommendations-for-each-state) gives best-practices guidance on handling page lifecyle behavior in your web applications.
+- [PageLifecycle.js](https://github.com/GoogleChromeLabs/page-lifecycle): a JavaScript library that deals with cross-browser inconsistencies in page lifecyle behavior.
+- [Back/forward cache](https://web.dev/bfcache/) explains what the back/forward cache is, and its implications for various page lifecycle events.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon</a>

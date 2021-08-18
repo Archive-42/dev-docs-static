@@ -1,5 +1,4 @@
-RTCDataChannel.onbufferedamountlow
-==================================
+# RTCDataChannel.onbufferedamountlow
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `RTCDataChannel.onbufferedamountlow` property is an [`EventHandler`](https:/
 
 See [Buffering](../webrtc_api/using_data_channels#buffering) in [Using WebRTC data channels](../webrtc_api/using_data_channels) to learn more about how to work with the data channel buffer.
 
-Syntax
-------
+## Syntax
 
     RTCDataChannel.onbufferedamountlow = function;
 
@@ -19,8 +17,7 @@ Syntax
 
 A function which the browser will call to handle the `bufferedamountlow` event. This function receives as its only input parameter a simple [`Event`](../event) object representing the event which has occurred.
 
-Example
--------
+## Example
 
 This example responds to the `bufferedamountlow` event by fetching up to 64kB of a file represented by an object `source` and calling [`RTCDataChannel.send()`](send) to queue up the retrieved data for sending on the data channel.
 
@@ -35,14 +32,12 @@ This example responds to the `bufferedamountlow` event by fetching up to 64kB of
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcdatachannel-onbufferedamountlow">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCDataChannel.onbufferedamountlow' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

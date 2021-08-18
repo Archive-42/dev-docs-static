@@ -1,5 +1,4 @@
-NavigatorPlugins.mimeTypes
-==========================
+# NavigatorPlugins.mimeTypes
 
 **Deprecated**
 
@@ -9,15 +8,13 @@ Returns a [`MimeTypeArray`](../mimetypearray) object, which contains a list of [
 
 **Note**: Named properties of [`MimeTypeArray`](../mimetypearray) objects are no longer enumerable in the latest browser versions.
 
-Syntax
-------
+## Syntax
 
     var mimeTypes[] = navigator.mimeTypes;
 
 `mimeTypes` is a `MimeTypeArray` object which has a `length` property as well as `item(index)` and `namedItem(name)` methods.
 
-Example
--------
+## Example
 
     function isJavaPresent() {
       return 'application/x-java-applet' in navigator.mimeTypes;
@@ -32,14 +29,12 @@ Example
       return mimetype.enabledPlugin.description;
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-mimetypes">HTML Living Standard<br />
 <span class="small">The definition of 'NavigatorPlugins.mimeTypes' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

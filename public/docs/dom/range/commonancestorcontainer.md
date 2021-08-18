@@ -1,5 +1,4 @@
-Range.commonAncestorContainer
-=============================
+# Range.commonAncestorContainer
 
 The `Range.commonAncestorContainer` read-only property returns the deepest — or furthest down the document tree — [`Node`](../node) that contains both [boundary points](https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level-2-Range-Position-h3) of the [`Range`](../range). This means that if [`Range.startContainer`](startcontainer) and [`Range.endContainer`](endcontainer) both refer to the same node, this node is the **common ancestor container**.
 
@@ -7,13 +6,11 @@ Since a `Range` need not be continuous, and may also partially select nodes, thi
 
 This property is read-only. To change the ancestor container of a `Node`, consider using the various methods available to set the start and end positions of the `Range`, such as [`Range.setStart()`](setstart) and [`Range.setEnd()`](setend).
 
-Syntax
-------
+## Syntax
 
     rangeAncestor = range.commonAncestorContainer;
 
-Example
--------
+## Example
 
 In this example, we create an event listener to handle `pointerup` events on a list. The listener gets the common ancestors of each piece of selected text, and triggers an animation to highlight them.
 
@@ -78,15 +75,13 @@ The `.highlight` class created below uses a set of CSS [`@keyframes`](https://de
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-range-commonancestorcontainer">DOM<br />
 <span class="small">The definition of 'Range.commonAncestorContainer' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level-2-Range-attr-commonParent">Document Object Model (DOM) Level 2 Traversal and Range Specification<br />
 <span class="small">The definition of 'Range.commonAncestorContainer' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -142,9 +137,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [The DOM interfaces index](../document_object_model)
+- [The DOM interfaces index](../document_object_model)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range/commonAncestorContainer" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Range/commonAncestorContainer</a>

@@ -1,5 +1,4 @@
-Range.setStart()
-================
+# Range.setStart()
 
 The `Range.setStart()` method sets the start position of a [`Range`](../range).
 
@@ -7,21 +6,19 @@ If the `startNode` is a [`Node`](../node) of type [`Text`](../text), [`Comment`]
 
 Setting the start point below (lower in the document) the end point will result in a collapsed range with the start and end points both set to the specified start position.
 
-Syntax
-------
+## Syntax
 
     range.setStart(startNode, startOffset);
 
 ### Parameters
 
-*startNode*  
+_startNode_  
 The [`Node`](../node) where the [`Range`](../range) should start.
 
-*startOffset*  
+_startOffset_  
 An integer greater than or equal to zero representing the offset for the start of the [`Range`](../range) from the start of `startNode`.
 
-Examples
---------
+## Examples
 
 ### Highlight part of an element
 
@@ -85,15 +82,13 @@ This example uses the `Range.setStart()` and [`Range.setEnd()`](setend) methods 
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-range-setstart">DOM<br />
 <span class="small">The definition of 'Range.setStart()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level2-Range-method-setStart">Document Object Model (DOM) Level 2 Traversal and Range Specification<br />
 <span class="small">The definition of 'Range.setStart()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -149,9 +144,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [The DOM interfaces index](../document_object_model)
+- [The DOM interfaces index](../document_object_model)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range/setStart" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Range/setStart</a>

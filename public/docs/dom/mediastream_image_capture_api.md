@@ -1,5 +1,4 @@
-MediaStream Image Capture API
-=============================
+# MediaStream Image Capture API
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The **MediaStream Image Capture API** is an API for capturing images or videos from a photographic device. In addition to capturing data, it also allows you to retrieve information about device capabilities such as image size, red-eye reduction and whether or not there is a flash and what they are currently set to. Conversely, the API allows the capabilities to be configured within the constraints what the device allows.
 
-MediaStream image capture concepts and usage
---------------------------------------------
+## MediaStream image capture concepts and usage
 
 The process of retrieving an image or video stream happens as described below. The example code is adapted from [Chrome's Image Capture examples](https://googlechrome.github.io/samples/image-capture/).
 
@@ -38,8 +36,7 @@ Finally, pass the `MediaStreamTrack` object to the [`ImageCapture()`](imagecaptu
 
     let imageCapture = new ImageCapture(track);
 
-Interfaces
-----------
+## Interfaces
 
 [`ImageCapture`](imagecapture)  
 An interface for capturing images from a photographic device referenced through a valid [`MediaStreamTrack`](mediastreamtrack).
@@ -47,13 +44,11 @@ An interface for capturing images from a photographic device referenced through 
 [`PhotoCapabilities`](photocapabilities)  
 Provides available configuration options for an attached photographic device. Retrieve a `PhotoCapabilities` object by calling [`ImageCapture.getPhotoCapabilities()`](imagecapture/getphotocapabilities).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-image/">MediaStream Image Capture</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -481,10 +476,9 @@ BCD tables only load in the browser
 
 BCD tables only load in the browser
 
-See also
---------
+## See also
 
--   [`MediaStream`](mediastream)
--   [`MediaStreamTrack`](mediastreamtrack)
+- [`MediaStream`](mediastream)
+- [`MediaStreamTrack`](mediastreamtrack)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Image_Capture_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Image_Capture_API</a>

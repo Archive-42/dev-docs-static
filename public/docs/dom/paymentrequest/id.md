@@ -1,5 +1,4 @@
-PaymentRequest.prototype.id
-===========================
+# PaymentRequest.prototype.id
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `id` read-only attribute of the [`PaymentRequest`](../paymentrequest) interf
 
 When constructing an instance of the [`PaymentRequest`](../paymentrequest), you are able to supply an custom id via <span class="page-not-created">`PaymentDetailsInit`</span> dictionary's `id` member. If none is provided, the browser automatically sets the id value to a UUID.
 
-Example
--------
+## Example
 
 This example shows how to give a [`PaymentRequest`](../paymentrequest) instance a custom id.
 
@@ -34,8 +32,7 @@ The `id` is then also available in the [`PaymentResponse`](../paymentresponse) r
     const json = response.toJSON();
     console.log(json.requestId,response.requestId, request.id);
 
-Syntax
-------
+## Syntax
 
     var id = paymentRequest.id
 
@@ -43,14 +40,12 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-paymentrequest-id">Payment Request API<br />
 <span class="small">The definition of 'id' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

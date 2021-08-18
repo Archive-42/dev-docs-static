@@ -1,10 +1,8 @@
-RTCIceCandidateStats.candidateType
-==================================
+# RTCIceCandidateStats.candidateType
 
 The [`RTCIceCandidateStats`](../rtcicecandidatestats) interface's `candidateType` property is a string which indicates the type of [ICE](https://developer.mozilla.org/en-US/docs/Glossary/ICE) candidate the object represents.
 
-Syntax
-------
+## Syntax
 
     candidateType = rtcIceCandidateStats.candidateType;
 
@@ -24,14 +22,12 @@ The candidate is a peer reflexive candidate; the `ip` is an intermediary address
 `relay`  
 The candidate is a relay candidate, obtained from a [TURN](https://developer.mozilla.org/en-US/docs/Glossary/TURN) server. The relay candidate's IP address is an address the TURN server uses to forward the media between the two peers.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcicecandidatestats">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCIceCandidateStats.candidateType' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

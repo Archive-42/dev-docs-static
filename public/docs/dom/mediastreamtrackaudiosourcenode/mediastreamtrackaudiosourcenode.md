@@ -1,12 +1,10 @@
-MediaStreamTrackAudioSourceNode()
-=================================
+# MediaStreamTrackAudioSourceNode()
 
 The [Web Audio API](../web_audio_api)'s `MediaStreamTrackAudioSourceNode()` constructor creates and returns a new [`MediaStreamTrackAudioSourceNode`](../mediastreamtrackaudiosourcenode) object whose audio is taken from the [`MediaStreamTrack`](../mediastreamtrack) specified in the given options object.
 
 Another way to create a `MediaStreamTrackAudioSourceNode` is to call the[`AudioContext.createMediaStreamTrackSource()`](../audiocontext/createmediastreamtracksource) method, specifying the [`MediaStreamTrack`](../mediastreamtrack) from which you want to obtain audio.
 
-Syntax
-------
+## Syntax
 
     audioTrackNode = new MediaStreamTrackAudioSourceNode(context, options);
 
@@ -33,8 +31,7 @@ The specified `context` is not an [`AudioContext`](../audiocontext).
 `InvalidStateError`  
 The specified [`MediaStreamTrack`](../mediastreamtrack) isn't an audio track (that is, its [`kind`](../mediastreamtrack/kind) property isn't `audio`.
 
-Example
--------
+## Example
 
 This example uses [`getUserMedia()`](../mediadevices/getusermedia) to obtain access to the user's camera, then creates a new [`MediaStreamAudioSourceNode`](../mediastreamaudiosourcenode) from the first audio track provided by the device.
 
@@ -59,14 +56,12 @@ This example uses [`getUserMedia()`](../mediadevices/getusermedia) to obtain acc
       console.log('new getUserMedia not supported on your browser!');
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-mediastreamtrackaudiosourcenode-mediastreamtrackaudiosourcenode">Web Audio API<br />
 <span class="small">The definition of 'MediaStreamTrackAudioSourceNode()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

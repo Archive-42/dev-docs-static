@@ -1,32 +1,27 @@
-OrientationSensor
-=================
+# OrientationSensor
 
 The `OrientationSensor` interface of the [Sensor APIs](sensor_apis) is the base class for orientation sensors. This interface cannot be used directly. Instead it provides properties and methods accessed by interfaces that inherit from it.
 
 If a feature policy blocks use of a feature it is because your code is inconsistent with the policies set on your server. This is not something that would ever be shown to a user. See [`Feature-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy) for implementation instructions.
 
-Interfaces based on OrientationSensor
--------------------------------------
+## Interfaces based on OrientationSensor
 
 Below is a list of interfaces based on the OrientationSensor interface.
 
--   [`AbsoluteOrientationSensor`](absoluteorientationsensor)
--   [`RelativeOrientationSensor`](relativeorientationsensor)
+- [`AbsoluteOrientationSensor`](absoluteorientationsensor)
+- [`RelativeOrientationSensor`](relativeorientationsensor)
 
-Properties
-----------
+## Properties
 
 [`OrientationSensor.quaternion`](orientationsensor/quaternion)  
 Returns a four element [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) whose elements contain the components of the unit quaternion representing the device's orientation.
 
-Methods
--------
+## Methods
 
 [`OrientationSensor.populateMatrix()`](orientationsensor/populatematrix)  
 Populates the given object with the rotation matrix based on the latest sensor reading. The rotation maxtrix is shown below.
 
-Examples
---------
+## Examples
 
 ### Basic Example
 
@@ -63,14 +58,12 @@ Using orientation sensors requires requsting permissions for multiple device sen
              }
        });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/orientation-sensor/#orientationsensor-interface">Orientation Sensor<br />
 <span class="small">The definition of 'OrientationSensor' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

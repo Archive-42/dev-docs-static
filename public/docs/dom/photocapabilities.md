@@ -1,25 +1,22 @@
-PhotoCapabilities
-=================
+# PhotoCapabilities
 
 The `PhotoCapabilities` interface of the [MediaStream Image Capture API](mediastream_image_capture_api) provides available configuration options for an attached photographic device. A `PhotoCapabilities` object is retrieved by calling [`ImageCapture.getPhotoCapabilities()`](imagecapture/getphotocapabilities).
 
-Properties
-----------
+## Properties
 
- [`PhotoCapabilities.redEyeReduction`](photocapabilities/redeyereduction) <span class="badge inline readonly">Read only </span>   
+[`PhotoCapabilities.redEyeReduction`](photocapabilities/redeyereduction) <span class="badge inline readonly">Read only </span>  
 Returns one of `"never"`, `"always"`, or `"controllable"`. The `"controllable"` value means the device's red-eye reduction is controllable by the user.
 
- [`PhotoCapabilities.imageHeight`](photocapabilities/imageheight) <span class="badge inline readonly">Read only </span>   
+[`PhotoCapabilities.imageHeight`](photocapabilities/imageheight) <span class="badge inline readonly">Read only </span>  
 Returns a [`MediaSettingsRange`](mediasettingsrange) object indicating the image height range supported by the user agent.
 
- [`PhotoCapabilities.imageWidth`](photocapabilities/imagewidth) <span class="badge inline readonly">Read only </span>   
+[`PhotoCapabilities.imageWidth`](photocapabilities/imagewidth) <span class="badge inline readonly">Read only </span>  
 Returns a [`MediaSettingsRange`](mediasettingsrange) object indicating the image width range supported by the user agent.
 
- [`PhotoCapabilities.fillLightMode`](photocapabilities/filllightmode) <span class="badge inline readonly">Read only </span>   
+[`PhotoCapabilities.fillLightMode`](photocapabilities/filllightmode) <span class="badge inline readonly">Read only </span>  
 Returns an array of available fill light options. Options may include `auto`, `off`, or `flash`.
 
-Example
--------
+## Example
 
 The following example, extracted from [Chrome's Image Capture / Photo Resolution Sample](https://googlechrome.github.io/samples/image-capture/photo-resolution.html), uses the results from [`getPhotoCapabilities()`](imagecapture/getphotocapabilities) to modify the size of an input range. This example also shows how the [`ImageCapture`](imagecapture) object is created using a [`MediaStreamTrack`](mediastreamtrack) retrieved from a device's [`MediaStream`](mediastream).
 
@@ -50,14 +47,12 @@ The following example, extracted from [Chrome's Image Capture / Photo Resolution
     })
     .catch(error => console.log('Argh!', error.name || error));
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-image/#photocapabilities-section">MediaStream Image Capture<br />
 <span class="small">The definition of 'PhotoCapabilities' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

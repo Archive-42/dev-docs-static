@@ -1,5 +1,4 @@
-ReadableStream.tee()
-====================
+# ReadableStream.tee()
 
 The `tee()` method of the [`ReadableStream`](../readablestream) interface <a href="https://streams.spec.whatwg.org/#tee-a-readable-stream" id="ref-for-tee-a-readable-stream②">tees</a> the current readable stream, returning a two-element array containing the two resulting branches as new [`ReadableStream`](../readablestream) instances.
 
@@ -7,8 +6,7 @@ This is useful for allowing two readers to read a stream simultaneously, perhaps
 
 To cancel the stream you then need to cancel both resulting branches. Teeing a stream will generally lock it for the duration, preventing other readers from locking it.
 
-Syntax
-------
+## Syntax
 
     var teedStreams = readableStream.tee();
 
@@ -25,8 +23,7 @@ An [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/G
 TypeError  
 The source stream is not a `ReadableStream`.
 
-Examples
---------
+## Examples
 
 In the following simple example, a previously-created stream is teed, then both resulting streams (contained in two members of a generated array) are passed to a function that reads the data out of the two streams and prints each stream's chunks sequentially to a different part of the UI. See [Simple tee example](https://mdn.github.io/dom-examples/streams/simple-tee-example/) for the full code.
 
@@ -63,14 +60,12 @@ In the following simple example, a previously-created stream is teed, then both 
       });
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://streams.spec.whatwg.org/#rs-tee">Streams<br />
 <span class="small">The definition of 'tee()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

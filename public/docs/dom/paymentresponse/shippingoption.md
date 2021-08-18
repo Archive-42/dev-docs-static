@@ -1,5 +1,4 @@
-PaymentResponse.shippingOption
-==============================
+# PaymentResponse.shippingOption
 
 **Secure context**
 
@@ -12,13 +11,11 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `shippingOption` read-only property of the `PaymentRequest` interface returns the ID attribute of the shipping option selected by the user. This option is only present when the `requestShipping` option is set to `true` in the <span class="page-not-created">`PaymentOptions`</span> object passed to the [`PaymentRequest`](../paymentrequest/paymentrequest) constructor.
 
-Syntax
-------
+## Syntax
 
     var shippingOption = PaymentRequest.shippingOption;
 
-Example
--------
+## Example
 
 In the example below, the <span class="page-not-created">`PaymentRequest.onshippingaoptionchange`</span> event is called. It calls `updateDetails()` to toggle the shipping method between "standard" and "express".
 
@@ -58,13 +55,11 @@ In the example below, the <span class="page-not-created">`PaymentRequest.onshipp
       resolve(details);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/">Payment Request API</a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

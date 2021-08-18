@@ -1,35 +1,32 @@
-Node.getRootNode()
-==================
+# Node.getRootNode()
 
 The `getRootNode()` method of the [`Node`](../node) interface returns the context object's root, which optionally includes the shadow root if it is available.
 
-Syntax
-------
+## Syntax
 
     var root = node.getRootNode(options);
 
 ### Parameters
 
- `options` <span class="badge inline optional">Optional</span>   
+`options` <span class="badge inline optional">Optional</span>  
 An object that sets options for getting the root node. The available options are:
 
--   `composed`: A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that indicates whether the shadow root should be returned (`false`, the default), or a root node beyond shadow root (`true`).
+- `composed`: A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that indicates whether the shadow root should be returned (`false`, the default), or a root node beyond shadow root (`true`).
 
 ### Returns
 
 An object inheriting from [`Node`](../node). This will differ in exact form depending on where you called `getRootNode()`; for example:
 
--   Calling it on an element inside a standard web page will return an [`HTMLDocument`](../htmldocument) object representing the entire page.
--   Calling it on an element inside a shadow DOM will return the associated [`ShadowRoot`](../shadowroot).
+- Calling it on an element inside a standard web page will return an [`HTMLDocument`](../htmldocument) object representing the entire page.
+- Calling it on an element inside a shadow DOM will return the associated [`ShadowRoot`](../shadowroot).
 
-Examples
---------
+## Examples
 
 The first simple example returns a reference to the HTML/document node:
 
     rootNode = node.getRootNode();
 
-This more complex example shows the difference between returning a normal root, and a root including the shadow root. (See the [full source code](https://github.com/jserz/js_piece/blob/master/DOM/Node/getRootNode()/demo/getRootNode.html)):
+This more complex example shows the difference between returning a normal root, and a root including the shadow root. (See the [full source code](<https://github.com/jserz/js_piece/blob/master/DOM/Node/getRootNode()/demo/getRootNode.html>)):
 
     <!-- source: https://github.com/jserz/js_piece/blob/master/DOM/Node/getRootNode()/demo/getRootNode.html -->
     <div class="js-parent">
@@ -58,14 +55,12 @@ This more complex example shows the difference between returning a normal root, 
       console.log(shadowChild.getRootNode({composed:true}).nodeName); // #document
     </script>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-node-getrootnode">DOM<br />
 <span class="small">The definition of 'getRootNode()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

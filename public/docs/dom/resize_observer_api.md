@@ -1,10 +1,8 @@
-Resize Observer API
-===================
+# Resize Observer API
 
 The Resize Observer API provides a performant mechanism by which code can monitor an element for changes to its size, with notifications being delivered to the observer each time the size changes.
 
-Concepts and usage
-------------------
+## Concepts and usage
 
 There are a whole raft of use cases for responsive design techniques (and others besides) that respond to changes in an element's size, but previously their implementations have often been hacky and/or brittle.
 
@@ -18,8 +16,7 @@ The Resize Observer API provides a solution to exactly these kinds of problems, 
 
 Usage is simple, and pretty much the same as other observers, such as [Performance Observer](performanceobserver) or [Intersection Observer](intersection_observer_api) — you create a new [`ResizeObserver`](resizeobserver) object using the `ResizeObserver()` constructor, then use [`ResizeObserver.observe()`](resizeobserver/observe) to make it look for changes to a specific element's size. A callback function set up inside the constructor then runs every time the size changes, providing access to the new dimensions and allowing you to do anything you like in response to those changes.
 
-Interfaces
-----------
+## Interfaces
 
 [`ResizeObserver`](resizeobserver)  
 Provides the ability to register new observers and to start and stop observing elements.
@@ -27,13 +24,12 @@ Provides the ability to register new observers and to start and stop observing e
 [`ResizeObserverEntry`](resizeobserverentry)  
 Describes a single element which has been resized, identifying the element and its new size.
 
-Examples
---------
+## Examples
 
 You find a couple of simple examples on our GitHub repo:
 
--   [resize-observer-border-radius.html](https://mdn.github.io/dom-examples/resize-observer/resize-observer-border-radius.html) ([see source](https://github.com/mdn/dom-examples/blob/master/resize-observer/resize-observer-border-radius.html)): A simple example with a green box, sized as a percentage of the viewport size. When the viewport size is changed, the box's rounded corners change in proportion to the size of the box. We could just implement this using [`border-radius`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) with a percentage, but that quickly leads to ugly-looking elliptical corners, whereas the above solution gives you nice square corners that scale with the box size.
--   [resize-observer-text.html](https://mdn.github.io/dom-examples/resize-observer/resize-observer-text.html) ([see source](https://github.com/mdn/dom-examples/blob/master/resize-observer/resize-observer-text.html)): Here we use the resize observer to change the [`font-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size) of a header and paragraph as a slider’s value is changed causing the containing `<div>` to change width. This shows that you can respond to changes in an element’s size, even if they have nothing to do with the viewport.
+- [resize-observer-border-radius.html](https://mdn.github.io/dom-examples/resize-observer/resize-observer-border-radius.html) ([see source](https://github.com/mdn/dom-examples/blob/master/resize-observer/resize-observer-border-radius.html)): A simple example with a green box, sized as a percentage of the viewport size. When the viewport size is changed, the box's rounded corners change in proportion to the size of the box. We could just implement this using [`border-radius`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius) with a percentage, but that quickly leads to ugly-looking elliptical corners, whereas the above solution gives you nice square corners that scale with the box size.
+- [resize-observer-text.html](https://mdn.github.io/dom-examples/resize-observer/resize-observer-text.html) ([see source](https://github.com/mdn/dom-examples/blob/master/resize-observer/resize-observer-text.html)): Here we use the resize observer to change the [`font-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size) of a header and paragraph as a slider’s value is changed causing the containing `<div>` to change width. This shows that you can respond to changes in an element’s size, even if they have nothing to do with the viewport.
 
 The code will usually follow this kind of pattern (taken from resize-observer-border-radius.html):
 
@@ -51,13 +47,11 @@ The code will usually follow this kind of pattern (taken from resize-observer-bo
 
     resizeObserver.observe(document.querySelector('div'));
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/resize-observer/">Resize Observer</a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -217,9 +211,8 @@ No
 
 9.0
 
-See also
---------
+## See also
 
--   [ResizeObserver: It’s Like document.onresize for Elements](https://developers.google.com/web/updates/2016/10/resizeobserver)
+- [ResizeObserver: It’s Like document.onresize for Elements](https://developers.google.com/web/updates/2016/10/resizeobserver)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Resize_Observer_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Resize_Observer_API</a>

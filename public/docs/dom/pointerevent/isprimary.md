@@ -1,16 +1,14 @@
-PointerEvent.isPrimary
-======================
+# PointerEvent.isPrimary
 
-The `isPrimary` read-only property of the [`PointerEvent`](../pointerevent) interface indicates whether or not the pointer device that created the event is the *primary* pointer. It returns `true` if the pointer that caused the event to be fired is the primary device and returns `false` otherwise.
+The `isPrimary` read-only property of the [`PointerEvent`](../pointerevent) interface indicates whether or not the pointer device that created the event is the _primary_ pointer. It returns `true` if the pointer that caused the event to be fired is the primary device and returns `false` otherwise.
 
-In a multi-pointer scenario (such as a touch screen that supports more than one touch point), this property is used to identify a *master pointer* among the set of active pointers for each pointer type. Only a primary pointer will produce *compatibility mouse events*. Authors who desire only single-pointer interaction can achieve that by ignoring non-primary pointers.
+In a multi-pointer scenario (such as a touch screen that supports more than one touch point), this property is used to identify a _master pointer_ among the set of active pointers for each pointer type. Only a primary pointer will produce _compatibility mouse events_. Authors who desire only single-pointer interaction can achieve that by ignoring non-primary pointers.
 
 A pointer is considered primary if the pointer represents a mouse device. A pointer representing pen input is considered the primary pen input if its `pointerdown` event was dispatched when no other active pointers representing pen input existed. A pointer representing touch input is considered the primary touch input if its `pointerdown` event was dispatched when no other active pointers representing touch input existed.
 
-When two or more pointer device types are being used concurrently, multiple pointers (one for each [`pointerType`](pointertype)) are considered primary. For example, a touch contact and a mouse cursor moved simultaneously will produce pointers that are both considered primary. If there are multiple primary pointers, these pointers will all produce *compatibility mouse events* (see [`Pointer_events`](../pointer_events) for more information about pointer, mouse and touch interaction).
+When two or more pointer device types are being used concurrently, multiple pointers (one for each [`pointerType`](pointertype)) are considered primary. For example, a touch contact and a mouse cursor moved simultaneously will produce pointers that are both considered primary. If there are multiple primary pointers, these pointers will all produce _compatibility mouse events_ (see [`Pointer_events`](../pointer_events) for more information about pointer, mouse and touch interaction).
 
-Syntax
-------
+## Syntax
 
     var isPrimary = pointerEvent.isPrimary;
 
@@ -19,8 +17,7 @@ Syntax
 `isPrimary`  
 Returns `true` if the pointer for this event is the primary pointer and returns `false` otherwise.
 
-Example
--------
+## Example
 
 This example illustrates using the value of `isPrimary` to call the appropriate processing function.
 
@@ -31,15 +28,13 @@ This example illustrates using the value of `isPrimary` to call the appropriate 
         process_secondary_pointer(event);
     }, false);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/pointerevents2/#dom-pointerevent-isprimary">Pointer Events – Level 2<br />
 <span class="small">The definition of 'isPrimary' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Non-stable version.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/pointerevents1/#widl-PointerEvent-isPrimary">Pointer Events<br />
 <span class="small">The definition of 'isPrimary' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

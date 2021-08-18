@@ -1,5 +1,4 @@
-PaymentCurrencyAmount.value
-===========================
+# PaymentCurrencyAmount.value
 
 **Secure context**
 
@@ -9,8 +8,7 @@ The [`PaymentCurrencyAmount`](../paymentcurrencyamount) property `value` is a st
 
 **Important note:** The number given in this string is always specified using the period (".") as the decimal point, rather than the comma (","), even if the user's locale normally uses the comma. You must convert the entered text to this form or it will not be valid.
 
-Syntax
-------
+## Syntax
 
     value = paymentCurrencyAmount.value;
 
@@ -22,8 +20,7 @@ For uniformity and consistency, the value is always given using the period (".")
 
 See the example [Verifying a properly formatted price](#verifying_a_properly_formatted_price) below for a simple regular expression that can be used to validate the `value` string prior to submission.
 
-Examples
---------
+## Examples
 
 ### Representing prices
 
@@ -60,14 +57,12 @@ You can ensure that the value entered as a price is formatted correctly prior to
 
 This function, `checkPriceFormat()`, will return `true` if the specified price string is formatted properly, or `false` if it's not.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-paymentcurrencyamount-value">Payment Request API<br />
 <span class="small">The definition of 'PaymentCurrencyAmount.value' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -127,11 +122,10 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [Payment Request API](../payment_request_api)
--   [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
--   [Payment processing concepts](../payment_request_api/concepts)
+- [Payment Request API](../payment_request_api)
+- [Using the Payment Request API](../payment_request_api/using_the_payment_request_api)
+- [Payment processing concepts](../payment_request_api/concepts)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentCurrencyAmount/value" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentCurrencyAmount/value</a>

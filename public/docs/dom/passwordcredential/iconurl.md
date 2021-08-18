@@ -1,5 +1,4 @@
-PasswordCredential.iconURL
-==========================
+# PasswordCredential.iconURL
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `iconURL` read-only property of the [`PasswordCredential`](../passwordcredential) interface returns a [`USVString`](../usvstring) containing a URL pointing to an image for an icon. This image is intended for display in a credential chooser. The URL must be accessible without authentication.
 
-Syntax
-------
+## Syntax
 
     url =passwordCredential.iconURL
 
@@ -17,14 +15,12 @@ Syntax
 
 A [`USVString`](../usvstring) containing a URL.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-credential-management/#dom-credentialuserdata-iconurl">Credential Management Level 1<br />
 <span class="small">The definition of 'iconURL' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,14 +1,12 @@
-performance.setResourceTimingBufferSize()
-=========================================
+# performance.setResourceTimingBufferSize()
 
-The `setResourceTimingBufferSize()` method sets the browser's *resource timing buffer* size to the specified number of "`resource`" [`performance entry   type`](../performanceentry/entrytype) objects.
+The `setResourceTimingBufferSize()` method sets the browser's _resource timing buffer_ size to the specified number of "`resource`" [`performance entry type`](../performanceentry/entrytype) objects.
 
 A browser's recommended resource timing buffer size is at least 150 [`performance entry`](../performanceentry) objects.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     performance.setResourceTimingBufferSize(maxSize);
 
@@ -22,8 +20,7 @@ A `number` representing the maximum number of [`performance entry`](../performan
 none  
 This method has no return value.
 
-Example
--------
+## Example
 
     function setResourceTimingBufferSize(maxSize) {
       if (performance === undefined) {
@@ -39,14 +36,12 @@ Example
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/resource-timing-1/#dom-performance-setresourcetimingbuffersize">Resource Timing Level 1<br />
 <span class="small">The definition of 'setResourceTimingBufferSize()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

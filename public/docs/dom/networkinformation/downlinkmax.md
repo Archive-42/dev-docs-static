@@ -1,5 +1,4 @@
-NetworkInformation.downlinkMax
-==============================
+# NetworkInformation.downlinkMax
 
 **Experimental**
 
@@ -10,17 +9,15 @@ The `NetworkInformation.downlinkMax` read-only property returns the maximum down
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     var max = NetworkInformation.downlinkMax
 
 ### Return value
 
--   an `unrestricted double` representing the maximum downlink speed, in megabits per second (Mb/s), for the underlying connection technology.
+- an `unrestricted double` representing the maximum downlink speed, in megabits per second (Mb/s), for the underlying connection technology.
 
-Examples
---------
+## Examples
 
 The following example monitors the connection using the `change` event and logs changes as they occur.
 
@@ -43,14 +40,12 @@ The following example monitors the connection using the `change` event and logs 
     logConnectionType();
     navigator.connection.addEventListener('change', logConnectionType);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/netinfo/#dom-networkinformation-downlinkmax">Network Information API<br />
 <span class="small">The definition of 'downlinkMax' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

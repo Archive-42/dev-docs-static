@@ -1,5 +1,4 @@
-PaymentRequest.shippingType
-===========================
+# PaymentRequest.shippingType
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `shippingType` read-only property of the [`PaymentRequest`](../paymentrequest) interface returns one of `"shipping"`, `"delivery"`, `"pickup"`, or `null` if one was not provided by the constructor.
 
-Syntax
-------
+## Syntax
 
     var shippingType = paymentRequest.shippingType
 
@@ -17,14 +15,12 @@ Syntax
 
 One of `"shipping"`, `"delivery"`, `"pickup"`, or `null`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-paymentrequest-shippingtype">Payment Request API<br />
 <span class="small">The definition of 'shippingType' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

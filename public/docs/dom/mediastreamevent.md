@@ -1,5 +1,4 @@
-MediaStreamEvent
-================
+# MediaStreamEvent
 
 **Deprecated**
 
@@ -7,34 +6,29 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `MediaStreamEvent` interface represents events that occurs in relation to a [`MediaStream`](mediastream). Two events of this type can be thrown: `addstream` and `removestream`.
 
-Properties
-----------
+## Properties
 
-*A [`MediaStreamEvent`](mediastreamevent) being an [`Event`](event), this event also implements these properties*.
+_A [`MediaStreamEvent`](mediastreamevent) being an [`Event`](event), this event also implements these properties_.
 
- [`MediaStreamEvent.stream`](mediastreamevent/stream) <span class="badge inline readonly">Read only </span>   
+[`MediaStreamEvent.stream`](mediastreamevent/stream) <span class="badge inline readonly">Read only </span>  
 Contains the [`MediaStream`](mediastream) containing the stream associated with the event.
 
-Constructors
-------------
+## Constructors
 
 [`MediaStreamEvent()`](mediastreamevent/mediastreamevent)  
 Returns a new `MediaStreamEvent`. It takes two parameters, the first being a [`DOMString`](domstring) representing the type of the event; the second a dictionary containing the [`MediaStream`](mediastream) it refers to.
 
-Methods
--------
+## Methods
 
 A [`MediaStreamEvent`](mediastreamevent) being an [`Event`](event), this event also implements these properties. There is no specific [`MediaStreamEvent`](mediastreamevent) method.
 
-Examples
---------
+## Examples
 
     pc.onaddstream = function( ev ) {
       alert("A stream (id: '" + ev.stream.id + "') has been added to this connection.");
     };
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -142,10 +136,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [WebRTC](webrtc_api)
--   Its usual target: [`RTCPeerConnection`](rtcpeerconnection).
+- [WebRTC](webrtc_api)
+- Its usual target: [`RTCPeerConnection`](rtcpeerconnection).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamEvent</a>

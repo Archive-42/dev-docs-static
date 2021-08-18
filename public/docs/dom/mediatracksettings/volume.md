@@ -1,5 +1,4 @@
-MediaTrackSettings.volume
-=========================
+# MediaTrackSettings.volume
 
 **Deprecated**
 
@@ -9,8 +8,7 @@ The [`MediaTrackSettings`](../mediatracksettings) dictionary's `volume` property
 
 If needed, you can determine whether or not this constraint is supported by checking the value of [`MediaTrackSupportedConstraints.volume`](../mediatracksupportedconstraints/volume) as returned by a call to [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints). However, typically this is unnecessary since browsers will ignore any constraints they're unfamiliar with.
 
-Syntax
-------
+## Syntax
 
     var volume = MediaTrackSettings.volume;
 
@@ -18,13 +16,11 @@ Syntax
 
 A double-precision floating-point number indicating the volume, from 0.0 to 1.0, of the audio track as currently configured.
 
-Example
--------
+## Example
 
 See [Example: Constraint exerciser](#) in [Capabilities, constraints, and settings](../media_streams_api/constraints) for an example.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -80,12 +76,11 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Media Capture and Streams API](../media_streams_api)
--   [Capabilities, constraints, and settings](../media_streams_api/constraints)
--   [`MediaTrackConstraints.volume`](../mediatrackconstraints/volume)
--   [`MediaTrackSettings`](../mediatracksettings)
+- [Media Capture and Streams API](../media_streams_api)
+- [Capabilities, constraints, and settings](../media_streams_api/constraints)
+- [`MediaTrackConstraints.volume`](../mediatrackconstraints/volume)
+- [`MediaTrackSettings`](../mediatracksettings)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings/volume" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings/volume</a>

@@ -1,5 +1,4 @@
-PayerErrors.phone
-=================
+# PayerErrors.phone
 
 **Draft**
 
@@ -7,8 +6,7 @@ This page is not complete.
 
 The `phone` property is found in a [`PayerErrors`](../payererrors) object if the [`payerName`](../paymentresponse/payerphone) returned in the response couldn't be validated as a valid phone number. The value of this property is a string explaining the problem. If the payer's phone number validated successfully, the `phone` property is omitted from the `PayerErrors` object.
 
-Syntax
-------
+## Syntax
 
     payerPhone = payerErrors.phone;
 
@@ -18,8 +16,7 @@ If this property is present in the [`PayerErrors`](../payererrors) object, the p
 
 If the phone number is valid, this property is omitted from the [`PayerErrors`](../payererrors) object.
 
-Example
--------
+## Example
 
     function validatePayment(response) {
       const correctionPromises
@@ -43,14 +40,12 @@ Example
       //
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-payererrors-phone">Payment Request API<br />
 <span class="small">The definition of 'PayerErrors.phone' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

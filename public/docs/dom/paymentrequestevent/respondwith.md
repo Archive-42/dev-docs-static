@@ -1,5 +1,4 @@
-PaymentRequestEvent.respondWith()
-=================================
+# PaymentRequestEvent.respondWith()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `respondWith` property of the [`PaymentRequestEvent`](../paymentrequestevent) interface prevents the default event handling and allows you to provide a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for a [`PaymentResponse`](../paymentresponse) object yourself.
 
-Syntax
-------
+## Syntax
 
     paymentRequestEvent.respondWith(
       // Promise that resolves with a PaymentResponse.
@@ -24,14 +22,12 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 A [`PaymentResponse`](../paymentresponse) object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-handler/">Payment Handler API<br />
 <span class="small">The definition of 'respondWith' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-PaymentRequest.onshippingaddresschange
-======================================
+# PaymentRequest.onshippingaddresschange
 
 **Secure context**
 
@@ -7,15 +6,13 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `onshippingaddresschange` event of the [`PaymentRequest`](../paymentrequest) interface is fired whenever the user changes their shipping address, including when an address is added by the user for the first time.
 
-Syntax
-------
+## Syntax
 
     PaymentRequest.addEventListener('shippingaddresschange', shippingAddressChangeEvent => { ... });
 
     PaymentRequest.onshippingaddresschange = function(shippingAddressChangeEvent) { ... };
 
-Examples
---------
+## Examples
 
 The `shippingaddresschange` event is triggered by a user-agent controlled interaction. If the address stored by the user agent changes at any time during a payment process, the event is triggered. To make sure an updated address is included when sending payment information to the server, you should add event listeners for a [`PaymentRequest`](../paymentrequest) object after instantiation, but before the call to `show()`.
 
@@ -34,14 +31,12 @@ The `shippingaddresschange` event is triggered by a user-agent controlled intera
       console.error("Uh oh, something bad happened", err.message);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#onshippingaddresschange-attribute">Payment Request API<br />
 <span class="small">The definition of 'onshippingaddresschange' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

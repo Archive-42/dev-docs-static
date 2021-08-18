@@ -1,20 +1,18 @@
-ReadableStream.getReader()
-==========================
+# ReadableStream.getReader()
 
 The `getReader()` method of the [`ReadableStream`](../readablestream) interface creates a reader and locks the stream to it. While the stream is locked, no other reader can be acquired until this one is released.
 
-Syntax
-------
+## Syntax
 
     var reader = readableStream.getReader({mode});
 
 ### Parameters
 
-{mode} <span class="badge inline optional">Optional</span>   
+{mode} <span class="badge inline optional">Optional</span>  
 An object containing a property `mode`, specifying the type of reader to create. Values can be:
 
--   `"byob"`, which results in a [`ReadableStreamBYOBReader`](../readablestreambyobreader) being created that can read readable byte streams (i.e. can handle "bring your own buffer" reading).
--   `undefined` (or not specified at all — this is the default), which results in a [`ReadableStreamDefaultReader`](../readablestreamdefaultreader) being created that can read individual chunks from a stream.
+- `"byob"`, which results in a [`ReadableStreamBYOBReader`](../readablestreambyobreader) being created that can read readable byte streams (i.e. can handle "bring your own buffer" reading).
+- `undefined` (or not specified at all — this is the default), which results in a [`ReadableStreamDefaultReader`](../readablestreamdefaultreader) being created that can read individual chunks from a stream.
 
 ### Return value
 
@@ -28,8 +26,7 @@ The provided mode value is not `"byob"` or `undefined`.
 TypeError  
 The stream you are trying to create a reader for is not a [`ReadableStream`](../readablestream).
 
-Examples
---------
+## Examples
 
 In the following simple example, a previously-created custom `ReadableStream` is read using a [`ReadableStreamDefaultReader`](../readablestreamdefaultreader) created using `getReader()`. (see our [Simple random stream example](https://mdn.github.io/dom-examples/streams/simple-random-stream/) for the full code). Each chunk is read sequentially and output to the UI, until the stream has finished being read, at which point we return out of the recursive function and print the entire stream to another part of the UI.
 
@@ -63,14 +60,12 @@ In the following simple example, a previously-created custom `ReadableStream` is
       });
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://streams.spec.whatwg.org/#rs-get-reader">Streams<br />
 <span class="small">The definition of 'getReader()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

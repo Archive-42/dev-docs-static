@@ -1,5 +1,4 @@
-PaymentAddress
-==============
+# PaymentAddress
 
 **Secure context**
 
@@ -9,40 +8,39 @@ The `PaymentAddress` interface of the [Payment Request API](payment_request_api)
 
 It may be useful to refer to the Universal Postal Union web site's [Addressing S42 standard](https://www.upu.int/en/Postal-Solutions/Programmes-Services/Addressing-Solutions#addressing-s42-standard) materials, which provide information about international standards for postal addresses.
 
-Properties
-----------
+## Properties
 
- [`PaymentAddress.addressLine`](paymentaddress/addressline) <span class="badge inline readonly">Read only </span>   
+[`PaymentAddress.addressLine`](paymentaddress/addressline) <span class="badge inline readonly">Read only </span>  
 An array of [`DOMString`](domstring) objects providing each line of the address not included among the other properties. The exact size and content varies by country or location and can include, for example, a street name, house number, apartment number, rural delivery route, descriptive instructions, or post office box number.
 
- [`PaymentAddress.country`](paymentaddress/country) <span class="badge inline readonly">Read only </span>   
+[`PaymentAddress.country`](paymentaddress/country) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) specifying the country in which the address is located, using the [ISO-3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO-3166-1_alpha-2) standard. The string is always given in its canonical upper-case form. Some examples of valid `country` values: `"US"`, `"GB"`, `"CN"`, or `"JP"`.
 
- [`PaymentAddress.city`](paymentaddress/city) <span class="badge inline readonly">Read only </span>   
+[`PaymentAddress.city`](paymentaddress/city) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) which contains the city or town portion of the address.
 
- [`PaymentAddress.dependentLocality`](paymentaddress/dependentlocality) <span class="badge inline readonly">Read only </span>   
+[`PaymentAddress.dependentLocality`](paymentaddress/dependentlocality) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) giving the dependent locality or sublocality within a city, for example, a neighborhood, borough, district, or UK dependent locality.
 
- [`PaymentAddress.organization`](paymentaddress/organization) <span class="badge inline readonly">Read only </span>   
+[`PaymentAddress.organization`](paymentaddress/organization) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) specifying the name of the organization, firm, company, or institution at the payment address.
 
- [`PaymentAddress.phone`](paymentaddress/phone) <span class="badge inline readonly">Read only </span>   
+[`PaymentAddress.phone`](paymentaddress/phone) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) specifying the telephone number of the recipient or contact person.
 
- [`PaymentAddress.postalCode`](paymentaddress/postalcode) <span class="badge inline readonly">Read only </span>   
+[`PaymentAddress.postalCode`](paymentaddress/postalcode) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) specifying a code used by a jurisdiction for mail routing, for example, the ZIP code in the United States or the PIN code in India.
 
- [`PaymentAddress.recipient`](paymentaddress/recipient) <span class="badge inline readonly">Read only </span>   
+[`PaymentAddress.recipient`](paymentaddress/recipient) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) giving the name of the recipient, purchaser, or contact person at the payment address.
 
- [`PaymentAddress.region`](paymentaddress/region) <span class="badge inline readonly">Read only </span>   
+[`PaymentAddress.region`](paymentaddress/region) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) containing the top level administrative subdivision of the country, for example a state, province, oblast, or prefecture.
 
- [`PaymentAddress.regionCode`](paymentaddress/regioncode) <span class="badge inline readonly">Read only </span>   
+[`PaymentAddress.regionCode`](paymentaddress/regioncode) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) specifying the region of the address, represented as a "code element" of an [ISO3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) country subdivision name (e.g. "QLD" for Queensland, Australia, "CA" for California, and so on).
 
- [`PaymentAddress.sortingCode`](paymentaddress/sortingcode) <span class="badge inline readonly">Read only </span>   
+[`PaymentAddress.sortingCode`](paymentaddress/sortingcode) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) providing a postal sorting code such as is used in France.
 
 **Note:** Properties for which values were not specified contain empty strings.
@@ -51,17 +49,15 @@ A [`DOMString`](domstring) providing a postal sorting code such as is used in Fr
 
 The following properties are obsolete and should no longer be used, but may still be present in some browser versions.
 
- [`PaymentAddress.languageCode`](paymentaddress/languagecode) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`PaymentAddress.languageCode`](paymentaddress/languagecode) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 A [`DOMString`](domstring) indicating the language code of the address. This identifies the language in which the address is given, and is intended to aid in localization of the display of the address.
 
-Methods
--------
+## Methods
 
 [`PaymentAddress.toJSON()`](paymentaddress/tojson)  
 A standard serializer that returns a JSON representation of the `PaymentAddress` object's properties.
 
-Examples
---------
+## Examples
 
 In the following example, the [`PaymentRequest()`](paymentrequest/paymentrequest) constructor is used to create a new payment request, which takes three objects as parameters — one containing details of the payment methods that can be used for the payment, one containing details of the actual order (such as items bought and shipping options), and an optional object containing further options.
 
@@ -121,14 +117,12 @@ Once the payment flow has been triggered using [`PaymentRequest.show()`](payment
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#paymentaddress-interface">Payment Request API<br />
 <span class="small">The definition of 'PaymentAddress' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,30 +1,25 @@
-Range.detach()
-==============
+# Range.detach()
 
 The `Range.detach()` method does nothing. It used to disable the [`Range`](../range) object and enable the browser to release associated resources. The method has been kept for compatibility.
 
-Syntax
-------
+## Syntax
 
     range.detach();
 
-Example
--------
+## Example
 
     var range = document.createRange();
 
     range.selectNode(document.getElementsByTagName("div").item(0));
     range.detach();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-range-detach">DOM<br />
 <span class="small">The definition of 'Range.detach()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level2-Range-method-detach">Document Object Model (DOM) Level 2 Traversal and Range Specification<br />
 <span class="small">The definition of 'Range.detach()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -100,9 +95,8 @@ Since August 2015 this method is a no-op in [WebKit-based browsers](https://webk
 
 Starting in Samsung Internet 3.0, this method is a no-op and has no effect.
 
-See also
---------
+## See also
 
--   [The DOM interfaces index](../document_object_model)
+- [The DOM interfaces index](../document_object_model)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range/detach" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Range/detach</a>

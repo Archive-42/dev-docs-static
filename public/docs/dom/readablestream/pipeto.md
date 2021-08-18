@@ -1,5 +1,4 @@
-ReadableStream.pipeTo()
-=======================
+# ReadableStream.pipeTo()
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `pipeTo()` method of the [`ReadableStream`](../readablestream) interface pip
 
 Piping a stream will generally lock it for the duration of the pipe, preventing other readers from locking it.
 
-Syntax
-------
+## Syntax
 
     var promise = readableStream.pipeTo(destination[, options]);
 
@@ -20,7 +18,7 @@ Syntax
 destination  
 A [`WritableStream`](../writablestream) that acts as the final destination for the [`ReadableStream`](../readablestream).
 
-options <span class="badge inline optional">Optional</span>   
+options <span class="badge inline optional">Optional</span>  
 The options that should be used when piping to the `writable` stream. Available options are:
 
 1.  `preventClose`: If this is set to `true`, the source `ReadableStream` closing will no longer cause the destination `WritableStream` to be closed. The method will return a fulfilled promise once this process completes, unless an error is encountered while closing the destination in which case it will be rejected with that error.
@@ -37,8 +35,7 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 TypeError  
 The `writableStream` and/or `readableStream` objects are not a writable stream/readable stream, or one or both of the streams are locked.
 
-Examples
---------
+## Examples
 
     // Fetch the original image
     fetch('png-logo.png')
@@ -47,14 +44,12 @@ Examples
     .then(body => body.pipeThrough(new PNGTransformStream()))
     .then(rs => rs.pipeTo(new FinalDestinationStream()))
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://streams.spec.whatwg.org/#rs-pipe-to">Streams<br />
 <span class="small">The definition of 'pipeTo()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

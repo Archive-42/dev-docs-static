@@ -1,5 +1,4 @@
-NDEFReader.write()
-==================
+# NDEFReader.write()
 
 **Draft**
 
@@ -16,8 +15,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `write()` method of [`NDEFReader`](../ndefreader) interface writes a specified message to a compatible NFC tag.
 
-Syntax
-------
+## Syntax
 
     var sessionPromise = NDEFReader.write(message, options);
 
@@ -26,16 +24,16 @@ Syntax
 `message`  
 The message to be written, either [`DOMString`](../domstring) or [`BufferSource`](../buffersource) or <span class="page-not-created">`NDEFMessageInit`</span>.
 
- `options` <span class="badge inline optional">Optional</span>   
--   `overwrite` -- [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) specifying whether or not existing record should be overwritten, if such exists.
--   `signal` -- optional [`AbortSignal`](../abortsignal) that allows to cancel this write operation.
+`options` <span class="badge inline optional">Optional</span>
+
+- `overwrite` -- [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) specifying whether or not existing record should be overwritten, if such exists.
+- `signal` -- optional [`AbortSignal`](../abortsignal) that allows to cancel this write operation.
 
 ### Return value
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with `undefined` when and if the message transfer is successfully completed.
 
-Exceptions
-----------
+## Exceptions
 
 This method doesn't throw true exceptions; instead, it rejects the returned promise, passing into it a [`DOMException`](../domexception) whose `name` is one of the following:
 
@@ -54,13 +52,11 @@ The UA is not allowed to access underlying NFC adapter (e.g., due to user prefer
 `NetworkError`  
 Transfer failed after it already started (e.g., the tag was removed from the reader).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/web-nfc/#dom-ndefreader-write">Web NFC, write()</a></td><td>Draft</td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

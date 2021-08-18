@@ -1,5 +1,4 @@
-Node
-====
+# Node
 
 The [DOM](https://developer.mozilla.org/en-US/docs/Glossary/DOM) `Node` interface is an abstract base class upon which many other DOM API objects are based, thus letting those object types to be used similarly and often interchangeably. As an abstract class, there is no such thing as a plain `Node` object. All objects that implement `Node` functionality are based on one of its subclasses. Most notable are [`Document`](document), [`Element`](element), and [`DocumentFragment`](documentfragment).
 
@@ -7,33 +6,32 @@ In addition, every kind of DOM node is represented by an interface based on `Nod
 
 In some cases, a particular feature of the base `Node` interface may not apply to one of its child interfaces; in that case, the inheriting node may return `null` or throw an exception, depending on circumstances. For example, attempting to add children to a node type that cannot have children will throw an exception.
 
-Properties
-----------
+## Properties
 
-*In addition to the properties below, `Node` inherits properties from its parent, [`EventTarget`](eventtarget)*.
+_In addition to the properties below, `Node` inherits properties from its parent, [`EventTarget`](eventtarget)_.
 
- [`Node.baseURI`](node/baseuri)<span class="badge inline readonly">Read only </span>   
+[`Node.baseURI`](node/baseuri)<span class="badge inline readonly">Read only </span>  
 Returns a [`DOMString`](domstring) representing the base URL of the document containing the `Node`.
 
- [`Node.childNodes`](node/childnodes)<span class="badge inline readonly">Read only </span>   
+[`Node.childNodes`](node/childnodes)<span class="badge inline readonly">Read only </span>  
 Returns a live [`NodeList`](nodelist) containing all the children of this node (including elements, text and comments). [`NodeList`](nodelist) being live means that if the children of the `Node` change, the [`NodeList`](nodelist) object is automatically updated.
 
- [`Node.firstChild`](node/firstchild)<span class="badge inline readonly">Read only </span>   
+[`Node.firstChild`](node/firstchild)<span class="badge inline readonly">Read only </span>  
 Returns a [`Node`](node) representing the first direct child node of the node, or `null` if the node has no child.
 
- [`Node.isConnected`](node/isconnected)<span class="badge inline readonly">Read only </span>   
+[`Node.isConnected`](node/isconnected)<span class="badge inline readonly">Read only </span>  
 A boolean indicating whether or not the Node is connected (directly or indirectly) to the context object, e.g. the [`Document`](document) object in the case of the normal DOM, or the [`ShadowRoot`](shadowroot) in the case of a shadow DOM.
 
- [`Node.lastChild`](node/lastchild)<span class="badge inline readonly">Read only </span>   
+[`Node.lastChild`](node/lastchild)<span class="badge inline readonly">Read only </span>  
 Returns a [`Node`](node) representing the last direct child node of the node, or `null` if the node has no child.
 
- [`Node.nextSibling`](node/nextsibling)<span class="badge inline readonly">Read only </span>   
+[`Node.nextSibling`](node/nextsibling)<span class="badge inline readonly">Read only </span>  
 Returns a [`Node`](node) representing the next node in the tree, or `null` if there isn't such node.
 
- [`Node.nodeName`](node/nodename)<span class="badge inline readonly">Read only </span>   
+[`Node.nodeName`](node/nodename)<span class="badge inline readonly">Read only </span>  
 Returns a [`DOMString`](domstring) containing the name of the `Node`. The structure of the name will differ with the node type. E.g. An [`HTMLElement`](htmlelement) will contain the name of the corresponding tag, like `'audio'` for an [`HTMLAudioElement`](htmlaudioelement), a [`Text`](text) node will have the `'#text'` string, or a [`Document`](document) node will have the `'#document'` string.
 
- [`Node.nodeType`](node/nodetype)<span class="badge inline readonly">Read only </span>   
+[`Node.nodeType`](node/nodetype)<span class="badge inline readonly">Read only </span>  
 Returns an `unsigned short` representing the type of the node. Possible values are:
 
 <table><thead><tr class="header"><th>Name</th><th>Value</th></tr></thead><tbody><tr class="odd"><td><code>ELEMENT_NODE</code></td><td><code>1</code></td></tr><tr class="even"><td><code>ATTRIBUTE_NODE</code> <span class="icon deprecated" data-viewbox="0 0 100 100" data-xmlns="http://www.w3.org/2000/svg" data-role="img"> This deprecated API should no longer be used, but will probably still work. </span></td><td><code>2</code></td></tr><tr class="odd"><td><code>TEXT_NODE</code></td><td><code>3</code></td></tr><tr class="even"><td><code>CDATA_SECTION_NODE</code></td><td><code>4</code></td></tr><tr class="odd"><td><code>ENTITY_REFERENCE_NODE</code> <span class="icon deprecated" data-viewbox="0 0 100 100" data-xmlns="http://www.w3.org/2000/svg" data-role="img"> This deprecated API should no longer be used, but will probably still work. </span></td><td><code>5</code></td></tr><tr class="even"><td><code>ENTITY_NODE</code> <span class="icon deprecated" data-viewbox="0 0 100 100" data-xmlns="http://www.w3.org/2000/svg" data-role="img"> This deprecated API should no longer be used, but will probably still work. </span></td><td><code>6</code></td></tr><tr class="odd"><td><code>PROCESSING_INSTRUCTION_NODE</code></td><td><code>7</code></td></tr><tr class="even"><td><code>COMMENT_NODE</code></td><td><code>8</code></td></tr><tr class="odd"><td><code>DOCUMENT_NODE</code></td><td><code>9</code></td></tr><tr class="even"><td><code>DOCUMENT_TYPE_NODE</code></td><td><code>10</code></td></tr><tr class="odd"><td><code>DOCUMENT_FRAGMENT_NODE</code></td><td><code>11</code></td></tr><tr class="even"><td><code>NOTATION_NODE</code> <span class="icon deprecated" data-viewbox="0 0 100 100" data-xmlns="http://www.w3.org/2000/svg" data-role="img"> This deprecated API should no longer be used, but will probably still work. </span></td><td><code>12</code></td></tr></tbody></table>
@@ -41,25 +39,24 @@ Returns an `unsigned short` representing the type of the node. Possible values a
 [`Node.nodeValue`](node/nodevalue)  
 Returns / Sets the value of the current node.
 
- [`Node.ownerDocument`](node/ownerdocument)<span class="badge inline readonly">Read only </span>   
+[`Node.ownerDocument`](node/ownerdocument)<span class="badge inline readonly">Read only </span>  
 Returns the [`Document`](document) that this node belongs to. If the node is itself a document, returns `null`.
 
- [`Node.parentNode`](node/parentnode)<span class="badge inline readonly">Read only </span>   
+[`Node.parentNode`](node/parentnode)<span class="badge inline readonly">Read only </span>  
 Returns a [`Node`](node) that is the parent of this node. If there is no such node, like if this node is the top of the tree or if doesn't participate in a tree, this property returns `null`.
 
- [`Node.parentElement`](node/parentelement)<span class="badge inline readonly">Read only </span>   
+[`Node.parentElement`](node/parentelement)<span class="badge inline readonly">Read only </span>  
 Returns an [`Element`](element) that is the parent of this node. If the node has no parent, or if that parent is not an [`Element`](element), this property returns `null`.
 
- [`Node.previousSibling`](node/previoussibling)<span class="badge inline readonly">Read only </span>   
+[`Node.previousSibling`](node/previoussibling)<span class="badge inline readonly">Read only </span>  
 Returns a [`Node`](node) representing the previous node in the tree, or `null` if there isn't such node.
 
 [`Node.textContent`](node/textcontent)  
 Returns / Sets the textual content of an element and all its descendants.
 
-Methods
--------
+## Methods
 
-*In addition to the properties below, `Node` inherits methods from its parent, [`EventTarget`](eventtarget).*
+_In addition to the properties below, `Node` inherits methods from its parent, [`EventTarget`](eventtarget)._
 
 [`Node.appendChild(childNode)`](node/appendchild)  
 Adds the specified `childNode` argument as the last child to the current node.  
@@ -74,7 +71,7 @@ Compares the position of the current node against another node in any other docu
 [`Node.contains()`](node/contains)  
 Returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) value indicating whether or not a node is a descendant of the calling node.
 
- <span class="page-not-created">`Node.getBoxQuads()`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`Node.getBoxQuads()`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a list of the node's CSS boxes relative to another node.
 
 [`Node.getRootNode()`](node/getrootnode)  
@@ -112,20 +109,19 @@ Replaces one child [`Node`](node) of the current one with the second one given i
 
 ### Obsolete methods
 
- [`Node.getUserData()`](node/getuserdata) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Node.getUserData()`](node/getuserdata) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Allows a user to get some [`DOMUserData`](domuserdata) from the node.
 
- <span class="page-not-created">`Node.hasAttributes()`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`Node.hasAttributes()`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating if the element has any attributes, or not.
 
- [`Node.isSupported()`](node/issupported) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Node.isSupported()`](node/issupported) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) flag containing the result of a test whether the DOM implementation implements a specific feature and this feature is supported by the specific node.
 
- [`Node.setUserData()`](node/setuserdata) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Node.setUserData()`](node/setuserdata) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Allows a user to attach, or remove, [`DOMUserData`](domuserdata) to the node.
 
-Examples
---------
+## Examples
 
 ### Remove all children nested within a node
 
@@ -184,7 +180,7 @@ If `callback` is provided, and it returns [`Boolean`](https://developer.mozilla.
 `rootNode`  
 The `Node` object whose descendants will be recursed through.
 
- `callback` <span class="badge inline optional">Optional</span>   
+`callback` <span class="badge inline optional">Optional</span>  
 An optional callback [function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) that receives a `Node` as its only argument. If omitted, `eachNode` returns an [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of every node contained within `rootNode` (including the root itself).
 
 #### Sample usage
@@ -256,8 +252,7 @@ For example, to find [`Text`](text) nodes that contain typos:
     const mistakes = grep(document.body, pattern)
     console.log(mistakes)
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#interface-node">DOM<br />
 <span class="small">The definition of 'Node' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Added the following methods: <code>getRootNode()</code></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/dom/#interface-node">DOM4<br />
@@ -272,8 +267,7 @@ Added the following properties: <code>namespaceURI</code>, <code>prefix</code>, 
 Added the following methods: <code>normalize()</code>, <code>isSupported()</code> and <code>hasAttributes()</code>.</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-1950641247">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'Node' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

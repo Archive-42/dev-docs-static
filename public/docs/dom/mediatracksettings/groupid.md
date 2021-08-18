@@ -1,5 +1,4 @@
-MediaTrackSettings.groupId
-==========================
+# MediaTrackSettings.groupId
 
 The [`MediaTrackSettings`](../mediatracksettings) dictionary's `groupId` property is a browsing-session unique [`DOMString`](../domstring) which identifies the group of devices which includes the source for the [`MediaStreamTrack`](../mediastreamtrack). This lets you determine what value was selected to comply with your specified constraints for this property's value as described in the [`MediaTrackConstraints.groupId`](../mediatrackconstraints/groupid) property you provided when calling either [`getUserMedia()`](../mediadevices/getusermedia).
 
@@ -7,8 +6,7 @@ If needed, you can determine whether or not this constraint is supported by chec
 
 Because [RTP](https://developer.mozilla.org/en-US/docs/Glossary/RTP) doesn't include this information, tracks associated with a [WebRTC](../webrtc_api) [`RTCPeerConnection`](../rtcpeerconnection) will never include this property.
 
-Syntax
-------
+## Syntax
 
     var groupId = MediaTrackSettings.groupId;
 
@@ -22,19 +20,16 @@ The actual value of the string, however, is determined by the source of the trac
 
 Since this property isn't stable across browsing sessions, its usefulness when calling [`getUserMedia()`](../mediadevices/getusermedia) is generally limited to ensuring that tasks performed during the same browsing session use devices from the same group (or that they don't use devices from the same group). There is no situation in which the groupId is useful when calling `applyConstraints()`, since the value can't be changed.
 
-Example
--------
+## Example
 
 See [Example: Constraint exerciser](#) in [Capabilities, constraints, and settings](../media_streams_api/constraints) for an example.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediatracksettings-groupid">Media Capture and Streams<br />
 <span class="small">The definition of 'groupId' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -90,13 +85,12 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Media Capture and Streams API](../media_streams_api)
--   [Capabilities, constraints, and settings](../media_streams_api/constraints)
--   [`MediaTrackSettings.deviceId`](deviceid)
--   [`MediaTrackConstraints.groupId`](../mediatrackconstraints/groupid)
--   [`MediaTrackSettings`](../mediatracksettings)
+- [Media Capture and Streams API](../media_streams_api)
+- [Capabilities, constraints, and settings](../media_streams_api/constraints)
+- [`MediaTrackSettings.deviceId`](deviceid)
+- [`MediaTrackConstraints.groupId`](../mediatrackconstraints/groupid)
+- [`MediaTrackSettings`](../mediatracksettings)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings/groupId" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings/groupId</a>

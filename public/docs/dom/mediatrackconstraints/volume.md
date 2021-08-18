@@ -1,5 +1,4 @@
-MediaTrackControls.volume
-=========================
+# MediaTrackControls.volume
 
 **Deprecated**
 
@@ -9,8 +8,7 @@ The [`MediaTrackConstraints`](../mediatrackconstraints) dictionary's `volume` pr
 
 If needed, you can determine whether or not this constraint is supported by checking the value of [`MediaTrackSupportedConstraints.volume`](../mediatracksupportedconstraints/volume) as returned by a call to [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints). However, typically this is unnecessary since browsers will ignore any constraints they're unfamiliar with.
 
-Syntax
-------
+## Syntax
 
     var constraintsObject = { volume: constraint };
 
@@ -24,13 +22,11 @@ If this value is a number, the user agent will attempt to obtain media whose vol
 
 Any constraint set which only permits values outside the range 0.0 to 1.0 cannot be satisfied and will result in failure.
 
-Example
--------
+## Example
 
 See [Example: Constraint exerciser](#) in [Capabilities, constraints, and settings](../media_streams_api/constraints) for an example.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -86,14 +82,13 @@ No
 
 7.0
 
-See also
---------
+## See also
 
--   [Media Capture and Streams API](../media_streams_api)
--   [Capabilities, constraints, and settings](../media_streams_api/constraints)
--   [`MediaTrackConstraints`](../mediatrackconstraints)
--   [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints)
--   [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints)
--   [`MediaStreamTrack`](../mediastreamtrack)
+- [Media Capture and Streams API](../media_streams_api)
+- [Capabilities, constraints, and settings](../media_streams_api/constraints)
+- [`MediaTrackConstraints`](../mediatrackconstraints)
+- [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints)
+- [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints)
+- [`MediaStreamTrack`](../mediastreamtrack)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints/volume" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints/volume</a>

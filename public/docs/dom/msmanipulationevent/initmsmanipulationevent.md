@@ -1,5 +1,4 @@
-MSManipulationEvent.initMSManipulationEvent()
-=============================================
+# MSManipulationEvent.initMSManipulationEvent()
 
 **Non-standard**
 
@@ -21,43 +20,43 @@ This proprietary method is specific to Internet Explorer. Beginning with the Mic
 
 **typeArg** \[in\]
 
-Type: *DOMString*
+Type: _DOMString_
 
 The type of the event being created.
 
 **canBubbleArg** \[in\]
 
-Type: *boolean*
+Type: _boolean_
 
 Indicates whether the event can bubble. When true the event should propagate upward. When false the event does not propagate upward.
 
 **cancelableArg** \[in\]
 
-Type: *boolean*
+Type: _boolean_
 
 Indicates whether the event’s default action can be prevented. When true, the default action can be canceled. When false, the default action cannot be canceled.
 
 **viewArg** \[in\]
 
-Type: *AbstractView*
+Type: _AbstractView_
 
 The view in which the event is taking place.
 
 **detailArg** \[in\]
 
-Type: *Integer*
+Type: _Integer_
 
 Specifies some detailed information depending upon the event.
 
 **lastState** \[in\]
 
-Type: *Integer*
+Type: _Integer_
 
 Indicates the last state of the manipulation event.
 
 **currentState** \[in\]
 
-Type: *Integer*
+Type: _Integer_
 
 Indicates the current state of the manipulation event.
 
@@ -83,10 +82,9 @@ This method does not return a value.
         readonly MS_MANIPULATION_STATE_STOPPED: number;
     }
 
-See also
---------
+## See also
 
--   [MSManipulationEvent](../msmanipulationevent)
--   [Microsoft API extensions](../microsoft_extensions)
+- [MSManipulationEvent](../msmanipulationevent)
+- [Microsoft API extensions](../microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MSManipulationEvent/initMSManipulationEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MSManipulationEvent/initMSManipulationEvent</a>

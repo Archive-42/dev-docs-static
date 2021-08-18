@@ -1,5 +1,4 @@
-PublicKeyCredentialRequestOptions.allowCredentials
-==================================================
+# PublicKeyCredentialRequestOptions.allowCredentials
 
 **Secure context**
 
@@ -7,10 +6,9 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 `allowCredentials` is an optional property of the [`PublicKeyCredentialRequestOptions`](../publickeycredentialrequestoptions) dictionary which indicates the existing credentials acceptable for retrieval. This is an [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of credential descriptors.
 
-**Note:** [`PublicKeyCredentialCreationOptions.excludeCredentials`](../publickeycredentialcreationoptions/excludecredentials) may be used during the creation of the credentials in order to avoid creating new credentials for an existing user with existing public key credential. Contrary to `allowCredentials`, it is used to *filter out* credentials.
+**Note:** [`PublicKeyCredentialCreationOptions.excludeCredentials`](../publickeycredentialcreationoptions/excludecredentials) may be used during the creation of the credentials in order to avoid creating new credentials for an existing user with existing public key credential. Contrary to `allowCredentials`, it is used to _filter out_ credentials.
 
-Syntax
-------
+## Syntax
 
     allowCredentials = publicKeyCredentialRequestOptions.allowCredentials
 
@@ -24,18 +22,17 @@ A string describing type of public-key credential to be created. As of this writ
 `id`  
 A [`BufferSource`](../buffersource) matching an existing public key credential identifier ([`PublicKeyCredential.rawId`](../publickeycredential/rawid)). This identifier is generated during the creation of the `PublicKeyCredential` instance.
 
- `transports` <span class="badge inline optional">Optional</span>   
+`transports` <span class="badge inline optional">Optional</span>  
 An [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of strings describing the possible transports between the client and the authenticator. The value of the strings may be:
 
--   `"usb"`: the authenticator can be contacted via a removable USB link
--   `"nfc"`: the authenticator may be used over [NFC (Near Field Communication)](https://en.wikipedia.org/wiki/Near-field_communication)
--   `"ble"`: the authenticator may be used over [BLE (Bluetooth Low Energy)](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy)
--   `"internal"`: the authenticator is specifically bound to the client device (cannot be removed).
+- `"usb"`: the authenticator can be contacted via a removable USB link
+- `"nfc"`: the authenticator may be used over [NFC (Near Field Communication)](https://en.wikipedia.org/wiki/Near-field_communication)
+- `"ble"`: the authenticator may be used over [BLE (Bluetooth Low Energy)](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy)
+- `"internal"`: the authenticator is specifically bound to the client device (cannot be removed).
 
 If the authenticator does not contain any of these public key credentials, the client will throw a [`DOMException`](../domexception) `"NotAllowedError"`.
 
-Examples
---------
+## Examples
 
     var options = {
       allowCredentials: [
@@ -61,14 +58,12 @@ Examples
          console.error(err);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#dom-publickeycredentialrequestoptions-allowcredentials">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'allowCredentials' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -124,9 +119,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`PublicKeyCredentialCreationOptions.excludeCredentials`](../publickeycredentialcreationoptions/excludecredentials) which is used to filter out existing credentials during creation and avoid creating new credentials for an existing user
+- [`PublicKeyCredentialCreationOptions.excludeCredentials`](../publickeycredentialcreationoptions/excludecredentials) which is used to filter out existing credentials during creation and avoid creating new credentials for an existing user
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialRequestOptions/allowCredentials" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialRequestOptions/allowCredentials</a>

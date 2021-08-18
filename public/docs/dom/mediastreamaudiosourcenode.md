@@ -1,43 +1,37 @@
-MediaStreamAudioSourceNode
-==========================
+# MediaStreamAudioSourceNode
 
 The `MediaStreamAudioSourceNode` interface is a type of [`AudioNode`](audionode) which operates as an audio source whose media is received from a [`MediaStream`](mediastream) obtained using the WebRTC or Media Capture and Streams APIs. This media could be from a microphone (through [`getUserMedia()`](mediadevices/getusermedia)) or from a remote peer on a WebRTC call (using the [`RTCPeerConnection`](rtcpeerconnection)'s audio tracks).
 
 A `MediaStreamAudioSourceNode` has no inputs and exactly one output, and is created using the [`AudioContext.createMediaStreamSource()`](audiocontext/createmediastreamsource) method.
 
-The `MediaStreamAudioSourceNode` takes the audio from the *first* [`MediaStreamTrack`](mediastreamtrack) whose [`kind`](mediastreamtrack/kind) attribute's value is `audio`. See [Track ordering](#track_ordering) for more information about the order of tracks.
+The `MediaStreamAudioSourceNode` takes the audio from the _first_ [`MediaStreamTrack`](mediastreamtrack) whose [`kind`](mediastreamtrack/kind) attribute's value is `audio`. See [Track ordering](#track_ordering) for more information about the order of tracks.
 
 The number of channels output by the node matches the number of tracks found in the selected audio track.
 
 <table><tbody><tr class="odd"><td>Number of inputs</td><td><code>0</code></td></tr><tr class="even"><td>Number of outputs</td><td><code>1</code></td></tr><tr class="odd"><td>Channel count</td><td>defined by the first audio <a href="mediastreamtrack"><code>MediaStreamTrack</code></a> passed to the <a href="audiocontext/createmediastreamsource"><code>AudioContext.createMediaStreamSource()</code></a> method that created it.</td></tr></tbody></table>
 
-Constructor
------------
+## Constructor
 
 [`new MediaStreamAudioSourceNode()`](mediastreamaudiosourcenode/mediastreamaudiosourcenode)  
 Creates a new `MediaStreamAudioSourceNode` object instance with the specified options.
 
-Properties
-----------
+## Properties
 
-*In addition to the following properties, `MediaStreamAudioSourceNode` inherits the properties of its parent, [`AudioNode`](audionode).*
+_In addition to the following properties, `MediaStreamAudioSourceNode` inherits the properties of its parent, [`AudioNode`](audionode)._
 
- [`mediaStream`](mediastreamaudiosourcenode/mediastream) <span class="badge inline readonly">Read only </span>   
+[`mediaStream`](mediastreamaudiosourcenode/mediastream) <span class="badge inline readonly">Read only </span>  
 The [`MediaStream`](mediastream) used when constructing this `MediaStreamAudioSourceNode`.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`AudioNode`](audionode)*.
+_Inherits methods from its parent, [`AudioNode`](audionode)_.
 
-Exceptions
-----------
+## Exceptions
 
 `InvalidStateError`  
 The stream specified by the `mediaStream` parameter does not contain any audio tracks.
 
-Usage notes
------------
+## Usage notes
 
 ### Track ordering
 
@@ -49,8 +43,7 @@ However, it's important to note that the rule establishing this ordering was add
 
 The [`MediaStreamTrackAudioSourceNode`](mediastreamtrackaudiosourcenode) interface is similar to `MediaStreamAudioSourceNode`, but avoids this problem by letting you specify which track you want to use.
 
-Example
--------
+## Example
 
 In this example, we grab a media (audio + video) stream from [`navigator.getUserMedia`](navigator/getusermedia), feed the media into a [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) element to play then mute the audio, but then also feed the audio into a [`MediaStreamAudioSourceNode`](mediastreamaudiosourcenode). Next, we feed this source audio into a low pass [`BiquadFilterNode`](biquadfilternode) (which effectively serves as a bass booster), then a [`AudioDestinationNode`](audiodestinationnode).
 
@@ -114,14 +107,12 @@ The range slider below the [`<video>`](https://developer.mozilla.org/en-US/docs/
 
 **Note**: As a consequence of calling `createMediaStreamSource()`, audio playback from the media stream will be re-routed into the processing graph of the [`AudioContext`](audiocontext). So playing/pausing the stream can still be done through the media element API and the player controls.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#mediastreamaudiosourcenode">Web Audio API<br />
 <span class="small">The definition of 'MediaStreamAudioSourceNode' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -237,12 +228,11 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](web_audio_api/using_web_audio_api)
--   [WebRTC API](webrtc_api)
--   [Media Capture and Streams API (Media Streams)](media_streams_api)
--   [`MediaStreamTrackAudioSourceNode`](mediastreamtrackaudiosourcenode)
+- [Using the Web Audio API](web_audio_api/using_web_audio_api)
+- [WebRTC API](webrtc_api)
+- [Media Capture and Streams API (Media Streams)](media_streams_api)
+- [`MediaStreamTrackAudioSourceNode`](mediastreamtrackaudiosourcenode)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamAudioSourceNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamAudioSourceNode</a>

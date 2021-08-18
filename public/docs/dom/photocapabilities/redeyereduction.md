@@ -1,10 +1,8 @@
-PhotoCapabilities.redEyeReduction
-=================================
+# PhotoCapabilities.redEyeReduction
 
 The `redEyeReduction` read-only property of the [`PhotoCapabilities`](../photocapabilities) interface returns an enum indicating the red-eye reduction capability of the source.
 
-Syntax
-------
+## Syntax
 
     const redEyeReduction = photoCapabilities.redEyeReduction
 
@@ -21,14 +19,12 @@ Red-eye reduction is available in the source and it is always turned on.
 `controllable`  
 Red-eye reduction is available in the source and it is configurable via the <span class="page-not-created">`PhotoSettings`</span> object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-image/#dom-photocapabilities-redeyereduction">MediaStream Image Capture<br />
 <span class="small">The definition of 'redEyeReduction' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

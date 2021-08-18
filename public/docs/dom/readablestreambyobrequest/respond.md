@@ -1,5 +1,4 @@
-ReadableStreamBYOBRequest.respond()
-===================================
+# ReadableStreamBYOBRequest.respond()
 
 **Draft**
 
@@ -12,14 +11,13 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `error()` method of the [`ReadableStreamBYOBRequest`](../readablestreambyobrequest) interface xxx
 
-Syntax
-------
+## Syntax
 
     readableStreamBYOBRequestInstance.respond(bytesWritten);
 
 ### Parameters
 
-*bytesWritten*  
+_bytesWritten_  
 xxx
 
 ### Return value
@@ -31,19 +29,16 @@ Void.
 TypeError  
 The source object is not a `ReadableStreamBYOBRequest`, or there is no associated controller, or the associated internal array buffer is detached.
 
-Examples
---------
+## Examples
 
 TBD.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://streams.spec.whatwg.org/#rs-byob-request-respond">Streams<br />
 <span class="small">The definition of 'respond()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

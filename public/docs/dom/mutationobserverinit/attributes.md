@@ -1,10 +1,8 @@
-MutationObserverInit.attributes
-===============================
+# MutationObserverInit.attributes
 
 The **[`MutationObserverInit`](../mutationobserverinit)** dictionary's optional `attributes` property is used to specify whether or not to watch for attribute value changes on the node or nodes being observed.
 
-Syntax
-------
+## Syntax
 
     var options = {
       attributes: true | false
@@ -18,14 +16,13 @@ If `true`, the callback specified when [`observe()`](../mutationobserver/observe
 
 You can expand the capabilities of attribute mutation monitoring using other options:
 
--   [`attributeFilter`](attributefilter) lets you specify specific attribute names to monitor instead of monitoring all attributes.
--   [`attributeOldValue`](attributeoldvalue) lets you specify whether or not you want the previous value of changed attributes to be included in the [`MutationRecord`](../mutationrecord)'s <span class="page-not-created">`oldValue`</span> property.
--   [`subtree`](subtree) lets you specify whether to watch the target node and all of its descendants (`true`), or just the target node (`false`).
+- [`attributeFilter`](attributefilter) lets you specify specific attribute names to monitor instead of monitoring all attributes.
+- [`attributeOldValue`](attributeoldvalue) lets you specify whether or not you want the previous value of changed attributes to be included in the [`MutationRecord`](../mutationrecord)'s <span class="page-not-created">`oldValue`</span> property.
+- [`subtree`](subtree) lets you specify whether to watch the target node and all of its descendants (`true`), or just the target node (`false`).
 
 If you set either `attributeFilter` or `attributeOldValue` to `true`, `attributes` is automatically assumed to be `true`, even if you don't expressly set it as such.
 
-Example
--------
+## Example
 
 In this example, a Mutation Observer is set up to watch for changes to the `status` and `username` attributes in any elements contained within a subtree that displays the names of users in a chat room. This lets the code, for example, reflect changes to users' nicknames, or to mark them as away from keyboard (AFK) or offline.
 
@@ -53,14 +50,12 @@ The `callback()` function—which will be passed into the [`observe()`](../mutat
 
 When `observe()` is called, the specified options are `attributes` and `attributeOldValue`, which means that changes to attribute values will be reported, and each mutation record will include the <span class="page-not-created">`oldValue`</span> property specifying the attribute's previous value.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-mutationobserverinit-attributes">DOM<br />
 <span class="small">The definition of 'MutationObserverInit.attributes' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

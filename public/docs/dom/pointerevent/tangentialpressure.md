@@ -1,10 +1,8 @@
-PointerEvent.tangentialPressure
-===============================
+# PointerEvent.tangentialPressure
 
 The `tangentialPressure` read-only property of the [`PointerEvent`](../pointerevent) interface represents the normalized tangential pressure of the pointer input (also known as barrel pressure or [cylinder stress](https://en.wikipedia.org/wiki/Cylinder_stress)).
 
-Syntax
-------
+## Syntax
 
     var tanPressure = pointerEvent.tangentialPressure;
 
@@ -14,8 +12,7 @@ A `float` representing the normalized tangential pressure of the pointer input i
 
 Note that some hardware may only support positive values in the range `0` to `1`. For hardware that does not support tangential pressure, the value will be `0`.
 
-Example
--------
+## Example
 
 In this snippet, when a `pointerdown` event is fired, different functions are called depending on the value of the event's `tangentialPressure` property.
 
@@ -32,14 +29,12 @@ In this snippet, when a `pointerdown` event is fired, different functions are ca
       }
     }, false);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/pointerevents2/#dom-pointerevent-tangentialpressure">Pointer Events – Level 2<br />
 <span class="small">The definition of 'tangentialPressure' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -99,9 +94,8 @@ No
 
 7.0
 
-See also
---------
+## See also
 
--   [`Touch.force`](../touch/force)
+- [`Touch.force`](../touch/force)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/tangentialPressure" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/tangentialPressure</a>

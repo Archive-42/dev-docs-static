@@ -1,10 +1,8 @@
-RTCIceCandidatePairStats.nominated
-==================================
+# RTCIceCandidatePairStats.nominated
 
 The [`RTCIceCandidatePairStats`](../rtcicecandidatepairstats) property `nominated` specifies whether or not the candidate pair described by the underlying `RTCIceCandidatePair` has been nominated to be used as the configuration for the WebRTC connection.
 
-Syntax
-------
+## Syntax
 
     nominated = rtcIceCandidatePairStats.nominated;
 
@@ -16,14 +14,12 @@ A Boolean value which is set to `true` by the ICE layer if the controlling user 
 
 Once a candidate pair has been nominated and the two peers have each reconfigured themselves to use the specified configuration, the ICE negotiation process can potentially end (or it can continue, to allow the connection to adapt to changing conditions).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcicecandidatepairstats-nominated">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCIceCandidatePairStats.nominated' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

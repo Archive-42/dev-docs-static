@@ -1,5 +1,4 @@
-PublicKeyCredentialCreationOptions.rp
-=====================================
+# PublicKeyCredentialCreationOptions.rp
 
 **Secure context**
 
@@ -7,15 +6,13 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `rp` property of the [`PublicKeyCredentialCreationOptions`](../publickeycredentialcreationoptions) dictionary is an object describing the relying party which requested the credential creation (via [`navigator.credentials.create()`](../credentialscontainer/create)).
 
-Syntax
-------
+## Syntax
 
     relyingPartyObj = publicKeyCredentialCreationOptions.rp
 
-Properties
-----------
+## Properties
 
- `icon` <span class="badge inline optional">Optional</span>   
+`icon` <span class="badge inline optional">Optional</span>  
 An URL as a [`USVString`](../usvstring) value which points to an image resource which can be the logo/icon of the relying party.
 
 `id`  
@@ -24,8 +21,7 @@ A [`DOMString`](../domstring) uniquely identifying a relying party. The default 
 `name`  
 A [`DOMString`](../domstring) giving a human-readable name for the relying party. This property is intended for display (e.g. `"Example CORP"`).
 
-Examples
---------
+## Examples
 
     var publicKey = {
       challenge: /* from the server */,
@@ -56,14 +52,12 @@ Examples
          console.error(err);
       });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webauthn/#dom-publickeycredentialcreationoptions-rp">Web Authentication: An API for accessing Public Key Credentials Level 1<br />
 <span class="small">The definition of 'rp' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-Navigator.registerContentHandler()
-==================================
+# Navigator.registerContentHandler()
 
 **Deprecated**
 
@@ -11,17 +10,15 @@ Allows web sites to register themselves as possible handlers for content of a pa
 
 Web sites may only register content handlers for themselves. For security reasons, it's not possible for an extension or web site to register content handlers targeting other sites.
 
-Syntax
-------
+## Syntax
 
     navigator.registerContentHandler(mimeType, uri, title);
 
--   `mimeType` is the desired MIME type as a string.
--   `uri` is the URI to the handler as a string.
--   `title` is the title of the handler presented to the user as a string.
+- `mimeType` is the desired MIME type as a string.
+- `uri` is the URI to the handler as a string.
+- `title` is the title of the handler presented to the user as a string.
 
-Example
--------
+## Example
 
     navigator.registerContentHandler(
         "application/vnd.mozilla.maybe.feed",
@@ -29,21 +26,18 @@ Example
         "My Feed Reader"
     );
 
-Notes
------
+## Notes
 
 For [Firefox 2](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/2) and above, only the `application/vnd.mozilla.maybe.feed`, `application/atom+xml`, and `application/rss+xml` MIME types are supported. All values have the same effect, and the registered handler will receive feeds in all Atom and RSS versions (see [bug 391286](https://bugzilla.mozilla.org/show_bug.cgi?id=391286)).
 
 Firefox is the only browser that implemented this feature, and it wasn't implemented to match the standard. This feature has since been removed from the HTML standard and shouldn't be used.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/html52/webappapis.html#dom-navigator-registercontenthandler">HTML 5.2<br />
 <span class="small">The definition of 'registerContentHandler()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>This feature is present in HTML 5.2, but has since been removed from the WHATWG HTML Living Standard.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -99,12 +93,11 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Web-based protocol handlers](registerprotocolhandler/web-based_protocol_handlers)
--   [`Navigator.registerProtocolHandler()`](registerprotocolhandler)
--   [Web activities](https://developer.mozilla.org/en-US/docs/WebAPI/Web_Activities), particularly view and open
--   [XPCOM Interface Reference &gt; nsIWebContentHandlerRegistrar &gt; registerContentHandler](https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/Reference/Interface/nsIWebContentHandlerRegistrar#registerContentHandler) - This shows how to use this function XPCOM scope
+- [Web-based protocol handlers](registerprotocolhandler/web-based_protocol_handlers)
+- [`Navigator.registerProtocolHandler()`](registerprotocolhandler)
+- [Web activities](https://developer.mozilla.org/en-US/docs/WebAPI/Web_Activities), particularly view and open
+- [XPCOM Interface Reference &gt; nsIWebContentHandlerRegistrar &gt; registerContentHandler](https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/Reference/Interface/nsIWebContentHandlerRegistrar#registerContentHandler) - This shows how to use this function XPCOM scope
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/registerContentHandler" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/registerContentHandler</a>

@@ -1,5 +1,4 @@
-Performance.navigation
-======================
+# Performance.navigation
 
 **Deprecated**
 
@@ -7,23 +6,20 @@ This feature is no longer recommended. Though some browsers might still support 
 
 This property is deprecated in the [Navigation Timing Level 2 specification](https://w3c.github.io/navigation-timing/#obsolete).
 
-The legacy `Performance``.navigation` read-only property returns a [`PerformanceNavigation`](../performancenavigation) object representing the type of navigation that occurs in the given browsing context, such as the number of redirections needed to fetch the resource.
+The legacy ` Performance``.navigation ` read-only property returns a [`PerformanceNavigation`](../performancenavigation) object representing the type of navigation that occurs in the given browsing context, such as the number of redirections needed to fetch the resource.
 
 This property is not available in workers.
 
-Syntax
-------
+## Syntax
 
     navObject = performance.navigation;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/navigation-timing/#sec-window.performance-attribute">Navigation Timing<br />
 <span class="small">The definition of 'Performance.navigation' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -79,9 +75,8 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   The [`Performance`](../performance) interface it belongs to.
+- The [`Performance`](../performance) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance/navigation" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Performance/navigation</a>

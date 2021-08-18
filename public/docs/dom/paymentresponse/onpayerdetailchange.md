@@ -1,5 +1,4 @@
-PaymentResponse.onpayerdetailchange
-===================================
+# PaymentResponse.onpayerdetailchange
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The [`PaymentResponse`](../paymentresponse) object's `onpayerdetailchange` property is an event handler which is called to handle the `payerdetailchange` event, which is sent to the `PaymentResponse` when the user makes changes to their personal information while filling out a payment request form.
 
-Syntax
-------
+## Syntax
 
     paymentResponse.onpayerdetailchange = eventHandlerFunction;
 
@@ -16,8 +14,7 @@ Syntax
 
 An event handler function which is called to handle the `payerdetailchange` event when the user makes changes to their personal information while editing a payment request form.
 
-Examples
---------
+## Examples
 
 In the example below, `onpayerdetailchange` is used to set up a listener for the `payerdetailchange` event in order to validate the information entered by the user, requesting that any mistakes be corrected
 
@@ -90,14 +87,12 @@ In the example below, `onpayerdetailchange` is used to set up a listener for the
       },
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/payment-request/#dom-paymentresponse-onpayerdetailchange">Payment Request API<br />
 <span class="small">The definition of 'onpayerdetailchange' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-NDEFMessage
-===========
+# NDEFMessage
 
 **Draft**
 
@@ -16,25 +15,21 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `NDEFMessage` interface of the [Web NFC API](web_nfc_api) is an abstract interface that represents message that can be received or sent to a to compatible NFC devices, e.g. NFC tags supporting NDEF.
 
-Constructor
------------
+## Constructor
 
- <span class="page-not-created">`NDEFMessage.NDEFMessage()`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`NDEFMessage.NDEFMessage()`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a new `NDEFMessage` containing specified data.
 
-Attributes
-----------
+## Attributes
 
- [`NDEFMessage.records`](ndefmessage/records) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="badge inline readonly">Read only </span>   
+[`NDEFMessage.records`](ndefmessage/records) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="badge inline readonly">Read only </span>  
 Represents a list of NDEF records defining the NDEF message.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/web-nfc/#dom-ndefmessage">Web NFC, NDEFMessage</a></td><td>Draft</td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-PushManager.register()
-======================
+# PushManager.register()
 
 **Deprecated**
 
@@ -7,8 +6,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `register` method is used to ask the system to request a new endpoint for notifications. This method has been superseded by [`PushManager.subscribe()`](subscribe).
 
-Syntax
-------
+## Syntax
 
     var request = navigator.push.register();
 
@@ -20,8 +18,7 @@ If the method call is successful, the request's `result` will be a string, which
 
 **Note:** if you do not need the URL any more, please use [`Pushmanager.unregister()`](unregister) to clean up after yourself.
 
-Example
--------
+## Example
 
     var req = navigator.push.register();
 
@@ -34,13 +31,11 @@ Example
       debug("Error getting a new endpoint: " + JSON.stringify(e));
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/">Push API</a></td><td><span class="spec-wd">Working Draft</span></td><td>Defines the <code>PushManager</code> interface.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -100,10 +95,9 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [`PushManager`](../pushmanager)
--   <span class="page-not-created">`DOMRequest`</span>
+- [`PushManager`](../pushmanager)
+- <span class="page-not-created">`DOMRequest`</span>
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PushManager/register" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PushManager/register</a>

@@ -1,5 +1,4 @@
-msthumbnailclick event
-======================
+# msthumbnailclick event
 
 **Non-standard**
 
@@ -9,13 +8,11 @@ The `msthumbnailclick` event occurs when a user clicks a button or thumbnail ico
 
 This proprietary method is specific to Internet Explorer and Microsoft Edge.
 
-Syntax
-------
+## Syntax
 
 <table><tbody><tr class="odd"><td>Event Property</td><td>object.onmsthumbnailclick = handler;</td></tr><tr class="even"><td>addEventListener Method</td><td>object.addEventListener("msthumbnailclick", handler, useCapture)</td></tr></tbody></table>
 
-General info
-------------
+## General info
 
 Synchronous  
 No
@@ -34,12 +31,11 @@ The onmsthumbnailclick event is available only to documents that are launched fr
 
 **pEvtObj** \[in\]
 
-Type: *IHTMLEventObj*
+Type: _IHTMLEventObj_
 
 Pointer to an IHTMLEventObj interface for the current event.
 
-Example
--------
+## Example
 
     function thumbnailClickHandler(evt)
     {
@@ -47,8 +43,7 @@ Example
     }
     document.addEventListener('msthumbnailclick', thumbnailClickHandler);
 
-Example 2
----------
+## Example 2
 
     // Adds an overlay icon on your app pinned to the taskbar
     window.external.msSiteModeSetIconOverlay(iconUri, toolTip);
@@ -73,9 +68,8 @@ Example 2
          break;}
      }
 
-See also
---------
+## See also
 
--   [Microsoft API extensions](microsoft_extensions)
+- [Microsoft API extensions](microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/msthumbnailclick" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/msthumbnailclick</a>

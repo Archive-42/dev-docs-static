@@ -1,5 +1,4 @@
-ReportingObserver.disconnect()
-==============================
+# ReportingObserver.disconnect()
 
 **Experimental**
 
@@ -10,13 +9,11 @@ The `disconnect()` method of the [`ReportingObserver`](../reportingobserver) int
 
 After calling `disconnect()`, neither [`ReportingObserver.takeRecords()`](takerecords) nor the `records` parameter of the `ReportingObserver()` callback will return any reports. The associated observer will no longer be active.
 
-Syntax
-------
+## Syntax
 
     reportingObserverInstance.disconnect()
 
-Examples
---------
+## Examples
 
     let options = {
       types: ['deprecation'],
@@ -33,14 +30,12 @@ Examples
 
     observer.disconnect()
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/reporting/#dom-reportingobserver-disconnect">Reporting API<br />
 <span class="small">The definition of 'ReportingObserver.disconnect()' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -96,9 +91,8 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   [Reporting API](../reporting_api)
+- [Reporting API](../reporting_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReportingObserver/disconnect" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ReportingObserver/disconnect</a>

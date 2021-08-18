@@ -1,5 +1,4 @@
-PresentationConnectionCloseEvent
-================================
+# PresentationConnectionCloseEvent
 
 **Experimental**
 
@@ -12,29 +11,25 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `PresentationConnectionCloseEvent` interface of the [Presentation API](presentation_api) is fired on a [`PresentationConnection`](presentationconnection) when it is closed.
 
-Constructor
------------
+## Constructor
 
 <span class="page-not-created">`PresentationConnectionCloseEvent.PresentationConnectionCloseEvent()`</span>  
 Creates a new PresentationConnectionCloseEvent.
 
-Properties
-----------
+## Properties
 
- <span class="page-not-created">`PresentationConnectionCloseEvent.message`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`PresentationConnectionCloseEvent.message`</span> <span class="badge inline readonly">Read only </span>  
 A human-readable message that provides more information about why the connection was closed.
 
- <span class="page-not-created">`PresentationConnectionCloseEvent.reason`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`PresentationConnectionCloseEvent.reason`</span> <span class="badge inline readonly">Read only </span>  
 Indicates why the connection was closed. This property takes one of the following values: `error`, `closed`, or `wentaway`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/presentation-api/#interface-presentationconnectioncloseevent">Presentation API<br />
 <span class="small">The definition of 'PresentationConnectionCloseEvent interface' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

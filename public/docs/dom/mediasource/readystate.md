@@ -1,5 +1,4 @@
-MediaSource.readyState
-======================
+# MediaSource.readyState
 
 **Experimental**
 
@@ -8,12 +7,11 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `readyState` read-only property of the [`MediaSource`](../mediasource) interface returns an enum representing the state of the current `MediaSource`. The three possible values are:
 
--   `closed`: The source is not currently attached to a media element.
--   `open`: The source is attached to a media element and ready to receive [`SourceBuffer`](../sourcebuffer) objects.
--   `ended`: The source is attached to a media element but the stream has been ended via a call to [`MediaSource.endOfStream()`](endofstream).
+- `closed`: The source is not currently attached to a media element.
+- `open`: The source is attached to a media element and ready to receive [`SourceBuffer`](../sourcebuffer) objects.
+- `ended`: The source is attached to a media element but the stream has been ended via a call to [`MediaSource.endOfStream()`](endofstream).
 
-Syntax
-------
+## Syntax
 
     var myReadyState = mediaSource.readyState;
 
@@ -21,8 +19,7 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Example
--------
+## Example
 
 The following snippet is from a simple example written by Nick Desaulniers ([view the full demo live](https://nickdesaulniers.github.io/netfix/demo/bufferAll.html), or [download the source](https://github.com/nickdesaulniers/netfix/blob/gh-pages/demo/bufferAll.html) for further investigation.)
 
@@ -49,14 +46,12 @@ The following snippet is from a simple example written by Nick Desaulniers ([vie
       });
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/media-source/#idl-def-mediasource-readystate">Media Source Extensions<br />
 <span class="small">The definition of 'readyState' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -114,10 +109,9 @@ No
 
 2.0
 
-See also
---------
+## See also
 
--   [`SourceBuffer`](../sourcebuffer)
--   [`SourceBufferList`](../sourcebufferlist)
+- [`SourceBuffer`](../sourcebuffer)
+- [`SourceBufferList`](../sourcebufferlist)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/readyState" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/readyState</a>

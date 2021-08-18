@@ -1,10 +1,8 @@
-RTCIceCandidatePairStats.firstRequestTimestamp
-==============================================
+# RTCIceCandidatePairStats.firstRequestTimestamp
 
 The [`RTCIceCandidatePairStats`](../rtcicecandidatepairstats) property `firstRequestTimestamp` specifies the time at which the first [STUN](https://developer.mozilla.org/en-US/docs/Glossary/STUN) request was sent on the described candidate pair.
 
-Syntax
-------
+## Syntax
 
     firstRequestTimestamp = rtcIceCandidatePairStats.firstRequestTimestamp;
 
@@ -18,14 +16,12 @@ You can use this value in combination with [`lastRequestTimestamp`](lastrequestt
                         candidatePairStats.firstRequestTimestamp) /
                        candidatePairStats.requestsSent;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcicecandidatepairstats-firstrequesttimestamp">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCIceCandidatePairStats.firstRequestTimestamp' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,10 +1,8 @@
-MediaStreamTrackAudioSourceOptions.mediaStreamTrack
-===================================================
+# MediaStreamTrackAudioSourceOptions.mediaStreamTrack
 
 The [`MediaStreamTrackAudioSourceOptions`](../mediastreamtrackaudiosourceoptions) dictionary's `mediaStreamTrack` property must contain a reference to the [`MediaStreamTrack`](../mediastreamtrack) from which the `MediaStreamTrackAudioSourceNode` being created using the [`MediaStreamTrackAudioSourceNode()`](../mediastreamtrackaudiosourcenode/mediastreamtrackaudiosourcenode) constructor.
 
-Syntax
-------
+## Syntax
 
     mediaStreamTrackAudioSourceOptions = {
       mediaStreamTrack: audioSourceTrack;
@@ -16,8 +14,7 @@ Syntax
 
 A [`MediaStreamTrack`](../mediastreamtrack) from which the audio output of the new `MediaStreamTrackAudioSourceNode` will be taken.
 
-Example
--------
+## Example
 
 This example uses [`getUserMedia()`](../mediadevices/getusermedia) to obtain access to the user's camera, then creates a new [`MediaStreamAudioSourceNode`](../mediastreamaudiosourcenode) from the first audio track provided by the device.
 
@@ -42,14 +39,12 @@ This example uses [`getUserMedia()`](../mediadevices/getusermedia) to obtain acc
       console.log('new getUserMedia not supported on your browser!');
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-mediastreamtrackaudiosourceoptions-mediastreamtrack">Web Audio API<br />
 <span class="small">The definition of 'MediaStreamTrackAudioSourceOptions.mediaStream' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

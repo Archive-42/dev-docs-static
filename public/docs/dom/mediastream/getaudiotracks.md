@@ -1,10 +1,8 @@
-MediaStream.getAudioTracks()
-============================
+# MediaStream.getAudioTracks()
 
 The **`getAudioTracks()`** method of the [`MediaStream`](../mediastream) interface returns a sequence that represents all the [`MediaStreamTrack`](../mediastreamtrack) objects in this stream's `track set` where [`MediaStreamTrack.kind`](../mediastreamtrack/kind) is `audio`.
 
-Syntax
-------
+## Syntax
 
     var mediaStreamTracks = mediaStream.getAudioTracks()
 
@@ -20,8 +18,7 @@ An array of [`MediaStreamTrack`](../mediastreamtrack) objects, one for each audi
 
 Early versions of this API included a special `AudioStreamTrack` interface which was used as the type for each entry in the list of audio streams; however, this has since been merged into the main [`MediaStreamTrack`](../mediastreamtrack) interface.
 
-Example
--------
+## Example
 
 This example gets a webcam's audio and video in a stream using [`getUserMedia()`](../mediadevices/getusermedia), attaches the stream to a [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) element, then sets a timer that, upon expiring, will stop the first audio track found on the stream.
 
@@ -35,14 +32,12 @@ This example gets a webcam's audio and video in a stream using [`getUserMedia()`
       }, 5000)
     })
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediastream-getaudiotracks">Media Capture and Streams<br />
 <span class="small">The definition of 'getAudioTracks()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

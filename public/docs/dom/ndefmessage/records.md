@@ -1,5 +1,4 @@
-NDEFMessage.records
-===================
+# NDEFMessage.records
 
 **Draft**
 
@@ -16,8 +15,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `records` property of [`NDEFMessage`](../ndefmessage) interface represents a list of [`NDEFRecord`](../ndefrecord)s present in the NDEF message.
 
-Syntax
-------
+## Syntax
 
     var recordList = NDEFMessage.records;
 
@@ -25,13 +23,11 @@ Syntax
 
 A list of [`NDEFRecord`](../ndefrecord) object that represent data recorded in the message.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/web-nfc/#dom-ndefmessage-records">Web NFC, NDEFMessage.records</a></td><td>Draft</td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

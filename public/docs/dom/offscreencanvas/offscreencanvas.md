@@ -1,5 +1,4 @@
-OffscreenCanvas()
-=================
+# OffscreenCanvas()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `OffscreenCanvas()` constructor returns a newly instantiated [`OffscreenCanvas`](../offscreencanvas) object.
 
-Syntax
-------
+## Syntax
 
     new OffscreenCanvas(width, height);
 
@@ -21,22 +19,19 @@ The width of the offscreen canvas.
 `height`  
 The height of the offscreen canvas.
 
-Examples
---------
+## Examples
 
 This example creates a new offscreen canvas using the `OffscreenCanvas()` constructor. We then initialize a [WebGL](../webgl_api) context on it using the [`getContext()`](getcontext) method.
 
     let offscreen = new OffscreenCanvas(256, 256);
     let gl = offscreen.getContext('webgl');
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-offscreencanvas">HTML Living Standard<br />
 <span class="small">The definition of 'OffscreenCanvas()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -96,9 +91,8 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   [`OffscreenCanvas`](../offscreencanvas), the interface this constructor belongs to
+- [`OffscreenCanvas`](../offscreencanvas), the interface this constructor belongs to
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas/OffscreenCanvas" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas/OffscreenCanvas</a>

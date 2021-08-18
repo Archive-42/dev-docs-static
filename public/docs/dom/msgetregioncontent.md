@@ -1,5 +1,4 @@
-msGetRegionContent
-==================
+# msGetRegionContent
 
 **Non-standard**
 
@@ -17,19 +16,18 @@ This proprietary method is specific to Internet Explorer browser.
 
 **retVal** \[out, reval\]
 
-Type: *MSRangeCollection*
+Type: _MSRangeCollection_
 
 The name of the property to enable.
 
 ### Return value
 
-Type: *Boolean*
+Type: _Boolean_
 
 Returned ranges are sorted by document position and do not overlap. If an element is not a region, this method throws a `DOMException` with the `InvalidAccessError` error code. This is only available to regions that are document elements and not to regions that are pseudo-elements.
 
-See also
---------
+## See also
 
--   [Microsoft API extensions](microsoft_extensions)
+- [Microsoft API extensions](microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/msGetRegionContent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/msGetRegionContent</a>

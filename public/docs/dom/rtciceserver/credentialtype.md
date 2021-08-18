@@ -1,10 +1,8 @@
-RTCIceServer.credentialType
-===========================
+# RTCIceServer.credentialType
 
 The [`RTCIceServer`](../rtciceserver) dictionary's `credentialType` property is a string value from the [`RTCIceCredentialType` enum](#rtcicecredentialtype_enum) which indicates what type of credential the [`RTCIceServer.credential`](credential) value is. The default is `password`.
 
-Syntax
-------
+## Syntax
 
     var iceServer = {
                       ...
@@ -26,8 +24,7 @@ The [`RTCIceServer`](../rtciceserver) requires the use of OAuth 2.0 to authentic
 `password`  
 The `RTCIceServer` requires a username and password to authenticate prior to using the described ICE server.
 
-Example
--------
+## Example
 
 This example creates a new [`RTCPeerConnection`](../rtcpeerconnection) which will use a [TURN](https://developer.mozilla.org/en-US/docs/Glossary/TURN) server at `turnserver.example.org` to negotiate connections. Logging into the TURN server will use the username "webrtc" and the creative password "turnpassword".
 
@@ -42,14 +39,12 @@ This example creates a new [`RTCPeerConnection`](../rtcpeerconnection) which wil
       ]
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtciceserver-credential">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceServer.credential' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -105,10 +100,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`RTCIceServer`](../rtciceserver)
--   [`RTCIceServer.credential`](credential)
+- [`RTCIceServer`](../rtciceserver)
+- [`RTCIceServer.credential`](credential)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIceServer/credentialType" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIceServer/credentialType</a>

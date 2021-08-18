@@ -1,10 +1,8 @@
-RTCInboundRtpStreamStats.firCount
-=================================
+# RTCInboundRtpStreamStats.firCount
 
 The `firCount` property of the [`RTCInboundRtpStreamStats`](../rtcinboundrtpstreamstats) dictionary indicates the number of **Full Intra Request** (**FIR**) packets have been sent by the receiver to the sender. The receiver sends a FIR packet when the stream falls behind and needs to skip frames in order to catch up.
 
-Syntax
-------
+## Syntax
 
     var firCount = rtcInboundRtpStreamStats.firCount;
 
@@ -16,14 +14,12 @@ The receiver sends a FIR packet to the sender any time it falls bahind or loses 
 
 The higher `firCount` is, the more often frames were dropped, which may be an indication that the media's bit rate is too high for the available bandwidth, or that the receiving device is overburdened and is therefore unable to process the incoming data.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-stats/#dom-rtcinboundrtpstreamstats-fircount">Identifiers for WebRTC's Statistics API<br />
 <span class="small">The definition of 'RTCInboundRtpStreamStats.firCount' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.RTCInboundRtpStreamStats.firCount`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).

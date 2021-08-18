@@ -1,5 +1,4 @@
-Navigator.vendorSub
-===================
+# Navigator.vendorSub
 
 **Deprecated**
 
@@ -7,23 +6,20 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The value of the `Navigator.vendorSub` property is always the empty string, in any browser.
 
-Syntax
-------
+## Syntax
 
     venSub = window.navigator.vendorSub
 
 ### Value
 
--   The empty string
+- The empty string
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-vendorsub">HTML Living Standard<br />
 <span class="small">The definition of 'NavigatorID: vendorSub' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

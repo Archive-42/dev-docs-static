@@ -1,10 +1,8 @@
-Node.lookupPrefix()
-===================
+# Node.lookupPrefix()
 
 The `Node.lookupPrefix()` method returns a [`DOMString`](../domstring) containing the prefix for a given namespace URI, if present, and `null` if not. When multiple prefixes are possible, the result is implementation-dependent.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -60,9 +58,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [http://www.w3.org/TR/DOM-Level-3-Cor...amespacePrefix](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Node3-lookupNamespacePrefix)
+- [http://www.w3.org/TR/DOM-Level-3-Cor...amespacePrefix](https://www.w3.org/TR/DOM-Level-3-Core/core.html#Node3-lookupNamespacePrefix)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/lookupPrefix" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/lookupPrefix</a>

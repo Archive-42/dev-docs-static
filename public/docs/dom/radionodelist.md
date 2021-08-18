@@ -1,29 +1,24 @@
-RadioNodeList
-=============
+# RadioNodeList
 
 The `RadioNodeList` interface represents a collection of radio elements in a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) or a [`<fieldset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset) element.
 
-Properties
-----------
+## Properties
 
-*The `RadioNodeList` interface inherits the properties of* [`NodeList`](nodelist).
+_The `RadioNodeList` interface inherits the properties of_ [`NodeList`](nodelist).
 
 [`RadioNodeList.value`](radionodelist/value)  
 If the underlying element collection contains radio buttons, the `value` property represents the checked radio button. On retrieving the `value` property, the `value` of the currently `checked` radio button is returned as a string. If the collection does not contain any radio buttons or none of the radio buttons in the collection is in `checked` state, the empty string is returned. On setting the `value` property, the first radio button input element whose `value` property is equal to the new value will be set to `checked`.
 
-Methods
--------
+## Methods
 
-*The `RadioNodeList` interface inherits the methods of* [`NodeList`](nodelist).
+_The `RadioNodeList` interface inherits the methods of_ [`NodeList`](nodelist).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comments</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#radionodelist">HTML Living Standard<br />
 <span class="small">The definition of 'RadioNodeList' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -105,9 +100,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   The [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form), [`<fieldset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset), [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) elements.
+- The [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form), [`<fieldset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset), [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) elements.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/RadioNodeList" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RadioNodeList</a>

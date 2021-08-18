@@ -1,5 +1,4 @@
-Plugin
-======
+# Plugin
 
 **Deprecated**
 
@@ -9,23 +8,21 @@ The `Plugin` interface provides information about a browser plugin.
 
 **Note**: Own properties of `Plugin` objects are no longer enumerable in the latest browser versions.
 
-Properties
-----------
+## Properties
 
- <span class="page-not-created">`Plugin.description`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`Plugin.description`</span> <span class="badge inline readonly">Read only </span>  
 A human readable description of the plugin.
 
- <span class="page-not-created">`Plugin.filename`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`Plugin.filename`</span> <span class="badge inline readonly">Read only </span>  
 The filename of the plugin file.
 
- <span class="page-not-created">`Plugin.name`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`Plugin.name`</span> <span class="badge inline readonly">Read only </span>  
 The name of the plugin.
 
- <span class="page-not-created">`Plugin.version`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`Plugin.version`</span> <span class="badge inline readonly">Read only </span>  
 The plugin's version number string.
 
-Methods
--------
+## Methods
 
 <span class="page-not-created">`Plugin.item`</span>  
 Returns the MIME type of a supported content type, given the index number into a list of supported types.
@@ -33,14 +30,12 @@ Returns the MIME type of a supported content type, given the index number into a
 <span class="page-not-created">`Plugin.namedItem`</span>  
 Returns the MIME type of a supported item.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-plugin">HTML Living Standard<br />
 <span class="small">The definition of 'Plugin' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

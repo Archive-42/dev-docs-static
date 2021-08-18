@@ -1,10 +1,8 @@
-NavigationPreloadManager
-========================
+# NavigationPreloadManager
 
 The `NavigationPreloadManager` interface of the [Service Worker API](service_worker_api) provides methods for managing the preloading of resources with a service worker.
 
-Methods
--------
+## Methods
 
 <span class="page-not-created">`NavigationPreloadManager.enable()`</span>  
 Enables navigation preloading and returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves.
@@ -18,8 +16,7 @@ Sets the value of the `Service-Worker-Navigation-Preload` header and returns an 
 <span class="page-not-created">`NavigationPreloadManager.getState()`</span>  
 Returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to an object with properties indicating whether preload is enabled and the contents of the `Service-Worker-Navigation-Preload`.
 
-Examples
---------
+## Examples
 
 #### Feature Detecting and Enabling Navigation Preloading
 
@@ -51,14 +48,12 @@ The following example shows the implementation of a fetch event that uses a prel
       }());
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/ServiceWorker/#navigation-preload-manager">Service Workers<br />
 <span class="small">The definition of 'NavigationPreloadManager' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

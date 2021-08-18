@@ -1,5 +1,4 @@
-MIDIConnectionEvent
-===================
+# MIDIConnectionEvent
 
 **Experimental**
 
@@ -8,28 +7,23 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MIDIConnectionEvent` interface of the [Web MIDI API](web_midi_api) is the event passed to the <span class="page-not-created">`onstatechange`</span> event handler of the [`MIDIAccess`](midiaccess) interface and the <span class="page-not-created">`onstatechange`</span> event of the <span class="page-not-created">`MIDIPorts`</span> interface. This occurs any time a new port becomes available, or when a previously available port becomes unavailable. For example, this event is fired whenever a MIDI device is either plugged in to or unplugged from a computer.
 
-Constructor
------------
+## Constructor
 
 <span class="page-not-created">`MIDIConnectionEvent.MIDIConnectionEvent`</span>  
 Creates a new `MIDIConnectionEvent` object.
 
-Properties
-----------
+## Properties
 
 <span class="page-not-created">`MIDIConnectionEvent.port`</span>  
 Returns a reference to a <span class="page-not-created">`MIDIPort`</span> instance for a port that has been connected or disconnected."
 
-Examples
---------
+## Examples
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-midi-api/#midiconnectionevent-interface">Web MIDI API</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

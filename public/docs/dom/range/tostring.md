@@ -1,17 +1,14 @@
-Range.toString()
-================
+# Range.toString()
 
 The `Range.toString()` method is a stringifier returning the text of the [`Range`](../range).
 
 Alerting the contents of a [`Range`](../range) makes an implicit `toString()` call, so comparing range and text through an alert dialog is ineffective.
 
-Syntax
-------
+## Syntax
 
     text = range.toString();
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -28,15 +25,13 @@ Example
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-range-stringifier">DOM<br />
 <span class="small">The definition of 'Range.toString()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level2-Range-method-toString">Document Object Model (DOM) Level 2 Traversal and Range Specification<br />
 <span class="small">The definition of 'Range.toString()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -92,9 +87,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [The DOM interfaces index](../document_object_model)
+- [The DOM interfaces index](../document_object_model)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range/toString" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Range/toString</a>

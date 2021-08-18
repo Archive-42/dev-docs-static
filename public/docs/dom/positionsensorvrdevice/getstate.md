@@ -1,5 +1,4 @@
-PositionSensorVRDevice.getState()
-=================================
+# PositionSensorVRDevice.getState()
 
 **Deprecated**
 
@@ -12,8 +11,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `getState()` method of the [`PositionSensorVRDevice`](../positionsensorvrdevice) interface returns the current state of the position sensor for the current frame (e.g. within the current [`window.requestAnimationFrame`](../window/requestanimationframe) callback) or for the previous frame, contained with a [`VRPose`](../vrpose) object. This is the method you'd normally want to use, vs. [`PositionSensorVRDevice.getImmediateState`](getimmediatestate).
 
-Syntax
-------
+## Syntax
 
     var myPositionState = PositionSensorVRDevice.getState();
 
@@ -25,8 +23,7 @@ None.
 
 A [`VRPose`](../vrpose) object.
 
-Examples
---------
+## Examples
 
 The following example is taken from our [positionsensorvrdevice](https://mdn.github.io/webvr-tests/positionsensorvrdevice/) demo, which uses the WebVR API to update the view of a simple [`2D canvas`](../canvasrenderingcontext2d) scene on each frame of a [`requestAnimationFrame`](../window/requestanimationframe) loop.
 
@@ -58,10 +55,9 @@ The following example is taken from our [positionsensorvrdevice](https://mdn.git
 
 Here we are grabbing a [`VRPose`](../vrpose) object using `getState()` and storing it in `posState`. We then check to make sure that position and orientation info is present in the current frame using [`VRPose.hasPosition`](../vrpose/hasposition) and [`VRPose.hasOrientation`](../vrpose/hasorientation) (these return `null` if, for example the head mounted display is turned off or not pointing at the position sensor, which would cause an error.)
 
-We then output the x, y and z position and orientation values for informational purposes, and use those values to update the `xPos`, `yPos`, `zPos, ``xOrient`, `yOrient`, and `zOrient` variables, which are used to update the scene rendering on each frame.
+We then output the x, y and z position and orientation values for informational purposes, and use those values to update the `xPos`, `yPos`, ` zPos, ``xOrient `, `yOrient`, and `zOrient` variables, which are used to update the scene rendering on each frame.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -129,10 +125,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [WebVR API homepage](../webvr_api).
--   <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
+- [WebVR API homepage](../webvr_api).
+- <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PositionSensorVRDevice/getState" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PositionSensorVRDevice/getState</a>

@@ -1,5 +1,4 @@
-PluginArray
-===========
+# PluginArray
 
 **Deprecated**
 
@@ -9,14 +8,12 @@ The `PluginArray` interface is used to store a list of [`Plugin`](plugin) object
 
 **Note**: Own properties of `PluginArray` objects are no longer enumerable in the latest browser versions.
 
-Properties
-----------
+## Properties
 
- <span class="page-not-created">`PluginArray.length`</span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`PluginArray.length`</span><span class="badge inline readonly">Read only </span>  
 The number of plugins in the array.
 
-Methods
--------
+## Methods
 
 <span class="page-not-created">`PluginArray.item`</span>  
 Returns the [`Plugin`](plugin) at the specified index into the array.
@@ -27,8 +24,7 @@ Returns the [`Plugin`](plugin) with the specified name.
 <span class="page-not-created">`PluginArray.refresh`</span>  
 Refreshes all plugins on the current page, optionally reloading documents.
 
-Examples
---------
+## Examples
 
 The following example function returns the version of the Shockwave Flash plugin.
 
@@ -71,14 +67,12 @@ The following example displays information about the installed plugin(s).
       );
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#pluginarray">HTML Living Standard<br />
 <span class="small">The definition of 'PluginArray' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

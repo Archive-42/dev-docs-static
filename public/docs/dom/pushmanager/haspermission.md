@@ -1,5 +1,4 @@
-PushManager.hasPermission()
-===========================
+# PushManager.hasPermission()
 
 **Deprecated**
 
@@ -7,23 +6,19 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `PushManager.hasPermission()` method of the [`PushManager`](../pushmanager) interface returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to the `PushPermissionStatus` of the requesting webapp, which will be one of `granted`, `denied`, or `default`.
 
-Syntax
-------
+## Syntax
 
     PushManager.hasPermission().then(function(pushPermissionStatus) { ... } );
 
-Example
--------
+## Example
 
     // TBD
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/">Push API</a></td><td><span class="spec-wd">Working Draft</span></td><td>Defines the <code>PushManager</code> interface.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

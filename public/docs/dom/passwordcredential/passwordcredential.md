@@ -1,5 +1,4 @@
-PasswordCredential
-==================
+# PasswordCredential
 
 **Non-standard**
 
@@ -7,8 +6,7 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 The `PasswordCredential` constructor creates a new [`PasswordCredential`](../passwordcredential) object. In supporting browsers, an instance of this class may be passed the `credential` from the `init` object for global [`WindowOrWorkerGlobalScope.fetch`](../windoworworkerglobalscope/fetch).
 
-Syntax
-------
+## Syntax
 
     var myCredential = new PasswordCredential(passwordCredentialData)
     var myCredential = new PasswordCredential(HTMLFormElement)
@@ -17,19 +15,18 @@ Syntax
 
 Either of the following:
 
- *passwordCredentialData*   
+_passwordCredentialData_  
 A PasswordCredentialData dictionary containing the following fields:
 
--   `iconURL`: (Optional) the URL of a user's avatar image.
--   `id`: The ID of the user signing in.
--   `name`: (Optional) The name of the user signing in.
--   `password`: The password of the user signing in.
+- `iconURL`: (Optional) the URL of a user's avatar image.
+- `id`: The ID of the user signing in.
+- `name`: (Optional) The name of the user signing in.
+- `password`: The password of the user signing in.
 
-*htmlFormElement*  
+_htmlFormElement_  
 A reference to an [`HTMLFormElement`](../htmlformelement) with appropriate input fields. The form should, at the very least, contain an id and password. It could also require a CSRF token.
 
-Examples
---------
+## Examples
 
 This example shows how to set up an [`HTMLFormElement`](../htmlformelement) to caputure data which we'll use to create a [`PasswordCredential`](../passwordcredential) object.
 
@@ -51,13 +48,11 @@ Then, a reference to this form element, using it to create a [`PasswordCredentia
       // Do something with the credentials if you need to.
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-credential-management/">Credential Management Level 1</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

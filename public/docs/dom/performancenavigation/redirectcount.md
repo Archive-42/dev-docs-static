@@ -1,5 +1,4 @@
-PerformanceNavigation.redirectCount
-===================================
+# PerformanceNavigation.redirectCount
 
 **Deprecated**
 
@@ -9,21 +8,18 @@ This feature is no longer recommended. Though some browsers might still support 
 
 This interface of this property is deprecated in the [Navigation Timing Level 2 specification](https://w3c.github.io/navigation-timing/#obsolete). Please use the [`PerformanceNavigationTiming`](../performancenavigationtiming) interface instead.
 
-The legacy `PerformanceNavigation``.redirectCount` read-only property returns an `unsigned short` representing the number of REDIRECTs done before reaching the page.
+The legacy ` PerformanceNavigation``.redirectCount ` read-only property returns an `unsigned short` representing the number of REDIRECTs done before reaching the page.
 
-Syntax
-------
+## Syntax
 
     amount = performanceNavigation.redirectCount;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/navigation-timing/#dom-performancenavigation-redirectcount">Navigation Timing<br />
 <span class="small">The definition of 'PerformanceNavigation.redirectCount' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -79,9 +75,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The [`PerformanceNavigation`](../performancenavigation) interface it belongs to.
+- The [`PerformanceNavigation`](../performancenavigation) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigation/redirectCount" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigation/redirectCount</a>

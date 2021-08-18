@@ -1,5 +1,4 @@
-MIDIOutputMap
-=============
+# MIDIOutputMap
 
 **Draft**
 
@@ -12,13 +11,11 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MIDIOutputMap` read-only interface of the [Web MIDI API](web_midi_api) provides a [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)-like interface to the currently available MIDI output ports. Although it works like a map, because it is read-only, it does **not** contain `clear()`, `delete()`, or `set()` functions.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-midi-api/#midiinputmap-interface">Web MIDI API</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

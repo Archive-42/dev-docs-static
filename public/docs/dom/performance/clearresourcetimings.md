@@ -1,12 +1,10 @@
-performance.clearResourceTimings()
-==================================
+# performance.clearResourceTimings()
 
 The `clearResourceTimings()` method removes all [`performance entries`](../performanceentry) with an [`entryType`](../performanceentry/entrytype) of "`resource`" from the browser's performance data buffer and sets the size of the performance data buffer to zero. To set the size of the browser's performance data buffer, use the [`Performance.setResourceTimingBufferSize()`](setresourcetimingbuffersize) method.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     performance.clearResourceTimings();
 
@@ -19,8 +17,7 @@ void
 none  
 This method has no return value.
 
-Example
--------
+## Example
 
     function load_resource() {
       var image = new Image();
@@ -50,14 +47,12 @@ Example
         console.log("... Performance data buffer NOT cleared!");
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/resource-timing-1/#dom-performance-clearresourcetimings">Resource Timing Level 1<br />
 <span class="small">The definition of 'clearResourceTimings()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

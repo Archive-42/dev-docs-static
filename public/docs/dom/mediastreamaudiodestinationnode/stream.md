@@ -1,12 +1,10 @@
-MediaStreamAudioDestinationNode.stream
-======================================
+# MediaStreamAudioDestinationNode.stream
 
 The `stream` property of the [`AudioContext`](../audiocontext) interface represents a [`MediaStream`](../mediastream) containing a single audio [`MediaStreamTrack`](../mediastreamtrack) with the same number of channels as the node itself.
 
 You can use this property to get a stream out of the audio graph and feed it into another construct, such as a [Media Recorder](../mediastream_recording_api).
 
-Syntax
-------
+## Syntax
 
     var audioCtx = new AudioContext();
     var destination = audioCtx.createMediaStreamDestination();
@@ -16,8 +14,7 @@ Syntax
 
 A [`MediaStream`](../mediastream) containing a single audio track. The audio track is a [`MediaStreamTrack`](../mediastreamtrack) whose [`kind`](../mediastreamtrack/kind) is `audio`.
 
-Example
--------
+## Example
 
 In the following simple example, we create a [`MediaStreamAudioDestinationNode`](../mediastreamaudiodestinationnode), an [`OscillatorNode`](../oscillatornode) and a [`MediaRecorder`](../mediarecorder) (the example will therefore only work in Firefox and Chrome at this time.) The `MediaRecorder` is set up to record information from the `MediaStreamDestinationNode`.
 
@@ -75,14 +72,12 @@ From here, you can play and save the opus file.
 
 **Note**: You can [view this example live](https://mdn.github.io/webaudio-examples/create-media-stream-destination/index.html), or [study the source code](https://github.com/mdn/webaudio-examples/blob/master/create-media-stream-destination/index.html), on Github.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-mediastreamaudiodestinationnode-stream">Web Audio API<br />
 <span class="small">The definition of 'stream' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -138,9 +133,8 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](../web_audio_api/using_web_audio_api)
+- [Using the Web Audio API](../web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamAudioDestinationNode/stream" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamAudioDestinationNode/stream</a>

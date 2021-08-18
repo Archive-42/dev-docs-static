@@ -1,10 +1,8 @@
-Online and offline events
-=========================
+# Online and offline events
 
 Some browsers implement [Online/Offline events](https://www.whatwg.org/specs/web-apps/current-work/#offline) from the [WHATWG Web Applications 1.0 specification](https://www.whatwg.org/specs/web-apps/current-work/).
 
-Overview
---------
+## Overview
 
 In order to build a good offline-capable web application, you need to know when your application is actually offline. You also need to know when your application has returned to an 'online' status again. Effectively, the requirements break down as such:
 
@@ -15,8 +13,7 @@ It is this process that online/offline events help to simplify.
 
 Unfortunately, these events aren't fully reliable. If you need greater reliability, or if the API isn't implemented in the browser, you can use other signals to detect if you are offline including using service workers and [responses from XMLHttpRequest](https://www.html5rocks.com/en/mobile/workingoffthegrid.html#toc-xml-http-request).
 
-API
----
+## API
 
 ### `navigator.onLine`
 
@@ -38,12 +35,11 @@ This property existed in older versions of Firefox and Internet Explorer (the sp
 
 You can register listeners for these events in a few familiar ways:
 
--   using `addEventListener` on the `window`, `document`, or `document.body`
--   by setting the `.ononline` or `.onoffline` properties on `document` or `document.body` to a JavaScript `Function` object. (**Note:** using `window.ononline` or `window.onoffline` will not work for compatibility reasons.)
--   by specifying `ononline="..."` or `onoffline="..."` attributes on the `<body>` tag in the HTML markup.
+- using `addEventListener` on the `window`, `document`, or `document.body`
+- by setting the `.ononline` or `.onoffline` properties on `document` or `document.body` to a JavaScript `Function` object. (**Note:** using `window.ononline` or `window.onoffline` will not work for compatibility reasons.)
+- by specifying `ononline="..."` or `onoffline="..."` attributes on the `<body>` tag in the HTML markup.
 
-Example
--------
+## Example
 
 There's [a simple test case](https://bugzilla.mozilla.org/attachment.cgi?id=220609) that you can run to verify that the events are working (does not work in Chrome due to attaching the event listener to document.body).
 
@@ -97,17 +93,15 @@ And the corresponding HTML<span class="comment">XXX When mochitests for this are
 
 Here's the live result
 
-Notes
------
+## Notes
 
 If the API isn't implemented in the browser, you can use other signals to detect if you are offline including using service workers and [responses from XMLHttpRequest](https://www.html5rocks.com/en/mobile/workingoffthegrid.html#toc-xml-http-request).
 
-References
-----------
+## References
 
--   ['Online/Offline events' section from the WHATWG Web Applications 1.0 Specification](https://www.whatwg.org/specs/web-apps/current-work/#offline)
--   [The bug tracking online/offline events implementation in Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=336359) and a [follow-up](https://bugzilla.mozilla.org/show_bug.cgi?id=336682)
--   [A simple test case](https://bugzilla.mozilla.org/attachment.cgi?id=220609)
--   [An explanation of Online/Offline events](http://ejohn.org/blog/offline-events/)
+- ['Online/Offline events' section from the WHATWG Web Applications 1.0 Specification](https://www.whatwg.org/specs/web-apps/current-work/#offline)
+- [The bug tracking online/offline events implementation in Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=336359) and a [follow-up](https://bugzilla.mozilla.org/show_bug.cgi?id=336682)
+- [A simple test case](https://bugzilla.mozilla.org/attachment.cgi?id=220609)
+- [An explanation of Online/Offline events](http://ejohn.org/blog/offline-events/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/Online_and_offline_events" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/Online_and_offline_events</a>

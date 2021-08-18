@@ -1,29 +1,26 @@
-RTCIceTransport
-===============
+# RTCIceTransport
 
 The `RTCIceTransport` interface provides access to information about the [ICE](https://developer.mozilla.org/en-US/docs/Glossary/ICE) transport layer over which the data is being sent and received. This is particularly useful if you need to access state information about the connection.
 
-Properties
-----------
+## Properties
 
-*The `RTCIceTransport` interface inherits properties from its parent, [`EventTarget`](eventtarget). It also offers the following properties:*
+_The `RTCIceTransport` interface inherits properties from its parent, [`EventTarget`](eventtarget). It also offers the following properties:_
 
- [`component`](rtcicetransport/component) <span class="badge inline readonly">Read only </span>   
+[`component`](rtcicetransport/component) <span class="badge inline readonly">Read only </span>  
 The ICE component being used by the transport. The value is one of the strings from the [`RTCIceTransport`](rtcicetransport) enumerated type: `"RTP"` or `"RTSP"`.
 
- [`gatheringState`](rtcicetransport/gatheringstate) <span class="badge inline readonly">Read only </span>   
+[`gatheringState`](rtcicetransport/gatheringstate) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) indicating which gathering state the ICE agent is currently in. The value is one of those included in the [`RTCIceGathererState`](rtcicegathererstate) enumerated type: `"new"`, `"gathering"`, or `"complete"`.
 
- [`role`](rtcicetransport/role) <span class="badge inline readonly">Read only </span>   
+[`role`](rtcicetransport/role) <span class="badge inline readonly">Read only </span>  
 Returns a [`DOMString`](domstring) whose value is one of the members of the [`RTCIceRole`](rtcicerole) enumerated type: `"controlling"` or `"controlled"`; this indicates whether the ICE agent is the one that makes the final decision as to the candidate pair to use or not.
 
- [`state`](rtcicetransport/state) <span class="badge inline readonly">Read only </span>   
+[`state`](rtcicetransport/state) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) indicating what the current state of the ICE agent is. The value of `state` can be used to determine whether the ICE agent has made an initial connection using a viable candidate pair (`"connected"`), made its final selection of candidate pairs (`"completed"`), or in an error state (`"failed"`), among other states. See the [`RTCIceTransportState`](rtcicetransportstate) enumerated type for a complete list of states.
 
-Methods
--------
+## Methods
 
-*Also includes methods from [`EventTarget`](eventtarget), the parent interface.*
+_Also includes methods from [`EventTarget`](eventtarget), the parent interface._
 
 [`getLocalCandidates()`](rtcicetransport/getlocalcandidates)  
 Returns an array of [`RTCIceCandidate`](rtcicecandidate) objects, each describing one of the ICE candidates that have been gathered so far for the local device. These are the same candidates which have already been sent to the remote peer by sending an `icecandidate` event to the [`RTCPeerConnection`](rtcpeerconnection) for transmission.
@@ -40,8 +37,7 @@ Returns a [`RTCIceParameters`](rtciceparameters) object containing the ICE param
 [`getSelectedCandidatePair()`](rtcicetransport/getselectedcandidatepair)  
 Returns a [`RTCIceCandidatePair`](rtcicecandidatepair) object that identifies the two candidates—one for each end of the connection—that have been selected so far. It's possible that a better pair will be found and selected later; if you need to keep up with this, watch for the `selectedcandidatepairchange` event. If no candidate pair has been selected yet, the return value is `null`.
 
-Events
-------
+## Events
 
 Listen to these events using [`addEventListener()`](eventtarget/addeventlistener) or by assigning an event listener to the `oneventname` property of this interface.
 
@@ -57,19 +53,16 @@ Also available using the [`onselectedcandidatepairchange`](rtcicetransport/onsel
 Sent to the `RTCIceTransport` instance when the value of the [`state`](rtcicetransport/state) property has changed, indicating that the ICE gathering process has changed state.  
 Also available through the [`onstatechange`](rtcicetransport/onstatechange) event handler property.
 
-Examples
---------
+## Examples
 
 tbd
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicetransport">WebRTC 1.0: Real-time Communication Between Browsers<br />
 <span class="small">The definition of 'RTCIceTransport' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

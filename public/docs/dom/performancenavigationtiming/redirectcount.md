@@ -1,5 +1,4 @@
-PerformanceNavigationTiming.redirectCount
-=========================================
+# PerformanceNavigationTiming.redirectCount
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `redirectCount` property returns a [`timestamp`](../domhighrestimestamp) rep
 
 This property is <span class="badge inline readonly">Read only </span>.
 
-Syntax
-------
+## Syntax
 
     perfEntry.redirectCount;
 
@@ -19,8 +17,7 @@ Syntax
 
 A number representing the number of redirects since the last non-redirect navigation under the current browsing context.
 
-Example
--------
+## Example
 
 The following example illustrates this property's usage.
 
@@ -46,14 +43,12 @@ The following example illustrates this property's usage.
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/navigation-timing/#dom-performancenavigationtiming-redirectcount">Navigation Timing Level 2<br />
 <span class="small">The definition of 'redirectCount' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

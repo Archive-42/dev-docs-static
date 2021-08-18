@@ -1,5 +1,4 @@
-PushMessageData
-===============
+# PushMessageData
 
 **Experimental**
 
@@ -12,13 +11,11 @@ Unlike the similar methods in the [Fetch API](fetch_api), which only allow the m
 
 Messages received through the Push API are sent encrypted by push services and then automatically decrypted by browsers before they are made accessible through the methods of the `PushMessageData` interface.
 
-Properties
-----------
+## Properties
 
 None.
 
-Methods
--------
+## Methods
 
 [`PushMessageData.arrayBuffer()`](pushmessagedata/arraybuffer)  
 Extracts the data as an [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) object.
@@ -32,8 +29,7 @@ Extracts the data as a [JSON](https://developer.mozilla.org/en-US/docs/Web/JavaS
 [`PushMessageData.text()`](pushmessagedata/text)  
 Extracts the data as a plain text string.
 
-Examples
---------
+## Examples
 
     self.addEventListener('push', function(event) {
       var obj = event.data.json();
@@ -46,14 +42,12 @@ Examples
       }
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/push-api/#pushmessagedata-interface">Push API<br />
 <span class="small">The definition of 'PushMessageData' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
