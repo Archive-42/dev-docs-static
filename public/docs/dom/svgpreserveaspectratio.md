@@ -1,0 +1,141 @@
+SVGPreserveAspectRatio
+======================
+
+SVG preserveAspectRatio interface
+---------------------------------
+
+The `SVGPreserveAspectRatio` interface corresponds to the `preserveAspectRatio` attribute, which is available for some of SVG's elements.
+
+An `SVGPreserveAspectRatio` object can be designated as read only, which means that attempts to modify the object will result in an exception being thrown.
+
+### Interface overview
+
+<table><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><tbody><tr class="odd"><td>Also implement</td><td><em>None</em></td></tr><tr class="even"><td>Methods</td><td><em>None</em></td></tr><tr class="odd"><td>Properties</td><td><ul><li>unsigned short <code>align</code></li><li>unsigned short <code>meetOrSlice</code></li></ul></td></tr><tr class="even"><td>Constants</td><td><ul><li><code>SVG_PRESERVEASPECTRATIO_UNKNOWN</code> = 0</li><li><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_NONE</code> = 1</li><li><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_XMINYMIN</code> = 2</li><li><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_</code><code>XMIDYMIN</code> = 3</li><li><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_</code><code>XMAXYMIN</code> = 4</li><li><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_</code><code>XMINYMID</code> = 5</li><li><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_</code><code>XMIDYMID</code> = 6</li><li><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_</code><code>XMAXYMID</code> = 7</li><li><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_</code><code>XMINYMAX</code> = 8</li><li><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_</code><code>XMIDYMAX</code> = 9</li><li><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_</code><code>XMAXYMAX</code> = 10</li></ul><ul><li><code>SVG_MEETORSLICE_UNKNOWN</code> = 0</li><li><code>SVG_</code><code>MEETORSLICE</code><code>_MEET</code> = 1</li><li><code>SVG_</code><code>MEETORSLICE</code><code>_SLICE</code> = 2</li></ul></td></tr><tr class="odd"><td>Normative document</td><td><a href="https://www.w3.org/TR/SVG/coords.html#InterfaceSVGPreserveAspectRatio">SVG 1.1 (2nd Edition)</a></td></tr></tbody></table>
+
+Constants
+---------
+
+<table><thead><tr class="header"><th>Name</th><th>Value</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_UNKNOWN</code></td><td>0</td><td>The enumeration was set to a value that is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.</td></tr><tr class="even"><td><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_NONE</code></td><td>1</td><td>Corresponds to value <code>none</code> for attribute <code>preserveAspectRatio</code>.</td></tr><tr class="odd"><td><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_XMINYMIN</code></td><td>2</td><td>Corresponds to value <code>xMinYMin</code> for attribute <code>preserveAspectRatio</code>.</td></tr><tr class="even"><td><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_XMIDYMIN</code></td><td>3</td><td>Corresponds to value <code>xMidYMin</code> for attribute <code>preserveAspectRatio</code>.</td></tr><tr class="odd"><td><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_XMAXYMIN</code></td><td>4</td><td>Corresponds to value <code>xMaxYMin</code> for attribute <code>preserveAspectRatio</code>.</td></tr><tr class="even"><td><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_XMINYMID</code></td><td>5</td><td>Corresponds to value <code>xMinYMid</code> for attribute <code>preserveAspectRatio</code>.</td></tr><tr class="odd"><td><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_XMIDYMID</code></td><td>6</td><td>Corresponds to value <code>xMidYMid</code> for attribute <code>preserveAspectRatio</code>.</td></tr><tr class="even"><td><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_XMAXYMID</code></td><td>7</td><td>Corresponds to value <code>xMaxYMid</code> for attribute <code>preserveAspectRatio</code>.</td></tr><tr class="odd"><td><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_XMINYMAX</code></td><td>8</td><td>Corresponds to value <code>xMinYMax</code> for attribute <code>preserveAspectRatio</code>.</td></tr><tr class="even"><td><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_XMIDYMAX</code></td><td>9</td><td>Corresponds to value <code>xMidYMax</code> for attribute <code>preserveAspectRatio</code>.</td></tr><tr class="odd"><td><code>SVG_</code><code>PRESERVEASPECTRATIO</code><code>_XMAXYMAX</code></td><td>10</td><td>Corresponds to value <code>xMaxYMax</code> for attribute <code>preserveAspectRatio</code>.</td></tr><tr class="even"><td><code>SVG_MEETORSLICE_UNKNOWN</code></td><td>0</td><td>The enumeration was set to a value that is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.</td></tr><tr class="odd"><td><code>SVG_MEETORSLICE_MEET</code></td><td>1</td><td>Corresponds to value <code>meet</code> for attribute <code>preserveAspectRatio</code>.</td></tr><tr class="even"><td><code>SVG_MEETORSLICE_SLICE</code></td><td>2</td><td>Corresponds to value <code>slice</code> for attribute <code>preserveAspectRatio</code>.</td></tr></tbody></table>
+
+Properties
+----------
+
+<table><thead><tr class="header"><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>align</code></td><td>unsigned short</td><td>The type of the alignment value as specified by one of the SVG_PRESERVEASPECTRATIO_* constants defined on this interface.</td></tr><tr class="even"><td><code>meetOrSlice</code></td><td>unsigned short</td><td>The type of the meet-or-slice value as specified by one of the SVG_MEETORSLICE_* constants defined on this interface.</td></tr></tbody></table>
+
+**Exceptions on setting:** a `DOMException` with code `NO_MODIFICATION_ALLOWED_ERR` is raised on an attempt to change the value of an attribute on a read only object.
+
+Methods
+-------
+
+The `SVGPreserveAspectRatio` interface do not provide any specific methods.
+
+Browser compatibility
+---------------------
+
+Desktop
+
+Mobile
+
+Chrome
+
+Edge
+
+Firefox
+
+Internet Explorer
+
+Opera
+
+Safari
+
+WebView Android
+
+Chrome Android
+
+Firefox for Android
+
+Opera Android
+
+Safari on IOS
+
+Samsung Internet
+
+`SVGPreserveAspectRatio`
+
+1
+
+≤18
+
+1.5
+
+9
+
+≤12.1
+
+3
+
+1
+
+18
+
+4
+
+≤12.1
+
+1
+
+1.0
+
+`align`
+
+1
+
+12
+
+1.5
+
+9
+
+15
+
+3
+
+1
+
+18
+
+4
+
+14
+
+1
+
+4.0
+
+`meetOrSlice`
+
+1
+
+12
+
+1.5
+
+9
+
+15
+
+3
+
+1
+
+18
+
+4
+
+14
+
+1
+
+4.0
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/SVGPreserveAspectRatio" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/SVGPreserveAspectRatio</a>

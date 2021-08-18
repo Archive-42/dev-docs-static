@@ -1,0 +1,107 @@
+# Document: paste event
+
+The `paste` event is fired when the user has initiated a "paste" action through the browser's user interface.
+
+<table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>Yes</td></tr><tr class="odd"><td>Interface</td><td><a href="../clipboardevent"><code>ClipboardEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="../htmlelement/onpaste"><code>onpaste</code></a></td></tr></tbody></table>
+
+The original target for this event is the [`Element`](../element) that was the intended target of the paste action. You can listen for this event on the [`Document`](../document) interface to handle it in the capture or bubbling phases. For full details on this event please see the page on the [Element: paste event](../element/paste_event).
+
+## Examples
+
+    document.addEventListener('paste', (event) => {
+        console.log('paste action initiated')
+    });
+
+## Specifications
+
+<table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/clipboard-apis/#clipboard-event-paste">Clipboard API and events</a></td><td><span class="spec-wd">Working Draft</span></td></tr></tbody></table>
+
+## Browser compatibility
+
+Desktop
+
+Mobile
+
+Chrome
+
+Edge
+
+Firefox
+
+Internet Explorer
+
+Opera
+
+Safari
+
+WebView Android
+
+Chrome Android
+
+Firefox for Android
+
+Opera Android
+
+Safari on IOS
+
+Samsung Internet
+
+`paste_event`
+
+1
+
+12
+
+Yes
+
+11
+
+15
+
+Yes
+
+1
+
+18
+
+Yes
+
+14
+
+?
+
+1.0
+
+`clipboardData`
+
+58
+
+?
+
+22
+
+No
+
+45
+
+Yes
+
+58
+
+58
+
+22
+
+43
+
+?
+
+7.0
+
+## See also
+
+- Related events: [`cut`](cut_event), [`copy`](copy_event)
+- This event on [`Element`](../element) targets: [`paste`](../element/paste_event)
+- This event on [`Window`](../window) targets: [`paste`](../window/paste_event)
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/paste_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Document/paste_event</a>

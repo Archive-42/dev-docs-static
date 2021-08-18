@@ -1,0 +1,192 @@
+# grid-auto-rows
+
+The `grid-auto-rows` CSS property specifies the size of an implicitly-created grid row [track](https://developer.mozilla.org/en-US/docs/Glossary/Grid_Tracks) or pattern of tracks.
+
+If a grid item is positioned into a row that is not explicitly sized by [`grid-template-rows`](grid-template-rows), implicit [grid](https://developer.mozilla.org/en-US/docs/Glossary/Grid) tracks are created to hold it. This can happen either by explicitly positioning into a row that is out of range, or by the auto-placement algorithm creating additional rows.
+
+## Syntax
+
+    /* Keyword values */
+    grid-auto-rows: min-content;
+    grid-auto-rows: max-content;
+    grid-auto-rows: auto;
+
+    /* <length> values */
+    grid-auto-rows: 100px;
+    grid-auto-rows: 20cm;
+    grid-auto-rows: 50vmax;
+
+    /* <percentage> values */
+    grid-auto-rows: 10%;
+    grid-auto-rows: 33.3%;
+
+    /* <flex> values */
+    grid-auto-rows: 0.5fr;
+    grid-auto-rows: 3fr;
+
+    /* minmax() values */
+    grid-auto-rows: minmax(100px, auto);
+    grid-auto-rows: minmax(max-content, 2fr);
+    grid-auto-rows: minmax(20%, 80vmax);
+
+    /* multiple track-size values */
+    grid-auto-rows: min-content max-content auto;
+    grid-auto-rows: 100px 150px 390px;
+    grid-auto-rows: 10% 33.3%;
+    grid-auto-rows: 0.5fr 3fr 1fr;
+    grid-auto-rows: minmax(100px, auto) minmax(max-content, 2fr) minmax(20%, 80vmax);
+    grid-auto-rows: 100px minmax(100px, auto) 10% 0.5fr fit-content(400px);
+
+    /* Global values */
+    grid-auto-rows: inherit;
+    grid-auto-rows: initial;
+    grid-auto-rows: unset;
+
+### Values
+
+[`<length>`](length)  
+Is a non-negative length.
+
+[`<percentage>`](percentage)  
+Is a non-negative [`<percentage>`](percentage) value relative to the block size of the grid container. If the block size of the grid container is indefinite, the percentage value is treated like `auto`.
+
+[`<flex>`](flex_value)  
+Is a non-negative dimension with the unit `fr` specifying the track’s flex factor. Each `<flex>`-sized track takes a share of the remaining space in proportion to its flex factor.
+
+When appearing outside a `minmax()` notation, it implies an automatic minimum (i.e. `minmax(auto, <flex>)`).
+
+[`max-content`](max-content)  
+Is a keyword representing the largest maximal content contribution of the grid items occupying the grid track.
+
+[`min-content`](min-content)  
+Is a keyword representing the largest minimal content contribution of the grid items occupying the grid track.
+
+[`minmax(min, max)`](<minmax()>)  
+Is a functional notation that defines a size range greater than or equal to _min_ and less than or equal to _max_. If _max_ is smaller than _min_, then _max_ is ignored and the function is treated as _min_. As a maximum, a `<flex>` value sets the track’s flex factor. As a minimum, it is treated as zero (or minimal content, if the grid container is sized under a minimal content constraint).
+
+[`fit-content( [ <length> | <percentage> ] )`](<fit-content()>)  
+Represents the formula `min(max-content, max(auto, argument))`, which is calculated similar to `auto` (i.e. `minmax(auto, max-content)`), except that the track size is clamped at argument if it is greater than the `auto` minimum.
+
+`auto`  
+Is a keyword that is identical to maximal content if it's a maximum. As a minimum it represents the largest minimum size (as specified by [`min-width`](min-width)/[`min-height`](min-height)) of the grid items occupying the grid track.
+
+Note: `auto` track sizes (and only `auto` track sizes) can be stretched by the [`align-content`](align-content) and [`justify-content`](justify-content) properties.
+
+## Formal definition
+
+<table><tbody><tr class="odd"><td><a href="initial_value">Initial value</a></td><td><code>auto</code></td></tr><tr class="even"><td>Applies to</td><td>grid containers</td></tr><tr class="odd"><td><a href="inheritance">Inherited</a></td><td>no</td></tr><tr class="even"><td>Percentages</td><td>refer to corresponding dimension of the content area</td></tr><tr class="odd"><td><a href="computed_value">Computed value</a></td><td>the percentage as specified or the absolute length</td></tr><tr class="even"><td>Animation type</td><td>discrete</td></tr></tbody></table>
+
+## Formal syntax
+
+    <track-size>+where
+    <track-size> = <track-breadth> | minmax( <inflexible-breadth> , <track-breadth> ) | fit-content( [ <length> | <percentage> ] )where
+    <track-breadth> = <length-percentage> | <flex> | min-content | max-content | auto
+    <inflexible-breadth> = <length> | <percentage> | min-content | max-content | autowhere
+    <length-percentage> = <length> | <percentage>
+
+## Examples
+
+### Setting grid row size
+
+#### HTML
+
+    <div id="grid">
+      <div id="item1"></div>
+      <div id="item2"></div>
+      <div id="item3"></div>
+    </div>
+
+#### CSS
+
+    #grid {
+      width: 200px;
+      display: grid;
+      grid-template-areas: "a a";
+      gap: 10px;
+      grid-auto-rows: 100px;
+    }
+
+    #grid > div {
+      background-color: lime;
+    }
+
+#### Result
+
+## Specifications
+
+<table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-grid/#propdef-grid-auto-rows">CSS Grid Layout<br />
+<span class="small">The definition of 'grid-auto-rows' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
+
+## Browser compatibility
+
+Desktop
+
+Mobile
+
+Chrome
+
+Edge
+
+Firefox
+
+Internet Explorer
+
+Opera
+
+Safari
+
+WebView Android
+
+Chrome Android
+
+Firefox for Android
+
+Opera Android
+
+Safari on IOS
+
+Samsung Internet
+
+`grid-auto-rows`
+
+57
+
+16
+
+12-79
+
+70
+
+52-70
+
+Does not accept multiple track-size values. See [bug 1339672](https://bugzil.la/1339672).
+
+10
+
+44
+
+10.1
+
+57
+
+57
+
+79
+
+52-79
+
+Does not accept multiple track-size values. See [bug 1339672](https://bugzil.la/1339672).
+
+43
+
+10.3
+
+6.0
+
+## See also
+
+- Related CSS properties: [`grid-auto-columns`](grid-auto-columns), [`grid-auto-flow`](grid-auto-flow), [`grid`](grid)
+- Grid Layout Guide: _[Auto-placement in grid layout - sizing rows in the implicit grid](css_grid_layout/auto-placement_in_css_grid_layout#sizing_rows_in_the_implicit_grid)_
+- Video tutorial: _[Introducing Grid auto-placement and order](https://gridbyexample.com/video/series-auto-placement-order/)_
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows</a>

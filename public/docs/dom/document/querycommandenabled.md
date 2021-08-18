@@ -1,0 +1,108 @@
+# Document.queryCommandEnabled()
+
+**Deprecated**
+
+This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the [compatibility table](#browser_compatibility) at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.
+
+The `Document.queryCommandEnabled()` method reports whether or not the specified editor command is enabled by the browser.
+
+## Syntax
+
+    isEnabled = document.queryCommandEnabled(command);
+
+### Parameters
+
+`command`  
+The command for which to determine support.
+
+### Return value
+
+Returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) which is `true` if the command is enabled and `false` if the command isn't`.`
+
+## Notes
+
+- For '`cut`' and '`copy`' commands the method only returns true when called from a user-initiated thread.
+- The `'paste'` command return `false` not only if the feature is unavailable, but also if the script calling it has insufficient privileges to perform the action.
+
+## Example
+
+    var flg = document.queryCommandEnabled("SelectAll");
+
+    if(flg) {
+      document.execCommand("SelectAll", false, null); // command is enabled, run it
+    }
+
+## Specifications
+
+<table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/editing/execCommand.html#querycommandenabled()">execCommand</a></td><td></td><td></td></tr></tbody></table>
+
+## Browser compatibility
+
+Desktop
+
+Mobile
+
+Chrome
+
+Edge
+
+Firefox
+
+Internet Explorer
+
+Opera
+
+Safari
+
+WebView Android
+
+Chrome Android
+
+Firefox for Android
+
+Opera Android
+
+Safari on IOS
+
+Samsung Internet
+
+`queryCommandEnabled`
+
+1
+
+12
+
+41
+
+1-41
+
+`queryCommandEnabled` with arguments `cut`, `copy` or `paste` would throw errors unless the script had special privileges.
+
+4
+
+≤12.1
+
+2
+
+1
+
+18
+
+41
+
+4-41
+
+`queryCommandEnabled` with arguments `cut`, `copy` or `paste` would throw errors unless the script had special privileges.
+
+≤12.1
+
+1
+
+1.0
+
+## See also
+
+- [`Document.execCommand()`](execcommand)
+- [`Document.queryCommandSupported()`](querycommandsupported)
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/queryCommandEnabled" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Document/queryCommandEnabled</a>

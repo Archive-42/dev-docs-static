@@ -1,0 +1,79 @@
+SVGAnimationElement.onrepeat
+============================
+
+**Experimental**
+
+**This is an [experimental technology](https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental)**  
+Check the [Browser compatibility table](#browser_compatibility) carefully before using this in production.
+
+The `SVGAnimationElement.onrepeat` property refers to the event handler for the `repeatEvent`.
+
+Syntax
+------
+
+    var repeatEventHandler = someElement.onrepeat;
+
+Specifications
+--------------
+
+<table><tbody><tr class="odd"><td>Specification</td><td>Status</td><td>Comment</td></tr><tr class="even"><td><a href="https://svgwg.org/specs/animations/#__svg__SVGAnimationElement__onrepeat">SVG Animations Level 2<br />
+<span class="small">The definition of 'SVGAnimationElement.onrepeat' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition</td></tr></tbody></table>
+
+Browser compatibility
+---------------------
+
+Desktop
+
+Mobile
+
+Chrome
+
+Edge
+
+Firefox
+
+Internet Explorer
+
+Opera
+
+Safari
+
+WebView Android
+
+Chrome Android
+
+Firefox for Android
+
+Opera Android
+
+Safari on IOS
+
+Samsung Internet
+
+`onrepeat`
+
+35
+
+79
+
+Yes
+
+No
+
+22
+
+No
+
+37
+
+35
+
+?
+
+22
+
+No
+
+3.0
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/SVGAnimationElement/onrepeat" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/SVGAnimationElement/onrepeat</a>

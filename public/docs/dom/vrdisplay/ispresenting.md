@@ -1,0 +1,120 @@
+VRDisplay.isPresenting
+======================
+
+**Deprecated**
+
+This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the [compatibility table](#browser_compatibility) at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.
+
+The `isPresenting` read-only property of the [`VRDisplay`](../vrdisplay) interface returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the `VRDisplay` is currently having content presented through it.
+
+Syntax
+------
+
+    var isItPresenting = vrDisplayInstance.isPresenting;
+
+### Value
+
+A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean); `true` means the display is presenting; `false` means it isn't.
+
+Examples
+--------
+
+    function onVRExitPresent () {
+      // No sense in exiting presentation if we're not actually presenting.
+      // (This may happen if we get an event like vrdisplaydeactivate when
+      // we weren't presenting.)
+      if (!vrDisplay.isPresenting)
+        return;
+      vrDisplay.exitPresent().then(function () {
+        // Nothing to do because we're handling things in onVRPresentChange.
+      }, function (err) {
+        var errMsg = "exitPresent failed.";
+        if (err && err.message) {
+          errMsg += "<br/>" + err.message
+        }
+        VRSamplesUtil.addError(errMsg, 2000);
+      });
+    }
+
+**Note**: Code snippet taken from [Google's VR Presentation demo](https://github.com/toji/webvr.info/blob/master/samples/03-vr-presentation.html).
+
+Specifications
+--------------
+
+<table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://immersive-web.github.io/webvr/spec/1.1/#dom-vrdisplay-ispresenting">WebVR 1.1<br />
+<span class="small">The definition of 'isPresenting' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition</td></tr></tbody></table>
+
+Browser compatibility
+---------------------
+
+Desktop
+
+Mobile
+
+Chrome
+
+Edge
+
+Firefox
+
+Internet Explorer
+
+Opera
+
+Safari
+
+WebView Android
+
+Chrome Android
+
+Firefox for Android
+
+Opera Android
+
+Safari on IOS
+
+Samsung Internet
+
+`isPresenting`
+
+No
+
+15-79
+
+55
+
+Windows support was enabled in Firefox 55.
+
+64
+
+macOS support was enabled in Firefox 64.
+
+No
+
+?
+
+No
+
+No
+
+56-80
+
+\["Only works in an [experimental version of Chrome](https://webvr.info/get-chrome/). (Other builds won't return any devices when `Navigator.getVRDisplays()` is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."\]
+
+55
+
+?
+
+?
+
+6.0
+
+Google Cardboard supported in Samsung Internet 7.0.
+
+See also
+--------
+
+-   [WebVR API homepage](../webvr_api)
+-   <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/VRDisplay/isPresenting" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/VRDisplay/isPresenting</a>
