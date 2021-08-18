@@ -1,17 +1,14 @@
-GlobalEventHandlers.onmouseout
-==============================
+# GlobalEventHandlers.onmouseout
 
 The `onmouseout` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `mouseout` events.
 
 The `mouseout` event fires when the mouse leaves an element. For example, when the mouse moves off of an image in the web page, the `mouseout` event is raised for that image element.
 
-Syntax
-------
+## Syntax
 
     element.onmouseout = function;
 
-Example
--------
+## Example
 
 This example adds an `onmouseout` and an `onmouseover` event to a paragraph. Try moving your mouse over and out of the element.
 
@@ -35,14 +32,12 @@ This example adds an `onmouseout` and an `onmouseover` event to a paragraph. Try
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onmouseout">HTML Living Standard<br />
 <span class="small">The definition of 'onmouseout' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

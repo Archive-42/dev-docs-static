@@ -1,29 +1,23 @@
-File.size
-=========
+# File.size
 
-Summary
--------
+## Summary
 
 Returns the size of a file in bytes.
 
-Syntax
-------
+## Syntax
 
     var size = instanceOfFile.size
 
-Value
------
+## Value
 
 A number
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-See also
---------
+## See also
 
--   [`Blob.size`](../blob/size)
+- [`Blob.size`](../blob/size)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/File/size" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File/size</a>

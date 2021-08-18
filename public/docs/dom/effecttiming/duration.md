@@ -1,5 +1,4 @@
-EffectTiming.duration
-=====================
+# EffectTiming.duration
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `duration` property of the dictionary [`EffectTiming`](../effecttiming) in t
 
 [`Element.animate()`](../element/animate), [`KeyframeEffectReadOnly()`](../keyframeeffect/keyframeeffect), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) all accept an object of timing properties including `duration`. The value of `duration` corresponds directly to <span class="page-not-created">`AnimationEffectTimingReadOnly.duration`</span> in [`timing`](../animationeffect/gettiming) objects returned by [`AnimationEffectReadOnly`](../animationeffect), [`KeyframeEffectReadOnly`](../keyframeeffect), and [`KeyframeEffect`](../keyframeeffect).
 
-Syntax
-------
+## Syntax
 
     var timingProperties = {
       duration: durationInMilliseconds | "auto"
@@ -30,8 +28,7 @@ Currently, a value of `"auto"` is the same as specifying 0.0. This is a forwards
 `TypeError`  
 The specified value is either a string other than `"auto"`, a number less than zero, [`NaN`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN), or some other type of object entirely.
 
-Examples
---------
+## Examples
 
 In the [Pool of Tears](https://codepen.io/rachelnabors/pen/EPJdJx?editors=0010) example, each tear is passed a random `duration` via its timing object:
 
@@ -54,14 +51,12 @@ In the [Pool of Tears](https://codepen.io/rachelnabors/pen/EPJdJx?editors=0010) 
         });
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/web-animations-1/#iteration-duration">Web Animations<br />
 <span class="small">The definition of 'duration' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Editor's draft.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -117,12 +112,11 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [Web Animations API](../web_animations_api)
--   [`Element.animate()`](../element/animate), [`KeyframeEffectReadOnly()`](../keyframeeffect/keyframeeffect), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) all accept an object of timing properties including this one.
--   The value of this property corresponds to property of the same name in [`AnimationEffectReadOnly.timing`](../animationeffect/gettiming), <span class="page-not-created">`KeyframeEffectReadOnly.timing`</span>, and <span class="page-not-created">`KeyframeEffect.timing`</span>).
--   CSS's [`transition-duration`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration) and [`animation-duration`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration) properties
+- [Web Animations API](../web_animations_api)
+- [`Element.animate()`](../element/animate), [`KeyframeEffectReadOnly()`](../keyframeeffect/keyframeeffect), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) all accept an object of timing properties including this one.
+- The value of this property corresponds to property of the same name in [`AnimationEffectReadOnly.timing`](../animationeffect/gettiming), <span class="page-not-created">`KeyframeEffectReadOnly.timing`</span>, and <span class="page-not-created">`KeyframeEffect.timing`</span>).
+- CSS's [`transition-duration`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration) and [`animation-duration`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration) properties
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/duration" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/duration</a>

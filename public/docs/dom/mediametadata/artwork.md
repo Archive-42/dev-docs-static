@@ -1,5 +1,4 @@
-MediaMetadata.artwork
-=====================
+# MediaMetadata.artwork
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `artwork` property of the [`MediaMetaData`](../mediametadata) interface returns or sets an array of [`MediaImage`](../mediaimage) objects representing images associated with playing media.
 
-Syntax
-------
+## Syntax
 
     var artwork[] = mediaMetadata.artwork
     mediaMetadata.artwork = artwork[]
@@ -18,8 +16,7 @@ Syntax
 
 An [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of [`MediaImage`](../mediaimage) objects.
 
-Examples
---------
+## Examples
 
 The following example checks for browser compatibility and sets the current metadata for the media session.
 
@@ -38,14 +35,13 @@ The following example checks for browser compatibility and sets the current meta
         ]
       });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediasession/#dom-mediametadata-artwork">Media Session Standard<br />
 <span class="small">The definition of 'artwork' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
 BCD tables only load in the browser
 
--   [`MediaImage`](../mediaimage)
+- [`MediaImage`](../mediaimage)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaMetadata/artwork" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaMetadata/artwork</a>

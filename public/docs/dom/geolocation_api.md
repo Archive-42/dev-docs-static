@@ -1,5 +1,4 @@
-Geolocation API
-===============
+# Geolocation API
 
 **Secure context**
 
@@ -9,8 +8,7 @@ The **Geolocation API** allows the user to provide their location to web applica
 
 WebExtensions that wish to use the `Geolocation` object must add the `"geolocation"` permission to their manifest. The user's operating system will prompt the user to allow location access the first time it is requested.
 
-Concepts and usage
-------------------
+## Concepts and usage
 
 You will often want to retrieve a user's location information in your web app, for example to plot their location on a map, or display personalized information relevant to their location.
 
@@ -18,19 +16,18 @@ The Geolocation API is accessed via a call to [`navigator.geolocation`](navigato
 
 The developer can now access this location information in a couple of different ways:
 
--   [`Geolocation.getCurrentPosition()`](geolocation/getcurrentposition): Retrieves the device's current location.
--   [`Geolocation.watchPosition()`](geolocation/watchposition): Registers a handler function that will be called automatically each time the position of the device changes, returning the updated location.
+- [`Geolocation.getCurrentPosition()`](geolocation/getcurrentposition): Retrieves the device's current location.
+- [`Geolocation.watchPosition()`](geolocation/watchposition): Registers a handler function that will be called automatically each time the position of the device changes, returning the updated location.
 
 In both cases, the method call takes up to three arguments:
 
--   A mandatory success callback: If the location retrieval is successful, the callback executes with a [`GeolocationPosition`](geolocationposition) object as its only parameter, providing access to the location data.
--   An optional error callback: If the location retrieval is unsuccessful, the callback executes with a [`GeolocationPositionError`](geolocationpositionerror) object as its only parameter, providing access information on what went wrong.
--   An optional [`PositionOptions`](positionoptions) object, which provides options for retrieval of the position data.
+- A mandatory success callback: If the location retrieval is successful, the callback executes with a [`GeolocationPosition`](geolocationposition) object as its only parameter, providing access to the location data.
+- An optional error callback: If the location retrieval is unsuccessful, the callback executes with a [`GeolocationPositionError`](geolocationpositionerror) object as its only parameter, providing access information on what went wrong.
+- An optional [`PositionOptions`](positionoptions) object, which provides options for retrieval of the position data.
 
 For further information on Geolocation usage, read [Using the Geolocation API](geolocation_api/using_the_geolocation_api).
 
-Interfaces
-----------
+## Interfaces
 
 [`Geolocation`](geolocation)  
 The main class of this API — contains methods to retrieve the user's current position, watch for changes in their position, and clear a previously-set watch.
@@ -47,14 +44,12 @@ A `GeolocationPositionError` is returned by an unsuccessful call to one of the m
 [`Navigator.geolocation`](navigator/geolocation)  
 The entry point into the API. Returns a [`Geolocation`](geolocation) object instance, from which all other functionality can be accessed.
 
-Dictionaries
-------------
+## Dictionaries
 
 [`PositionOptions`](positionoptions)  
 Represents an object containing options to pass in as a parameter of [`Geolocation.getCurrentPosition()`](geolocation/getcurrentposition) and [`Geolocation.watchPosition()`](geolocation/watchposition).
 
-Examples
---------
+## Examples
 
 In the following example the Geolocation API is used to retrieve the user's latitude and longitude. If sucessful, the available hyperlink is populated with an `openstreetmap.org` URL that will show their location.
 
@@ -100,13 +95,11 @@ In the following example the Geolocation API is used to retrieve the user's lati
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/geolocation-api/">Geolocation API</a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -274,11 +267,10 @@ Yes
 
 As WiFi-based locationing is often provided by Google, the vanilla Geolocation API may be unavailable in China. You may use local third-party providers such as [Baidu](https://lbsyun.baidu.com/index.php?title=jspopular/guide/geolocation), [Autonavi](https://lbs.amap.com/api/javascript-api/guide/services/geolocation#geolocation), or [Tencent](https://lbs.qq.com/tool/component-geolocation.html). These services use the user's IP address and/or a local app to provide enhanced positioning.
 
-See also
---------
+## See also
 
--   [Using the Geolocation API](geolocation_api/using_the_geolocation_api)
--   [Geolocation API on w3.org](https://www.w3.org/TR/geolocation-API/)
--   [Who moved my geolocation?](https://hacks.mozilla.org/2013/10/who-moved-my-geolocation/) (Hacks blog)
+- [Using the Geolocation API](geolocation_api/using_the_geolocation_api)
+- [Geolocation API on w3.org](https://www.w3.org/TR/geolocation-API/)
+- [Who moved my geolocation?](https://hacks.mozilla.org/2013/10/who-moved-my-geolocation/) (Hacks blog)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API</a>

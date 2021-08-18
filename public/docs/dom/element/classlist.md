@@ -1,12 +1,10 @@
-Element.classList
-=================
+# Element.classList
 
 The `Element.classList` is a read-only property that returns a live [`DOMTokenList`](../domtokenlist) collection of the `class` attributes of the element. This can then be used to manipulate the class list.
 
 Using `classList` is a convenient alternative to accessing an element's list of classes as a space-delimited string via [`element.className`](classname).
 
-Syntax
-------
+## Syntax
 
     const elementClasses = elementNodeReference.classList;
 
@@ -16,8 +14,7 @@ A [`DOMTokenList`](../domtokenlist) representing the contents of the element's `
 
 The `DOMTokenList` itself is read-only, although you can modify it using the [`add()`](../domtokenlist/add) and [`remove()`](../domtokenlist/remove) methods.
 
-Examples
---------
+## Examples
 
     const div = document.createElement('div');
     div.className = 'foo';
@@ -54,12 +51,11 @@ Examples
 
 Versions of Firefox before 26 do not implement the use of several arguments in the add/remove/toggle methods. See <https://bugzilla.mozilla.org/show_bug.cgi?id=814014>
 
-Polyfill
---------
+## Polyfill
 
 The legacy `onpropertychange` event can be used to create a living `classList` mockup thanks to a `Element.prototype.className` property that fires the specified event once it is changed.
 
-The following polyfill for both `classList` and `DOMTokenList` ensures **full** compliance (coverage) for all standard methods and properties of `Element.prototype.classList` for **IE10**-**IE11** browsers plus *nearly* compliant behavior for **IE 6-9**. Check it out:
+The following polyfill for both `classList` and `DOMTokenList` ensures **full** compliance (coverage) for all standard methods and properties of `Element.prototype.classList` for **IE10**-**IE11** browsers plus _nearly_ compliant behavior for **IE 6-9**. Check it out:
 
     // 1. String.prototype.trim polyfill
     if (!"".trim) String.prototype.trim = function(){ return this.replace(/^[\s]+|[\s]+$/g, ''); };
@@ -216,15 +212,13 @@ However, it should work just fine in IE9. A major discrepancy between the polyfi
 
 A minor note is that in IE6-7, this polyfill uses the `window[" uCL"]` property on the window object for communicating with the CSS expressions, the `x-uCLp` css property on all elements, and the `element[" uCL"]` property on all elements to allow garbage collection and boost performance. In all polyfilled browsers (IE6-9), an additional `element[" uCLp"]` property is added to element to ensure standards compliant prototyping, and a `DOMTokenList[" uCL"]` property is added to each `element["classList"]` object to ensure that the DOMTokenList is bounded to its own element.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-element-classlist">DOM<br />
 <span class="small">The definition of 'Element.classList' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/dom/#dom-element-classlist">DOM4<br />
 <span class="small">The definition of 'Element.classList' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -388,10 +382,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`element.className`](classname)
--   [`DOMTokenList`](../domtokenlist)
+- [`element.className`](classname)
+- [`DOMTokenList`](../domtokenlist)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/classList</a>

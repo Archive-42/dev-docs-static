@@ -1,5 +1,4 @@
-Element.ariaDisabled
-====================
+# Element.ariaDisabled
 
 ### Note
 
@@ -7,8 +6,7 @@ The `ariaDisabled` property of the [`Element`](../element) interface reflects th
 
 Where possible use an HTML [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element with `type="button"` or the [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) element as these have built in semantics and do not require ARIA attributes.
 
-Syntax
-------
+## Syntax
 
     var ariaDisabled = element.ariaDisabled;
     element.ariaDisabled = ariaDisabled
@@ -23,8 +21,7 @@ The element is enabled.
 `"false"`  
 The element and all focusable descendants are disabled and its value cannot be changed by the user.
 
-Examples
---------
+## Examples
 
 In this example the `aria-disabled` attribute on the element with an ID of `saveChanges` is set to "true" indicating that this input is currently disabled. Using `ariaDisabled` we update the value to "false".
 
@@ -35,14 +32,12 @@ In this example the `aria-disabled` attribute on the element with an ID of `save
     el.ariaDisabled = "false"
     console.log(el.ariaDisabled); // "false"
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariadisabled">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaDisabled' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

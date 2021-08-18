@@ -1,10 +1,8 @@
-File.File()
-===========
+# File.File()
 
 The `File()` constructor creates a new [`File`](../file) object instance.
 
-Syntax
-------
+## Syntax
 
     new File(bits, name[, options]);
 
@@ -16,26 +14,23 @@ An [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/G
 `name`  
 A [`USVString`](../usvstring) representing the file name or the path to the file.
 
- `options` <span class="badge inline optional">Optional</span>   
+`options` <span class="badge inline optional">Optional</span>  
 An options object containing optional attributes for the file. Available options are as follows:
 
--   `type`: A [`DOMString`](../domstring) representing the MIME type of the content that will be put into the file. Defaults to a value of `"".`
--   `lastModified`: A number representing the number of milliseconds between the Unix time epoch and when the file was last modified. Defaults to a value of [`Date.now()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now).
+- `type`: A [`DOMString`](../domstring) representing the MIME type of the content that will be put into the file. Defaults to a value of `"".`
+- `lastModified`: A number representing the number of milliseconds between the Unix time epoch and when the file was last modified. Defaults to a value of [`Date.now()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now).
 
-Example
--------
+## Example
 
     var file = new File(["foo"], "foo.txt", {
       type: "text/plain",
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/FileAPI/">File API</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -91,10 +86,9 @@ No
 
 3.0
 
-See also
---------
+## See also
 
--   [`FileReader`](../filereader)
--   [`Blob`](../blob)
+- [`FileReader`](../filereader)
+- [`Blob`](../blob)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/File/File" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File/File</a>

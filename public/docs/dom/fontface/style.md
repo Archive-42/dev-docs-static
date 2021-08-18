@@ -1,5 +1,4 @@
-FontFace.style
-==============
+# FontFace.style
 
 **Draft**
 
@@ -12,8 +11,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `style` property of the [`FontFace`](../fontface) interface retrieves or sets the font's style. It is equivalent to the [`font-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-style) descriptor.
 
-Syntax
-------
+## Syntax
 
     var style = FontFace.style;
     FontFace.style = value;
@@ -22,14 +20,12 @@ Syntax
 
 A [`CSSOMString`](../cssomstring) containing the descriptors defined in the style sheet's `@font-face` rule.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-font-loading/#dom-fontface-style">CSS Font Loading Module Level 3<br />
 <span class="small">The definition of 'style' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

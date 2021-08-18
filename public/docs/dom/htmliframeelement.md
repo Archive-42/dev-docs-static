@@ -1,62 +1,60 @@
-HTMLIFrameElement
-=================
+# HTMLIFrameElement
 
 The `HTMLIFrameElement` interface provides special properties and methods (beyond those of the [`HTMLElement`](htmlelement) interface it also has available to it by inheritance) for manipulating the layout and presentation of inline frame elements.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement)*.
+_Inherits properties from its parent, [`HTMLElement`](htmlelement)_.
 
- <span class="page-not-created">`HTMLIFrameElement.align`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLIFrameElement.align`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) that specifies the alignment of the frame with respect to the surrounding context.
 
- <span class="page-not-created">`HTMLIFrameElement.allow`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`HTMLIFrameElement.allow`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is a list of origins the frame is allowed to display content from. This attribute also accepts the values `self` and `src` which represent the origin in the iframe's src attribute. The default value is `src`.
 
- <span class="page-not-created">`HTMLIFrameElement.allowfullscreen`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`HTMLIFrameElement.allowfullscreen`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the inline frame is willing to be placed into full screen mode. See [Using full-screen mode](fullscreen_api) for details.
 
 [`HTMLIFrameElement.allowPaymentRequest`](htmliframeelement/allowpaymentrequest)  
 Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the [Payment Request API](payment_request_api) may be invoked inside a cross-origin iframe.
 
- [`HTMLIFrameElement.contentDocument`](htmliframeelement/contentdocument) <span class="badge inline readonly">Read only </span>   
+[`HTMLIFrameElement.contentDocument`](htmliframeelement/contentdocument) <span class="badge inline readonly">Read only </span>  
 Returns a [`Document`](document), the active document in the inline frame's nested browsing context.
 
- [`HTMLIFrameElement.contentWindow`](htmliframeelement/contentwindow) <span class="badge inline readonly">Read only </span>   
+[`HTMLIFrameElement.contentWindow`](htmliframeelement/contentwindow) <span class="badge inline readonly">Read only </span>  
 Returns a <span class="page-not-created">`WindowProxy`</span>, the window proxy for the nested browsing context.
 
 [`HTMLIFrameElement.csp`](htmliframeelement/csp)  
 Specifies the Content Security Policy that an embedded document must agree to enforce upon itself.
 
- <span class="page-not-created">`HTMLIFrameElement.frameBorder`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLIFrameElement.frameBorder`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) that indicates whether to create borders between frames.
 
 <span class="page-not-created">`HTMLIFrameElement.height`</span>  
 Is a [`DOMString`](domstring) that reflects the [`height`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-height) HTML attribute, indicating the height of the frame.
 
- <span class="page-not-created">`HTMLIFrameElement.longDesc`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLIFrameElement.longDesc`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) that contains the URI of a long description of the frame.
 
- <span class="page-not-created">`HTMLIFrameElement.marginHeight`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLIFrameElement.marginHeight`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) being the height of the frame margin.
 
- <span class="page-not-created">`HTMLIFrameElement.marginWidth`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLIFrameElement.marginWidth`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) being the width of the frame margin.
 
 <span class="page-not-created">`HTMLIFrameElement.name`</span>  
 Is a [`DOMString`](domstring) that reflects the [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-name) HTML attribute, containing a name by which to refer to the frame.
 
- [`HTMLIFrameElement.featurePolicy`](htmliframeelement/featurepolicy) <span class="badge inline readonly">Read only </span><span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`HTMLIFrameElement.featurePolicy`](htmliframeelement/featurepolicy) <span class="badge inline readonly">Read only </span><span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns the [`FeaturePolicy`](featurepolicy) interface which provides a simple API for introspecting the feature policies applied to a specific document.
 
- [`HTMLIFrameElement.referrerPolicy`](htmliframeelement/referrerpolicy) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`HTMLIFrameElement.referrerPolicy`](htmliframeelement/referrerpolicy) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is a [`DOMString`](domstring) that reflects the [`referrerpolicy`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-referrerpolicy) HTML attribute indicating which referrer to use when fetching the linked resource.
 
 <span class="page-not-created">`HTMLIFrameElement.sandbox`</span>  
 Is a <span class="page-not-created">`DOMSettableTokenList`</span> that reflects the [`sandbox`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-sandbox) HTML attribute, indicating extra restrictions on the behavior of the nested content.
 
- <span class="page-not-created">`HTMLIFrameElement.scrolling`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLIFrameElement.scrolling`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) that indicates whether the browser should provide scrollbars for the frame.
 
 [`HTMLIFrameElement.src`](htmliframeelement/src)  
@@ -68,13 +66,11 @@ Is a [`DOMString`](domstring) that represents the content to display in the fram
 <span class="page-not-created">`HTMLIFrameElement.width`</span>  
 Is a [`DOMString`](domstring) that reflects the [`width`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-width) HTML attribute, indicating the width of the frame.
 
-Methods
--------
+## Methods
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement)*.
+_Inherits properties from its parent, [`HTMLElement`](htmlelement)_.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#htmliframeelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLIFrameElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>The following property has been added: <code>allowFullscreen</code>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/embedded-content-0.html#the-iframe-element">HTML5<br />
@@ -83,8 +79,7 @@ The following properties have been added: <code>srcdoc</code>, <code>sandbox</co
 <span class="small">The definition of 'HTMLIFrameElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>The <code>contentDocument</code> property has been added.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-50708718">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLIFrameElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -750,9 +745,8 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   The HTML element implementing this interface: [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe)
+- The HTML element implementing this interface: [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement</a>

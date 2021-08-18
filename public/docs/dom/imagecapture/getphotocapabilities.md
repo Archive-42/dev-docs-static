@@ -1,10 +1,8 @@
-ImageCapture.getPhotoCapabilities()
-===================================
+# ImageCapture.getPhotoCapabilities()
 
 The `getPhotoCapabilities()` method of the [`ImageCapture`](../imagecapture) interface returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with a [`PhotoCapabilities`](../photocapabilities) object containing the ranges of available configuration options.
 
-Syntax
-------
+## Syntax
 
     const capabilitiesPromise = imageCaptureObj.getPhotoCapabilities()
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with a [`PhotoCapabilities`](../photocapabilities) object.
 
-Example
--------
+## Example
 
 The following example, extracted from [Chrome's Image Capture / Photo Resolution Sample](https://googlechrome.github.io/samples/image-capture/photo-resolution.html), uses the results from `getPhotoCapabilities()` to modify the size of an input range. This example also shows how the [`ImageCapture`](../imagecapture) object is created using a [`MediaStreamTrack`](../mediastreamtrack) retrieved from a device's [`MediaStream`](../mediastream).
 
@@ -44,14 +41,12 @@ The following example, extracted from [Chrome's Image Capture / Photo Resolution
     })
     .catch(error => console.log('Argh!', error.name || error));
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-image/#dom-imagecapture-getphotocapabilities">MediaStream Image Capture<br />
 <span class="small">The definition of 'getPhotoCapabilities()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

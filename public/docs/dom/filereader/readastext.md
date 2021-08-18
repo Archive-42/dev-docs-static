@@ -1,13 +1,11 @@
-FileReader.readAsText()
-=======================
+# FileReader.readAsText()
 
 The `readAsText()` method is used to read the contents of the specified [`Blob`](../blob) or [`File`](../file). When the read operation is complete, the [`readyState`](readystate) is changed to `DONE`, the `loadend` event is triggered, and the [`result`](result) property contains the contents of the file as a text string.
 
 **Newer API available**  
 The [`Blob.text()`](../blob/text) method is a newer promise-based API to read a file as text.
 
-Syntax
-------
+## Syntax
 
     instanceOfFileReader.readAsText(blob[, encoding]);
 
@@ -16,17 +14,15 @@ Syntax
 `blob`  
 The [`Blob`](../blob) or [`File`](../file) from which to read.
 
- `encoding` <span class="badge inline optional">Optional</span>   
+`encoding` <span class="badge inline optional">Optional</span>  
 A string specifying the encoding to use for the returned data. By default, UTF-8 is assumed if this parameter is not specified.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/FileAPI/#readAsDataText">File API<br />
 <span class="small">The definition of 'readAsText()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -82,9 +78,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`FileReader`](../filereader)
+- [`FileReader`](../filereader)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsText" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsText</a>

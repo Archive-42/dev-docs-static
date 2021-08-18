@@ -1,12 +1,10 @@
-Event.composed
-==============
+# Event.composed
 
 The read-only `composed` property of the [`Event`](../event) interface returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) which indicates whether or not the event will propagate across the shadow DOM boundary into the standard DOM.
 
 **Note**: This property was formerly named `scoped`.
 
-Syntax
-------
+## Syntax
 
     const isComposed = Event.composed;
 
@@ -20,8 +18,7 @@ Propagation only occurs if the [`bubbles`](bubbles) property is also `true`. How
 
 If this value is `false`, the shadow root will be the last node to be offered the event.
 
-Examples
---------
+## Examples
 
 In our composed-composed-path example (see it live), we define two trivial custom elements, `<open-shadow>` and `<closed-shadow>`, both of which take the contents of their text attribute and insert them into the element's shadow DOM as the text content of a `<p>` element. The only difference between the two is that their shadow roots are attached with their modes set to `open` and `closed` respectively.
 
@@ -68,14 +65,12 @@ Whereas the `<closed-shadow>` element's composed path is a follows:
 
 In the second case, the event listeners only propagate as far as the `<closed-shadow>` element itself, but not to the nodes inside the shadow boundary.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-event-composed">DOM<br />
 <span class="small">The definition of 'composed' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

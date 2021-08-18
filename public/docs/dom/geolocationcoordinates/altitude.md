@@ -1,5 +1,4 @@
-GeolocationCoordinates.altitude
-===============================
+# GeolocationCoordinates.altitude
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `GeolocationCoordinates.altitude` read-only property is a `double` representing the altitude of the position in meters above the [WGS84](https://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf) ellipsoid (which defines the nominal sea level surface). This value is `null` if the implementation cannot provide this data.
 
-Syntax
-------
+## Syntax
 
     let alt = geolocationCoordinatesInstance.altitude
 
@@ -16,14 +14,12 @@ Syntax
 
 A `double` representing the altitude of the position in meters above the [WGS84](https://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf) ellipsoid.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/geolocation-api/#dom-geolocationcoordinates-altitude">Geolocation API<br />
 <span class="small">The definition of 'Coordinates.altitude' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -83,11 +79,10 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [Using the Geolocation API](../geolocation_api/using_the_geolocation_api)
--   The [`GeolocationCoordinates`](../geolocationcoordinates) interface it belongs to.
--   [National Imagery and Mapping Agency Technical Report 8350.2, Third Edition (WGS84)](https://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf)
+- [Using the Geolocation API](../geolocation_api/using_the_geolocation_api)
+- The [`GeolocationCoordinates`](../geolocationcoordinates) interface it belongs to.
+- [National Imagery and Mapping Agency Technical Report 8350.2, Third Edition (WGS84)](https://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates/altitude" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates/altitude</a>

@@ -1,5 +1,4 @@
-IDBIndexSync
-============
+# IDBIndexSync
 
 **Draft**
 
@@ -9,18 +8,15 @@ This page is not complete.
 
 The `IDBIndexSync` interface of the [IndexedDB API](indexeddb_api) provides synchronous access to an [index](indexeddb_api#gloss_index) in a database.
 
-Method overview
----------------
+## Method overview
 
 <table><tbody><tr class="odd"><td><code>any add (in any value, in optional any key) raises (IDBDatabaseException);</code></td></tr><tr class="even"><td><code>any get (in any key) raises (IDBDatabaseException);</code></td></tr><tr class="odd"><td><code>any getObject (in any key) raises (IDBDatabaseException);</code></td></tr><tr class="even"><td><code>void openCursor (in optional IDBKeyRange range, in optional unsigned short direction) raises (IDBDatabaseException);</code></td></tr><tr class="odd"><td><code>void openObjectCursor (in optional IDBKeyRange range, in optional unsigned short direction) raises (IDBDatabaseException);</code></td></tr><tr class="even"><td><code>any put (in any value, in optional any key) raises (IDBDatabaseException);</code></td></tr><tr class="odd"><td><code>void remove (in any key) raises (IDBDatabaseException);</code></td></tr></tbody></table>
 
-Attributes
-----------
+## Attributes
 
 <table><thead><tr class="header"><th>Attribute</th><th>Type</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>keyPath</code></td><td><code>readonly DOMString</code></td><td>The <a href="indexeddb_api#gloss_key_path">key path</a> of this index. If this attribute is null, this index is not <a href="indexeddb_api#gloss_auto-populated">auto-populated</a>.</td></tr><tr class="even"><td><code>name</code></td><td><code>readonly DOMString</code></td><td>The name of this index.</td></tr><tr class="odd"><td><code>storeName</code></td><td><code>readonly DOMString</code></td><td>This index's <a href="indexeddb_api#gloss_referenced_object_store">referenced object store</a>.</td></tr><tr class="even"><td><code>unique</code></td><td><code>readonly boolean</code></td><td>If true, a key can have only one value within the index; if false, a key can have duplicate values.</td></tr></tbody></table>
 
-Methods
--------
+## Methods
 
 ### add()
 
@@ -49,7 +45,7 @@ A key to use for identifying the record.
 The key for the stored record.
 
 [`CONSTRAINT_ERR`](idbdatabaseexception#constraint_err)  
-If a record exists in this index with a key corresponding to the *key* parameter or the index is auto-populated, or if no record exists with a key corresponding to the *value* parameter in the index's referenced object store.
+If a record exists in this index with a key corresponding to the _key_ parameter or the index is auto-populated, or if no record exists with a key corresponding to the _value_ parameter in the index's referenced object store.
 
 ### get()
 

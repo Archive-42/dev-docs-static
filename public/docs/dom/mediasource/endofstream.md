@@ -1,5 +1,4 @@
-MediaSource.endOfStream()
-=========================
+# MediaSource.endOfStream()
 
 **Experimental**
 
@@ -8,18 +7,17 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `endOfStream()` method of the [`MediaSource`](../mediasource) interface signals the end of the stream.
 
-Syntax
-------
+## Syntax
 
     mediaSource.endOfStream(endOfStreamError);
 
 ### Parameters
 
-endOfStreamError <span class="badge inline optional">Optional</span>   
+endOfStreamError <span class="badge inline optional">Optional</span>  
 A [`DOMString`](../domstring) representing an error to throw when the end of the stream is reached. The possible values are:
 
--   `network`: Terminates playback and signals that a network error has occurred. This can be used create a custom error handler related to media streams. For example, you might have a function that handles media chunk requests, separate from other network requests. When you make an [XMLHttpRequest](../xmlhttprequest) call for a media chunk, and `onabort` or `onerror` triggers, you might want to call `endOfStream('network')`, display a descriptive message in the UI, and maybe retry the network request immediately or wait until the network is back up (via some kind of polling.)
--   `decode`: Terminates playback and signals that a decoding error has occurred. This can be used to indicate that a parsing error has occurred while fetching media data; maybe the data is corrupt, or is encoded using a codec that the browser doesn't know how to decode.
+- `network`: Terminates playback and signals that a network error has occurred. This can be used create a custom error handler related to media streams. For example, you might have a function that handles media chunk requests, separate from other network requests. When you make an [XMLHttpRequest](../xmlhttprequest) call for a media chunk, and `onabort` or `onerror` triggers, you might want to call `endOfStream('network')`, display a descriptive message in the UI, and maybe retry the network request immediately or wait until the network is back up (via some kind of polling.)
+- `decode`: Terminates playback and signals that a decoding error has occurred. This can be used to indicate that a parsing error has occurred while fetching media data; maybe the data is corrupt, or is encoded using a codec that the browser doesn't know how to decode.
 
 ### Return value
 
@@ -29,8 +27,7 @@ A [`DOMString`](../domstring) representing an error to throw when the end of the
 
 <table><thead><tr class="header"><th>Exception</th><th>Explanation</th></tr></thead><tbody><tr class="odd"><td><code>InvalidStateError</code></td><td><a href="readystate"><code>MediaSource.readyState</code></a> is not equal to <code>open</code>, or one or more of the <a href="../sourcebuffer"><code>SourceBuffer</code></a> objects in <a href="sourcebuffers"><code>MediaSource.sourceBuffers</code></a> are being updated (i.e. their <a href="../sourcebuffer/updating"><code>SourceBuffer.updating</code></a> property is <code>true</code>.)</td></tr></tbody></table>
 
-Example
--------
+## Example
 
 The following snippet is from a simple example written by Nick Desaulniers ([view the full demo live](https://nickdesaulniers.github.io/netfix/demo/bufferAll.html), or [download the source](https://github.com/nickdesaulniers/netfix/blob/gh-pages/demo/bufferAll.html) for further investigation.)
 
@@ -62,14 +59,12 @@ The following snippet is from a simple example written by Nick Desaulniers ([vie
       });
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/media-source/#dom-mediasource-endofstream">Media Source Extensions<br />
 <span class="small">The definition of 'endOfStream()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -127,10 +122,9 @@ No
 
 1.5
 
-See also
---------
+## See also
 
--   [`SourceBuffer`](../sourcebuffer)
--   [`SourceBufferList`](../sourcebufferlist)
+- [`SourceBuffer`](../sourcebuffer)
+- [`SourceBufferList`](../sourcebufferlist)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/endOfStream" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/endOfStream</a>

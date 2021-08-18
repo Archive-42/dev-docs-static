@@ -1,5 +1,4 @@
-MediaKeySystemConfiguration.initDataTypes
-=========================================
+# MediaKeySystemConfiguration.initDataTypes
 
 **Experimental**
 
@@ -8,19 +7,16 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MediaKeySystemConfiguration.initDataTypes` read-only property returns a list of supported initialization data type names. An initialization data type is a string indicating the format of the initialization data.
 
-Syntax
-------
+## Syntax
 
     var dataTypes[] = mediaSystemConfiguration.initDataTypes;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemconfiguration-initdatatypes">Encrypted Media Extensions<br />
 <span class="small">The definition of 'initDataTypes' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

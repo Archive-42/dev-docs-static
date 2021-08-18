@@ -1,5 +1,4 @@
-GlobalEventHandlers.onclose
-===========================
+# GlobalEventHandlers.onclose
 
 **Experimental**
 
@@ -12,8 +11,7 @@ The `close` event fires when the user closes a `<dialog>`.
 
 **Note:** To handle the closing of a window, use [`onbeforeunload`](../windoweventhandlers/onbeforeunload) or [`onunload`](../windoweventhandlers/onunload).
 
-Syntax
-------
+## Syntax
 
     target.onclose = functionRef;
 
@@ -23,14 +21,12 @@ Syntax
 
 Only one `onclose` handler can be assigned to an object at a time. You may prefer to use the [`EventTarget.addEventListener()`](../eventtarget/addeventlistener) method instead, since it's more flexible.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onclose">HTML Living Standard<br />
 <span class="small">The definition of 'onclose' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -86,11 +82,10 @@ No
 
 2.0
 
-See also
---------
+## See also
 
--   `close` event
--   HTML [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element
--   Related event handler: [`GlobalEventHandlers.oncancel`](oncancel)
+- `close` event
+- HTML [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element
+- Related event handler: [`GlobalEventHandlers.oncancel`](oncancel)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onclose" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onclose</a>

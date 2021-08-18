@@ -1,5 +1,4 @@
-FontFaceSetLoadEvent.FontFaceSetLoadEvent()
-===========================================
+# FontFaceSetLoadEvent.FontFaceSetLoadEvent()
 
 **Experimental**
 
@@ -8,29 +7,26 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `FontFaceSetLoadEvent` constructor creates a new <span class="page-not-created">`FontFaceLoadEvent`</span> object which is fired whenever a [`FontFaceSet`](../fontfaceset) loads.
 
-Syntax
-------
+## Syntax
 
     var fontFaceSetLoadEvent = new FontFaceSetLoadEvent(type[, options])
 
 ### Parameters
 
-*type*  
+_type_  
 The literal value `'Type'` (quotation marks included).
 
- *options* <span class="badge inline optional">Optional</span>   
+_options_ <span class="badge inline optional">Optional</span>  
 Options are as follows:
 
--   `fontfaces`: An array of [`FontFace`](../fontface) instances.
+- `fontfaces`: An array of [`FontFace`](../fontface) instances.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-font-loading/#dom-fontfacesetloadevent-fontfacesetloadevent">CSS Font Loading Module Level 3<br />
 <span class="small">The definition of 'FontFaceSetLoadEvent()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

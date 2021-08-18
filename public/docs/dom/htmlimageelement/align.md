@@ -1,16 +1,14 @@
-HTMLImageElement.align
-======================
+# HTMLImageElement.align
 
 **Deprecated**
 
 This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the [compatibility table](#browser_compatibility) at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.
 
-The *obsolete* `align` property of the [`HTMLImageElement`](../htmlimageelement) interface is a string which indicates how to position the image relative to its container. You should instead use the CSS property [`vertical-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align), which does in fact also work on images despite its name. You can also use the [`float`](https://developer.mozilla.org/en-US/docs/Web/CSS/float) property to float the image to the left or right margin.
+The _obsolete_ `align` property of the [`HTMLImageElement`](../htmlimageelement) interface is a string which indicates how to position the image relative to its container. You should instead use the CSS property [`vertical-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align), which does in fact also work on images despite its name. You can also use the [`float`](https://developer.mozilla.org/en-US/docs/Web/CSS/float) property to float the image to the left or right margin.
 
 The `align` property reflects the HTML [`align`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-align) content attribute.
 
-Syntax
-------
+## Syntax
 
     htmlImageElement.align = alignMode;
     alignMode = htmlImageElement.align;
@@ -44,15 +42,13 @@ Floats the image over to place the left edge flush against the current margin. A
 `right`  
 Floats the image to place its right edge flush against the right margin. Subsequent text will flow along the image's left edge.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#attr-img-align">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLImageElement.align' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html401/struct/objects.html#adef-align-IMG">HTML 4.01 Specification<br />
 <span class="small">The definition of 'HTMLImageElement.align' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

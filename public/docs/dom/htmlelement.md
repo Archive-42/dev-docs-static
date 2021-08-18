@@ -1,29 +1,27 @@
-HTMLElement
-===========
+# HTMLElement
 
 The `HTMLElement` interface represents any [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element. Some elements directly implement this interface, while others implement it via an interface that inherits it.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`Element`](element), and implements those from <span class="page-not-created">`DocumentAndElementEventHandlers`</span>, [`ElementCSSInlineStyle`](elementcssinlinestyle), [`GlobalEventHandlers`](globaleventhandlers), [`HTMLOrForeignElement`](htmlorforeignelement) and <span class="page-not-created">`TouchEventHandlers`</span>.*
+_Inherits properties from its parent, [`Element`](element), and implements those from <span class="page-not-created">`DocumentAndElementEventHandlers`</span>, [`ElementCSSInlineStyle`](elementcssinlinestyle), [`GlobalEventHandlers`](globaleventhandlers), [`HTMLOrForeignElement`](htmlorforeignelement) and <span class="page-not-created">`TouchEventHandlers`</span>._
 
 [`HTMLElement.accessKey`](htmlelement/accesskey)  
 Is a [`DOMString`](domstring) representing the access key assigned to the element.
 
- [`HTMLElement.accessKeyLabel`](htmlelement/accesskeylabel) <span class="badge inline readonly">Read only </span>   
+[`HTMLElement.accessKeyLabel`](htmlelement/accesskeylabel) <span class="badge inline readonly">Read only </span>  
 Returns a [`DOMString`](domstring) containing the element's assigned access key.
 
 [`HTMLElement.contentEditable`](htmlelement/contenteditable)  
 Is a [`DOMString`](domstring), where a value of `true` means the element is editable and a value of `false` means it isn't.
 
- [`HTMLElement.isContentEditable`](htmlelement/iscontenteditable) <span class="badge inline readonly">Read only </span>   
+[`HTMLElement.isContentEditable`](htmlelement/iscontenteditable) <span class="badge inline readonly">Read only </span>  
 Returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that indicates whether or not the content of the element can be edited.
 
- [`HTMLElement.contextMenu`](htmlelement/contextmenu) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLElement.contextMenu`](htmlelement/contextmenu) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`HTMLMenuElement`](htmlmenuelement) representing the contextual menu associated with the element. It may be `null`.
 
- [`HTMLOrForeignElement.dataset`](htmlorforeignelement/dataset) <span class="badge inline readonly">Read only </span>   
+[`HTMLOrForeignElement.dataset`](htmlorforeignelement/dataset) <span class="badge inline readonly">Read only </span>  
 Returns a [`DOMStringMap`](domstringmap) with which script can read and write the element's [custom data attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes) (`data-*`) .
 
 [`HTMLElement.dir`](htmlelement/dir)  
@@ -44,22 +42,22 @@ Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referen
 [`HTMLElement.innerText`](htmlelement/innertext)  
 Represents the "rendered" text content of a node and its descendants. As a getter, it approximates the text the user would get if they highlighted the contents of the element with the cursor and then copied it to the clipboard.
 
- <span class="page-not-created">`HTMLElement.itemScope`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`HTMLElement.itemScope`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) representing the item scope.
 
- <span class="page-not-created">`HTMLElement.itemType`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLElement.itemType`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>  
 Returns a <span class="page-not-created">`DOMSettableTokenList`</span>…
 
- <span class="page-not-created">`HTMLElement.itemId`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`HTMLElement.itemId`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is a [`DOMString`](domstring) representing the item ID.
 
- <span class="page-not-created">`HTMLElement.itemRef`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLElement.itemRef`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>  
 Returns a <span class="page-not-created">`DOMSettableTokenList`</span>…
 
- <span class="page-not-created">`HTMLElement.itemProp`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLElement.itemProp`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>  
 Returns a <span class="page-not-created">`DOMSettableTokenList`</span>…
 
- <span class="page-not-created">`HTMLElement.itemValue`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`HTMLElement.itemValue`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a [`Object`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) representing the item value.
 
 [`HTMLElement.lang`](htmlelement/lang)  
@@ -71,22 +69,22 @@ Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referen
 [`HTMLOrForeignElement.nonce`](htmlorforeignelement/nonce)  
 Returns the cryptographic number used once that is used by Content Security Policy to determine whether a given fetch will be allowed to proceed.
 
- [`HTMLElement.offsetHeight`](htmlelement/offsetheight) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>   
+[`HTMLElement.offsetHeight`](htmlelement/offsetheight) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>  
 Returns a `double` containing the height of an element, relative to the layout.
 
- [`HTMLElement.offsetLeft`](htmlelement/offsetleft) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>   
+[`HTMLElement.offsetLeft`](htmlelement/offsetleft) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>  
 Returns a `double`, the distance from this element's left border to its `offsetParent`'s left border.
 
- [`HTMLElement.offsetParent`](htmlelement/offsetparent) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>   
+[`HTMLElement.offsetParent`](htmlelement/offsetparent) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>  
 Returns a [`Element`](element) that is the element from which all offset calculations are currently computed.
 
- [`HTMLElement.offsetTop`](htmlelement/offsettop) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>   
+[`HTMLElement.offsetTop`](htmlelement/offsettop) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>  
 Returns a `double`, the distance from this element's top border to its `offsetParent`'s top border.
 
- [`HTMLElement.offsetWidth`](htmlelement/offsetwidth) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>   
+[`HTMLElement.offsetWidth`](htmlelement/offsetwidth) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>  
 Returns a `double` containing the width of an element, relative to the layout.
 
- <span class="page-not-created">`HTMLElement.properties`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLElement.properties`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span><span class="badge inline readonly">Read only </span>  
 Returns a <span class="page-not-created">`HTMLPropertiesCollection`</span>…
 
 <span class="page-not-created">`HTMLElement.spellcheck`</span>  
@@ -101,46 +99,45 @@ Is a `long` representing the position of the element in the tabbing order.
 [`HTMLElement.title`](htmlelement/title)  
 Is a [`DOMString`](domstring) containing the text that appears in a popup box when mouse is over the element.
 
- <span class="page-not-created">`HTMLElement.translate`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`HTMLElement.translate`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) representing the translation.
 
 ### Event handlers
 
 Most event handler properties, of the form `onXYZ`, are defined on the <span class="page-not-created">`DocumentAndElementEventHandlers`</span>, [`GlobalEventHandlers`](globaleventhandlers) or <span class="page-not-created">`TouchEventHandlers`</span> interfaces and implemented by `HTMLElement`. In addition, the following handlers are specific to `HTMLElement`.
 
- [`HTMLElement.oncopy`](htmlelement/oncopy) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`HTMLElement.oncopy`](htmlelement/oncopy) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns the event handling code for the `copy` event ([bug 280959](https://bugzilla.mozilla.org/show_bug.cgi?id=280959)).
 
- [`HTMLElement.oncut`](htmlelement/oncut) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`HTMLElement.oncut`](htmlelement/oncut) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns the event handling code for the `cut` event ([bug 280959](https://bugzilla.mozilla.org/show_bug.cgi?id=280959)).
 
- [`HTMLElement.onpaste`](htmlelement/onpaste) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`HTMLElement.onpaste`](htmlelement/onpaste) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns the event handling code for the `paste` event ([bug 280959](https://bugzilla.mozilla.org/show_bug.cgi?id=280959)).
 
- <span class="page-not-created">`TouchEventHandlers.ontouchstart`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+<span class="page-not-created">`TouchEventHandlers.ontouchstart`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns the event handling code for the [`touchstart`](element/touchstart_event) event.
 
- <span class="page-not-created">`TouchEventHandlers.ontouchend`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+<span class="page-not-created">`TouchEventHandlers.ontouchend`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns the event handling code for the [`touchend`](element/touchend_event) event.
 
- <span class="page-not-created">`TouchEventHandlers.ontouchmove`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+<span class="page-not-created">`TouchEventHandlers.ontouchmove`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns the event handling code for the [`touchmove`](element/touchmove_event) event.
 
- <span class="page-not-created">`TouchEventHandlers.ontouchenter`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+<span class="page-not-created">`TouchEventHandlers.ontouchenter`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns the event handling code for the `touchenter` event.
 
- <span class="page-not-created">`TouchEventHandlers.ontouchleave`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+<span class="page-not-created">`TouchEventHandlers.ontouchleave`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns the event handling code for the `touchleave` event.
 
- <span class="page-not-created">`TouchEventHandlers.ontouchcancel`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+<span class="page-not-created">`TouchEventHandlers.ontouchcancel`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns the event handling code for the [`touchcancel`](element/touchcancel_event) event.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`Element`](element), and implements those from <span class="page-not-created">`DocumentAndElementEventHandlers`</span>, [`ElementCSSInlineStyle`](elementcssinlinestyle), [`GlobalEventHandlers`](globaleventhandlers), [`HTMLOrForeignElement`](htmlorforeignelement) and <span class="page-not-created">`TouchEventHandlers`</span>.*
+_Inherits methods from its parent, [`Element`](element), and implements those from <span class="page-not-created">`DocumentAndElementEventHandlers`</span>, [`ElementCSSInlineStyle`](elementcssinlinestyle), [`GlobalEventHandlers`](globaleventhandlers), [`HTMLOrForeignElement`](htmlorforeignelement) and <span class="page-not-created">`TouchEventHandlers`</span>._
 
- <span class="page-not-created">`HTMLElement.attachInternals()`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`HTMLElement.attachInternals()`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Attaches an <span class="page-not-created">`ElementInternals`</span> instance to the custom element.
 
 [`HTMLOrForeignElement.blur()`](htmlorforeignelement/blur)  
@@ -152,11 +149,10 @@ Sends a mouse click event to the element.
 [`HTMLOrForeignElement.focus()`](htmlorforeignelement/focus)  
 Makes the element the current keyboard focus.
 
- [`HTMLElement.forceSpellCheck()`](htmlelement/forcespellcheck) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`HTMLElement.forceSpellCheck()`](htmlelement/forcespellcheck) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Runs the spell checker on the element's contents.
 
-Events
-------
+## Events
 
 Listen to these events using `addEventListener()` or by assigning an event listener to the `oneventname` property of this interface.
 
@@ -225,7 +221,7 @@ Fired when a pointer changes coordinates.
 Also available via the [`onpointermove`](globaleventhandlers/onpointermove) property.
 
 [`pointerout`](htmlelement/pointerout_event)  
-Fired when a pointer is moved out of the *hit test* boundaries of an element (among other reasons).  
+Fired when a pointer is moved out of the _hit test_ boundaries of an element (among other reasons).  
 Also available via the [`onpointerout`](globaleventhandlers/onpointerout) property.
 
 [`pointerover`](htmlelement/pointerover_event)  
@@ -254,8 +250,7 @@ Also available via the <span class="page-not-created">`ontransitionrun`</span> p
 Fired when a [CSS transition](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions) has actually started.  
 Also available via the <span class="page-not-created">`ontransitionstart`</span> property.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#extensions-to-the-htmlelement-interface">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'HTMLElement' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Added the following properties: <code>offsetParent</code>, <code>offsetTop</code>, <code>offsetLeft</code>, <code>offsetWidth</code>, and <code>offsetHeight</code>.</td></tr><tr class="even"><td><a href="https://html.spec.whatwg.org/multipage/elements.html#htmlelement">HTML Living Standard<br />
@@ -267,8 +262,7 @@ Moved the <code>id</code> and <code>className</code> properties to the <a href="
 <span class="small">The definition of 'HTMLElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>No change from <a href="https://www.w3.org/TR/DOM-Level-2-HTML/">Document Object Model (DOM) Level 2 HTML Specification</a></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-011100101">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -2044,9 +2038,8 @@ No
 
 1.5
 
-See also
---------
+## See also
 
--   [`Element`](element)
+- [`Element`](element)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement</a>

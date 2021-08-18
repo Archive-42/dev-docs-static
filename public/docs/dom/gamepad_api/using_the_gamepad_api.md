@@ -1,12 +1,10 @@
-Using the Gamepad API
-=====================
+# Using the Gamepad API
 
 HTML5 introduced many of the necessary components for rich, interactive game development. Technologies like `<canvas>`, WebGL, `<audio>`, and `<video>`, along with JavaScript implementations, have matured to the point where they can now support many tasks previously requiring native code. The Gamepad API is a way for developers and designers to access and use gamepads and other game controllers.
 
-The [Gamepad API](../gamepad_api) introduces new events on the [`Window`](../window) object for reading gamepad and controller (hereby referred to as *gamepad*) state. In addition to these events, the API also adds a [`Gamepad`](../gamepad) object, which you can use to query the state of a connected gamepad, and a [`navigator.getGamepads()`](../navigator/getgamepads) method which you can use to get a list of gamepads known to the page.
+The [Gamepad API](../gamepad_api) introduces new events on the [`Window`](../window) object for reading gamepad and controller (hereby referred to as _gamepad_) state. In addition to these events, the API also adds a [`Gamepad`](../gamepad) object, which you can use to query the state of a connected gamepad, and a [`navigator.getGamepads()`](../navigator/getgamepads) method which you can use to get a list of gamepads known to the page.
 
-Connecting to a gamepad
------------------------
+## Connecting to a gamepad
 
 When a new gamepad is connected to the computer, the focused page first receives a [`gamepadconnected`](../window/gamepadconnected_event) event. If a gamepad is already connected when the page loaded, the [`gamepadconnected`](../window/gamepadconnected_event) event is dispatched to the focused page when the user presses a button or moves an axis.
 
@@ -22,8 +20,7 @@ You can use [`gamepadconnected`](../window/gamepadconnected_event) like this:
 
 Each gamepad has a unique ID associated with it, which is available on the event's [`gamepad`](../gamepadevent/gamepad) property.
 
-Disconnecting a gamepad
------------------------
+## Disconnecting a gamepad
 
 When a gamepad is disconnected, and if a page has previously received data for that gamepad (e.g. [`gamepadconnected`](../window/gamepadconnected_event)), a second event is dispatched to the focused window, `gamepaddisconnected`:
 
@@ -53,8 +50,7 @@ The gamepad's [`index`](../gamepad/index) property will be unique per-device con
 
 This previous example also demonstrates how the `gamepad` property can be held after the event has completed — a technique we will use for device state querying later.
 
-Querying the Gamepad object
----------------------------
+## Querying the Gamepad object
 
 As you can see, the **gamepad** events discussed above include a `gamepad` property on the event object, which returns a [`Gamepad`](../gamepad) object. We can use this in order to determine which gamepad (i.e., its ID) had caused the event, since multiple gamepads might be connected at once. We can do much more with the [`Gamepad`](../gamepad) object, including holding a reference to it and querying it to find out which buttons and axes are being pressed at any one time. Doing so is often desirable for games or other interactive web pages that need to know the state of a gamepad now vs. the next time an event fires.
 
@@ -71,15 +67,15 @@ The [`Navigator.getGamepads()`](../navigator/getgamepads) method returns an arra
 
 The [`Gamepad`](../gamepad) object's properties are as follows:
 
--   `id`: A string containing some information about the controller. This is not strictly specified, but in Firefox it will contain three pieces of information separated by dashes (`-`): two 4-digit hexadecimal strings containing the USB vendor and product id of the controller, and the name of the controller as provided by the driver. This information is intended to allow you to find a mapping for the controls on the device as well as display useful feedback to the user.
--   `index`: An integer that is unique for each gamepad currently connected to the system. This can be used to distinguish multiple controllers. Note that disconnecting a device and then connecting a new device may reuse the previous index.
--   `mapping`: A string indicating whether the browser has remapped the controls on the device to a known layout. Currently there is only one supported known layout — the [standard gamepad](https://dvcs.w3.org/hg/gamepad/raw-file/default/gamepad.html#remapping). If the browser is able to map controls on the device to that layout the `mapping` property will be set to the string `standard`.
--   `connected`: A boolean indicating whether the gamepad is still connected to the system. If this is so the value is `True`; if not, it is `False`.
--   `buttons`: An array of [`GamepadButton`](../gamepadbutton) objects representing the buttons present on the device. Each [`GamepadButton`](../gamepadbutton) has a `pressed` and a `value` property:
-    -   The `pressed` property is a boolean indicating whether the button is currently pressed (`true`) or unpressed (`false`).
-    -   The `value` property is a floating point value used to enable representing analog buttons, such as the triggers on many modern gamepads. The values are normalized to the range 0.0..1.0, with 0.0 representing a button that is not pressed, and 1.0 representing a button that is fully pressed.
--   `axes`: An array representing the controls with axes present on the device (e.g. analog thumb sticks). Each entry in the array is a floating point value in the range -1.0 - 1.0, representing the axis position from the lowest value (-1.0) to the highest value (1.0).
--   `timestamp`: This returns a [`DOMHighResTimeStamp`](../domhighrestimestamp) representing the last time the data for this gamepad was updated, allowing developers to determine if the `axes` and `button` data have been updated from the hardware. The value must be relative to the `navigationStart` attribute of the [`PerformanceTiming`](../performancetiming) interface. Values are monotonically increasing, meaning that they can be compared to determine the ordering of updates, as newer values will always be greater than or equal to older values. Note that this property is not currently supported in Firefox.
+- `id`: A string containing some information about the controller. This is not strictly specified, but in Firefox it will contain three pieces of information separated by dashes (`-`): two 4-digit hexadecimal strings containing the USB vendor and product id of the controller, and the name of the controller as provided by the driver. This information is intended to allow you to find a mapping for the controls on the device as well as display useful feedback to the user.
+- `index`: An integer that is unique for each gamepad currently connected to the system. This can be used to distinguish multiple controllers. Note that disconnecting a device and then connecting a new device may reuse the previous index.
+- `mapping`: A string indicating whether the browser has remapped the controls on the device to a known layout. Currently there is only one supported known layout — the [standard gamepad](https://dvcs.w3.org/hg/gamepad/raw-file/default/gamepad.html#remapping). If the browser is able to map controls on the device to that layout the `mapping` property will be set to the string `standard`.
+- `connected`: A boolean indicating whether the gamepad is still connected to the system. If this is so the value is `True`; if not, it is `False`.
+- `buttons`: An array of [`GamepadButton`](../gamepadbutton) objects representing the buttons present on the device. Each [`GamepadButton`](../gamepadbutton) has a `pressed` and a `value` property:
+  - The `pressed` property is a boolean indicating whether the button is currently pressed (`true`) or unpressed (`false`).
+  - The `value` property is a floating point value used to enable representing analog buttons, such as the triggers on many modern gamepads. The values are normalized to the range 0.0..1.0, with 0.0 representing a button that is not pressed, and 1.0 representing a button that is fully pressed.
+- `axes`: An array representing the controls with axes present on the device (e.g. analog thumb sticks). Each entry in the array is a floating point value in the range -1.0 - 1.0, representing the axis position from the lowest value (-1.0) to the highest value (1.0).
+- `timestamp`: This returns a [`DOMHighResTimeStamp`](../domhighrestimestamp) representing the last time the data for this gamepad was updated, allowing developers to determine if the `axes` and `button` data have been updated from the hardware. The value must be relative to the `navigationStart` attribute of the [`PerformanceTiming`](../performancetiming) interface. Values are monotonically increasing, meaning that they can be compared to determine the ordering of updates, as newer values will always be greater than or equal to older values. Note that this property is not currently supported in Firefox.
 
 **Note**: The Gamepad object is available on the [`gamepadconnected`](../window/gamepadconnected_event) event rather than the [`Window`](../window) object itself, for security reasons. Once we have a reference to it, we can query its properties for information about the current state of the gamepad. Behind the scenes, this object will be updated every time the gamepad's state changes.
 
@@ -169,8 +165,7 @@ After all this is done, we use our `requestAnimationFrame()` to request the next
       start = requestAnimationFrame(gameLoop);
     }
 
-Complete example: Displaying gamepad state
-------------------------------------------
+## Complete example: Displaying gamepad state
 
 This example shows how to use the [`Gamepad`](../gamepad) object, as well as the [`gamepadconnected`](../window/gamepadconnected_event) and [`gamepaddisconnected`](../window/gamepaddisconnected_event) events in order to display the state of all gamepads connected to the system. You can find a [working demo](https://luser.github.io/gamepadtest/) and look at the [full source code](https://github.com/luser/gamepadtest) on Github.
 
@@ -301,14 +296,12 @@ This example shows how to use the [`Gamepad`](../gamepad) object, as well as the
      setInterval(scangamepads, 500);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/gamepad/#gamepad-interface">Gamepad<br />
 <span class="small">The definition of 'Gamepad' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,16 +1,14 @@
-Element.setPointerCapture()
-===========================
+# Element.setPointerCapture()
 
-The `setPointerCapture()` method of the [`Element`](../element) interface is used to designate a specific element as the *capture target* of future pointer events. Subsequent events for the pointer will be targeted at the capture element until capture is released (via [`Element.releasePointerCapture()`](releasepointercapture) or the [`pointerup`](../htmlelement/pointerup_event) event is fired).
+The `setPointerCapture()` method of the [`Element`](../element) interface is used to designate a specific element as the _capture target_ of future pointer events. Subsequent events for the pointer will be targeted at the capture element until capture is released (via [`Element.releasePointerCapture()`](releasepointercapture) or the [`pointerup`](../htmlelement/pointerup_event) event is fired).
 
 **Note:** When pointer capture is set, [`pointerover`](../htmlelement/pointerover_event), [`pointerout`](../htmlelement/pointerout_event), [`pointerenter`](../htmlelement/pointerenter_event), and [`pointerleave`](../htmlelement/pointerleave_event) events are only generated when crossing the boundary of the capture target. This has the effect of suppressing these events on all other elements.
 
 ### Overview of pointer capture
 
-*Pointer capture* allows events for a particular *pointer event* ([`PointerEvent`](../pointerevent)) to be re-targeted to a particular element instead of the normal (or *hit test*) target at a pointer's location. This can be used to ensure that an element continues to receive pointer events even if the pointer device's contact moves off the element (such as by scrolling or panning).
+_Pointer capture_ allows events for a particular _pointer event_ ([`PointerEvent`](../pointerevent)) to be re-targeted to a particular element instead of the normal (or _hit test_) target at a pointer's location. This can be used to ensure that an element continues to receive pointer events even if the pointer device's contact moves off the element (such as by scrolling or panning).
 
-Syntax
-------
+## Syntax
 
     targetElement.setPointerCapture(pointerId);
 
@@ -27,8 +25,7 @@ This method returns [`undefined`](https://developer.mozilla.org/en-US/docs/Web/J
 
 <table><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><thead><tr class="header"><th>Exception</th><th>Explanation</th></tr></thead><tbody><tr class="odd"><td><code>NotFoundError</code></td><td><code>pointerId</code> does not match any of the active pointers.<div class="note notecard"><strong>Note:</strong> Firefox versions <em>before</em> Firefox 82 incorrectly throw <code>InvalidPointerId</code>.</div></td></tr></tbody></table>
 
-Example
--------
+## Example
 
 This example sets pointer capture on a [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div) when you press down on it. This lets you slide the element horizontally, even when you pointer moves outside of its boundaries.
 
@@ -70,15 +67,13 @@ This example sets pointer capture on a [`<div>`](https://developer.mozilla.org/e
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/pointerevents2/#dom-element-setpointercapture">Pointer Events – Level 2<br />
 <span class="small">The definition of 'setPointerCapture' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Non-stable version.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/pointerevents1/#widl-Element-setPointerCapture-void-long-pointerId">Pointer Events<br />
 <span class="small">The definition of 'setPointerCapture' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -144,10 +139,9 @@ Before Firefox 82, `setPointerCapture()` throws `InvalidPointerId` for an invali
 
 6.0
 
-See also
---------
+## See also
 
--   [`Element.releasePointerCapture`](releasepointercapture)
--   [`Pointer Events`](../pointer_events)
+- [`Element.releasePointerCapture`](releasepointercapture)
+- [`Pointer Events`](../pointer_events)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/setPointerCapture" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/setPointerCapture</a>

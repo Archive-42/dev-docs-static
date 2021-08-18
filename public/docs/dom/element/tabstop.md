@@ -1,5 +1,4 @@
-Element.tabStop
-===============
+# Element.tabStop
 
 **Non-standard**
 
@@ -13,19 +12,16 @@ The `tabStop` property of the [`Element`](../element) interface returns a [`Bool
 
 This property was proposed to add tab functionality for Custom Elements. While with the existing [`tabIndex`](../htmlorforeignelement/tabindex) property, it is required to specify an order for the element to become tabbable. The `tabStop` property would decouple the tabbable property from the tab index. After feedback, this property was removed from the [design doc](https://docs.google.com/document/d/1k93Ez6yNSyWQDtGjdJJqTBPmljk9l2WS3JTe5OHHB50/edit) and replaced by [`ShadowRoot.delegatesFocus`](../shadowroot/delegatesfocus).
 
-Syntax
-------
+## Syntax
 
     var isTabStop = element.tabStop;
     element.tabStop = (true|false);
 
-Example
--------
+## Example
 
     // TBD
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

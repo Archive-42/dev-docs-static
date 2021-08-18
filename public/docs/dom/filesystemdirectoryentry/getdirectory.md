@@ -1,30 +1,28 @@
-FileSystemDirectoryEntry.getDirectory()
-=======================================
+# FileSystemDirectoryEntry.getDirectory()
 
 **Experimental**
 
 **This is an [experimental technology](https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental)**  
 Check the [Browser compatibility table](#browser_compatibility) carefully before using this in production.
 
-The [`FileSystemDirectoryEntry`](../filesystemdirectoryentry) interface's method `getDirectory``()` returns a [`FileSystemDirectoryEntry`](../filesystemdirectoryentry) object corresponding to a directory contained somewhere within the directory subtree rooted at the directory on which it's called.
+The [`FileSystemDirectoryEntry`](../filesystemdirectoryentry) interface's method ` getDirectory``() ` returns a [`FileSystemDirectoryEntry`](../filesystemdirectoryentry) object corresponding to a directory contained somewhere within the directory subtree rooted at the directory on which it's called.
 
-Syntax
-------
+## Syntax
 
     FileSystemDirectoryEntry.getDirectory([path][, options][, successCallback][, errorCallback]);
 
 ### Parameters
 
- `path` <span class="badge inline optional">Optional</span>   
+`path` <span class="badge inline optional">Optional</span>  
 A [`USVString`](../usvstring) representing an absolute path or a path relative to the directory on which the method is called, describing which directory entry to return. Absolute paths may not be able to be used, for security reasons.
 
- `options` <span class="badge inline optional">Optional</span>   
+`options` <span class="badge inline optional">Optional</span>  
 An object based on the [`FileSystemFlags`](../filesystemflags) dictionary, which allows you to specify whether or not to create the entry if it's missing and if it's an error if the file already exists. These options are currently not useful in Web contexts.
 
- `successCallback` <span class="badge inline optional">Optional</span>   
+`successCallback` <span class="badge inline optional">Optional</span>  
 A method to be called once the [`FileSystemDirectoryEntry`](../filesystemdirectoryentry) has been created. The method receives a single parameter: the `FileSystemDirectoryEntry` object representing the directory in question.
 
- `errorCallback` <span class="badge inline optional">Optional</span>   
+`errorCallback` <span class="badge inline optional">Optional</span>  
 A method to be called if an error occurs. Receives as its sole input parameter a [`FileError`](../fileerror) object describing the error which occurred.
 
 ### Return value
@@ -47,15 +45,14 @@ The request to access the directory was denied for security reasons.
 `FileError.TYPE_MISMATCH_ERR`  
 The path specified is not a directory; it's probably a file, but might be an unsupported file descriptor such as a pipe; this depends on the user agent to some extent.
 
-FileSystemFlags
----------------
+## FileSystemFlags
 
 The `options` parameter is an object which is based on the [`FileSystemFlags`](../filesystemflags) dictionary; it provides flags which make it possible to adjust the behavior of the `getDirectory()` method.
 
- [`create`](../filesystemflags/create) <span class="badge inline optional">Optional</span>   
+[`create`](../filesystemflags/create) <span class="badge inline optional">Optional</span>  
 If this property is `true`, and the requested file or directory doesn't exist, the user agent should create it. The default is `false`. The parent directory must already exist.
 
- [`exclusive`](../filesystemflags/exclusive) <span class="badge inline optional">Optional</span>   
+[`exclusive`](../filesystemflags/exclusive) <span class="badge inline optional">Optional</span>  
 If `true`, and the `create` option is also `true`, the file must not exist prior to issuing the call. Instead, it must be possible for it to be created newly at call time. The default is `false`.
 
 ### Values and results
@@ -122,8 +119,7 @@ The file or directory is created, then a [`FileSystemFileEntry`](../filesystemfi
 
 \[1\] When `create` is `false`, the value of `exclusive` is irrelevant and ignored.
 
-Example
--------
+## Example
 
 In this example, a function is presented whose job it is to locate within a user's app data directory a JSON file containing a user dictionary for a specified language, then load that dictionary.
 
@@ -149,14 +145,12 @@ In this example, a function is presented whose job it is to locate within a user
 
 The `loadDictionaryForLanguage()` function starts by using `getDirectory()` to obtain the [`FileSystemDirectoryEntry`](../filesystemdirectoryentry) object representing a subfolder named "Dictionaries" located inside the specified app data directory. The success callback for this takes the resulting directory entry object and calls [`getFile()`](getfile) to get a [`FileSystemFileEntry`](../filesystemfileentry) object representing the dictionary file; the success callback for this, in turn, creates a new [`FileReader`](../filereader) and uses it to load the contents of the file. When that is loaded successfully (as indicated by the `loadend` event being fired), the loaded text is passed into [`JSON.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) to be reconstituted into a JavaScript object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/entries-api/#dom-filesystemdirectoryentry-getdirectory">File and Directory Entries API<br />
 <span class="small">The definition of 'getDirectory()' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -216,11 +210,10 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](../file_and_directory_entries_api)
--   [Introduction to the File System API](../file_and_directory_entries_api/introduction)
--   [`FileSystemDirectoryEntry`](../filesystemdirectoryentry)
+- [File and Directory Entries API](../file_and_directory_entries_api)
+- [Introduction to the File System API](../file_and_directory_entries_api/introduction)
+- [`FileSystemDirectoryEntry`](../filesystemdirectoryentry)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryEntry/getDirectory" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryEntry/getDirectory</a>

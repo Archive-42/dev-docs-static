@@ -1,5 +1,4 @@
-MediaError.msExtendedCode
-=========================
+# MediaError.msExtendedCode
 
 **Non-standard**
 
@@ -9,13 +8,11 @@ In the event of an error, the media element's error event will be fired. The ele
 
 `msExtendedCode` is a read-only proprietary property specific to Internet Explorer and Microsoft Edge.
 
-Value
------
+## Value
 
 Type: **long**; The platform specific error code.
 
-Example
--------
+## Example
 
     var video1 = object.getElementById("video1");
 

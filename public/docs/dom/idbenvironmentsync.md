@@ -1,5 +1,4 @@
-IDBEnvironmentSync
-==================
+# IDBEnvironmentSync
 
 **Draft**
 
@@ -11,8 +10,7 @@ The synchronous version of the IndexedDB API was originally intended for use onl
 
 The <span class="notecard inline warning">Unimplemented</span> `IDBEnvironmentSync` interface of the [IndexedDB API](indexeddb_api) will be implemented by [worker](worker) objects.
 
-Attributes
-----------
+## Attributes
 
 <table><colgroup><col style="width: 33%" /><col style="width: 33%" /><col style="width: 33%" /></colgroup><thead><tr class="header"><th>Attribute</th><th>Type</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>indexedDBSync</code></td><td><code>readonly IDBFactorySync</code></td><td>Provides a synchronous means of accessing the capabilities of indexed databases.<div class="notecard note"><strong>Note</strong><p>Until the Indexed Database API specification is finalized, this attribute should be accessed as <code>moz_indexedDBSync</code>.</p></div></td></tr></tbody></table>
 

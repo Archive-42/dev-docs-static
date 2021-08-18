@@ -1,40 +1,36 @@
-HTMLBodyElement
-===============
+# HTMLBodyElement
 
 The `HTMLBodyElement` interface provides special properties (beyond those inherited from the regular [`HTMLElement`](htmlelement) interface) for manipulating [`<body>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body) elements.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement) and from [`WindowEventHandlers`](windoweventhandlers).*
+_Inherits properties from its parent, [`HTMLElement`](htmlelement) and from [`WindowEventHandlers`](windoweventhandlers)._
 
- <span class="page-not-created">`HTMLBodyElement.aLink`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLBodyElement.aLink`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) that represents the color of active hyperlinks.
 
- <span class="page-not-created">`HTMLBodyElement.background`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLBodyElement.background`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) that represents the description of the location of the background image resource. Note that this is not an URI, though some older version of some browsers do expect it.
 
- <span class="page-not-created">`HTMLBodyElement.bgColor`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLBodyElement.bgColor`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) that represents the background color for the document.
 
- <span class="page-not-created">`HTMLBodyElement.link`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLBodyElement.link`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) that represents the color of unvisited links.
 
- <span class="page-not-created">`HTMLBodyElement.text`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLBodyElement.text`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) that represents the foreground color of text.
 
- <span class="page-not-created">`HTMLBodyElement.vLink`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLBodyElement.vLink`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) that represents the color of visited links.
 
-Methods
--------
+## Methods
 
-*No specific methods; inherits methods from its parent, [`HTMLElement`](htmlelement), and from [`WindowEventHandlers`](windoweventhandlers).*
+_No specific methods; inherits methods from its parent, [`HTMLElement`](htmlelement), and from [`WindowEventHandlers`](windoweventhandlers)._
 
-Event handlers
---------------
+## Event handlers
 
-*No specific event handlers; inherits event handlers from its parent, [`HTMLElement`](htmlelement) and from [`WindowEventHandlers`](windoweventhandlers).*
+_No specific event handlers; inherits event handlers from its parent, [`HTMLElement`](htmlelement) and from [`WindowEventHandlers`](windoweventhandlers)._
 
 [`WindowEventHandlers.onafterprint`](windoweventhandlers/onafterprint)  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `afterprint` event is raised.
@@ -48,7 +44,7 @@ Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event
 [`WindowEventHandlers.onhashchange`](windoweventhandlers/onhashchange)  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `hashchange` event is raised.
 
- [`WindowEventHandlers.onlanguagechange`](windoweventhandlers/onlanguagechange) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`WindowEventHandlers.onlanguagechange`](windoweventhandlers/onlanguagechange) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `languagechange` event is raised.
 
 [`WindowEventHandlers.onmessage`](windoweventhandlers/onmessage)  
@@ -87,8 +83,7 @@ An [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_ha
 [`WindowEventHandlers.onunload`](windoweventhandlers/onunload)  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `unload` event is raised.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#htmlbodyelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLBodyElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Technically, the event-related properties <code>onafterprint</code>, <code>onbeforeprint</code>, <code>onbeforeunload</code>, <code>onblur</code>, <code>onerror</code>, <code>onfocus</code>, <code>onhashchange</code>, <code>onlanguagechange</code>, <code>onload</code>, <code>onmessage</code>, <code>onoffline</code>, <code>ononline</code>, <code>onpopstate</code>, <code>onresize</code>, <code>onstorage</code>, and <code>onunload</code>, have been moved to <a href="windoweventhandlers"><code>WindowEventHandlers</code></a>. <code>HTMLBodyElement</code> implements this interface.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/sections.html#the-body-element">HTML 5.1<br />
@@ -98,8 +93,7 @@ The following properties have been added: <code>onafterprint</code>, <code>onbef
 <span class="small">The definition of 'HTMLBodyElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>No change from <a href="https://www.w3.org/TR/REC-DOM-Level-1/">Document Object Model (DOM) Level 1 Specification</a>.</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-62018039">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLBodyElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -337,10 +331,9 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   HTML element implementing this interface: [`<body>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body)
--   [`WindowEventHandlers`](windoweventhandlers)
+- HTML element implementing this interface: [`<body>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body)
+- [`WindowEventHandlers`](windoweventhandlers)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLBodyElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLBodyElement</a>

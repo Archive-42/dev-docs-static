@@ -1,5 +1,4 @@
-File.webkitRelativePath
-=======================
+# File.webkitRelativePath
 
 **Non-standard**
 
@@ -7,8 +6,7 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 The `File.webkitRelativePath` is a read-only property that contains a [`USVString`](../usvstring) which specifies the file's path relative to the directory selected by the user in an [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element with its [`webkitdirectory`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-webkitdirectory) attribute set.
 
-Syntax
-------
+## Syntax
 
      relativePath = File.webkitRelativePath
 
@@ -16,8 +14,7 @@ Syntax
 
 A [`USVString`](../usvstring) containing the path of the file relative to the ancestor directory the user selected.
 
-Example
--------
+## Example
 
 In this example, a directory picker is presented which lets the user choose one or more directories. When the `change` event occurs, a list of all files contained within the selected directory hierarchies is generated and displayed.
 
@@ -41,16 +38,14 @@ In this example, a directory picker is presented which lets the user choose one 
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/entries-api/#dom-file-webkitrelativepath">File and Directory Entries API<br />
 <span class="small">The definition of 'webkitRelativePath' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial specification.</td></tr></tbody></table>
 
 This API has no official W3C or WHATWG specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -106,11 +101,10 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](../file_and_directory_entries_api)
--   [`HTMLInputElement.webkitEntries`](../htmlinputelement/webkitentries)
--   [`HTMLInputElement.webkitdirectory`](../htmlinputelement/webkitdirectory)
+- [File and Directory Entries API](../file_and_directory_entries_api)
+- [`HTMLInputElement.webkitEntries`](../htmlinputelement/webkitentries)
+- [`HTMLInputElement.webkitdirectory`](../htmlinputelement/webkitdirectory)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/File/webkitRelativePath" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File/webkitRelativePath</a>

@@ -1,5 +1,4 @@
-getCandidateWindowClientRect
-============================
+# getCandidateWindowClientRect
 
 **Deprecated**
 

@@ -1,10 +1,8 @@
-Gamepad API
-===========
+# Gamepad API
 
 The **Gamepad API** is a way for developers to access and respond to signals from gamepads and other game controllers in a simple, consistent way. It contains three interfaces, two events and one specialist function, to respond to gamepads being connected and disconnected, and to access other information about the gamepads themselves, and what buttons and other controls are currently being pressed.
 
-Interfaces
-----------
+## Interfaces
 
 [`Gamepad`](gamepad)  
 Represents a gamepad/controller connected to the computer.
@@ -21,7 +19,7 @@ The event object representing events fired that are related to gamepads.
 Represents hardware in the controller designed to provide haptic feedback to the user (if available), most commonly vibration hardware.
 
 [`GamepadPose`](gamepadpose)  
-Represents the pose of a controller (e.g. position and orientation in 3D space) in the case of a [WebVR](webvr_api) controller. This is *not* used by the newer [WebXR](webxr_device_api) standard.
+Represents the pose of a controller (e.g. position and orientation in 3D space) in the case of a [WebVR](webvr_api) controller. This is _not_ used by the newer [WebXR](webxr_device_api) standard.
 
 See also the [extensions to the Gamepad interface](gamepad#experimental_extensions_to_gamepad), for features that allow you to access the above information.
 
@@ -40,20 +38,17 @@ Represents an event handler that will run when a gamepad is connected (when the 
 [`Window.ongamepaddisconnected`](window/ongamepaddisconnected)  
 Represents an event handler that will run when a gamepad is disconnected (when the `gamepaddisconnected` event fires).
 
-Tutorials and guides
---------------------
+## Tutorials and guides
 
--   [Using the Gamepad API](gamepad_api/using_the_gamepad_api)
--   [Implementing controls using the Gamepad API](https://developer.mozilla.org/en-US/docs/Games/Techniques/Controls_Gamepad_API)
+- [Using the Gamepad API](gamepad_api/using_the_gamepad_api)
+- [Implementing controls using the Gamepad API](https://developer.mozilla.org/en-US/docs/Games/Techniques/Controls_Gamepad_API)
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/gamepad/extensions.html">Gamepad Extensions</a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Defines the <a href="#experimental_gamepad_extensions">Experimental Gamepad extensions</a>.</td></tr><tr class="even"><td><a href="https://w3c.github.io/gamepad/">Gamepad<br />
 <span class="small">The definition of 'The Gamepad API specification' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -515,10 +510,9 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   [The Gamepad API](https://hacks.mozilla.org/2013/12/the-gamepad-api/) by Ted Mielczarek and Robert Nyman
--   [Simple API demo page](https://luser.github.io/gamepadtest/) ([source](https://github.com/luser/gamepadtest))
+- [The Gamepad API](https://hacks.mozilla.org/2013/12/the-gamepad-api/) by Ted Mielczarek and Robert Nyman
+- [Simple API demo page](https://luser.github.io/gamepadtest/) ([source](https://github.com/luser/gamepadtest))
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API</a>

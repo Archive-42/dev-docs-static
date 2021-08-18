@@ -1,5 +1,4 @@
-LockManager.request()
-=====================
+# LockManager.request()
 
 **Experimental**
 
@@ -16,8 +15,7 @@ Request a `"shared"` lock when multiple instances of the code can share access t
 
 This shared/exclusive lock pattern is common in database transaction architecture, for example to allow multiple simultaneous readers (each requests a `"shared"` lock) but only one writer (a single `"exclusive"` lock). This is known as the readers-writer pattern. In the [IndexedDB API](../indexeddb_api), this is exposed as `"readonly"` and `"readwrite"` transactions which have the same semantics.
 
-Syntax
-------
+## Syntax
 
     LockManager.request(var promise = name[, {options}], callback)
 
@@ -26,13 +24,13 @@ Syntax
 name  
 An identifier for the lock you want to request.
 
-options <span class="badge inline optional">Optional</span>   
+options <span class="badge inline optional">Optional</span>  
 An object describing characteristics of the lock you want to create. Valid values are:
 
--   `mode` <span class="badge inline optional">Optional</span>: Either `"exclusive"` or `"shared"`. The default value is `"exclusive"`.
--   `ifAvailable` <span class="badge inline optional">Optional</span>: If `true`, the lock request will only be granted if it is not already held. If it cannot be granted, the callback will be invoked with `null` instead of a `Lock` instance. The default value is `false`.
--   `steal` <span class="badge inline optional">Optional</span>: If `true`, then any held locks with the same name will be released, and the request will be granted, preempting any queued requests for it. The default value is `false`.
--   `signal` <span class="badge inline optional">Optional</span>: An `AbortSignal` (the `signal` property of an `AbortController`); if specified and the `AbortController` is aborted, the lock request is dropped if it was not already granted.
+- `mode` <span class="badge inline optional">Optional</span>: Either `"exclusive"` or `"shared"`. The default value is `"exclusive"`.
+- `ifAvailable` <span class="badge inline optional">Optional</span>: If `true`, the lock request will only be granted if it is not already held. If it cannot be granted, the callback will be invoked with `null` instead of a `Lock` instance. The default value is `false`.
+- `steal` <span class="badge inline optional">Optional</span>: If `true`, then any held locks with the same name will be released, and the request will be granted, preempting any queued requests for it. The default value is `false`.
+- `signal` <span class="badge inline optional">Optional</span>: An `AbortSignal` (the `signal` property of an `AbortController`); if specified and the `AbortController` is aborted, the lock request is dropped if it was not already granted.
 
 callback  
 …
@@ -41,8 +39,7 @@ callback
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with undefined when the request is granted.
 
-Examples
---------
+## Examples
 
 ### General Example
 
@@ -104,14 +101,12 @@ To only wait for a lock for a short period of time, use the `signal` option.
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/web-locks/#dom-lockmanager-request">Web Locks API<br />
 <span class="small">The definition of 'request()' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

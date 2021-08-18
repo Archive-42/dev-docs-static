@@ -1,12 +1,10 @@
-HTMLVideoElement: enterpictureinpicture event
-=============================================
+# HTMLVideoElement: enterpictureinpicture event
 
 The `enterpictureinpicture` event is fired when the [`HTMLVideoElement`](../htmlvideoelement) enters picture-in-picture mode successfully.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../pictureinpictureevent"><code>PictureInPictureEvent</code></a></td></tr><tr class="even"><td>Target</td><td><a href="../htmlvideoelement"><code>HTMLVideoElement</code></a></td></tr><tr class="odd"><td>Default Action</td><td>None</td></tr><tr class="even"><td>Event handler property</td><td><a href="onenterpictureinpicture"><code>HTMLVideoElement.onenterpictureinpicture</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 These examples add an event listener for the HTMLVideoElement's `enterpictureinpicture` event, then post a message when that event handler has reacted to the event firing.
 
@@ -40,14 +38,12 @@ Using the `onenterpictureinpicture` event handler property:
       video.requestPictureInPicture();
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/picture-in-picture/#eventdef-htmlvideoelement-enterpictureinpicture">Picture-in-Picture API<br />
 <span class="small">The definition of 'enterpictureinpicture event' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -103,10 +99,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`HTMLVideoElement`](../htmlvideoelement)
--   [`Picture-in-Picture_API`](../picture-in-picture_api)
+- [`HTMLVideoElement`](../htmlvideoelement)
+- [`Picture-in-Picture_API`](../picture-in-picture_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/enterpictureinpicture_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/enterpictureinpicture_event</a>

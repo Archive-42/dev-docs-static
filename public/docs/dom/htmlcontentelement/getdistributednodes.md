@@ -1,5 +1,4 @@
-HTMLContentElement.getDistributedNodes()
-========================================
+# HTMLContentElement.getDistributedNodes()
 
 **Deprecated**
 
@@ -7,24 +6,20 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `HTMLContentElement.getDistributedNodes()` method returns a static [`NodeList`](../nodelist) of the <span class="page-not-created">distributed nodes</span> associated with this `<content>` element.
 
-Syntax
-------
+## Syntax
 
     var nodeList = object.getDistributedNodes()
 
-Example
--------
+## Example
 
     // Get the distributed nodes
     var nodes = myContentObject.getDistributedNodes();
 
-Specifications
---------------
+## Specifications
 
 This feature is no longer defined by any specifications.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -80,9 +75,8 @@ No
 
 3.0
 
-See also
---------
+## See also
 
--   [HTMLContentElement](../htmlcontentelement)
+- [HTMLContentElement](../htmlcontentelement)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLContentElement/getDistributedNodes" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLContentElement/getDistributedNodes</a>

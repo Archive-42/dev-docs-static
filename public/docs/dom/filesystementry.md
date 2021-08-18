@@ -1,5 +1,4 @@
-FileSystemEntry
-===============
+# FileSystemEntry
 
 **Non-standard**
 
@@ -9,8 +8,7 @@ The `FileSystemEntry` interface of the File and Directory Entries API represents
 
 Because this is a non-standard API, whose specification is not currently on a standards track, it's important to keep in mind that not all browsers implement it, and those that do may implement only small portions of it. Check the [Browser compatibility](#browser_compatibility) section for details.
 
-Basic concepts
---------------
+## Basic concepts
 
 You don't create `FileSystemEntry` objects directly. Instead, you will receive an object based on this interface through other APIs. This interface serves as a base class for the [`FileSystemFileEntry`](filesystemfileentry) and [`FileSystemDirectoryEntry`](filesystemdirectoryentry) interfaces, which provide features specific to file system entries representing files and directories, respectively.
 
@@ -36,32 +34,30 @@ To see an example of how `toURL()` works, see the [method description](#tourl). 
         }, onError);
 
       }, onError);
-    }, onError); 
+    }, onError);
 
-Properties
-----------
+## Properties
 
-*This interface provides the following properties.*
+_This interface provides the following properties._
 
- [`filesystem`](filesystementry/filesystem) <span class="badge inline readonly">Read only </span>   
+[`filesystem`](filesystementry/filesystem) <span class="badge inline readonly">Read only </span>  
 A [`FileSystem`](filesystem) object representing the file system in which the entry is located.
 
- [`fullPath`](filesystementry/fullpath) <span class="badge inline readonly">Read only </span>   
+[`fullPath`](filesystementry/fullpath) <span class="badge inline readonly">Read only </span>  
 A [`USVString`](usvstring) object which provides the full, absolute path from the file system's root to the entry; it can also be thought of as a path which is relative to the root directory, prepended with a "/" character.
 
- [`isDirectory`](filesystementry/isdirectory) <span class="badge inline readonly">Read only </span>   
+[`isDirectory`](filesystementry/isdirectory) <span class="badge inline readonly">Read only </span>  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) which is `true` if the entry represents a directory; otherwise, it's `false`.
 
- [`isFile`](filesystementry/isfile) <span class="badge inline readonly">Read only </span>   
+[`isFile`](filesystementry/isfile) <span class="badge inline readonly">Read only </span>  
 A Boolean which is `true` if the entry represents a file. If it's not a file, this value is `false`.
 
- [`name`](filesystementry/name) <span class="badge inline readonly">Read only </span>   
+[`name`](filesystementry/name) <span class="badge inline readonly">Read only </span>  
 A [`USVString`](usvstring) containing the name of the entry (the final part of the path, after the last "/" character).
 
-Methods
--------
+## Methods
 
-*This interface defines the following methods.*
+_This interface defines the following methods._
 
 [`copyTo()`](filesystementry/copyto)  
 Copies the file or directory to a new location on the file system.
@@ -81,15 +77,13 @@ Removes the specified file or directory. You can only remove directories which a
 [`toURL()`](filesystementry/tourl)  
 Creates and returns a URL which identifies the entry. This URL uses the URL scheme `"filesystem:"`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/entries-api/">File and Directory Entries API</a></td><td><span class="spec-draft">Draft</span></td><td>Draft of proposed API</td></tr></tbody></table>
 
 This API has no official W3C or WHATWG specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -431,11 +425,10 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](file_and_directory_entries_api)
--   [Introduction to the File System API](file_and_directory_entries_api/introduction)
--   [`FileSystemFileEntry`](filesystemfileentry) and [`FileSystemDirectoryEntry`](filesystemdirectoryentry) are based on `FileSystemEntry`.
+- [File and Directory Entries API](file_and_directory_entries_api)
+- [Introduction to the File System API](file_and_directory_entries_api/introduction)
+- [`FileSystemFileEntry`](filesystemfileentry) and [`FileSystemDirectoryEntry`](filesystemdirectoryentry) are based on `FileSystemEntry`.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry</a>

@@ -1,10 +1,8 @@
-EXT\_disjoint\_timer\_query.getQueryEXT()
-=========================================
+# EXT_disjoint_timer_query.getQueryEXT()
 
 The `EXT_disjoint_timer_query.getQueryEXT()` method of the [WebGL API](../webgl_api) returns information about a query target.
 
-Syntax
-------
+## Syntax
 
     any ext.getQueryEXT(target, pname);
 
@@ -20,11 +18,10 @@ A [`GLenum`](../webgl_api/types) specifying which information to return. Must be
 
 Depends on `pname`:
 
--   If `pname` is `ext.CURRENT_QUERY_EXT`: A [`WebGLTimerQueryEXT`](../webglquery) object, which is the currently active query for the given target.
--   If `pname` is `ext.QUERY_COUNTER_BITS_EXT`: A [`GLint`](../webgl_api/types) indicating the number of bits used to hold the query result for the given target.
+- If `pname` is `ext.CURRENT_QUERY_EXT`: A [`WebGLTimerQueryEXT`](../webglquery) object, which is the currently active query for the given target.
+- If `pname` is `ext.QUERY_COUNTER_BITS_EXT`: A [`GLint`](../webgl_api/types) indicating the number of bits used to hold the query result for the given target.
 
-Examples
---------
+## Examples
 
     var ext = gl.getExtension('EXT_disjoint_timer_query');
     var startQuery = ext.createQueryEXT();
@@ -33,14 +30,12 @@ Examples
     var currentQuery = ext.getQueryEXT(ext.TIMESTAMP_EXT,
                                        ext.CURRENT_QUERY_EXT);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.khronos.org/registry/webgl/extensions/EXT_disjoint_timer_query/">EXT_disjoint_timer_query<br />
 <span class="small">The definition of 'EXT_disjoint_timer_query' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -110,11 +105,10 @@ No
 
 Removed due to the [GLitch exploit](https://www.vusec.net/projects/glitch/).
 
-See also
---------
+## See also
 
--   [`WebGLRenderingContext.getExtension()`](../webglrenderingcontext/getextension)
--   [`WebGLTimerQueryEXT`](../webglquery)
--   [`EXT_disjoint_timer_query`](../ext_disjoint_timer_query)
+- [`WebGLRenderingContext.getExtension()`](../webglrenderingcontext/getextension)
+- [`WebGLTimerQueryEXT`](../webglquery)
+- [`EXT_disjoint_timer_query`](../ext_disjoint_timer_query)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EXT_disjoint_timer_query/getQueryEXT" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EXT_disjoint_timer_query/getQueryEXT</a>

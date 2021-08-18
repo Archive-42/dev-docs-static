@@ -1,12 +1,10 @@
-Element: mouseup event
-======================
+# Element: mouseup event
 
 The `mouseup` event is fired at an [`Element`](../element) when a button on a pointing device (such as a mouse or trackpad) is released while the pointer is located inside it. `mouseup` events are the counterpoint to [`mousedown`](mousedown_event) events.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>Yes</td></tr><tr class="odd"><td>Interface</td><td><a href="../mouseevent"><code>MouseEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="../globaleventhandlers/onmouseup"><code>onmouseup</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 The following example uses the [`mousedown`](mousedown_event), `mousemove`, and [`mouseup`](mouseup_event) events to allow the user to draw on an HTML5 [canvas](../canvas_api). Its functionality is simple: the thickness of the line is set to 1, and the color is always black.
 
@@ -81,15 +79,13 @@ The `mouseup` event draws the final line segment, sets `x` and `y` to `0`, and s
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-mouseup">UI Events<br />
 <span class="small">The definition of 'mouseup' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#event-type-mouseup">Document Object Model (DOM) Level 3 Events Specification<br />
 <span class="small">The definition of 'mouseup' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -145,19 +141,18 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
--   [`mousedown`](mousedown_event)
--   [`mouseup`](mouseup_event)
--   [`mousemove`](mousemove_event)
--   [`click`](click_event)
--   [`dblclick`](dblclick_event)
--   [`mouseover`](mouseover_event)
--   [`mouseout`](mouseout_event)
--   [`mouseenter`](mouseenter_event)
--   [`mouseleave`](mouseleave_event)
--   [`contextmenu`](contextmenu_event)
+- [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
+- [`mousedown`](mousedown_event)
+- [`mouseup`](mouseup_event)
+- [`mousemove`](mousemove_event)
+- [`click`](click_event)
+- [`dblclick`](dblclick_event)
+- [`mouseover`](mouseover_event)
+- [`mouseout`](mouseout_event)
+- [`mouseenter`](mouseenter_event)
+- [`mouseleave`](mouseleave_event)
+- [`contextmenu`](contextmenu_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event</a>

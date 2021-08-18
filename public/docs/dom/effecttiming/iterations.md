@@ -1,5 +1,4 @@
-EffectTiming.iterations
-=======================
+# EffectTiming.iterations
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The [Web Animations API](../web_animations_api) dictionary [`EffectTiming`](../e
 
 [`Element.animate()`](../element/animate), [`KeyframeEffectReadOnly()`](../keyframeeffect/keyframeeffect), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) all accept an object of timing properties including `iterations`. The value of `iterations` corresponds directly to <span class="page-not-created">`AnimationEffectTimingReadOnly.iterations`</span> in [`timing`](../animationeffect/gettiming) objects returned by [`AnimationEffectReadOnly`](../animationeffect), [`KeyframeEffectReadOnly`](../keyframeeffect), and [`KeyframeEffect`](../keyframeeffect).
 
-Syntax
-------
+## Syntax
 
     var timingProperties = {
       iterations: numberOfIterations
@@ -28,8 +26,7 @@ A floating-point value specifying the number of times the animation sequence wil
 `TypeError`  
 An attempt was made to set the value of this property to a negative number or [`NaN`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN). The property's value is left unchanged.
 
-Examples
---------
+## Examples
 
 In the [Forgotten Key](https://codepen.io/rachelnabors/pen/bEPdQr?editors=0010) example, Alice waves her arm up and down the entire time the page is open by passing `Infinity` as the value for her `iterations` property:
 
@@ -44,14 +41,12 @@ In the [Forgotten Key](https://codepen.io/rachelnabors/pen/bEPdQr?editors=0010) 
       duration: 600
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/web-animations-1/#iteration-count">Web Animations<br />
 <span class="small">The definition of 'iterations' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Editor's draft.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -107,12 +102,11 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [Web Animations API](../web_animations_api)
--   [`Element.animate()`](../element/animate), [`KeyframeEffectReadOnly()`](../keyframeeffect/keyframeeffect), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) all accept an object of timing properties including this one.
--   The value of this property corresponds to the one in <span class="page-not-created">`AnimationEffectTimingReadOnly`</span> (which is the [`timing`](../animationeffect/gettiming) object for [`AnimationEffectReadOnly`](../animationeffect), [`KeyframeEffectReadOnly`](../keyframeeffect), and [`KeyframeEffect`](../keyframeeffect)).
--   CSS's [`animation-iteration-count`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-iteration-count)
+- [Web Animations API](../web_animations_api)
+- [`Element.animate()`](../element/animate), [`KeyframeEffectReadOnly()`](../keyframeeffect/keyframeeffect), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) all accept an object of timing properties including this one.
+- The value of this property corresponds to the one in <span class="page-not-created">`AnimationEffectTimingReadOnly`</span> (which is the [`timing`](../animationeffect/gettiming) object for [`AnimationEffectReadOnly`](../animationeffect), [`KeyframeEffectReadOnly`](../keyframeeffect), and [`KeyframeEffect`](../keyframeeffect)).
+- CSS's [`animation-iteration-count`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-iteration-count)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/iterations" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/iterations</a>

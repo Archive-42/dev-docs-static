@@ -1,10 +1,8 @@
-GlobalEventHandlers.ondragover
-==============================
+# GlobalEventHandlers.ondragover
 
 A [`global event handler`](../globaleventhandlers) for the `dragover` event.
 
-Syntax
-------
+## Syntax
 
     var dragoverHandler = targetElement.ondragover;
 
@@ -13,8 +11,7 @@ Syntax
 `dragoverHandler`  
 The `dragover` event handler for element `targetElement`.
 
-Example
--------
+## Example
 
 This example demonstrates using the [`ondragover`](ondragover) attribute handler to set an element's `dragover` event handler.
 
@@ -70,15 +67,13 @@ This example demonstrates using the [`ondragover`](ondragover) attribute handler
     </body>
     </html>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/indices.html#ix-handler-ondragover">HTML Living Standard<br />
 <span class="small">The definition of 'ondragover' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/index.html#ix-handler-ondragover">HTML 5.1<br />
 <span class="small">The definition of 'ondragover' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -134,9 +129,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   `dragover`
+- `dragover`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondragover" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondragover</a>

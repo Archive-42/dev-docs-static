@@ -1,28 +1,24 @@
-HashChangeEvent
-===============
+# HashChangeEvent
 
 The `HashChangeEvent` interface represents events that fire when the fragment identifier of the URL has changed.
 
 The fragment identifier is the part of the URL that follows (and includes) the `#` symbol.
 
-Properties
-----------
+## Properties
 
-*This interface also inherits the properties of its parent, [`Event`](event).*
+_This interface also inherits the properties of its parent, [`Event`](event)._
 
- [`HashChangeEvent.newURL`](hashchangeevent/newurl) <span class="badge inline readonly">Read only </span>   
+[`HashChangeEvent.newURL`](hashchangeevent/newurl) <span class="badge inline readonly">Read only </span>  
 The new URL to which the window is navigating.
 
- [`HashChangeEvent.oldURL`](hashchangeevent/oldurl) <span class="badge inline readonly">Read only </span>   
+[`HashChangeEvent.oldURL`](hashchangeevent/oldurl) <span class="badge inline readonly">Read only </span>  
 The previous URL from which the window was navigated.
 
-Methods
--------
+## Methods
 
-*This interface has no methods of its own, but inherits the methods of its parent, [`Event`](event).*
+_This interface has no methods of its own, but inherits the methods of its parent, [`Event`](event)._
 
-Examples
---------
+## Examples
 
 ### Syntax options for a hash change
 
@@ -48,8 +44,7 @@ You can listen for the `hashchange` event using any of the following options:
 
     window.addEventListener('hashchange', locationHashChanged);
 
-Polyfill
---------
+## Polyfill
 
 There are several fallback scripts listed on the [Modernizr GitHub page](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills). Basically, those scripts check the `hash` property of [`Window.location`](window/location) at a regular interval. Here is a version that allows only one handler to be bound to the [`onhashchange`](windoweventhandlers/onhashchange) property:
 
@@ -83,14 +78,12 @@ There are several fallback scripts listed on the [Modernizr GitHub page](https:/
 
     })(window);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#the-hashchangeevent-interface">HTML Living Standard<br />
 <span class="small">The definition of 'HashChangeEvent' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -198,10 +191,9 @@ Yes
 
 Yes
 
-Related events
---------------
+## Related events
 
--   `hashchange`
--   `popstate`
+- `hashchange`
+- `popstate`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HashChangeEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HashChangeEvent</a>

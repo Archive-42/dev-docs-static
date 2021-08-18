@@ -1,23 +1,19 @@
-GravitySensor
-=============
+# GravitySensor
 
 The `GravitySensor` interface of the [Sensor APIs](sensor_apis) provides on each reading the gravity applied to the device along all three axes.
 
 To use this sensor, the user must grant permission to the `'accelerometer'` device sensor through the [`Permissions`](permissions) API.
 
-Constructor
------------
+## Constructor
 
 [`GravitySensor.GravitySensor()`](gravitysensor/gravitysensor)  
 Creates a new `GravitySensor` object.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its ancestor, [`Accelerometer`](accelerometer).*
+_Inherits properties from its ancestor, [`Accelerometer`](accelerometer)._
 
-Example
--------
+## Example
 
 Gravity is typically read in the [`Sensor.onreading`](sensor/onreading) event callback. In the example below this occurs sixty times a second.
 
@@ -31,14 +27,12 @@ Gravity is typically read in the [`Sensor.onreading`](sensor/onreading) event ca
 
     gravitySensor.start();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/generic-sensor/">Generic Sensor API</a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Defines sensors in general.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/accelerometer/#gravitysensor-interface">Accelerometer<br />
 <span class="small">The definition of 'GravitySensor' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

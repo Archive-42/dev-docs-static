@@ -1,5 +1,4 @@
-Gamepad.timestamp
-=================
+# Gamepad.timestamp
 
 The `Gamepad.timestamp` property of the [`Gamepad`](../gamepad) interface returns a [`DOMHighResTimeStamp`](../domhighrestimestamp) representing the last time the data for this gamepad was updated.
 
@@ -7,30 +6,25 @@ The idea behind this is to allow developers to determine if the `axes` and `butt
 
 **Note**: This property is not currently supported anywhere.
 
-Syntax
-------
+## Syntax
 
     readonly    attribute DOMHighResTimeStamp timestamp;
 
-Example
--------
+## Example
 
     var gp = navigator.getGamepads()[0];
     console.log(gp.timestamp);
 
-Value
------
+## Value
 
 A [`DOMHighResTimeStamp`](../domhighrestimestamp).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/gamepad/#dom-gamepad-timestamp">Gamepad<br />
 <span class="small">The definition of 'Gamepad.timestamp' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -96,8 +90,7 @@ No
 
 2.0-3.0
 
-See also
---------
+## See also
 
 [Using the Gamepad API](../gamepad_api/using_the_gamepad_api)
 

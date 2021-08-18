@@ -1,5 +1,4 @@
-Element: MSGestureHold event
-============================
+# Element: MSGestureHold event
 
 **Non-standard**
 
@@ -19,16 +18,14 @@ This value indicates that the user started contacting the touch surface.
 `MSGESTURE_FLAG_END`  
 This value indicates that the user has stopped touching the touch surface.
 
- `MSGESTURE_FLAG_END & MSGESTURE_FLAG_CANCEL` (bitwise AND-ed together)  
+`MSGESTURE_FLAG_END & MSGESTURE_FLAG_CANCEL` (bitwise AND-ed together)  
 This value indicates that the user has moved their finger, regardless of whether they also stopped touching the touch surface
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -84,17 +81,16 @@ No
 
 No
 
-See also
---------
+## See also
 
--   Related events:
-    -   `MSGestureStart`
-    -   `MSGestureEnd`
-    -   `MSGestureTap`
-    -   `MSGestureChange`
-    -   `MSInertiaStart`
-    -   `gesturestart`
-    -   `gesturechange`
-    -   `gestureend`
+- Related events:
+  - `MSGestureStart`
+  - `MSGestureEnd`
+  - `MSGestureTap`
+  - `MSGestureChange`
+  - `MSInertiaStart`
+  - `gesturestart`
+  - `gesturechange`
+  - `gestureend`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/MSGestureHold_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/MSGestureHold_event</a>

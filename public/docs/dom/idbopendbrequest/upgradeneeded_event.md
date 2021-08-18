@@ -1,12 +1,10 @@
-IDBOpenDBRequest: upgradeneeded event
-=====================================
+# IDBOpenDBRequest: upgradeneeded event
 
 The `upgradeneeded` event is fired when an attempt was made to open a database with a version number higher than its current version.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../idbversionchangeevent"><code>IDBVersionChangeEvent</code></a></td></tr><tr class="even"><td>Event handler</td><td><a href="onupgradeneeded"><code>onupgradeneeded</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 This example opens a database and handles the `upgradeneeded` event by making any necessary updates to the object store.
 
@@ -48,8 +46,7 @@ This is the same example, but uses the onupgradeneeded event handler property.
       objectStore.createIndex('year', 'year', { unique: false });
     };
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -105,10 +102,9 @@ Samsung Internet
 
 1.5
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   [`onupgradeneeded`](onupgradeneeded) event handler property
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- [`onupgradeneeded`](onupgradeneeded) event handler property
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBOpenDBRequest/upgradeneeded_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBOpenDBRequest/upgradeneeded_event</a>

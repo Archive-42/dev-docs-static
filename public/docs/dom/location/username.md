@@ -1,5 +1,4 @@
-Location: username
-==================
+# Location: username
 
 **Deprecated**
 
@@ -7,21 +6,18 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `username` property of the [`Location`](../location) interface is a [`USVString`](../usvstring) containing the username specified before the domain name.
 
-Syntax
-------
+## Syntax
 
     string = object.username;
     object.username = string;
 
-Examples
---------
+## Examples
 
     // Let's <a id="myAnchor" href="https://anonymous:flabada@developer.mozilla.org/en-US/docs/Location.username"> be in the document
     var anchor = document.getElementByID("myAnchor");
     var result = anchor.username; // Returns:'anonymous'
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

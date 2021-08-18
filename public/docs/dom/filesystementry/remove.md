@@ -1,16 +1,14 @@
-FileSystemEntry.remove()
-========================
+# FileSystemEntry.remove()
 
 **Deprecated**
 
 This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the [compatibility table](#browser_compatibility) at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.
 
-The [`FileSystemEntry`](../filesystementry) interface's method `remove``()` deletes the file or directory from the file system. Directories must be empty before they can be removed.
+The [`FileSystemEntry`](../filesystementry) interface's method ` remove``() ` deletes the file or directory from the file system. Directories must be empty before they can be removed.
 
 To recursively remove a directory as well as all of its contents and its subdirectories, call [`FileSystemDirectoryEntry.removeRecursively()`](../filesystemdirectoryentry/removerecursively) instead.
 
-Syntax
-------
+## Syntax
 
     FileSystemEntry.remove(successCallback[, errorCallback]);
 
@@ -19,7 +17,7 @@ Syntax
 `successCallback`  
 A function which is called once the file has been successfully removed.
 
- `errorCallback` <span class="badge inline optional">Optional</span>   
+`errorCallback` <span class="badge inline optional">Optional</span>  
 An optional callback which is called if the attempt to remove the file fails.
 
 ### Return value
@@ -43,8 +41,7 @@ The file or directory doesn't exist.
 `FileError.SECURITY_ERR`  
 The entry couldn't be removed due to permissions or other access constraints, or because there are too many calls being made on file resources.
 
-Example
--------
+## Example
 
 This example deletes a temporary work file.
 
@@ -54,8 +51,7 @@ This example deletes a temporary work file.
       });
     }, handleError);
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -111,11 +107,10 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](../file_and_directory_entries_api)
--   [Introduction to the File System API](../file_and_directory_entries_api/introduction)
--   [`FileSystemDirectoryEntry.removeRecursively()`](../filesystemdirectoryentry/removerecursively)
+- [File and Directory Entries API](../file_and_directory_entries_api)
+- [Introduction to the File System API](../file_and_directory_entries_api/introduction)
+- [`FileSystemDirectoryEntry.removeRecursively()`](../filesystemdirectoryentry/removerecursively)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry/remove" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry/remove</a>

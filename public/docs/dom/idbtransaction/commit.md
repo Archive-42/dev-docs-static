@@ -1,16 +1,14 @@
-IDBTransaction.commit()
-=======================
+# IDBTransaction.commit()
 
 The `commit()` method of the [`IDBTransaction`](../idbtransaction) interface commits the transaction if it is called on an active transaction.
 
-Note that `commit()` doesn't normally *have* to be called — a transaction will automatically commit when all outstanding requests have been satisfied and no new requests have been made. `commit()` can be used to start the commit process without waiting for events from outstanding requests to be dispatched.
+Note that `commit()` doesn't normally _have_ to be called — a transaction will automatically commit when all outstanding requests have been satisfied and no new requests have been made. `commit()` can be used to start the commit process without waiting for events from outstanding requests to be dispatched.
 
 If it is called on a transaction that is not active, it throws an [`InvalidStateError`](../domexception#exception-invalidstateerror) `DOMException`.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     transaction.commit();
 
@@ -26,8 +24,7 @@ Void.
 
 <table><thead><tr class="header"><th><strong>Exception</strong></th><th><strong>Description</strong></th></tr></thead><tbody><tr class="odd"><td><a href="../domexception#exception-invalidstateerror"><code>InvalidStateError</code></a></td><td>The transaction state is not active.</td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
     // open a read/write db transaction, ready for adding the data
     var transaction = db.transaction(["myDB"], "readwrite");
@@ -56,14 +53,12 @@ Examples
     // Force the changes to be committed to the database asap
     transaction.commit();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbtransaction-commit">Indexed Database API 2.0<br />
 <span class="small">The definition of 'IDBTransaction.commit()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -119,15 +114,14 @@ No
 
 12.0
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/commit" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/commit</a>

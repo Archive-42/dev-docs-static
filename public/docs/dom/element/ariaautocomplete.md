@@ -1,10 +1,8 @@
-Element.ariaAutoComplete
-========================
+# Element.ariaAutoComplete
 
 The `ariaAutoComplete` property of the [`Element`](../element) interface reflects the value of the `aria-autocomplete` attribute, which indicates whether inputting text could trigger display of one or more predictions of the user's intended value for a combobox, searchbox, or textbox and specifies how predictions would be presented if they were made.
 
-Syntax
-------
+## Syntax
 
     var ariaAutoComplete = element.ariaAutoComplete;
     element.ariaAutoComplete = ariaAutoComplete
@@ -25,8 +23,7 @@ When a user is providing input, an element containing a collection of values tha
 `"none"`  
 When a user is providing input, there is no display of an automatic suggestion that attempts to predict how the user intends to complete the input.
 
-Examples
---------
+## Examples
 
 In this example the `aria-autocomplete` attribute on the element with an ID of `animal` is set to "list". Using `ariaAutoComplete` we update the value to "inline".
 
@@ -45,14 +42,12 @@ In this example the `aria-autocomplete` attribute on the element with an ID of `
     el.ariaAutoComplete = "inline";
     console.log(el.ariaAutoComplete); // inline
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariaautocomplete">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaAutoComplete' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

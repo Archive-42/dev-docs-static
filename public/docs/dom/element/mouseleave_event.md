@@ -1,11 +1,10 @@
-Element: mouseleave event
-=========================
+# Element: mouseleave event
 
 The `mouseleave` event is fired at an [`Element`](../element) when the cursor of a pointing device (usually a mouse) is moved out of it.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../mouseevent"><code>MouseEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="../globaleventhandlers/onmouseleave"><code>onmouseleave</code></a></td></tr></tbody></table>
 
-`mouseleave` and `mouseout` are similar but differ in that `mouseleave` does not bubble and `mouseout` does. This means that `mouseleave` is fired when the pointer has exited the element *and* all of its descendants, whereas `mouseout` is fired when the pointer leaves the element *or* leaves one of the element's descendants (even if the pointer is still within the element).
+`mouseleave` and `mouseout` are similar but differ in that `mouseleave` does not bubble and `mouseout` does. This means that `mouseleave` is fired when the pointer has exited the element _and_ all of its descendants, whereas `mouseout` is fired when the pointer leaves the element _or_ leaves one of the element's descendants (even if the pointer is still within the element).
 
 <img src="data:image/png;base64,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" class="default internal" width="451" height="198" />
 
@@ -15,8 +14,7 @@ One `mouseleave` event is sent to each element of the hierarchy when leaving the
 
 One single `mouseout` event is sent to the deepest element of the DOM tree, then it bubbles up the hierarchy until it is canceled by a handler or reaches the root.
 
-Examples
---------
+## Examples
 
 The [`mouseout`](mouseout_event#examples) documentation has an example illustrating the difference between `mouseout` and `mouseleave`.
 
@@ -77,15 +75,13 @@ Styling the `<div>` to make it more visible.
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-mouseleave">UI Events<br />
 <span class="small">The definition of 'mouseleave' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#event-type-mouseleave">Document Object Model (DOM) Level 3 Events Specification<br />
 <span class="small">The definition of 'mouseleave' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -141,19 +137,18 @@ Samsung Internet
 
 2.0
 
-See also
---------
+## See also
 
--   [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
--   `mousedown`
--   `mouseup`
--   `mousemove`
--   `click`
--   `dblclick`
--   `mouseover`
--   `mouseout`
--   `mouseenter`
--   `mouseleave`
--   `contextmenu`
+- [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
+- `mousedown`
+- `mouseup`
+- `mousemove`
+- `click`
+- `dblclick`
+- `mouseover`
+- `mouseout`
+- `mouseenter`
+- `mouseleave`
+- `contextmenu`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event</a>

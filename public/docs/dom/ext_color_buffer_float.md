@@ -1,5 +1,4 @@
-EXT\_color\_buffer\_float
-=========================
+# EXT_color_buffer_float
 
 The `EXT_color_buffer_float` extension is part of [WebGL](webgl_api) and adds the ability to render a variety of floating point formats.
 
@@ -9,26 +8,24 @@ WebGL extensions are available using the [`WebGLRenderingContext.getExtension()`
 
 For [WebGL 1](webglrenderingcontext), see the [`EXT_color_buffer_half_float`](ext_color_buffer_half_float) and [`WEBGL_color_buffer_float`](webgl_color_buffer_float) extensions.
 
-Extended methods
-----------------
+## Extended methods
 
 The following sized formats become **color-renderable**:
 
--   `gl.R16F`,
--   `gl.RG16F`,
--   `gl.RGBA16F`,
--   `gl.R32F`,
--   `gl.RG32F`,
--   `gl.RGBA32F`,
--   `gl.R11F_G11F_B10F`.
+- `gl.R16F`,
+- `gl.RG16F`,
+- `gl.RGBA16F`,
+- `gl.R32F`,
+- `gl.RG32F`,
+- `gl.RGBA32F`,
+- `gl.R11F_G11F_B10F`.
 
 **Color-renderable** means:
 
--   The [`WebGLRenderingContext.renderbufferStorage()`](webglrenderingcontext/renderbufferstorage) method now accepts these formats.
--   Framebuffers with attached textures of these formats may now be **FRAMEBUFFER\_COMPLETE**.
+- The [`WebGLRenderingContext.renderbufferStorage()`](webglrenderingcontext/renderbufferstorage) method now accepts these formats.
+- Framebuffers with attached textures of these formats may now be **FRAMEBUFFER_COMPLETE**.
 
-Examples
---------
+## Examples
 
 `gl` must be a [`WebGL2RenderingContext`](webgl2renderingcontext). This extension does not work in WebGL 1 contexts.
 
@@ -36,14 +33,12 @@ Examples
 
     gl.renderbufferStorage(gl.RENDERBUFFER, gl.RGBA16F, 256, 256);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.khronos.org/registry/webgl/extensions/EXT_color_buffer_float/">EXT_color_buffer_float<br />
 <span class="small">The definition of 'EXT_color_buffer_float' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition for WebGL.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -99,12 +94,11 @@ No
 
 8.0
 
-See also
---------
+## See also
 
--   [`WebGLRenderingContext.getExtension()`](webglrenderingcontext/getextension)
--   [`WebGLRenderingContext.renderbufferStorage()`](webglrenderingcontext/renderbufferstorage)
--   [`EXT_color_buffer_half_float`](ext_color_buffer_half_float)
--   [`WEBGL_color_buffer_float`](webgl_color_buffer_float)
+- [`WebGLRenderingContext.getExtension()`](webglrenderingcontext/getextension)
+- [`WebGLRenderingContext.renderbufferStorage()`](webglrenderingcontext/renderbufferstorage)
+- [`EXT_color_buffer_half_float`](ext_color_buffer_half_float)
+- [`WEBGL_color_buffer_float`](webgl_color_buffer_float)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EXT_color_buffer_float" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EXT_color_buffer_float</a>

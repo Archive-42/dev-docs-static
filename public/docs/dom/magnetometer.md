@@ -1,5 +1,4 @@
-Magnetometer
-============
+# Magnetometer
 
 The `Magnetometer` interface of the [Sensor APIs](sensor_apis) provides information about the magnetic field as detected by the device’s primary magnetometer sensor.
 
@@ -7,26 +6,23 @@ To use this sensor, the user must grant permission to the `'magnetometer'` devic
 
 If a feature policy blocks use of a feature, it's because your code is inconsistent with the policies set on your server. This is not something that would ever be shown to a user. See [`Feature-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy) for implementation instructions.
 
-Constructor
------------
+## Constructor
 
 [`Magnetometer.Magnetometer()`](magnetometer/magnetometer)  
 Creates a new `Magnetometer` object.
 
-Properties
-----------
+## Properties
 
- [`Magnetometer.x`](magnetometer/x) <span class="badge inline readonly">Read only </span>   
+[`Magnetometer.x`](magnetometer/x) <span class="badge inline readonly">Read only </span>  
 Returns a double containing the magnetic field around the device's x axis.
 
- [`Magnetometer.y`](magnetometer/y) <span class="badge inline readonly">Read only </span>   
+[`Magnetometer.y`](magnetometer/y) <span class="badge inline readonly">Read only </span>  
 Returns a double containing the magnetic field around the device's y axis.
 
- [`Magnetometer.z`](magnetometer/z) <span class="badge inline readonly">Read only </span>   
+[`Magnetometer.z`](magnetometer/z) <span class="badge inline readonly">Read only </span>  
 Returns a double containing the magnetic field around the device's z axis.
 
-Example
--------
+## Example
 
 The magnetometer is typically read in the [`Sensor.onreading`](sensor/onreading) event callback. In the example below this occurs sixty times a second.
 
@@ -39,14 +35,12 @@ The magnetometer is typically read in the [`Sensor.onreading`](sensor/onreading)
     });
     magSensor.start();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/generic-sensor/">Generic Sensor API</a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Defines sensors in general.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/magnetometer/#magnetometer-interface">Magnetometer<br />
 <span class="small">The definition of 'Magnetometer' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

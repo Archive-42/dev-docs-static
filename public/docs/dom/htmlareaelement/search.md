@@ -1,20 +1,17 @@
-HTMLAreaElement.search
-======================
+# HTMLAreaElement.search
 
-The `HTMLAreaElement.search` property is a search string, also called a *query string*, that is [`USVString`](../usvstring) containing a `'?'` followed by the parameters of the URL.
+The `HTMLAreaElement.search` property is a search string, also called a _query string_, that is [`USVString`](../usvstring) containing a `'?'` followed by the parameters of the URL.
 
 Modern browsers provide `URLSearchParams` and `URL.searchParams` to make it easy to parse out the parameters from the querystring.
 
-Syntax
-------
+## Syntax
 
     // Getter
     string = area.search;
     // Setter
     area.search = string;
 
-Examples
---------
+## Examples
 
 ### Getting the search string from an area link
 
@@ -29,14 +26,12 @@ Alternatively, [`URLSearchParams`](../urlsearchparams/get#examples) can be used:
     let params = new URLSearchParams(queryString);
     let q = parseInt(params.get("q"); // returns the number 123
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-hyperlink-search">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLHyperlinkElementUtils.search' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -96,9 +91,8 @@ Before Firefox 53, the `pathname` and `search` `HTMLHyperlinkElementUtils` prope
 
 1.0
 
-See also
---------
+## See also
 
--   The [`HTMLAreaElement`](../htmlareaelement) interface it belongs to.
+- The [`HTMLAreaElement`](../htmlareaelement) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAreaElement/search" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLAreaElement/search</a>

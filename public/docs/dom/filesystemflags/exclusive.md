@@ -1,5 +1,4 @@
-FileSystemFlags.exclusive
-=========================
+# FileSystemFlags.exclusive
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `exclusive` property on the [`FileSystemFlags`](../filesystemflags) dictionary is used in tandem with the create property to determine whether or not it's acceptable to require that the file not already exist when the reference to it is created by calling [`FileSystemDirectoryEntry.getFile()`](../filesystemdirectoryentry/getfile) or [`FileSystemDirectoryEntry.getDirectory()`](../filesystemdirectoryentry/getdirectory).
 
-Syntax
-------
+## Syntax
 
     fileSystemFlags.exclusive = booleanValue
 
@@ -77,14 +75,12 @@ The file or directory is created, then a [`FileSystemFileEntry`](../filesystemfi
 
 \[1\] When `create` is `false`, the value of `exclusive` is irrelevant and ignored.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/entries-api/#dom-filesystemflags-exclusive">File and Directory Entries API<br />
 <span class="small">The definition of 'FileSystemFlags' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -144,12 +140,11 @@ No
 
 Yes
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](../file_and_directory_entries_api)
--   [Introduction to the File System API](../file_and_directory_entries_api/introduction)
--   [`FileSystemFlags`](../filesystemflags)
--   [`FileSystemDirectoryEntry.getFile()`](../filesystemdirectoryentry/getfile) and [`FileSystemDirectoryEntry.getDirectory()`](../filesystemdirectoryentry/getdirectory)
+- [File and Directory Entries API](../file_and_directory_entries_api)
+- [Introduction to the File System API](../file_and_directory_entries_api/introduction)
+- [`FileSystemFlags`](../filesystemflags)
+- [`FileSystemDirectoryEntry.getFile()`](../filesystemdirectoryentry/getfile) and [`FileSystemDirectoryEntry.getDirectory()`](../filesystemdirectoryentry/getdirectory)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFlags/exclusive" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFlags/exclusive</a>

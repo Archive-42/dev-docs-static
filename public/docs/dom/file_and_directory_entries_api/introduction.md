@@ -1,5 +1,4 @@
-Introduction to the File and Directory Entries API
-==================================================
+# Introduction to the File and Directory Entries API
 
 **Non-standard**
 
@@ -9,8 +8,7 @@ The [File and Directory Entries API](../file_and_directory_entries_api) simulate
 
 The File and Directory Entries API interacts with other related APIs. It was built on the File Writer API, which, in turn, was built on File API. Each of the APIs adds different functionality. These APIs are a giant evolutionary leap for web apps, which can now cache and process large amounts of data.
 
-About this document
--------------------
+## About this document
 
 This introduction discusses essential concepts and terminology in the File and Directory Entries API. It gives you the big picture and orients you to [key concepts](#concepts). It also describes [restrictions](#restrictions) that raise security errors if you ignore them. To learn more about terminology used in this API, see the [Definitions](#definitions) section.
 
@@ -18,8 +16,7 @@ For the reference documentation on the File and Directory Entries API, see the [
 
 The specification is still being defined and is subject to change.
 
-Overview
---------
+## Overview
 
 The File and Directory Entries API includes both [asynchronous](#asynchronous_apis) and [synchronous](#synchronous_apis) versions of the interfaces. The asynchronous API can be used in cases where you don't want an outstanding operation to block the UI. The synchronous API, on the other hand, allows for simpler programming model, but it must be used with [WebWorkers](../web_workers_api/using_web_workers).
 
@@ -27,10 +24,10 @@ The File and Directory Entries API includes both [asynchronous](#asynchronous_ap
 
 The File and Directory Entries API is an important API for the following reasons:
 
--   It lets apps have offline and storage features that involve large binary blobs.
--   It can improve performance by letting an app pre-fetch assets in the background and cache locally.
--   It lets users of your web app directly edit a binary file that's in their local file directory.
--   It provides a storage API that is already familiar to your users, who are used to working with file systems.
+- It lets apps have offline and storage features that involve large binary blobs.
+- It can improve performance by letting an app pre-fetch assets in the background and cache locally.
+- It lets users of your web app directly edit a binary file that's in their local file directory.
+- It provides a storage API that is already familiar to your users, who are used to working with file systems.
 
 For examples of features you can create with this app, see the [Sample use cases](https://developer.mozilla.org/#samples) section.
 
@@ -38,41 +35,40 @@ For examples of features you can create with this app, see the [Sample use cases
 
 The File and Directory Entries API is an alternative to other storage APIs like [IndexedDB](../indexeddb_api/basic_concepts_behind_indexeddb), WebSQL (which has been deprecated since November18, 2010), and AppCache. The API is a better choice for apps that deal with blobs for the following reasons:
 
--   The File and Directory Entries API offers client-side storage for use cases that are not addressed by databases. If you want to have large mutable chunks of data, the File and Directory Entries API is a much more efficient storage solution than a database.
--   While Firefox supports blob storage for IndexedDB, Chrome currently does not (Chrome is still implementing support for blob storage in IndexedDB). If you are targeting Chrome for your app and you want to store blobs, the File and Directory Entries API and App Cache are your only choices. However, AppCache storage isn't locally mutable, and doesn't allow for fine-grained client-side management.
--   In Chrome, you can use the File and Directory Entries API with the [Quota Management API](https://code.google.com/chrome/whitepapers/storage.html), which lets you ask for more storage and manage your storage quota.
+- The File and Directory Entries API offers client-side storage for use cases that are not addressed by databases. If you want to have large mutable chunks of data, the File and Directory Entries API is a much more efficient storage solution than a database.
+- While Firefox supports blob storage for IndexedDB, Chrome currently does not (Chrome is still implementing support for blob storage in IndexedDB). If you are targeting Chrome for your app and you want to store blobs, the File and Directory Entries API and App Cache are your only choices. However, AppCache storage isn't locally mutable, and doesn't allow for fine-grained client-side management.
+- In Chrome, you can use the File and Directory Entries API with the [Quota Management API](https://code.google.com/chrome/whitepapers/storage.html), which lets you ask for more storage and manage your storage quota.
 
 ### Sample use cases
 
 The following are just a few examples of how you can use the File and Directory Entries API:
 
--   Apps with persistent uploader
-    -   When a file or directory is selected for upload, you can copy the file into a local sandbox and upload a chunk at a time.
-    -   The app can restart uploads after an interruption, such as the browser being closed or crashing, connectivity getting interrupted, or the computer getting shut down.
--   Video game or other apps with lots of media assets
-    -   The app downloads one or several large tarballs and expands them locally into a directory structure.
-    -   The app pre-fetches assets in the background, so the user can go to the next task or game level without waiting for a download.
--   Audio or photo editor with offline access or local cache (great for performance and speed)
-    -   The app can write to files in place (for example, overwriting just the ID3/EXIF tags and not the entire file).
--   Offline video viewer
-    -   The app can download large files (&gt;1GB) for later viewing.
-    -   The app can access partially downloaded files (so that you can watch the first chapter of your DVD, even if the app is still downloading the rest of the content or if the app didn't complete the download because you had to run to catch a train).
--   Offline web mail client
-    -   The client downloads attachments and stores them locally.
-    -   The client caches attachments for later upload.
+- Apps with persistent uploader
+  - When a file or directory is selected for upload, you can copy the file into a local sandbox and upload a chunk at a time.
+  - The app can restart uploads after an interruption, such as the browser being closed or crashing, connectivity getting interrupted, or the computer getting shut down.
+- Video game or other apps with lots of media assets
+  - The app downloads one or several large tarballs and expands them locally into a directory structure.
+  - The app pre-fetches assets in the background, so the user can go to the next task or game level without waiting for a download.
+- Audio or photo editor with offline access or local cache (great for performance and speed)
+  - The app can write to files in place (for example, overwriting just the ID3/EXIF tags and not the entire file).
+- Offline video viewer
+  - The app can download large files (&gt;1GB) for later viewing.
+  - The app can access partially downloaded files (so that you can watch the first chapter of your DVD, even if the app is still downloading the rest of the content or if the app didn't complete the download because you had to run to catch a train).
+- Offline web mail client
+  - The client downloads attachments and stores them locally.
+  - The client caches attachments for later upload.
 
-Big concepts
-------------
+## Big concepts
 
 Before you start using the File and Directory Entries API, you need to understand a few concepts:
 
--   [The File and Directory Entries API is a virtual representation of a file system](#virtual)
--   [The File and Directory Entries API can use different storage types](#storage)
--   [Browsers impose storage quota](#quota)
--   [The File and Directory Entries API has asynchronous and synchronous versions](#versions)
--   [When using the asynchronous API, always use the error callbacks](#errorcallbacks)
--   [The File and Directory Entries API interacts with other APIs](#interfaces)
--   [The File and Directory Entries API is case-sensitive](#case)
+- [The File and Directory Entries API is a virtual representation of a file system](#virtual)
+- [The File and Directory Entries API can use different storage types](#storage)
+- [Browsers impose storage quota](#quota)
+- [The File and Directory Entries API has asynchronous and synchronous versions](#versions)
+- [When using the asynchronous API, always use the error callbacks](#errorcallbacks)
+- [The File and Directory Entries API interacts with other APIs](#interfaces)
+- [The File and Directory Entries API is case-sensitive](#case)
 
 ### The File and Directory Entries API is a virtual representation of a file system
 
@@ -96,9 +92,9 @@ How storage space is granted or allocated and how you can manage storage are idi
 
 The File and Directory Entries API comes with asynchronous and synchronous versions. Both versions of the API offer the same capabilities and features. In fact, they are almost alike, except for a few differences.
 
--   **WebWorkers.** The asynchronous API can be used in either the document or [WebWorkers](../web_workers_api/using_web_workers) context, while the synchronous API is for use with WebWorkers only.
--   **Callbacks**. The asynchronous API doesn't give you data by returning values; instead, you have to pass a callback function. You send requests for operations to happen, and get notified by callbacks. In contrast, the synchronous API does not use callbacks because the API methods return values.
--   **Global methods of the asynchronous and synchronous APIs**. The asynchronous API has the following global methods: `requestFileSystem()` and `resolveLocalFileSystemURL()`. These methods are members of both the window object and the worker global scope. The synchronous API, on the other hand, uses the following methods: `requestFileSystemSync()` and `resolveLocalFileSystemSyncURL()`. These synchronous methods are members of the worker's global scope only, not the window object.
+- **WebWorkers.** The asynchronous API can be used in either the document or [WebWorkers](../web_workers_api/using_web_workers) context, while the synchronous API is for use with WebWorkers only.
+- **Callbacks**. The asynchronous API doesn't give you data by returning values; instead, you have to pass a callback function. You send requests for operations to happen, and get notified by callbacks. In contrast, the synchronous API does not use callbacks because the API methods return values.
+- **Global methods of the asynchronous and synchronous APIs**. The asynchronous API has the following global methods: `requestFileSystem()` and `resolveLocalFileSystemURL()`. These methods are members of both the window object and the worker global scope. The synchronous API, on the other hand, uses the following methods: `requestFileSystemSync()` and `resolveLocalFileSystemSyncURL()`. These synchronous methods are members of the worker's global scope only, not the window object.
 
 The synchronous API can be simpler for some tasks. Its direct, in-order programming model can make code easier to read. The drawback of synchronous API has to do with its interactions with Web Workers, which has some limitations.
 
@@ -110,24 +106,23 @@ When using the asynchronous API, always use the error callbacks. Although the er
 
 The File and Directory Entries API is designed to be used with other APIs and elements on the web platform. For example, you are likely to use one of the following:
 
--   XMLHttpRequest (such as the `send()` method for file and blob objects)
--   Drag and Drop API
--   Web Workers (for the synchronous version of the File and Directory Entries API)
--   The `input` element (to programmatically obtain a list of files from the element)
+- XMLHttpRequest (such as the `send()` method for file and blob objects)
+- Drag and Drop API
+- Web Workers (for the synchronous version of the File and Directory Entries API)
+- The `input` element (to programmatically obtain a list of files from the element)
 
 ### The File and Directory Entries API is case sensitive
 
 The filesystem API is case-sensitive, and case-preserving.
 
-Restrictions
-------------
+## Restrictions
 
 For security reasons, browsers impose restrictions on file access. If you ignore them, you will get security errors.
 
--   [The File and Directory Entries API adheres to the same-origin policy](#origin)
--   [The File and Directory Entries API does not let you create and rename executable files](#execute)
--   [The file system is sandboxed](#sandbox)
--   [You cannot run your app from file://](#file)
+- [The File and Directory Entries API adheres to the same-origin policy](#origin)
+- [The File and Directory Entries API does not let you create and rename executable files](#execute)
+- [The file system is sandboxed](#sandbox)
+- [You cannot run your app from file://](#file)
 
 ### The File and Directory Entries API adheres to the same-origin policy
 
@@ -149,8 +144,7 @@ You cannot run your app locally from `file://`. If you do so, the browser throws
 
 For testing purposes, you can bypass the restriction on Chrome by starting the browser with the `--allow-file-access-from-files` flag. Use this flag only for this purpose.
 
-Definitions
------------
+## Definitions
 
 This section defines and explains terms used in the File and Directory Entries API.
 
@@ -166,15 +160,13 @@ Persistent storage is storage that stays in the browser unless the user expunges
 <span id="gloss_temporary_storage">temporary storage</span>  
 Transient storage is available to any web app. It is automatic and does not need to be requested, but the browser can delete the storage without warning.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/entries-api/">File and Directory Entries API</a></td><td><span class="spec-draft">Draft</span></td><td>Draft of proposed API</td></tr></tbody></table>
 
 This API has no official W3C or WHATWG specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -396,10 +388,9 @@ BCD tables only load in the browser
 
 BCD tables only load in the browser
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](../file_and_directory_entries_api)
--   [Exploring the FileSystem APIs](https://www.html5rocks.com/en/tutorials/file/filesystem/) (HTML5 Rocks)
+- [File and Directory Entries API](../file_and_directory_entries_api)
+- [Exploring the FileSystem APIs](https://www.html5rocks.com/en/tutorials/file/filesystem/) (HTML5 Rocks)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API/Introduction" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API/Introduction</a>

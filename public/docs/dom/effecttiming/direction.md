@@ -1,5 +1,4 @@
-EffectTiming.direction
-======================
+# EffectTiming.direction
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `direction` property of the [Web Animations API](../web_animations_api) dict
 
 [`Element.animate()`](../element/animate), [`KeyframeEffectReadOnly()`](../keyframeeffect/keyframeeffect), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) all accept an object of timing properties including `direction.` The value of `direction` corresponds directly to <span class="page-not-created">`AnimationEffectTimingReadOnly.direction`</span> in [`timing`](../animationeffect/gettiming) objects returned by [`AnimationEffectReadOnly`](../animationeffect), [`KeyframeEffectReadOnly`](../keyframeeffect), and [`KeyframeEffect`](../keyframeeffect).
 
-Syntax
-------
+## Syntax
 
     var timingProperties = {
       direction: "normal" | "reverse" | "alternate" | "alternate-reverse"
@@ -26,7 +24,7 @@ A [`DOMString`](../domstring) which specifies the direction in which the animati
 `"normal"`  
 The animation runs forwards, from beginning to end, in the way we experience the flow of time.
 
- `"reverse`"  
+`"reverse`"  
 The animation runs backwards, or "rewinds."
 
 `"alternate"`  
@@ -35,8 +33,7 @@ The animation switches direction after each iteration, going forward through the
 `"alternate-reverse"`  
 Similar to "alternate", except the animation playback starts by going from the end of the animation sequence toward the beginning the first iteration, then goes forward during the second, and so forth.
 
-Examples
---------
+## Examples
 
 In the [Forgotten Key](https://codepen.io/rachelnabors/pen/bEPdQr?editors=0010) example, Alice waves her arm up and down by passing her an `alternate` value for her `direction` property:
 
@@ -51,14 +48,12 @@ In the [Forgotten Key](https://codepen.io/rachelnabors/pen/bEPdQr?editors=0010) 
       duration: 600
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/web-animations-1/#enumdef-playbackdirection">Web Animations<br />
 <span class="small">The definition of 'direction' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Editor's draft.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -114,12 +109,11 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [Web Animations API](../web_animations_api)
--   [`Element.animate()`](../element/animate), [`KeyframeEffectReadOnly()`](../keyframeeffect/keyframeeffect), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) all accept an object of timing properties including this one.
--   The value of this property corresponds to the one in <span class="page-not-created">`AnimationEffectTimingReadOnly`</span> (which is the [`timing`](../animationeffect/gettiming) object for [`AnimationEffectReadOnly`](../animationeffect), [`KeyframeEffectReadOnly`](../keyframeeffect), and [`KeyframeEffect`](../keyframeeffect)).
--   CSS's `animation-direction`
+- [Web Animations API](../web_animations_api)
+- [`Element.animate()`](../element/animate), [`KeyframeEffectReadOnly()`](../keyframeeffect/keyframeeffect), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) all accept an object of timing properties including this one.
+- The value of this property corresponds to the one in <span class="page-not-created">`AnimationEffectTimingReadOnly`</span> (which is the [`timing`](../animationeffect/gettiming) object for [`AnimationEffectReadOnly`](../animationeffect), [`KeyframeEffectReadOnly`](../keyframeeffect), and [`KeyframeEffect`](../keyframeeffect)).
+- CSS's `animation-direction`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/direction" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/direction</a>

@@ -1,5 +1,4 @@
-GlobalEventHandlers.onkeypress
-==============================
+# GlobalEventHandlers.onkeypress
 
 **Deprecated**
 
@@ -7,12 +6,11 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `onkeypress` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `keypress` events.
 
-The `keypress` event *should* fire when the user presses a key on the keyboard. However, in practice browsers do not fire `keypress` events for certain keys.
+The `keypress` event _should_ fire when the user presses a key on the keyboard. However, in practice browsers do not fire `keypress` events for certain keys.
 
 The `onkeypress` event handler has been deprecated. You may want to use [`onkeydown`](onkeydown) instead.
 
-Syntax
-------
+## Syntax
 
     target.onkeypress = functionRef;
 
@@ -20,8 +18,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives a [`KeyboardEvent`](../keyboardevent) object as its sole argument.
 
-Examples
---------
+## Examples
 
 ### Basic example
 
@@ -108,14 +105,12 @@ The following JavaScript function will do something after the user types the wor
 
 **Note:** A more complete framework for capturing the typing of hidden words is [available on GitHub](https://github.com/madmurphy/spell.js/).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onkeypress">HTML Living Standard<br />
 <span class="small">The definition of 'onkeypress' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -171,14 +166,13 @@ Samsung Internet
 
 1.0
 
--   The `keypress` event is no longer fired for [non-printable keys](../keyboardevent/keycode#non-printable_keys_(function_keys)) (see [bug 968056](https://bugzilla.mozilla.org/show_bug.cgi?id=968056) for Firefox 65's implementation of this), except for the Enter key, and the Shift + Enter and Ctrl + Enter key combinations (these were kept for cross-browser compatibility purposes).
+- The `keypress` event is no longer fired for [non-printable keys](<../keyboardevent/keycode#non-printable_keys_(function_keys)>) (see [bug 968056](https://bugzilla.mozilla.org/show_bug.cgi?id=968056) for Firefox 65's implementation of this), except for the Enter key, and the Shift + Enter and Ctrl + Enter key combinations (these were kept for cross-browser compatibility purposes).
 
-See also
---------
+## See also
 
--   `keypress` event
--   Related event handlers
-    -   [`GlobalEventHandlers.onkeydown`](onkeydown)
-    -   [`GlobalEventHandlers.onkeyup`](onkeyup)
+- `keypress` event
+- Related event handlers
+  - [`GlobalEventHandlers.onkeydown`](onkeydown)
+  - [`GlobalEventHandlers.onkeyup`](onkeyup)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeypress" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeypress</a>

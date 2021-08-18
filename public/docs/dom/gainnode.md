@@ -1,5 +1,4 @@
-GainNode
-========
+# GainNode
 
 The `GainNode` interface represents a change in volume. It is an [`AudioNode`](audionode) audio-processing module that causes a given gain to be applied to the input data before its propagation to the output. A `GainNode` always has exactly one input and one output, both with the same number of channels.
 
@@ -9,27 +8,23 @@ The gain is a unitless value, changing with time, that is multiplied to each cor
 
 <table><tbody><tr class="odd"><td>Number of inputs</td><td><code>1</code></td></tr><tr class="even"><td>Number of outputs</td><td><code>1</code></td></tr><tr class="odd"><td>Channel count mode</td><td><code>"max"</code></td></tr><tr class="even"><td>Channel count</td><td><code>2</code> (not used in the default count mode)</td></tr><tr class="odd"><td>Channel interpretation</td><td><code>"speakers"</code></td></tr></tbody></table>
 
-Constructor
------------
+## Constructor
 
 [`GainNode()`](gainnode/gainnode)  
 Creates a new instance of a `GainNode` object. You shouldn't manually create a gain node; instead, use the method [`BaseAudioContext.createGain`](baseaudiocontext/creategain).
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`AudioNode`](audionode)*.
+_Inherits properties from its parent, [`AudioNode`](audionode)_.
 
- [`GainNode.gain`](gainnode/gain) <span class="badge inline readonly">Read only </span>   
+[`GainNode.gain`](gainnode/gain) <span class="badge inline readonly">Read only </span>  
 Is an [a-rate](audioparam#a-rate) [`AudioParam`](audioparam) representing the amount of gain to apply. You have to set [`AudioParam.value`](audioparam/value) or use the methods of `AudioParam` to change the effect of gain.
 
-Methods
--------
+## Methods
 
-*No specific method; inherits methods from its parent, [`AudioNode`](audionode)*.
+_No specific method; inherits methods from its parent, [`AudioNode`](audionode)_.
 
-Example
--------
+## Example
 
 The following example shows basic usage of an [`AudioContext`](audiocontext) to create a `GainNode`, which is then used to mute and unmute the audio when a Mute button is clicked by changing the `gain` property value.
 
@@ -87,14 +82,12 @@ The below snippet wouldn't work as is — for a complete working example, check 
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#gainnode">Web Audio API<br />
 <span class="small">The definition of 'GainNode' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -210,9 +203,8 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](web_audio_api/using_web_audio_api)
+- [Using the Web Audio API](web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GainNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GainNode</a>

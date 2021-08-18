@@ -1,5 +1,4 @@
-FileHandle API
-==============
+# FileHandle API
 
 **Non-standard**
 
@@ -7,20 +6,18 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 The FileHandle API allows for the manipulating of files, including creating files and modifying their content (unlike the [File API](file)). Because the files manipulated through that API can be physically stored on the device, the editing part uses a turn-based locking mechanism in order to avoid race issues.
 
-API Overview
-------------
+## API Overview
 
 This API is based on the following interfaces:
 
--   <span class="page-not-created">`IDBDatabase.createMutableFile`</span> (was called <span class="page-not-created">`IDBDatabase.mozCreateFileHandle`</span>.)
--   [`IDBMutableFile`](idbmutablefile) (was previously [`FileHandle`](idbmutablefile).)
--   [`LockedFile`](lockedfile)
--   [`FileRequest`](filerequest)
+- <span class="page-not-created">`IDBDatabase.createMutableFile`</span> (was called <span class="page-not-created">`IDBDatabase.mozCreateFileHandle`</span>.)
+- [`IDBMutableFile`](idbmutablefile) (was previously [`FileHandle`](idbmutablefile).)
+- [`LockedFile`](lockedfile)
+- [`FileRequest`](filerequest)
 
 It also has connections with the File API, especially the [`File`](file) and [`Blob`](blob) interfaces.
 
-Basic operations
-----------------
+## Basic operations
 
 ### Create a FileHandle
 
@@ -50,9 +47,9 @@ To read or write within a handled file, it is required to get a [`LockedFile`](l
 
 There are three possible writing operations on a locked file:
 
--   [`write`](lockedfile/write) : It's an arbitrary writing method which starts writing in the file at the [`LockedFile.location`](lockedfile/location) byte.
--   [`append`](lockedfile/append) : This operation always writes content at the end of the file.
--   [`truncate`](lockedfile/truncate) : This operation keeps the nth-first bytes of the file and removes the rest.
+- [`write`](lockedfile/write) : It's an arbitrary writing method which starts writing in the file at the [`LockedFile.location`](lockedfile/location) byte.
+- [`append`](lockedfile/append) : This operation always writes content at the end of the file.
+- [`truncate`](lockedfile/truncate) : This operation keeps the nth-first bytes of the file and removes the rest.
 
 <!-- -->
 
@@ -141,8 +138,7 @@ All the methods from the [`LockedFile`](lockedfile) interface return a [`FileReq
       console.log('Oups :( Unable to read a 1GB file')
     }
 
-File storage
-------------
+## File storage
 
 When a file handle is created, the associated file only exists as a "temporary file" as long as you hold the [`FileHandle`](idbmutablefile) instance. If you want a file to survive a page refresh/app relaunch, you need to store the handle in a database (not necessarily the one used to create the [`FileHandle`](idbmutablefile) object).
 
@@ -199,21 +195,18 @@ For performance reasons, write (and read) operations are done in memory. Periodi
       console.log('Something goes wrong in the writing process: ' + this.error);
     }
 
-API Compatibility
------------------
+## API Compatibility
 
 ### Why a different API than FileWriter?
 
 The [FileWriter specification](https://dev.w3.org/2009/dap/file-system/file-writer.html) defines FileWriters, objects aiming at representing editable files. [Discussions on public-webapps](https://lists.w3.org/Archives/Public/public-webapps/2012JanMar/0886.html) led to the conclusion that the API would behave poorly in the case of different entities writing concurrently to the same file. The outcome of this discussion is the FileHandle API with its LockedFile and transaction mechanism.
 
-Specifications
---------------
+## Specifications
 
 A formal specification draft is being written. As it does not fully match the current implementation, be warned that the implementation and/or the specification will be subject to changes.
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/filesystem-api/">FileSystem API</a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Draft proposal</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Supported in Firefox 15. <a href="https://developer.mozilla.org/en-US/docs/Web/API/File_Handle_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File_Handle_API</a>

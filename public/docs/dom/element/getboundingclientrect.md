@@ -1,10 +1,8 @@
-Element.getBoundingClientRect()
-===============================
+# Element.getBoundingClientRect()
 
 The `Element.getBoundingClientRect()` method returns a [`DOMRect`](../domrect) object providing information about the size of an element and its position relative to the [viewport](https://developer.mozilla.org/en-US/docs/Glossary/Viewport).
 
-Syntax
-------
+## Syntax
 
     domRect = element.getBoundingClientRect();
 
@@ -35,8 +33,7 @@ Scripts requiring high cross-browser compatibility can use [`window.pageXOffset`
     (((t = document.documentElement) || (t = document.body.parentNode))
       && typeof t.scrollTop == 'number' ? t : document.body).scrollTop
 
-Examples
---------
+## Examples
 
 This simple example retrieves the `DOMRect` object representing the bounding client rect of a simple `<div>` element, and prints out its properties below it.
 
@@ -64,15 +61,14 @@ Notice how the `width`/`height` are equal to its `width`/`height` + `padding`.
 
 Also note how the values of `x`/`left`, `y`/`top`, `right`, and `bottom` are equal to the absolute distance from the relevant edge of the viewport to that side of the element, in each case.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-element-getboundingclientrect">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'Element.getBoundingClientRect()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
 ### Notes
 
-The returned `DOMRect` object can be modified in modern browsers. This was not true with older versions which effectively returned `DOMRectReadOnly`. With IE and Edge, not being able to add missing properties to their returned [`ClientRect`](https://msdn.microsoft.com/en-us/library/hh826029(VS.85).aspx), object prevents backfilling `x` and `y`.
+The returned `DOMRect` object can be modified in modern browsers. This was not true with older versions which effectively returned `DOMRectReadOnly`. With IE and Edge, not being able to add missing properties to their returned [`ClientRect`](<https://msdn.microsoft.com/en-us/library/hh826029(VS.85).aspx>), object prevents backfilling `x` and `y`.
 
 Due to compatibility problems (see below), it is safest to rely on only properties `left`, `top`, `right`, and `bottom`.
 
@@ -86,8 +82,7 @@ Properties in the returned `DOMRect` object are not own properties. While the `i
 
 `DOMRect` properties `top`, `left`, `right`, and `bottom` are computed using the values of the object's other properties.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -145,11 +140,10 @@ Safari for iOS will modify the effective viewport based on the user zoom. This r
 
 1.0
 
-See also
---------
+## See also
 
--   [`getClientRects()`](getclientrects)
--   [MSDN: `getBoundingClientRect`](https://msdn.microsoft.com/en-us/library/ms536433(VS.85).aspx)
--   [MSDN: `ClientRect`](https://msdn.microsoft.com/en-us/library/hh826029(VS.85).aspx), an earlier version of `DOMRect`
+- [`getClientRects()`](getclientrects)
+- [MSDN: `getBoundingClientRect`](<https://msdn.microsoft.com/en-us/library/ms536433(VS.85).aspx>)
+- [MSDN: `ClientRect`](<https://msdn.microsoft.com/en-us/library/hh826029(VS.85).aspx>), an earlier version of `DOMRect`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect</a>

@@ -1,5 +1,4 @@
-KeyframeEffect.iterationComposite
-=================================
+# KeyframeEffect.iterationComposite
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `iterationComposite` property of a [`KeyframeEffect`](../keyframeeffect) resolves how the animation's property value changes accumulate or override each other upon each of the animation's iterations.
 
-Syntax
-------
+## Syntax
 
     // getting
     var iterationCompositeEnumeration = keyframeEffect.iterationComposite;
@@ -25,14 +23,12 @@ The `keyframeEffect` value produced is independent of the current iteration.
 accumulate  
 Subsequent iterations of the `keyframeEffect` build on the final value of the previous iteration.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/web-animations-2/#dom-keyframeeffect-iterationcomposite">Web Animations Level 2<br />
 <span class="small">The definition of 'iterationComposite' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -92,10 +88,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Web Animations API](../web_animations_api)
--   Property of both [`KeyframeEffect`](../keyframeeffect) objects.
+- [Web Animations API](../web_animations_api)
+- Property of both [`KeyframeEffect`](../keyframeeffect) objects.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/iterationComposite" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/iterationComposite</a>

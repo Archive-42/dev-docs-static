@@ -1,5 +1,4 @@
-HTMLFontElement.size
-====================
+# HTMLFontElement.size
 
 **Deprecated**
 
@@ -12,27 +11,23 @@ The format of the string must follow one of the following HTML microsyntaxes:
 <table><thead><tr class="header"><th>Microsyntax</th><th>Description</th><th>Examples</th></tr></thead><tbody><tr class="odd"><td>Valid size number string</td><td><em>integer number in the range of 1-7</em></td><td><code>6</code></td></tr><tr class="even"><td>Relative size string</td><td><em>+x or -x, where x is the number relative to the value of the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/basefont#attr-size"><code>size</code></a> attribute of the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/basefont"><code>&lt;basefont&gt;</code></a> element</em><br />
 <em>(the result should be in the same range of 1-7)</em></td><td><code>+2     -1</code></td></tr></tbody></table>
 
-Syntax
-------
+## Syntax
 
     sizeString = fontObj.size;
     fontObj.size = sizeString;
 
-Examples
---------
+## Examples
 
     // Assumes there is <font id="f"> element in the HTML
 
     var f = document.getElementById("f");
     f.size = "6";
 
-Specifications
---------------
+## Specifications
 
 The &lt;font&gt; tag is not supported in HTML5 and as a result neither is `<font>.size `.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,9 +83,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The [`HTMLFontElement`](../htmlfontelement) interface it belongs to.
+- The [`HTMLFontElement`](../htmlfontelement) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFontElement/size" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLFontElement/size</a>

@@ -1,10 +1,8 @@
-Element.ariaAtomic
-==================
+# Element.ariaAtomic
 
 The `ariaAtomic` property of the [`Element`](../element) interface reflects the value of the `aria-atomic` attribute, which indicates whether assistive technologies will present all, or only parts of, the changed region based on the change notifications defined by the <span class="page-not-created">`aria-relevant`</span> attribute.
 
-Syntax
-------
+## Syntax
 
     var ariaAtomic = element.ariaAtomic;
     element.ariaAtomic = ariaAtomic
@@ -19,8 +17,7 @@ Assistive technologies will present only the changed node or nodes.
 `"true"`  
 Assistive technologies will present the entire changed region as a whole, including the author-defined label if one exists.
 
-Examples
---------
+## Examples
 
 In this example the `aria-atomic` attribute on the element with an ID of `"clock"` is set to "true". Using `ariaAtomic` we update the value to "false".
 
@@ -31,14 +28,12 @@ In this example the `aria-atomic` attribute on the element with an ID of `"clock
     el.ariaAtomic = "false"
     console.log(el.ariaAtomic); // false
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariaatomic">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaAtomic' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,17 +1,14 @@
-Using IndexedDB
-===============
+# Using IndexedDB
 
 IndexedDB is a way for you to persistently store data inside a user's browser. Because it lets you create web applications with rich query abilities regardless of network availability, your applications can work both online and offline.
 
-About this document
--------------------
+## About this document
 
 This tutorial walks you through using the asynchronous API of IndexedDB. If you are not familiar with IndexedDB, you should first read the [Basic Concepts](basic_concepts_behind_indexeddb) article.
 
 For the reference documentation on the IndexedDB API, see the [IndexedDB API](../indexeddb_api) article and its subpages. This article documents the types of objects used by IndexedDB, as well as the methods of the asynchronous API (the synchronous API was removed from spec).
 
-Basic pattern
--------------
+## Basic pattern
 
 The basic pattern that IndexedDB encourages is the following:
 
@@ -23,8 +20,7 @@ The basic pattern that IndexedDB encourages is the following:
 
 With these big concepts under our belts, we can get to more concrete stuff.
 
-Creating and structuring the store
-----------------------------------
+## Creating and structuring the store
 
 ### Using an experimental version of IndexedDB
 
@@ -98,7 +94,7 @@ As mentioned above, error events bubble. Error events are targeted at the reques
       console.error("Database error: " + event.target.errorCode);
     };
 
-One of the common possible errors when opening a database is `VER_ERR`. It indicates that the version of the database stored on the disk is *greater* than the version that you are trying to open. This is an error case that must always be handled by the error handler.
+One of the common possible errors when opening a database is `VER_ERR`. It indicates that the version of the database stored on the disk is _greater_ than the version that you are trying to open. This is an error case that must always be handled by the error handler.
 
 ### Creating or updating the version of the database
 
@@ -214,8 +210,7 @@ We can create another object store with the key generator as below:
 
 For more details about the key generator, please see ["W3C Key Generators"](https://www.w3.org/TR/IndexedDB/#key-generator-concept).
 
-Adding, retrieving, and removing data
--------------------------------------
+## Adding, retrieving, and removing data
 
 Before you can do anything with your new database, you need to start a transaction. Transactions come from the database object, and you have to specify which object stores you want the transaction to span. Once you are inside the transaction, you can access the object stores that hold your data and make your requests. Next, you need to decide if you're going to make changes to the database or if you just need to read from it. Transactions have three available modes: `readonly`, `readwrite`, and `versionchange`.
 
@@ -227,8 +222,8 @@ To read the records of an existing object store, the transaction can either be i
 
 You can speed up data access by using the right scope and mode in the transaction. Here are a couple of tips:
 
--   When defining the scope, specify only the object stores you need. This way, you can run multiple transactions with non-overlapping scopes concurrently.
--   Only specify a `readwrite` transaction mode when necessary. You can concurrently run multiple `readonly` transactions with overlapping scopes, but you can have only one `readwrite` transaction for an object store. To learn more, see the definition for [transaction](basic_concepts_behind_indexeddb#gloss_transaction) in the [Basic Concepts](basic_concepts_behind_indexeddb) article.
+- When defining the scope, specify only the object stores you need. This way, you can run multiple transactions with non-overlapping scopes concurrently.
+- Only specify a `readwrite` transaction mode when necessary. You can concurrently run multiple `readonly` transactions with overlapping scopes, but you can have only one `readwrite` transaction for an object store. To learn more, see the definition for [transaction](basic_concepts_behind_indexeddb#gloss_transaction) in the [Basic Concepts](basic_concepts_behind_indexeddb) article.
 
 ### Adding data to the database
 
@@ -302,8 +297,8 @@ See how this works? Since there's only one object store, you can avoid passing a
 
 Note that you can speed up data access by limiting the scope and mode in the transaction. Here are a couple of tips:
 
--   When defining the [scope](#scope), specify only the object stores you need. This way, you can run multiple transactions with non-overlapping scopes concurrently.
--   Only specify a readwrite transaction mode when necessary. You can concurrently run multiple readonly transactions with overlapping scopes, but you can have only one readwrite transaction for an object store. To learn more, see the definition for [transaction](basic_concepts_behind_indexeddb#gloss_transaction) in the [Basic Concepts](basic_concepts_behind_indexeddb) article.
+- When defining the [scope](#scope), specify only the object stores you need. This way, you can run multiple transactions with non-overlapping scopes concurrently.
+- Only specify a readwrite transaction mode when necessary. You can concurrently run multiple readonly transactions with overlapping scopes, but you can have only one readwrite transaction for an object store. To learn more, see the definition for [transaction](basic_concepts_behind_indexeddb#gloss_transaction) in the [Basic Concepts](basic_concepts_behind_indexeddb) article.
 
 ### Updating an entry in the database
 
@@ -476,8 +471,7 @@ Since the "name" index isn't unique, there might be multiple entries where `name
 
 Please see "[IDBCursor Constants](../idbcursor#constants)" for the valid direction arguments.
 
-Version changes while a web app is open in another tab
-------------------------------------------------------
+## Version changes while a web app is open in another tab
 
 When your web app changes in such a way that a version change is required for your database, you need to consider what happens if the user has the old version of your app open in one tab and then loads the new version of your app in another. When you call `open()` with a greater version than the actual version of the database, all other open databases must explicitly acknowledge the request before you can start making changes to the database (an `onblocked` event is fired until they are closed or reloaded). Here's how it works:
 
@@ -515,15 +509,13 @@ When your web app changes in such a way that a version change is required for yo
 
 You should also listen for `VersionError` errors to handle the situation where already opened apps may initiate code leading to a new attempt to open the database, but using an outdated version.
 
-Security
---------
+## Security
 
 IndexedDB uses the same-origin principle, which means that it ties the store to the origin of the site that creates it (typically, this is the site domain or subdomain), so it cannot be accessed by any other origin.
 
 Third party window content (e.g. [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) content) cannot access IndexedDB if the browser is set to [never accept third party cookies](https://support.mozilla.org/en-US/kb/disable-third-party-cookies) (see [bug 1147821](https://bugzilla.mozilla.org/show_bug.cgi?id=1147821).)
 
-Warning about browser shutdown
-------------------------------
+## Warning about browser shutdown
 
 When the browser shuts down (because the user chose the Quit or Exit option), the disk containing the database is removed unexpectedly, or permissions are lost to the database store, the following things happen:
 
@@ -545,15 +537,14 @@ In fact, there is no way to guarantee that IndexedDB transactions will complete,
 
 At least with the addition of the abort notifications and [`IDBDatabase.onclose`](../idbdatabase/onclose), you can know when this has happened.
 
-Locale-aware sorting
---------------------
+## Locale-aware sorting
 
 Mozilla has implemented the ability to perform locale-aware sorting of IndexedDB data in Firefox 43+. By default, IndexedDB didn’t handle internationalization of sorting strings at all, and everything was sorted as if it were English text. For example, b, á, z, a would be sorted as:
 
--   a
--   b
--   z
--   á
+- a
+- b
+- z
+- á
 
 which is obviously not how users want their data to be sorted — Aaron and Áaron for example should go next to one another in a contacts list. Achieving proper international sorting therefore required the entire dataset to be called into memory, and sorting to be performed by client-side JavaScript, which is not very efficient.
 
@@ -563,8 +554,7 @@ This new functionality enables developers to specify a locale when creating an i
 
 **Note**: This feature is currently hidden behind a flag — to enable it and experiment, go to about:config and enable `dom.indexedDB.experimental`.
 
-Full IndexedDB example
-----------------------
+## Full IndexedDB example
 
 ### HTML Content
 
@@ -1241,27 +1231,26 @@ Full IndexedDB example
 
 **Note**: `window.indexedDB.open()` is asynchronous; the method will finish running long before the `success` event is fired. This means that a function (e.g. `openDb()`) that calls `open()` and `onsuccess` will return before the `onsuccess` handler has run. This issue is also true of other request methods such as `transaction()` and `get()`.
 
-See also
---------
+## See also
 
 Further reading for you to find out more information if desired.
 
 ### Reference
 
--   [IndexedDB API Reference](../indexeddb_api)
--   [Indexed Database API Specification](https://www.w3.org/TR/IndexedDB/)
--   IndexedDB [interface files](https://searchfox.org/mozilla-central/search?q=dom%2FindexedDB%2F.*%5C.idl&path=&case=false&regexp=true) in the Firefox source code
+- [IndexedDB API Reference](../indexeddb_api)
+- [Indexed Database API Specification](https://www.w3.org/TR/IndexedDB/)
+- IndexedDB [interface files](https://searchfox.org/mozilla-central/search?q=dom%2FindexedDB%2F.*%5C.idl&path=&case=false&regexp=true) in the Firefox source code
 
 ### Tutorials and guides
 
--   [Databinding UI Elements with IndexedDB](https://www.html5rocks.com/en/tutorials/indexeddb/uidatabinding/)
--   [IndexedDB — The Store in Your Browser](https://msdn.microsoft.com/en-us/scriptjunkie/gg679063.aspx)
+- [Databinding UI Elements with IndexedDB](https://www.html5rocks.com/en/tutorials/indexeddb/uidatabinding/)
+- [IndexedDB — The Store in Your Browser](https://msdn.microsoft.com/en-us/scriptjunkie/gg679063.aspx)
 
 ### Libraries
 
--   [localForage](https://localforage.github.io/localForage/): A Polyfill providing a simple name:value syntax for client-side data storage, which uses IndexedDB in the background, but falls back to WebSQL and then localStorage in browsers that don't support IndexedDB.
--   [dexie.js](https://www.dexie.org/): A wrapper for IndexedDB that allows much faster code development via nice, simple syntax.
--   [ZangoDB](https://github.com/erikolson186/zangodb): A MongoDB-like interface for IndexedDB that supports most of the familiar filtering, projection, sorting, updating and aggregation features of MongoDB.
--   [JsStore](https://jsstore.net/): A simple and advanced IndexedDB wrapper having SQL like syntax.
+- [localForage](https://localforage.github.io/localForage/): A Polyfill providing a simple name:value syntax for client-side data storage, which uses IndexedDB in the background, but falls back to WebSQL and then localStorage in browsers that don't support IndexedDB.
+- [dexie.js](https://www.dexie.org/): A wrapper for IndexedDB that allows much faster code development via nice, simple syntax.
+- [ZangoDB](https://github.com/erikolson186/zangodb): A MongoDB-like interface for IndexedDB that supports most of the familiar filtering, projection, sorting, updating and aggregation features of MongoDB.
+- [JsStore](https://jsstore.net/): A simple and advanced IndexedDB wrapper having SQL like syntax.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB</a>

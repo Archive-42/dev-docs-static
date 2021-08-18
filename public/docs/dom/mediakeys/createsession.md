@@ -1,5 +1,4 @@
-MediaKeys.createSession()
-=========================
+# MediaKeys.createSession()
 
 **Experimental**
 
@@ -8,19 +7,16 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MediaKeys.createSession()` method returns a new [`MediaKeySession`](../mediakeysession) object, which represents a context for message exchange with a content decryption module (CDM).
 
-Syntax
-------
+## Syntax
 
     var mediaKeySessionObject = MediaKeys.createSession([MediaKeySessionType]);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-mediakeys-createsession">Encrypted Media Extensions<br />
 <span class="small">The definition of 'createSession()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

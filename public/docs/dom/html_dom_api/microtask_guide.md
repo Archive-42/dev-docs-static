@@ -1,12 +1,10 @@
-Using microtasks in JavaScript with queueMicrotask()
-====================================================
+# Using microtasks in JavaScript with queueMicrotask()
 
-A **microtask** is a short function which is executed after the function or program which created it exits *and* only if the JavaScript execution stack is empty, but before returning control to the event loop being used by the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) to drive the script's execution environment. This event loop may be either the browser's main event loop or the event loop driving a [web worker](../web_workers_api). This lets the given function run without the risk of interfering with another script's execution, yet also ensures that the microtask runs before the user agent has the opportunity to react to actions taken by the microtask.
+A **microtask** is a short function which is executed after the function or program which created it exits _and_ only if the JavaScript execution stack is empty, but before returning control to the event loop being used by the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) to drive the script's execution environment. This event loop may be either the browser's main event loop or the event loop driving a [web worker](../web_workers_api). This lets the given function run without the risk of interfering with another script's execution, yet also ensures that the microtask runs before the user agent has the opportunity to react to actions taken by the microtask.
 
 JavaScript [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) and the [Mutation Observer API](../mutationobserver) both use the microtask queue to run their callbacks, but there are other times when the ability to defer work until the current event loop pass is wrapping up. In order to allow microtasks to be used by third-party libraries, frameworks, and polyfills, the [`queueMicrotask()`](../windoworworkerglobalscope/queuemicrotask) method is exposed on the [`Window`](../window) and [`Worker`](../worker) interfaces through the [`WindowOrWorkerGlobalScope`](../windoworworkerglobalscope) mixin.
 
-Tasks vs microtasks
--------------------
+## Tasks vs microtasks
 
 To properly discuss microtasks, it's first useful to know what a JavaScript task is and how microtasks differ from tasks. This is a quick, simplified explanation, but if you would like more details, you can read the information in the article [In depth: Microtasks and the JavaScript runtime environment](microtask_guide/in_depth).
 
@@ -16,11 +14,11 @@ A **task** is any JavaScript code which is scheduled to be run by the standard m
 
 Tasks get added to the task queue when:
 
--   A new JavaScript program or subprogram is executed (such as from a console, or by running the code in a [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element) directly.
--   An event fires, adding the event's callback function to the task queue.
--   A timeout or interval created with [`setTimeout()`](../windoworworkerglobalscope/settimeout) or [`setInterval()`](../windoworworkerglobalscope/setinterval) is reached, causing the corresponding callback to be added to the task queue.
+- A new JavaScript program or subprogram is executed (such as from a console, or by running the code in a [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element) directly.
+- An event fires, adding the event's callback function to the task queue.
+- A timeout or interval created with [`setTimeout()`](../windoworworkerglobalscope/settimeout) or [`setInterval()`](../windoworworkerglobalscope/setinterval) is reached, causing the corresponding callback to be added to the task queue.
 
-The event loop driving your code handles these tasks one after another, in the order in which they were enqueued. Only tasks which were *already in the task queue* when the event loop pass began will be executed during the current iteration. The rest will have to wait until the following iteration.
+The event loop driving your code handles these tasks one after another, in the order in which they were enqueued. Only tasks which were _already in the task queue_ when the event loop pass began will be executed during the current iteration. The rest will have to wait until the following iteration.
 
 ### Microtasks
 
@@ -30,12 +28,11 @@ There are two key differences.
 
 First, each time a task exits, the event loop checks to see if the task is returning control to other JavaScript code. If not, it runs all of the microtasks in the microtask queue. The microtask queue is, then, processed multiple times per iteration of the event loop, including after handling events and other callbacks.
 
-Second, if a microtask adds more microtasks to the queue by calling [`queueMicrotask()`](../windoworworkerglobalscope/queuemicrotask), those newly-added microtasks *execute before the next task is run*. That's because the event loop will keep calling microtasks until there are none left in the queue, even if more keep getting added.
+Second, if a microtask adds more microtasks to the queue by calling [`queueMicrotask()`](../windoworworkerglobalscope/queuemicrotask), those newly-added microtasks _execute before the next task is run_. That's because the event loop will keep calling microtasks until there are none left in the queue, even if more keep getting added.
 
 **Warning:** Since microtasks can themselves enqueue more microtasks, and the event loop continues processing microtasks until the queue is empty, there's a real risk of getting the event loop endlessly processing microtasks. Be cautious with how you go about recursively adding microtasks.
 
-Using microtasks
-----------------
+## Using microtasks
 
 Before getting farther into this, it's important to note again that most developers won't use microtasks much, if at all. They're a highly specialized feature of modern browser-based JavaScript development, allowing you to schedule code to jump in front of other things in the long set of things waiting to happen on the user's computer. Abusing this capability will lead to performance problems.
 
@@ -144,8 +141,7 @@ This lets every call to `sendMessage()` made during the same iteration of the ev
 
 The server will receive the JSON string, then will presumably decode it and process the messages it finds in the resulting array.
 
-Examples
---------
+## Examples
 
 ### Simple microtask example
 
@@ -216,16 +212,15 @@ The main program code follows. The `doWork()` function here calls `queueMicrotas
 
 #### Result
 
-See also
---------
+## See also
 
--   [In depth: Microtasks and the JavaScript runtime environment](microtask_guide/in_depth)
--   [`queueMicrotask()`](../windoworworkerglobalscope/queuemicrotask)
--   [Asynchronous JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
-    -   [General asynchronous programming concepts](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Concepts)
-    -   [Introducing asynchronous JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing)
-    -   [Cooperative asynchronous JavaScript: Timeouts and intervals](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Timeouts_and_intervals)
-    -   [Graceful asynchronous programming with Promises](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises)
-    -   [Choosing the right approach](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Choosing_the_right_approach)
+- [In depth: Microtasks and the JavaScript runtime environment](microtask_guide/in_depth)
+- [`queueMicrotask()`](../windoworworkerglobalscope/queuemicrotask)
+- [Asynchronous JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
+  - [General asynchronous programming concepts](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Concepts)
+  - [Introducing asynchronous JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing)
+  - [Cooperative asynchronous JavaScript: Timeouts and intervals](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Timeouts_and_intervals)
+  - [Graceful asynchronous programming with Promises](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises)
+  - [Choosing the right approach](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Choosing_the_right_approach)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide</a>

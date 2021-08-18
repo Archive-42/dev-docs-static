@@ -1,5 +1,4 @@
-HTMLImageElement.alt
-====================
+# HTMLImageElement.alt
 
 The [`HTMLImageElement`](../htmlimageelement) property `alt` provides fallback (alternate) text to display when the image specified by the [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element is not loaded. This may be the case because of an error, because the user has disabled the loading of images, or because the image hasn't finished loading yet.
 
@@ -7,10 +6,9 @@ Perhaps the most important reason to use the `alt` tag is to support [accessibil
 
 > **Think of it like this:** When choosing `alt` strings for your images, imagine what you would say when reading the page to someone over the phone without mentioning that there's an image on the page.
 
-The alternate text is displayed in the space the image would occupy and should be able to take the place of the image *without altering the meaning of the page*.
+The alternate text is displayed in the space the image would occupy and should be able to take the place of the image _without altering the meaning of the page_.
 
-Syntax
-------
+## Syntax
 
     htmlImageElement.alt = altText;
     let altText = htmlImageElement.alt;
@@ -21,13 +19,11 @@ A [`DOMString`](../domstring) which contains the alternate text to display when 
 
 The `alt` attribute is officially mandatory; it's meant to always be specified. If the image doesn't require a fallback (such as for an image which is decorative or an advisory icon of minimal importance), you may specify an empty string (`""`). For compatibility reasons, browsers generally will accept an image without an `alt` attribute, but you should try to get into the habit of using it.
 
-Usage notes
------------
+## Usage notes
 
-The fundamental guideline for the `alt` attribute is that every image's alternate text should be able to replace the image *without altering the meaning of the page*. You should never use `alt` for text that could be construed as a caption or title. There are separate attributes and elements designed for those purposes.
+The fundamental guideline for the `alt` attribute is that every image's alternate text should be able to replace the image _without altering the meaning of the page_. You should never use `alt` for text that could be construed as a caption or title. There are separate attributes and elements designed for those purposes.
 
-Examples
---------
+## Examples
 
 Beyond that, there are additional guidelines for using `alt` appropriately which vary depending on what the image is being used for. These are shown in the examples below.
 
@@ -124,9 +120,9 @@ For example, in the snippet of HTML below, a toolbar which uses icon images as l
 
 When an image contains information presented as a diagram, chart, graph, or map, the `alt` text should provide the same information, at least in summary form. This is true whether the /me image is in a bitmapped format such as [PNG](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types#png) or [JPEG](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types#jpeg) or in a vector format like [SVG](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types#svg).
 
--   For a map, the `alt` text could be directions to the place indicated by the map, similarly to how you would explain it verbally.
--   For a chart, the text could describe the items in the chart and their values.
--   For a diagram, the text could be an explanation of the concept presented by the diagram.
+- For a map, the `alt` text could be directions to the place indicated by the map, similarly to how you would explain it verbally.
+- For a chart, the text could describe the items in the chart and their values.
+- For a diagram, the text could be an explanation of the concept presented by the diagram.
 
 Keep in mind that any text included in diagrams and charts presented in [SVG](https://developer.mozilla.org/en-US/docs/Glossary/SVG) format may be read by screen readers. This may impact the decisions you make shen writing the `alt` text for the diagram.
 
@@ -187,14 +183,12 @@ The main feature of the CSS here is the use of [`clip-path`](https://developer.m
 
 Images showing objects or scenes should have `alt` text describing what's seen in the image. A photo of a yellow teapot might literally have its `alt` attribute set to "`A yellow teapot"`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-img-alt">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLImageElement.alt' in that specification.</span></a></td><td><span class="spec-">Unknown</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

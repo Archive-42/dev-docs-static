@@ -1,10 +1,8 @@
-Element.matches()
-=================
+# Element.matches()
 
 The `matches()` method checks to see if the [`Element`](../element) would be selected by the provided `selectorString` -- in other words -- checks if the element "is" the selector.
 
-Syntax
-------
+## Syntax
 
     var result = element.matches(selectorString);
 
@@ -21,8 +19,7 @@ Syntax
 `SYNTAX_ERR`  
 The specified selector string is invalid.
 
-Example
--------
+## Example
 
     <ul id="birds">
       <li>Orange-winged parrot</li>
@@ -42,8 +39,7 @@ Example
 
 This will log "The Philippine eagle is endangered!" to the console, since the element has indeed a `class` attribute with value `endangered`.
 
-Polyfill
---------
+## Polyfill
 
 For browsers that do not support `Element.matches()` or `Element.matchesSelector()`, but include support for `document.querySelectorAll()`, a polyfill exists:
 
@@ -69,14 +65,12 @@ However, given the practicality of supporting older browsers, the following shou
                                   Element.prototype.webkitMatchesSelector;
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-element-matches">DOM<br />
 <span class="small">The definition of 'Element.prototype.matches' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -168,10 +162,9 @@ See [bug 1119718](https://bugzil.la/1119718) for removal.
 
 1.0
 
-See also
---------
+## See also
 
--   [The syntax of Selectors](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors)
--   Other methods that take selectors: [`element.querySelector()`](queryselector) and [`element.closest()`](closest).
+- [The syntax of Selectors](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors)
+- Other methods that take selectors: [`element.querySelector()`](queryselector) and [`element.closest()`](closest).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/matches" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/matches</a>

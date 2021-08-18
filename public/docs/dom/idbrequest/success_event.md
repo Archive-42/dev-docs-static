@@ -1,12 +1,10 @@
-IDBRequest: success event
-=========================
+# IDBRequest: success event
 
 The `success` event is fired when an `IDBRequest` succeeds.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../event"><code>Event</code></a></td></tr><tr class="even"><td>Event handler property</td><td><code>onsuccess</code></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 This example tries to open a database and listens for the `success` event using `addEventListener()`:
 
@@ -62,8 +60,7 @@ The same example, but using the `onsuccess` event handler property:
       console.log('Database opened successfully!');
     };
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -119,10 +116,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   `onsuccess` event handler property
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- `onsuccess` event handler property
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBRequest/success_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBRequest/success_event</a>

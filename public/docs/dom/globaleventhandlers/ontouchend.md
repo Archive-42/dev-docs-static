@@ -1,5 +1,4 @@
-GlobalEventHandlers.ontouchend
-==============================
+# GlobalEventHandlers.ontouchend
 
 **Experimental**
 
@@ -8,10 +7,9 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `ontouchstart` is a [global event handler](../globaleventhandlers) for the `touchend` event.
 
-**Note:** This property has *not* been formally standardized. It is specified in the [Touch Events – Level 2](https://w3c.github.io/touch-events/) <span class="spec-draft">Draft</span> specification and not in [Touch Events](https://www.w3.org/TR/touch-events/) <span class="spec-rec">Recommendation</span>. This property is not widely implemented.
+**Note:** This property has _not_ been formally standardized. It is specified in the [Touch Events – Level 2](https://w3c.github.io/touch-events/) <span class="spec-draft">Draft</span> specification and not in [Touch Events](https://www.w3.org/TR/touch-events/) <span class="spec-rec">Recommendation</span>. This property is not widely implemented.
 
-Syntax
-------
+## Syntax
 
     var endHandler = targetElement.ontouchend;
 
@@ -20,8 +18,7 @@ Syntax
 `endHandler`  
 The `touchend` event handler for element `targetElement`.
 
-Example
--------
+## Example
 
 This example shows two ways to use `ontouchend` to set an element's `touchend` event handler.
 
@@ -42,13 +39,11 @@ This example shows two ways to use `ontouchend` to set an element's `touchend` e
     </body>
     </html>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/touch-events/#dom-globaleventhandlers-ontouchend">Touch Events – Level 2</a></td><td><span class="spec-draft">Draft</span></td><td>Non-stable version.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -104,9 +99,8 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   `touchend`
+- `touchend`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ontouchend" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ontouchend</a>

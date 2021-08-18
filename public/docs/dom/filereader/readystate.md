@@ -1,5 +1,4 @@
-FileReader.readyState
-=====================
+# FileReader.readyState
 
 The [`FileReader`](../filereader) `readyState` property provides the current state of the reading operation a `FileReader` is in. A `FileReader` exists in one of the following states:
 
@@ -36,8 +35,7 @@ A readAs method was invoked. A [`File`](../file) or [`Blob`](../blob) is being r
 `DONE`  
 The read operation is complete. This could mean that: the entire [`File`](../file) or [`Blob`](../blob) has been read into memory, a file read error occurred, or [`abort()`](abort) was called and the read was cancelled.
 
-Example
--------
+## Example
 
     var reader = new FileReader();
     console.log('EMPTY', reader.readyState); // readyState will be 0
@@ -49,19 +47,16 @@ Example
       console.log('DONE', reader.readyState); // readyState will be 2
     };
 
-Value
------
+## Value
 
 A number which is one of the three possible state constants define for the [`FileReader`](../filereader) API.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/FileAPI/#dom-filereader-readystate">File API<br />
 <span class="small">The definition of 'readyState' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -117,9 +112,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`Blob`](../blob)
+- [`Blob`](../blob)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readyState" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readyState</a>

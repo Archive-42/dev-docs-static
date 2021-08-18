@@ -1,35 +1,31 @@
-DynamicsCompressorNode()
-========================
+# DynamicsCompressorNode()
 
 The `DynamicsCompressorNode()` constructor creates a new [`DynamicsCompressorNode`](../dynamicscompressornode) object which provides a compression effect, which lowers the volume of the loudest parts of the signal, in order to help prevent clipping and distortion. That can occur when multiple sounds are played and multiplexed together at once.
 
-Syntax
-------
+## Syntax
 
     var dynamicsCompressorNode = new DynamicsCompressorNode(context, options)
 
 ### Parameters
 
-*context*  
+_context_  
 A reference to an [`AudioContext`](../audiocontext).
 
- *options* <span class="badge inline optional">Optional</span>   
+_options_ <span class="badge inline optional">Optional</span>  
 Options are as follows:
 
--   `attack`: The amount of time (in seconds) to reduce the gain by 10dB. Its default value is 0.003. This parameter is k-rate. Its nominal range is \[0, 1\].
--   `knee`: A decibel value representing the range above the threshold where the curve smoothly transitions to the "ratio" portion. Its default value is 30. This parameter is k-rate. Its nominal range is \[0, 40\].
--   `ratio`: The amount of dB change in input for a 1 dB change in output. Its default value is 12. This parameter is k-rate. Its nominal range is \[1, 20\].
--   release: The amount of time (in seconds) to increase the gain by 10dB. Its default value is 0.250. This parameter is k-rate. Its nominal range is \[0, 1\].
--   threshold: The decibel value above which the compression will start taking effect. Its default value is -24. This parameter is k-rate. Its nominal range is \[-100, 0\].
+- `attack`: The amount of time (in seconds) to reduce the gain by 10dB. Its default value is 0.003. This parameter is k-rate. Its nominal range is \[0, 1\].
+- `knee`: A decibel value representing the range above the threshold where the curve smoothly transitions to the "ratio" portion. Its default value is 30. This parameter is k-rate. Its nominal range is \[0, 40\].
+- `ratio`: The amount of dB change in input for a 1 dB change in output. Its default value is 12. This parameter is k-rate. Its nominal range is \[1, 20\].
+- release: The amount of time (in seconds) to increase the gain by 10dB. Its default value is 0.250. This parameter is k-rate. Its nominal range is \[0, 1\].
+- threshold: The decibel value above which the compression will start taking effect. Its default value is -24. This parameter is k-rate. Its nominal range is \[-100, 0\].
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dynamicscompressornode">Web Audio API<br />
 <span class="small">The definition of 'DynamicsCompressorNode()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

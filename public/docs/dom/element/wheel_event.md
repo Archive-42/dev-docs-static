@@ -1,5 +1,4 @@
-Element: wheel event
-====================
+# Element: wheel event
 
 The `wheel` event fires when the user rotates a wheel button on a pointing device (typically a mouse).
 
@@ -9,8 +8,7 @@ This event replaces the non-standard deprecated [`mousewheel`](mousewheel_event)
 
 **Note:** Don't confuse the `wheel` event with the [`scroll`](scroll_event) event. The default action of a `wheel` event is implementation-specific, and doesn't necessarily dispatch a `scroll` event. Even when it does, the `delta*` values in the `wheel` event don't necessarily reflect the content's scrolling direction. Therefore, do not rely on the `wheel` event's `delta*` properties to get the scrolling direction. Instead, detect value changes of [`scrollLeft`](scrollleft) and [`scrollTop`](scrolltop) of the target in the `scroll` event.
 
-Examples
---------
+## Examples
 
 ### Scaling an element via the wheel
 
@@ -55,14 +53,12 @@ The event handler can also be set up using the [`addEventListener()`](../eventta
 
     el.addEventListener('wheel', zoom);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-wheel">UI Events<br />
 <span class="small">The definition of 'wheel' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -120,10 +116,9 @@ Internet Explorer only exposes the wheel event via `addEventListener`; there is 
 
 8.0
 
-See also
---------
+## See also
 
--   [`WheelEvent`](../wheelevent)
--   [Document: `wheel` event](../document/wheel_event)
+- [`WheelEvent`](../wheelevent)
+- [Document: `wheel` event](../document/wheel_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/wheel_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/wheel_event</a>

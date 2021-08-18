@@ -1,12 +1,10 @@
-GlobalEventHandlers.oninvalid
-=============================
+# GlobalEventHandlers.oninvalid
 
 The `oninvalid` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `invalid` events.
 
 The `invalid` event fires when a submittable element has been checked and doesn't satisfy its constraints. The validity of submittable elements is checked before submitting their owner form, or after the `checkValidity()` method of the element or its owner form is called.
 
-Syntax
-------
+## Syntax
 
     target.oninvalid = functionRef;
     var functionRef = target.oninvalid;
@@ -15,8 +13,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives a [`Event`](../event) object as its sole argument.
 
-Example
--------
+## Example
 
 This example demonstrates `oninvalid` and [`onsubmit`](onsubmit) event handlers on a form.
 
@@ -56,14 +53,12 @@ This example demonstrates `oninvalid` and [`onsubmit`](onsubmit) event handlers 
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#handler-oninvalid">HTML Living Standard<br />
 <span class="small">The definition of 'oninvalid' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -119,10 +114,9 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   `invalid` event
--   [DOM on-event handlers](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers)
+- `invalid` event
+- [DOM on-event handlers](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/oninvalid" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/oninvalid</a>

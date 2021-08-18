@@ -1,12 +1,10 @@
-HTMLTableElement
-================
+# HTMLTableElement
 
 The `HTMLTableElement` interface provides special properties and methods (beyond the regular [`HTMLElement`](htmlelement) object interface it also has available to it by inheritance) for manipulating the layout and presentation of tables in an HTML document.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement).*
+_Inherits properties from its parent, [`HTMLElement`](htmlelement)._
 
 [`HTMLTableElement.caption`](htmltableelement/caption)  
 Is a [`HTMLTableCaptionElement`](htmltablecaptionelement) representing the first [`<caption>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption) that is a child of the element, or `null` if none is found. When set, if the object doesn't represent a `<caption>`, a [`DOMException`](domexception) with the `HierarchyRequestError` name is thrown. If a correct object is given, it is inserted in the tree as the first child of this element and the first `<caption>` that is a child of this element is removed from the tree, if any.
@@ -17,47 +15,46 @@ Is a [`HTMLTableSectionElement`](htmltablesectionelement) representing the first
 [`HTMLTableElement.tFoot`](htmltableelement/tfoot)  
 Is a [`HTMLTableSectionElement`](htmltablesectionelement) representing the first [`<tfoot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot) that is a child of the element, or `null` if none is found. When set, if the object doesn't represent a `<tfoot>`, a [`DOMException`](domexception) with the `HierarchyRequestError` name is thrown. If a correct object is given, it is inserted in the tree immediately before the first element that is neither a [`<caption>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption), a [`<colgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup), nor a [`<thead>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead), or as the last child if there is no such element, and the first `<tfoot>` that is a child of this element is removed from the tree, if any.
 
- [`HTMLTableElement.rows`](htmltableelement/rows)<span class="badge inline readonly">Read only </span>   
+[`HTMLTableElement.rows`](htmltableelement/rows)<span class="badge inline readonly">Read only </span>  
 Returns a live [`HTMLCollection`](htmlcollection) containing all the rows of the element, that is all [`<tr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr) that are a child of the element, or a child of one of its [`<thead>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead), [`<tbody>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody) and [`<tfoot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot) children. The rows members of a `<thead>` appear first, in tree order, and those members of a `<tbody>` last, also in tree order. The `HTMLCollection` is live and is automatically updated when the `HTMLTableElement` changes.
 
- [`HTMLTableElement.tBodies`](htmltableelement/tbodies)<span class="badge inline readonly">Read only </span>   
+[`HTMLTableElement.tBodies`](htmltableelement/tbodies)<span class="badge inline readonly">Read only </span>  
 Returns a live [`HTMLCollection`](htmlcollection) containing all the [`<tbody>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody) of the element. The `HTMLCollection` is live and is automatically updated when the `HTMLTableElement` changes.
 
 ### Obsolete Properties
 
 **Warning:** The following properties are obsolete. You should avoid using them.
 
- [`HTMLTableElement.align`](htmltableelement/align) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLTableElement.align`](htmltableelement/align) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) containing an enumerated value reflecting the [`align`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table#attr-align) attribute. It indicates the alignment of the element's contents with respect to the surrounding context. The possible values are `"left"`, `"right"`, and `"center"`.
 
- [`HTMLTableElement.bgColor`](htmltableelement/bgcolor) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLTableElement.bgColor`](htmltableelement/bgcolor) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) containing the background color of the cells. It reflects the obsolete [`bgcolor`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table#attr-bgcolor) attribute.
 
- [`HTMLTableElement.border`](htmltableelement/border) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLTableElement.border`](htmltableelement/border) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) containing the width in pixels of the border of the table. It reflects the obsolete [`border`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table#attr-border) attribute.
 
- [`HTMLTableElement.cellPadding`](htmltableelement/cellpadding) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLTableElement.cellPadding`](htmltableelement/cellpadding) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) containing the width in pixels of the horizontal and vertical sapce between cell content and cell borders. It reflects the obsolete [`cellpadding`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table#attr-cellpadding) attribute.
 
- [`HTMLTableElement.cellSpacing`](htmltableelement/cellspacing) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLTableElement.cellSpacing`](htmltableelement/cellspacing) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) containing the width in pixels of the horizontal and vertical separation between cells. It reflects the obsolete [`cellspacing`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table#attr-cellspacing) attribute.
 
- [`HTMLTableElement.frame`](htmltableelement/frame) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLTableElement.frame`](htmltableelement/frame) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) containing the type of the external borders of the table. It reflects the obsolete [`frame`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table#attr-frame) attribute and can take one of the following values: `"void"`, `"above"`, `"below"`, `"hsides"`, `"vsides"`, `"lhs"`, `"rhs"`, `"box"`, or `"border"`.
 
- [`HTMLTableElement.rules`](htmltableelement/rules) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLTableElement.rules`](htmltableelement/rules) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) containing the type of the internal borders of the table. It reflects the obsolete [`rules`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table#attr-rules) attribute and can take one of the following values: `"none"`, `"groups"`, `"rows"`, `"cols"`, or `"all"`.
 
- [`HTMLTableElement.summary`](htmltableelement/summary) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLTableElement.summary`](htmltableelement/summary) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) containing a description of the purpose or the structure of the table. It reflects the obsolete [`summary`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table#attr-summary) attribute.
 
- [`HTMLTableElement.width`](htmltableelement/width) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLTableElement.width`](htmltableelement/width) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) containing the length in pixels or in percentage of the desired width fo the entire table. It reflects the obsolete [`width`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table#attr-width) attribute.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`HTMLElement`](htmlelement)*.
+_Inherits methods from its parent, [`HTMLElement`](htmlelement)_.
 
 [`HTMLTableElement.createTHead()`](htmltableelement/createthead)  
 Returns an [`HTMLTableSectionElement`](htmltablesectionelement) representing the first [`<thead>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead) that is a child of the element. If none is found, a new one is created and inserted in the tree immediately before the first element that is neither a [`<caption>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption), nor a [`<colgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup), or as the last child if there is no such element.
@@ -86,8 +83,7 @@ Returns an [`HTMLTableRowElement`](htmltablerowelement) representing a new row o
 [`HTMLTableElement.deleteRow()`](htmltableelement/deleterow)  
 Removes the row corresponding to the `index` given in parameter. If the `index` value is `-1` the last row is removed; if it smaller than `-1` or greater than the amount of rows in the collection, a [`DOMException`](domexception) with the value `IndexSizeError` is raised.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#htmltableelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLTableElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Added the <code>sortable</code> property and the <code>stopSorting()</code> method.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/tabular-data.html#the-table-element">HTML5<br />
@@ -95,8 +91,7 @@ Specifications
 <span class="small">The definition of 'HTMLTableElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Defined when <code>caption</code>, <code>tHead</code>, <code>tFoot</code>, <code>insertRow()</code>, and <code>deleteRow()</code> raise exceptions.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-64060425">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLTableElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -754,9 +749,8 @@ Starting with Firefox 20, the index argument has been made optional and defaults
 
 1.0
 
-See also
---------
+## See also
 
--   The HTML element implementing this interface: [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table).
+- The HTML element implementing this interface: [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableElement</a>

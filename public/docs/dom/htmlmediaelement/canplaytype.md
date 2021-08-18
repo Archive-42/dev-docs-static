@@ -1,12 +1,10 @@
-HTMLMediaElement.canPlayType()
-==============================
+# HTMLMediaElement.canPlayType()
 
 The [`HTMLMediaElement`](../htmlmediaelement) method `canPlayType()` reports how likely it is that the current browser will be able to play media of a given MIME type.
 
 **Note:** This feature is not available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     canPlayResponse = audioOrVideo.canPlayType(mediaType);
 
@@ -25,24 +23,21 @@ Media of the type indicated by the `mediaType` parameter is probably playable on
 `maybe`  
 Not enough information is available to determine for sure whether or not the media will play until playback is actually attempted.
 
- `""` (empty string)  
+`""` (empty string)  
 Media of the given type definitely can't be played on the current device.
 
-Example
--------
+## Example
 
     var obj = document.createElement('video');
     console.log(obj.canPlayType('video/mp4')); // "maybe"
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-canplaytype">HTML Living Standard<br />
 <span class="small">The definition of 'canplaytype' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/embedded-content-0.html#htmlmediaelement">HTML5<br />
 <span class="small">The definition of 'HTMLMediaElement.canplaytype' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -100,12 +95,11 @@ Prior to Firefox 28, `canPlayType()` returned `probably` when asked about WebM a
 
 1.0
 
-See also
---------
+## See also
 
--   The interface defining it, [`HTMLMediaElement`](../htmlmediaelement).
--   [`MediaCapabilities`](../mediacapabilities) in the Media Capabilities API
--   [Handling media support issues in web content](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Support_issues)
--   [Guide to media types and formats on the web](https://developer.mozilla.org/en-US/docs/Web/Media/Formats)
+- The interface defining it, [`HTMLMediaElement`](../htmlmediaelement).
+- [`MediaCapabilities`](../mediacapabilities) in the Media Capabilities API
+- [Handling media support issues in web content](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Support_issues)
+- [Guide to media types and formats on the web](https://developer.mozilla.org/en-US/docs/Web/Media/Formats)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canPlayType" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canPlayType</a>

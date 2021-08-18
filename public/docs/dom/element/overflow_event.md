@@ -1,5 +1,4 @@
-Element: overflow event
-=======================
+# Element: overflow event
 
 **Non-standard**
 
@@ -11,8 +10,7 @@ It is a proprietary event specific to Gecko (Firefox).
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>Yes</td></tr><tr class="odd"><td>Interface</td><td><a href="../uievent"><code>UIEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td>Unknown</td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
     <div id="wrapper">
         <div id="child"></div>
@@ -62,13 +60,11 @@ Examples
       }, false);
     </script>
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -124,9 +120,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   Related events: [`underflow`](underflow_event)
+- Related events: [`underflow`](underflow_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/overflow_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/overflow_event</a>

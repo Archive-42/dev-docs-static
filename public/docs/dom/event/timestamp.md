@@ -1,12 +1,10 @@
-Event.timeStamp
-===============
+# Event.timeStamp
 
 The `timeStamp` read-only property of the [`Event`](../event) interface returns the time (in milliseconds) at which the event was created.
 
 **Note:** This property only works if the event system supports it for the particular event.
 
-Syntax
-------
+## Syntax
 
     time = event.timeStamp;
 
@@ -16,8 +14,7 @@ This value is the number of milliseconds elapsed from the beginning of the curre
 
 In newer implementations, the value is a [`DOMHighResTimeStamp`](../domhighrestimestamp) accurate to 5 microseconds (0.005 ms). In older implementations, the value is a [`DOMTimeStamp`](../domtimestamp), accurate to a millisecond.
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -37,8 +34,7 @@ Example
 
 ### Result
 
-Reduced time precision
-----------------------
+## Reduced time precision
 
 To offer protection against timing attacks and fingerprinting, the precision of `Event.timeStamp` might get rounded depending on browser settings.
 
@@ -60,14 +56,12 @@ In Firefox, the `privacy.reduceTimerPrecision` preference is enabled by default 
 
 In Firefox, if you also enable `privacy.resistFingerprinting`, the precision will be 100ms or the value of `privacy.resistFingerprinting.reduceTimerPrecision.microseconds`, whichever is larger.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-event-timestamp">DOM<br />
 <span class="small">The definition of 'Event.timeStamp' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

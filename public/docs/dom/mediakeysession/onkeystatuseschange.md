@@ -1,23 +1,19 @@
-MediaKeySession.onkeystatuseschange
-===================================
+# MediaKeySession.onkeystatuseschange
 
 The `onkeystatuseschange` property of the [`MediaKeySession`](../mediakeysession) is an event handler, fired whenever a `keystatuschange` event ocurrs, denoting there has been a change in the keys or their statuses within a session.
 
 This interface inherits from the [`ExtendableEvent`](../extendableevent) interface.
 
-Syntax
-------
+## Syntax
 
     MediaKeySession.onkeystatuseschange = function(keystatuschange) { ... }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-evt-keystatuseschange">Encrypted Media Extensions<br />
 <span class="small">The definition of 'onkeystatuseschange' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

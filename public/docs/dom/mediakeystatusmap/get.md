@@ -1,5 +1,4 @@
-MediaKeyStatusMap.get()
-=======================
+# MediaKeyStatusMap.get()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `get` property of the [`MediaKeyStatusMap`](../mediakeystatusmap) interface returns the value associated with the given key, or `undefined` if there is none.
 
-Syntax
-------
+## Syntax
 
     var value = mediaKeyStatusMap.get(key);
 
@@ -22,13 +20,11 @@ The key whose value you want returned.
 
 The value associated with the given key, or `undefined`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/">Encrypted Media Extensions</a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

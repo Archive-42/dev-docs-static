@@ -1,10 +1,8 @@
-Element.querySelector()
-=======================
+# Element.querySelector()
 
 The `querySelector()` method of the [`Element`](../element) interface returns the first element that is a descendant of the element on which it is invoked that matches the specified group of selectors.
 
-Syntax
-------
+## Syntax
 
     element = baseElement.querySelector(selectors);
 
@@ -24,8 +22,7 @@ If no matches are found, the returned value is `null`.
 `SyntaxError`  
 The specified `selectors` are invalid.
 
-Examples
---------
+## Examples
 
 Let's consider a few examples.
 
@@ -70,16 +67,14 @@ Notice how the `"div span"` selector still successfully matches the [`<span>`](h
 
 See [`Document.querySelector()`](../document/queryselector) for additional examples of the proper format for the `selectors`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-parentnode-queryselectorall">DOM<br />
 <span class="small">The definition of 'querySelector()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://dev.w3.org/2006/webapi/selectors-api2/#queryselectorall">Selectors API Level 2<br />
 <span class="small">The definition of 'querySelectorAll()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/selectors-api/#queryselectorall">Selectors API Level 1<br />
 <span class="small">The definition of 'querySelectorAll()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -139,17 +134,16 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [Locating DOM elements using selectors](../document_object_model/locating_dom_elements_using_selectors)
--   [Attribute selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) in the CSS Guide
--   [Attribute selectors](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Attribute_selectors) in the MDN Learning Area
--   [`Element.querySelectorAll()`](queryselectorall)
--   [`Document.querySelector()`](../document/queryselector) and [`Document.querySelectorAll()`](../document/queryselectorall)
--   [`DocumentFragment.querySelector()`](../documentfragment/queryselector) and [`DocumentFragment.querySelectorAll()`](../documentfragment/queryselectorall)
--   [`ParentNode.querySelector()`](../parentnode/queryselector) and [`ParentNode.querySelectorAll()`](../parentnode/queryselectorall)
--   [Code snippets for querySelector](https://developer.mozilla.org/en-US/docs/Code_snippets/QuerySelector)
--   Other methods that take selectors: [`element.closest()`](closest) and [`element.matches()`](matches).
+- [Locating DOM elements using selectors](../document_object_model/locating_dom_elements_using_selectors)
+- [Attribute selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) in the CSS Guide
+- [Attribute selectors](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Attribute_selectors) in the MDN Learning Area
+- [`Element.querySelectorAll()`](queryselectorall)
+- [`Document.querySelector()`](../document/queryselector) and [`Document.querySelectorAll()`](../document/queryselectorall)
+- [`DocumentFragment.querySelector()`](../documentfragment/queryselector) and [`DocumentFragment.querySelectorAll()`](../documentfragment/queryselectorall)
+- [`ParentNode.querySelector()`](../parentnode/queryselector) and [`ParentNode.querySelectorAll()`](../parentnode/queryselectorall)
+- [Code snippets for querySelector](https://developer.mozilla.org/en-US/docs/Code_snippets/QuerySelector)
+- Other methods that take selectors: [`element.closest()`](closest) and [`element.matches()`](matches).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector</a>

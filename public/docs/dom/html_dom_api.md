@@ -1,20 +1,18 @@
-The HTML DOM API
-================
+# The HTML DOM API
 
 The **HTML DOM API** is made up of the interfaces that define the functionality of each of the [elements](https://developer.mozilla.org/en-US/docs/Glossary/Element) in [HTML](https://developer.mozilla.org/en-US/docs/Glossary/HTML), as well as any supporting types and interfaces they rely upon.
 
 The functional areas included in the HTML DOM API include:
 
--   Access to and control of HTML elements via the [DOM](https://developer.mozilla.org/en-US/docs/Glossary/DOM).
--   Access to and manipulation of form data.
--   Interacting with the contents of 2D images and the context of an HTML [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas), for example to draw on top of them.
--   Management of media connected to the HTML media elements ([`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) and [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)).
--   Dragging and dropping of content on webpages.
--   Access to the browser navigation history
--   Supporting and connective interfaces for other APIs such as [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), [Web Storage](web_storage_api), [Web Workers](web_workers_api), [WebSocket](websockets_api), and [Server-sent events](server-sent_events).
+- Access to and control of HTML elements via the [DOM](https://developer.mozilla.org/en-US/docs/Glossary/DOM).
+- Access to and manipulation of form data.
+- Interacting with the contents of 2D images and the context of an HTML [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas), for example to draw on top of them.
+- Management of media connected to the HTML media elements ([`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) and [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)).
+- Dragging and dropping of content on webpages.
+- Access to the browser navigation history
+- Supporting and connective interfaces for other APIs such as [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), [Web Storage](web_storage_api), [Web Workers](web_workers_api), [WebSocket](websockets_api), and [Server-sent events](server-sent_events).
 
-HTML DOM concepts and usage
----------------------------
+## HTML DOM concepts and usage
 
 In this article, we'll focus on the parts of the HTML DOM that involve engaging with HTML elements. Discussion of other areas, such as [Drag and Drop](html_drag_and_drop_api), [WebSockets](websockets_api), [Web Storage](web_storage_api), etc. can be found in the documentation for those APIs.
 
@@ -34,11 +32,11 @@ While the [`Document`](document) interface is defined as part of the [DOM](docum
 
 Among the things added to `Document` by the HTML standard are:
 
--   Support for accessing various information provided by the [HTTP](https://developer.mozilla.org/en-US/docs/Glossary/HTTP) headers when loading the page, such as the [location](document/location) from which the document was loaded, [cookies](document/cookie), [modification date](document/lastmodified), [referring site](document/referrer), and so forth.
--   Access to lists of elements in the document's [`<head>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head) block and [body](document/body), as well as lists of the [images](document/images), [links](document/links), [scripts](document/scripts), etc. contained in the document.
--   Support for interacting with the user by examining [focus](document/hasfocus) and by executing commands on [editable content](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable).
--   Event handlers for document [events defined by the HTML standard](globaleventhandlers) to allow access to [mouse](mouseevent) and [keyboard](keyboardevent) events, [drag and drop](html_drag_and_drop_api), [media control](htmlmediaelement), and more.
--   Event handlers for events that can be delivered to both elements and documents; these presently include only [copy](htmlelement/oncopy), [cut](htmlelement/oncut), and [paste](htmlelement/onpaste) actions.
+- Support for accessing various information provided by the [HTTP](https://developer.mozilla.org/en-US/docs/Glossary/HTTP) headers when loading the page, such as the [location](document/location) from which the document was loaded, [cookies](document/cookie), [modification date](document/lastmodified), [referring site](document/referrer), and so forth.
+- Access to lists of elements in the document's [`<head>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head) block and [body](document/body), as well as lists of the [images](document/images), [links](document/links), [scripts](document/scripts), etc. contained in the document.
+- Support for interacting with the user by examining [focus](document/hasfocus) and by executing commands on [editable content](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable).
+- Event handlers for document [events defined by the HTML standard](globaleventhandlers) to allow access to [mouse](mouseevent) and [keyboard](keyboardevent) events, [drag and drop](html_drag_and_drop_api), [media control](htmlmediaelement), and more.
+- Event handlers for events that can be delivered to both elements and documents; these presently include only [copy](htmlelement/oncopy), [cut](htmlelement/oncut), and [paste](htmlelement/onpaste) actions.
 
 ### HTML element interfaces
 
@@ -62,13 +60,11 @@ There are elements that share commonalities and thus have an additional intermed
 
 These element-specific interfaces make up the majority of the HTML DOM API, and are the focus of this article. To learn more about the actual structure of the [DOM](document_object_model), see [Introduction to the DOM](document_object_model/introduction).
 
-HTML DOM target audience
-------------------------
+## HTML DOM target audience
 
 The features exposed by the HTML DOM are among the most commonly-used APIs in the web developer's arsenal. All but the most simple web applications will use some features of the HTML DOM.
 
-HTML DOM API interfaces
------------------------
+## HTML DOM API interfaces
 
 The majority of the interfaces that comprise the HTML DOM API map almost one-to-one to individual HTML elements, or to a small group of elements with similar functionality. In addition, the HTML DOM API includes a few interfaces and types to support the HTML element interfaces.
 
@@ -76,183 +72,183 @@ The majority of the interfaces that comprise the HTML DOM API map almost one-to-
 
 These interfaces represent specific HTML elements (or sets of related elements which have the same properties and methods associated with them).
 
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLAnchorElement`](htmlanchorelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLAreaElement`](htmlareaelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLAudioElement`](htmlaudioelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLBRElement`](htmlbrelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLBaseElement`](htmlbaseelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLBodyElement`](htmlbodyelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLButtonElement`](htmlbuttonelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLCanvasElement`](htmlcanvaselement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLDListElement`](htmldlistelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLDataElement`](htmldataelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLDataListElement`](htmldatalistelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLDetailsElement`](htmldetailselement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLDialogElement`](htmldialogelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`HTMLDirectoryElement`</span></span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLDivElement`](htmldivelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLElement`](htmlelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLEmbedElement`](htmlembedelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLFieldSetElement`](htmlfieldsetelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLFormElement`](htmlformelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLHRElement`](htmlhrelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLHeadElement`](htmlheadelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLHeadingElement`](htmlheadingelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLHtmlElement`](htmlhtmlelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLIFrameElement`](htmliframeelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLImageElement`](htmlimageelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLInputElement`](htmlinputelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLLIElement`](htmllielement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLLabelElement`](htmllabelelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLLegendElement`](htmllegendelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLLinkElement`](htmllinkelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLMapElement`](htmlmapelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLMediaElement`](htmlmediaelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLMenuElement`](htmlmenuelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLMetaElement`](htmlmetaelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLMeterElement`](htmlmeterelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLModElement`](htmlmodelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLOListElement`](htmlolistelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLObjectElement`](htmlobjectelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLOptGroupElement`](htmloptgroupelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLOptionElement`](htmloptionelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLOutputElement`](htmloutputelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLParagraphElement`](htmlparagraphelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLParamElement`](htmlparamelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLPictureElement`](htmlpictureelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLPreElement`](htmlpreelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLProgressElement`](htmlprogresselement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLQuoteElement`](htmlquoteelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLScriptElement`](htmlscriptelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLSelectElement`](htmlselectelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLSlotElement`](htmlslotelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLSourceElement`](htmlsourceelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLSpanElement`](htmlspanelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLStyleElement`](htmlstyleelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLTableCaptionElement`](htmltablecaptionelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLTableCellElement`](htmltablecellelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLTableColElement`](htmltablecolelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLTableElement`](htmltableelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLTableRowElement`](htmltablerowelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLTableSectionElement`](htmltablesectionelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLTemplateElement`](htmltemplateelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLTextAreaElement`](htmltextareaelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLTimeElement`](htmltimeelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLTitleElement`](htmltitleelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLTrackElement`](htmltrackelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLUListElement`](htmlulistelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLUnknownElement`](htmlunknownelement)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLVideoElement`](htmlvideoelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLAnchorElement`](htmlanchorelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLAreaElement`](htmlareaelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLAudioElement`](htmlaudioelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLBRElement`](htmlbrelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLBaseElement`](htmlbaseelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLBodyElement`](htmlbodyelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLButtonElement`](htmlbuttonelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLCanvasElement`](htmlcanvaselement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLDListElement`](htmldlistelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLDataElement`](htmldataelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLDataListElement`](htmldatalistelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLDetailsElement`](htmldetailselement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLDialogElement`](htmldialogelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`HTMLDirectoryElement`</span></span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLDivElement`](htmldivelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLElement`](htmlelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLEmbedElement`](htmlembedelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLFieldSetElement`](htmlfieldsetelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLFormElement`](htmlformelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLHRElement`](htmlhrelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLHeadElement`](htmlheadelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLHeadingElement`](htmlheadingelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLHtmlElement`](htmlhtmlelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLIFrameElement`](htmliframeelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLImageElement`](htmlimageelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLInputElement`](htmlinputelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLLIElement`](htmllielement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLLabelElement`](htmllabelelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLLegendElement`](htmllegendelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLLinkElement`](htmllinkelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLMapElement`](htmlmapelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLMediaElement`](htmlmediaelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLMenuElement`](htmlmenuelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLMetaElement`](htmlmetaelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLMeterElement`](htmlmeterelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLModElement`](htmlmodelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLOListElement`](htmlolistelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLObjectElement`](htmlobjectelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLOptGroupElement`](htmloptgroupelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLOptionElement`](htmloptionelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLOutputElement`](htmloutputelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLParagraphElement`](htmlparagraphelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLParamElement`](htmlparamelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLPictureElement`](htmlpictureelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLPreElement`](htmlpreelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLProgressElement`](htmlprogresselement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLQuoteElement`](htmlquoteelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLScriptElement`](htmlscriptelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLSelectElement`](htmlselectelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLSlotElement`](htmlslotelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLSourceElement`](htmlsourceelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLSpanElement`](htmlspanelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLStyleElement`](htmlstyleelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLTableCaptionElement`](htmltablecaptionelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLTableCellElement`](htmltablecellelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLTableColElement`](htmltablecolelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLTableElement`](htmltableelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLTableRowElement`](htmltablerowelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLTableSectionElement`](htmltablesectionelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLTemplateElement`](htmltemplateelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLTextAreaElement`](htmltextareaelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLTimeElement`](htmltimeelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLTitleElement`](htmltitleelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLTrackElement`](htmltrackelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLUListElement`](htmlulistelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLUnknownElement`](htmlunknownelement)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLVideoElement`](htmlvideoelement)</span></span>
 
 #### Deprecated HTML Element Interfaces
 
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLMarqueeElement`](htmlmarqueeelement) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLMarqueeElement`](htmlmarqueeelement) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
 
 #### Obsolete HTML Element Interfaces
 
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLBaseFontElement`](htmlbasefontelement) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLFontElement`](htmlfontelement) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
--   <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`HTMLFrameElement`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLFrameSetElement`](htmlframesetelement) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
--   <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`HTMLIsIndexElement`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLMenuItemElement`](htmlmenuitemelement) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLBaseFontElement`](htmlbasefontelement) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLFontElement`](htmlfontelement) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
+- <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`HTMLFrameElement`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLFrameSetElement`](htmlframesetelement) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
+- <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`HTMLIsIndexElement`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLMenuItemElement`](htmlmenuitemelement) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
 
 ### Web app and browser integration interfaces
 
 These interfaces offer access to the browser window and document that contain the HTML, as well as to the browser's state, available plugins (if any), and various configuration options.
 
--   <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`BarProp`</span></span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`Navigator`](navigator)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`Window`](window)</span></span>
+- <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`BarProp`</span></span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`Navigator`](navigator)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`Window`](window)</span></span>
 
 #### Deprecated web app and browser integration interfaces
 
--   <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`External`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
+- <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`External`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
 
 #### Obsolete web app and browser integration interfaces
 
--   <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`ApplicationCache`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`Plugin`](plugin) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`PluginArray`](pluginarray) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
+- <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`ApplicationCache`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`Plugin`](plugin) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`PluginArray`](pluginarray) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span></span></span>
 
 ### Form support interfaces
 
 These interfaces provide structure and functionality required by the elements used to create and manage forms, including the [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) and [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) elements.
 
--   <span class="indexListRow"><span class="indexListTerm">[`FormDataEvent`](formdataevent)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLFormControlsCollection`](htmlformcontrolscollection)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HTMLOptionsCollection`](htmloptionscollection)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`RadioNodeList`](radionodelist)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`ValidityState`](validitystate)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`FormDataEvent`](formdataevent)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLFormControlsCollection`](htmlformcontrolscollection)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HTMLOptionsCollection`](htmloptionscollection)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`RadioNodeList`](radionodelist)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`ValidityState`](validitystate)</span></span>
 
 ### Canvas and image interfaces
 
 These interfaces represent objects used by the Canvas API as well as the [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element and [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) elements.
 
--   <span class="indexListRow"><span class="indexListTerm">[`CanvasGradient`](canvasgradient)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`CanvasPattern`](canvaspattern)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`CanvasRenderingContext2D`](canvasrenderingcontext2d)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`ImageBitmap`](imagebitmap)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`ImageBitmapRenderingContext`](imagebitmaprenderingcontext)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`ImageData`](imagedata)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`OffscreenCanvas`](offscreencanvas)</span></span>
--   <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`OffscreenCanvasRenderingContext2D`</span></span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`Path2D`](path2d)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`TextMetrics`](textmetrics)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`CanvasGradient`](canvasgradient)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`CanvasPattern`](canvaspattern)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`CanvasRenderingContext2D`](canvasrenderingcontext2d)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`ImageBitmap`](imagebitmap)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`ImageBitmapRenderingContext`](imagebitmaprenderingcontext)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`ImageData`](imagedata)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`OffscreenCanvas`](offscreencanvas)</span></span>
+- <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`OffscreenCanvasRenderingContext2D`</span></span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`Path2D`](path2d)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`TextMetrics`](textmetrics)</span></span>
 
 ### Media interfaces
 
 The media interfaces provide HTML access to the contents of the media elements: [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) and [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video).
 
--   <span class="indexListRow"><span class="indexListTerm">[`AudioTrack`](audiotrack)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`AudioTrackList`](audiotracklist)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`MediaError`](mediaerror)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`TextTrack`](texttrack)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`TextTrackCue`](texttrackcue)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`TextTrackCueList`](texttrackcuelist)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`TextTrackList`](texttracklist)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`TimeRanges`](timeranges)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`TrackEvent`](trackevent)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`VideoTrack`](videotrack)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`VideoTrackList`](videotracklist)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`AudioTrack`](audiotrack)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`AudioTrackList`](audiotracklist)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`MediaError`](mediaerror)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`TextTrack`](texttrack)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`TextTrackCue`](texttrackcue)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`TextTrackCueList`](texttrackcuelist)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`TextTrackList`](texttracklist)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`TimeRanges`](timeranges)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`TrackEvent`](trackevent)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`VideoTrack`](videotrack)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`VideoTrackList`](videotracklist)</span></span>
 
 ### Drag and drop interfaces
 
-These interfaces are used by the [HTML\_Drag\_and\_Drop\_API](html_drag_and_drop_api) to represent individual draggable (or dragged) items, groups of dragged or draggable items, and to handle the drag and drop process.
+These interfaces are used by the [HTML_Drag_and_Drop_API](html_drag_and_drop_api) to represent individual draggable (or dragged) items, groups of dragged or draggable items, and to handle the drag and drop process.
 
--   <span class="indexListRow"><span class="indexListTerm">[`DataTransfer`](datatransfer)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`DataTransferItem`](datatransferitem)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`DataTransferItemList`](datatransferitemlist)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`DragEvent`](dragevent)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`DataTransfer`](datatransfer)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`DataTransferItem`](datatransferitem)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`DataTransferItemList`](datatransferitemlist)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`DragEvent`](dragevent)</span></span>
 
 ### Page history interfaces
 
 The History API interfaces let you access information about the browser's history, as well as to shift the browser's current tab forward and backward through that history.
 
--   <span class="indexListRow"><span class="indexListTerm">[`BeforeUnloadEvent`](beforeunloadevent)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`HashChangeEvent`](hashchangeevent)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`History`](history)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`Location`](location)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`PageTransitionEvent`](pagetransitionevent)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`PopStateEvent`](popstateevent)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`BeforeUnloadEvent`](beforeunloadevent)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`HashChangeEvent`](hashchangeevent)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`History`](history)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`Location`](location)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`PageTransitionEvent`](pagetransitionevent)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`PopStateEvent`](popstateevent)</span></span>
 
 ### Web Components interfaces
 
 These interfaces are used by the [Web Components API](https://developer.mozilla.org/en-US/docs/Web/Web_Components) to create and manage the available [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements).
 
--   <span class="indexListRow"><span class="indexListTerm">[`CustomElementRegistry`](customelementregistry)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`CustomElementRegistry`](customelementregistry)</span></span>
 
 ### Miscellaneous and supporting interfaces
 
 These supporting object types are used in a variety of ways in the HTML DOM API. In addition, [`PromiseRejectionEvent`](promiserejectionevent) represents the event delivered when a [JavaScript](https://developer.mozilla.org/en-US/docs/Glossary/JavaScript) [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) is rejected.
 
--   <span class="indexListRow"><span class="indexListTerm">[`DOMStringList`](domstringlist)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`DOMStringMap`](domstringmap)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`ErrorEvent`](errorevent)</span></span>
--   <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`HTMLAllCollection`</span></span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`MimeType`](mimetype)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`MimeTypeArray`](mimetypearray)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`PromiseRejectionEvent`](promiserejectionevent)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`DOMStringList`](domstringlist)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`DOMStringMap`](domstringmap)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`ErrorEvent`](errorevent)</span></span>
+- <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`HTMLAllCollection`</span></span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`MimeType`](mimetype)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`MimeTypeArray`](mimetypearray)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`PromiseRejectionEvent`](promiserejectionevent)</span></span>
 
 ### Interfaces belonging to other APIs
 
@@ -260,42 +256,41 @@ Several interfaces are technically defined in the HTML specification while actua
 
 #### Web storage interfaces
 
-The [Web\_Storage\_API](web_storage_api) provides the ability for web sites to store data either temporarily or permanently on the user's device for later re-use.
+The [Web_Storage_API](web_storage_api) provides the ability for web sites to store data either temporarily or permanently on the user's device for later re-use.
 
--   <span class="indexListRow"><span class="indexListTerm">[`Storage`](storage)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`StorageEvent`](storageevent)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`Storage`](storage)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`StorageEvent`](storageevent)</span></span>
 
 #### Web Workers interfaces
 
-These interfaces are used by the [Web\_Workers\_API](web_workers_api) both to establish the ability for workers to interact with an app and its content, but also to support messaging between windows or apps.
+These interfaces are used by the [Web_Workers_API](web_workers_api) both to establish the ability for workers to interact with an app and its content, but also to support messaging between windows or apps.
 
--   <span class="indexListRow"><span class="indexListTerm">[`BroadcastChannel`](broadcastchannel)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`DedicatedWorkerGlobalScope`](dedicatedworkerglobalscope)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`MessageChannel`](messagechannel)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`MessageEvent`](messageevent)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`MessagePort`](messageport)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`SharedWorker`](sharedworker)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`SharedWorkerGlobalScope`](sharedworkerglobalscope)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`Worker`](worker)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`WorkerGlobalScope`](workerglobalscope)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`WorkerLocation`](workerlocation)</span></span>
--   <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`WorkerNavigator `</span></span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`BroadcastChannel`](broadcastchannel)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`DedicatedWorkerGlobalScope`](dedicatedworkerglobalscope)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`MessageChannel`](messagechannel)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`MessageEvent`](messageevent)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`MessagePort`](messageport)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`SharedWorker`](sharedworker)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`SharedWorkerGlobalScope`](sharedworkerglobalscope)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`Worker`](worker)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`WorkerGlobalScope`](workerglobalscope)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`WorkerLocation`](workerlocation)</span></span>
+- <span class="indexListRow"><span class="indexListTerm"><span class="page-not-created">`WorkerNavigator `</span></span></span>
 
 #### WebSocket interfaces
 
-These interfaces, defined by the HTML specification, are used by the [WebSockets\_API](websockets_api).
+These interfaces, defined by the HTML specification, are used by the [WebSockets_API](websockets_api).
 
--   <span class="indexListRow"><span class="indexListTerm">[`CloseEvent`](closeevent)</span></span>
--   <span class="indexListRow"><span class="indexListTerm">[`WebSocket`](websocket)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`CloseEvent`](closeevent)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`WebSocket`](websocket)</span></span>
 
 #### Server-sent events interfaces
 
 The [`EventSource`](eventsource) interface represents the source which sent or is sending [server-sent events](server-sent_events).
 
--   <span class="indexListRow"><span class="indexListTerm">[`EventSource`](eventsource)</span></span>
+- <span class="indexListRow"><span class="indexListTerm">[`EventSource`](eventsource)</span></span>
 
-Examples
---------
+## Examples
 
 In this example, an [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element's <span class="page-not-created">`input`</span> event is monitored in order to update the state of a form's "submit" button based on whether or not a given field currently has a value.
 
@@ -346,13 +341,11 @@ The HTML for the form looks like this:
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a></td><td><span class="spec-living">Living Standard</span></td><td>WHATWG HTML Specification</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/">HTML5</a></td><td><span class="spec-rec">Recommendation</span></td><td>No change from <a href="https://www.w3.org/TR/DOM-Level-2-HTML/">Document Object Model (DOM) Level 2 HTML Specification</a></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/DOM-Level-2-HTML/">Document Object Model (DOM) Level 2 HTML Specification</a></td><td><span class="spec-obsolete">Obsolete</span></td><td>No change from <a href="https://www.w3.org/TR/REC-DOM-Level-1/">Document Object Model (DOM) Level 1 Specification</a>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/">Document Object Model (DOM) Level 1 Specification</a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -2128,15 +2121,16 @@ No
 
 1.5
 
-See also
---------
+## See also
 
-References  
--   [HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
--   [HTML attribute reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes)
--   [Document Object Model (DOM)](document_object_model) reference
+References
 
-Guides  
--   [Manipulating documents](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Manipulating_documents): A beginner's guide to manipulating the DOM.
+- [HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+- [HTML attribute reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes)
+- [Document Object Model (DOM)](document_object_model) reference
+
+Guides
+
+- [Manipulating documents](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Manipulating_documents): A beginner's guide to manipulating the DOM.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API</a>

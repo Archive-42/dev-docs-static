@@ -1,5 +1,4 @@
-IntersectionObserver.observe()
-==============================
+# IntersectionObserver.observe()
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The [`IntersectionObserver`](../intersectionobserver) method `observe()` adds an
 
 When the visibility of the specified element crosses over one of the observer's visibility thresholds (as listed in [`IntersectionObserver.thresholds`](thresholds)), the observer's callback is executed with an array of [`IntersectionObserverEntry`](../intersectionobserverentry) objects representing the intersection changes which occurred. Note that this design allows multiple elements' intersection changes to be processed by a single call to the callback.
 
-Syntax
-------
+## Syntax
 
     IntersectionObserver.observe(targetElement);
 
@@ -24,14 +22,12 @@ An [`element`](../element) whose visibility within the root is to be monitored. 
 
 `undefined`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/IntersectionObserver/#dom-intersectionobserver-observe">Intersection Observer<br />
 <span class="small">The definition of 'IntersectionObserver.observe()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -87,9 +83,8 @@ Yes
 
 5.0
 
-See also
---------
+## See also
 
--   [`IntersectionObserver.unobserve()`](unobserve)
+- [`IntersectionObserver.unobserve()`](unobserve)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/observe" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/observe</a>

@@ -1,10 +1,8 @@
-KeyboardEvent.getModifierState()
-================================
+# KeyboardEvent.getModifierState()
 
 The `KeyboardEvent.getModifierState()` method returns the current state of the specified modifier key: `true` if the modifier is active (that is the modifier key is pressed or locked), otherwise, `false`.
 
-Syntax
-------
+## Syntax
 
     var active = event.getModifierState(keyArg);
 
@@ -14,16 +12,14 @@ A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 ### Parameters
 
-*`keyArg`*  
+_`keyArg`_  
 A modifier key value. The value must be one of the [`KeyboardEvent.key`](key) values which represent modifier keys, or the string `"Accel"` <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>. This is case-sensitive.
 
-Modifier keys on Internet Explorer
-----------------------------------
+## Modifier keys on Internet Explorer
 
 IE9 uses `"Scroll"` for `"ScrollLock"` and `"Win"` for `"OS"`.
 
-Modifier keys on Gecko
-----------------------
+## Modifier keys on Gecko
 
 When getModifierState() returns true on Gecko?
 
@@ -55,13 +51,13 @@ Level 3 Shift key (or Level 5 Shift key) pressed
 
 ⌥ Option key pressed
 
-*Not supported*
+_Not supported_
 
 `"CapsLock"`
 
 During LED for ⇪ Caps Lock turned on
 
-*Not supported*
+_Not supported_
 
 While CapsLock is locked
 
@@ -79,27 +75,27 @@ Ctrl key, control key or menu key pressed.
 
 `"Fn"`
 
-*Not supported*
+_Not supported_
 
 Function key is pressed, but we're not sure what key makes the modifier state active. Fn key on Mac keyboard doesn't cause this active.
 
 `"FnLock"`
 
-*Not supported*
+_Not supported_
 
 `"Hyper"`
 
-*Not supported*
+_Not supported_
 
 `"Meta"`
 
-*Not supported*
+_Not supported_
 
 Meta key pressed
 
 ⌘ Command key pressed
 
-*Not supported*
+_Not supported_
 
 ⊞ Windows Logo key or command key pressed
 
@@ -109,7 +105,7 @@ During LED for Num Lock turned on
 
 A key on numpad pressed
 
-*Not supported*
+_Not supported_
 
 While NumLock is locked
 
@@ -119,7 +115,7 @@ While NumLock is locked
 
 Super key or Hyper key pressed (typically, mapped to ⊞ Windows Logo key)
 
-*Not supported*
+_Not supported_
 
 `"ScrollLock"`
 
@@ -127,7 +123,7 @@ During LED for Scroll Lock turned on
 
 During LED for Scroll Lock turned on, but typically this isn't supported by platform
 
-*Not supported*
+_Not supported_
 
 While ScrollLock is locked
 
@@ -137,21 +133,20 @@ While ScrollLock is locked
 
 `"Super"`
 
-*Not supported*
+_Not supported_
 
 `"Symbol"`
 
-*Not supported*
+_Not supported_
 
 `"SymbolLock"`
 
-*Not supported*
+_Not supported_
 
--   On the other platforms, "Alt", "Control" and "Shift" may be supported.
--   All modifiers (except `"FnLock"`, `"Hyper"`, `"Super"` and `"Symbol"` which are defined after Gecko implements this) are always supported for untrusted events on Gecko. This doesn't depend on the platform.
+- On the other platforms, "Alt", "Control" and "Shift" may be supported.
+- All modifiers (except `"FnLock"`, `"Hyper"`, `"Super"` and `"Symbol"` which are defined after Gecko implements this) are always supported for untrusted events on Gecko. This doesn't depend on the platform.
 
-`"Accel"` virtual modifier
---------------------------
+## `"Accel"` virtual modifier
 
 **Note:** The `"Accel"` virtual modifier has been effectively **deprecated** in current drafts of the DOM3 Events specification.
 
@@ -159,8 +154,7 @@ While ScrollLock is locked
 
 In old implementations and outdated specifications, it returned `true` when a modifier which is the typical modifier key for the shortcut key is pressed. For example, on Windows, pressing Ctrl key may make it return `true`. However, on Mac, pressing ⌘ Command key may make it return `true`. Note that which modifier key makes it return true depends on platforms, browsers, and user settings. For example, Firefox users can customize this with a pref, `"ui.key.accelKey"`.
 
-Example
--------
+## Example
 
     // Ignore if following modifier is active.
     if (event.getModifierState("Fn") ||
@@ -228,14 +222,12 @@ Example
 
 Although this example uses `.getModifierState()` with `"Alt"`, `"Control"`, `"Meta"` and `"Shift"`, using `event.altKey`, `event.ctrlKey`, `event.metaKey` and `event.shiftKey` may be more preferable.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#widl-KeyboardEvent-getModifierState">Document Object Model (DOM) Level 3 Events Specification<br />
 <span class="small">The definition of 'getModifierState()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition (<a href="https://dvcs.w3.org/hg/dom3events/raw-file/tip/html/DOM3Events-key.html#keys-modifier">Modifier Keys spec</a>)</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -707,10 +699,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   The [`KeyboardEvent`](../keyboardevent) this method belongs to.
--   [`MouseEvent.getModifierState`](../mouseevent/getmodifierstate)
+- The [`KeyboardEvent`](../keyboardevent) this method belongs to.
+- [`MouseEvent.getModifierState`](../mouseevent/getmodifierstate)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState</a>

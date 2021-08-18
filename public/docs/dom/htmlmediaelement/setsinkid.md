@@ -1,5 +1,4 @@
-HTMLMediaElement.setSinkId()
-============================
+# HTMLMediaElement.setSinkId()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `HTMLMediaElement.setSinkId()` method sets the ID of the audio device to use for output and returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). This only works when the application is authorized to use the specified device.
 
-Syntax
-------
+## Syntax
 
     HTMLMediaElement.setSinkId(sinkId).then(function() { ... })
 
@@ -26,8 +24,7 @@ The [`MediaDeviceInfo.deviceId`](../mediadeviceinfo/deviceid) of the audio outpu
 
 <table><thead><tr class="header"><th>Exception</th><th>Explanation</th></tr></thead><tbody><tr class="odd"><td><a href="../domexception"><code>DOMException</code></a></td><td>No permission to use the requested device</td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
     const devices = await navigator.mediaDevices.enumerateDevices();
     const audioDevices = devices.filter(device => device.kind === 'audiooutput');
@@ -35,14 +32,12 @@ Examples
     await audio.setSinkId(audioDevices[0].deviceId);
     console.log('Audio is being played on ' + audio.sinkId);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-output/#dom-htmlmediaelement-setsinkid">Audio Output Devices API<br />
 <span class="small">The definition of 'sinkId' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition. Older versions of this spec were called "Media Capture Output".</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

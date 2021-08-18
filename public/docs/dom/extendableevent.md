@@ -1,5 +1,4 @@
-ExtendableEvent
-===============
+# ExtendableEvent
 
 The `ExtendableEvent` interface extends the lifetime of the `install` and `activate` events dispatched on the global scope as part of the service worker lifecycle. This ensures that any functional events (like [`FetchEvent`](fetchevent)) are not dispatched until it upgrades database schemas and deletes the outdated cache entries.
 
@@ -11,27 +10,23 @@ This interface inherits from the [`Event`](event) interface.
 
 **Note**: This interface is only available when the global scope is a [`ServiceWorkerGlobalScope`](serviceworkerglobalscope). It is not available when it is a [`Window`](window), or the scope of another kind of worker.
 
-Constructor
------------
+## Constructor
 
 [`ExtendableEvent()`](extendableevent/extendableevent)  
 Creates a new `ExtendableEvent` object.
 
-Properties
-----------
+## Properties
 
-*Doesn't implement any specific properties, but inherits properties from its parent, [`Event`](event).*
+_Doesn't implement any specific properties, but inherits properties from its parent, [`Event`](event)._
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`Event`](event)*.
+_Inherits methods from its parent, [`Event`](event)_.
 
 [`ExtendableEvent.waitUntil()`](extendableevent/waituntil)  
 Extends the lifetime of the event. It is intended to be called in the `install` [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) for the [`installing`](serviceworkerregistration/installing) worker and on the `activate` [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) for the [`active`](serviceworkerregistration/active) worker.
 
-Examples
---------
+## Examples
 
 This code snippet is from the [service worker prefetch sample](https://github.com/GoogleChrome/samples/blob/gh-pages/service-worker/prefetch/service-worker.js) (see [prefetch example live](https://googlechrome.github.io/samples/service-worker/prefetch/).) The code calls [`ExtendableEvent.waitUntil()`](extendableevent/waituntil) in [`ServiceWorkerGlobalScope.oninstall`](serviceworkerglobalscope/oninstall), delaying treating the [`ServiceWorkerRegistration.installing`](serviceworkerregistration/installing) worker as installed until the passed promise resolves successfully. The promise resolves when all resources have been fetched and cached, or else when any exception occurs.
 
@@ -68,14 +63,12 @@ The code snippet also shows a best practice for versioning caches used by the se
 
 **Important**: When fetching resources, it's very important to use `{mode: 'no-cors'}` if there is any chance that the resources are served off of a server that doesn't support [CORS](https://developer.mozilla.org/en-US/docs/Glossary/CORS). In this example, [www.chromium.org](https://www.chromium.org) doesn't support CORS.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/ServiceWorker/#extendableevent">Service Workers<br />
 <span class="small">The definition of 'ExtendableEvent' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -187,13 +180,12 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [Using Service Workers](service_worker_api/using_service_workers)
--   [Service workers basic code example](https://github.com/mdn/sw-test)
--   [Is ServiceWorker ready?](https://jakearchibald.github.io/isserviceworkerready/)
--   [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
--   [Using web workers](web_workers_api/using_web_workers)
+- [Using Service Workers](service_worker_api/using_service_workers)
+- [Service workers basic code example](https://github.com/mdn/sw-test)
+- [Is ServiceWorker ready?](https://jakearchibald.github.io/isserviceworkerready/)
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+- [Using web workers](web_workers_api/using_web_workers)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ExtendableEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ExtendableEvent</a>

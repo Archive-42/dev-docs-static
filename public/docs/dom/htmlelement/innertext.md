@@ -1,12 +1,10 @@
-HTMLElement.innerText
-=====================
+# HTMLElement.innerText
 
 The `innerText` property of the [`HTMLElement`](../htmlelement) interface represents the "rendered" text content of a node and its descendants. As a getter, it approximates the text the user would get if they highlighted the contents of the element with the cursor and then copied it to the clipboard.
 
 **Note:** `innerText` is easily confused with [`Node.textContent`](../node/textcontent), but there are important differences between the two. Basically, `innerText` is aware of the rendered appearance of text, while `textContent` is not.
 
-Syntax
-------
+## Syntax
 
     const renderedText = htmlElement.innerText
     htmlElement.innerText = string
@@ -15,8 +13,7 @@ Syntax
 
 A [`DOMString`](../domstring) representing the rendered text content of an element. If the element itself is not [being rendered](https://html.spec.whatwg.org/multipage/rendering.html#being-rendered) (e.g detached from the document or is hidden from view), the returned value is the same as the [`Node.textContent`](../node/textcontent) property.
 
-Example
--------
+## Example
 
 This example compares `innerText` with [`Node.textContent`](../node/textcontent). Note how `innerText` is aware of things like [`<br>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br) elements, and ignores hidden elements.
 
@@ -45,14 +42,12 @@ This example compares `innerText` with [`Node.textContent`](../node/textcontent)
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/dom.html#the-innertext-idl-attribute">HTML Living Standard<br />
 <span class="small">The definition of 'innerText' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Introduced, based on the <a href="https://github.com/rocallahan/innerText-spec">draft of the innerText specification</a>. See <a href="https://github.com/whatwg/html/issues/465">whatwg/html#465</a> and <a href="https://github.com/whatwg/compat/issues/5">whatwg/compat#5</a> for history.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -108,10 +103,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`HTMLElement.outerText`](outertext)
--   [`Element.innerHTML`](../element/innerhtml)
+- [`HTMLElement.outerText`](outertext)
+- [`Element.innerHTML`](../element/innerhtml)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/innerText" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/innerText</a>

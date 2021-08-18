@@ -1,10 +1,8 @@
-Element.ariaHidden
-==================
+# Element.ariaHidden
 
 The `ariaHidden` property of the [`Element`](../element) interface reflects the value of the [`aria-hidden`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-hidden_attribute) attribute, which indicates whether the element is exposed to an accessibility API.
 
-Syntax
-------
+## Syntax
 
     var ariaHidden = element.ariaHidden;
     element.ariaHidden = ariaHidden
@@ -22,8 +20,7 @@ The element is exposed to the accessibility API as if it were rendered.
 `undefined`  
 The element's hidden state is determined by the user agent based on whether it is rendered.
 
-Examples
---------
+## Examples
 
 In this example the `aria-hidden` attribute on the element with an ID of `hidden` is set to "true". Using `ariaHidden` we update the value to "false".
 
@@ -34,14 +31,12 @@ In this example the `aria-hidden` attribute on the element with an ID of `hidden
     el.ariaHidden = "false"
     console.log(el.ariaHidden); // false
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariahidden">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaHidden' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

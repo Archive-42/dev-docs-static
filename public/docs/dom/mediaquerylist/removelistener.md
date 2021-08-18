@@ -1,5 +1,4 @@
-MediaQueryList.removeListener()
-===============================
+# MediaQueryList.removeListener()
 
 **Deprecated**
 
@@ -9,8 +8,7 @@ The `removeListener()` method of the [`MediaQueryList`](../mediaquerylist) inter
 
 In older browsers `MediaQueryList` did not yet inherit from [`EventTarget`](../eventtarget), so this method was provided as an alias of [`EventTarget.removeEventListener()`](../eventtarget/removeeventlistener). Use `removeEventListener()` instead of `removeListener()` if it is available in the browsers you need to support.
 
-Syntax
-------
+## Syntax
 
     MediaQueryList.removeListener(func)
 
@@ -23,8 +21,7 @@ A function or function reference representing the callback function you want to 
 
 Void.
 
-Example
--------
+## Example
 
     var paragraph = document.querySelector('p');
     var mediaQueryList = window.matchMedia('(max-width: 600px)');
@@ -46,14 +43,12 @@ Example
     // Later on, when it is no longer needed
     mediaQueryList.removeListener(screenTest);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-mediaquerylist-removelistener">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'removeListener' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -113,13 +108,12 @@ Prior to Safari 14, `MediaQueryList` is based on `EventTarget`, so you must use 
 
 1.0
 
-See also
---------
+## See also
 
--   [Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
--   [Using media queries from code](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries)
--   [`window.matchMedia()`](../window/matchmedia)
--   [`MediaQueryList`](../mediaquerylist)
--   [`MediaQueryListEvent`](../mediaquerylistevent)
+- [Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
+- [Using media queries from code](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries)
+- [`window.matchMedia()`](../window/matchmedia)
+- [`MediaQueryList`](../mediaquerylist)
+- [`MediaQueryListEvent`](../mediaquerylistevent)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList/removeListener" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList/removeListener</a>

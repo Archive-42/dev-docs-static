@@ -1,10 +1,8 @@
-HTMLObjectElement.setCustomValidity
-===================================
+# HTMLObjectElement.setCustomValidity
 
 The `setCustomValidity()` method of the [`HTMLObjectElement`](../htmlobjectelement) interface sets a custom validity message for the element.
 
-Syntax
-------
+## Syntax
 
     HTMLObjectElement.setCustomValidity(message);
 
@@ -21,10 +19,9 @@ The message to use for validity errors.
 
 None.
 
-Examples
---------
+## Examples
 
-In this example, we pass the ID of an input element, and set different error messages depending on whether the value is missing, too low or too high. Additionally you *must* call the [reportValidity](../htmlformelement/reportvalidity) method on the same element or nothing will happen.
+In this example, we pass the ID of an input element, and set different error messages depending on whether the value is missing, too low or too high. Additionally you _must_ call the [reportValidity](../htmlformelement/reportvalidity) method on the same element or nothing will happen.
 
     function validate(inputID)
     {
@@ -55,14 +52,12 @@ In this example, we pass the ID of an input element, and set different error mes
 
 It's vital to set the message to an empty string if there are no errors. As long as the error message is not null, the form will not pass validation and will not be submitted.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-cva-setcustomvalidity">HTML Living Standard<br />
 <span class="small">The definition of 'setCustomValidity' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -118,19 +113,18 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`validityState`](../validitystate)
--   <span class="page-not-created">`validityState.valueMissing`</span>
--   [`validityState.typeMismatch`](../validitystate/typemismatch)
--   [`validityState.patternMismatch`](../validitystate/patternmismatch)
--   [`validityState.tooLong`](../validitystate/toolong)
--   [`validityState.tooShort`](../validitystate/tooshort)
--   [`validityState.rangeUnderflow`](../validitystate/rangeunderflow)
--   [`validityState.rangeOverflow`](../validitystate/rangeoverflow)
--   [`validityState.stepMismatch`](../validitystate/stepmismatch)
--   <span class="page-not-created">`validityState.valid`</span>
--   <span class="page-not-created">`validityState.customError`</span>
+- [`validityState`](../validitystate)
+- <span class="page-not-created">`validityState.valueMissing`</span>
+- [`validityState.typeMismatch`](../validitystate/typemismatch)
+- [`validityState.patternMismatch`](../validitystate/patternmismatch)
+- [`validityState.tooLong`](../validitystate/toolong)
+- [`validityState.tooShort`](../validitystate/tooshort)
+- [`validityState.rangeUnderflow`](../validitystate/rangeunderflow)
+- [`validityState.rangeOverflow`](../validitystate/rangeoverflow)
+- [`validityState.stepMismatch`](../validitystate/stepmismatch)
+- <span class="page-not-created">`validityState.valid`</span>
+- <span class="page-not-created">`validityState.customError`</span>
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity</a>

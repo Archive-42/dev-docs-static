@@ -1,5 +1,4 @@
-GlobalEventHandlers.onpointerdown
-=================================
+# GlobalEventHandlers.onpointerdown
 
 The [`GlobalEventHandlers`](../globaleventhandlers) event handler `onpointerdown` is used to specify the event handler for the `pointerdown` event, which is fired when the pointing device is initially pressed. This event can be sent to [`Window`](../window), [`Document`](../document), and [`Element`](../element) objects.
 
@@ -7,8 +6,7 @@ This is functionally equivalent to the `mousedown` event when generated due to u
 
 You can also use [`addEventListener()`](../eventtarget/addeventlistener) to add a listener for `pointerdown` events.
 
-Syntax
-------
+## Syntax
 
     target.onpointerdown = downHandler;
 
@@ -18,8 +16,7 @@ Syntax
 
 A [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) to handle the `pointerdown` event for the `target` [`Element`](../element), [`Document`](../document), or [`Window`](../window). It receives as input the [`PointerEvent`](../pointerevent) describing the `pointerdown` event.
 
-Example
--------
+## Example
 
 This example demonstrates how to watch for and act upon `pointerdown` events using `onpointerdown`. You could also use `addEventListener()`, of course.
 
@@ -103,15 +100,13 @@ The CSS sets up the appearance of the target, and doesn't affect its functionali
 
 The resulting output is shown below. Try tapping, clicking, or touching the box and see what happens. For full effect, try it with a variety of pointer types.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/pointerevents2/#dom-globaleventhandlers-onpointerdown">Pointer Events – Level 2<br />
 <span class="small">The definition of 'onpointerdown' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Non-stable version</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/pointerevents1/#widl-GlobalEventHandlers-onpointerdown">Pointer Events<br />
 <span class="small">The definition of 'onpointerdown' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -175,13 +170,12 @@ Samsung Internet
 
 6.0
 
-See also
---------
+## See also
 
--   [Pointer events](../pointer_events)
--   [Using Pointer Events](../pointer_events/using_pointer_events)
--   [Coordinate systems](https://developer.mozilla.org/en-US/docs/Web/CSS/CSSOM_View/Coordinate_systems)
--   `Document: pointerdown` event
--   `HTMLElement: pointerdown` event
+- [Pointer events](../pointer_events)
+- [Using Pointer Events](../pointer_events/using_pointer_events)
+- [Coordinate systems](https://developer.mozilla.org/en-US/docs/Web/CSS/CSSOM_View/Coordinate_systems)
+- `Document: pointerdown` event
+- `HTMLElement: pointerdown` event
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onpointerdown" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onpointerdown</a>

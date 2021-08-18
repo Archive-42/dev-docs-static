@@ -1,5 +1,4 @@
-IntersectionObserverEntry.rootBounds
-====================================
+# IntersectionObserverEntry.rootBounds
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The [`IntersectionObserverEntry`](../intersectionobserverentry) interface's read-only `rootBounds` property is a [`DOMRectReadOnly`](../domrectreadonly) corresponding to the [`target`](target)'s root intersection rectangle, offset by the [`IntersectionObserver.rootMargin`](../intersectionobserver/rootmargin) if one is specified.
 
-Syntax
-------
+## Syntax
 
     var rootBounds = IntersectionObserverEntry.rootBounds;
 
@@ -19,14 +17,12 @@ A [`DOMRectReadOnly`](../domrectreadonly) which describes the root intersection 
 
 This rectangle is offset by the values in [`IntersectionObserver.rootMargin`](../intersectionobserver/rootmargin).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/IntersectionObserver/#dom-intersectionobserverentry-rootbounds">Intersection Observer<br />
 <span class="small">The definition of 'IntersectionObserverEntry.rootBounds' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

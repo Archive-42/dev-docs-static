@@ -1,5 +1,4 @@
-FileReader.onerror
-==================
+# FileReader.onerror
 
 The [FileReader](../filereader) onerror handler receives an Event object, not an Error object, as a parameter, but an error can be accessed from the FileReader object, as `instanceOfFileReader.error`
 
@@ -15,8 +14,7 @@ The [FileReader](../filereader) onerror handler receives an Event object, not an
       reader.readAsText(file);
     }
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

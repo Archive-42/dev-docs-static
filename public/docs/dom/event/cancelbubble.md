@@ -1,10 +1,8 @@
-Event.cancelBubble
-==================
+# Event.cancelBubble
 
 The `cancelBubble` property of the [`Event`](../event) interface is a historical alias to [`Event.stopPropagation()`](stoppropagation). Setting its value to `true` before returning from an event handler prevents propagation of the event. In later implementations, setting this to `false` does nothing. See [Browser compatibility](#browser_compatibility) for details.
 
-Syntax
-------
+## Syntax
 
     event.cancelBubble = bool;
     var bool = event.cancelBubble;
@@ -13,22 +11,19 @@ Syntax
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean).
 
-Example
--------
+## Example
 
     elem.onclick = function(event) {
       // Do cool things here
       event.cancelBubble = true;
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-event-cancelbubble">DOM<br />
 <span class="small">The definition of 'cancelBubble' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

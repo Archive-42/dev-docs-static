@@ -1,5 +1,4 @@
-HTMLFormElement: submit event
-=============================
+# HTMLFormElement: submit event
 
 The `submit` event fires when a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) is submitted.
 
@@ -11,8 +10,7 @@ The `submit` event fires when the user clicks a submit button ([`<button>`](http
 
 **Note:** Trying to submit a form that does not pass [validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation) triggers an [`invalid`](../htmlinputelement/invalid_event) event. In this case, the validation prevents form submission, and thus there is no `submit` event.
 
-Examples
---------
+## Examples
 
 This example uses [`EventTarget.addEventListener()`](../eventtarget/addeventlistener) to listen for form submit, and logs the current [`Event.timeStamp`](../event/timestamp) whenever that occurs, then prevents the default action of submitting the form.
 
@@ -38,8 +36,7 @@ This example uses [`EventTarget.addEventListener()`](../eventtarget/addeventlist
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/indices.html#event-submit">HTML Living Standard<br />
 <span class="small">The definition of 'submit' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>No change</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/fullindex.html#eventdef-global-submit">HTML 5.2<br />
@@ -47,8 +44,7 @@ Specifications
 <span class="small">The definition of 'submit' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>No change</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/index.html#events-0">HTML5<br />
 <span class="small">The definition of 'submit' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -104,10 +100,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   HTML [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element
--   Related event: [`invalid`](../htmlinputelement/invalid_event)
+- HTML [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element
+- Related event: [`invalid`](../htmlinputelement/invalid_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event</a>

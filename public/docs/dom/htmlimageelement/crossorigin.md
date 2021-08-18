@@ -1,10 +1,8 @@
-HTMLImageElement.crossOrigin
-============================
+# HTMLImageElement.crossOrigin
 
 The [`HTMLImageElement`](../htmlimageelement) interface's `crossOrigin` attribute is a string which specifies the Cross-Origin Resource Sharing ([CORS](https://developer.mozilla.org/en-US/docs/Glossary/CORS)) setting to use when retrieving the image.
 
-Syntax
-------
+## Syntax
 
     htmlImageElement.crossOrigin = crossOriginMode;
     let crossOriginMode = htmlImageElement.crossOrigin;
@@ -16,15 +14,14 @@ A [`DOMString`](../domstring) of a keyword specifying the CORS mode to use when 
 Permitted values are:
 
 `anonymous`  
-Requests by the [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element have their [`mode`](../request/mode) set to `cors` and their [`credentials`](../request/credentials) mode set to `same-origin`. This means that CORS is enabled and credentials are sent *if* the image is fetched from the same origin from which the document was loaded.
+Requests by the [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element have their [`mode`](../request/mode) set to `cors` and their [`credentials`](../request/credentials) mode set to `same-origin`. This means that CORS is enabled and credentials are sent _if_ the image is fetched from the same origin from which the document was loaded.
 
 `use-credentials`  
 Requests by the [`HTMLImageElement`](../htmlimageelement) will use the `cors` mode and the `include` credentials mode; all image requests by the element will use CORS, regardless of what domain the fetch is from.
 
 If `crossOrigin` is an empty string (`""`), the `anonymous` mode is selected.
 
-Example
--------
+## Example
 
 In this example, a new [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element is created and added to the document, loading the image with the Anonymous state; the image will be loaded using CORS and credentials will be used for all cross-origin loads.
 
@@ -88,14 +85,12 @@ The code below demonstrates setting the `crossOrigin` property on an `<img>` ele
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-img-crossorigin">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLImageElement.crossOrigin' in that specification.</span></a></td><td><span class="spec-">Unknown</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

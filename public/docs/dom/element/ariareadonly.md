@@ -1,5 +1,4 @@
-Element.ariaReadOnly
-====================
+# Element.ariaReadOnly
 
 ### Note
 
@@ -7,8 +6,7 @@ The `ariaReadOnly` property of the [`Element`](../element) interface reflects th
 
 Where possible use an HTML [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element with `type="text"` or a [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) as these have built in semantics and do not require ARIA attributes.
 
-Syntax
-------
+## Syntax
 
     var ariaReadOnly = element.ariaReadOnly;
     element.ariaReadOnly = ariaReadOnly
@@ -23,8 +21,7 @@ The user cannot change the value of the element.
 `"false"`  
 The user can set the value of the element.
 
-Examples
---------
+## Examples
 
 In this example the `aria-readonly` attribute on the element with an ID of `txtBoxInput` is set to "true" indicating that this input is currently read only. Using `ariaReadOnly` we update the value to "false".
 
@@ -37,14 +34,12 @@ In this example the `aria-readonly` attribute on the element with an ID of `txtB
     el.ariaReadOnly = "false"
     console.log(el.ariaReadOnly); // "false"
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariareadonly">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaReadOnly' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -100,9 +95,8 @@ No
 
 13.0
 
-See also
---------
+## See also
 
--   [ARIA: textbox role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/textbox_role)
+- [ARIA: textbox role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/textbox_role)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaReadOnly" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaReadOnly</a>

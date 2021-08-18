@@ -1,10 +1,8 @@
-HTMLMediaElement.loop
-=====================
+# HTMLMediaElement.loop
 
 The `HTMLMediaElement.loop` property reflects the [`loop`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#attr-loop) HTML attribute, which controls whether the media element should start over when it reaches the end.
 
-Syntax
-------
+## Syntax
 
     var loop = video.loop;
     audio.loop = true;
@@ -13,21 +11,18 @@ Syntax
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean).
 
-Example
--------
+## Example
 
     var obj = document.createElement('video');
     obj.loop = true; // true
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-media-loop">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLMediaElement.loop' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/embedded-content-0.html#htmlmediaelement">HTML5<br />
 <span class="small">The definition of 'HTMLMediaElement.loop' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -83,9 +78,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The interface defining it, [`HTMLMediaElement`](../htmlmediaelement).
+- The interface defining it, [`HTMLMediaElement`](../htmlmediaelement).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loop" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loop</a>

@@ -1,5 +1,4 @@
-GeolocationPositionError.message
-================================
+# GeolocationPositionError.message
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `GeolocationPositionError.message` read-only property returns a human-readable [`DOMString`](../domstring) describing the details of the error.
 
-Syntax
-------
+## Syntax
 
     let msg = geolocationPositionErrorInstance.message
 
@@ -16,14 +14,12 @@ Syntax
 
 A human-readable [`DOMString`](../domstring) describing the details of the error.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/geolocation-api/#dom-geolocationpositionerror-message">Geolocation API<br />
 <span class="small">The definition of 'GeolocationPositionError.message' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -79,10 +75,9 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   [Using the Geolocation API](../geolocation_api/using_the_geolocation_api)
--   [`GeolocationPositionError`](../geolocationpositionerror)
+- [Using the Geolocation API](../geolocation_api/using_the_geolocation_api)
+- [`GeolocationPositionError`](../geolocationpositionerror)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GeolocationPositionError/message" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GeolocationPositionError/message</a>

@@ -1,10 +1,8 @@
-Element.ariaColIndex
-====================
+# Element.ariaColIndex
 
 The `ariaColIndex` property of the [`Element`](../element) interface reflects the value of the `aria-colindex` attribute, which defines an element's column index or position with respect to the total number of columns within a table, grid, or treegrid.
 
-Syntax
-------
+## Syntax
 
     var ariaColIndex = element.ariaColIndex;
     element.ariaColIndex = ariaColIndex
@@ -13,8 +11,7 @@ Syntax
 
 A [`DOMString`](../domstring) which contains an integer.
 
-Examples
---------
+## Examples
 
 In this example the `aria-colindex` attribute on the element with an ID of `role-heading` is set to "1". Using `ariaColIndex` we update the value to "2".
 
@@ -51,14 +48,12 @@ In this example the `aria-colindex` attribute on the element with an ID of `role
     el.ariaColIndex = "2"
     console.log(el.ariaColIndex); // 2
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariacolindex">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaColIndex' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -114,9 +109,8 @@ No
 
 13.0
 
-See also
---------
+## See also
 
--   [ARIA: table role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Table_Role)
+- [ARIA: table role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Table_Role)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaColIndex" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaColIndex</a>

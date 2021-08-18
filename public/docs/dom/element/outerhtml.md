@@ -1,12 +1,10 @@
-Element.outerHTML
-=================
+# Element.outerHTML
 
 The `outerHTML` attribute of the [`Element`](../element) DOM interface gets the serialized HTML fragment describing the element including its descendants. It can also be set to replace the element with nodes parsed from the given string.
 
 To only obtain the HTML representation of the contents of an element, or to replace the contents of an element, use the [`innerHTML`](innerhtml) property instead.
 
-Syntax
-------
+## Syntax
 
     var content = element.outerHTML;
 
@@ -24,8 +22,7 @@ An attempt was made to set `outerHTML` using an HTML string which is not valid.
 `NoModificationAllowedError`  
 An attempt was made to set `outerHTML` on an element which is a direct child of a [`Document`](../document), such as [`Document.documentElement`](../document/documentelement).
 
-Examples
---------
+## Examples
 
 Getting the value of an element's `outerHTML` property:
 
@@ -66,8 +63,7 @@ Replacing a node by setting the `outerHTML` property:
     // The #d div is no longer part of the document tree,
     // the new paragraph replaced it.
 
-Notes
------
+## Notes
 
 If the element has no parent element, setting its `outerHTML` property will not change it or its descendants. Many browsers will also throw an exception. For example:
 
@@ -88,14 +84,12 @@ The returned value will contain html escaped attributes:
     anc.href = "https://developer.mozilla.org?a=b&c=d";
     console.log(anc.outerHTML); // output: "<a href='https://developer.mozilla.org?a=b&amp;c=d'></a>"
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/DOM-Parsing/#dom-element-outerhtml">DOM Parsing and Serialization<br />
 <span class="small">The definition of 'Element.outerHTML' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -159,11 +153,10 @@ This API was previously available on the `Node` API.
 
 This API was previously available on the `Node` API.
 
-See also
---------
+## See also
 
--   Serializing DOM trees into XML or HTML: [`XMLSerializer`](../xmlserializer)
--   Parsing XML or HTML into DOM trees: [`DOMParser`](../domparser)
--   [`HTMLElement.outerText`](../htmlelement/outertext)
+- Serializing DOM trees into XML or HTML: [`XMLSerializer`](../xmlserializer)
+- Parsing XML or HTML into DOM trees: [`DOMParser`](../domparser)
+- [`HTMLElement.outerText`](../htmlelement/outertext)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/outerHTML" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/outerHTML</a>

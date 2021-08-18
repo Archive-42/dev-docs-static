@@ -1,10 +1,8 @@
-HTMLImageElement.src
-====================
+# HTMLImageElement.src
 
 The [`HTMLImageElement`](../htmlimageelement) property `src`, which reflects the HTML [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-src) attribute, specifies the image to display in the [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element.
 
-Syntax
-------
+## Syntax
 
     htmlImageElement.src = newSource;
     let src = htmlImageElement.src;
@@ -15,13 +13,12 @@ When providing only a single image, rather than a set of images from which the b
 
 If you use the [`srcset`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset) content attribute to provide multiple image options for different display pixel densities, the URL specified by the `src` attribute is used in one of two ways:
 
--   as a fallback for browsers that don't support `srcset`.
--   as an equivalent for specifying an image in `srcset` with the size multiplier `1x`; that is, the image specified by `src` is used on low-density screens (such as typical 72 DPI or 96 DPI displays).
+- as a fallback for browsers that don't support `srcset`.
+- as an equivalent for specifying an image in `srcset` with the size multiplier `1x`; that is, the image specified by `src` is used on low-density screens (such as typical 72 DPI or 96 DPI displays).
 
-Additionally, if you use `src` along with *both* [`sizes`](sizes) (or the corresponding [`sizes`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-sizes) content attribute) *and* `srcset` in order to choose an image based on the viewport size, the `src` attribute is only used as a fallback for browsers that don't support `sizes` and `srcset`; otherwise, it's not used at all.
+Additionally, if you use `src` along with _both_ [`sizes`](sizes) (or the corresponding [`sizes`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-sizes) content attribute) _and_ `srcset` in order to choose an image based on the viewport size, the `src` attribute is only used as a fallback for browsers that don't support `sizes` and `srcset`; otherwise, it's not used at all.
 
-Examples
---------
+## Examples
 
 ### Specifying a single image
 
@@ -43,20 +40,18 @@ When using a set of images with the [`srcset`](srcset) property, the `src` serve
 
 ### Specifying a fallback for viewport-based selection
 
-When using viewport-bases selection of an image from a `srcset` by also specifying the [`sizes`](sizes) property, the `src` property serves as the fallback to be used on browsers that don't support viewport-based selection. Browsers that *do* support viewport-based selection will ignore `src` in this situation.
+When using viewport-bases selection of an image from a `srcset` by also specifying the [`sizes`](sizes) property, the `src` property serves as the fallback to be used on browsers that don't support viewport-based selection. Browsers that _do_ support viewport-based selection will ignore `src` in this situation.
 
 #### HTML
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-img-src">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLImageElement.src' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,10 +1,8 @@
-MediaConfiguration
-==================
+# MediaConfiguration
 
 The `MediaConfiguration` [`MediaCapabilities`](mediacapabilities) dictionary of the [Media Capabilities API](mediacapabilities) describes how media and audio files must be configured, or defined, to be passed as a parameter of the [`MediaCapabilities.encodingInfo()`](mediacapabilities/encodinginfo) and [`MediaCapabilities.encodingInfo()`](mediacapabilities/encodinginfo) methods.
 
-Properties
-----------
+## Properties
 
 A valid configuration includes a valid encoding configuration type or decoding configuration type and a valid [audio configuration](audioconfiguration) or [video configuration](videoconfiguration). If you plan on querying [encoding](mediaencodingconfiguration) information, set the media type to record or transmission.
 
@@ -14,31 +12,30 @@ If the media is an audio file, the [audio configuration](audioconfiguration) mus
 
 A valid media decoding configuration, to be submitted as the parameter for [`mediaCapabilities.decodingInfo()`](mediacapabilities/decodinginfo) method, has it's \`type\` set as:
 
--   **file**: For plain playback file.
--   **media-source**: For [media source](mediasource) files.
+- **file**: For plain playback file.
+- **media-source**: For [media source](mediasource) files.
 
 A valid media encoding configuration, to be submitted as the parameter for [`mediaCapabilities.encodingInfo()`](mediacapabilities/encodinginfo) method, has it's \`type\` set as:
 
--   **record**: For [recording media](mediarecorder).
--   **transmission**: For media to be electronically transmitted.
+- **record**: For [recording media](mediarecorder).
+- **transmission**: For media to be electronically transmitted.
 
 A valid [audio configuration](audioconfiguration) includes:
 
--   **contentType**: Valid audio MIME type.
--   **channels**: Number of channels used by the audio track.
--   **bitrate**: Number of bits used to encode one second of the audio file.
--   **samplerate**: Number of audio samples making up one second of the audio file.
+- **contentType**: Valid audio MIME type.
+- **channels**: Number of channels used by the audio track.
+- **bitrate**: Number of bits used to encode one second of the audio file.
+- **samplerate**: Number of audio samples making up one second of the audio file.
 
 A valid [video configuration](videoconfiguration) includes:
 
--   **contentType**: Valid video MIME type.
--   **width**: Width of the video.
--   **height**: Height of the video.
--   **bitrate**: Number of bits used to encode one second of the video file.
--   **framerate**: Number of frames making up one second of video playback.
+- **contentType**: Valid video MIME type.
+- **width**: Width of the video.
+- **height**: Height of the video.
+- **bitrate**: Number of bits used to encode one second of the video file.
+- **framerate**: Number of frames making up one second of video playback.
 
-Example
--------
+## Example
 
     //Create a video configuration to be tested
     const videoDecoderConfig = {
@@ -62,22 +59,19 @@ Example
       }
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/media-capabilities/#mediaconfiguration">Media Capabilities<br />
 <span class="small">The definition of 'MediaConfiguration' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.MediaConfiguration`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).
 
-See also
---------
+## See also
 
--   [`MediaDecodingConfiguration`](mediadecodingconfiguration)
--   [`MediaEncodingConfiguration`](mediaencodingconfiguration)
+- [`MediaDecodingConfiguration`](mediadecodingconfiguration)
+- [`MediaEncodingConfiguration`](mediaencodingconfiguration)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaConfiguration" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaConfiguration</a>

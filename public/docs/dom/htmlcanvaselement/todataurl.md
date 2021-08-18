@@ -1,23 +1,21 @@
-HTMLCanvasElement.toDataURL()
-=============================
+# HTMLCanvasElement.toDataURL()
 
 The `HTMLCanvasElement.toDataURL()` method returns a [data URI](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) containing a representation of the image in the format specified by the `type` parameter (defaults to [PNG](https://en.wikipedia.org/wiki/Portable_Network_Graphics)). The returned image is in a resolution of 96 dpi.
 
--   If the height or width of the canvas is `0` or larger than the [maximum canvas size](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas#maximum_canvas_size), the string `"data:,"` is returned.
--   If the requested type is not `image/png`, but the returned value starts with `data:image/png`, then the requested type is not supported.
--   Chrome also supports the `image/webp` type.
+- If the height or width of the canvas is `0` or larger than the [maximum canvas size](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas#maximum_canvas_size), the string `"data:,"` is returned.
+- If the requested type is not `image/png`, but the returned value starts with `data:image/png`, then the requested type is not supported.
+- Chrome also supports the `image/webp` type.
 
-Syntax
-------
+## Syntax
 
     canvas.toDataURL(type, encoderOptions);
 
 ### Parameters
 
- `type` <span class="badge inline optional">Optional</span>   
+`type` <span class="badge inline optional">Optional</span>  
 A [`DOMString`](../domstring) indicating the image format. The default format type is `image/png`.
 
- `encoderOptions` <span class="badge inline optional">Optional</span>   
+`encoderOptions` <span class="badge inline optional">Optional</span>  
 A [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) between `0` and `1` indicating the image quality to use for image formats that use lossy compression such as `image/jpeg` and `image/webp`.  
 If this argument is anything else, the default value for image quality is used. The default value is `0.92`. Other arguments are ignored.
 
@@ -30,8 +28,7 @@ A [`DOMString`](../domstring) containing the requested [data URI](https://develo
 `SecurityError`  
 The canvas's bitmap is not origin clean; at least some of its contents have or may have been loaded from a site other than the one from which the document itself was loaded.
 
-Examples
---------
+## Examples
 
 Given this [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element:
 
@@ -103,16 +100,14 @@ You can use this technique in coordination with mouse events in order to dynamic
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-canvas-todataurl">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLCanvasElement.toDataURL' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change since the latest snapshot, <a href="https://www.w3.org/TR/html52/">HTML5</a></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/scripting-1.html#dom-canvas-todataurl">HTML 5.1<br />
 <span class="small">The definition of 'HTMLCanvasElement.toDataURL' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/html52/scripting-1.html#dom-canvas-todataurl">HTML5<br />
 <span class="small">The definition of 'HTMLCanvasElement.toDataURL' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Snapshot of the <a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a> containing the initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -168,10 +163,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The interface defining it, [`HTMLCanvasElement`](../htmlcanvaselement).
--   [Data URIs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) in the [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP) reference.
+- The interface defining it, [`HTMLCanvasElement`](../htmlcanvaselement).
+- [Data URIs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) in the [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP) reference.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL</a>

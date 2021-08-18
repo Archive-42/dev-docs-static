@@ -1,33 +1,27 @@
-Element.prefix
-==============
+# Element.prefix
 
 The `Element.prefix` read-only property returns the namespace prefix of the specified element, or `null` if no prefix is specified.
 
-Syntax
-------
+## Syntax
 
     string = element.prefix
 
-Examples
---------
+## Examples
 
 The following logs "x" to the console.
 
     <x:div onclick="console.log(this.prefix)"/>
 
-Notes
------
+## Notes
 
 This will only work when a namespace-aware parser is used, i.e. when a document is served with an XML MIME type. This will not work for HTML documents.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-element-prefix">DOM<br />
 <span class="small">The definition of 'Element: prefix' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -83,11 +77,10 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`Element.namespaceURI`](namespaceuri)
--   [`Element.localName`](localname)
--   [`Attr.prefix`](../attr/prefix)
+- [`Element.namespaceURI`](namespaceuri)
+- [`Element.localName`](localname)
+- [`Attr.prefix`](../attr/prefix)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/prefix" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/prefix</a>

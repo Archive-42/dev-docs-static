@@ -1,10 +1,8 @@
-HTMLObjectElement.useMap
-========================
+# HTMLObjectElement.useMap
 
 The `useMap` property of the [`HTMLObjectElement`](../htmlobjectelement) interface returns a [`DOMString`](../domstring) that reflects the [`usemap`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object#attr-usemap) HTML attribute, specifying a [`<map>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/map) element to use.
 
-Syntax
-------
+## Syntax
 
     var String = HTMLObjectElement.useMap;
     HTMLObjectElement.useMap = String;
@@ -13,14 +11,12 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-object-usemap">HTML Living Standard<br />
 <span class="small">The definition of 'useMap' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

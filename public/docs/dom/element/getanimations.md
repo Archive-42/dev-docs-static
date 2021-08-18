@@ -1,5 +1,4 @@
-Element.getAnimations()
-=======================
+# Element.getAnimations()
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `getAnimations()` method of the [`Element`](../element) interface (specified
 
 **Note**: This array includes [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations), [CSS Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions), and [Web Animations](../web_animations_api).
 
-Syntax
-------
+## Syntax
 
     const animations = Element.getAnimations(options);
 
@@ -21,14 +19,13 @@ Syntax
 An options object containing the following property:
 
 `subtree`  
-A boolean value which, if `true`, causes animations that target descendants of *Element* to be returned as well. This includes animations that target any CSS [pseudo-elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) attached to *Element* or one of its descendants. Defaults to `false`.
+A boolean value which, if `true`, causes animations that target descendants of _Element_ to be returned as well. This includes animations that target any CSS [pseudo-elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) attached to _Element_ or one of its descendants. Defaults to `false`.
 
 ### Return value
 
 An [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of [`Animation`](../animation) objects, each representing an animation currently targeting the [`Element`](../element) on which this method is called, or one of its descendant elements if `{ subtree: true }` is specified.
 
-Examples
---------
+## Examples
 
 The following code snippet will wait for all animations on `elem` and its descendants to finish before removing the element from the document.
 
@@ -37,14 +34,12 @@ The following code snippet will wait for all animations on `elem` and its descen
         .map(animation => animation.finished)
     ).then(() => elem.remove());
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/web-animations-1/#dom-animatable-getanimations">Web Animations<br />
 <span class="small">The definition of 'Animatable.getAnimations()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Editor's draft.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -166,13 +161,12 @@ Does not support the `subtree` option.
 
 14.0
 
-See also
---------
+## See also
 
--   [Web Animations API](../web_animations_api)
--   [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations)
--   [CSS Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions)
--   [`Document.getAnimations()`](../document/getanimations) - Fetch all animations in the document
--   [`Animation`](../animation)
+- [Web Animations API](../web_animations_api)
+- [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations)
+- [CSS Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions)
+- [`Document.getAnimations()`](../document/getanimations) - Fetch all animations in the document
+- [`Animation`](../animation)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getAnimations" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/getAnimations</a>

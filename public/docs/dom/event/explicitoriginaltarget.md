@@ -1,5 +1,4 @@
-Event.explicitOriginalTarget
-============================
+# Event.explicitOriginalTarget
 
 **Non-standard**
 
@@ -11,8 +10,7 @@ If the event was [retargeted](https://developer.mozilla.org/en-US/docs/DOM/event
 
 `explicitOriginalTarget` differs from `originalTarget` in that it will never contain [anonymous content](https://developer.mozilla.org/en-US/docs/DOM/anonymous_content).
 
-Example
--------
+## Example
 
 This property can be used with `<command>` to get the event details of the original object calling the command.
 
@@ -28,15 +26,13 @@ This property can be used with `<command>` to get the event details of the origi
       </xul:menupopup>
     </menulist>
 
-Specifications
---------------
+## Specifications
 
-*This is a Mozilla-specific property.* Defined in `/dom/public/idl/events/nsIDOMNSEvent.idl`
+_This is a Mozilla-specific property._ Defined in `/dom/public/idl/events/nsIDOMNSEvent.idl`
 
 This event property is **not defined** in the [W3.org DOM Level 2 Events](https://www.w3.org/TR/DOM-Level-2-Events/events.html)
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -92,9 +88,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Comparison of Event Targets](comparison_of_event_targets)
+- [Comparison of Event Targets](comparison_of_event_targets)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/explicitOriginalTarget" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Event/explicitOriginalTarget</a>

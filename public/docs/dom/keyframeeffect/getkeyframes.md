@@ -1,5 +1,4 @@
-KeyframeEffect.getKeyframes()
-=============================
+# KeyframeEffect.getKeyframes()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `getKeyframes()` method of a [`KeyframeEffect`](../keyframeeffect) returns an Array of the computed keyframes that make up this animation along with their computed offsets.
 
-Syntax
-------
+## Syntax
 
     var keyframes = keyframeEffect.getKeyframes();
 
@@ -36,8 +34,7 @@ The [easing function](https://developer.mozilla.org/en-US/docs/Web/CSS/easing-fu
 composite  
 The [`KeyframeEffect.composite`](composite) operation used to combine the values specified in this keyframe with the underlying value. This will be absent if the composite operation specified on the effect is being used.
 
-Examples
---------
+## Examples
 
 In the [Red Queen Race](https://codepen.io/rachelnabors/pen/PNGGaV) example, we can inspect Alice and the RedQueen's animation to see its individual keyframes like so:
 
@@ -45,14 +42,12 @@ In the [Red Queen Race](https://codepen.io/rachelnabors/pen/PNGGaV) example, we 
 
     redQueen_alice.effect.getKeyframes();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/web-animations-1/#dom-keyframeeffect-getkeyframes">Web Animations<br />
 <span class="small">The definition of 'KeyframeEffect.getKeyframes()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Editor's draft.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -108,10 +103,9 @@ No
 
 14.0
 
-See also
---------
+## See also
 
--   [Web Animations API](../web_animations_api)
--   Method of [`KeyframeEffect`](../keyframeeffect) objects.
+- [Web Animations API](../web_animations_api)
+- Method of [`KeyframeEffect`](../keyframeeffect) objects.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/getKeyframes" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/getKeyframes</a>

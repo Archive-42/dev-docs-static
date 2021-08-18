@@ -1,21 +1,18 @@
-HTMLElement.offsetLeft
-======================
+# HTMLElement.offsetLeft
 
-The `HTMLElement.offsetLeft` read-only property returns the number of pixels that the *upper left corner* of the current element is offset to the left within the [`HTMLElement.offsetParent`](offsetparent) node.
+The `HTMLElement.offsetLeft` read-only property returns the number of pixels that the _upper left corner_ of the current element is offset to the left within the [`HTMLElement.offsetParent`](offsetparent) node.
 
 For block-level elements, `offsetTop`, `offsetLeft`, `offsetWidth`, and `offsetHeight` describe the border box of an element relative to the `offsetParent`.
 
-However, for inline-level elements (such as **span**) that can wrap from one line to the next, `offsetTop` and `offsetLeft` describe the positions of the *first* border box (use [`Element.getClientRects()`](../element/getclientrects) to get its width and height), while `offsetWidth` and `offsetHeight` describe the dimensions of the *bounding* border box (use [`Element.getBoundingClientRect()`](../element/getboundingclientrect) to get its position). Therefore, a box with the left, top, width and height of `offsetLeft`, `offsetTop`, `offsetWidth` and `offsetHeight` will not be a bounding box for a span with wrapped text.
+However, for inline-level elements (such as **span**) that can wrap from one line to the next, `offsetTop` and `offsetLeft` describe the positions of the _first_ border box (use [`Element.getClientRects()`](../element/getclientrects) to get its width and height), while `offsetWidth` and `offsetHeight` describe the dimensions of the _bounding_ border box (use [`Element.getBoundingClientRect()`](../element/getboundingclientrect) to get its position). Therefore, a box with the left, top, width and height of `offsetLeft`, `offsetTop`, `offsetWidth` and `offsetHeight` will not be a bounding box for a span with wrapped text.
 
-Syntax
-------
+## Syntax
 
     left = element.offsetLeft;
 
-`left` is an integer representing the offset to the left in pixels *from the closest relatively positioned* parent element.
+`left` is an integer representing the offset to the left in pixels _from the closest relatively positioned_ parent element.
 
-Example
--------
+## Example
 
     var colorTable = document.getElementById("t1");
     var tOLeft = colorTable.offsetLeft;
@@ -43,16 +40,14 @@ This example shows a 'long' sentence that wraps within a div with a blue border,
       box.style.top = longspan.offsetTop + document.body.scrollTop + "px";
       box.style.width = longspan.offsetWidth + "px";
       box.style.height = longspan.offsetHeight + "px";
-    </script> 
+    </script>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-htmlelement-offsetleft">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'offsetLeft' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -108,9 +103,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`HTMLElement.offsetParent`](offsetparent), [`HTMLElement.offsetTop`](offsettop), [`HTMLElement.offsetWidth`](offsetwidth), [`HTMLElement.offsetHeight`](offsetheight)
+- [`HTMLElement.offsetParent`](offsetparent), [`HTMLElement.offsetTop`](offsettop), [`HTMLElement.offsetWidth`](offsetwidth), [`HTMLElement.offsetHeight`](offsetheight)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetLeft" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetLeft</a>

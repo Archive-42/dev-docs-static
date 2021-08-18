@@ -1,5 +1,4 @@
-Element: DOMMouseScroll event
-=============================
+# Element: DOMMouseScroll event
 
 **Deprecated**
 
@@ -13,14 +12,13 @@ The DOM `DOMMouseScroll` event is fired asynchronously when mouse wheel or simil
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>Yes</td></tr><tr class="odd"><td>Interface</td><td><a href="../mousescrollevent"><code>MouseScrollEvent</code></a> <span class="icon deprecated" data-viewbox="0 0 100 100" data-xmlns="http://www.w3.org/2000/svg" data-role="img"> This deprecated API should no longer be used, but will probably still work. </span></td></tr></tbody></table>
 
-If you want to prevent the default action of mouse wheel events, it's not enough to handle only this event on Gecko because If scroll amount by a native mouse wheel event is less than 1 line (or less than 1 page when the system setting is by page scroll), other mouse wheel events may be fired without this event.  
-  
-On Gecko 17 (Firefox 17) or later, you need to call `preventDefault()` of `wheel` events which must be fired for every native event.  
-  
+If you want to prevent the default action of mouse wheel events, it's not enough to handle only this event on Gecko because If scroll amount by a native mouse wheel event is less than 1 line (or less than 1 page when the system setting is by page scroll), other mouse wheel events may be fired without this event.
+
+On Gecko 17 (Firefox 17) or later, you need to call `preventDefault()` of `wheel` events which must be fired for every native event.
+
 Use the standardized `wheel` event if available.
 
-Properties
-----------
+## Properties
 
 The event has only one additional property beyond standard events.
 
@@ -36,8 +34,7 @@ Trusted events are never fired with 0.
 
 **Note:** If the platform's native mouse wheel events only provide scroll distance by pixels, or if the speed can be customized by the user, the value is computed using the line height of the nearest scrollable ancestor element of the event's target. If that element's font size is smaller than `mousewheel.min_line_scroll_amount`, that preference's value is used as the line height.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -93,12 +90,11 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`MouseScrollEvent`](../mousescrollevent)
--   Gecko's legacy pixel scroll event: `MozMousePixelScroll`
--   Non-Gecko browsers' legacy mouse wheel event: `mousewheel`
--   Standardized wheel event: `wheel`
+- [`MouseScrollEvent`](../mousescrollevent)
+- Gecko's legacy pixel scroll event: `MozMousePixelScroll`
+- Non-Gecko browsers' legacy mouse wheel event: `mousewheel`
+- Standardized wheel event: `wheel`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/DOMMouseScroll_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/DOMMouseScroll_event</a>

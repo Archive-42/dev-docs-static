@@ -1,5 +1,4 @@
-FontFaceSet
-===========
+# FontFaceSet
 
 **Experimental**
 
@@ -8,13 +7,12 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `FontFaceSet` interface of the [CSS Font Loading API](css_font_loading_api) manages the loading of font-faces and querying of their download status.It is available as document.fonts.
 
-Properties
-----------
+## Properties
 
- <span class="page-not-created">`FontFaceSet.status`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`FontFaceSet.status`</span> <span class="badge inline readonly">Read only </span>  
 Indicates the font-face's loading status. It will be one of `'loading'` or `'loaded'`.
 
- [`FontFaceSet.ready`](fontfaceset/ready) <span class="badge inline readonly">Read only </span>   
+[`FontFaceSet.ready`](fontfaceset/ready) <span class="badge inline readonly">Read only </span>  
 [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which resolves once font loading and layout operations have completed.
 
 ### Events
@@ -28,8 +26,7 @@ An [`EventListener`](eventlistener) called whenever an event of type `loadingdon
 <span class="page-not-created">`FontFaceSet.onloadingerror`</span>  
 An [`EventListener`](eventlistener) called whenever an event of type `loadingerror` is fired, indicating that an error occurred whilst loading a font-face set.
 
-Methods
--------
+## Methods
 
 <span class="page-not-created">`FontFaceSet.add()`</span>  
 Adds a font to the font set.
@@ -46,14 +43,12 @@ Removes a manually-added font from the font set. [CSS-connected](https://www.w3.
 [`FontFaceSet.load()`](fontfaceset/load)  
 Returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which resolves to a list of font-faces for a requested font.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-font-loading/#FontFaceSet-interface">CSS Font Loading Module Level 3<br />
 <span class="small">The definition of 'FontFaceSet' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

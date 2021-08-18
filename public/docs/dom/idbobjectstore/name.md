@@ -1,12 +1,10 @@
-IDBObjectStore.name
-===================
+# IDBObjectStore.name
 
 The `name` property of the [`IDBObjectStore`](../idbobjectstore) interface indicates the name of this object store.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     IDBObjectStore.name = myNewName;
     var myObjectStoreName = IDBObjectStore.name;
@@ -28,8 +26,7 @@ The current transaction is not active.
 `ConstraintError`  
 An object store is already using the specified `name`.
 
-Example
--------
+## Example
 
 In the following code snippet, we open a read/write transaction on our database and add some data to an object store using `add()`. After the object store has been created, we log objectStore.name to the console. <span style="line-height: 1.5;">For a full working example, see our </span>[To-do Notifications](https://github.com/mdn/to-do-notifications/)<span style="line-height: 1.5;"> app (</span>[view example live](https://mdn.github.io/to-do-notifications/)<span style="line-height: 1.5;">.)</span>
 
@@ -76,15 +73,13 @@ In the following code snippet, we open a read/write transaction on our database 
       };
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbobjectstore-name">Indexed Database API 2.0<br />
 <span class="small">The definition of 'name' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbobjectstore-name">Indexed Database API 2.0<br />
 <span class="small">The definition of 'name' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -166,15 +161,14 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/name" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/name</a>

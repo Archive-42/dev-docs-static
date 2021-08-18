@@ -1,5 +1,4 @@
-HTMLMediaElement.fastSeek()
-===========================
+# HTMLMediaElement.fastSeek()
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `HTMLMediaElement.fastSeek()` method quickly seeks the media to the new time
 
 **Note:** If you need to seek with precision, you should set [`HTMLMediaElement.currentTime`](currenttime) instead.
 
-Syntax
-------
+## Syntax
 
     HTMLMediaElement.fastSeek(time);
 
@@ -24,8 +22,7 @@ A double.
 
 None.
 
-Example
--------
+## Example
 
 This example quickly seeks to 20-second position of the video element.
 
@@ -33,14 +30,12 @@ This example quickly seeks to 20-second position of the video element.
 
     myVideo.fastSeek(20);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#dom-media-fastseek">HTML Living Standard<br />
 <span class="small">The definition of 'fastSeek()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition; living specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -96,9 +91,8 @@ No
 
 ?
 
-See also
---------
+## See also
 
--   [HTMLMediaElement.currentTime](currenttime) for seeking without precision tradeoff
+- [HTMLMediaElement.currentTime](currenttime) for seeking without precision tradeoff
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/fastSeek" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/fastSeek</a>

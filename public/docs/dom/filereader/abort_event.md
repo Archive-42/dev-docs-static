@@ -1,12 +1,10 @@
-FileReader: abort event
-=======================
+# FileReader: abort event
 
 The `abort` event is fired when a read has been aborted: for instance because the program called [`FileReader.abort()`](abort).
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../progressevent"><code>ProgressEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="onabort"><code>FileReader.onabort</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 ### Live example
 
@@ -68,13 +66,11 @@ Examples
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/FileAPI/#dfn-abort-event">File API</a></td><td><span class="spec-wd">Working Draft</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -130,9 +126,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   Related events: [`loadstart`](loadstart_event), [`loadend`](loadend_event), [`progress`](progress_event), [`error`](error_event), [`load`](load_event).
+- Related events: [`loadstart`](loadstart_event), [`loadend`](loadend_event), [`progress`](progress_event), [`error`](error_event), [`load`](load_event).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader/abort_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileReader/abort_event</a>

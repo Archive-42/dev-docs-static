@@ -1,5 +1,4 @@
-MediaMetadata
-=============
+# MediaMetadata
 
 **Experimental**
 
@@ -8,14 +7,12 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MediaMetadata` interface of the [Media Session API](media_session_api) allows a web page to provide rich media metadata for display in a platform UI.
 
-Constructor
------------
+## Constructor
 
 [`MediaMetadata.MediaMetadata()`](mediametadata/mediametadata)  
 Creates a new `MediaMetaData` object.
 
-Properties
-----------
+## Properties
 
 [`MediaMetadata.title`](mediametadata/title)  
 Returns or sets the title of the media to be played.
@@ -29,8 +26,7 @@ Returns or sets the name of the album or collection containing the media to be p
 [`MediaMetadata.artwork`](mediametadata/artwork)  
 Returns or sets an array of images associated with playing media.
 
-Examples
---------
+## Examples
 
 The following example checks for browser compatibility and sets the current metadata for the media session.
 
@@ -50,14 +46,12 @@ The following example checks for browser compatibility and sets the current meta
       });
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediasession/#the-mediametadata-interface">Media Session Standard<br />
 <span class="small">The definition of 'MediaMetaData' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

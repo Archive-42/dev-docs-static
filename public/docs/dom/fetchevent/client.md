@@ -1,5 +1,4 @@
-FetchEvent.client
-=================
+# FetchEvent.client
 
 **Deprecated**
 
@@ -9,8 +8,7 @@ The `FetchEvent.client` read-only property returns the [`Client`](../client) tha
 
 **Note**: This feature has been deprecated, with its functionality replaced by [`FetchEvent.clientId`](clientid) and [`Clients.get()`](../clients/get). See [this Github issue](https://github.com/slightlyoff/ServiceWorker/issues/723#issuecomment-123516555) for discussion/background.
 
-Syntax
-------
+## Syntax
 
     var myClient = FetchEvent.client;
 
@@ -18,15 +16,13 @@ Syntax
 
 A [`Client`](../client) object.
 
-Example
--------
+## Example
 
     self.addEventListener('fetch', function(event) {
       console.log(event.client);
     });
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -82,13 +78,12 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [Using Service Workers](../service_worker_api/using_service_workers)
--   [Service workers basic code example](https://github.com/mdn/sw-test)
--   [Is ServiceWorker ready?](https://jakearchibald.github.io/isserviceworkerready/)
--   [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
--   [Using web workers](../web_workers_api/using_web_workers)
+- [Using Service Workers](../service_worker_api/using_service_workers)
+- [Service workers basic code example](https://github.com/mdn/sw-test)
+- [Is ServiceWorker ready?](https://jakearchibald.github.io/isserviceworkerready/)
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+- [Using web workers](../web_workers_api/using_web_workers)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FetchEvent/client" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FetchEvent/client</a>

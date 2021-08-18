@@ -1,5 +1,4 @@
-MediaKeyMessageEvent.message
-============================
+# MediaKeyMessageEvent.message
 
 **Experimental**
 
@@ -8,19 +7,16 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MediaKeyMessageEvent.message` read-only property returns an [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) with a message from the content decryption module. Messages vary by key system.
 
-Syntax
-------
+## Syntax
 
     var messageType = mediaKeyMessageEvent.messageType;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-mediakeymessageevent-message">Encrypted Media Extensions<br />
 <span class="small">The definition of 'message' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

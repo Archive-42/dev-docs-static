@@ -1,46 +1,41 @@
-DynamicsCompressorNode
-======================
+# DynamicsCompressorNode
 
 The `DynamicsCompressorNode` interface provides a compression effect, which lowers the volume of the loudest parts of the signal in order to help prevent clipping and distortion that can occur when multiple sounds are played and multiplexed together at once. This is often used in musical production and game audio. `DynamicsCompressorNode` is an [`AudioNode`](audionode) that has exactly one input and one output; it is created using the [`BaseAudioContext.createDynamicsCompressor`](baseaudiocontext/createdynamicscompressor) method.
 
 <table><tbody><tr class="odd"><td>Number of inputs</td><td><code>1</code></td></tr><tr class="even"><td>Number of outputs</td><td><code>1</code></td></tr><tr class="odd"><td>Channel count mode</td><td><code>"clamped-max"</code></td></tr><tr class="even"><td>Channel count</td><td><code>2</code></td></tr><tr class="odd"><td>Channel interpretation</td><td><code>"speakers"</code></td></tr></tbody></table>
 
-Constructor
------------
+## Constructor
 
 [`DynamicsCompressorNode()`](dynamicscompressornode/dynamicscompressornode)  
 Creates a new instance of an `DynamicsCompressorNode` object.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`AudioNode`](audionode)*.
+_Inherits properties from its parent, [`AudioNode`](audionode)_.
 
- [`DynamicsCompressorNode.threshold`](dynamicscompressornode/threshold) <span class="badge inline readonly">Read only </span>   
+[`DynamicsCompressorNode.threshold`](dynamicscompressornode/threshold) <span class="badge inline readonly">Read only </span>  
 Is a [k-rate](audioparam#k-rate) [`AudioParam`](audioparam) representing the decibel value above which the compression will start taking effect.
 
- [`DynamicsCompressorNode.knee`](dynamicscompressornode/knee) <span class="badge inline readonly">Read only </span>   
+[`DynamicsCompressorNode.knee`](dynamicscompressornode/knee) <span class="badge inline readonly">Read only </span>  
 Is a [k-rate](audioparam#k-rate) [`AudioParam`](audioparam) containing a decibel value representing the range above the threshold where the curve smoothly transitions to the compressed portion.
 
- [`DynamicsCompressorNode.ratio`](dynamicscompressornode/ratio) <span class="badge inline readonly">Read only </span>   
+[`DynamicsCompressorNode.ratio`](dynamicscompressornode/ratio) <span class="badge inline readonly">Read only </span>  
 Is a [k-rate](audioparam#k-rate) [`AudioParam`](audioparam) representing the amount of change, in dB, needed in the input for a 1 dB change in the output.
 
- [`DynamicsCompressorNode.reduction`](dynamicscompressornode/reduction) <span class="badge inline readonly">Read only </span>   
+[`DynamicsCompressorNode.reduction`](dynamicscompressornode/reduction) <span class="badge inline readonly">Read only </span>  
 Is a `float` representing the amount of gain reduction currently applied by the compressor to the signal.
 
- [`DynamicsCompressorNode.attack`](dynamicscompressornode/attack) <span class="badge inline readonly">Read only </span>   
+[`DynamicsCompressorNode.attack`](dynamicscompressornode/attack) <span class="badge inline readonly">Read only </span>  
 Is a [k-rate](audioparam#k-rate) [`AudioParam`](audioparam) representing the amount of time, in seconds, required to reduce the gain by 10 dB.
 
- [`DynamicsCompressorNode.release`](dynamicscompressornode/release) <span class="badge inline readonly">Read only </span>   
+[`DynamicsCompressorNode.release`](dynamicscompressornode/release) <span class="badge inline readonly">Read only </span>  
 Is a [k-rate](audioparam#k-rate) [`AudioParam`](audioparam) representing the amount of time, in seconds, required to increase the gain by 10 dB.
 
-Methods
--------
+## Methods
 
-*No specific methods; inherits methods from its parent, [`AudioNode`](audionode)*.
+_No specific methods; inherits methods from its parent, [`AudioNode`](audionode)_.
 
-Example
--------
+## Example
 
 The below code demonstrates a simple usage of `createDynamicsCompressor()` to add compression to an audio track. For a more complete example, have a look at our [basic Compressor example](https://mdn.github.io/webaudio-examples/compressor-example/) ([view the source code](https://github.com/mdn/webaudio-examples/tree/master/compressor-example)).
 
@@ -78,14 +73,12 @@ The below code demonstrates a simple usage of `createDynamicsCompressor()` to ad
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dynamicscompressornode">Web Audio API<br />
 <span class="small">The definition of 'DynamicsCompressorNode' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -339,9 +332,8 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](web_audio_api/using_web_audio_api)
+- [Using the Web Audio API](web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/DynamicsCompressorNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DynamicsCompressorNode</a>

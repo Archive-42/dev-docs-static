@@ -1,5 +1,4 @@
-HTMLMediaElement.autoplay
-=========================
+# HTMLMediaElement.autoplay
 
 The `HTMLMediaElement.autoplay` property reflects the [`autoplay`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#attr-autoplay) HTML attribute, indicating whether playback should automatically begin as soon as enough media is available to do so without interruption.
 
@@ -9,8 +8,7 @@ A media element whose source is a [`MediaStream`](../mediastream) and whose `aut
 
 For a much more in-depth look at autoplay, autoplay blocking, and how to respond when autoplay is blocked by the user's browser, see our article [Autoplay guide for media and Web Audio APIs](https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide).
 
-Syntax
-------
+## Syntax
 
     HTMLMediaElement.autoplay = true | false;
 
@@ -22,8 +20,7 @@ A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 **Note:** Some browsers offer users the ability to override `autoplay` in order to prevent disruptive audio or video from playing without permission or in the background. Do not rely on `autoplay` actually starting playback and instead use [`play`](play_event) event.
 
-Examples
---------
+## Examples
 
 ...
 
@@ -35,15 +32,13 @@ Examples
           false is the default value
             document.querySelector('#video').autoplay = false;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#dom-media-autoplay">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLMediaElement.autoplay' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change from <a href="https://www.w3.org/TR/html52/">HTML5</a></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/embedded-content-0.html#htmlmediaelement">HTML5<br />
 <span class="small">The definition of 'HTMLMediaElement.autoplay' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -99,10 +94,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The interface defining it, [`HTMLMediaElement`](../htmlmediaelement).
--   The [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) and [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) elements
+- The interface defining it, [`HTMLMediaElement`](../htmlmediaelement).
+- The [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) and [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) elements
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/autoplay" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/autoplay</a>

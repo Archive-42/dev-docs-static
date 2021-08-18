@@ -1,5 +1,4 @@
-FontFaceSet.ready
-=================
+# FontFaceSet.ready
 
 **Experimental**
 
@@ -12,8 +11,7 @@ This page is not complete.
 
 The `ready` readonly property of the [`FontFaceSet`](../fontfaceset) interface returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to the given [`FontFaceSet`](../fontfaceset).
 
-Syntax
-------
+## Syntax
 
     fontFaceSet.ready.then(function(fontFaceSet) {
       // ...
@@ -27,14 +25,12 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 None.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-font-loading/#dom-fontfaceset-ready">CSS Font Loading Module Level 3<br />
 <span class="small">The definition of 'FontFaceSet' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

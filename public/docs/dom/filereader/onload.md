@@ -1,10 +1,8 @@
-FileReader.onload
-=================
+# FileReader.onload
 
 The `FileReader.onload` property contains an event handler executed when the `load` event is fired, when content read with [readAsArrayBuffer](readasarraybuffer), [readAsBinaryString](readasbinarystring), [readAsDataURL](readasdataurl) or [readAsText](readastext) is available.
 
-Example
--------
+## Example
 
     // Callback from a <input type="file" onchange="onChange(event)">
     function onChange(event) {
@@ -18,8 +16,7 @@ Example
       reader.readAsText(file);
     }
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

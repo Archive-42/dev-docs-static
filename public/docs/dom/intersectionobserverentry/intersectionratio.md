@@ -1,5 +1,4 @@
-IntersectionObserverEntry.intersectionRatio
-===========================================
+# IntersectionObserverEntry.intersectionRatio
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The [`IntersectionObserverEntry`](../intersectionobserverentry) interface's read-only `intersectionRatio` property tells you how much of the target element is currently visible within the root's intersection ratio, as a value between 0.0 and 1.0.
 
-Syntax
-------
+## Syntax
 
     var intersectionRatio = IntersectionObserverEntry.intersectionRatio;
 
@@ -19,8 +17,7 @@ A number between 0.0 and 1.0 which indicates how much of the target element is a
 
 If the area of the target's bounds rectangle is zero, the returned value is 1 if [`isIntersecting`](isintersecting) is `true` or 0 if not.
 
-Example
--------
+## Example
 
 In this simple example, an intersection callback sets each target element's [`opacity`](https://developer.mozilla.org/en-US/docs/Web/CSS/opacity) to the intersection ratio of that element with the root.
 
@@ -32,14 +29,12 @@ In this simple example, an intersection callback sets each target element's [`op
 
 To see a more concrete example, take a look at [Handling intersection changes](../intersection_observer_api/timing_element_visibility#handling_intersection_changes) in [Timing element visibility with the Intersection Observer API](../intersection_observer_api/timing_element_visibility).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/IntersectionObserver/#dom-intersectionobserverentry-intersectionratio">Intersection Observer<br />
 <span class="small">The definition of 'IntersectionObserverEntry.intersectionratio' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

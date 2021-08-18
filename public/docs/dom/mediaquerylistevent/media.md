@@ -1,10 +1,8 @@
-MediaQueryListEvent.media
-=========================
+# MediaQueryListEvent.media
 
 The `media` read-only property of the [`MediaQueryListEvent`](../mediaquerylistevent) interface is a [`DOMString`](../domstring) representing a serialized media query.
 
-Syntax
-------
+## Syntax
 
     var media = MediaQueryListEvent.media;
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`DOMString`](../domstring) representing a serialized media query.
 
-Examples
---------
+## Examples
 
     var mql = window.matchMedia('(max-width: 600px)');
 
@@ -33,14 +30,12 @@ Examples
 
     mql.addListener(screenTest);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-mediaquerylistevent-media">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'media' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -96,13 +91,12 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
--   [Using media queries from code](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries)
--   [`window.matchMedia()`](../window/matchmedia)
--   [`MediaQueryList`](../mediaquerylist)
--   [`MediaQueryListEvent`](../mediaquerylistevent)
+- [Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
+- [Using media queries from code](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries)
+- [`window.matchMedia()`](../window/matchmedia)
+- [`MediaQueryList`](../mediaquerylist)
+- [`MediaQueryListEvent`](../mediaquerylistevent)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryListEvent/media" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryListEvent/media</a>

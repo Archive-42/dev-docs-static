@@ -1,5 +1,4 @@
-File.getAsText()
-================
+# File.getAsText()
 
 **Non-standard**
 
@@ -11,15 +10,13 @@ This feature is no longer recommended. Though some browsers might still support 
 
 **Note:**This method was removed from Firefox 7.0 and onward.
 
-Summary
--------
+## Summary
 
 The `getAsText` method provides the file's data interpreted as text using a given encoding.
 
 **Note:** This method is obsolete; you should use the [`FileReader`](../filereader) method [`readAsText()`](../filereader/readastext) instead.
 
-Syntax
-------
+## Syntax
 
     var str = instanceOfFile.getAsText(encoding);
 
@@ -32,8 +29,7 @@ A string indicating the encoding to use for the returned data. If this string is
 
 A string containing the file's data interpreted as text in the specified `encoding`.
 
-Example
--------
+## Example
 
     // fileInput is a HTMLInputElement: <input type="file" id="myfileinput" multiple>
     var fileInput = document.getElementById("myfileinput");
@@ -66,15 +62,13 @@ Example
       }
     }
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-See also
---------
+## See also
 
--   [`File`](../file)
--   [`FileReader`](../filereader)
+- [`File`](../file)
+- [`FileReader`](../filereader)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/File/getAsText" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File/getAsText</a>

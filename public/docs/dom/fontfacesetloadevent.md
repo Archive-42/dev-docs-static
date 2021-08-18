@@ -1,5 +1,4 @@
-FontFaceSetLoadEvent
-====================
+# FontFaceSetLoadEvent
 
 **Experimental**
 
@@ -8,26 +7,22 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `FontFaceSetLoadEvent` interface of the [CSS Font Loading API](css_font_loading_api) is fired whenever a [`FontFaceSet`](fontfaceset) loads.
 
-Constructor
------------
+## Constructor
 
 [`FontFaceSetLoadEvent()`](fontfacesetloadevent/fontfacesetloadevent)  
 Creates a new `FontFaceSetLoadEvent` object.
 
-Properties
-----------
+## Properties
 
- [`FontFaceSetLoadEvent.fontfaces`](fontfacesetloadevent/fontfaces)<span class="badge inline readonly">Read only </span>   
+[`FontFaceSetLoadEvent.fontfaces`](fontfacesetloadevent/fontfaces)<span class="badge inline readonly">Read only </span>  
 Returns an array of [`FontFace`](fontface) instances each of which represents a single usable font.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-font-loading/#dom-fontfacesetloadevent-fontfacesetloadevent">CSS Font Loading Module Level 3<br />
 <span class="small">The definition of 'FontFaceSetLoadEvent' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

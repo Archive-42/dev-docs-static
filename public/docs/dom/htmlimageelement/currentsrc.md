@@ -1,10 +1,8 @@
-HTMLImageElement.currentSrc
-===========================
+# HTMLImageElement.currentSrc
 
 The read-only [`HTMLImageElement`](../htmlimageelement) property `currentSrc` indicates the URL of the image which is currently presented in the [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element it represents.
 
-Syntax
-------
+## Syntax
 
     let currentSource = htmlImageElement.currentSrc;
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`USVString`](../usvstring) indicating the full URL of the image currently visible in the [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element represented by the `HTMLImageElement`. This is useful when you provide multiple image options using the [`sizes`](sizes) and/or [`HTMLImageElement.srcset`](srcset) properties. `currentSrc` lets you determine which image from the set of provided images was selected by the browser.
 
-Example
--------
+## Example
 
 In this example, two different sizes are provided for an image of a clock. One is 200px wide and the other is 400px wide. The [`sizes`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-sizes) attribute is provided to indicate that the image should be drawn at 50% of the document width if the viewport is under 400px wide; otherwise, the image is drawn at 90% width of the document.
 
@@ -38,14 +35,12 @@ In this example, two different sizes are provided for an image of a clock. One i
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-img-currentsrc">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLImageElement.currentSrc' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

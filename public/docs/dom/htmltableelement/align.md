@@ -1,5 +1,4 @@
-HTMLTableElement.align
-======================
+# HTMLTableElement.align
 
 **Deprecated**
 
@@ -7,8 +6,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `HTMLTableElement.align` property represents the alignment of the table.
 
-Syntax
-------
+## Syntax
 
     HTMLTableElement.align = alignment;
     var alignment = HTMLTableElement.align;
@@ -18,24 +16,21 @@ Syntax
 `alignment`  
 [`DOMString`](../domstring) with one of the following values:
 
--   left
--   center
--   right
+- left
+- center
+- right
 
-Example
--------
+## Example
 
     // Set the alignment of a table
     var t = document.getElementById('TableA');
     t.align = 'center';
 
-Specifications
---------------
+## Specifications
 
--   W3C DOM 2 HTML Specification [*HTMLTableElement* .align](https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-23180977).
+- W3C DOM 2 HTML Specification [_HTMLTableElement_ .align](https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-23180977).
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

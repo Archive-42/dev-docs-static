@@ -1,10 +1,8 @@
-HTMLTableElement.deleteRow()
-============================
+# HTMLTableElement.deleteRow()
 
 The `HTMLTableElement.deleteRow()` method removes a specific row ([`<tr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr)) from a given [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table).
 
-Syntax
-------
+## Syntax
 
     HTMLTableElement.deleteRow(index)
 
@@ -22,8 +20,7 @@ No return value
 
 If the number of the row to delete, specified by the parameter, is greater or equal to the number of available rows, or if it is negative and not equal to the special index `-1`, representing the last row of the table, the exception `INDEX_SIZE_ERR` is thrown.
 
-Example
--------
+## Example
 
 This example uses JavaScript to delete a table's second row.
 
@@ -44,14 +41,12 @@ This example uses JavaScript to delete a table's second row.
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-table-deleterow">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLTableElement: deleteRow' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

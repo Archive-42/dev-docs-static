@@ -1,10 +1,8 @@
-FileReader.abort()
-==================
+# FileReader.abort()
 
 The `abort` method aborts the read operation. Upon return, the [`readyState`](readystate) will be `DONE`.
 
-Syntax
-------
+## Syntax
 
     instanceOfFileReader.abort();
 
@@ -13,14 +11,12 @@ Syntax
 `DOM_FILE_ABORT_ERR`  
 Thrown when `abort` is called while no read operation is in progress (that is, the state isn't `LOADING`).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/FileAPI/#abort">File API<br />
 <span class="small">The definition of 'abort()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -76,9 +72,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`FileReader`](../filereader)
+- [`FileReader`](../filereader)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader/abort" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileReader/abort</a>

@@ -1,5 +1,4 @@
-IDBEnvironment
-==============
+# IDBEnvironment
 
 **Deprecated**
 
@@ -11,14 +10,12 @@ The `IDBEnvironment` helper of the [IndexedDB API](indexeddb_api) contains the `
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-Properties
-----------
+## Properties
 
- [`WindowOrWorkerGlobalScope.indexedDB`](windoworworkerglobalscope/indexeddb) <span class="badge inline readonly">Read only </span>   
+[`WindowOrWorkerGlobalScope.indexedDB`](windoworworkerglobalscope/indexeddb) <span class="badge inline readonly">Read only </span>  
 Provides a mechanism for applications to asynchronously access capabilities of indexed databases; contains an [`IDBFactory`](idbfactory) object.
 
-Example
--------
+## Example
 
 The following code creates a request for a database to be opened asynchronously, after which the database is opened when the request's `onsuccess` handler is fired:
 
@@ -30,8 +27,7 @@ The following code creates a request for a database to be opened asynchronously,
      };
     }
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -117,15 +113,14 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](idbdatabase)
--   Using transactions: [`IDBTransaction`](idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
--   Using cursors: [`IDBCursor`](idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](idbdatabase)
+- Using transactions: [`IDBTransaction`](idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
+- Using cursors: [`IDBCursor`](idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBEnvironment" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBEnvironment</a>

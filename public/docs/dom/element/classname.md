@@ -1,18 +1,15 @@
-Element.className
-=================
+# Element.className
 
 The `className` property of the [`Element`](../element) interface gets and sets the value of the [`class` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) of the specified element.
 
-Syntax
-------
+## Syntax
 
     var cName = elementNodeReference.className;
     elementNodeReference.className = cName;
 
--   `cName` is a string variable representing the class or space-separated classes of the current element.
+- `cName` is a string variable representing the class or space-separated classes of the current element.
 
-Example
--------
+## Example
 
     let el = document.getElementById('item');
 
@@ -22,8 +19,7 @@ Example
       el.className = 'active';
     }
 
-Notes
------
+## Notes
 
 The name `className` is used for this property instead of `class` because of conflicts with the "class" keyword in many languages which are used to manipulate the DOM.
 
@@ -33,16 +29,14 @@ The name `className` is used for this property instead of `class` because of con
 
 The `class` is an **HTML Attribute**, while the `className` is a **DOM Property**.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-element-classname">DOM<br />
 <span class="small">The definition of 'element.className' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/dom/#dom-element-classname">DOM4<br />
 <span class="small">The definition of 'element.className' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-95362176">Document Object Model (DOM) Level 2 HTML Specification<br />
 <span class="small">The definition of 'element.className' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -114,9 +108,8 @@ Only supported for [`HTMLElement`](https://developer.mozilla.org/docs/Web/API/HT
 
 Only supported for [`HTMLElement`](https://developer.mozilla.org/docs/Web/API/HTMLElement), not all `Element` objects, such as [`SVGElement`](https://developer.mozilla.org/docs/Web/API/SVGElement).
 
-See also
---------
+## See also
 
--   [`element.classList`](classlist)
+- [`element.classList`](classlist)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/className" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/className</a>

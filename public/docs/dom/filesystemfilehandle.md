@@ -1,5 +1,4 @@
-FileSystemFileHandle
-====================
+# FileSystemFileHandle
 
 **Secure context**
 
@@ -9,15 +8,13 @@ The `FileSystemFileHandle` interface of the [`File System Access API`](file_syst
 
 Note that read and write operations depend on file-access permissions that do not persist after a page refresh if no other tabs for that origin remain open. The [`queryPermission`](filesystemhandle/querypermission) method of the [`FileSystemHandle`](filesystemhandle) interface can be used to verify permission state before accessing a file.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`FileSystemHandle`](filesystemhandle).*
+_Inherits properties from its parent, [`FileSystemHandle`](filesystemhandle)._
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`FileSystemHandle`](filesystemhandle).*
+_Inherits methods from its parent, [`FileSystemHandle`](filesystemhandle)._
 
 [`getFile()`](filesystemfilehandle/getfile)  
 Returns a [`file object`](file) representing the state on disk of the entry represented by the handle.
@@ -25,8 +22,7 @@ Returns a [`file object`](file) representing the state on disk of the entry repr
 [`createWritable()`](filesystemfilehandle/createwritable)  
 Creates a [`FileSystemWritableFileStream`](filesystemwritablefilestream) that can be used to write to a file.
 
-Examples
---------
+## Examples
 
 ### Reading a File
 
@@ -55,14 +51,12 @@ The following asynchronous function writes the given contents to the file handle
       await writable.close();
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/file-system-access/#api-filesystemfilehandle">File System Access API<br />
 <span class="small">The definition of 'FileSystemFileHandle' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -170,10 +164,9 @@ No
 
 14.0
 
-See also
---------
+## See also
 
--   [File System Access API](file_system_access_api)
--   [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
+- [File System Access API](file_system_access_api)
+- [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileHandle" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileHandle</a>

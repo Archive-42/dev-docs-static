@@ -1,12 +1,10 @@
-IDBOpenDBRequest: blocked event
-===============================
+# IDBOpenDBRequest: blocked event
 
 The `blocked` handler is executed when an open connection to a database is blocking a `versionchange` transaction on the same database.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../idbversionchangeevent"><code>IDBVersionChangeEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="onblocked"><code>onblocked</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 Using `addEventListener()`:
 
@@ -76,8 +74,7 @@ Using the `onblocked` property:
 
     };
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -133,10 +130,9 @@ Samsung Internet
 
 1.5
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   [`onblocked`](onblocked) event handler property
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- [`onblocked`](onblocked) event handler property
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBOpenDBRequest/blocked_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBOpenDBRequest/blocked_event</a>

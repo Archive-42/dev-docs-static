@@ -1,26 +1,22 @@
-GlobalEventHandlers.oncanplaythrough
-====================================
+# GlobalEventHandlers.oncanplaythrough
 
 The `oncanplaythrough` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is the [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) for processing `canplaythrough` events.
 
 The `canplaythrough` event is fired when the user agent can play the media and estimates that enough data has been loaded to play the media up to its end without having to stop for further buffering of content.
 
-Syntax
-------
+## Syntax
 
     element.oncanplaythrough = handlerFunction;
     var handlerFunction = element.oncanplaythrough;
 
 `handlerFunction` is either `null` or a [JavaScript function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions) specifying the handler for the event.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#handler-oncanplaythrough">HTML Living Standard<br />
 <span class="small">The definition of 'oncanplaythrough' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -80,10 +76,9 @@ Samsung Internet
 
 2.0
 
-See also
---------
+## See also
 
--   `canplaythrough`
--   [DOM event handlers](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers)
+- `canplaythrough`
+- [DOM event handlers](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/oncanplaythrough" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/oncanplaythrough</a>

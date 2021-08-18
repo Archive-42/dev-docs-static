@@ -1,5 +1,4 @@
-EventTarget
-===========
+# EventTarget
 
 `EventTarget` is a DOM interface implemented by objects that can receive events and may have listeners for them.
 
@@ -7,14 +6,12 @@ EventTarget
 
 Many event targets (including elements, documents, and windows) also support setting [event handlers](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) via `onevent` properties and attributes.
 
-Constructor
------------
+## Constructor
 
 [`EventTarget()`](eventtarget/eventtarget)  
 Creates a new `EventTarget` object instance.
 
-Methods
--------
+## Methods
 
 [`EventTarget.addEventListener()`](eventtarget/addeventlistener)  
 Registers an event handler of a specific event type on the `EventTarget`.
@@ -25,8 +22,7 @@ Removes an event listener from the `EventTarget`.
 [`EventTarget.dispatchEvent()`](eventtarget/dispatchevent)  
 Dispatches an event to this `EventTarget`.
 
-Example
--------
+## Example
 
 ### Simple implementation of EventTarget
 
@@ -67,16 +63,14 @@ Example
       return !event.defaultPrevented;
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#interface-eventtarget">DOM<br />
 <span class="small">The definition of 'EventTarget' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/DOM3-Events.html#interface-EventTarget">Document Object Model (DOM) Level 3 Events Specification<br />
 <span class="small">The definition of 'EventTarget' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>A few parameters are now optional (<code>listener</code>), or accepts the <code>null</code> value (<code>useCapture</code>).</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/DOM-Level-2-Events/events.htmlevents.html#Events-EventTarget">Document Object Model (DOM) Level 2 Events Specification<br />
 <span class="small">The definition of 'EventTarget' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -260,11 +254,10 @@ Older versions of IE supported an equivalent, proprietary `EventTarget.detachEve
 
 1.0
 
-See also
---------
+## See also
 
--   [Event reference](https://developer.mozilla.org/en-US/docs/Web/Events) - the events available in the platform.
--   [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
--   [`Event`](event) interface
+- [Event reference](https://developer.mozilla.org/en-US/docs/Web/Events) - the events available in the platform.
+- [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
+- [`Event`](event) interface
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EventTarget</a>

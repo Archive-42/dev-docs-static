@@ -1,5 +1,4 @@
-GeolocationCoordinates.latitude
-===============================
+# GeolocationCoordinates.latitude
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `GeolocationCoordinates.latitude` read-only property is a `double` representing the latitude of the position in decimal degrees.
 
-Syntax
-------
+## Syntax
 
     let lat = geolocationCoordinatesinstance.latitude
 
@@ -16,14 +14,12 @@ Syntax
 
 A `double` representing the latitude of the position in decimal degrees.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/geolocation-api/#dom-geolocationcoordinates-latitude">Geolocation API<br />
 <span class="small">The definition of 'GeolocationCoordinates.latitude' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -83,10 +79,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [Using the Geolocation API](../geolocation_api/using_the_geolocation_api)
--   [`GeolocationCoordinates`](../geolocationcoordinates)
+- [Using the Geolocation API](../geolocation_api/using_the_geolocation_api)
+- [`GeolocationCoordinates`](../geolocationcoordinates)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates/latitude" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates/latitude</a>

@@ -1,10 +1,8 @@
-Guide to the Fullscreen API
-===========================
+# Guide to the Fullscreen API
 
 This article demonstrates how to use the [Fullscreen API](../fullscreen_api) to place a given element into full-screen mode, as well as how to detect when the browser enters or exits full-screen mode.
 
-Activating full-screen mode
----------------------------
+## Activating full-screen mode
 
 Given an element that you'd like to present in full-screen mode (such as a [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video), for example), you can present it in full-screen mode by calling its [`requestFullscreen()`](../element/requestfullscreen) method.
 
@@ -45,31 +43,27 @@ It's not guaranteed that you'll be able to switch into fullscreen mode. For exam
 
 **Note:** Fullscreen requests need to be called from within an event handler or otherwise they will be denied.
 
-Getting out of full screen mode
--------------------------------
+## Getting out of full screen mode
 
 The user always has the ability to exit fullscreen mode of their own accord; see [Things your users want to know](#things_your_users_want_to_know). You can also do so programmatically by calling the [`Document.exitFullscreen()`](../document/exitfullscreen) method.
 
-Other information
------------------
+## Other information
 
 The [`Document`](../document) provides some additional information that can be useful when developing fullscreen web applications:
 
- [`Document.fullscreenElement`](../document/fullscreenelement) / [`ShadowRoot.fullscreenElement`](../shadowroot/fullscreenelement)   
+[`Document.fullscreenElement`](../document/fullscreenelement) / [`ShadowRoot.fullscreenElement`](../shadowroot/fullscreenelement)  
 The `fullscreenElement` property tells you the [`Element`](../element) that's currently being displayed fullscreen. If this is non-null, the document (or shadow DOM) is in fullscreen mode. If this is null, the document (or shadow DOM) is not in fullscreen mode.
 
 [`Document.fullscreenEnabled`](../document/fullscreenenabled)  
 The `fullscreenEnabled` property tells you whether or not the document is currently in a state that would allow fullscreen mode to be requested.
 
-Things your users want to know
-------------------------------
+## Things your users want to know
 
 You'll want to be sure to let your users know that they can press the Esc key (or F11) to exit fullscreen mode.
 
 In addition, navigating to another page, changing tabs, or switching to another application (using, for example, Alt-Tab) while in fullscreen mode exits fullscreen mode as well.
 
-Example
--------
+## Example
 
 In this example, a video is presented in a web page. Pressing the Return or Enter key lets the user toggle between windowed and fullscreen presentation of the video.
 
@@ -103,8 +97,7 @@ This starts by looking at the value of the `fullscreenElement` attribute on the 
 
 If fullscreen mode is already active (`fullscreenElement` is non-`null`), we call [`document.exitFullscreen()`](../document/exitfullscreen).
 
-Prefixing
----------
+## Prefixing
 
 **Note:** Currently, only Firefox 64 and Chrome 71 supports this unprefixed.
 
@@ -112,13 +105,11 @@ For the moment not all browsers are implementing the unprefixed version of the A
 
 <table><thead><tr class="header"><th>Standard</th><th>WebKit (Safari) / Blink (Chrome &amp; Opera) / Edge</th><th>Gecko (Firefox)</th><th>Internet Explorer</th></tr></thead><tbody><tr class="odd"><td><a href="../document/fullscreen"><code>Document.fullscreen</code></a> <span class="icon deprecated" data-viewbox="0 0 100 100" data-xmlns="http://www.w3.org/2000/svg" data-role="img"> This deprecated API should no longer be used, but will probably still work. </span></td><td><code>webkitIsFullScreen</code></td><td><code>mozFullScreen</code></td><td>-</td></tr><tr class="even"><td><a href="../document/fullscreenenabled"><code>Document.fullscreenEnabled</code></a></td><td><code>webkitFullscreenEnabled</code></td><td><code>mozFullScreenEnabled</code></td><td><code>msFullscreenEnabled</code></td></tr><tr class="odd"><td><a href="../document/fullscreenelement"><code>Document.fullscreenElement</code></a></td><td><code>webkitFullscreenElement</code></td><td><code>mozFullScreenElement</code></td><td><code>msFullscreenElement</code></td></tr><tr class="even"><td><a href="../document/onfullscreenchange"><code>Document.onfullscreenchange</code></a></td><td><code>onwebkitfullscreenchange</code></td><td><code>onmozfullscreenchange</code></td><td><code>onmsfullscreenchange</code></td></tr><tr class="odd"><td><a href="../document/onfullscreenerror"><code>Document.onfullscreenerror</code></a></td><td><code>onwebkitfullscreenerror</code></td><td><code>onmozfullscreenerror</code></td><td><code>onmsfullscreenerror</code></td></tr><tr class="even"><td><a href="../document/exitfullscreen"><code>Document.exitFullscreen()</code></a></td><td><code>webkitExitFullscreen()</code></td><td><code>mozCancelFullScreen()</code></td><td><code>msExitFullscreen()</code></td></tr><tr class="odd"><td><a href="../element/requestfullscreen"><code>Element.requestFullscreen()</code></a></td><td><code>webkitRequestFullscreen()</code></td><td><code>mozRequestFullScreen()</code></td><td><code>msRequestFullscreen()</code></td></tr></tbody></table>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fullscreen.spec.whatwg.org/">Fullscreen API</a></td><td><span class="spec-living">Living Standard</span></td><td>Initial version.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -264,15 +255,14 @@ BCD tables only load in the browser
 
 BCD tables only load in the browser
 
-See also
---------
+## See also
 
--   [Using fullscreen mode](../fullscreen_api)
--   [`Element.requestFullscreen()`](../element/requestfullscreen)
--   [`Document.exitFullscreen()`](../document/exitfullscreen)
--   [`Document.fullscreen`](../document/fullscreen)
--   [`Document.fullscreenElement`](../document/fullscreenelement)
--   [`:fullscreen`](https://developer.mozilla.org/en-US/docs/Web/CSS/:fullscreen), [`::backdrop`](https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop)
--   [`allowfullscreen`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-allowfullscreen)
+- [Using fullscreen mode](../fullscreen_api)
+- [`Element.requestFullscreen()`](../element/requestfullscreen)
+- [`Document.exitFullscreen()`](../document/exitfullscreen)
+- [`Document.fullscreen`](../document/fullscreen)
+- [`Document.fullscreenElement`](../document/fullscreenelement)
+- [`:fullscreen`](https://developer.mozilla.org/en-US/docs/Web/CSS/:fullscreen), [`::backdrop`](https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop)
+- [`allowfullscreen`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-allowfullscreen)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API/Guide" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API/Guide</a>

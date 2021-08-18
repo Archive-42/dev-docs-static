@@ -1,5 +1,4 @@
-HTMLMediaElement.seekToNextFrame()
-==================================
+# HTMLMediaElement.seekToNextFrame()
 
 **Non-standard**
 
@@ -12,7 +11,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `HTMLMediaElement.seekToNextFrame()` method asynchronously advances the current play position to the next frame in the media.
 
-This non-standard method is part of an experimentation process around support for non-real-time access to media for tasks including filtering, editing, and so forth. You should *not* use this method in production code, because its implementation may change—or be removed outright—without notice. You are, however, invited to experiment with it.
+This non-standard method is part of an experimentation process around support for non-real-time access to media for tasks including filtering, editing, and so forth. You should _not_ use this method in production code, because its implementation may change—or be removed outright—without notice. You are, however, invited to experiment with it.
 
 This method lets you access frames of video media without the media being performed in real time. This also lets you access media using frames as a seek unit rather than timecodes (albeit only by seeking one frame at a time until you get to the frame you want). Possible uses for this method include filtering and editing of video content.
 
@@ -20,8 +19,7 @@ This method returns immediately, returning a [`Promise`](https://developer.mozil
 
 If there is no video on the media element, or the media isn't seekable, nothing happens.
 
-Syntax
-------
+## Syntax
 
     var seekCompletePromise = HTMLMediaElement.seekToNextFrame();
 
@@ -33,13 +31,11 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 Firefox 49 returns [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) instead of a promise, and performs the seek operation synchronously.
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

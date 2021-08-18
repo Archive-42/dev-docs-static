@@ -1,5 +1,4 @@
-HTMLCollection
-==============
+# HTMLCollection
 
 The `HTMLCollection` interface represents a generic collection (array-like object similar to [`arguments`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments)) of elements (in document order) and offers methods and properties for selecting from the list.
 
@@ -7,14 +6,12 @@ The `HTMLCollection` interface represents a generic collection (array-like objec
 
 An `HTMLCollection` in the HTML DOM is live; it is automatically updated when the underlying document is changed.
 
-Properties
-----------
+## Properties
 
- [`HTMLCollection.length`](htmlcollection/length) <span class="badge inline readonly">Read only </span>   
+[`HTMLCollection.length`](htmlcollection/length) <span class="badge inline readonly">Read only </span>  
 Returns the number of items in the collection.
 
-Methods
--------
+## Methods
 
 [`HTMLCollection.item()`](htmlcollection/item)  
 Returns the specific node at the given zero-based `index` into the list. Returns `null` if the `index` is out of range.
@@ -26,8 +23,7 @@ Returns the specific node whose ID or, as a fallback, name matches the string sp
 
 An alternative to accessing `collection[name]` (which instead returns `undefined` when `name` does not exist). This is mostly useful for non-JavaScript DOM implementations.
 
-Usage in JavaScript
--------------------
+## Usage in JavaScript
 
 `HTMLCollection` also exposes its members directly as properties by both name and index. HTML IDs may contain `:` and `.` as valid characters, which would necessitate using bracket notation for property access. Currently `HTMLCollections` does not recognize purely numeric IDs, which would cause conflict with the array-style access, though HTML5 does permit these.
 
@@ -49,14 +45,12 @@ For example, assuming there is one `<form>` element in the document and its `id`
 
     elem1 = document.forms["named.item.with.periods"];
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#htmlcollection">DOM<br />
 <span class="small">The definition of 'HTMLCollection' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -190,10 +184,9 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   [`NodeList`](nodelist)
--   [`HTMLFormControlsCollection`](htmlformcontrolscollection), [`HTMLOptionsCollection`](htmloptionscollection)
+- [`NodeList`](nodelist)
+- [`HTMLFormControlsCollection`](htmlformcontrolscollection), [`HTMLOptionsCollection`](htmloptionscollection)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection</a>

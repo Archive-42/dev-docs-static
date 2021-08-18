@@ -1,20 +1,17 @@
-HTMLSelectElement.type
-======================
+# HTMLSelectElement.type
 
 The `HTMLSelectElement.type` read-only property returns the form control's `type`.
 
-Syntax
-------
+## Syntax
 
     var str = selectElt.type;
 
 The possible values are:
 
--   `"select-multiple"` if multiple values can be selected.
--   `"select-one"` if only one value can be selected.
+- `"select-multiple"` if multiple values can be selected.
+- `"select-one"` if only one value can be selected.
 
-Example
--------
+## Example
 
     switch (select.type) {
       case 'select-multiple':
@@ -27,8 +24,7 @@ Example
         // Non-standard value (or this isn't a SELECT element)
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-select-type">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLSelectElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change from <a href="https://www.w3.org/TR/html52/">HTML5</a>, the latest snapshot.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/forms.html#dom-select-type">HTML5<br />
@@ -36,8 +32,7 @@ Specifications
 <span class="small">The definition of 'HTMLSelectElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>No change from <a href="https://www.w3.org/TR/REC-DOM-Level-1/">Document Object Model (DOM) Level 1 Specification</a>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-58783172">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLSelectElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -93,9 +88,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) HTML element, implementing this interface.
+- The [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) HTML element, implementing this interface.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/type" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/type</a>

@@ -1,5 +1,4 @@
-Element.scrollTopMax
-====================
+# Element.scrollTopMax
 
 **Non-standard**
 
@@ -7,18 +6,15 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 The `Element.scrollTopMax` read-only property returns a [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) representing the maximum top scroll offset possible for the element.
 
-Syntax
-------
+## Syntax
 
     var pxl = elt.scrollTopMax;
 
-Specifications
---------------
+## Specifications
 
-*This property is not part of any specification.*
+_This property is not part of any specification._
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -74,9 +70,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`Element.scrollLeftMax`](scrollleftmax) giving the same information for the other axis.
+- [`Element.scrollLeftMax`](scrollleftmax) giving the same information for the other axis.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTopMax" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTopMax</a>

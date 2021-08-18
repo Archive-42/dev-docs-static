@@ -1,9 +1,8 @@
-IDBKeyRange
-===========
+# IDBKeyRange
 
 The `IDBKeyRange` interface of the [IndexedDB API](indexeddb_api) represents a continuous interval over some data type that is used for keys. Records can be retrieved from [`IDBObjectStore`](idbobjectstore) and [`IDBIndex`](idbindex) objects using keys or a range of keys. You can limit the range using lower and upper bounds. For example, you can iterate over all values of a key in the value range A–Z.
 
-A key range can be a single value or a range with upper and lower bounds or endpoints. If the key range has both upper and lower bounds, then it is *bounded*; if it has no bounds, it is *unbounded*. A bounded key range can either be open (the endpoints are excluded) or closed (the endpoints are included). To retrieve all keys within a certain range, you can use the following code constructs:
+A key range can be a single value or a range with upper and lower bounds or endpoints. If the key range has both upper and lower bounds, then it is _bounded_; if it has no bounds, it is _unbounded_. A bounded key range can either be open (the endpoints are excluded) or closed (the endpoints are included). To retrieve all keys within a certain range, you can use the following code constructs:
 
 Range
 
@@ -47,34 +46,32 @@ The key = **z**
 
 A key is in a key range if the following conditions are true:
 
--   The lower value of the key range is one of the following:
-    -   `undefined`
-    -   Less than key value
-    -   Equal to key value if `lowerOpen` is `false`.
--   The upper value of the key range is one of the following:
-    -   `undefined`
-    -   Greater than key value
-    -   Equal to key value if `upperOpen` is `false`.
+- The lower value of the key range is one of the following:
+  - `undefined`
+  - Less than key value
+  - Equal to key value if `lowerOpen` is `false`.
+- The upper value of the key range is one of the following:
+  - `undefined`
+  - Greater than key value
+  - Equal to key value if `upperOpen` is `false`.
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-Properties
-----------
+## Properties
 
- [`IDBKeyRange.lower`](idbkeyrange/lower) <span class="badge inline readonly">Read only </span>   
+[`IDBKeyRange.lower`](idbkeyrange/lower) <span class="badge inline readonly">Read only </span>  
 Lower bound of the key range.
 
- [`IDBKeyRange.upper`](idbkeyrange/upper) <span class="badge inline readonly">Read only </span>   
+[`IDBKeyRange.upper`](idbkeyrange/upper) <span class="badge inline readonly">Read only </span>  
 Upper bound of the key range.
 
- [`IDBKeyRange.lowerOpen`](idbkeyrange/loweropen) <span class="badge inline readonly">Read only </span>   
+[`IDBKeyRange.lowerOpen`](idbkeyrange/loweropen) <span class="badge inline readonly">Read only </span>  
 Returns false if the lower-bound value is included in the key range.
 
- [`IDBKeyRange.upperOpen`](idbkeyrange/upperopen) <span class="badge inline readonly">Read only </span>   
+[`IDBKeyRange.upperOpen`](idbkeyrange/upperopen) <span class="badge inline readonly">Read only </span>  
 Returns false if the upper-bound value is included in the key range.
 
-Methods
--------
+## Methods
 
 ### Static methods
 
@@ -95,8 +92,7 @@ Creates a new upper-bound key range.
 [`IDBKeyRange.includes()`](idbkeyrange/includes)  
 Returns a boolean indicating whether a specified key is inside the key range.
 
-Examples
---------
+## Examples
 
 The following example illustrates how you'd use a key range. Here we declare a `keyRangeValue` as a range between values of "A" and "F". We open a transaction (using [`IDBTransaction`](idbtransaction)) and an object store, and open a Cursor with [`IDBObjectStore.openCursor`](idbobjectstore/opencursor), declaring `keyRangeValue` as its optional key range value. This means that the cursor will only retrieve records with keys inside that range. This range includes the values "A" and "F", as we haven't declared that they should be open bounds. If we used IDBKeyRange.bound("A", "F", true, true);, then the range would not include "A" and "F", only the values between them.
 
@@ -122,15 +118,13 @@ The following example illustrates how you'd use a key range. Here we declare a `
       };
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#idbkeyrange">Indexed Database API 2.0<br />
 <span class="small">The definition of 'IDBKeyRange' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#keyrange">Indexed Database API 2.0<br />
 <span class="small">The definition of 'IDBKeyRange' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Adds <code>includes()</code>.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -450,15 +444,14 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](idbdatabase)
--   Using transactions: [`IDBTransaction`](idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
--   Using cursors: [`IDBCursor`](idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](idbdatabase)
+- Using transactions: [`IDBTransaction`](idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
+- Using cursors: [`IDBCursor`](idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBKeyRange" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBKeyRange</a>

@@ -1,29 +1,26 @@
-HTMLImageElement
-================
+# HTMLImageElement
 
 The `HTMLImageElement` interface represents an HTML [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element, providing the properties and methods used to manipulate image elements.
 
-Constructor
------------
+## Constructor
 
 [`Image()`](htmlimageelement/image)  
-The `Image()` constructor creates and returns a new `HTMLImageElement` object representing an HTML [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element which is not attached to any DOM tree. It accepts optional width and height parameters. When called without parameters, `new ``Image()` is equivalent to calling [`document.createElement("img")`](document/createelement).
+The `Image()` constructor creates and returns a new `HTMLImageElement` object representing an HTML [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element which is not attached to any DOM tree. It accepts optional width and height parameters. When called without parameters, ` new ``Image() ` is equivalent to calling [`document.createElement("img")`](document/createelement).
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement).*
+_Inherits properties from its parent, [`HTMLElement`](htmlelement)._
 
 [`HTMLImageElement.alt`](htmlimageelement/alt)  
 A [`DOMString`](domstring) that reflects the [`alt`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-alt) HTML attribute, thus indicating the alternate fallback content to be displayed if the image has not been loaded.
 
- [`HTMLImageElement.complete`](htmlimageelement/complete) <span class="badge inline readonly">Read only </span>   
+[`HTMLImageElement.complete`](htmlimageelement/complete) <span class="badge inline readonly">Read only </span>  
 Returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that is `true` if the browser has finished fetching the image, whether successful or not. That means this value is also `true` if the image has no [`src`](htmlimageelement/src) value indicating an image to load.
 
 [`HTMLImageElement.crossOrigin`](htmlimageelement/crossorigin)  
 A [`DOMString`](domstring) specifying the CORS setting for this image element. See [CORS settings attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) for further details. This may be `null` if CORS is not used.
 
- [`HTMLImageElement.currentSrc`](htmlimageelement/currentsrc) <span class="badge inline readonly">Read only </span>   
+[`HTMLImageElement.currentSrc`](htmlimageelement/currentsrc) <span class="badge inline readonly">Read only </span>  
 Returns a [`USVString`](usvstring) representing the URL from which the currently displayed image was loaded. This may change as the image is adjusted due to changing conditions, as directed by any [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries) which are in place.
 
 [`HTMLImageElement.decoding`](htmlimageelement/decoding)  
@@ -33,15 +30,15 @@ An optional [`DOMString`](domstring) representing a hint given to the browser on
 An integer value that reflects the [`height`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-height) HTML attribute, indicating the rendered height of the image in CSS pixels.
 
 [`HTMLImageElement.isMap`](htmlimageelement/ismap)  
-A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that reflects the [`ismap`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-ismap) HTML attribute, indicating that the image is part of a server-side image map. This is different from a client-side image map, specified using an `<img>` element and a corresponding [`<map>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/map) which contains [`<area>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area) elements indicating the clickable areas in the image. The image *must* be contained within an [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) element; see the `ismap` page for details.
+A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that reflects the [`ismap`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-ismap) HTML attribute, indicating that the image is part of a server-side image map. This is different from a client-side image map, specified using an `<img>` element and a corresponding [`<map>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/map) which contains [`<area>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area) elements indicating the clickable areas in the image. The image _must_ be contained within an [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) element; see the `ismap` page for details.
 
 [`HTMLImageElement.loading`](htmlimageelement/loading)  
 A [`DOMString`](domstring) providing a hint to the browser used to optimize loading the document by determining whether to load the image immediately (`eager`) or on an as-needed basis (`lazy`).
 
- [`HTMLImageElement.naturalHeight`](htmlimageelement/naturalheight) <span class="badge inline readonly">Read only </span>   
+[`HTMLImageElement.naturalHeight`](htmlimageelement/naturalheight) <span class="badge inline readonly">Read only </span>  
 Returns an integer value representing the intrinsic height of the image in CSS pixels, if it is available; else, it shows `0`. This is the height the image would be if it were rendered at its natural full size.
 
- [`HTMLImageElement.naturalWidth`](htmlimageelement/naturalwidth) <span class="badge inline readonly">Read only </span>   
+[`HTMLImageElement.naturalWidth`](htmlimageelement/naturalwidth) <span class="badge inline readonly">Read only </span>  
 An integer value representing the intrinsic width of the image in CSS pixels, if it is available; otherwise, it will show `0`. This is the width the image would be if it were rendered at its natural full size.
 
 [`HTMLImageElement.referrerPolicy`](htmlimageelement/referrerpolicy)  
@@ -62,57 +59,53 @@ A [`DOMString`](domstring) reflecting the [`usemap`](https://developer.mozilla.o
 [`HTMLImageElement.width`](htmlimageelement/width)  
 An integer value that reflects the [`width`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-width) HTML attribute, indicating the rendered width of the image in CSS pixels.
 
- [`HTMLImageElement.x`](htmlimageelement/x) <span class="badge inline readonly">Read only </span>   
+[`HTMLImageElement.x`](htmlimageelement/x) <span class="badge inline readonly">Read only </span>  
 An integer indicating the horizontal offset of the left border edge of the image's CSS layout box relative to the origin of the [`<html>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html) element's containing block.
 
- [`HTMLImageElement.y`](htmlimageelement/y) <span class="badge inline readonly">Read only </span>   
+[`HTMLImageElement.y`](htmlimageelement/y) <span class="badge inline readonly">Read only </span>  
 The integer vertical offset of the top border edge of the image's CSS layout box relative to the origin of the [`<html>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html) element's containing block.
 
-Obsolete properties
--------------------
+## Obsolete properties
 
- [`HTMLImageElement.align`](htmlimageelement/align) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLImageElement.align`](htmlimageelement/align) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 A [`DOMString`](domstring) indicating the alignment of the image with respect to the surrounding context. The possible values are `"left"`, `"right"`, `"justify"`, and `"center"`. This is obsolete; you should instead use CSS (such as [`text-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-align), which works with images despite its name) to specify the alignment.
 
- [`HTMLImageElement.border`](htmlimageelement/border) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLImageElement.border`](htmlimageelement/border) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 A [`DOMString`](domstring) which defines the width of the border surrounding the image. This is deprecated; use the CSS [`border`](https://developer.mozilla.org/en-US/docs/Web/CSS/border) property instead.
 
- [`HTMLImageElement.hspace`](htmlimageelement/hspace) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLImageElement.hspace`](htmlimageelement/hspace) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 An integer value which specifies the amount of space (in pixels) to leave empty on the left and right sides of the image.
 
- [`HTMLImageElement.longDesc`](htmlimageelement/longdesc) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLImageElement.longDesc`](htmlimageelement/longdesc) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 A [`USVString`](usvstring) specifying the URL at which a long description of the image's contents may be found. This is used to turn the image into a hyperlink automatically. Modern HTML should instead place an `<img>` inside an [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) element defining the hyperlink.
 
- [`HTMLImageElement.lowsrc`](htmlimageelement/lowsrc) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLImageElement.lowsrc`](htmlimageelement/lowsrc) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 A [`USVString`](usvstring) specifying the URL of a low-quality (but faster to load) version of the same image. This was once used by browsers under constrained network conditions or on slow devices.
 
- [`HTMLImageElement.name`](htmlimageelement/name) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLImageElement.name`](htmlimageelement/name) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 A [`DOMString`](domstring) representing the name of the element.
 
- [`HTMLImageElement.vspace`](htmlimageelement/vspace) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLImageElement.vspace`](htmlimageelement/vspace) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 An integer value specifying the amount of empty space, in pixels, to leave above and below the image.
 
-Methods
--------
+## Methods
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement).*
+_Inherits properties from its parent, [`HTMLElement`](htmlelement)._
 
 [`HTMLImageElement.decode()`](htmlimageelement/decode)  
 Returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves when the image is decoded and it's safe to append the image to the DOM. This prevents rendering of the next frame from having to pause to decode the image, as would happen if an undecoded image were added to the DOM.
 
-Errors
-------
+## Errors
 
 If an error occurs while trying to load or render the image, and an [`onerror`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-onerror) event handler has been configured to handle the `error` event, that event handler will get called. This can happen in a number of situations, including:
 
--   The [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-src) attribute is empty or `null`.
--   The specified `src` URL is the same as the URL of the page the user is currently on.
--   The specified image is corrupted in some way that prevents it from being loaded.
--   The specified image's metadata is corrupted in such a way that it's impossible to retrieve its dimensions, and no dimensions were specified in the `<img>` element's attributes.
--   The specified image is in a format not supported by the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent).
+- The [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-src) attribute is empty or `null`.
+- The specified `src` URL is the same as the URL of the page the user is currently on.
+- The specified image is corrupted in some way that prevents it from being loaded.
+- The specified image's metadata is corrupted in such a way that it's impossible to retrieve its dimensions, and no dimensions were specified in the `<img>` element's attributes.
+- The specified image is in a format not supported by the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent).
 
-Example
--------
+## Example
 
     var img1 = new Image(); // Image constructor
     img1.src = 'image1.png';
@@ -127,8 +120,7 @@ Example
     // using first image in the document
     alert(document.images[0].src);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#extensions-to-the-htmlimageelement-interface">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'Extensions to HTMLImageElement' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Added the <code>x</code> and <code>y</code> properties.</td></tr><tr class="even"><td><a href="https://html.spec.whatwg.org/multipage/#htmlimageelement">HTML Living Standard<br />
@@ -141,8 +133,7 @@ The following properties have been added: <code>crossorigin</code>, <code>natura
 The following properties are now <code>long</code>, instead of <code>DOMString</code>: <code>height</code>, <code>width</code>, <code>hspace</code>, and <code>vspace</code>.</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-17701901">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLImgElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -968,9 +959,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   The HTML element implementing this interface: [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img)
+- The HTML element implementing this interface: [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement</a>

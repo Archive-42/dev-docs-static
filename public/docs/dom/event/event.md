@@ -1,10 +1,8 @@
-Event()
-=======
+# Event()
 
 The `Event()` constructor creates a new [`Event`](../event).
 
-Syntax
-------
+## Syntax
 
     new Event(typeArg[, eventInit]);
 
@@ -13,20 +11,19 @@ Syntax
 `typeArg`  
 This is a [`DOMString`](../domstring) representing the name of the event.
 
- `eventInit` <span class="badge inline optional">Optional</span>   
+`eventInit` <span class="badge inline optional">Optional</span>  
 This is an `EventInit` dictionary, having the following optional fields:
 
- `bubbles` <span class="badge inline optional">Optional</span>   
+`bubbles` <span class="badge inline optional">Optional</span>  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the event bubbles. The default is `false`.
 
- `cancelable` <span class="badge inline optional">Optional</span>   
+`cancelable` <span class="badge inline optional">Optional</span>  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the event can be cancelled. The default is `false`.
 
- `composed` <span class="badge inline optional">Optional</span>   
+`composed` <span class="badge inline optional">Optional</span>  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the event will trigger listeners outside of a shadow root (see [`Event.composed`](composed) for more details). The default is `false`.
 
-Example
--------
+## Example
 
     // create a look event that bubbles up and cannot be canceled
 
@@ -36,14 +33,12 @@ Example
     // event can be dispatched from any element, not only the document
     myDiv.dispatchEvent(evt);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-event-event">DOM<br />
 <span class="small">The definition of 'Event()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -99,11 +94,10 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [`Event`](../event)
--   [`EventTarget.dispatchEvent()`](../eventtarget/dispatchevent)
--   [Creating and triggering events](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events)
+- [`Event`](../event)
+- [`EventTarget.dispatchEvent()`](../eventtarget/dispatchevent)
+- [Creating and triggering events](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/Event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Event/Event</a>

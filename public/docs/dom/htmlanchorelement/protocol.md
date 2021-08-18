@@ -1,18 +1,15 @@
-HTMLAnchorElement.protocol
-==========================
+# HTMLAnchorElement.protocol
 
 The `HTMLAnchorElement.protocol` property is a [`USVString`](../usvstring) representing the protocol scheme of the URL, including the final `':'`.
 
-Syntax
-------
+## Syntax
 
     // Getter
     string = anchor.protocol;
     // Setter
     anchor.protocol = string;
 
-Examples
---------
+## Examples
 
 ### Getting the protocol of an anchor link
 
@@ -20,14 +17,12 @@ Examples
     const anchor = document.getElementById("myAnchor");
     anchor.protocol; // returns 'https:'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-hyperlink-protocol">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLHyperlinkElementUtils.protocol' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -83,9 +78,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The [`HTMLAnchorElement`](../htmlanchorelement) interface it belongs to.
+- The [`HTMLAnchorElement`](../htmlanchorelement) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/protocol" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/protocol</a>

@@ -1,18 +1,16 @@
-FileSystemEntry.copyTo()
-========================
+# FileSystemEntry.copyTo()
 
 **Deprecated**
 
 This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the [compatibility table](#browser_compatibility) at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.
 
-The [`FileSystemEntry`](../filesystementry) interface's method `copyTo``()` copies the file specified by the entry to a new location on the file system. There are some typical restrictions on what you can do:
+The [`FileSystemEntry`](../filesystementry) interface's method ` copyTo``() ` copies the file specified by the entry to a new location on the file system. There are some typical restrictions on what you can do:
 
--   A directory can't be copied into itself.
--   An entry can't be copied into its parent directory unless you specify a new name.
--   When copying a directory, the copy is always recursive; you can't leave out subfolders.
+- A directory can't be copied into itself.
+- An entry can't be copied into its parent directory unless you specify a new name.
+- When copying a directory, the copy is always recursive; you can't leave out subfolders.
 
-Syntax
-------
+## Syntax
 
     FileSystemEntry.copyTo(newParent[, newName][, successCallback][, errorCallback]);
 
@@ -21,13 +19,13 @@ Syntax
 `newParent`  
 A [`FileSystemDirectoryEntry`](../filesystemdirectoryentry) object specifying the destination directory for the copy operation.
 
- `newName` <span class="badge inline optional">Optional</span>   
+`newName` <span class="badge inline optional">Optional</span>  
 If this parameter is provided, the copy is given this string as its new file or directory name.
 
- `successCallback` <span class="badge inline optional">Optional</span>   
+`successCallback` <span class="badge inline optional">Optional</span>  
 A function which is called when the copy operation is successfully completed. Receives a single input parameter: a [`FileSystemEntry`](../filesystementry) based object providing the copied item's new details.
 
- `errorCallback` <span class="badge inline optional">Optional</span>   
+`errorCallback` <span class="badge inline optional">Optional</span>  
 An optional callback which is executed if an error occurs while copying the items. There's a single parameter: a [`FileError`](../fileerror) describing what went wrong.
 
 ### Return value
@@ -42,8 +40,7 @@ The requested operation involves an impossible change, such as moving a director
 `FileError.QUOTA_EXCEEDED_ERR`  
 The operation exceeded the user's storage quota, or there isn't enough storage space left to complete the operation.
 
-Example
--------
+## Example
 
 This example shows how a temporary log file might be moved into a more permanent "log" directory.
 
@@ -53,8 +50,7 @@ This example shows how a temporary log file might be moved into a more permanent
       }, handleError);
     }, handleError);
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -110,10 +106,9 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](../file_and_directory_entries_api)
--   [Introduction to the File System API](../file_and_directory_entries_api/introduction)
+- [File and Directory Entries API](../file_and_directory_entries_api)
+- [Introduction to the File System API](../file_and_directory_entries_api/introduction)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry/copyTo" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry/copyTo</a>

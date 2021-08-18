@@ -1,5 +1,4 @@
-FileSystemDirectoryHandle.resolve()
-===================================
+# FileSystemDirectoryHandle.resolve()
 
 **Draft**
 
@@ -11,8 +10,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `resolve()` method of the [`FileSystemDirectoryHandle`](../filesystemdirectoryhandle) interface returns an [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of directory names from the parent handle to the specified child entry, with the name of the child entry as the last array item.
 
-Syntax
-------
+## Syntax
 
     var pathArr = FileSystemDirectoryHandle.resolve(possibleDescendant);
 
@@ -29,8 +27,7 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 No exceptions are thrown.
 
-Examples
---------
+## Examples
 
 The following asynchronous function uses `resolve()` to find the path to a chosen file, relative to a specified directory handle.
 
@@ -58,14 +55,12 @@ The following asynchronous function uses `resolve()` to find the path to a chose
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/file-system-access/#dom-filesystemdirectoryhandle-resolve">File System Access API<br />
 <span class="small">The definition of 'resolve' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -121,10 +116,9 @@ No
 
 14.0
 
-See also
---------
+## See also
 
--   [File System Access API](../file_system_access_api)
--   [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
+- [File System Access API](../file_system_access_api)
+- [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryHandle/resolve" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryHandle/resolve</a>

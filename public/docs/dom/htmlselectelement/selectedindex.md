@@ -1,16 +1,13 @@
-HTMLSelectElement.selectedIndex
-===============================
+# HTMLSelectElement.selectedIndex
 
 The `HTMLSelectElement.selectedIndex` is a `long` that reflects the index of the first or last selected [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) element, depending on the value of `multiple`. The value `-1` indicates that no element is selected.
 
-Syntax
-------
+## Syntax
 
     var index = selectElem.selectedIndex;
     selectElem.selectedIndex = index;
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -36,15 +33,13 @@ Example
       pElem.innerHTML = 'selectedIndex: ' + index;
     })
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-select-selectedindex">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLSelectElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change since the latest snapshot, <a href="https://www.w3.org/TR/html52/">HTML5</a>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/forms.html#dom-select-selectedindex">HTML5<br />
 <span class="small">The definition of 'HTMLSelectElement' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition, snapshot of <a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a>.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

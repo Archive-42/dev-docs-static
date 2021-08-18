@@ -1,17 +1,14 @@
-Event.preventDefault()
-======================
+# Event.preventDefault()
 
 The [`Event`](../event) interface's `preventDefault()` method tells the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) that if the event does not get explicitly handled, its default action should not be taken as it normally would be. The event continues to propagate as usual, unless one of its event listeners calls [`stopPropagation()`](stoppropagation) or [`stopImmediatePropagation()`](stopimmediatepropagation), either of which terminates propagation at once.
 
 As noted below, calling `preventDefault()` for a non-cancelable event, such as one dispatched via [`EventTarget.dispatchEvent()`](../eventtarget/dispatchevent), without specifying `cancelable: true` has no effect.
 
-Syntax
-------
+## Syntax
 
     event.preventDefault();
 
-Examples
---------
+## Examples
 
 ### Blocking default click handling
 
@@ -112,22 +109,19 @@ The `displayWarning()` function presents a notification of a problem. It's not a
 
 #### Result
 
-Notes
------
+## Notes
 
 Calling `preventDefault()` during any stage of event flow cancels the event, meaning that any default action normally taken by the implementation as a result of the event will not occur.
 
 You can use [`Event.cancelable`](cancelable) to check if the event is cancelable. Calling `preventDefault()` for a non-cancelable event has no effect.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-event-preventdefault">DOM<br />
 <span class="small">The definition of 'Event.preventDefault()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-Event-preventDefault">Document Object Model (DOM) Level 2 Events Specification<br />
 <span class="small">The definition of 'Event.preventDefault()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

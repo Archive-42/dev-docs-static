@@ -1,17 +1,14 @@
-HTMLCollection.length
-=====================
+# HTMLCollection.length
 
 The `HTMLCollection.length` property returns the number of items in a [`HTMLCollection`](../htmlcollection).
 
-Syntax
-------
+## Syntax
 
     numItems = htmlCollection.length
 
--   `numItems` is an integer value representing the number of items in a `HTMLCollection`.
+- `numItems` is an integer value representing the number of items in a `HTMLCollection`.
 
-Example
--------
+## Example
 
 The `length` property is often useful in DOM programming. It's often used to test the length of a list, to see if it exists at all. It's also commonly used as the iterator in a `for` loop, as in this example.
 
@@ -27,14 +24,12 @@ The `length` property is often useful in DOM programming. It's often used to tes
 
     // gross is now all the HTML for the test elements
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-htmlcollection-length">DOM<br />
 <span class="small">The definition of 'HTMLCollection: length' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

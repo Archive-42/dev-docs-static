@@ -1,5 +1,4 @@
-ExtendableCookieChangeEvent
-===========================
+# ExtendableCookieChangeEvent
 
 **Secure context**
 
@@ -9,35 +8,32 @@ The `ExtendableCookieChangeEvent` interface of the [`Cookie Store API`](cookie_s
 
 Cookie changes that cause the `ExtendableCookieChangeEvent` to be dispatched are:
 
--   A cookie is newly created and not immediately removed. In this case `type` is "changed".
--   A cookie is newly created and immediately removed. In this case `type` is "deleted"
--   A cookie is removed. In this case `type` is "deleted".
+- A cookie is newly created and not immediately removed. In this case `type` is "changed".
+- A cookie is newly created and immediately removed. In this case `type` is "deleted"
+- A cookie is removed. In this case `type` is "deleted".
 
 **Note**
 
 A cookie that is replaced due to the insertion of another cookie with the same name, domain, and path, is ignored and does not trigger a change event.
 
-Constructor
------------
+## Constructor
 
 [`ExtendableCookieChangeEvent.ExtendableCookieChangeEvent()`](extendablecookiechangeevent/extendablecookiechangeevent)  
 Creates a new `ExtendableCookieChangeEvent`.
 
-Properties
-----------
+## Properties
 
-*This interface also inherits properties from [`ExtendableEvent`](extendableevent).*
+_This interface also inherits properties from [`ExtendableEvent`](extendableevent)._
 
- [`ExtendableCookieChangeEvent.changed`](extendablecookiechangeevent/changed)<span class="badge inline readonly">Read only </span>   
+[`ExtendableCookieChangeEvent.changed`](extendablecookiechangeevent/changed)<span class="badge inline readonly">Read only </span>  
 Returns an array containing the changed cookies.
 
- [`ExtendableCookieChangeEvent.deleted`](extendablecookiechangeevent/deleted)<span class="badge inline readonly">Read only </span>   
+[`ExtendableCookieChangeEvent.deleted`](extendablecookiechangeevent/deleted)<span class="badge inline readonly">Read only </span>  
 Returns an array containing the deleted cookies.
 
-Examples
---------
+## Examples
 
-In the below example we use [`CookieStoreManager.getSubscriptions()`](cookiestoremanager/getsubscriptions) to get a list of existing subscriptions. (In service workers, a subscription is required in order to listen for events.) We unsubscribe from existing subscriptions using [`CookieStoreManager.unsubscribe()`](cookiestoremanager/unsubscribe), then subscribe to the cookie with a name of 'COOKIE\_NAME' using [`CookieStoreManager.subscribe()`](cookiestoremanager/subscribe). If that cookie is changed, the event listener logs the event to the console. This will be an `ExtendableCookieChangeEvent` object, with the [`changed`](extendablecookiechangeevent/changed) or [`deleted`](extendablecookiechangeevent/deleted) property containing the modified cookie.
+In the below example we use [`CookieStoreManager.getSubscriptions()`](cookiestoremanager/getsubscriptions) to get a list of existing subscriptions. (In service workers, a subscription is required in order to listen for events.) We unsubscribe from existing subscriptions using [`CookieStoreManager.unsubscribe()`](cookiestoremanager/unsubscribe), then subscribe to the cookie with a name of 'COOKIE_NAME' using [`CookieStoreManager.subscribe()`](cookiestoremanager/subscribe). If that cookie is changed, the event listener logs the event to the console. This will be an `ExtendableCookieChangeEvent` object, with the [`changed`](extendablecookiechangeevent/changed) or [`deleted`](extendablecookiechangeevent/deleted) property containing the modified cookie.
 
     self.addEventListener('activate', (event) => {
       event.waitUntil(async () => {
@@ -56,14 +52,12 @@ In the below example we use [`CookieStoreManager.getSubscriptions()`](cookiestor
       console.log(event);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/cookie-store/#ExtendableCookieChangeEvent">Cookie Store API<br />
 <span class="small">The definition of 'ExtendableCookieChangeEvent' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

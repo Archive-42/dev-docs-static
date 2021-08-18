@@ -1,5 +1,4 @@
-HTMLImageElement.border
-=======================
+# HTMLImageElement.border
 
 **Deprecated**
 
@@ -7,14 +6,13 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The obsolete [`HTMLImageElement`](../htmlimageelement) property `border` specifies the number of pixels thick the border surrounding the image should be. A value of 0, the default, indicates that no border should be drawn.
 
-You should *not* use this property! Instead, you should use CSS to style the border. The [`border`](https://developer.mozilla.org/en-US/docs/Web/CSS/border) property or its longhand properties to not only set the thickness of the border but to potentially apply a wide variety of other styling options to it.
+You should _not_ use this property! Instead, you should use CSS to style the border. The [`border`](https://developer.mozilla.org/en-US/docs/Web/CSS/border) property or its longhand properties to not only set the thickness of the border but to potentially apply a wide variety of other styling options to it.
 
 The width, specifically, is controlled using the writing-mode aware [`border-block-start-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-block-start-width), [`border-block-end-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-block-end-width), [`border-inline-start-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-inline-start-width), and [`border-inline-end-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-inline-end-width) properties.
 
 For compatibility (or perhaps other) reasons, you can use the older properties instead (or in addition): [`border-top-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width), [`border-right-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width), [`border-bottom-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-width), and [`border-left-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width).
 
-Syntax
-------
+## Syntax
 
     htmlImageElement.border = thickness;
     let thickness = htmlImageElement.border;
@@ -23,8 +21,7 @@ Syntax
 
 A [`DOMString`](../domstring) containing an integer value specifying the thickness of the border that should surround the image, in CSS pixels. A value of `0`, or an empty string, indicates that there should be no border drawn. The default value of `border` is `0`
 
-Usage notes
------------
+## Usage notes
 
 Do not use `border`. It is obsolete. Instead, use the CSS [`border`](https://developer.mozilla.org/en-US/docs/Web/CSS/border) property and its longhand properties to establish borders around images.
 
@@ -40,15 +37,13 @@ You can further provide additional information to change the color and other fea
 
     <img src="image.png" style="border: dashed 2px #333388;">
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-img-border">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLImageElement.border' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html401/struct/objects.html#h-13.7.3">HTML 4.01 Specification<br />
 <span class="small">The definition of 'HTMLImageElement.border' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

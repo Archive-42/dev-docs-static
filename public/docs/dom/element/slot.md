@@ -1,12 +1,10 @@
-Element.slot
-============
+# Element.slot
 
 The `slot` property of the [`Element`](../element) interface returns the name of the shadow DOM slot the element is inserted in.
 
 A slot is a placeholder inside a [web component](https://developer.mozilla.org/en-US/docs/Web/Web_Components) that users can fill with their own markup (see [Using templates and slots](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots) for more information).
 
-Syntax
-------
+## Syntax
 
     var aString = element.slot
     element.slot = aString
@@ -15,8 +13,7 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Examples
---------
+## Examples
 
 In our [simple-template example](https://github.com/mdn/web-components-examples/tree/master/simple-template) ([see it live](https://mdn.github.io/web-components-examples/simple-template/)), we create a trivial custom element example called `<my-paragraph>` in which a shadow root is attached and then populated using the contents of a template that contains a slot named `my-text`.
 
@@ -31,14 +28,12 @@ In our JavaScript file we get a reference to the [`<span>`](https://developer.mo
     let slottedSpan = document.querySelector('my-paragraph span')
     console.log(slottedSpan.slot); // logs 'my-text'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-element-slot">DOM<br />
 <span class="small">The definition of 'slot' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

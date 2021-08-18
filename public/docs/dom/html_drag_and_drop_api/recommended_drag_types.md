@@ -1,13 +1,11 @@
-Recommended Drag Types
-======================
+# Recommended Drag Types
 
 The HTML Drag and Drop API supports dragging various types of data, including plain text, URLs, HTML code, files, etc. The document describes best practices for common draggable data types.
 
 **Caution:**  
 All methods and properties in this document with a `moz` prefix, such as `mozSetDataAt()`, will **only** work with Gecko-based browsers.
 
-Dragging Text
--------------
+## Dragging Text
 
 For dragging text, use the `text/plain` type. The second data parameter should be the dragged string. For example:
 
@@ -19,10 +17,9 @@ It is recommended to always add data of the `text/plain` type as a fallback for 
 
 Note: In older code, you may find `text/unicode` or the `Text` types. These are equivalent to `text/plain`, and will store and retrieve plain text data.
 
-Dragging Links
---------------
+## Dragging Links
 
-Dragged hyperlinks should include data of two types: `text/uri-list`, and `text/plain`. *Both* types should use the link’s URL for their data. For example:
+Dragged hyperlinks should include data of two types: `text/uri-list`, and `text/plain`. _Both_ types should use the link’s URL for their data. For example:
 
     var dt = event.dataTransfer;
     dt.setData("text/uri-list", "https://www.mozilla.org");
@@ -30,7 +27,7 @@ Dragged hyperlinks should include data of two types: `text/uri-list`, and `text/
 
 As usual, set the `text/plain` type last, as a fallback for the `text/uri-list` type.
 
-Note: the URL type is `uri-list` with an *I*, not an *L*.
+Note: the URL type is `uri-list` with an _I_, not an _L_.
 
 To drag multiple links, separate each link inside the `text/uri-list` data with a CRLF linebreak. Lines that begin with a number sign (`#`) are comments, and should not be considered URLs. You can use comments to indicate the purpose of a URL, the title associated with a URL, or other data.
 
@@ -55,8 +52,7 @@ You may also see data with the Mozilla-specific type `text/x-moz-url`. If it app
     http://www.example.com
     Example
 
-Dragging HTML and XML
----------------------
+## Dragging HTML and XML
 
 HTML content may use the `text/html` type. The data for this type should be serialized HTML source code. For example, it would be suitable to set its data to the value of the `innerHTML` property of an element.
 
@@ -68,8 +64,7 @@ You may also include a plain text representation of the HTML or XML data using t
     dt.setData("text/html", "Hello there, <strong>stranger</strong>");
     dt.setData("text/plain", "Hello there, stranger");
 
-Dragging Files
---------------
+## Dragging Files
 
 A local file is dragged using the `application/x-moz-file` type with a data value that is an [nsIFile](https://developer.mozilla.org/en-US/docs/XPCOM_Interface_Reference/nsIFile) object. Non-privileged web pages cannot retrieve or modify data of this type.
 
@@ -114,8 +109,7 @@ As a result, the [contains](../node/contains) method no longer works; the [inclu
 
 You could use feature detection to determine which method is supported on `types`, then run code as appropriate.
 
-Dragging Images
----------------
+## Dragging Images
 
 Direct image dragging is not common. In fact, Mozilla does not support direct image dragging on Mac or Linux. Instead, images are usually dragged only by their URLs. To do this, use the `text/uri-list` type as with other URLs. The data should be the URL of the image, or a [`data:` URI](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) if the image is not stored on a web site or disk.
 
@@ -135,20 +129,17 @@ It is important to set the data in the right order, from most-specific to least-
 
 Note the [`mozGetDataAt()`](../datatransfer/mozgetdataat) method is used for non-textual data. As some contexts may only include some of these types, it is important to check which type is made available when receiving dropped images.
 
-Dragging Nodes
---------------
+## Dragging Nodes
 
 Nodes and elements in a document may be dragged using the `application/x-moz-node` type. The data for the type should be a DOM node. This allows the drop target to receive the actual node where the drag was started from. Note that callers from a different domain will not be able to access the node even when it has been dropped.
 
 You should always include a `text/plain` alternative for the node.
 
-Dragging Custom Data
---------------------
+## Dragging Custom Data
 
 You can also use other types that you invent for custom purposes. Strive to always include a `text/plain` alternative, unless the dragged object is specific to a particular site or application. In this case, the custom type ensures that the data cannot be dropped elsewhere.
 
-Dragging files to an operating system folder
---------------------------------------------
+## Dragging files to an operating system folder
 
 You may want to add a file to an existing drag event session, and you may also want to write the file to disk when the drop operation happens over a folder in the operating system when your code receives notification of the target folder's location. This only works in extensions (or other privileged code) and the type `application/moz-file-promise` should be used. The following sample offers an overview of this advanced case:
 
@@ -203,12 +194,11 @@ You may want to add a file to an existing drag event session, and you may also w
       }
     }
 
-See also
---------
+## See also
 
--   <a href="../html_drag_and_drop_api" class="internal">HTML Drag and Drop API (Overview)</a>
--   <a href="drag_operations" class="internal">Drag Operations</a>
--   <a href="multiple_items" class="internal">Dragging and Dropping Multiple Items</a>
--   [HTML5 Living Standard: Drag and Drop](https://html.spec.whatwg.org/multipage/interaction.html#dnd)
+- <a href="../html_drag_and_drop_api" class="internal">HTML Drag and Drop API (Overview)</a>
+- <a href="drag_operations" class="internal">Drag Operations</a>
+- <a href="multiple_items" class="internal">Dragging and Dropping Multiple Items</a>
+- [HTML5 Living Standard: Drag and Drop](https://html.spec.whatwg.org/multipage/interaction.html#dnd)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Recommended_drag_types" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Recommended_drag_types</a>

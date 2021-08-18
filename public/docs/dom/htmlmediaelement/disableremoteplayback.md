@@ -1,31 +1,26 @@
-HTMLMediaElement.disableRemotePlayback
-======================================
+# HTMLMediaElement.disableRemotePlayback
 
 The `HTMLMediaElement.disableRemotePlayback` property determines whether the media element is allowed to have a remote playback UI.
 
-Syntax
-------
+## Syntax
 
-    var remotePlaybackDisabled = element.disableRemotePlayback; 
+    var remotePlaybackDisabled = element.disableRemotePlayback;
 
 ### Value
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the media element may have a remote playback UI. (false means "not disabled", which means "enabled")
 
-Example
--------
+## Example
 
     var obj = document.createElement('audio');
     obj.disableRemotePlayback = true;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/remote-playback/#the-disableremoteplayback-attribute">Remote Playback API<br />
 <span class="small">The definition of 'disableRemotePlayback' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -83,9 +78,8 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   The interface defining it, [`HTMLMediaElement`](../htmlmediaelement).
+- The interface defining it, [`HTMLMediaElement`](../htmlmediaelement).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/disableRemotePlayback" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/disableRemotePlayback</a>

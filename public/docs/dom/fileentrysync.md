@@ -1,5 +1,4 @@
-FileEntrySync
-=============
+# FileEntrySync
 
 **Non-standard**
 
@@ -9,25 +8,21 @@ The `FileEntrySync` interface of the [File System API](file_and_directory_entrie
 
 Inherits from: [EntrySync](filesystementrysync)
 
-About this document
--------------------
+## About this document
 
 This document was last updated on March 2, 2012 and follows the [W3C Specifications (Working Draft)](https://www.w3.org/TR/file-system-api/) drafted on April 19, 2011.
 
 This specification is more or less abandoned as it didn't get significant traction among browser makers.
 
-Basic concepts
---------------
+## Basic concepts
 
 To write content to file, create a FileWriter object by calling [`createWriter()`](#createwriter).
 
-Method overview
----------------
+## Method overview
 
 <table><tbody><tr class="odd"><td><code>FileWriterSync createWriter () raises (FileException);</code></td></tr><tr class="even"><td><code>File file () raises (FileException);</code></td></tr></tbody></table>
 
-Methods
--------
+## Methods
 
 ### createWriter()
 
@@ -91,8 +86,7 @@ The file does not exist.
 
 The file is no longer valid for some reason other than it having been deleted.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -148,8 +142,7 @@ No
 
 1.0
 
-See also
---------
+## See also
 
 Specification:[File API: Directories and System Specification](https://dev.w3.org/2009/dap/file-system/pub/FileSystem/)WD
 

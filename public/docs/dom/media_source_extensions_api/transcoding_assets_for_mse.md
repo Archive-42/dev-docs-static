@@ -1,10 +1,8 @@
-Transcoding assets for Media Source Extensions
-==============================================
+# Transcoding assets for Media Source Extensions
 
 When working with Media Source Extensions, it is likely that you need to condition your assets before you can stream them. This article takes you through the requirements and shows you a toolchain you can use to encode your assets appropriately.
 
-Getting started
----------------
+## Getting started
 
 1.  The first and most important step is to ensure that your files are comprised of a container and codec that users' browsers support.
 2.  Depending on the codec, you might need to fragment the file to comply with the [ISO BMFF spec](https://www.w3.org/TR/mse-byte-stream-format-isobmff/).
@@ -14,7 +12,7 @@ Below we'll cover all of these steps, but first let's look at a toolchain we can
 
 ### Sample Media
 
-If you're looking to follow the steps listed here, but don't have any media to experiment with, you can grab the trailer to Big Buck Bunny \[0\] [here](https://wayback.archive.org/web/20161102172252id_/http://video.blendertestbuilds.de/download.php?file=download.blender.org/peach/trailer_1080p.mov). Big Buck Bunny is licensed under the [Creative Commons Attribution 3.0](https://creativecommons.org/licenses/by/3.0/) license. Throughout this tutorial, you'll see the filename trailer\_1080p.mov which is the download.
+If you're looking to follow the steps listed here, but don't have any media to experiment with, you can grab the trailer to Big Buck Bunny \[0\] [here](https://wayback.archive.org/web/20161102172252id_/http://video.blendertestbuilds.de/download.php?file=download.blender.org/peach/trailer_1080p.mov). Big Buck Bunny is licensed under the [Creative Commons Attribution 3.0](https://creativecommons.org/licenses/by/3.0/) license. Throughout this tutorial, you'll see the filename trailer_1080p.mov which is the download.
 
 \[0\] (c) Copyright 2008, Blender Foundation / www.bigbuckbunny.org / https://peach.blender.org/about/
 
@@ -30,7 +28,7 @@ Get these installed successfully before moving to the next step.
 
 Sample media should be placed in the Bento4 `utils` directory and worked here.
 
-**Note**: The prebuilt ffmpeg does not include libfdk\_aac due to licensing reasons. Bento4 uses this by default, so you need to compile ffmpeg if necessary. If you don't need it, add `--audio-codec=aac` to the `mp4-dash-encode.py` command line.
+**Note**: The prebuilt ffmpeg does not include libfdk_aac due to licensing reasons. Bento4 uses this by default, so you need to compile ffmpeg if necessary. If you don't need it, add `--audio-codec=aac` to the `mp4-dash-encode.py` command line.
 
 ### Container and Codec Support
 
@@ -122,8 +120,7 @@ Run the following commands (shown with sample output):
 
 **Note**: If `"Invalid duration specification for force_key_frames: 'expr:eq(mod(n"` is displayed as an error message, modify `mp4-dash-encode.py` and remove two `"'"` from `"-force_key_frames 'expr:eq(mod(n,%d),0)'"`.
 
-Summary
--------
+## Summary
 
 With your video properly encoded and adaptive bitrate media generated, you're now ready to begin adaptive bitrate streaming on the web using DASH and MSE.
 

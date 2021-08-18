@@ -1,10 +1,8 @@
-HTMLFormElement.encoding
-========================
+# HTMLFormElement.encoding
 
 The `HTMLFormElement.encoding` property is an alternative name for the [`enctype`](enctype) element on the DOM [`HTMLFormElement`](../htmlformelement) object.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

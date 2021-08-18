@@ -1,5 +1,4 @@
-IDBFactory.cmp()
-================
+# IDBFactory.cmp()
 
 The `cmp()` method of the [`IDBFactory`](../idbfactory) interface compares two values as keys to determine equality and ordering for IndexedDB operations, such as storing and iterating.
 
@@ -7,8 +6,7 @@ The `cmp()` method of the [`IDBFactory`](../idbfactory) interface compares two v
 
 **Note**: Do not use this method for comparing arbitrary JavaScript values, because many JavaScript values are either not valid IndexedDB keys (booleans and objects, for example) or are treated as equivalent IndexedDB keys (for example, since IndexedDB ignores arrays with non-numeric properties and treats them as empty arrays, so any non-numeric arrays are treated as equivalent). This throws an exception if either of the values is not a valid key.
 
-Syntax
-------
+## Syntax
 
     var result = indexedDB.cmp(first, second);
 
@@ -38,23 +36,20 @@ Description
 
 One of the supplied keys was not a valid key.
 
-Example
--------
+## Example
 
     var a = 1;
     var b = 2;
     var result = window.indexedDB.cmp(a, b);
     console.log( "Comparison results: " + result );
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbfactory-cmp">Indexed Database API 2.0<br />
 <span class="small">The definition of 'cmp()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbfactory-cmp">Indexed Database API 2.0<br />
 <span class="small">The definition of 'cmp()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -110,15 +105,14 @@ Samsung Internet
 
 1.5
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBFactory/cmp" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBFactory/cmp</a>

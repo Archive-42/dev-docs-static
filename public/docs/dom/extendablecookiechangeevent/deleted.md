@@ -1,5 +1,4 @@
-ExtendableCookieChangeEvent.deleted
-===================================
+# ExtendableCookieChangeEvent.deleted
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `deleted` read-only property of the [`ExtendableCookieChangeEvent`](../extendablecookiechangeevent) interface returns any cookies that have been deleted by the given `ExtendableCookieChangeEvent` instance.
 
-Syntax
-------
+## Syntax
 
     var array = ExtendableCookieChangeEvent.deleted;
 
@@ -49,8 +47,7 @@ Cookies will be sent in all contexts.
 **Note**
 For more information on SameSite cookies see [SameSite cookies explained](https://web.dev/samesite-cookies-explained/).
 
-Examples
---------
+## Examples
 
 In this example when the cookie is deleted the event listener logs the first item in the `deleted` property to the console. It contains an object representing the cookie that has just been deleted.
 
@@ -58,14 +55,12 @@ In this example when the cookie is deleted the event listener logs the first ite
       console.log(event.deleted[0]);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/cookie-store/#dom-extendablecookiechangeevent-deleted">Cookie Store API<br />
 <span class="small">The definition of 'ExtendableCookieStoreManager.deleted' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

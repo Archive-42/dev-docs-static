@@ -1,23 +1,19 @@
-Location: ancestorOrigins
-=========================
+# Location: ancestorOrigins
 
 The `ancestorOrigins` read-only property of the [`Location`](../location) interface is a static [`DOMStringList`](../domstringlist) containing, in reverse order, the origins of all ancestor browsing contexts of the document associated with the given [`Location`](../location) object.
 
 You can use `location.ancestorOrigins` in the script for a document to determine, for example, whenever the document is being framed by a site which you don’t expect it to be framed by. You can also use it to vary the behavior of the document based on what site or list of sites is framing it.
 
-Syntax
-------
+## Syntax
 
     const ancestors = location.ancestorOrigins;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-location-ancestororigins">HTML Living Standard<br />
 <span class="small">The definition of 'ancestorOrigins ' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

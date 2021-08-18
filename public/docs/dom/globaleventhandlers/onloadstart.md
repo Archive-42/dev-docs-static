@@ -1,10 +1,8 @@
-GlobalEventHandlers.onloadstart
-===============================
+# GlobalEventHandlers.onloadstart
 
 The `onloadstart` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `loadstart` event is raised (when progress has begun on the loading of a resource.)
 
-Syntax
-------
+## Syntax
 
     img.onloadstart = funcRef;
 
@@ -12,8 +10,7 @@ Syntax
 
 `funcRef` is the handler function to be called when the resource's `loadstart` event fires.
 
-Examples
---------
+## Examples
 
 ### HTML content
 
@@ -35,14 +32,12 @@ Examples
       console.log('Image load finished');
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onloadstart">HTML Living Standard<br />
 <span class="small">The definition of 'onloadstart' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

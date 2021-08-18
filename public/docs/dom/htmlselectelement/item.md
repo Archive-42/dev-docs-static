@@ -1,26 +1,23 @@
-HTMLSelectElement.item()
-========================
+# HTMLSelectElement.item()
 
 The `HTMLSelectElement.item()` method returns the [`Element`](../element) corresponding to the [`HTMLOptionElement`](../htmloptionelement) whose position in the options list corresponds to the index given in the parameter, or `null` if there are none.
 
-In JavaScript, using the array bracket syntax with an `unsigned long`, like `selectElt[index]` is equivalent to `selectElt``.namedItem(index)`.
+In JavaScript, using the array bracket syntax with an `unsigned long`, like `selectElt[index]` is equivalent to ` selectElt``.namedItem(index) `.
 
-Syntax
-------
+## Syntax
 
     var item = collection.item(index);
     var item = collection[index];
 
 ### Parameters
 
--   `index` is an `unsigned long`.
+- `index` is an `unsigned long`.
 
 ### Return value
 
--   `item` is a [`HTMLOptionElement`](../htmloptionelement).
+- `item` is a [`HTMLOptionElement`](../htmloptionelement).
 
-Examples
---------
+## Examples
 
 ### HTML
 
@@ -36,15 +33,13 @@ Examples
     // Returns the HTMLOptionElement representing #o2
     elem1 = document.forms[0]['myFormControl'][1];
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-select-item">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLSelectElement.item()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change since the latest snapshot, <a href="https://www.w3.org/TR/html52/">HTML5</a>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/forms.html#dom-select-item">HTML5<br />
 <span class="small">The definition of 'HTMLSelectElement.item()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition, snapshot of <a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -100,9 +95,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`HTMLSelectElement`](../htmlselectelement) that implements it.
+- [`HTMLSelectElement`](../htmlselectelement) that implements it.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/item" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/item</a>

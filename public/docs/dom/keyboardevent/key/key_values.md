@@ -1,5 +1,4 @@
-Key Values
-==========
+# Key Values
 
 The tables below list the standard key values in various categories of key, with an explanation of what the key is typically used for. Corresponding virtual keycodes for common platforms are included where available.
 
@@ -7,8 +6,7 @@ Learn how to use these key values in JavaScript using [KeyboardEvent.key](../key
 
 [Special Values](#special_values) | [Modifier Keys](#modifier_keys) | [Whitespace Keys](#whitespace_keys) | [Navigation Keys](#navigation_keys) | [Editing Keys](#editing_keys) | [UI Keys](#ui_keys) | [Device Keys](#device_keys) | [IME and Composition Keys](#ime_and_composition_keys) | [Function Keys](#function_keys) | [Phone Keys](#phone_keys) | [Multimedia Keys](#multimedia_keys) | [Audio Control Keys](#audio_control_keys) | [TV Control Keys](#tv_control_keys) | [Media Controller Keys](#media_controller_keys) | [Speech Recognition Keys](#speech_recognition_keys) | [Document Keys](#document_keys) | [Application Selector Keys](#application_selector_keys) | [Browser Control Keys](#browser_control_keys) | [Numeric Keypad Keys](#numeric_keypad_keys)
 
-Special values
---------------
+## Special values
 
 Values of `key` which have special meanings other than identifying a specific key or character.
 
@@ -32,18 +30,17 @@ The user agent wasn't able to map the event's virtual keycode to a specific key 
 
 This can happen due to hardware or software constraints, or because of constraints around the platform on which the user agent is running.
 
-*varies*
+_varies_
 
-*varies*
+_varies_
 
-*varies*
+_varies_
 
-*varies*
+_varies_
 
-Modifier keys
--------------
+## Modifier keys
 
-*Modifiers* are special keys which are used to generate special characters or cause special actions when used in combination with other keys. Examples include the Shift and Control keys, and lock keys such as Caps Lock and NumLock.
+_Modifiers_ are special keys which are used to generate special characters or cause special actions when used in combination with other keys. Examples include the Shift and Control keys, and lock keys such as Caps Lock and NumLock.
 
 `KeyboardEvent.key` Value
 
@@ -229,8 +226,7 @@ The Symbol Lock key.
 
 \[5\] Chrome 67 and Firefox 63 now correctly interpret the right Alt key for keyboard layouts which map that key to AltGr. See Firefox bug [bug 900750](https://bugzilla.mozilla.org/show_bug.cgi?id=900750) and [Chrome bug 25503](https://bugs.chromium.org/p/chromium/issues/detail?id=25503) for further details.
 
-Whitespace keys
----------------
+## Whitespace keys
 
 `KeyboardEvent.key` Value
 
@@ -298,8 +294,7 @@ The space key, Space Bar.
 
 \[1\] Older browsers may return `"Spacebar"` instead of `" "` for the Space Bar key. Firefox did so until version 37, as did Internet Explorer 9, 10, and 11.
 
-Navigation keys
----------------
+## Navigation keys
 
 `KeyboardEvent.key` Value
 
@@ -361,7 +356,7 @@ The right arrow key.
 
 The up arrow key.
 
-`VK_UP`` (0x26)`
+` VK_UP`` (0x26) `
 
 `kVK_UpArrow` (0x7E)
 
@@ -405,7 +400,7 @@ The Page Down (or PgDn) key. Scrolls down or displays the next page of content.
 
 `VK_NEXT` (0x22)
 
-`kVK_PageDown`` (0x79)`
+` kVK_PageDown`` (0x79) `
 
 `GDK_KEY_Page_Down` (0xFF56)  
 `GDK_KEY_KP_Page_Down` (0xFF9B)  
@@ -429,8 +424,7 @@ The Page Up (or PgUp) key. Scrolls up or displays the previous page of content.
 
 \[1\] Internet Explorer, Edge (16 and earlier), and Firefox (36 and earlier) use `"Left"`, `"Right"`, `"Up"`, and `"Down"` instead of `"ArrowLeft"`, `"ArrowRight"`, `"ArrowUp"`, and `"ArrowDown"`.
 
-Editing keys
-------------
+## Editing keys
 
 `KeyboardEvent.key` Value
 
@@ -574,8 +568,7 @@ Undo the last action.
 
 \[4\] Internet Explorer (tested on release 9 and 11) and Firefox 36 and earlier generate the value `"Exsel"` instead of `"ExSel"` when the ExSel key is pressed.
 
-UI keys
--------
+## UI keys
 
 `KeyboardEvent.key` Value
 
@@ -750,8 +743,7 @@ The ZoomOut key.
 
 \[6\] Firefox didn't support the `"ZoomIn"` and `"ZoomOut"` keys until Firefox 37.
 
-Device keys
------------
+## Device keys
 
 `KeyboardEvent.key` Value
 
@@ -867,8 +859,7 @@ The WakeUp key. Used to wake the computer from the hibernation or standby modes.
 
 \[2\] Prior to Firefox 37, this key generated the value `"Unidentified"`.
 
-IME and composition keys
-------------------------
+## IME and composition keys
 
 Keys used when using an Input Method Editor (IME) to input text which can't readily be entered by simple keypresses, such as text in languages such as those which have more graphemes than there are character entry keys on the keyboard. Common examples include Chinese, Japanese, Korean, and Hindi.
 
@@ -996,7 +987,7 @@ The NonConvert ("Don't convert") key. This accepts the current input method sequ
 `VK_NONCONVERT` (0x1D)
 
 `GDK_KEY_Muhenkan` (0xFF22)  
-`Qt::Key_Muhenkan` (0x01001122)  
+`Qt::Key_Muhenkan` (0x01001122)
 
 `KEYCODE_MUHENKAN` (213)
 
@@ -1020,7 +1011,7 @@ The Single Candidate key. Enables single candidate mode (as opposed to multi-can
 `GDK_KEY_SingleCandidate` (0xFF3C)  
 `Qt::Key_SingleCandidate` (0x0100113C)
 
-\[1\] On the *X Window System*, the Compose key is called the Multi key.
+\[1\] On the _X Window System_, the Compose key is called the Multi key.
 
 \[2\] The NonConvert key is reported as `"Nonconvert"` instead of the correct `"NonConvert"` by Internet Explorer (tested on release 9 and 11) and Firefox versions 36 and earlier.
 
@@ -1208,7 +1199,7 @@ The Zenkaku/Hankaku (full width/half width) toggle key.
 
 ### Dead keycodes for Linux
 
-Linux generates accented characters using special **dead keys**. *Dead keys* are keys which are pressed in combination with character keys to generate accented forms of those characters. You can identify which specific dead key was used (if more than one exists) by examining the [`KeyboardEvent`](../../keyboardevent)'s associated `compositionupdate` event's [`data`](../../compositionevent/data) property.
+Linux generates accented characters using special **dead keys**. _Dead keys_ are keys which are pressed in combination with character keys to generate accented forms of those characters. You can identify which specific dead key was used (if more than one exists) by examining the [`KeyboardEvent`](../../keyboardevent)'s associated `compositionupdate` event's [`data`](../../compositionevent/data) property.
 
 You can find a table of the dead keys and the characters they can be used with to generate accented or otherwise special characters on Linux using GTK.
 
@@ -1235,8 +1226,7 @@ The value of [`data`](../../compositionevent/data) will be one of the following:
 <code>Qt::Key_Dead_Hook</code> (0x01001261)</td><td>̡</td><td></td></tr><tr class="even"><td><code>GDK_KEY_dead_horn</code> (0xFE62)<br />
 <code>Qt::Key_Dead_Horn</code> (0x01001262)</td><td>̛</td><td></td></tr><tr class="odd"><td><code>GDK_KEY_dead_stroke</code> (0xFE63)</td><td>̶̶</td><td></td></tr><tr class="even"><td><code>GDK_KEY_dead_abovecomma</code> (0xFE64)</td><td>̓̓</td><td></td></tr><tr class="odd"><td><code>GDK_KEY_dead_psili</code> (0xFE64)</td><td>᾿</td><td></td></tr><tr class="even"><td><code>GDK_KEY_dead_abovereversedcomma</code> (0xFE65)</td><td>ʽ</td><td></td></tr><tr class="odd"><td><code>GDK_KEY_dead_dasia</code> (0xFE65)</td><td>῾</td><td></td></tr><tr class="even"><td><code>GDK_KEY_dead_doublegrave</code> (0xFE66)</td><td>̏</td><td></td></tr><tr class="odd"><td><code>GDK_KEY_dead_belowring</code> (0xFE67)</td><td>˳</td><td></td></tr><tr class="even"><td><code>GDK_KEY_dead_belowmacron</code> (0xFE68)</td><td>̱</td><td></td></tr><tr class="odd"><td><code>GDK_KEY_dead_belowcircumflex</code> (0xFE69)</td><td>ꞈ</td><td></td></tr><tr class="even"><td><code>GDK_KEY_dead_belowtilde</code> (0xFE6A)</td><td>̰</td><td></td></tr><tr class="odd"><td><code>GDK_KEY_dead_belowbreve</code> (0xFE6B)</td><td>̮</td><td></td></tr><tr class="even"><td><code>GDK_KEY_dead_belowdiaeresis</code> (0xFE6C)</td><td>̤</td><td></td></tr><tr class="odd"><td><code>GDK_KEY_dead_invertedbreve</code> (0xFE6D)</td><td>̯</td><td></td></tr><tr class="even"><td><code>GDK_KEY_dead_belowcomma</code> (0xFE6E)</td><td>̦</td><td></td></tr><tr class="odd"><td><code>GDK_KEY_dead_currency</code> (0xFE6F)</td><td></td><td></td></tr><tr class="even"><td><code>GDK_KEY_dead_a</code> (0xFE80)</td><td></td><td></td></tr><tr class="odd"><td><code>GDK_KEY_dead_A</code> (0xFE81)</td><td></td><td></td></tr><tr class="even"><td><code>GDK_KEY_dead_e</code> (0xFE82)</td><td></td><td></td></tr><tr class="odd"><td><code>GDK_KEY_dead_E</code> (0xFE83)</td><td></td><td></td></tr><tr class="even"><td><code>GDK_KEY_dead_i</code> (0xFE84)</td><td></td><td></td></tr><tr class="odd"><td><code>GDK_KEY_dead_I</code> (0xFE85)</td><td></td><td></td></tr><tr class="even"><td><code>GDK_KEY_dead_o</code> (0xFE86)</td><td></td><td></td></tr><tr class="odd"><td><code>GDK_KEY_dead_O</code> (0xFE87)</td><td></td><td></td></tr><tr class="even"><td><code>GDK_KEY_dead_u</code> (0xFE88)</td><td></td><td></td></tr><tr class="odd"><td><code>GDK_KEY_dead_U</code> (0xFE89)</td><td></td><td></td></tr><tr class="even"><td><code>GDK_KEY_dead_small_schwa</code> (0xFE8A)</td><td>ə</td><td></td></tr><tr class="odd"><td><code>GDK_KEY_dead_capital_schwa</code> (0xFE8B)</td><td>Ə</td><td></td></tr><tr class="even"><td><code>GDK_KEY_dead_greek</code> (0xFE8C)</td><td></td><td></td></tr></tbody></table>
 
-Function keys
--------------
+## Function keys
 
 While various platforms support different numbers of the general-purpose function keys, such as F1–F12 (or F1–F10, or F1–F15, etc.), the first few are specifically defined as follows.
 
@@ -1544,8 +1534,7 @@ The fourth general-purpose virtual function key.
 
 `Qt::Key_Context4` (0x01100003)
 
-Phone keys
-----------
+## Phone keys
 
 These keys represent buttons which commonly exist on modern smartphones.
 
@@ -1649,8 +1638,7 @@ The Voice Dial key. Initiates voice dialing.
 
 \[1\] Prior to Firefox 37, the Home button generated a key code of `"Exit"`. Starting in Firefox 37, the button generates the key code `"MozHomeScreen"`.
 
-Multimedia keys
----------------
+## Multimedia keys
 
 The multimedia keys are extra buttons or keys for controlling media devices, found on some keyboards.
 
@@ -1694,7 +1682,7 @@ Starts, continues, or increases the speed of fast forwarding the media.
 
 `APPCOMMAND_MEDIA_FAST_FORWARD`
 
-`GDK_KEY_AudioForward (0x1008FF97)     Qt:Key_AudioForward` (0x01000102)
+`GDK_KEY_AudioForward (0x1008FF97) Qt:Key_AudioForward` (0x01000102)
 
 `KEYCODE_MEDIA_FAST_FORWARD` (90)
 
@@ -1719,7 +1707,7 @@ Starts or continues playing media at normal speed, if not already doing so. Has 
 
 `GDK_KEY_AudioPlay` (0x1008FF14)
 
-`KEYCODE_MEDIA_PLAY`` (126)`
+` KEYCODE_MEDIA_PLAY`` (126) `
 
 `"MediaPlayPause"`
 
@@ -1741,7 +1729,7 @@ Starts or resumes recording media.
 `GDK_KEY_AudioRecord` (0x1008FF1C)  
 `Qt::Key_MediaRecord` (0x01000084)
 
-`KEYCODE_MEDIA_RECORD`` (130)`
+` KEYCODE_MEDIA_RECORD`` (130) `
 
 `"MediaRewind"`
 
@@ -1752,7 +1740,7 @@ Starts, continues, or increases the speed of rewinding the media.
 `GDK_KEY_AudioRewind` (0x1008FF3E)  
 `Qt::Key_AudioRewind` (0x010000C5)
 
-`KEYCODE_MEDIA_REWIND`` (89)`
+` KEYCODE_MEDIA_REWIND`` (89) `
 
 `"MediaStop"`
 
@@ -1794,8 +1782,7 @@ Seeks to the previous media or program track.
 
 \[2\] Prior to Firefox 37, Firefox generated the key code `"FastFwd"` on some platforms and `"Unidentified"` on others instead of `"MediaFastForward"`.
 
-Audio control keys
-------------------
+## Audio control keys
 
 These media keys are used specifically for controlling audio.
 
@@ -1962,8 +1949,7 @@ Increases the microphone's input volume.
 
 \[1\] Internet Explorer, Edge, and Firefox (48 and earlier) use `"VolumeUp"`, `"VolumeDown"`, and `"VolumeMute"` instead of `"AudioVolumeUp"`, `"AudioVolumeDown"`, and `"AudioVolumeMute"`. In Firefox 49 they were updated to match the latest specification. The old names are still used on [Boot to Gecko](https://developer.mozilla.org/en-US/docs/Mozilla/B2G_OS).
 
-TV control keys
----------------
+## TV control keys
 
 These key values represent buttons or keys present on television devices, or computers or phones which have TV support.
 
@@ -2165,17 +2151,16 @@ Timer programming button.
 
 \[2\] These keys were `"Unidentified"` until Firefox 37.
 
-Media controller keys
----------------------
+## Media controller keys
 
 Because modern remote controls for media devices often include buttons beyond the basic controls covered elsewhere in this document, key values are defined for a broad array of these additional buttons.
 
 The values below are derived in part form a number of consumer electronics technical specifications:
 
--   [DTV Application Software Environment](http://atsc.org/standard/a100-dtv-application-software-environment-level-1-dase-1/) (part of the [ATSC](https://en.wikipedia.org/wiki/ATSC) specification)
--   [Open Cable Application Platform 1.1.3](https://www.cablelabs.com/specifications/OC-SP-OCAP1.1.3-100603.pdf)
--   [ANSI/CEA-2014-B](http://www.ce.org/Standards/Standard-Listings/R7-Home-Network-Committee/CEA-2014-B-(ANSI%29.aspx): Web-based Protocol and Framework for Remote User Interface on UPnP™ Networks and the Internet
--   [Android KeyEvent key code values](https://developer.android.com/reference/android/view/KeyEvent.html)
+- [DTV Application Software Environment](http://atsc.org/standard/a100-dtv-application-software-environment-level-1-dase-1/) (part of the [ATSC](https://en.wikipedia.org/wiki/ATSC) specification)
+- [Open Cable Application Platform 1.1.3](https://www.cablelabs.com/specifications/OC-SP-OCAP1.1.3-100603.pdf)
+- [ANSI/CEA-2014-B](http://www.ce.org/Standards/Standard-Listings/R7-Home-Network-Committee/CEA-2014-B-(ANSI%29.aspx): Web-based Protocol and Framework for Remote User Interface on UPnP™ Networks and the Internet
+- [Android KeyEvent key code values](https://developer.android.com/reference/android/view/KeyEvent.html)
 
 **Note:** Remote controls typically include keys whose values are already defined elsewhere, such as under [Multimedia keys](#multimedia_keys) or [Audio control keys](#audio_control_keys). Those keys' values will match what's documented in those tables.
 
@@ -2263,7 +2248,7 @@ Toggles closed captioning on and off.
 
 `"Dimmer"`
 
-Adjusts the brightness of the device by toggling between two brightness levels *or* by cycling among multiple brightness levels.
+Adjusts the brightness of the device by toggling between two brightness levels _or_ by cycling among multiple brightness levels.
 
 `VK_DIMMER`
 
@@ -2433,7 +2418,7 @@ Presents a list of media applications, such as photo viewers, audio and video pl
 
 The Audio Track key.
 
-GDK\_KEY\_AudioCycleTrack (0x1008FF9B)  
+GDK_KEY_AudioCycleTrack (0x1008FF9B)  
 `Qt::Key_AudioCycleTrack` (0x01000106)
 
 `KEYCODE_MEDIA_AUDIO_TRACK` (222)
@@ -2689,8 +2674,7 @@ Toggles between full-screen and scaled content display, or otherwise change the 
 
 \[3\] These keys were `"Unidentified"` until Firefox 37.
 
-Speech recognition keys
------------------------
+## Speech recognition keys
 
 These special multimedia keys are used to control speech recognition features.
 
@@ -2724,8 +2708,7 @@ Toggles between dictation mode and command/control mode. This lets the speech en
 
 \[2\] The `APPCOMMAND_DICTATE_OR_COMMAND_CONTROL_TOGGLE` command on Windows generates `"Unidentified"` on Firefox.
 
-Document keys
--------------
+## Document keys
 
 These keys control documents. In the specification, they're included in other sets of keys (such as the media keys), but they are more sensibly considered to be their own category.
 
@@ -2828,8 +2811,7 @@ Sends the current message.
 
 \[1\] Prior to Firefox 37, this key generated the key value `"Unidentified"`.
 
-Application selector keys
--------------------------
+## Application selector keys
 
 Some keyboards offer special keys for launching or switching to certain common applications. Key values for those are listed here.
 
@@ -3087,8 +3069,7 @@ The 16th generic application launcher button.
 
 \[5\] Firefox introduced support for this key in Firefox 37. Prior to that, this key was reported as `"Unidentified"`.
 
-Browser control keys
---------------------
+## Browser control keys
 
 Some keyboards include special keys for controlling Web browsers. Those keys follow.
 
@@ -3189,8 +3170,7 @@ Stops loading the currently displayed Web view or content.
 
 \[1\] Prior to Firefox 37, this key's value was reported as `"Unidentified"`.
 
-Numeric keypad keys
--------------------
+## Numeric keypad keys
 
 These keys are found on the keyboard's numeric keypad. However, not all are present on every keyboard. Although typical numeric keypads have numeric keys from 0 to 9 (encoded as `"0"` through `"9"`), some multimedia keyboards include additional number keys for higher numbers.
 
@@ -3220,7 +3200,7 @@ In newer browsers, this value to be the character generated by the decimal key (
 
 `kVK_ANSI_KeypadDecimal` (0x41)
 
-`GDK_KEY_KP_Decimal` (0xFFAE)  
+`GDK_KEY_KP_Decimal` (0xFFAE)
 
 `KEYCODE_NUMPAD_DOT` (158)
 
@@ -3303,7 +3283,7 @@ The numeric keypad's places separator character.
 
 `kVK_JIS_KeypadComma` (0x5F)
 
-`GDK_KEY_KP_Separator` (0xFFAC)  
+`GDK_KEY_KP_Separator` (0xFFAC)
 
 `KEYCODE_NUMPAD_COMMA` (159)
 

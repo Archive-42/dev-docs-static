@@ -1,10 +1,8 @@
-HTMLInputElement
-================
+# HTMLInputElement
 
 The `HTMLInputElement` interface provides special properties and methods for manipulating the options, layout, and presentation of [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) elements.
 
-Properties
-----------
+## Properties
 
 <table><caption>Properties related to the parent form</caption><tbody><tr class="odd"><td><code>form </code><span class="badge inline readonly">Read only </span></td><td><em><a href="htmlformelement"><code>HTMLFormElement</code></a> object:</em> <strong>Returns</strong> a reference to the parent <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form"><code>&lt;form&gt;</code></a> element.</td></tr><tr class="even"><td><code>formAction</code></td><td><em><code>string</code>:</em> <strong>Returns / Sets</strong> the element's <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-formaction"><code>formaction</code></a> attribute, containing the URI of a program that processes information submitted by the element. This overrides the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-action"><code>action</code></a> attribute of the parent form.</td></tr><tr class="odd"><td><code>formEnctype</code></td><td><em><code>string</code>:</em> <strong>Returns / Sets</strong> the element's <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-formenctype"><code>formenctype</code></a> attribute, containing the type of content that is used to submit the form to the server. This overrides the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-enctype"><code>enctype</code></a> attribute of the parent form.</td></tr><tr class="even"><td><code>formMethod</code></td><td><em><code>string</code>:</em> <strong>Returns / Sets</strong> the element's <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-formmethod"><code>formmethod</code></a> attribute, containing the HTTP method that the browser uses to submit the form. This overrides the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-method"><code>method</code></a> attribute of the parent form.</td></tr><tr class="odd"><td><code>formNoValidate</code></td><td><em><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a>:</em> <strong>Returns / Sets</strong> the element's <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-formnovalidate"><code>formnovalidate</code></a> attribute, indicating that the form is not to be validated when it is submitted. This overrides the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-novalidate"><code>novalidate</code></a> attribute of the parent form.</td></tr><tr class="even"><td><code>formTarget</code></td><td><em><code>string</code>:</em> <strong>Returns / Sets</strong> the element's <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-formtarget"><code>formtarget</code></a> attribute, containing a name or keyword indicating where to display the response that is received after submitting the form. This overrides the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-target"><code>target</code></a> attribute of the parent form.</td></tr></tbody></table>
 
@@ -26,44 +24,42 @@ This is ignored if the value of the <a href="https://developer.mozilla.org/en-US
 
 <table><caption>Properties not yet categorized</caption><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><tbody><tr class="odd"><td><code>defaultValue</code></td><td><em><code>string</code>:</em> <strong>Returns / Sets</strong> the default value as originally specified in the HTML that created this object.</td></tr><tr class="even"><td><code>dirName</code></td><td><em><code>string</code>:</em> <strong>Returns / Sets</strong> the directionality of the element.</td></tr><tr class="odd"><td><code>accessKey</code></td><td><em><code>string</code>:</em> <strong>Returns</strong> a string containing a single character that switches input focus to the control when pressed.</td></tr><tr class="even"><td><code>list</code> <span class="badge inline readonly">Read only </span></td><td><em><a href="htmlelement"><code>HTMLElement</code></a><code> object</code>:</em> <strong>Returns</strong> the element pointed by the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-list"><code>list</code></a> attribute. The property may be <code>null</code> if no HTML element found in the same tree.</td></tr><tr class="odd"><td><code>multiple</code></td><td><em><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a>:</em> <strong>Returns / Sets</strong> the element's <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-multiple"><code>multiple</code></a> attribute, indicating whether more than one value is possible (e.g., multiple files).</td></tr><tr class="even"><td><code>files</code></td><td><em><a href="filelist"><code>FileList</code></a><code> array</code>:</em> <strong>Returns</strong> the list of selected files.</td></tr><tr class="odd"><td><a href="htmlinputelement/labels"><code>HTMLInputElement.labels</code></a> <span class="badge inline readonly">Read only </span></td><td><em><a href="nodelist"><code>NodeList</code></a><code> array</code>:</em> <strong>Returns</strong> a list of <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label"><code>&lt;label&gt;</code></a> elements that are labels for this element.</td></tr><tr class="even"><td><code>step</code></td><td><code>string</code><em>:</em> <strong>Returns / Sets</strong> the element's <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step"><code>step</code></a> attribute, which works with <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min"><code>min</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max"><code>max</code></a> to limit the increments at which a numeric or date-time value can be set. It can be the string <code>any</code> or a positive floating point number. If this is not set to <code>any</code>, the control accepts only values at multiples of the step value greater than the minimum.</td></tr><tr class="odd"><td><code>valueAsDate</code></td><td><em><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"><code>Date</code></a><code> object</code>:</em> <strong>Returns / Sets</strong> the value of the element, interpreted as a date, or <code>null</code> if conversion is not possible.</td></tr><tr class="even"><td><code>valueAsNumber</code></td><td><em><code>double</code>:</em> <strong>Returns</strong> the value of the element, interpreted as one of the following, in order:<ul><li>A time value</li><li>A number</li><li><code>NaN</code> if conversion is impossible</li></ul></td></tr><tr class="odd"><td><code>autocapitalize</code> <span class="icon experimental" data-viewbox="0 0 100 100" data-xmlns="http://www.w3.org/2000/svg" data-role="img"> This is an experimental API that should not be used in production code. </span></td><td><code>string</code><em>:</em> <strong>Defines</strong> the capitalization behavior for user input. Valid values are <code>none</code>, <code>off</code>, <code>characters</code>, <code>words</code>, or <code>sentences</code>.</td></tr><tr class="even"><td><code>inputmode</code></td><td>Provides a hint to browsers as to the type of virtual keyboard configuration to use when editing this element or its contents.</td></tr></tbody></table>
 
- <span class="page-not-created">`HTMLInputElement.align`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
-`string`*:* **Represents** the alignment of the element. *Use CSS instead.*
+<span class="page-not-created">`HTMLInputElement.align`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
+`string`_:_ **Represents** the alignment of the element. _Use CSS instead._
 
- <span class="page-not-created">`HTMLInputElement.useMap`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
-`string`*:* **Represents** a client-side image map.
+<span class="page-not-created">`HTMLInputElement.useMap`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
+`string`_:_ **Represents** a client-side image map.
 
-Methods
--------
+## Methods
 
 <table><tbody><tr class="odd"><td><a href="htmlorforeignelement/blur"><code>blur()</code></a></td><td>Removes focus from the input element; keystrokes will subsequently go nowhere.</td></tr><tr class="even"><td><a href="htmlelement/click"><code>click()</code></a></td><td>Simulates a click on the input element.</td></tr><tr class="odd"><td><a href="htmlorforeignelement/focus"><code>focus()</code></a></td><td>Focuses on the input element; keystrokes will subsequently go to this element.</td></tr><tr class="even"><td><a href="htmlinputelement/select"><code>select()</code></a></td><td>Selects all the text in the input element, and focuses it so the user can subsequently replace all of its content.</td></tr><tr class="odd"><td><a href="htmlinputelement/setselectionrange"><code>setSelectionRange()</code></a></td><td>Selects a range of text in the input element (but does not focus it).</td></tr><tr class="even"><td><a href="htmlinputelement/setrangetext"><code>setRangeText()</code></a></td><td>Replaces a range of text in the input element with new text.</td></tr><tr class="odd"><td><code>setCustomValidity()</code></td><td>Sets a custom validity message for the element. If this message is not the empty string, then the element is suffering from a custom validity error, and does not validate.</td></tr><tr class="even"><td><code>checkValidity()</code></td><td>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> that is <code>false</code> if the element is a candidate for constraint validation, and it does not satisfy its constraints. In this case, it also fires an <code>invalid</code> event at the element. It returns <code>true</code> if the element is not a candidate for constraint validation, or if it satisfies its constraints.</td></tr><tr class="odd"><td><code>reportValidity()</code></td><td>Runs the <code>checkValidity()</code> method, and if it returns false (for an invalid input or no pattern attribute provided), then it reports to the user that the input is invalid in the same manner as if you submitted a form.</td></tr></tbody></table>
 
 [`HTMLInputElement.stepDown()`](htmlinputelement/stepdown)  
-Decrements the [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-value) by ([`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step) \* n), where n defaults to 1 if not specified. Throws an INVALID\_STATE\_ERR exception:
+Decrements the [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-value) by ([`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step) \* n), where n defaults to 1 if not specified. Throws an INVALID_STATE_ERR exception:
 
--   if the method is not applicable to for the current [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-type) value,
--   if the element has no [`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step) value,
--   if the [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-value) cannot be converted to a number,
--   if the resulting value is above the [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max) or below the [`min`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min).
+- if the method is not applicable to for the current [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-type) value,
+- if the element has no [`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step) value,
+- if the [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-value) cannot be converted to a number,
+- if the resulting value is above the [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max) or below the [`min`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min).
 
 [`HTMLInputElement.stepUp()`](htmlinputelement/stepup)  
-Increments the [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-value) by ([`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step) \* n), where n defaults to 1 if not specified. Throws an INVALID\_STATE\_ERR exception:
+Increments the [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-value) by ([`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step) \* n), where n defaults to 1 if not specified. Throws an INVALID_STATE_ERR exception:
 
--   if the method is not applicable to for the current [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-type) value.,
--   if the element has no [`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step) value,
--   if the [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-value) cannot be converted to a number,
--   if the resulting value is above the [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max) or below the [`min`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min).
+- if the method is not applicable to for the current [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-type) value.,
+- if the element has no [`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step) value,
+- if the [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-value) cannot be converted to a number,
+- if the resulting value is above the [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max) or below the [`min`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min).
 
- <span class="page-not-created">`HTMLInputElement.mozSetFileArray()`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+<span class="page-not-created">`HTMLInputElement.mozSetFileArray()`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Sets the files selected on the input to the given array of [`File`](file) objects. This is an alternative to `mozSetFileNameArray()` which can be used in frame scripts: a chrome script can [open files as File objects](https://developer.mozilla.org/en-US/docs/Extensions/Using_the_DOM_File_API_in_chrome_code) and send them via [message manager](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Multiprocess_Firefox/The_message_manager).
 
- [`HTMLInputElement.mozGetFileNameArray()`](htmlinputelement/mozgetfilenamearray) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`HTMLInputElement.mozGetFileNameArray()`](htmlinputelement/mozgetfilenamearray) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Returns an array of all the file names from the input.
 
- [`HTMLInputElement.mozSetFileNameArray()`](htmlinputelement) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`HTMLInputElement.mozSetFileNameArray()`](htmlinputelement) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Sets the filenames for the files selected on the input. Not for use in [frame scripts](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Multiprocess_Firefox/Limitations_of_frame_scripts), because it accesses the file system.
 
-Events
-------
+## Events
 
 Listen to these events using `addEventListener()` or by assigning an event listener to the `oneventname` property of this interface:
 
@@ -79,8 +75,7 @@ Also available via the `oninvalid` event handler property.
 Fired when a search is initiated on an [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) of `type="search"`.  
 Also available via the `onsearch` event handler property.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#htmlinputelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLInputElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/forms.html#the-input-element">HTML5<br />
@@ -91,8 +86,7 @@ The following methods have been added: <code>checkValidity()</code>, <code>setCu
 <span class="small">The definition of 'HTMLInputElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>The <code>size</code> property is now an <code>unsigned long</code>. The <code>type</code> property must be entirely given in lowercase characters.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-6043025">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLInputElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -1748,9 +1742,8 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   HTML element implementing this interface: [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
+- HTML element implementing this interface: [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement</a>

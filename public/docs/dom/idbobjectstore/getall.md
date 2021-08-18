@@ -1,5 +1,4 @@
-IDBObjectStore.getAll()
-=======================
+# IDBObjectStore.getAll()
 
 The `getAll()` method of the [`IDBObjectStore`](../idbobjectstore) interface returns an [`IDBRequest`](../idbrequest) object containing all objects in the object store matching the specified parameter or all objects in the store if no parameters are given.
 
@@ -7,16 +6,15 @@ If a value is successfully found, then a structured clone of it is created and s
 
 This method produces the same result for:
 
--   a record that doesn't exist in the database
--   a record that has an undefined value
+- a record that doesn't exist in the database
+- a record that has an undefined value
 
 To tell these situations apart, you either call
 
 1.  the [`openCursor()`](opencursor) method with the same key. That method provides a cursor if the record exists, and no cursor if it does not.
 2.  the [`count()`](count) method with the same key, which will return 1 if the row exists and 0 if it doesn't.
 
-Syntax
-------
+## Syntax
 
     var request = objectStore.getAll();
     var request = objectStore.getAll(query);
@@ -24,10 +22,10 @@ Syntax
 
 ### Parameters
 
- *query* <span class="badge inline optional">Optional</span>   
+_query_ <span class="badge inline optional">Optional</span>  
 A key or [`IDBKeyRange`](../idbkeyrange) to be queried. If nothing is passed, this will default to a key range that selects all the records in this object store.
 
- *count* <span class="badge inline optional">Optional</span>   
+_count_ <span class="badge inline optional">Optional</span>  
 Specifies the number of values to return if more than one is found. If it is lower than `0` or greater than `232-1` a [`TypeError`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError) exception will be thrown.
 
 ### Return value
@@ -43,14 +41,12 @@ This method may raise a [`DOMException`](../domexception) of one of the followin
 
 A [`TypeError`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError) exception is thrown if the `count` parameter is not between `0` and `232-1` included.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbobjectstore-getall">Indexed Database API 2.0<br />
 <span class="small">The definition of 'getAll()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -106,15 +102,14 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/getAll" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/getAll</a>

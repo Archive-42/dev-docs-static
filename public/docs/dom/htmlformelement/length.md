@@ -1,5 +1,4 @@
-HTMLFormElement.length
-======================
+# HTMLFormElement.length
 
 The `HTMLFormElement.length` read-only property returns the number of controls in the [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element. You can access the list of the form's controls using the [`elements`](elements) property.
 
@@ -7,8 +6,7 @@ This includes both elements that are descendants of the `<form>` element as well
 
 {{page("/en-US/docs/Web/API/HTMLFormElement", "Elements that are considered form controls")}}
 
-Syntax
-------
+## Syntax
 
     numControls = form.length;
 
@@ -16,21 +14,18 @@ Syntax
 
 `numControls` is the number of form controls within the `<form>`. This is the same as the number of the elements in the [`HTMLFormControlsCollection`](../htmlformcontrolscollection) returned by the [`elements`](elements) property.
 
-Example
--------
+## Example
 
     if (document.getElementById('form1').length > 1) {
       // more than one form control here
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-form-length">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLFormElement: length' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

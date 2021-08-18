@@ -1,43 +1,38 @@
-ExtendableMessageEvent
-======================
+# ExtendableMessageEvent
 
 The `ExtendableMessageEvent` interface of the [Service Worker API](service_worker_api) represents the event object of a `message` event fired on a service worker (when a message is received on the [`ServiceWorkerGlobalScope`](serviceworkerglobalscope) from another context) — extends the lifetime of such events.
 
 This interface inherits from the [`ExtendableEvent`](extendableevent) interface.
 
-Constructor
------------
+## Constructor
 
 [`ExtendableMessageEvent()`](extendablemessageevent/extendablemessageevent)  
 Creates a new `ExtendableMessageEvent` object instance.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`ExtendableEvent`](extendableevent)*.
+_Inherits properties from its parent, [`ExtendableEvent`](extendableevent)_.
 
- [`ExtendableMessageEvent.data`](extendablemessageevent/data) <span class="badge inline readonly">Read only </span>   
+[`ExtendableMessageEvent.data`](extendablemessageevent/data) <span class="badge inline readonly">Read only </span>  
 Returns the event's data. It can be any data type.
 
- [`ExtendableMessageEvent.origin`](extendablemessageevent/origin) <span class="badge inline readonly">Read only </span>   
+[`ExtendableMessageEvent.origin`](extendablemessageevent/origin) <span class="badge inline readonly">Read only </span>  
 Returns the origin of the [`Client`](client) that sent the message.
 
- [`ExtendableMessageEvent.lastEventId`](extendablemessageevent/lasteventid) <span class="badge inline readonly">Read only </span>   
+[`ExtendableMessageEvent.lastEventId`](extendablemessageevent/lasteventid) <span class="badge inline readonly">Read only </span>  
 Represents, in [server-sent events](server-sent_events/using_server-sent_events), the last event ID of the event source. This is an empty string.
 
- [`ExtendableMessageEvent.source`](extendablemessageevent/source) <span class="badge inline readonly">Read only </span>   
+[`ExtendableMessageEvent.source`](extendablemessageevent/source) <span class="badge inline readonly">Read only </span>  
 Returns a reference to the [`Client`](client) object that sent the message.
 
- [`ExtendableMessageEvent.ports`](extendablemessageevent/ports) <span class="badge inline readonly">Read only </span>   
+[`ExtendableMessageEvent.ports`](extendablemessageevent/ports) <span class="badge inline readonly">Read only </span>  
 Returns the array containing the [`MessagePort`](messageport) objects representing the ports of the associated message channel.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`ExtendableEvent`](extendableevent)*.
+_Inherits methods from its parent, [`ExtendableEvent`](extendableevent)_.
 
-Examples
---------
+## Examples
 
 In the below example a page gets a handle to the [`ServiceWorker`](serviceworker) object via [`ServiceWorkerRegistration.active`](serviceworkerregistration/active), and then calls its `postMessage()` function.
 
@@ -67,14 +62,12 @@ The service worker can receive the message by listening to the `message` event:
       event.source.postMessage("Hi client");
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/ServiceWorker/#extendablemessageevent">Service Workers<br />
 <span class="small">The definition of 'ExtendableMessageEvent' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -298,12 +291,11 @@ No
 
 ?
 
-See also
---------
+## See also
 
--   [Using Service Workers](service_worker_api/using_service_workers)
--   [Service workers basic code example](https://github.com/mdn/sw-test)
--   [Is ServiceWorker ready?](https://jakearchibald.github.io/isserviceworkerready/)
--   [Channel Messaging](channel_messaging_api)
+- [Using Service Workers](service_worker_api/using_service_workers)
+- [Service workers basic code example](https://github.com/mdn/sw-test)
+- [Is ServiceWorker ready?](https://jakearchibald.github.io/isserviceworkerready/)
+- [Channel Messaging](channel_messaging_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ExtendableMessageEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ExtendableMessageEvent</a>

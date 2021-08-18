@@ -1,32 +1,27 @@
-MediaQueryListEvent
-===================
+# MediaQueryListEvent
 
 The `MediaQueryListEvent` object stores information on the changes that have happened to a [`MediaQueryList`](mediaquerylist) object — instances are available as the event object on a function referenced by a [`MediaQueryList.onchange`](mediaquerylist/onchange) property or [`MediaQueryList.addListener()`](mediaquerylist/addlistener) call.
 
-Constructor
------------
+## Constructor
 
 [`MediaQueryListEvent()`](mediaquerylistevent/mediaquerylistevent)  
 Creates a new `MediaQueryListEvent` instance.
 
-Properties
-----------
+## Properties
 
-*The `MediaQueryListEvent` interface inherits properties from its parent interface, [`Event`](event).*
+_The `MediaQueryListEvent` interface inherits properties from its parent interface, [`Event`](event)._
 
- [`MediaQueryListEvent.matches`](mediaquerylistevent/matches)<span class="badge inline readonly">Read only </span>   
+[`MediaQueryListEvent.matches`](mediaquerylistevent/matches)<span class="badge inline readonly">Read only </span>  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that returns `true` if the [`document`](document) currently matches the media query list, or `false` if not.
 
- [`MediaQueryListEvent.media`](mediaquerylistevent/media)<span class="badge inline readonly">Read only </span>   
+[`MediaQueryListEvent.media`](mediaquerylistevent/media)<span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) representing a serialized media query.
 
-Methods
--------
+## Methods
 
-*The `MediaQueryListEvent` interface inherits methods from its parent interface, [`Event`](event).*
+_The `MediaQueryListEvent` interface inherits methods from its parent interface, [`Event`](event)._
 
-Examples
---------
+## Examples
 
     var mql = window.matchMedia('(max-width: 600px)');
 
@@ -44,14 +39,12 @@ Examples
 
     mql.addListener(screenTest);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#mediaquerylistevent">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'MediaQueryListEvent' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -185,12 +178,11 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
--   [Using media queries from code](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries)
--   [`window.matchMedia()`](window/matchmedia)
--   [`MediaQueryList`](mediaquerylist)
+- [Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
+- [Using media queries from code](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries)
+- [`window.matchMedia()`](window/matchmedia)
+- [`MediaQueryList`](mediaquerylist)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryListEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryListEvent</a>

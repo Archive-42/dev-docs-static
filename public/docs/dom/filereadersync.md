@@ -1,5 +1,4 @@
-FileReaderSync
-==============
+# FileReaderSync
 
 The `FileReaderSync` interface allows to read [`File`](file) or [`Blob`](blob) objects synchronously.
 
@@ -7,18 +6,16 @@ The `FileReaderSync` interface allows to read [`File`](file) or [`Blob`](blob) o
 
 This interface is **only available** in [workers](worker) as it enables synchronous I/O that could potentially block.
 
-Properties
-----------
+## Properties
 
 This interface does not have any properties.
 
-Methods
--------
+## Methods
 
 [`FileReaderSync.readAsArrayBuffer()`](filereadersync/readasarraybuffer)  
 This method converts a specified [`Blob`](blob) or a [`File`](file) into an [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) representing the input data as a binary string.
 
- [`FileReaderSync.readAsBinaryString()`](filereadersync/readasbinarystring) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`FileReaderSync.readAsBinaryString()`](filereadersync/readasbinarystring) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 This method converts a specified [`Blob`](blob) or a [`File`](file) into a [`DOMString`](domstring) representing the input data as a binary string. This method is deprecated, consider using `readAsArrayBuffer()` instead.
 
 [`FileReaderSync.readAsText()`](filereadersync/readastext)  
@@ -27,14 +24,12 @@ This method converts a specified [`Blob`](blob) or a [`File`](file) into a [`DOM
 [`FileReaderSync.readAsDataURL()`](filereadersync/readasdataurl)  
 This method converts a specified [`Blob`](blob) or a [`File`](file) into a [`DOMString`](domstring) representing the input data as a data URL.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/FileAPI/#FileReaderSync">File API<br />
 <span class="small">The definition of 'FileReaderSync' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -268,12 +263,11 @@ Yes
 
 From version 7.0, not supported in service workers.
 
-See also
---------
+## See also
 
--   [`FileReader`](filereader)
--   [`BlobBuilder`](blobbuilder), [`Blob`](blob)
--   [`File`](file)
--   [`FileReader`](filereader)
+- [`FileReader`](filereader)
+- [`BlobBuilder`](blobbuilder), [`Blob`](blob)
+- [`File`](file)
+- [`FileReader`](filereader)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReaderSync" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileReaderSync</a>

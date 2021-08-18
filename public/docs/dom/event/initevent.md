@@ -1,5 +1,4 @@
-Event.initEvent()
-=================
+# Event.initEvent()
 
 **Deprecated**
 
@@ -13,28 +12,26 @@ Events initialized in this way must have been created with the [`Document.create
 
 Instead use specific event constructors, like [`Event()`](event). The page on [Creating and triggering events](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events) gives more information about the way to use these.
 
-Syntax
-------
+## Syntax
 
     event.initEvent(type, bubbles, cancelable);
 
-*`type`*  
+_`type`_  
 Is a [`DOMString`](../domstring) defining the type of event.
 
-*`bubbles`*  
+_`bubbles`_  
 Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) deciding whether the event should bubble up through the event chain or not. Once set, the read-only property [`Event.bubbles`](bubbles) will give its value.
 
-*`cancelable`*  
+_`cancelable`_  
 Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) defining whether the event can be canceled. Once set, the read-only property [`Event.cancelable`](cancelable) will give its value.
 
-Example
--------
+## Example
 
     // Create the event.
     var event = document.createEvent('Event');
 
     // Create a click event that bubbles up and
-    // cannot be canceled 
+    // cannot be canceled
     event.initEvent('click', true, false);
 
     // Listen for the event.
@@ -44,15 +41,13 @@ Example
 
     elem.dispatchEvent(event);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-event-initevent">DOM<br />
 <span class="small">The definition of 'Event.initEvent()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>From <a href="https://www.w3.org/TR/DOM-Level-2-Events/events.html">Document Object Model (DOM) Level 2 Events Specification</a>, deprecated it, superseded by event constructors.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-Event-initEvent">Document Object Model (DOM) Level 2 Events Specification<br />
 <span class="small">The definition of 'Event.initEvent()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -116,9 +111,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   The constructor to use instead of this deprecated method: [`Event()`](event). More specific constructors can be used too.
+- The constructor to use instead of this deprecated method: [`Event()`](event). More specific constructors can be used too.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/initEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Event/initEvent</a>

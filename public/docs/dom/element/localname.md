@@ -1,10 +1,8 @@
-Element.localName
-=================
+# Element.localName
 
 The `Element.localName` read-only property returns the local part of the qualified name of an element.
 
-Syntax
-------
+## Syntax
 
     name = element.localName
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`DOMString`](../domstring) representing the local part of the element's qualified name.
 
-Example
--------
+## Example
 
 (Must be served with XML content type, such as `text/xml` or `application/xhtml+xml`.)
 
@@ -41,8 +38,7 @@ Example
     </body>
     </html>
 
-Notes
------
+## Notes
 
 The local name of a node is that part of the node's qualified name that comes after the colon. Qualified names are typically used in XML as part of the namespace(s) of the particular XML documents. For example, in the qualified name `ecomm:partners`, `partners` is the local name and `ecomm` is the prefix:
 
@@ -55,14 +51,12 @@ The local name of a node is that part of the node's qualified name that comes af
 
 **Note:** In Gecko 1.9.2 and earlier, the property returns the upper-cased version of the local name for HTML elements in HTML DOMs (as opposed to XHTML elements in XML DOMs). In later versions, in compliance with HTML5, the property returns in the case of the internal DOM storage, which is lower case for both HTML elements in HTML DOMs and XHTML elements in XML DOMs. The [`tagName`](tagname) property continues to return in the upper case for HTML elements in HTML DOMs.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-element-localname">DOM<br />
 <span class="small">The definition of 'Element.localName' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -118,11 +112,10 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`Element.namespaceURI`](namespaceuri)
--   [`Element.prefix`](prefix)
--   [`Attr.localName`](../attr/localname)
+- [`Element.namespaceURI`](namespaceuri)
+- [`Element.prefix`](prefix)
+- [`Attr.localName`](../attr/localname)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/localName" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/localName</a>

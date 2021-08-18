@@ -1,5 +1,4 @@
-Element.setCapture()
-====================
+# Element.setCapture()
 
 **Deprecated**
 
@@ -15,16 +14,14 @@ Call this method during the handling of a mousedown event to retarget all mouse 
 
 This interface never had much cross-browser support and you probably looking for [`element.setPointerCapture`](setpointercapture) instead, from the Pointer Events API.
 
-Syntax
-------
+## Syntax
 
     element.setCapture(retargetToElement);
 
 `retargetToElement`  
 If `true`, all events are targeted directly to this element; if `false`, events can also fire at descendants of this element.
 
-Example
--------
+## Example
 
 In this example, the current mouse coordinates are drawn while you mouse around after clicking and holding down on an element.
 
@@ -76,18 +73,15 @@ In this example, the current mouse coordinates are drawn while you mouse around 
 
 [View Live Examples](https://media.prod.mdn.mozit.cloud/samples/domref/mousecapture.html)
 
-Notes
------
+## Notes
 
 The element may not be scrolled completely to the top or bottom, depending on the layout of other elements.
 
-Specifications
---------------
+## Specifications
 
 Based on Internet Explorer's implementation.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -145,10 +139,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`document.releaseCapture()`](../document/releasecapture)
--   [`element.setPointerCapture`](setpointercapture)
+- [`document.releaseCapture()`](../document/releasecapture)
+- [`element.setPointerCapture`](setpointercapture)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/setCapture" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/setCapture</a>

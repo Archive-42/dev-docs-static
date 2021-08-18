@@ -1,5 +1,4 @@
-MediaKeySystemConfiguration.audioCapabilities
-=============================================
+# MediaKeySystemConfiguration.audioCapabilities
 
 **Experimental**
 
@@ -8,19 +7,16 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MediaKeySystemConfiguration.audioCapabilities` read-only property returns an array of supported audio type and capability pairs.
 
-Syntax
-------
+## Syntax
 
     var audioCapabilities[ {contentType: 'contentType', robustness:'robustness'}] = mediaSystemConfiguration.audioCapabilities;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemconfiguration-audiocapabilities">Encrypted Media Extensions<br />
 <span class="small">The definition of 'audioCapabilities' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

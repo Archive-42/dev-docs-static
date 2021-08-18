@@ -1,5 +1,4 @@
-MediaKeySystemAccess
-====================
+# MediaKeySystemAccess
 
 **Experimental**
 
@@ -8,14 +7,12 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MediaKeySystemAccess` interface of the [EncryptedMediaExtensions API](encrypted_media_extensions_api) provides access to a Key System for decryption and/or a content protection provider. You can request an instance of this object using the [`Navigator.requestMediaKeySystemAccess()`](navigator/requestmediakeysystemaccess) method.
 
-Properties
-----------
+## Properties
 
- [`MediaKeySystemAccess.keySystem`](mediakeysystemaccess/keysystem) <span class="badge inline readonly">Read only </span>   
+[`MediaKeySystemAccess.keySystem`](mediakeysystemaccess/keysystem) <span class="badge inline readonly">Read only </span>  
 Returns a [`DOMString`](domstring) identifying the key system being used.
 
-Methods
--------
+## Methods
 
 [`MediaKeySystemAccess.createMediaKeys()`](mediakeysystemaccess/createmediakeys)  
 Returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to a new [`MediaKeys`](mediakeys) object.
@@ -23,14 +20,12 @@ Returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Re
 [`MediaKeySystemAccess.getConfiguration()`](mediakeysystemaccess/getconfiguration)  
 Returns a [`MediaKeySystemConfiguration`](mediakeysystemconfiguration) object with the supported combination of configuration options.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#mediakeysystemaccess-interface">Encrypted Media Extensions<br />
 <span class="small">The definition of 'MediaKeySystemAccess' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-Headers.set()
-=============
+# Headers.set()
 
 The `set()` method of the [`Headers`](../headers) interface sets a new value for an existing header inside a `Headers` object, or adds the header if it does not already exist.
 
@@ -7,8 +6,7 @@ The difference between `set()` and [`Headers.append`](append) is that if the spe
 
 For security reasons, some headers can only be controller by the user agent. These headers include the [forbidden header names](https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name) and [forbidden response header names](https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_response_header_name).
 
-Syntax
-------
+## Syntax
 
     myHeaders.set(name, value);
 
@@ -24,8 +22,7 @@ The new value you want to set.
 
 Void.
 
-Example
--------
+## Example
 
 Creating an empty `Headers` object is simple:
 
@@ -44,14 +41,12 @@ If the specified header does not already exist, `set()` will create it and set i
 
 You'd need [`Headers.append`](append) to append the new value onto the values, not overwrite it.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fetch.spec.whatwg.org/#dom-headers-set">Fetch<br />
 <span class="small">The definition of 'set()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -117,11 +112,10 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [ServiceWorker API](../service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [ServiceWorker API](../service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Headers/set" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Headers/set</a>

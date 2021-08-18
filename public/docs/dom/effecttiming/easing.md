@@ -1,17 +1,15 @@
-EffectTiming.easing
-===================
+# EffectTiming.easing
 
 **Experimental**
 
 **This is an [experimental technology](https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental)**  
 Check the [Browser compatibility table](#browser_compatibility) carefully before using this in production.
 
-The [`EffectTiming`](../effecttiming) dictionary's `easing` property in the [Web Animations API](../web_animations_api) specifies the timing function used to scale the time to produce easing effects, where *easing* is the rate of the animation's change over time.
+The [`EffectTiming`](../effecttiming) dictionary's `easing` property in the [Web Animations API](../web_animations_api) specifies the timing function used to scale the time to produce easing effects, where _easing_ is the rate of the animation's change over time.
 
 [`Element.animate()`](../element/animate), [`KeyframeEffectReadOnly()`](../keyframeeffect/keyframeeffect), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) all accept an object of timing properties including `easing`. The value of easing corresponds directly to <span class="page-not-created">`AnimationEffectTimingReadOnly.easing`</span> in [`timing`](../animationeffect/gettiming) objects returned by [`AnimationEffect`](../animationeffect), [`KeyframeEffect`](../keyframeeffect), and [`KeyframeEffect`](../keyframeeffect).
 
-Syntax
-------
+## Syntax
 
     var timingProperties = {
       easing: <easing-function>
@@ -26,7 +24,7 @@ A string defining the timing function to use for easing transitions during the a
 `linear`  
 A constant rate of change, neither accelerating nor deccelerating.
 
- `cubic-bezier(<number>, <number>, <number>, <number>)`   
+`cubic-bezier(<number>, <number>, <number>, <number>)`  
 <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MzUgNTEwIiBzdHlsZT0iZm9udC1zaXplOjIzcHg7Zm9udC1mYW1pbHk6c2Fucy1zZXJpZiI+PGRlZnM+PHN0eWxlPi5heGlzLC50aWNrTWFya3tzdHJva2U6IzAwMDtzdHJva2Utd2lkdGg6MS41O2ZpbGw6bm9uZTtzdHJva2UtbGluZWNhcDpzcXVhcmV9LmNvbnRyb2xQb2ludHtmaWxsOiNmZmY7c3Ryb2tlOiMwMDA7c3Ryb2tlLXdpZHRoOjN9LmhhbmRsZUxpbmV7ZmlsbDpub25lO3N0cm9rZTojMDAwO3N0cm9rZS13aWR0aDoyfS5heGlzTGFiZWx7dGV4dC1hbmNob3I6bWlkZGxlfS5heGlzVmFsdWV7ZmlsbDpncmF5fS5heGlzVmFsdWUudmVydHt0ZXh0LWFuY2hvcjplbmR9LmF4aXNWYWx1ZS5ob3J6e3RleHQtYW5jaG9yOm1pZGRsZX0ucG9pbnRMYWJlbHtmaWxsOiMwMDA7Zm9udC1zaXplOjI1cHh9PC9zdHlsZT48L2RlZnM+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTEwIDQyMCkiPjxwYXRoIHN0eWxlPSJzdHJva2U6bm9uZTtmaWxsOiNmZmYiIGQ9Ik0wLTQwMGg0MDBWMEgweiIvPjxwYXRoIGQ9Ik00MDAgMHYtNDAwTTAtNDAwaDQwMCIgc3R5bGU9InN0cm9rZTpncmF5O3N0cm9rZS13aWR0aDoxLjU7c3Ryb2tlLWRhc2hhcnJheTozIDQ7ZmlsbDpub25lIi8+PHBhdGggY2xhc3M9ImF4aXMiIGQ9Ik0wIDB2LTQwMCIvPjxwYXRoIGNsYXNzPSJ0aWNrTWFyayIgZD0iTTAtMjAwaC0yME0wLTQwMGgtMjAiLz48dGV4dCB4PSItMzAiIHk9Ii0yMDAiIGR5PSIuM2VtIiBjbGFzcz0iYXhpc1ZhbHVlIHZlcnQiPjAuNTwvdGV4dD48dGV4dCB4PSItMzAiIHk9Ii00MDAiIGR5PSIuM2VtIiBjbGFzcz0iYXhpc1ZhbHVlIHZlcnQiPjE8L3RleHQ+PHRleHQgeD0iMjAwIiB5PSItODAiIGNsYXNzPSJheGlzTGFiZWwiIHRyYW5zZm9ybT0icm90YXRlKC05MCkiPk91dHB1dCBwcm9ncmVzczwvdGV4dD48cGF0aCBjbGFzcz0iYXhpcyIgZD0iTTAgMGg0MDAiLz48cGF0aCBjbGFzcz0idGlja01hcmsiIGQ9Ik0yMDAgMHYyME00MDAgMHYyMCIvPjx0ZXh0IHg9IjIwMCIgeT0iMjAiIGR5PSIxLjFlbSIgY2xhc3M9ImF4aXNWYWx1ZSBob3J6Ij4wLjU8L3RleHQ+PHRleHQgeD0iNDAwIiB5PSIyMCIgZHk9IjEuMWVtIiBjbGFzcz0iYXhpc1ZhbHVlIGhvcnoiPjE8L3RleHQ+PHRleHQgeD0iMjAwIiB5PSI4MCIgY2xhc3M9ImF4aXNMYWJlbCI+SW5wdXQgcHJvZ3Jlc3M8L3RleHQ+PHRleHQgeD0iLTI1IiB5PSIyNSIgY2xhc3M9ImF4aXNWYWx1ZSI+MDwvdGV4dD48cGF0aCBjbGFzcz0iaGFuZGxlTGluZSIgZD0ibTAgMCAyNDAtNDAiLz48Y2lyY2xlIGN4PSIyNDAiIGN5PSItNDAiIHI9IjEwIiBjbGFzcz0iY29udHJvbFBvaW50Ii8+PHRleHQgeD0iMjYwIiB5PSItNDAiIGR5PSIuNGVtIiBjbGFzcz0icG9pbnRMYWJlbCI+UDE8L3RleHQ+PHBhdGggY2xhc3M9ImhhbmRsZUxpbmUiIGQ9Ik00MDAtNDAwIDgwLTI4MCIvPjxjaXJjbGUgY3g9IjgwIiBjeT0iLTI4MCIgcj0iMTAiIGNsYXNzPSJjb250cm9sUG9pbnQiLz48dGV4dCB4PSI2MCIgeT0iLTI4MCIgZHk9Ii40ZW0iIGNsYXNzPSJwb2ludExhYmVsIiB0ZXh0LWFuY2hvcj0iZW5kIj5QMjwvdGV4dD48cGF0aCBkPSJNMCAwYzI0MC00MCA4MC0yODAgNDAwLTQwMCIgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwZjtzdHJva2Utd2lkdGg6NztzdHJva2UtbGluZWNhcDpyb3VuZCIvPjxjaXJjbGUgcj0iMTAiIGNsYXNzPSJjb250cm9sUG9pbnQiLz48dGV4dCB4PSItMTAiIHk9Ii0yMCIgZHk9Ii40ZW0iIGNsYXNzPSJwb2ludExhYmVsIiB0ZXh0LWFuY2hvcj0iZW5kIj5QMDwvdGV4dD48Y2lyY2xlIGN4PSI0MDAiIGN5PSItNDAwIiByPSIxMCIgY2xhc3M9ImNvbnRyb2xQb2ludCIvPjx0ZXh0IHg9IjM5NSIgeT0iLTM3NSIgZHk9Ii40ZW0iIGNsYXNzPSJwb2ludExhYmVsIiB0ZXh0LWFuY2hvcj0iZW5kIj5QMzwvdGV4dD48L2c+PC9zdmc+" alt="A diagram showing the points of a cubic bezier timing function." width="535" height="510" />  
 Specifies [a cubic Bézier timing function](https://w3c.github.io/web-animations/#cubic-bzier-timing-function). The four numbers specify points P1 and P2 of the curve as (x1, y1, x2, y2). Both x values must be in the range \[0, 1\] or the definition is invalid.
 
@@ -52,10 +50,9 @@ Equivalent to `steps(1, start)`
 `step-end`  
 Equivalent to `steps(1, end)`.
 
-Examples
---------
+## Examples
 
-In the [Red Queen's Race](https://codepen.io/rachelnabors/pen/PNGGaV?editors=0010) example, we animate Alice and the Red Queen by passing an easing `of steps(7, end)` to `animate()`:
+In the [Red Queen's Race](https://codepen.io/rachelnabors/pen/PNGGaV?editors=0010) example, we animate Alice and the Red Queen by passing an easing `of steps(7, end)` to `animate()`:
 
     // Define the key frames
     var spriteFrames = [
@@ -76,14 +73,12 @@ In the [Red Queen's Race](https://codepen.io/rachelnabors/pen/PNGGaV?editors=001
       iterations: Infinity
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/web-animations-1/#time-transformations">Web Animations<br />
 <span class="small">The definition of 'easing' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Editor's draft.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -165,12 +160,11 @@ No
 
 12.0
 
-See also
---------
+## See also
 
--   [Web Animations API](../web_animations_api)
--   [`Element.animate()`](../element/animate), [`KeyframeEffect()`](../keyframeeffect/keyframeeffect), and [`AnimationEffect.updateTiming()`](../animationeffect/updatetiming) all accept an object of timing properties including this one.
--   The value of this property corresponds to the one in [`EffectTiming`](../effecttiming) (which is returned from [`AnimationEffect.getTiming()`](../animationeffect/gettiming) and [`AnimationEffect.getComputedTiming()`](../animationeffect/getcomputedtiming)).
--   CSS's `animation-timing-function` and `transition-timing-function`.
+- [Web Animations API](../web_animations_api)
+- [`Element.animate()`](../element/animate), [`KeyframeEffect()`](../keyframeeffect/keyframeeffect), and [`AnimationEffect.updateTiming()`](../animationeffect/updatetiming) all accept an object of timing properties including this one.
+- The value of this property corresponds to the one in [`EffectTiming`](../effecttiming) (which is returned from [`AnimationEffect.getTiming()`](../animationeffect/gettiming) and [`AnimationEffect.getComputedTiming()`](../animationeffect/getcomputedtiming)).
+- CSS's `animation-timing-function` and `transition-timing-function`.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/easing" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/easing</a>

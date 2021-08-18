@@ -1,16 +1,13 @@
-FullscreenOptions
-=================
+# FullscreenOptions
 
 The `FullscreenOptions` dictionary is used to provide configuration options when calling [`requestFullscreen()`](element/requestfullscreen) on an element to place that element into full-screen mode.
 
-Properties
-----------
+## Properties
 
- [`navigationUI`](fullscreenoptions/navigationui)<span class="badge inline optional">Optional</span>   
+[`navigationUI`](fullscreenoptions/navigationui)<span class="badge inline optional">Optional</span>  
 A string controlling whether or not to keep browser user interface elements visible while the element is in full-screen mode. The default, `"auto"`, lets the browser make this decision.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -92,11 +89,10 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   [Fullscreen API](fullscreen_api)
--   [Guide to the Fullscreen API](fullscreen_api/guide)
--   [`Element.requestFullscreen()`](element/requestfullscreen)
+- [Fullscreen API](fullscreen_api)
+- [Guide to the Fullscreen API](fullscreen_api/guide)
+- [`Element.requestFullscreen()`](element/requestfullscreen)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FullscreenOptions" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FullscreenOptions</a>

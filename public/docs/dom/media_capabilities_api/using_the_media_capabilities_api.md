@@ -1,16 +1,14 @@
-Using the Media Capabilities API
-================================
+# Using the Media Capabilities API
 
 The [Media Capabilities API](../media_capabilities_api) provides several key features to help you better decide how to handle media, but also to determine how well media is being handled, in real time. These features include:
 
--   The ability to query the browser to determine its ability to encode or decode media given a specified set of encoding parameters. These parameters may include the codecs, resolutions, bit rates, frame rates, and other such details. With the Media Capabilities API, you can determine not just if the browser can support a given format, but whether or not it can do so efficiently and smoothly. In short, this API replaces—and improves upon—the [`MediaSource`](../mediasource) method [`isTypeSupported()`](../mediasource/istypesupported) or the [`HTMLMediaElement`](../htmlmediaelement) method [`canPlayType()`](../htmlmediaelement/canplaytype).
--   More and more finely-detailed information about the display's properties, so that informed decisions can be made when choosing the best format to play on the user's device. For example, you can use the API to ensure that you don't try to play High Dynamic Range (HDR) content on a Standard Dynamic Range (SDR) screen.
--   Support for getting real-time feedback about the playback of media, so your code can make informed decisions about adapting the stream's quality or other settings to manage the user's perceived media performance and quality. One feature of this is the ability to detect when the device switches GPUs, so you can make appropriate adjustments based on the new GPU's capabilities.
+- The ability to query the browser to determine its ability to encode or decode media given a specified set of encoding parameters. These parameters may include the codecs, resolutions, bit rates, frame rates, and other such details. With the Media Capabilities API, you can determine not just if the browser can support a given format, but whether or not it can do so efficiently and smoothly. In short, this API replaces—and improves upon—the [`MediaSource`](../mediasource) method [`isTypeSupported()`](../mediasource/istypesupported) or the [`HTMLMediaElement`](../htmlmediaelement) method [`canPlayType()`](../htmlmediaelement/canplaytype).
+- More and more finely-detailed information about the display's properties, so that informed decisions can be made when choosing the best format to play on the user's device. For example, you can use the API to ensure that you don't try to play High Dynamic Range (HDR) content on a Standard Dynamic Range (SDR) screen.
+- Support for getting real-time feedback about the playback of media, so your code can make informed decisions about adapting the stream's quality or other settings to manage the user's perceived media performance and quality. One feature of this is the ability to detect when the device switches GPUs, so you can make appropriate adjustments based on the new GPU's capabilities.
 
 **Note:** The display capabilities functionality mentioned in the third point above have not yet appeared in any browser. They will be a useful feature of the API once available, but there is a high probability of the display capabilities functionality changing a great deal before browser implementations arrive.
 
-The MediaCapabilities interface
--------------------------------
+## The MediaCapabilities interface
 
 The [`MediaCapabilities`](../mediacapabilities) is available using the [`mediaCapabilities`](../navigator/mediacapabilities) property which is provided by both the `navigator` object and the [`WorkerNavigator`](../workernavigator) object; in other words, the Media Capabilities API is available both on the main thread and from workers.
 
@@ -30,10 +28,10 @@ The [`MediaCapabilities.decodingInfo()`](../mediacapabilities/decodinginfo) meth
 
 In our example, we are testing the decoding capabilities of a video configuration. The configuration requires the type of media being tested — e.g. a plain `file` or [`MediaSource`](../mediasource) — and a [`VideoConfiguration`](../videoconfiguration) including values for the `contentType`, `width`, `height`, `bitrate`, and `framerate`**:**
 
--   The `contentType` must be a string specifying a [valid video MIME type](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Video_codecs).
--   The `width` and `height` are the horizontal and vertical dimensions of the video; these are also used to determine the aspect ratio.
--   The `bitrate` is the number of bits used to encode one second of video.
--   The `framerate` is the number of frames which are played per second of time when playing the video.
+- The `contentType` must be a string specifying a [valid video MIME type](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Video_codecs).
+- The `width` and `height` are the horizontal and vertical dimensions of the video; these are also used to determine the aspect ratio.
+- The `bitrate` is the number of bits used to encode one second of video.
+- The `framerate` is the number of frames which are played per second of time when playing the video.
 
 <!-- -->
 
@@ -83,13 +81,12 @@ Instead of the assigning the promise to a variable, we can output the values ret
 
 The response provided is defined by the [`MediaCapabilitiesInfo`](../mediacapabilitiesinfo) interface.
 
-Handling errors
----------------
+## Handling errors
 
 In our video decoding example, a `TypeError` would be raised if the media configuration passed to the [`decodingInfo()`](../mediacapabilities/decodinginfo) method was invalid. There are a few reasons why an error might occur, including:
 
--   The specified `type` isn't one of the two permtited values: `file` or `media-source`
--   The `contentType` given is
+- The specified `type` isn't one of the two permtited values: `file` or `media-source`
+- The `contentType` given is
 
 The error can be due to the `type` not being one of the two possible values, the `contentType` not being a valid codec MIME type, or invalid or omitted definitions required in the [`VideoConfiguration`](../videoconfiguration).
 
@@ -99,8 +96,7 @@ The error can be due to the `type` not being one of the two possible values, the
       console.log('It failed: ' + error)
     );
 
-Media Capabilities live example
--------------------------------
+## Media Capabilities live example
 
 ### CSS
 
@@ -211,8 +207,7 @@ Media Capabilities live example
 
 ### Live Result
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -320,9 +315,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`navigator.mediaCapabilities`](../navigator/mediacapabilities)
+- [`navigator.mediaCapabilities`](../navigator/mediacapabilities)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Media_Capabilities_API/Using_the_Media_Capabilities_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Media_Capabilities_API/Using_the_Media_Capabilities_API</a>

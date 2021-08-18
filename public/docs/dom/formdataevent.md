@@ -1,31 +1,26 @@
-FormDataEvent
-=============
+# FormDataEvent
 
 The `FormDataEvent` interface represents a [`formdata` event](htmlformelement/formdata_event) — such an event is fired on an [`HTMLFormElement`](htmlformelement) object after the entry list representing the form's data is constructed. This happens when the form is submitted, but can also be triggered by the invocation of a [`FormData()`](formdata/formdata) constructor.
 
 This allows a [`FormData`](formdata) object to be quickly obtained in response to a `formdata` event firing, rather than needing to put it together yourself when you wish to submit form data via a method like [`XMLHttpRequest`](xmlhttprequest) (see [Using FormData objects](formdata/using_formdata_objects)).
 
-Constructor
------------
+## Constructor
 
 [`FormDataEvent()`](formdataevent/formdataevent)  
 Creates a new `FormDataEvent` object instance.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent interface, [`Event`](event).*
+_Inherits properties from its parent interface, [`Event`](event)._
 
 [`FormDataEvent.formData`](formdataevent/formdata)  
 Contains the [`FormData`](formdata) object representing the data contained in the form when the event was fired.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent interface, [`Event`](event).*
+_Inherits methods from its parent interface, [`Event`](event)._
 
-Examples
---------
+## Examples
 
     // grab reference to form
 
@@ -58,14 +53,12 @@ Examples
       request.send(data);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#the-formdataevent-interface">HTML Living Standard<br />
 <span class="small">The definition of 'FormDataEvent' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -173,12 +166,11 @@ No
 
 12.0
 
-See also
---------
+## See also
 
--   [`XMLHTTPRequest`](xmlhttprequest)
--   [`FormData`](formdata)
--   [Using FormData objects](formdata/using_formdata_objects)
--   [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
+- [`XMLHTTPRequest`](xmlhttprequest)
+- [`FormData`](formdata)
+- [Using FormData objects](formdata/using_formdata_objects)
+- [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent</a>

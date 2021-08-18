@@ -1,5 +1,4 @@
-HTMLLinkElement.as
-==================
+# HTMLLinkElement.as
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `as` property of the [`HTMLLinkElement`](../htmllinkelement) interface returns a [`DOMString`](../domstring) representing the type of content being loaded by the HTML link, one of `"script"`, `"style"`, `"image"`, `"video"`, `"audio"`, `"track"`, `"font"`, `"fetch"`.
 
-Syntax
-------
+## Syntax
 
     var as = HTMLLinkElement.as
     HTMLLinkElement.as = as
@@ -18,14 +16,12 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/preload/#as-attribute">Preload<br />
 <span class="small">The definition of 'as' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

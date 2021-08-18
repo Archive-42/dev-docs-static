@@ -1,10 +1,8 @@
-Element.prepend()
-=================
+# Element.prepend()
 
 The `Element.prepend()` method inserts a set of [`Node`](../node) objects or [`DOMString`](../domstring) objects before the first child of the [`Element`](../element). [`DOMString`](../domstring) objects are inserted as equivalent [`Text`](../text) nodes.
 
-Syntax
-------
+## Syntax
 
     prepend(...nodesOrDOMStrings);
 
@@ -19,10 +17,9 @@ A set of [`Node`](../node) or [`DOMString`](../domstring) objects to insert.
 
 ### Exceptions
 
--   <span class="page-not-created">`HierarchyRequestError`</span>: Node cannot be inserted at the specified point in the hierarchy.
+- <span class="page-not-created">`HierarchyRequestError`</span>: Node cannot be inserted at the specified point in the hierarchy.
 
-Examples
---------
+## Examples
 
 ### Prepending an element
 
@@ -59,16 +56,14 @@ The `prepend()` method is not scoped into the `with` statement. See [`Symbol.uns
     with(div) {
       prepend("foo");
     }
-    // ReferenceError: prepend is not defined 
+    // ReferenceError: prepend is not defined
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-parentnode-prepend">DOM<br />
 <span class="small">The definition of 'ParentNode.prepend()' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -124,14 +119,13 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [`Element.append()`](append)
--   [`Node.appendChild()`](../node/appendchild)
--   [`Node.insertBefore()`](../node/insertbefore)
--   [`ChildNode.before()`](../childnode/before)
--   [`Element.insertAdjacentElement()`](insertadjacentelement)
--   [`NodeList`](../nodelist)
+- [`Element.append()`](append)
+- [`Node.appendChild()`](../node/appendchild)
+- [`Node.insertBefore()`](../node/insertbefore)
+- [`ChildNode.before()`](../childnode/before)
+- [`Element.insertAdjacentElement()`](insertadjacentelement)
+- [`NodeList`](../nodelist)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/prepend" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/prepend</a>

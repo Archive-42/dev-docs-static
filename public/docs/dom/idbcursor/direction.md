@@ -1,12 +1,10 @@
-IDBCursor.direction
-===================
+# IDBCursor.direction
 
 The `direction` read-only property of the [`IDBCursor`](../idbcursor) interface is a [`DOMString`](../domstring) that returns the direction of traversal of the cursor (set using [`IDBObjectStore.openCursor`](../idbobjectstore/opencursor) for example). See the [Values](#values) section below for possible values.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     var direction = cursor.direction;
 
@@ -17,8 +15,7 @@ A string (defined by the [`IDBCursorDirection` enum](https://w3c.github.io/Index
 <table><thead><tr class="header"><th>Value</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>next</code></td><td>This direction causes the cursor to be opened at the start of the <span class="internalDFN">source</span>.</td></tr><tr class="even"><td><code>nextunique</code></td><td>This direction causes the cursor to be opened at the start of the <span class="internalDFN">source</span>. For every key with duplicate values, only the first record is yielded.</td></tr><tr class="odd"><td><code>prev</code></td><td>This direction causes the cursor to be opened at the end of the <span class="internalDFN">source</span>.</td></tr><tr class="even"><td><code>prevunique</code></td><td>This direction causes the cursor to be opened at the end of the <span class="internalDFN">source</span>. For every key with duplicate values, only the first record is yielded.<br />
 </td></tr></tbody></table>
 
-Example
--------
+## Example
 
 In this simple fragment we create a transaction, retrieve an object store, then use a cursor to iterate through all the records in the object store. Within each iteration we log the direction of the cursor, something like this:
 
@@ -48,15 +45,13 @@ The cursor does not require us to select the data based on a key; we can just gr
       };
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbcursor-direction">Indexed Database API 2.0<br />
 <span class="small">The definition of 'direction' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbcursor-direction">Indexed Database API 2.0<br />
 <span class="small">The definition of 'direction' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -112,15 +107,14 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor/direction" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor/direction</a>

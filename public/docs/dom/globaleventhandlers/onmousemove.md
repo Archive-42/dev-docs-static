@@ -1,12 +1,10 @@
-GlobalEventHandlers.onmousemove
-===============================
+# GlobalEventHandlers.onmousemove
 
 The `onmousemove` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `mousemove` events.
 
 The `mousemove` event fires when the user moves the mouse.
 
-Syntax
-------
+## Syntax
 
     target.onmousemove = functionRef;
 
@@ -14,8 +12,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives a [`MouseEvent`](../mouseevent) object as its sole argument.
 
-Examples
---------
+## Examples
 
 ### Tooltips
 
@@ -74,14 +71,12 @@ This example creates link tooltips that follow your mouse. It uses the `onmousem
 
 We also have an example available showing the use of the `onmousemove` event handler with draggable objects — [view the example in action](https://mdn.mozillademos.org/files/5031/draggable_elements.html).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onmousemove">HTML Living Standard<br />
 <span class="small">The definition of 'onmousemove' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -137,9 +132,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   `mousemove` event
+- `mousemove` event
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onmousemove" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onmousemove</a>

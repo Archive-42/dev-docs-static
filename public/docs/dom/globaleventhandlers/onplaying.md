@@ -1,26 +1,22 @@
-GlobalEventHandlers.onplaying
-=============================
+# GlobalEventHandlers.onplaying
 
 The `onplaying` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is the [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) for processing `playing` events.
 
 The `playing` event is fired when playback is ready to start after having been paused or delayed due to lack of media data.
 
-Syntax
-------
+## Syntax
 
     element.onplaying = handlerFunction;
     var handlerFunction = element.onplaying;
 
 `handlerFunction` is either `null` or a [JavaScript function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions) specifying the handler for the event.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#handler-onplaying">HTML Living Standard<br />
 <span class="small">The definition of 'onplaying' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -80,10 +76,9 @@ Samsung Internet
 
 2.0
 
-See also
---------
+## See also
 
--   [`playing`](../htmlmediaelement/playing_event)
--   [DOM event handlers](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers)
+- [`playing`](../htmlmediaelement/playing_event)
+- [DOM event handlers](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onplaying" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onplaying</a>

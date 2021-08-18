@@ -1,12 +1,10 @@
-Element.querySelectorAll()
-==========================
+# Element.querySelectorAll()
 
 The [`Element`](../element) method `querySelectorAll()` returns a static (not live) [`NodeList`](../nodelist) representing a list of elements matching the specified group of selectors which are descendants of the element on which the method was called.
 
 **Note:** This method is implemented based on the [`ParentNode`](../parentnode) mixin's [`querySelectorAll()`](../parentnode/queryselectorall) method.
 
-Syntax
-------
+## Syntax
 
     elementList = parentNode.querySelectorAll(selectors);
 
@@ -28,8 +26,7 @@ A non-live [`NodeList`](../nodelist) containing one [`Element`](../element) obje
 `SyntaxError`  
 The syntax of the specified `selectors` string is not valid.
 
-Examples
---------
+## Examples
 
 ### dataset selector & attribute selectors
 
@@ -86,8 +83,7 @@ Otherwise, you can use standard array notation to access the contents of the lis
 
 **Note:** NodeList is not a genuine array, that is to say it doesn't have the array methods like slice, some, map etc. To convert it into an array, try Array.from(nodeList).
 
-User notes
-----------
+## User notes
 
 `querySelectorAll()` behaves differently than most common JavaScript DOM libraries, which might lead to unexpected results.
 
@@ -116,8 +112,7 @@ The [`:scope`](https://developer.mozilla.org/en-US/docs/Web/CSS/:scope) pseudo-c
     var inner = select.querySelectorAll(':scope .outer .inner');
     inner.length; // 0
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-parentnode-queryselectorall">DOM<br />
 <span class="small">The definition of 'ParentNode.querySelectorAll()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Living standard</td></tr><tr class="even"><td><a href="https://dev.w3.org/2006/webapi/selectors-api2/#dom-parentnode-queryselectorall">Selectors API Level 2<br />
@@ -125,8 +120,7 @@ Specifications
 <span class="small">The definition of 'ParentNode.querySelectorAll()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/selectors-api/#interface-definitions">Selectors API Level 1<br />
 <span class="small">The definition of 'document.querySelector()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Original definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -186,16 +180,15 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [Locating DOM elements using selectors](../document_object_model/locating_dom_elements_using_selectors)
--   [Attribute selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) in the CSS Guide
--   [Attribute selectors](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Attribute_selectors) in the MDN Learning Area
--   [`Element.querySelector()`](queryselector)
--   [`Document.querySelector()`](../document/queryselector) and [`Document.querySelectorAll()`](../document/queryselectorall)
--   [`DocumentFragment.querySelector()`](../documentfragment/queryselector) and [`DocumentFragment.querySelectorAll()`](../documentfragment/queryselectorall)
--   [`ParentNode.querySelector()`](../parentnode/queryselector) and [`ParentNode.querySelectorAll()`](../parentnode/queryselectorall)
--   [Code snippets for `querySelector()`](https://developer.mozilla.org/en-US/docs/Code_snippets/QuerySelector)
+- [Locating DOM elements using selectors](../document_object_model/locating_dom_elements_using_selectors)
+- [Attribute selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) in the CSS Guide
+- [Attribute selectors](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Attribute_selectors) in the MDN Learning Area
+- [`Element.querySelector()`](queryselector)
+- [`Document.querySelector()`](../document/queryselector) and [`Document.querySelectorAll()`](../document/queryselectorall)
+- [`DocumentFragment.querySelector()`](../documentfragment/queryselector) and [`DocumentFragment.querySelectorAll()`](../documentfragment/queryselectorall)
+- [`ParentNode.querySelector()`](../parentnode/queryselector) and [`ParentNode.querySelectorAll()`](../parentnode/queryselectorall)
+- [Code snippets for `querySelector()`](https://developer.mozilla.org/en-US/docs/Code_snippets/QuerySelector)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll</a>

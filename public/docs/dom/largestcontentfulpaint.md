@@ -1,5 +1,4 @@
-LargestContentfulPaint
-======================
+# LargestContentfulPaint
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `LargestContentfulPaint` interface of the Largest Contentful Paint API provides details about the largest image or text paint before user input on a web page. The timing of this paint is a good heuristic for when the main page content is available during load.
 
-Properties
-----------
+## Properties
 
 `LargestContentfulPaint.element`  
 The element that is the current largest contentful paint.
@@ -29,14 +27,12 @@ The id of the element. This property returns an empty string when there is no id
 `LargestContentfulPaint.url`  
 If the element is an image, the request url of the image.
 
-Methods
--------
+## Methods
 
 `LargestContentfulPaint.toJSON()`  
 Returns the above properties as JSON.
 
-Examples
---------
+## Examples
 
 The following example shows how to create a [`PerformanceObserver`](performanceobserver) that listens for `largest-contentful-paint` entries and logs the LCP value to the console.
 
@@ -72,14 +68,12 @@ Note that in this example data is only sent to the server when the user leaves t
       // Do nothing if the browser doesn't support this API.
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/largest-contentful-paint/#sec-largest-contentful-paint-interface">Largest Contentful Paint<br />
 <span class="small">The definition of 'LargestContentfulPaint' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

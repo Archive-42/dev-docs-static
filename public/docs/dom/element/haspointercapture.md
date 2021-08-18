@@ -1,10 +1,8 @@
-Element.hasPointerCapture()
-===========================
+# Element.hasPointerCapture()
 
 The `hasPointerCapture()` method of the [`Element`](../element) interface sets whether the element on which it is invoked has pointer capture for the pointer identified by the given pointer ID.
 
-Syntax
-------
+## Syntax
 
     targetElement.hasPointerCapture(pointerId);
 
@@ -17,8 +15,7 @@ The [`pointerId`](../pointerevent/pointerid) of a [`PointerEvent`](../pointereve
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) value — `true` if the element does have pointer capture, `false` if it doesn't.
 
-Examples
---------
+## Examples
 
     <html>
       <script>
@@ -48,14 +45,12 @@ Examples
       </body>
     </html>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/pointerevents2/#dom-element-haspointercapture">Pointer Events – Level 2<br />
 <span class="small">The definition of 'hasPointerCapture()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -115,11 +110,10 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [`Element.setPointerCapture()`](setpointercapture)
--   [`Element.releasePointerCapture()`](releasepointercapture)
--   [`Pointer Events`](../pointer_events)
+- [`Element.setPointerCapture()`](setpointercapture)
+- [`Element.releasePointerCapture()`](releasepointercapture)
+- [`Pointer Events`](../pointer_events)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/hasPointerCapture" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/hasPointerCapture</a>

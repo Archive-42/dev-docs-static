@@ -1,10 +1,8 @@
-Element.ariaColCount
-====================
+# Element.ariaColCount
 
 The `ariaColCount` property of the [`Element`](../element) interface reflects the value of the `aria-colcount` attribute, which defines the number of columns in a table, grid, or treegrid.
 
-Syntax
-------
+## Syntax
 
     var ariaColCount = element.ariaColCount;
     element.ariaColCount = ariaColCount
@@ -13,8 +11,7 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Examples
---------
+## Examples
 
 In this example the `aria-colcount` attribute on the element with an ID of `semantic-table` is set to "2". Using `ariaColCount` we update the value to "3".
 
@@ -51,14 +48,12 @@ In this example the `aria-colcount` attribute on the element with an ID of `sema
     el.ariaColCount = "3"
     console.log(el.ariaColCount); // 3
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariacolcount">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaColCount' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -114,6 +109,6 @@ No
 
 13.0
 
--   [ARIA: table role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Table_Role)
+- [ARIA: table role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Table_Role)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaColCount" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaColCount</a>

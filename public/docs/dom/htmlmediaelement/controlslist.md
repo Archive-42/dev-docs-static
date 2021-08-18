@@ -1,5 +1,4 @@
-HTMLMediaElement.controlsList
-=============================
+# HTMLMediaElement.controlsList
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `controlsList` property of the [`HTMLMediaElement`](../htmlmediaelement) interface returns a DOMTokenList that helps the user agent select what controls to show on the media element whenever the user agent shows its own set of controls. The DOMTokenList takes one or more of three possible values: `nodownload`, `nofullscreen`, and `noremoteplayback`.
 
-Syntax
-------
+## Syntax
 
     var domTokenList = HTMLMediaElement.controlsList;
 
@@ -17,13 +15,11 @@ Syntax
 
 A [`DOMTokenList`](../domtokenlist).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/controls-list/#solution-outline">Controls List API: Solution outline</a></td><td></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -79,9 +75,8 @@ No
 
 7.0
 
-See also
---------
+## See also
 
--   [Chrome HTMLMediaElement controlsList Sample](https://googlechrome.github.io/samples/media/controlslist.html)
+- [Chrome HTMLMediaElement controlsList Sample](https://googlechrome.github.io/samples/media/controlslist.html)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/controlsList" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/controlsList</a>

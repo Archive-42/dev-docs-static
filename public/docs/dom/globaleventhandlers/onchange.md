@@ -1,5 +1,4 @@
-GlobalEventHandlers.onchange
-============================
+# GlobalEventHandlers.onchange
 
 The `onchange` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) for processing `change` events.
 
@@ -7,15 +6,13 @@ The `onchange` property of the [`GlobalEventHandlers`](../globaleventhandlers) m
 
 **Note:** Unlike [`oninput`](oninput), the `onchange` event handler is not necessarily called for each alteration to an element's `value`.
 
-Syntax
-------
+## Syntax
 
     target.onchange = functionRef;
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives an [`Event`](../event) object as its sole argument.
 
-Example
--------
+## Example
 
 This example logs the number of characters in an [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element, every time you modify its contents and then change focus away from it.
 
@@ -38,14 +35,12 @@ This example logs the number of characters in an [`<input>`](https://developer.m
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onchange">HTML Living Standard<br />
 <span class="small">The definition of 'onchange' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -101,9 +96,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   `change` event
+- `change` event
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onchange" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onchange</a>

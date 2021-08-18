@@ -1,5 +1,4 @@
-HTMLMediaElement.sinkId
-=======================
+# HTMLMediaElement.sinkId
 
 **Experimental**
 
@@ -8,19 +7,16 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `HTMLMediaElement.sinkId` read-only property returns a [`DOMString`](../domstring) that is the unique ID of the audio device delivering output. If it is using the user agent default, it returns an empty string. This ID should be one of the [`MediaDeviceInfo.deviceId`](../mediadeviceinfo/deviceid) values returned from [`MediaDevices.enumerateDevices()`](../mediadevices/enumeratedevices), `id-multimedia`, or `id-communications`.
 
-Syntax
-------
+## Syntax
 
     var sinkId = HTMLMediaElement.sinkId
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-output/#dom-htmlmediaelement-sinkid">Audio Output Devices API<br />
 <span class="small">The definition of 'sinkId' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition. Older versions of this spec were called "Media Capture Output".</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

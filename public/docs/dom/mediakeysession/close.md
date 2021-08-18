@@ -1,10 +1,8 @@
-MediaKeySession.close()
-=======================
+# MediaKeySession.close()
 
 The `MediaKeySession.close()` method notifies that the current media session is no longer needed, and that the content decryption module should release any resources associated with this object and close it. Then, it returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
-Syntax
-------
+## Syntax
 
     mediaKeySession.close().then(function() { ... });
 
@@ -12,14 +10,12 @@ Syntax
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-mediakeysession-close">Encrypted Media Extensions<br />
 <span class="small">The definition of 'close()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

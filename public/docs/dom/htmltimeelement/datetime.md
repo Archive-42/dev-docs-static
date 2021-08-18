@@ -1,7 +1,6 @@
-HTMLTimeElement.dateTime
-========================
+# HTMLTimeElement.dateTime
 
-The `HTMLTimeElement``.dateTime` property is a [`DOMString`](../domstring) that reflects the [`datetime`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time#attr-datetime) HTML attribute, containing a machine-readable form of the element's date and time value.
+The ` HTMLTimeElement``.dateTime ` property is a [`DOMString`](../domstring) that reflects the [`datetime`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time#attr-datetime) HTML attribute, containing a machine-readable form of the element's date and time value.
 
 The format of the string must follow one of the following HTML microsyntaxes:
 
@@ -28,30 +27,26 @@ The format of the string must follow one of the following HTML microsyntaxes:
 <code>P</code><code>T</code><em>h</em><code>H</code><em>m</em><code>M</code><em>s</em><code>.</code>XXX<code>S</code><br />
 <em>w</em><code>w </code><em>d</em><code>d </code><em>h</em><code>h </code><em>m</em><code>m </code><em>s</em><code>s</code></td><td><code>P12DT7H12M13S     P12DT7H12M13.3S     P12DT7H12M13.45S     P12DT7H12M13.455S     PT7H12M13S     PT7H12M13.2S     PT7H12M13.56S     PT7H12M13.999S     7d 5h 24m 13s</code></td></tr></tbody></table>
 
-Syntax
-------
+## Syntax
 
     dateTimeString = timeElt.dateTime;
     timeElt.dateTime = dateTimeString
 
-Example
--------
+## Example
 
     // Assumes there is <time id="t"> element in the HTML
 
     var t = document.getElementById("t");
     t.dateTime = "6w 5h 34m 5s";
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#dom-time-datetime">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLTimeElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change from <a href="https://www.w3.org/TR/html51/">HTML 5.1</a>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/text-level-semantics.html#dom-time-datetime">HTML 5.1<br />
 <span class="small">The definition of 'HTMLTimeElement' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>No change from <a href="https://www.w3.org/TR/html52/">HTML5</a>.</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/html52/text-level-semantics.html#dom-time-datetime">HTML5<br />
 <span class="small">The definition of 'HTMLTimeElement' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -111,9 +106,8 @@ No
 
 8.0
 
-See also
---------
+## See also
 
--   The [`HTMLTimeElement`](../htmltimeelement) interface it belongs to.
+- The [`HTMLTimeElement`](../htmltimeelement) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLTimeElement/dateTime" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLTimeElement/dateTime</a>

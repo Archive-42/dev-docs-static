@@ -1,5 +1,4 @@
-Element: select event
-=====================
+# Element: select event
 
 The `select` event fires when some text has been selected.
 
@@ -7,8 +6,7 @@ The `select` event fires when some text has been selected.
 
 The event is not available for all elements in all languages. For example, in HTML, `select` events can be dispatched only on form `<input type="text">` and [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) elements.
 
-Examples
---------
+## Examples
 
 ### Selection logger
 
@@ -30,14 +28,12 @@ You can also set up the event handler using the [`onselect`](../globaleventhandl
 
     input.onselect = logSelection;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-select">UI Events<br />
 <span class="small">The definition of 'select' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

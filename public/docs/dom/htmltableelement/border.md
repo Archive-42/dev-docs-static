@@ -1,5 +1,4 @@
-HTMLTableElement.border
-=======================
+# HTMLTableElement.border
 
 **Deprecated**
 
@@ -7,30 +6,26 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `HTMLTableElement.border` property represents the border width of the [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) element.
 
-Syntax
-------
+## Syntax
 
     HTMLTableElement.border = border;
     var border = HTMLTableElement.border;
 
--   `border` is a string representing the width of the border in pixels.
+- `border` is a string representing the width of the border in pixels.
 
-Example
--------
+## Example
 
     // Set the width of a table border to 2 pixels
     var t = document.getElementById('TableA');
     t.border = '2';
 
-Specifications
---------------
+## Specifications
 
-W3C DOM 2 HTML Specification [*HTMLTableElement* .border](https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-50969400).
+W3C DOM 2 HTML Specification [_HTMLTableElement_ .border](https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-50969400).
 
 This attribute is deprecated in HTML 4.0.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

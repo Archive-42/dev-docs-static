@@ -1,5 +1,4 @@
-GlobalEventHandlers.onselectstart
-=================================
+# GlobalEventHandlers.onselectstart
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `onselectstart` property of the [`GlobalEventHandlers`](../globaleventhandle
 
 The `selectstart` event fires when the user starts to make a new text selection on a webpage.
 
-Syntax
-------
+## Syntax
 
     object.onselectstart = functionRef;
 
@@ -19,8 +17,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives a [`FocusEvent`](../focusevent) object as its sole argument.
 
-Examples
---------
+## Examples
 
     document.onselectstart = function() {
       console.log('Selection started!');
@@ -32,14 +29,12 @@ For a full example, see our [Key quote generator](https://github.com/chrisdavidm
       return false; // cancel selection
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/selection-api/#dom-globaleventhandlers-onselectstart">Selection API<br />
 <span class="small">The definition of 'GlobalEventHandlers.onselectstart' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -97,10 +92,9 @@ The `selectstart` event never fires and never invokes this handler.
 
 1.0
 
-See also
---------
+## See also
 
--   `selectstart` event
--   Related event handler: [`GlobalEventHandlers.onselectionchange`](onselectionchange)
+- `selectstart` event
+- Related event handler: [`GlobalEventHandlers.onselectionchange`](onselectionchange)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onselectstart" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onselectstart</a>

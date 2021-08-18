@@ -1,5 +1,4 @@
-HTMLElement: change event
-=========================
+# HTMLElement: change event
 
 The `change` event is fired for [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select), and [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) elements when an alteration to the element's value is committed by the user. Unlike the [`input`](input_event) event, the `change` event is not necessarily fired for each alteration to an element's `value`.
 
@@ -7,14 +6,13 @@ The `change` event is fired for [`<input>`](https://developer.mozilla.org/en-US/
 
 Depending on the kind of element being changed and the way the user interacts with the element, the `change` event fires at a different moment:
 
--   When the element is `:checked` (by clicking or using the keyboard) for `<input type="radio">` and `<input type="checkbox">`;
--   When the user commits the change explicitly (e.g., by selecting a value from a [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select)'s dropdown with a mouse click, by selecting a date from a date picker for `<input type="date">`, by selecting a file in the file picker for `<input type="file">`, etc.);
--   When the element loses focus after its value was changed, but not committed (e.g., after editing the value of [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) or `<input type="text">`).
+- When the element is `:checked` (by clicking or using the keyboard) for `<input type="radio">` and `<input type="checkbox">`;
+- When the user commits the change explicitly (e.g., by selecting a value from a [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select)'s dropdown with a mouse click, by selecting a date from a date picker for `<input type="date">`, by selecting a file in the file picker for `<input type="file">`, etc.);
+- When the element loses focus after its value was changed, but not committed (e.g., after editing the value of [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) or `<input type="text">`).
 
 The HTML specification lists [the `<input>` types that should fire the `change` event](https://html.spec.whatwg.org/multipage/forms.html#concept-input-apply).
 
-Examples
---------
+## Examples
 
 ### &lt;select&gt; element
 
@@ -64,14 +62,12 @@ For some elements, including `<input type="text">`, the `change` event doesn't f
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/indices.html#event-change">HTML Living Standard<br />
 <span class="small">The definition of 'change' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

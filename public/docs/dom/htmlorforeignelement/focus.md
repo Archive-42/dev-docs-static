@@ -1,23 +1,20 @@
-HTMLElement.focus()
-===================
+# HTMLElement.focus()
 
 The `HTMLElement.focus()` method sets focus on the specified element, if it can be focused. The focused element is the element which will receive keyboard and similar events by default.
 
-Syntax
-------
+## Syntax
 
     element.focus(options); // Object parameter
 
 ### Parameters
 
- `options` <span class="badge inline optional">Optional</span>   
+`options` <span class="badge inline optional">Optional</span>  
 An optional object providing options to control aspects of the focusing process. This object may contain the following property:
 
- `preventScroll` <span class="badge inline optional">Optional</span>   
+`preventScroll` <span class="badge inline optional">Optional</span>  
 A Boolean value indicating whether or not the browser should scroll the document to bring the newly-focused element into view. A value of `false` for `preventScroll` (the default) means that the browser will scroll the element into view after focusing it. If `preventScroll` is set to `true`, no scrolling will occur.
 
-Examples
---------
+## Examples
 
 ### Focus on a text field
 
@@ -73,8 +70,7 @@ Examples
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/editing.html#dom-focus">HTML Living Standard<br />
 <span class="small">The definition of 'focus' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/editing.html#focus()-0">HTML 5.1<br />
@@ -83,14 +79,12 @@ Specifications
 <span class="small">The definition of 'focus' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#method-focus">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'focus' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td></td></tr></tbody></table>
 
-Notes
------
+## Notes
 
--   If you call `HTMLElement.focus()` from a mousedown event handler, you must call `event.preventDefault()` to keep the focus from leaving the `HTMLElement`
--   Behavior of the focus in relation to different HTML features like [`tabindex`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-tabindex) or [shadow dom](https://developer.mozilla.org/en-US/docs/Glossary/Shadow_tree), which previously remained under-specified, were recently updated (as October of 2019). Checkout [WHATWG blog](https://blog.whatwg.org/focusing-on-focus) for more info.
+- If you call `HTMLElement.focus()` from a mousedown event handler, you must call `event.preventDefault()` to keep the focus from leaving the `HTMLElement`
+- Behavior of the focus in relation to different HTML features like [`tabindex`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-tabindex) or [shadow dom](https://developer.mozilla.org/en-US/docs/Glossary/Shadow_tree), which previously remained under-specified, were recently updated (as October of 2019). Checkout [WHATWG blog](https://blog.whatwg.org/focusing-on-focus) for more info.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -172,10 +166,9 @@ No
 
 9.0
 
-See also
---------
+## See also
 
--   DOM method [`HTMLOrForeignElement.blur`](blur) to remove the focus from an element.
--   [`document.activeElement`](../document/activeelement) to know which is the currently focused element.
+- DOM method [`HTMLOrForeignElement.blur`](blur) to remove the focus from an element.
+- [`document.activeElement`](../document/activeelement) to know which is the currently focused element.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/focus" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/focus</a>

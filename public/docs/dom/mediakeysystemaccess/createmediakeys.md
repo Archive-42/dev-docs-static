@@ -1,5 +1,4 @@
-MediaKeySystemAccess.createMediaKeys()
-======================================
+# MediaKeySystemAccess.createMediaKeys()
 
 **Experimental**
 
@@ -8,19 +7,16 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MediaKeySystemAccess.createMediaKeys()` method returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to a new [`MediaKeys`](../mediakeys) object.
 
-Syntax
-------
+## Syntax
 
     var mediaKeys = await mediaKeySystemAccess.createMediaKeys();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemaccess-createmediakeys">Encrypted Media Extensions<br />
 <span class="small">The definition of 'createMediaKeys()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,10 +1,8 @@
-MediaList.mediaText
-===================
+# MediaList.mediaText
 
 The `mediaText` property of the [`MediaList`](../medialist) interface is a stringifier that returns a [`DOMString`](../domstring) representing the `MediaList` as text, and also allows you to set a new `MediaList`.
 
-Syntax
-------
+## Syntax
 
     mediaListInstance.mediaText;
     mediaListInstance.mediaText = string;
@@ -17,8 +15,7 @@ If you wish to set new media queries on the document, the string value must have
 
 <span class="message-body-wrapper"><span class="message-flex-body"><span class="devtools-monospace message-body"><span class="objectBox objectBox-string">Also note that is you try to set `mediaText` to `null`, it will be treated as an empty string, i.e. the value will be set to `""`.</span></span></span></span>
 
-Examples
---------
+## Examples
 
 The following would log to the console a textual representation of the `MediaList` of the first stylesheet applied to the current document.
 
@@ -26,14 +23,12 @@ The following would log to the console a textual representation of the `MediaLis
     let stylesheet = stylesheets[0];
     console.log(stylesheet.media.mediaText);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom/#dom-medialist-mediatext">CSS Object Model (CSSOM)<br />
 <span class="small">The definition of 'mediaText' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

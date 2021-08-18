@@ -1,10 +1,8 @@
-InputEvent.dataTransfer
-=======================
+# InputEvent.dataTransfer
 
 The `dataTransfer` read-only property of the [`InputEvent`](../inputevent) interface returns a [`DataTransfer`](../datatransfer) object containing information about richtext or plaintext data being added to or removed from editable content.
 
-Syntax
-------
+## Syntax
 
     var dataTransfer = inputEvent.dataTransfer
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`DataTransfer`](../datatransfer) object.
 
-Examples
---------
+## Examples
 
 In the following simple example we've set up an event listener on the [input](../htmlelement/input_event) event so that when any content is pasted into the contenteditable [`<p>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p) element, its HTML source is retrieved via the `InputEvent.dataTransfer.getData()` method and reported in the paragraph below the input.
 
@@ -37,14 +34,12 @@ Try copying and pasting some of the content provided to see the effects.
       result.textContent = e.dataTransfer.getData('text/html');
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/input-events/#dom-inputevent-datatransfer">Input Events Level 2<br />
 <span class="small">The definition of 'dataTransfer' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

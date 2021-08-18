@@ -1,5 +1,4 @@
-GlobalEventHandlers.onanimationiteration
-========================================
+# GlobalEventHandlers.onanimationiteration
 
 **Draft**
 
@@ -9,8 +8,7 @@ The `onanimationiteration` property of the [`GlobalEventHandlers`](../globaleven
 
 The `animationiteration` event is sent when a [CSS animation](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) reaches the end of an iteration. An iteration ends when a single pass through the sequence of animation instructions is completed by executing the last animation step.
 
-Syntax
-------
+## Syntax
 
     var animIterationHandler = target.onanimationiteration;
 
@@ -18,10 +16,9 @@ Syntax
 
 ### Value
 
-A [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) to be called when an `animationiteration` event occurs indicating that a CSS animation has reached the end of an iteration while running on the *`target`*, where the target object is an HTML element ([`HTMLElement`](../htmlelement)), document ([`Document`](../document)), or window ([`Window`](../window)). The function receives as input a single parameter: an [`AnimationEvent`](../animationevent) object describing the event which occurred.
+A [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) to be called when an `animationiteration` event occurs indicating that a CSS animation has reached the end of an iteration while running on the _`target`_, where the target object is an HTML element ([`HTMLElement`](../htmlelement)), document ([`Document`](../document)), or window ([`Window`](../window)). The function receives as input a single parameter: an [`AnimationEvent`](../animationevent) object describing the event which occurred.
 
-Example
--------
+## Example
 
 Let's create an animation which automatically pauses at the end of each iteration, allowing the user to choose whether or not to start the next iteration. Much of this code is the same as in other examples of animation events, so it may look familiar.
 
@@ -87,14 +84,12 @@ Assembled together, you get this:
 
 Each time the box reaches the opposing corner, it stops, with the button reflecting which iteration number is up next, until you click the button to run the next iteration.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-animations-1/#eventdef-animationevent-animationiteration">CSS Animations Level 1<br />
 <span class="small">The definition of 'onanimationiteration' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -160,10 +155,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   The `animationiteration` event, which triggers this event handler
--   [`AnimationEvent`](../animationevent)
+- The `animationiteration` event, which triggers this event handler
+- [`AnimationEvent`](../animationevent)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onanimationiteration" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onanimationiteration</a>

@@ -1,5 +1,4 @@
-IDBFactory.deleteDatabase()
-===========================
+# IDBFactory.deleteDatabase()
 
 The `deleteDatabase()` method of the [`IDBFactory`](../idbfactory) interface requests the deletion of a database. The method returns an [`IDBOpenDBRequest`](../idbopendbrequest) object immediately, and performs the deletion operation asynchronously.
 
@@ -9,8 +8,7 @@ When `deleteDatabase()` is called, any other open connections to this particular
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
 For the current standard:
 
@@ -25,15 +23,14 @@ For the current standard:
 name  
 The name of the database you want to delete. Note that attempting to delete a database that doesn't exist does not throw an exception, in contrast to [`IDBDatabase.deleteObjectStore()`](../idbdatabase/deleteobjectstore), which does throw an exception if the named object store does not exist.
 
-options<span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+options<span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 In Gecko, since [version 26](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/26), you can include a non-standard optional storage parameter that specifies whether you want to delete a `permanent` (the default value) IndexedDB, or an indexedDB in `temporary` storage (aka shared pool.)
 
 ### Return value
 
 A [`IDBOpenDBRequest`](../idbopendbrequest) on which subsequent events related to this request are fired.
 
-Example
--------
+## Example
 
     var DBDeleteRequest = window.indexedDB.deleteDatabase("toDoList");
 
@@ -47,15 +44,13 @@ Example
       console.log(event.result); // should be undefined
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbfactory-deletedatabase">Indexed Database API 2.0<br />
 <span class="small">The definition of 'deleteDatabase()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbfactory-deletedatabase">Indexed Database API 2.0<br />
 <span class="small">The definition of 'deleteDatabase()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -111,15 +106,14 @@ Samsung Internet
 
 1.5
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBFactory/deleteDatabase" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBFactory/deleteDatabase</a>

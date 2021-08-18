@@ -1,10 +1,8 @@
-HTMLVideoElement.disablePictureInPicture
-========================================
+# HTMLVideoElement.disablePictureInPicture
 
 The [`HTMLVideoElement`](../htmlvideoelement) `disablePictureInPicture` property reflects the HTML attribute indicating whetherthe user agent should suggest the picture-in-picture feature to users, or request it automatically.
 
-Syntax
-------
+## Syntax
 
     disablePictureInPicture = htmlVideoElement.disablePictureInPicture;
 
@@ -12,14 +10,12 @@ Syntax
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) whose value is `true` if the user agent should suggest that feature to users.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/picture-in-picture/#disable-pip">Picture-in-Picture API<br />
 <span class="small">The definition of 'HTMLVideoElement.autoPictureInPicture' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

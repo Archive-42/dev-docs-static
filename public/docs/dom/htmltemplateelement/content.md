@@ -1,28 +1,23 @@
-HTMLTemplateElement.content
-===========================
+# HTMLTemplateElement.content
 
 The `HTMLTemplateElement.content` property returns a `<template>` element's template contents (a [`DocumentFragment`](../documentfragment)).
 
-Syntax
-------
+## Syntax
 
     var documentFragment = templateElement.content
 
-Example
--------
+## Example
 
     var templateElement = document.querySelector("#foo");
     var documentFragment = templateElement.content.cloneNode(true);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-template-content">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLTemplateElement interface' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/scripting-1.html#dom-template-content">HTML5<br />
 <span class="small">The definition of 'HTMLTemplateElement interface' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -78,9 +73,8 @@ Yes
 
 1.5
 
-See also
---------
+## See also
 
--   [`HTMLTemplateElement`](../htmltemplateelement)
+- [`HTMLTemplateElement`](../htmltemplateelement)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement/content" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement/content</a>

@@ -1,5 +1,4 @@
-FileSystemHandle
-================
+# FileSystemHandle
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `FileSystemHandle` interface of the [`File System Access API`](file_system_access_api) is an object which represents a file or directory entry. Multiple handles can represent the same entry. For the most part you do not work with `FileSystemHandle` directly but rather its child interfaces [`FileSystemFileHandle`](filesystemfilehandle) and [`FileSystemDirectoryHandle`](filesystemdirectoryhandle).
 
-Interfaces based on FileSystemHandle
-------------------------------------
+## Interfaces based on FileSystemHandle
 
 Below is a list of interfaces based on the FileSystemHandle interface.
 
@@ -18,17 +16,15 @@ Represents a handle to a file entry.
 [`FileSystemDirectoryHandle`](filesystemdirectoryhandle)  
 Provides a handle to a directory entry.
 
-Properties
-----------
+## Properties
 
- [`kind`](filesystemhandle/kind) <span class="badge inline readonly">Read only </span>   
+[`kind`](filesystemhandle/kind) <span class="badge inline readonly">Read only </span>  
 Returns the type of entry. This is `'file'` if the associated entry is a file or `'directory'`.
 
- [`name`](filesystemhandle/name) <span class="badge inline readonly">Read only </span>   
+[`name`](filesystemhandle/name) <span class="badge inline readonly">Read only </span>  
 Returns the name of the associated entry.
 
-Methods
--------
+## Methods
 
 [`isSameEntry()`](filesystemhandle/issameentry)  
 Compares two [`handles`](filesystemhandle) to see if the associated entries (either a file or directory) match.
@@ -39,8 +35,7 @@ Queries the current permission state of the current handle.
 [`requestPermission()`](filesystemhandle/requestpermission)  
 Requests read or readwrite permissions for the file handle.
 
-Examples
---------
+## Examples
 
 ### Checking Type
 
@@ -99,14 +94,12 @@ The following function compares a single entry with an array of entries, and ret
       return newArr;
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/file-system-access/#api-filesystemhandle">File System Access API<br />
 <span class="small">The definition of 'FileSystemHandle' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -292,10 +285,9 @@ No
 
 14.0
 
-See also
---------
+## See also
 
--   [File System Access API](file_system_access_api)
--   [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
+- [File System Access API](file_system_access_api)
+- [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle</a>

@@ -1,27 +1,22 @@
-HTMLFormElement.target
-======================
+# HTMLFormElement.target
 
 The `target` property of the [`HTMLFormElement`](../htmlformelement) interface represents the target of the form's action (i.e., the frame in which to render its output).
 
-Syntax
-------
+## Syntax
 
     string = HTMLFormElement.target
     HTMLFormElement.target = string
 
-Example
--------
+## Example
 
     myForm.target = document.frames[1].name;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-fs-target">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLFormElement: target' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-InputDeviceCapabilities.firesTouchEvents
-========================================
+# InputDeviceCapabilities.firesTouchEvents
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `InputDeviceCapabilities.firesTouchEvents` read-only property returns a [`Bo
 
 You can use this property to detect mouse events that represent an action that may already have been handled by touch event handlers. This doesn't necessarily mean the device is a touch screen. For example, stylus and mouse devices typically generate touch events on mobile browsers.
 
-Syntax
-------
+## Syntax
 
     var boolean = InputDeviceCapabilities.firesTouchEvents
 
@@ -19,22 +17,19 @@ Syntax
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
-Example
--------
+## Example
 
     myButton.addEventListener('mousedown', function(e) {
       if (!e.sourceCapabilities.firesTouchEvents)
         myButton.classList.add("pressed");
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/InputDeviceCapabilities/#dom-inputdevicecapabilities-firestouchevents">InputDeviceCapabilities<br />
 <span class="small">The definition of 'fireTouchEvents' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

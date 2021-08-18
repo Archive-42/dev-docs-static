@@ -1,5 +1,4 @@
-FileSystemDirectoryReader
-=========================
+# FileSystemDirectoryReader
 
 **Deprecated**
 
@@ -13,21 +12,18 @@ The `FileSystemDirectoryReader` interface of the [File and Directory Entries API
 
 Because this is a non-standard API, whose specification is not currently on a standards track, it's important to keep in mind that not all browsers implement it, and those that do may implement only small portions of it. Check the [Browser compatibility](#browser_compatibility) section for details.
 
-Methods
--------
+## Methods
 
- [`readEntries()`](filesystemdirectoryreader/readentries) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`readEntries()`](filesystemdirectoryreader/readentries) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns an array containing some number of the directory's entries. Each item in the array is an object based on [`FileSystemEntry`](filesystementry)—typically either [`FileSystemFileEntry`](filesystemfileentry) or [`FileSystemDirectoryEntry`](filesystemdirectoryentry).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/entries-api/">File and Directory Entries API</a></td><td><span class="spec-draft">Draft</span></td><td>Draft of proposed API</td></tr></tbody></table>
 
 This API has no official W3C or WHATWG specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -109,12 +105,11 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](file_and_directory_entries_api)
--   [Introduction to the File System API](file_and_directory_entries_api/introduction)
--   [`FileSystemDirectoryEntry`](filesystemdirectoryentry)
--   [`FileSystem`](filesystem)
+- [File and Directory Entries API](file_and_directory_entries_api)
+- [Introduction to the File System API](file_and_directory_entries_api/introduction)
+- [`FileSystemDirectoryEntry`](filesystemdirectoryentry)
+- [`FileSystem`](filesystem)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryReader" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryReader</a>

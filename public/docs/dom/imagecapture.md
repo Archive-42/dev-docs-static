@@ -1,22 +1,18 @@
-ImageCapture
-============
+# ImageCapture
 
 The `ImageCapture` interface of the [MediaStream Image Capture API](mediastream_image_capture_api) provides methods to enable the capture of images or photos from a camera or other photographic device. It provides an interface for capturing images from a photographic device referenced through a valid [`MediaStreamTrack`](mediastreamtrack).
 
-Constructor
------------
+## Constructor
 
 [`ImageCapture()`](imagecapture/imagecapture)  
 Creates a new `ImageCapture` object which can be used to capture still frames (photos) from a given [`MediaStreamTrack`](mediastreamtrack) which represents a video stream.
 
-Properties
-----------
+## Properties
 
- [`ImageCapture.track`](imagecapture/track) <span class="badge inline readonly">Read only </span>   
+[`ImageCapture.track`](imagecapture/track) <span class="badge inline readonly">Read only </span>  
 Returns a reference to the [`MediaStreamTrack`](mediastreamtrack) passed to the constructor.
 
-Methods
--------
+## Methods
 
 The `ImageCapture` interface is based on [`EventTarget`](eventtarget), so it includes the methods defined by that interface as well as the ones listed below.
 
@@ -32,8 +28,7 @@ Returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Re
 [`ImageCapture.grabFrame()`](imagecapture/grabframe)  
 Takes a snapshot of the live video in a [`MediaStreamTrack`](mediastreamtrack), returning an [`ImageBitmap`](imagebitmap), if successful.
 
-Example
--------
+## Example
 
 The following code is taken from [Chrome's Grab Frame - Take Photo Sample](https://googlechrome.github.io/samples/image-capture/grab-frame-take-photo.html). Since `ImageCapture` requires some place to capture an image from, the example below starts with a device's media device (in other words a camera).
 
@@ -89,14 +84,12 @@ This example shows, roughly, a [`MediaStreamTrack`](mediastreamtrack) extracted 
       document.querySelector('#takePhotoButton').disabled = false;
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-image/#imagecaptureapi">MediaStream Image Capture<br />
 <span class="small">The definition of 'ImageCapture' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-Element.ariaPlaceholder
-=======================
+# Element.ariaPlaceholder
 
 ### Note
 
@@ -7,8 +6,7 @@ The `ariaPlaceholder` property of the [`Element`](../element) interface reflects
 
 Where possible use an HTML [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element with `type="text"` or a [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) as these have built in semantics and do not require ARIA attributes.
 
-Syntax
-------
+## Syntax
 
     var ariaPlaceholder = element.ariaPlaceholder;
     element.ariaPlaceholder = ariaPlaceholder
@@ -17,8 +15,7 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Examples
---------
+## Examples
 
 In this example the `aria-placeholder` attribute on the element with an ID of `txtBoxInput` has been set to a string. Using `ariaPlaceholder` we update the string to another value.
 
@@ -30,14 +27,12 @@ In this example the `aria-placeholder` attribute on the element with an ID of `t
     el.ariaPlaceholder = "12345"
     console.log(el.ariaPlaceholder); // "12345"
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariaplaceholder">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaPlaceholder' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -93,9 +88,8 @@ No
 
 13.0
 
-See also
---------
+## See also
 
--   [ARIA: textbox role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/textbox_role)
+- [ARIA: textbox role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/textbox_role)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaPlaceholder" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaPlaceholder</a>

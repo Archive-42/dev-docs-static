@@ -1,5 +1,4 @@
-HTMLElement: beforeinput event
-==============================
+# HTMLElement: beforeinput event
 
 The DOM `beforeinput` event fires when the value of an [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select), or [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) element is about to be modified. The event also applies to elements with [`contenteditable`](contenteditable) enabled, and to any element when [`designMode`](../document/designmode) is turned on.
 
@@ -9,8 +8,7 @@ In the case of `contenteditable` and `designMode`, the event target is the **edi
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>Yes</td></tr><tr class="odd"><td>Interface</td><td><a href="../inputevent"><code>InputEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td>None</td></tr><tr class="odd"><td>Sync / Async</td><td>Sync</td></tr><tr class="even"><td>Composed</td><td>Yes</td></tr><tr class="odd"><td>Default Action</td><td>Update the DOM element</td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 ### Feature Detection
 
@@ -42,14 +40,12 @@ This example logs the current value of the element, immediately before replacing
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-beforeinput">UI Events<br />
 <span class="small">The definition of 'beforeinput event' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -109,9 +105,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   Related event: `input`
+- Related event: `input`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/beforeinput_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/beforeinput_event</a>

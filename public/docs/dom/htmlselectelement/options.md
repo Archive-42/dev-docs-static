@@ -1,10 +1,8 @@
-HTMLSelectElement.options
-=========================
+# HTMLSelectElement.options
 
 The `HTMLSelectElement.options` read-only property returns a [`HTMLOptionsCollection`](../htmloptionscollection) of the [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) elements contained by the [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) element.
 
-Syntax
-------
+## Syntax
 
     var options = select.options;
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`HTMLOptionsCollection`](../htmloptionscollection) containing the `<option>` elements contained by the `<select>` element.
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -32,15 +29,13 @@ Example
       }
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-select-options">HTML Living Standard<br />
 <span class="small">The definition of 'options' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/forms.html#htmlselectelement">HTML5<br />
 <span class="small">The definition of 'options' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

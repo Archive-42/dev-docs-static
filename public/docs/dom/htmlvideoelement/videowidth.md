@@ -1,10 +1,8 @@
-HTMLVideoElement.videoWidth
-===========================
+# HTMLVideoElement.videoWidth
 
 The [`HTMLVideoElement`](../htmlvideoelement) interface's read-only `videoWidth` property indicates the **intrinsic width** of the video, expressed in CSS pixels. In simple terms, this is the width of the media in its natural size. See [About intrinsic width and height](#about_intrinsic_width_and_height) for more details.
 
-Syntax
-------
+## Syntax
 
     width = htmlVideoElement.videoWidth;
 
@@ -16,24 +14,22 @@ An integer value specifying the intrinsic width of the video in CSS pixels. If t
 
 A [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) calculates the intrinsic width and height of the element's media by starting with the media's raw pixel width and height, then taking into account factors including:
 
--   The media's aspect ratio.
--   The media's clean aperture (the sub-rectangle centered within the media that matches the target aspect ratio).
--   The target device's resolution.
--   Any other factors required by the media format.
+- The media's aspect ratio.
+- The media's clean aperture (the sub-rectangle centered within the media that matches the target aspect ratio).
+- The target device's resolution.
+- Any other factors required by the media format.
 
 If the element is currently displaying the poster frame rather than rendered video, the poster frame's intrinsic size is considered to be the size of the `<video>` element.
 
 If at any time the intrinsic size of the media changes and the element's [`readyState`](../htmlmediaelement/readystate) isn't `HAVE_NOTHING`, a <span class="page-not-created">`resize`</span> event will be sent to the `<video>` element. This can happen when the element switches from displaying the poster frame to displaying video content, or when the displayed video track changes.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-video-videowidth">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLVideoElement.videoWidth' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/semantics-embedded-content.html#dom-htmlvideoelement-videowidth">HTML5<br />
 <span class="small">The definition of 'HTMLVideoElement.videoWidth' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

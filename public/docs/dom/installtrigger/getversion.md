@@ -1,5 +1,4 @@
-InstallTrigger.getVersion()
-===========================
+# InstallTrigger.getVersion()
 
 Parts of this page show the use of the [XPInstall API](https://developer.mozilla.org/en-US/docs/XPInstall_API_Reference). The majority of this API is now deprecated and as of Gecko 1.9 no longer available. [Extension](https://developer.mozilla.org/en-US/docs/Extensions), [Theme](https://developer.mozilla.org/en-US/docs/Themes), and [plug-in](https://developer.mozilla.org/en-US/docs/Plugins) developers must switch away from `install.js` based packages to the new [packaging scheme](https://developer.mozilla.org/en-US/docs/Bundles) with an `install.rdf` manifest. In particular plugin developers should see [how to package a plugin as an extension](https://developer.mozilla.org/en-US/docs/Shipping_a_plugin_as_a_Toolkit_bundle).
 

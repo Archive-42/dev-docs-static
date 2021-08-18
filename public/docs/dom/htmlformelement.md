@@ -1,17 +1,15 @@
-HTMLFormElement
-===============
+# HTMLFormElement
 
 The `HTMLFormElement` interface represents a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element in the DOM. It allows access to—and, in some cases, modification of—aspects of the form, as well as access to its component elements.
 
-Properties
-----------
+## Properties
 
-*This interface also inherits properties from its parent, [`HTMLElement`](htmlelement).*
+_This interface also inherits properties from its parent, [`HTMLElement`](htmlelement)._
 
- [`HTMLFormElement.elements`](htmlformelement/elements) <span class="badge inline readonly">Read only </span>   
+[`HTMLFormElement.elements`](htmlformelement/elements) <span class="badge inline readonly">Read only </span>  
 A [`HTMLFormControlsCollection`](htmlformcontrolscollection) holding all form controls belonging to this form element.
 
- [`HTMLFormElement.length`](htmlformelement/length)<span class="badge inline readonly">Read only </span>   
+[`HTMLFormElement.length`](htmlformelement/length)<span class="badge inline readonly">Read only </span>  
 A `long` reflecting the number of controls in the form.
 
 [`HTMLFormElement.name`](htmlformelement/name)  
@@ -26,7 +24,7 @@ A [`DOMString`](domstring) reflecting the value of the form's [`target`](https:/
 [`HTMLFormElement.action`](htmlformelement/action)  
 A [`DOMString`](domstring) reflecting the value of the form's [`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-action) HTML attribute, containing the URI of a program that processes the information submitted by the form.
 
- [`HTMLFormElement.encoding`](htmlformelement/encoding) or [`HTMLFormElement.enctype`](htmlformelement/enctype)   
+[`HTMLFormElement.encoding`](htmlformelement/encoding) or [`HTMLFormElement.enctype`](htmlformelement/enctype)  
 A [`DOMString`](domstring) reflecting the value of the form's [`enctype`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-enctype) HTML attribute, indicating the type of content that is used to transmit the form to the server. Only specified values can be set. The two properties are synonyms.
 
 [`HTMLFormElement.acceptCharset`](htmlformelement/acceptcharset)  
@@ -40,10 +38,9 @@ A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 Named inputs are added to their owner form instance as properties, and can overwrite native properties if they share the same name (e.g. a form with an input named `action` will have its `action` property return that input instead of the form's [`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-action) HTML attribute).
 
-Methods
--------
+## Methods
 
-*This interface also inherits methods from its parent, [`HTMLElement`](htmlelement).*
+_This interface also inherits methods from its parent, [`HTMLElement`](htmlelement)._
 
 <span class="page-not-created">`checkValidity()`</span>  
 Returns `true` if the element's child controls are subject to [constraint validation](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation) and satisfy those constraints; returns `false` if some controls do not satisfy their constraints. Fires an event named [`invalid`](htmlinputelement/invalid_event) at any control that does not satisfy its constraints; such controls are considered invalid if the event is not canceled. It is up to the programmer to decide how to respond to `false`.
@@ -62,11 +59,10 @@ Submits the form to the server.
 
 ### Deprecated methods
 
- <span class="page-not-created">`HTMLFormElement.requestAutocomplete()`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLFormElement.requestAutocomplete()`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Triggers a native browser interface to assist the user in completing the fields which have an [autofill field name](https://html.spec.whatwg.org/#autofill-field-name) value that is not `off` or `on`. The form will receive an event once the user has finished with the interface, the event will either be `autocomplete` when the fields have been filled or `autocompleteerror` when there was a problem.
 
-Events
-------
+## Events
 
 Listen to these events using `addEventListener()`, or by assigning an event listener to the `oneventname` property of this interface.
 
@@ -82,8 +78,7 @@ Also available via the [`onreset`](globaleventhandlers/onreset) property.
 The `submit` event fires when a form is submitted.  
 Also available via the [`onsubmit`](globaleventhandlers/onsubmit) property.
 
-Usage notes
------------
+## Usage notes
 
 ### Obtaining a form element object
 
@@ -104,7 +99,7 @@ Returns the form whose [`name`](index) attribute's value is `name`.
 
 You can access the list of the form's data-containing elements by examining the form's [`elements`](htmlformelement/elements) property. This returns an [`HTMLFormControlsCollection`](htmlformcontrolscollection) listing all of the form's user data entry elements, both those which are descendants of the `<form>` and those which are made members of the form using their `form` attributes.
 
-You can also get the form's element by using its `name` attribute as a key of the `form`, but using `elements` is a better approach—it contains *only* the form's elements, and it cannot be mixed with other attributes of the `form`.
+You can also get the form's element by using its `name` attribute as a key of the `form`, but using `elements` is a better approach—it contains _only_ the form's elements, and it cannot be mixed with other attributes of the `form`.
 
 ### Issues with Naming Elements
 
@@ -112,13 +107,13 @@ Some names will interfere with JavaScript access to the form’s properties and 
 
 For example:
 
--   `<input name="id">` will take precedence over `<form id="…">`. This means that `form.id` will not refer to the form’s id, but to the element whose name is "`id`". This will be the case with any other form properties, such as `<input name="action">` or `<input name="post">`.
--   `<input name="elements">` will render the form’s `elements` collection inaccessible. The reference `form.elements` will now refer to the individual element.
+- `<input name="id">` will take precedence over `<form id="…">`. This means that `form.id` will not refer to the form’s id, but to the element whose name is "`id`". This will be the case with any other form properties, such as `<input name="action">` or `<input name="post">`.
+- `<input name="elements">` will render the form’s `elements` collection inaccessible. The reference `form.elements` will now refer to the individual element.
 
 To avoid such problems with element names:
 
--   *Always* use the `elements` collection to avoid ambiguity between an element name and a form property.
--   *Never* use "`elements`" as an element name.
+- _Always_ use the `elements` collection to avoid ambiguity between an element name and a form property.
+- _Never_ use "`elements`" as an element name.
 
 If you are not using JavaScript, this will not cause a problem.
 
@@ -126,18 +121,17 @@ If you are not using JavaScript, this will not cause a problem.
 
 The elements included by `HTMLFormElement.elements` and `HTMLFormElement.length` are the following:
 
--   [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)
--   [`<fieldset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset)
--   [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) (with the exception that any whose [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-type) is `"image"` are omitted for historical reasons)
--   [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object)
--   [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output)
--   [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select)
--   [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea)
+- [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)
+- [`<fieldset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset)
+- [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) (with the exception that any whose [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-type) is `"image"` are omitted for historical reasons)
+- [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object)
+- [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output)
+- [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select)
+- [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea)
 
 No other elements are included in the list returned by `elements`, which makes it an excellent way to get at the elements most important when processing forms.
 
-Examples
---------
+## Examples
 
 Creating a new form element, modifying its attributes, then submitting it:
 
@@ -218,15 +212,13 @@ Submit a `<form>` into a new window:
 
 If you want to know how to serialize and submit a form using the [`XMLHttpRequest`](xmlhttprequest) API, please read [this paragraph](xmlhttprequest/using_xmlhttprequest#submitting_forms_and_uploading_files).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#htmlformelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLFormElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>The following method has been added: <code>requestAutocomplete()</code>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/sec-forms.html#htmlformelement">HTML5<br />
 <span class="small">The definition of 'HTMLFormElement' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>The elements properties returns an <a href="htmlformcontrolscollection"><code>HTMLFormControlsCollection</code></a> instead of a raw <a href="htmlcollection"><code>HTMLCollection</code></a>. This is mainly a technical change. The following method has been added: <code>checkValidity()</code>. The following properties have been added: <code>autocomplete</code>, <code>noValidate</code>, and <code>encoding</code>.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -776,9 +768,8 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   The HTML element implementing this interface: [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form).
+- The HTML element implementing this interface: [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement</a>

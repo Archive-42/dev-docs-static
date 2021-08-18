@@ -1,5 +1,4 @@
-LinearAccelerationSensor
-========================
+# LinearAccelerationSensor
 
 The `LinearAccelerationSensor` interface of the [Sensor APIs](sensor_apis) provides on each reading the acceleration applied to the device along all three axes, but without the contribution of gravity.
 
@@ -7,19 +6,16 @@ To use this sensor, the user must grant permission to the `'accelerometer'` devi
 
 If a feature policy blocks use of a feature it is because your code is inconsistent with the policies set on your server. This is not something that would ever be shown to a user. See [`Feature-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy) for implementation instructions.
 
-Constructor
------------
+## Constructor
 
 [`LinearAccelerationSensor.LinearAccelerationSensor()`](linearaccelerationsensor/linearaccelerationsensor)  
 Creates a new `LinearAccelerationSensor` object.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its ancestor, [`Accelerometer`](accelerometer).*
+_Inherits properties from its ancestor, [`Accelerometer`](accelerometer)._
 
-Example
--------
+## Example
 
 Linear acceleration is typically read in the [`Sensor.onreading`](sensor/onreading) event callback. In the example below this occurs sixty times a second.
 
@@ -32,14 +28,12 @@ Linear acceleration is typically read in the [`Sensor.onreading`](sensor/onreadi
     });
     laSensor.start();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/generic-sensor/">Generic Sensor API</a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Defines sensors in general.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/accelerometer/#linearaccelerationsensor-interface">Accelerometer<br />
 <span class="small">The definition of 'LinearAccelerationSensor' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

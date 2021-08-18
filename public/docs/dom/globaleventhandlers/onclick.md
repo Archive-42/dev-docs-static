@@ -1,5 +1,4 @@
-GlobalEventHandlers.onclick
-===========================
+# GlobalEventHandlers.onclick
 
 The `onclick` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is the [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) for processing [`click`](../element/click_event) events on a given element.
 
@@ -7,8 +6,7 @@ The `click` event is raised when the user clicks on an element. It fires after t
 
 **Note:** When using the `click` event to trigger an action, also consider adding this same action to the [`keydown`](../element/keydown_event) event, to allow the use of that same action by people who don't use a mouse or a touch screen.
 
-Syntax
-------
+## Syntax
 
     target.onclick = functionRef;
 
@@ -18,8 +16,7 @@ Syntax
 
 Only one `onclick` handler can be assigned to an object at a time. You may prefer to use the [`EventTarget.addEventListener()`](../eventtarget/addeventlistener) method instead, since it's more flexible.
 
-Examples
---------
+## Examples
 
 ### Detecting clicks
 
@@ -61,14 +58,12 @@ This example displays the coordinates at which the most recent mouse button clic
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onclick">HTML Living Standard<br />
 <span class="small">The definition of 'onclick' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -124,12 +119,11 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`click`](../element/click_event) event
--   Related event handlers
-    -   [`GlobalEventHandlers.onauxclick`](onauxclick)
-    -   [`GlobalEventHandlers.ondblclick`](ondblclick)
+- [`click`](../element/click_event) event
+- Related event handlers
+  - [`GlobalEventHandlers.onauxclick`](onauxclick)
+  - [`GlobalEventHandlers.ondblclick`](ondblclick)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onclick" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onclick</a>

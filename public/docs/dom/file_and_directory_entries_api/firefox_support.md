@@ -1,5 +1,4 @@
-File and Directory Entries API support in Firefox
-=================================================
+# File and Directory Entries API support in Firefox
 
 **Non-standard**
 
@@ -11,8 +10,7 @@ This has caused a number of popular web sites not to work properly on browsers o
 
 This article describes how the Firefox implementation of the File and Directory Entries API differs from other implementations and/or the specification.
 
-Chrome deviations from the specification
-----------------------------------------
+## Chrome deviations from the specification
 
 The largest compatibility issue still remaining is that Chrome is still using older names for many of the interfaces in the API, since they implemented a related but different specification:
 
@@ -25,26 +23,24 @@ To ensure your code will work in both Chrome and other browsers, you can include
     var FileSystemDirectoryEntry = window.FileSystemDirectoryEntry || window.DirectoryEntry;
     var FileSystemEntry = window.FileSystemEntry || window.Entry;
 
-Limitations in Firefox
-----------------------
+## Limitations in Firefox
 
 Next, let's look at limitations of the Firefox implementation of the API. In broad strokes, those limitations can be summarized as follows:
 
--   Content scripts can't create file systems or initiate access to a file system. There are only two ways to get access to file system entries at this time:
-    -   The [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element, using the [`HTMLInputElement.webkitEntries`](../htmlinputelement/webkitentries) property to access an array of [`FileSystemEntry`](../filesystementry) objects describing file system entries you can then read.
-    -   Using drag and drop by calling the [`DataTransferItem.getAsEntry()`](../datatransferitem/webkitgetasentry) method, which lets you get a [`FileSystemFileEntry`](../filesystemfileentry) or [`FileSystemDirectoryEntry`](../filesystemdirectoryentry) for files dropped on a drop zone.
--   You can't use the `LocalFileSystem.requestFileSystem()` method to get access to a specified local file system.
--   The `LocalFileSystem.resolveLocalFileSystemURL()` method isn't implemented.
--   Only the asynchronous versions of the interfaces are implemented. Any interfaces with names that end in "`Sync"` aren't available.
--   Firefox only supports reading from files in the file system. You can't write to them. In particular, the [`FileSystemFileEntry.createWriter()`](../filesystemfileentry/createwriter) method, used to create a <span class="page-not-created">`FileWriter`</span> to handle writing to a file, is not implemented and will just return an error.
--   Firefox doesn't support the `"filesystem:"` URL scheme.
+- Content scripts can't create file systems or initiate access to a file system. There are only two ways to get access to file system entries at this time:
+  - The [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element, using the [`HTMLInputElement.webkitEntries`](../htmlinputelement/webkitentries) property to access an array of [`FileSystemEntry`](../filesystementry) objects describing file system entries you can then read.
+  - Using drag and drop by calling the [`DataTransferItem.getAsEntry()`](../datatransferitem/webkitgetasentry) method, which lets you get a [`FileSystemFileEntry`](../filesystemfileentry) or [`FileSystemDirectoryEntry`](../filesystemdirectoryentry) for files dropped on a drop zone.
+- You can't use the `LocalFileSystem.requestFileSystem()` method to get access to a specified local file system.
+- The `LocalFileSystem.resolveLocalFileSystemURL()` method isn't implemented.
+- Only the asynchronous versions of the interfaces are implemented. Any interfaces with names that end in "`Sync"` aren't available.
+- Firefox only supports reading from files in the file system. You can't write to them. In particular, the [`FileSystemFileEntry.createWriter()`](../filesystemfileentry/createwriter) method, used to create a <span class="page-not-created">`FileWriter`</span> to handle writing to a file, is not implemented and will just return an error.
+- Firefox doesn't support the `"filesystem:"` URL scheme.
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](../file_and_directory_entries_api)
--   [Introduction to the File and Directory Entries API](introduction)
--   Latest but still early specification for the [File and Directory Entries API](https://wicg.github.io/entries-api/).
--   Original specification for the [File API: Directories and System](https://dev.w3.org/2009/dap/file-system/file-dir-sys.html) (often called the "FileSystem API"); Google Chrome was the only browser to implement this **abandoned** API.
+- [File and Directory Entries API](../file_and_directory_entries_api)
+- [Introduction to the File and Directory Entries API](introduction)
+- Latest but still early specification for the [File and Directory Entries API](https://wicg.github.io/entries-api/).
+- Original specification for the [File API: Directories and System](https://dev.w3.org/2009/dap/file-system/file-dir-sys.html) (often called the "FileSystem API"); Google Chrome was the only browser to implement this **abandoned** API.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API/Firefox_support" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API/Firefox_support</a>

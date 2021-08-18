@@ -1,5 +1,4 @@
-FileSystemHandle.queryPermission()
-==================================
+# FileSystemHandle.queryPermission()
 
 **Draft**
 
@@ -11,17 +10,16 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `queryPermission()` method of the [`FileSystemHandle`](../filesystemhandle) interface queries the current permission state of the current handle.
 
-Syntax
-------
+## Syntax
 
     var PermissionState = FileSystemHandle.queryPermission(FileSystemHandlePermissionDescriptor);
 
 ### Parameters
 
-FileSystemHandlePermissionDescriptor <span class="badge inline optional">Optional</span>   
+FileSystemHandlePermissionDescriptor <span class="badge inline optional">Optional</span>  
 An object which specifies the permission mode to query for. Options are as follows:
 
--   `'mode'`: Can be either `'read'` or `'readwrite'`.
+- `'mode'`: Can be either `'read'` or `'readwrite'`.
 
 ### Return value
 
@@ -34,8 +32,7 @@ If this returns "prompt" the website will have to call requestPermission() befor
 `TypeError`  
 If `mode` is specified with a value other than `'read'` or `'readwrite'`
 
-Examples
---------
+## Examples
 
 The following asynchronous function returns true if user has granted read or readwrite permissions to the file handle. Permission is requested if not.
 
@@ -62,14 +59,12 @@ The following asynchronous function returns true if user has granted read or rea
       return false;
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/file-system-access/#api-filesystemhandle-querypermission">File System Access API<br />
 <span class="small">The definition of 'queryPermission' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -125,10 +120,9 @@ No
 
 14.0
 
-See also
---------
+## See also
 
--   [File System Access API](../file_system_access_api)
--   [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
+- [File System Access API](../file_system_access_api)
+- [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle/queryPermission" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle/queryPermission</a>

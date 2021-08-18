@@ -1,12 +1,10 @@
-Element.getElementsByClassName()
-================================
+# Element.getElementsByClassName()
 
 The [`Element`](../element) method `getElementsByClassName()` returns a live [`HTMLCollection`](../htmlcollection) which contains every descendant element which has the specified class name or names.
 
 The method [`getElementsByClassName()`](../document/getelementsbyclassname) on the [`Document`](../document) interface works essentially the same way, except it acts on the entire document, starting at the document root.
 
-Syntax
-------
+## Syntax
 
     var elements = element.getElementsByClassName(names);
 
@@ -19,17 +17,15 @@ A [`DOMString`](../domstring) containing one or more class names to match on, se
 
 An [`HTMLCollection`](../htmlcollection) providing a live-updating list of every element which is a member of every class in `names`.
 
-Usage notes
------------
+## Usage notes
 
-As always, the returned collection is *live*, meaning that it always reflects the current state of the DOM tree rooted at the element on which the function was called. As new elements that match `names` are added to the subtree, they immediately appear in the collection. Similarly, if an existing element that doesn't match `names` has its set of classes adjusted so that it matches, it immediately appears in the collection.
+As always, the returned collection is _live_, meaning that it always reflects the current state of the DOM tree rooted at the element on which the function was called. As new elements that match `names` are added to the subtree, they immediately appear in the collection. Similarly, if an existing element that doesn't match `names` has its set of classes adjusted so that it matches, it immediately appears in the collection.
 
 The opposite is also true; as elements no longer match the set of names, they are immediately removed from the collection.
 
 In [quirks mode](https://developer.mozilla.org/en-US/docs/Web/HTML/Quirks_Mode_and_Standards_Mode), the class names are compared in a case-insensitive fashion. Otherwise, they're case sensitive.
 
-Examples
---------
+## Examples
 
 ### Matching a single class
 
@@ -78,14 +74,12 @@ We can also use methods of <span class="page-not-created">`Array.prototype`</spa
       return testElement.nodeName === 'DIV';
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-element-getelementsbyclassname">DOM<br />
 <span class="small">The definition of 'Element.getElementsByClassName()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

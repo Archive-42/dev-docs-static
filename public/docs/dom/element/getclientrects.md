@@ -1,12 +1,10 @@
-Element.getClientRects()
-========================
+# Element.getClientRects()
 
 The `getClientRects()` method of the [`Element`](../element) interface returns a collection of [`DOMRect`](../domrect) objects that indicate the bounding rectangles for each [CSS border box](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model) in a client.
 
 Most elements only have one border box each, but a multiline [inline element](https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements) (such as a multiline [`<span>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span) element, by default) has a border box around each line.
 
-Syntax
-------
+## Syntax
 
     let rectCollection = object.getClientRects();
 
@@ -14,7 +12,7 @@ Syntax
 
 The returned value is a collection of [`DOMRect`](../domrect) objects, one for each CSS border box associated with the element. Each [`DOMRect`](../domrect) object contains read-only `left`, `top`, `right` and `bottom` properties describing the border box, in pixels, with the top-left relative to the top-left of the viewport. For tables with captions, the caption is included even though it's outside the border box of the table. When called on SVG elements other than an outer-`<svg>`, the "viewport" that the resulting rectangles are relative to is the viewport that the element's outer-`<svg>` establishes (and to be clear, the rectangles are also transformed by the outer-`<svg>`'s `viewBox` transform, if any).
 
-Originally, Microsoft intended this method to return a `TextRectangle` object for each *line* of text. However, the CSSOM working draft specifies that it returns a [`DOMRect`](../domrect) for each *border box*. For an inline element, the two definitions are the same. But for a block element, Mozilla will return only a single rectangle.
+Originally, Microsoft intended this method to return a `TextRectangle` object for each _line_ of text. However, the CSSOM working draft specifies that it returns a [`DOMRect`](../domrect) for each _border box_. For an inline element, the two definitions are the same. But for a block element, Mozilla will return only a single rectangle.
 
 **[Firefox 3.5 note](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/3.5)**
 
@@ -30,8 +28,7 @@ Rectangles are returned even for CSS boxes that have empty border-boxes. The `le
 
 Fractional pixel offsets are possible.
 
-Examples
---------
+## Examples
 
 These examples draw client rects in various colors. Note that the JavaScript function that paints the client rects is connected to the markup via the class `withClientRectsOverlay`.
 
@@ -182,8 +179,7 @@ The JavaScript code draws the client rects for all HTML elements that have CSS c
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-element-getclientrects">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'Element.getClientRects()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
@@ -192,8 +188,7 @@ Specifications
 
 `getClientRects()` was first introduced in the MS IE DHTML object model.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -249,9 +244,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`Element.getBoundingClientRect()`](getboundingclientrect)
+- [`Element.getBoundingClientRect()`](getboundingclientrect)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getClientRects" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/getClientRects</a>

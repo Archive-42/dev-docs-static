@@ -1,5 +1,4 @@
-MediaSession.metadata
-=====================
+# MediaSession.metadata
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `metadata` property of the [`MediaSession`](../mediasession) interface contains a [`MediaMetadata`](../mediametadata) object providing descriptive information about the currently playing media, or `null` if the metadata has not been set. This metadata is provided by the browser to the device for presentation in any standard media control user interface the device might offer.
 
-Syntax
-------
+## Syntax
 
     var mediaMetadata = navigator.mediaSession.metadata;
     navigator.mediaSession.metadata = mediaMetadata;
@@ -18,8 +16,7 @@ Syntax
 
 An instance of [`MediaMetadata`](../mediametadata) containing information about the media currently being played.
 
-Example
--------
+## Example
 
 The following example checks for compatibility and creates a new media session with the relevant metadata:
 
@@ -40,14 +37,12 @@ The following example checks for compatibility and creates a new media session w
 
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediasession/#dom-mediasession-metadata">Media Session Standard<br />
 <span class="small">The definition of 'MediaSession.metadata' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

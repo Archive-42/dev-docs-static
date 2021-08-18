@@ -1,5 +1,4 @@
-FontFace.display
-================
+# FontFace.display
 
 **Experimental**
 
@@ -19,8 +18,7 @@ If the font face is still not loaded, the fallback font will be shown. When the 
 failure period  
 If the font face still is not loaded, the fallback font will be shown and no swap will occur.
 
-Syntax
-------
+## Syntax
 
     var display = FontFace.display
     FontFace.display = display
@@ -29,21 +27,19 @@ Syntax
 
 A [`CSSOMString`](../cssomstring) with one of the following values.
 
--   `'auto'`: Use the font display strategy provided by the user agent.
--   `'block'`: Gives the font face a short block period and an infinite swap period. The spec recommends 3 seconds for the block period, though this may vary from browser to browser.
--   `'fallback'`: Gives the font face a short block period and a short swap period. The spec recommends 100 ms or less for the block period and 3 seconds for the swap period, though these values may vary from browser to browser.
--   `'optional'`: Gives the font face a short block period and no swap period. The spec recommends 100 ms or less, though this may vary from browser to browser.
--   `'swap'`: Gives the font face a 0 second block period and an infinite swap period.
+- `'auto'`: Use the font display strategy provided by the user agent.
+- `'block'`: Gives the font face a short block period and an infinite swap period. The spec recommends 3 seconds for the block period, though this may vary from browser to browser.
+- `'fallback'`: Gives the font face a short block period and a short swap period. The spec recommends 100 ms or less for the block period and 3 seconds for the swap period, though these values may vary from browser to browser.
+- `'optional'`: Gives the font face a short block period and no swap period. The spec recommends 100 ms or less, though this may vary from browser to browser.
+- `'swap'`: Gives the font face a 0 second block period and an infinite swap period.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-font-loading/#dom-fontface-family">CSS Font Loading Module Level 3<br />
 <span class="small">The definition of 'display' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr><tr class="even"><td><a href="https://drafts.csswg.org/css-fonts-4/#descdef-font-face-font-display">CSS Fonts Module Level 4<br />
 <span class="small">The definition of 'font-display' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Defines the values for the <code>display</code> property. (They are the same as for <code>font-display</code>.)</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-FileReaderSync.readAsBinaryString()
-===================================
+# FileReaderSync.readAsBinaryString()
 
 **Deprecated**
 
@@ -9,8 +8,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `readAsBinaryString()` method of the [`FileReaderSync`](../filereadersync) interface allows to read [`File`](../file) or [`Blob`](../blob) objects in a synchronous way into an [`DOMString`](../domstring). This interface is [only available](../web_workers_api/functions_and_classes_available_to_workers) in [workers](../worker) as it enables synchronous I/O that could potentially block.
 
-Syntax
-------
+## Syntax
 
     readAsBinaryString(File);
     readAsBinaryString(Blob);
@@ -24,8 +22,7 @@ The DOM [`File`](../file) or [`Blob`](../blob) to read.
 
 An [`DOMString`](../domstring) representing the input data.
 
-Exceptions
-----------
+## Exceptions
 
 The following exceptions can be raised by this method:
 
@@ -35,9 +32,9 @@ is raised when the resource represented by the DOM [`File`](../file) or [`Blob`]
 `SecurityError`  
 is raised when one of the following problematic situation is detected:
 
--   the resource has been modified by a third party;
--   too many read are performed simultaneously;
--   the file pointed by the resource is unsafe for a use from the Web (like it is a system file).
+- the resource has been modified by a third party;
+- too many read are performed simultaneously;
+- the file pointed by the resource is unsafe for a use from the Web (like it is a system file).
 
 `NotReadableError`  
 is raised when the resource cannot be read due to a permission problem, like a concurrent lock.
@@ -45,14 +42,12 @@ is raised when the resource cannot be read due to a permission problem, like a c
 `EncodingError`  
 is raised when the resource is a data URL and exceed the limit length defined by each browser.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/FileAPI/#dfn-readAsBinaryStringSync">File API<br />
 <span class="small">The definition of 'readAsBinaryStringSync' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -108,13 +103,12 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [File API](https://developer.mozilla.org/en-US/docs/API/File_API)
--   [`File`](../file)
--   [`FileReaderSync`](../filereadersync)
--   [`FileReader`](../filereader)
--   [`BlobBuilder`](../blobbuilder), [`Blob`](../blob)
+- [File API](https://developer.mozilla.org/en-US/docs/API/File_API)
+- [`File`](../file)
+- [`FileReaderSync`](../filereadersync)
+- [`FileReader`](../filereader)
+- [`BlobBuilder`](../blobbuilder), [`Blob`](../blob)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReaderSync/readAsBinaryString" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileReaderSync/readAsBinaryString</a>

@@ -1,10 +1,8 @@
-ExtendableMessageEvent.origin
-=============================
+# ExtendableMessageEvent.origin
 
 The `origin` read-only property of the [`ExtendableMessageEvent`](../extendablemessageevent) interface returns the origin of the [`Client`](../client) that sent the message.
 
-Syntax
-------
+## Syntax
 
     var myOrigin = extendableMessageEvent.origin;
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`USVString`](../usvstring).
 
-Examples
---------
+## Examples
 
 When the following code is used inside a service worker to respond to a push messages by sending the data received via [`PushMessageData`](../pushmessagedata) to the main context via a [channel message](../channel_messaging_api), the event object of `onmessage` will be a `ExtendableMessageEvent`.
 
@@ -34,14 +31,12 @@ When the following code is used inside a service worker to respond to a push mes
       port = e.ports[0];
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/ServiceWorker/#dom-extendablemessageevent-origin">Service Workers<br />
 <span class="small">The definition of 'ExtendableMessageEvent.origin' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -97,12 +92,11 @@ No
 
 ?
 
-See also
---------
+## See also
 
--   [Using Service Workers](../service_worker_api/using_service_workers)
--   [Service workers basic code example](https://github.com/mdn/sw-test)
--   [Is ServiceWorker ready?](https://jakearchibald.github.io/isserviceworkerready/)
--   [Channel Messaging](../channel_messaging_api)
+- [Using Service Workers](../service_worker_api/using_service_workers)
+- [Service workers basic code example](https://github.com/mdn/sw-test)
+- [Is ServiceWorker ready?](https://jakearchibald.github.io/isserviceworkerready/)
+- [Channel Messaging](../channel_messaging_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ExtendableMessageEvent/origin" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ExtendableMessageEvent/origin</a>

@@ -1,12 +1,10 @@
-Capabilities, constraints, and settings
-=======================================
+# Capabilities, constraints, and settings
 
 Historically, writing scripts for the Web that work intimately with Web APIs has had a well-known challenge: often, your code needs to know whether or not an API exists and if so, what its limitations are on the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) it's running on. Figuring this out has often been difficult, and has usually involved looking at some combination of which [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) (or browser) you're running on, which version it is, looking to see if certain objects exist, trying to see whether various things work or not and determining what errors occur, and so forth. The result has been a lot of very fragile code, or a reliance on libraries which figure this stuff out for you, then implement [polyfills](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill) to patch the holes in the implementation on your behalf.
 
 The twin concepts of **constraints** and **capabilities** let the browser and Web site or app exchange information about what **constrainable properties** the browser's implementation supports and what values it supports for each one. This article discusses capabilities and constraints, as well as media settings, and includes an example we call the [Constraint Exerciser](#example_constraint_exerciser). The Constraint Exerciser lets you experiment with the results of different constraint sets being applied to the audio and video tracks coming from the computer's A/V input devices (such as its webcam and microphone).
 
-Overview
---------
+## Overview
 
 The process works like this (using [`MediaStreamTrack`](../mediastreamtrack) as an example):
 
@@ -17,8 +15,7 @@ The process works like this (using [`MediaStreamTrack`](../mediastreamtrack) as 
 
 In the Media Stream API, both [`MediaStream`](../mediastream) and [`MediaStreamTrack`](../mediastreamtrack) have constrainable properties.
 
-Determining if a constraint is supported
-----------------------------------------
+## Determining if a constraint is supported
 
 If you need to know whether or not a given constraint is supported by the user agent, you can find out by calling [`navigator.mediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints) to get a list of the constrainable properties which the browser knows, like this:
 
@@ -28,8 +25,7 @@ If you need to know whether or not a given constraint is supported by the user a
 
 In this example, the supported constraints are fetched, and a control that lets the user configure the frame rate is disabled if the `frameRate` constraint isn't supported.
 
-How constraints are defined
----------------------------
+## How constraints are defined
 
 A single constraint is an object whose name matches the constrainable property whose desired value or range of values is being specified. This object contains zero or more individual constraints, as well as an optional sub-object named `advanced`, which contains another set of zero or more constraints which the user agent must satisfy if at all possible. The user agent attempts to satisfy constraints in the order specified in the constraint set.
 
@@ -85,15 +81,13 @@ Constraints which are specified using any or all of `max`, `min`, or `exact` are
 
 So-called advanced constraints are created by adding an `advanced` property to the constraint set; this property's value is an array of additional constraint sets which are considered optional. There are few if any use cases for this feature, and there is some interest in removing it from the specification, so it will not be discussed here. If you wish to learn more, see [section 11 of the Media Capture and Streams specification](https://www.w3.org/TR/mediacapture-streams/#idl-def-Constraints), past example 2.
 
-Checking capabilities
----------------------
+## Checking capabilities
 
 You can call [`MediaStreamTrack.getCapabilities()`](../mediastreamtrack/getcapabilities) to get a list of all of the supported capabilities and the values or ranges of values which each one accepts on the current platform and user agent*.* This function returns a <span class="page-not-created">`MediaTrackCapabilities`</span> object which lists each constrainable property supported by the browser and a value or range of values which are supported for each one of those properties.
 
 **Note:** `getCapabilities()` hasn't been implemented yet by all major browsers. For the time being, you'll have to try to get what you need, and if you can't, decide what to do at that point. See Firefox [bug 1179084](https://bugzilla.mozilla.org/show_bug.cgi?id=1179084), for example.
 
-Applying constraints
---------------------
+## Applying constraints
 
 The first and most common way to use constraints is to specify them when you call [`getUserMedia()`](../mediadevices/getusermedia):
 
@@ -124,8 +118,7 @@ You can also change the constraints of an existing [`MediaStreamTrack`](../media
 
 In this snippet, the video track referenced by `videoTrack` is updated so that its resolution as closely as possible matches 1920x1080 pixels (1080p high definition).
 
-Retrieving current constraints and settings
--------------------------------------------
+## Retrieving current constraints and settings
 
 It's important to remember the difference between **constraints** and **settings**. Constraints are a way to specify what values you need, want, and are willing to accept for the various constrainable properties (as described in the documentation for [`MediaTrackConstraints`](../mediatrackconstraints)), while settings are the actual values of each constrainable property at the current time.
 
@@ -151,8 +144,7 @@ Unless you only use exact constraints (which is pretty restrictive, so be sure y
 
 This function uses `getSettings()` to obtain the track's currently in-use values for the constrainable properties and returns the value of [`facingMode`](../mediatracksettings/facingmode).
 
-Example: Constraint exerciser
------------------------------
+## Example: Constraint exerciser
 
 In this example, we create an exerciser which lets you experiment with media constraints by editing the source code describing the constraint sets for audio and video tracks. You can then apply those changes and see the result, including both what the stream looks like and what the actual media settings are set to after applying the new constraints.
 
@@ -391,28 +383,25 @@ We also have some simple error handling code; `handleError()` is called to handl
 
 Here you can see the complete example in action.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#constrainable-interface">Media Capture and Streams<br />
 <span class="small">The definition of 'Constrainable pattern' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 ### MediaDevices.getSupportedConstraints
 
 BCD tables only load in the browser
 
-See also
---------
+## See also
 
--   [Media Capture and Streams API](../media_streams_api)
--   <span class="page-not-created">`MediaTrackCapabilities`</span>
--   [`MediaTrackConstraints`](../mediatrackconstraints)
--   [`MediaTrackSettings`](../mediatracksettings)
--   [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints)
--   [`MediaStreamTrack.applyConstraints()`](../mediastreamtrack/applyconstraints)
--   [`MediaStreamTrack.getSettings()`](../mediastreamtrack/getsettings)
+- [Media Capture and Streams API](../media_streams_api)
+- <span class="page-not-created">`MediaTrackCapabilities`</span>
+- [`MediaTrackConstraints`](../mediatrackconstraints)
+- [`MediaTrackSettings`](../mediatracksettings)
+- [`MediaDevices.getSupportedConstraints()`](../mediadevices/getsupportedconstraints)
+- [`MediaStreamTrack.applyConstraints()`](../mediastreamtrack/applyconstraints)
+- [`MediaStreamTrack.getSettings()`](../mediastreamtrack/getsettings)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Media_Streams_API/Constraints" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Media_Streams_API/Constraints</a>

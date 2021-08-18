@@ -1,10 +1,8 @@
-Element.ariaLabel
-=================
+# Element.ariaLabel
 
 The `ariaLabel` property of the [`Element`](../element) interface reflects the value of the [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute) attribute, which defines a string value that labels the current element.
 
-Syntax
-------
+## Syntax
 
     var ariaLabel = element.ariaLabel;
     element.ariaLabel = ariaLabel
@@ -13,8 +11,7 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Examples
---------
+## Examples
 
 In this example the `aria-label` attribute on the element with an ID of `close-button` is set to "Close". Using `ariaLabel` we update the value to "Close dialog".
 
@@ -25,14 +22,12 @@ In this example the `aria-label` attribute on the element with an ID of `close-b
     el.ariaLabel = "Close dialog"
     console.log(el.ariaLabel); // "Close dialog"
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-arialabel">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaLabel' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

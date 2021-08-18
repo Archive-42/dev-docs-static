@@ -1,5 +1,4 @@
-LocalFileSystem
-===============
+# LocalFileSystem
 
 **Non-standard**
 
@@ -7,8 +6,7 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 The `LocalFileSystem` interface of the [File System API](file_and_directory_entries_api/introduction) gives you access to a sandboxed file system. The methods are implemented by [window](window) and [worker](worker) objects.
 
-Basic concepts
---------------
+## Basic concepts
 
 This section includes a few key concepts for the methods.
 
@@ -56,18 +54,15 @@ The following is a code snippet that shows how you can request a file system sto
 
     window.requestFileSystem(window.PERSISTENT, 1024*1024,onInitFs,errorHandler);
 
-Method overview
----------------
+## Method overview
 
 <table><tbody><tr class="odd"><td><code>void requestFileSystem (in unsigned short type, in unsigned long long size, in FileSystemCallback successCallback, in optional ErrorCallback errorCallback); </code></td></tr><tr class="even"><td><code>void resolveLocalFileSystemURL (in DOMString url, in EntryCallback successCallback, in optional ErrorCallback errorCallback);</code></td></tr></tbody></table>
 
-Constants
----------
+## Constants
 
 <table><colgroup><col style="width: 33%" /><col style="width: 33%" /><col style="width: 33%" /></colgroup><thead><tr class="header"><th>Constant</th><th>Value</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><span id="const_temporary"><code>TEMPORARY</code></span></td><td><code>0</code></td><td><p>Transient storage that can be removed by the browser at its discretion.</p></td></tr><tr class="even"><td><span id="const_persistent"><code>PERSISTENT</code></span></td><td><code>1</code></td><td>Storage that stays in the browser unless the user or the app expunges it. The user must grant permission before the app can use this type of storage.</td></tr></tbody></table>
 
-Methods
--------
+## Methods
 
 ### requestFileSystem()
 
@@ -91,10 +86,10 @@ The storage space—in bytes—that you need for your app.
 successCallback  
 The success callback that is called when the browser provides a file system. Its argument is the `FileSystem` object with two properties:
 
--   name - the unique name assigned by the browser to the file system.
--   root - the read-only `DirectoryEntry` object representing the root of the file system.
+- name - the unique name assigned by the browser to the file system.
+- root - the read-only `DirectoryEntry` object representing the root of the file system.
 
-opt\_errorCallback  
+opt_errorCallback  
 The error callback that is called when errors happen or when the request to obtain the file system is denied. Its argument is the `FileError` object.
 
 ##### Returns
@@ -158,14 +153,12 @@ The URL was structurally correct, but refers to a resource that does not exist.
 
 The application does not have permission to access the file system interface.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.LocalFileSystem`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).
 
-See also
---------
+## See also
 
 Specification:[File API: Directories and System Specification](https://dev.w3.org/2009/dap/file-system/pub/FileSystem/)WD
 

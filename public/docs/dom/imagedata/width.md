@@ -1,29 +1,24 @@
-ImageData.width
-===============
+# ImageData.width
 
 The readonly `ImageData.width` property returns the number of pixels per row in the [`ImageData`](../imagedata) object.
 
-Syntax
-------
+## Syntax
 
     imageData.width
 
-Example
--------
+## Example
 
 This example creates an `ImageData` object that is 200 pixels wide and 100 pixels tall. Thus, the `width` property is `200`.
 
     let imageData = new ImageData(200, 100);
     console.log(imageData.width);  // 200
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-imagedata-width">HTML Living Standard<br />
 <span class="small">The definition of 'ImageData.width' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -79,10 +74,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`ImageData.height`](height)
--   [`ImageData`](../imagedata)
+- [`ImageData.height`](height)
+- [`ImageData`](../imagedata)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ImageData/width" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ImageData/width</a>

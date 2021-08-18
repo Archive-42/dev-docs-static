@@ -1,12 +1,10 @@
-Headers.values()
-================
+# Headers.values()
 
 The `Headers.values()` method returns an [`iterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) allowing to go through all values contained in this object. The values are [`ByteString`](../bytestring) objects.
 
 **Note**: This method is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     headers.values();
 
@@ -14,8 +12,7 @@ Syntax
 
 Returns an [`iterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols).
 
-Example
--------
+## Example
 
     // Create a test Headers object
     var myHeaders = new Headers();
@@ -32,8 +29,7 @@ The result is:
     text/xml
     Accept-Language
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -89,11 +85,10 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [ServiceWorker API](../service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [ServiceWorker API](../service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Headers/values" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Headers/values</a>

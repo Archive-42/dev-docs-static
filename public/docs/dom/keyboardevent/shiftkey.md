@@ -1,10 +1,8 @@
-KeyboardEvent.shiftKey
-======================
+# KeyboardEvent.shiftKey
 
 The `KeyboardEvent.shiftKey` read-only property is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that indicates if the shift key was pressed (`true`) or not (`false`) when the event occurred.
 
-Syntax
-------
+## Syntax
 
     var shiftKeyPressed = instanceOfKeyboardEvent.shiftKey
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
-Example
--------
+## Example
 
     <html>
     <head>
@@ -40,14 +37,12 @@ Example
     </body>
     </html>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#widl-KeyboardEvent-shiftKey">Document Object Model (DOM) Level 3 Events Specification<br />
 <span class="small">The definition of 'KeyboardEvent.shiftKey' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -103,9 +98,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`KeyboardEvent`](../keyboardevent)
+- [`KeyboardEvent`](../keyboardevent)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/shiftKey" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/shiftKey</a>

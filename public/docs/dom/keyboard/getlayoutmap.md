@@ -1,5 +1,4 @@
-Keyboard.getLayoutMap()
-=======================
+# Keyboard.getLayoutMap()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `getLayoutMap()` method of the [`Keyboard`](../keyboard) interface returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with an instance of [`KeyboardLayoutMap`](../keyboardlayoutmap) which is a map-like object with functions for retrieving the strings associated with specific physical keys.
 
-Syntax
-------
+## Syntax
 
     var promise = Keyboard.getLayoutMap()
 
@@ -21,8 +19,7 @@ None.
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with an instance of [`KeyboardLayoutMap`](../keyboardlayoutmap).
 
-Example
--------
+## Example
 
 The following example demonstrates how to get the location- or layout-specific string associated with the key that corresponds to the 'W' key on an English QWERTY keyboard.
 
@@ -33,14 +30,12 @@ The following example demonstrates how to get the location- or layout-specific s
       window.alert('Press ' + upKey + ' to move up.');
     })
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/keyboard-map/#h-keyboard-getlayoutmap">Keyboard Map<br />
 <span class="small">The definition of 'getLayoutMap()' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

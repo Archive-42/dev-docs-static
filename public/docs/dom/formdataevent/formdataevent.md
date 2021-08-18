@@ -1,10 +1,8 @@
-FormDataEvent()
-===============
+# FormDataEvent()
 
 The `FormDataEvent()` constructor creates a new [`FormDataEvent`](../formdataevent) object instance.
 
-Syntax
-------
+## Syntax
 
     new FormDataEvent(type[, formEventInit]);
 
@@ -13,16 +11,15 @@ Syntax
 `type`  
 A [`DOMString`](../domstring) representing the name of the event.
 
- `formEventInit` <span class="badge inline optional">Optional</span>   
+`formEventInit` <span class="badge inline optional">Optional</span>  
 A `FormEventInit` dictionary, which can take the following optional fields:
 
--   `bubbles`: a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the event bubbles. The default is `false`.
--   `cancelable`: a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the event can be cancelled. The default is `false`.
--   `composed`: a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the event will trigger listeners outside of a shadow root (see [`Event.composed`](../event/composed) for more details). The default is `false`.
--   `formData`: A [`FormData`](../formdata) object to pre-populate the FormDataEvent with. This would then be accessed through the [`FormDataEvent.formData`](formdata) property.
+- `bubbles`: a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the event bubbles. The default is `false`.
+- `cancelable`: a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the event can be cancelled. The default is `false`.
+- `composed`: a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the event will trigger listeners outside of a shadow root (see [`Event.composed`](../event/composed) for more details). The default is `false`.
+- `formData`: A [`FormData`](../formdata) object to pre-populate the FormDataEvent with. This would then be accessed through the [`FormDataEvent.formData`](formdata) property.
 
-Examples
---------
+## Examples
 
     let fd = new FormData();
     fd.append('test', 'test');
@@ -33,14 +30,12 @@ Examples
       console.log(value);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#the-formdataevent-interface">HTML Living Standard<br />
 <span class="small">The definition of 'FormDataEvent' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -96,9 +91,8 @@ No
 
 12.0
 
-See also
---------
+## See also
 
--   [`FormDataEvent`](../formdataevent)
+- [`FormDataEvent`](../formdataevent)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/FormDataEvent</a>

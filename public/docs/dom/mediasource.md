@@ -1,5 +1,4 @@
-MediaSource
-===========
+# MediaSource
 
 **Experimental**
 
@@ -8,22 +7,20 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MediaSource` interface of the [Media Source Extensions API](media_source_extensions_api) represents a source of media data for an [`HTMLMediaElement`](htmlmediaelement) object. A `MediaSource` object can be attached to a [`HTMLMediaElement`](htmlmediaelement) to be played in the user agent.
 
-Constructor
------------
+## Constructor
 
 [`MediaSource()`](mediasource/mediasource)  
 Constructs and returns a new `MediaSource` object with no associated source buffers.
 
-Properties
-----------
+## Properties
 
- [`MediaSource.sourceBuffers`](mediasource/sourcebuffers) <span class="badge inline readonly">Read only </span>   
+[`MediaSource.sourceBuffers`](mediasource/sourcebuffers) <span class="badge inline readonly">Read only </span>  
 Returns a [`SourceBufferList`](sourcebufferlist) object containing the list of [`SourceBuffer`](sourcebuffer) objects associated with this `MediaSource`.
 
- [`MediaSource.activeSourceBuffers`](mediasource/activesourcebuffers) <span class="badge inline readonly">Read only </span>   
+[`MediaSource.activeSourceBuffers`](mediasource/activesourcebuffers) <span class="badge inline readonly">Read only </span>  
 Returns a [`SourceBufferList`](sourcebufferlist) object containing a subset of the [`SourceBuffer`](sourcebuffer) objects contained within [`MediaSource.sourceBuffers`](mediasource/sourcebuffers) — the list of objects providing the selected video track, enabled audio tracks, and shown/hidden text tracks.
 
- [`MediaSource.readyState`](mediasource/readystate) <span class="badge inline readonly">Read only </span>   
+[`MediaSource.readyState`](mediasource/readystate) <span class="badge inline readonly">Read only </span>  
 Returns an enum representing the state of the current `MediaSource`, whether it is not currently attached to a media element (`closed`), attached and ready to receive [`SourceBuffer`](sourcebuffer) objects (`open`), or attached but the stream has been ended via [`MediaSource.endOfStream()`](mediasource/endofstream) (`ended`.)
 
 [`MediaSource.duration`](mediasource/duration)  
@@ -40,10 +37,9 @@ The event handler for the `sourceended` event.
 <span class="page-not-created">`MediaSource.onsourceopen`</span>  
 The event handler for the `sourceopen` event.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent interface, [`EventTarget`](eventtarget).*
+_Inherits methods from its parent interface, [`EventTarget`](eventtarget)._
 
 [`MediaSource.addSourceBuffer()`](mediasource/addsourcebuffer)  
 Creates a new [`SourceBuffer`](sourcebuffer) of the given MIME type and adds it to the [`MediaSource.sourceBuffers`](mediasource/sourcebuffers) list.
@@ -60,14 +56,12 @@ Removes the given [`SourceBuffer`](sourcebuffer) from the [`MediaSource.sourceBu
 [`MediaSource.setLiveSeekableRange()`](mediasource/setliveseekablerange)  
 Sets the range that the user can seek to in the media element.
 
-Static methods
---------------
+## Static methods
 
 [`MediaSource.isTypeSupported()`](mediasource/istypesupported)  
 Returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) value indicating if the given MIME type is supported by the current user agent — this is, if it can successfully create [`SourceBuffer`](sourcebuffer) objects for that MIME type.
 
-Examples
---------
+## Examples
 
 The following simple example loads a video with [`XMLHttpRequest`](xmlhttprequest), playing it as soon as it can. This example was written by Nick Desaulniers and can be [viewed live here](https://nickdesaulniers.github.io/netfix/demo/bufferAll.html) (you can also [download the source](https://github.com/nickdesaulniers/netfix/blob/gh-pages/demo/bufferAll.html) for further investigation.)
 
@@ -112,14 +106,12 @@ The following simple example loads a video with [`XMLHttpRequest`](xmlhttpreques
       xhr.send();
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/media-source/#mediasource">Media Source Extensions<br />
 <span class="small">The definition of 'MediaSource' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -579,10 +571,9 @@ No
 
 1.5
 
-See also
---------
+## See also
 
--   [`SourceBuffer`](sourcebuffer)
--   [`SourceBufferList`](sourcebufferlist)
+- [`SourceBuffer`](sourcebuffer)
+- [`SourceBufferList`](sourcebufferlist)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaSource" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaSource</a>

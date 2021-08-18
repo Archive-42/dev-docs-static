@@ -1,26 +1,21 @@
-FileReader.error
-================
+# FileReader.error
 
 The [`FileReader`](../filereader) `error` property returns the error that occurred while reading the file.
 
-Syntax
-------
+## Syntax
 
     var error = instanceOfFileReader.error
 
-Value
------
+## Value
 
 A [`DOMError`](../domerror) containing the relevant error. In Chrome 48+/Firefox 58+ this property returns a [`DOMException`](../domexception) because `DOMError` has been removed from the DOM standard.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/FileAPI/#dom-filereader-error">File API<br />
 <span class="small">The definition of 'FileReader: error' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -86,9 +81,8 @@ The `error` property returns a `DOMError` object.
 
 Yes
 
-See also
---------
+## See also
 
--   [`FileReader`](../filereader)
+- [`FileReader`](../filereader)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader/error" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileReader/error</a>

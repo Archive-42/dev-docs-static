@@ -1,10 +1,8 @@
-HTMLObjectElement.contentDocument
-=================================
+# HTMLObjectElement.contentDocument
 
 The `contentDocument` read-only property of the [`HTMLObjectElement`](../htmlobjectelement) interface Returns a [`Document`](../document) representing the active document of the object element's nested browsing context, if any; otherwise null.
 
-Syntax
-------
+## Syntax
 
     var document = HTMLObjectElement.contentDocument;
 
@@ -12,14 +10,12 @@ Syntax
 
 A [`Document`](../document).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-object-contentwindow">HTML Living Standard<br />
 <span class="small">The definition of 'contentDocument' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

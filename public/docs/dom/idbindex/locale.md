@@ -1,5 +1,4 @@
-IDBIndex.locale
-===============
+# IDBIndex.locale
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `locale` read-only property of the [`IDBIndex`](../idbindex) interface returns the locale of the index (for example `en-US`, or `pl`) if it had a `locale` value specified upon its creation (see [`createIndex()`'s optionalParameters](../idbobjectstore/createindex#parameters).) Note that this property always returns the current locale being used in this index, in other words, it never returns `"auto"`.
 
-Syntax
-------
+## Syntax
 
     var myIndex = objectStore.index('index');
     console.log(myIndex.locale);
@@ -18,8 +16,7 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Example
--------
+## Example
 
 In the following example we open a transaction and an object store, then get the index `lName` from a simple contacts database. We then open a basic cursor on the index using [`IDBIndex.openCursor`](opencursor) — this works the same as opening a cursor directly on an `ObjectStore` using [`IDBObjectStore.openCursor`](../idbobjectstore/opencursor) except that the returned records are sorted based on the index, not the primary key.
 
@@ -54,13 +51,11 @@ The `locale` value is logged to the console.
       };
     };
 
-Specifications
---------------
+## Specifications
 
 Not currently part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -116,15 +111,14 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBIndex/locale" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBIndex/locale</a>

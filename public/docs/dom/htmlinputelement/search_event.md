@@ -1,5 +1,4 @@
-HTMLInputElement: search event
-==============================
+# HTMLInputElement: search event
 
 **Non-standard**
 
@@ -13,8 +12,7 @@ There are several ways a search can be initiated, such as by pressing Enter whil
 
 Current UA implementations of `<input type="search">` have an additional control to clear the field. Using this control also fires the `search` event. In that case the `value` of the [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element will be the empty string.
 
-Examples
---------
+## Examples
 
     // addEventListener version
     const input = document.querySelector('input[type="search"]');
@@ -30,13 +28,11 @@ Examples
      console.log("The term searched for was " + input.value);
     })
 
-Specifications
---------------
+## Specifications
 
 This event is not part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

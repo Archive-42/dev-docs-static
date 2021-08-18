@@ -1,10 +1,8 @@
-MediaDevices.enumerateDevices()
-===============================
+# MediaDevices.enumerateDevices()
 
 The [`MediaDevices`](../mediadevices) method `enumerateDevices()` requests a list of the available media input and output devices, such as microphones, cameras, headsets, and so forth. The returned [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) is resolved with a [`MediaDeviceInfo`](../mediadeviceinfo) array describing the devices.
 
-Syntax
-------
+## Syntax
 
     var enumeratorPromise = navigator.mediaDevices.enumerateDevices();
 
@@ -14,8 +12,7 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 If enumeration fails, the promise is rejected.
 
-Example
--------
+## Example
 
 Here's an example of using `enumerateDevices()`. It outputs a list of the [device IDs](../mediadeviceinfo/deviceid), with their labels if available.
 
@@ -49,14 +46,12 @@ or if one or more [`MediaStream`](../mediastream)s are active or persistent perm
     audioinput: default (Built-in Microphone) id=RKxXByjnabbADGQNNZqLVLdmXlS0YkETYCIbg+XxnvM=
     audioinput: Built-in Microphone id=r2/xw1xUPIyZunfV1lGrKOma5wTOvCkWfZ368XCndm0=
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediadevices-enumeratedevices">Media Capture and Streams<br />
 <span class="small">The definition of 'mediaDevices: enumerateDevices' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -120,12 +115,11 @@ Prior to Firefox 63, `enumerateDevices()` only returned input devices. Starting 
 
 5.0
 
-See also
---------
+## See also
 
--   [`MediaDevices.getUserMedia`](getusermedia)
--   [WebRTC](../webrtc_api) - the introductory page to the API
--   [MediaStream API](../media_streams_api) - the API for the media stream objects
--   [Taking webcam photos](../webrtc_api/taking_still_photos) - a tutorial on using `getUserMedia()` for taking photos rather than video.
+- [`MediaDevices.getUserMedia`](getusermedia)
+- [WebRTC](../webrtc_api) - the introductory page to the API
+- [MediaStream API](../media_streams_api) - the API for the media stream objects
+- [Taking webcam photos](../webrtc_api/taking_still_photos) - a tutorial on using `getUserMedia()` for taking photos rather than video.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices</a>

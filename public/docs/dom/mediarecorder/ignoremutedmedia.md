@@ -1,5 +1,4 @@
-MediaRecorder.ignoreMutedMedia
-==============================
+# MediaRecorder.ignoreMutedMedia
 
 **Deprecated**
 
@@ -7,8 +6,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `ignoreMutedMedia` property of the [`MediaRecorder`](../mediarecorder) interface indicates whether the `MediaRecorder` instance will record input, when the input MediaStreamTrack is muted. If this attribute is `false`, MediaRecorder will record silence for audio and black frames for video. The default is `false`.
 
-Syntax
-------
+## Syntax
 
     var boolean = MediaRecorder.ignoreMutedMedia
     MediaRecorder.ignoreMutedMedia = boolean
@@ -17,8 +15,7 @@ Syntax
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean).
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

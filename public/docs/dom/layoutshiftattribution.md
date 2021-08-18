@@ -1,10 +1,8 @@
-LayoutShiftAttribution
-======================
+# LayoutShiftAttribution
 
 The `LayoutShiftAttribution` interface of the Layout Instability API provides debugging information about elements which have shifted.
 
-Properties
-----------
+## Properties
 
 `LayoutShiftAttribution.Node`  
 Returns the element that has shifted (null if it has been removed).
@@ -15,14 +13,12 @@ Returns a [DOMRect](domrect) representing the position of the element before the
 `LayoutShiftAttribution.currentRect`  
 Returns a [DOMRect](domrect) representing the position of the element after the shift.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/layout-instability/#layoutshiftattribution">Layout Instability API<br />
 <span class="small">The definition of 'LayoutShiftAttribution' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,10 +1,8 @@
-IntersectionObserver.disconnect()
-=================================
+# IntersectionObserver.disconnect()
 
 The [`IntersectionObserver`](../intersectionobserver) method `disconnect()` stops watching all of its target elements for visibility changes.
 
-Syntax
-------
+## Syntax
 
     intersectionObserver.disconnect();
 
@@ -16,14 +14,12 @@ None.
 
 `undefined`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/IntersectionObserver/#dom-intersectionobserver-disconnect">Intersection Observer<br />
 <span class="small">The definition of 'IntersectionObserver.disconnect()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -81,10 +77,9 @@ Yes
 
 5.0
 
-See also
---------
+## See also
 
--   [`observe()`](observe)
--   [`unobserve()`](unobserve)
+- [`observe()`](observe)
+- [`unobserve()`](unobserve)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/disconnect" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/disconnect</a>

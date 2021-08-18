@@ -1,5 +1,4 @@
-FormData.set()
-==============
+# FormData.set()
 
 The `set()` method of the [`FormData`](../formdata) interface sets a new value for an existing key inside a `FormData` object, or adds the key/value if it does not already exist.
 
@@ -7,8 +6,7 @@ The difference between `set()` and [`FormData.append`](append) is that if the sp
 
 **Note**: This method is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
 There are two versions of this method: a two and a three parameter version:
 
@@ -23,13 +21,12 @@ The name of the field whose data is contained in `value`.
 `value`  
 The field's value. This can be a [`USVString`](../usvstring) or [`Blob`](../blob) (including subclasses such as [`File`](../file)). If none of these are specified the value is converted to a string.
 
- `filename `<span class="badge inline optional">Optional</span>   
+`filename `<span class="badge inline optional">Optional</span>  
 The filename reported to the server (a [`USVString`](../usvstring)), when a [`Blob`](../blob) or [`File`](../file) is passed as the second parameter. The default filename for [`Blob`](../blob) objects is "blob". The default filename for [`File`](../file) objects is the file's filename.
 
 **Note:** If you specify a [`Blob`](../blob) as the data to append to the `FormData` object, the filename that will be reported to the server in the "Content-Disposition" header used to vary from browser to browser.
 
-Example
--------
+## Example
 
 The following line creates an empty `FormData` object:
 
@@ -45,14 +42,12 @@ If the sent value is different than String or Blob it will be automatically conv
     formData.set('name', 72);
     formData.get('name'); // "72"
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://xhr.spec.whatwg.org/#dom-formdata-set">XMLHttpRequest<br />
 <span class="small">The definition of 'set()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -108,12 +103,11 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [`XMLHTTPRequest`](../xmlhttprequest)
--   [Using XMLHttpRequest](../xmlhttprequest/using_xmlhttprequest)
--   [Using FormData objects](using_formdata_objects)
--   [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
+- [`XMLHTTPRequest`](../xmlhttprequest)
+- [Using XMLHttpRequest](../xmlhttprequest/using_xmlhttprequest)
+- [Using FormData objects](using_formdata_objects)
+- [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData/set" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FormData/set</a>

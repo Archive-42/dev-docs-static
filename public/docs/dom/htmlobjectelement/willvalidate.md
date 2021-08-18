@@ -1,10 +1,8 @@
-HTMLObjectElement.willValidate
-==============================
+# HTMLObjectElement.willValidate
 
 The `willValidate` read-only property of the [`HTMLObjectElement`](../htmlobjectelement) interface returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that indicates whether the element is a candidate for constraint validation. Always false for HTMLObjectElement objects.
 
-Syntax
-------
+## Syntax
 
     var Boolean = HTMLObjectElement.willValidate;
 
@@ -12,14 +10,12 @@ Syntax
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-cva-willvalidate">HTML Living Standard<br />
 <span class="small">The definition of 'willValidate' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

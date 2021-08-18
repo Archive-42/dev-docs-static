@@ -1,5 +1,4 @@
-Gamepad.hapticActuators
-=======================
+# Gamepad.hapticActuators
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `hapticActuators` read-only property of the [`Gamepad`](../gamepad) interface returns an array containing [`GamepadHapticActuator`](../gamepadhapticactuator) objects, each of which represents haptic feedback hardware available on the controller.
 
-Syntax
-------
+## Syntax
 
     var myHapticActuators = gamepadInstance.hapticActuators;
 
@@ -17,19 +15,16 @@ Syntax
 
 An array containing [`GamepadHapticActuator`](../gamepadhapticactuator) objects.
 
-Examples
---------
+## Examples
 
 TBC
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/gamepad/extensions.html#partial-gamepad-interface">Gamepad Extensions<br />
 <span class="small">The definition of 'hapticActuators' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -85,9 +80,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Gamepad API](../gamepad_api)
+- [Gamepad API](../gamepad_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Gamepad/hapticActuators" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Gamepad/hapticActuators</a>

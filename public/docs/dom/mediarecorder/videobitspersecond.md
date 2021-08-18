@@ -1,5 +1,4 @@
-MediaRecorder.videoBitsPerSecond
-================================
+# MediaRecorder.videoBitsPerSecond
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `videoBitsPerSecond` read-only property of the [`MediaRecorder`](../mediarecorder) interface returns the video encoding bit rate in use. This may differ from the bit rate specified in the constructor, if it was provided.
 
-Syntax
-------
+## Syntax
 
     var videoBitsPerSecond = MediaRecorder.videoBitsPerSecond
 
@@ -17,19 +15,16 @@ Syntax
 
 A [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) (unsigned long).
 
-Example
--------
+## Example
 
     // TBD
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-record/#dom-mediarecorder-videobitspersecond">MediaStream Recording<br />
 <span class="small">The definition of 'videoBitsPerSecond' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-InputDeviceCapabilities
-=======================
+# InputDeviceCapabilities
 
 **Experimental**
 
@@ -10,31 +9,26 @@ The `InputDeviceCapabilities` interface of the [Input Device Capabilities API](i
 
 In some instances, `InputDeviceCapabilities` represents the capabilities of logical devices rather than physical devices. This allows, for example, touchscreen keyboards and physical keyboards to be represented the same way when they produce the same input.
 
-Constructors
-------------
+## Constructors
 
 [`InputDeviceCapabilities.InputDeviceCapabilities()`](inputdevicecapabilities/inputdevicecapabilities)  
 Creates an `InputDeviceCapabilities` object.
 
-Properties
-----------
+## Properties
 
- [`InputDeviceCapabilities.firesTouchEvents`](inputdevicecapabilities/firestouchevents)<span class="badge inline readonly">Read only </span>   
+[`InputDeviceCapabilities.firesTouchEvents`](inputdevicecapabilities/firestouchevents)<span class="badge inline readonly">Read only </span>  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that indicates whether the device dispatches touch events.
 
-Methods
--------
+## Methods
 
 None.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/InputDeviceCapabilities/#dom-uievent-sourcecapabilities">InputDeviceCapabilities<br />
 <span class="small">The definition of 'sourceCapabilities' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

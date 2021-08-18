@@ -1,10 +1,8 @@
-Element.ariaCurrent
-===================
+# Element.ariaCurrent
 
 The `ariaCurrent` property of the [`Element`](../element) interface reflects the value of the `aria-current` attribute, which indicates the element that represents the current item within a container or set of related elements.
 
-Syntax
-------
+## Syntax
 
     var ariaCurrent = element.ariaCurrent;
     element.ariaCurrent = ariaCurrent
@@ -34,8 +32,7 @@ Represents the current item within a set.
 `"false"`  
 Does not represent the current item within a set.
 
-Examples
---------
+## Examples
 
 In this example a set of links are used for site navigation. The `aria-current` attribute indicates the current page. The value `page` is incorporated into the screenreader announcement. Using `ariaCurrent` we can update that value.
 
@@ -52,14 +49,12 @@ In this example a set of links are used for site navigation. The `aria-current` 
     el.ariaCurrent = "tab"
     console.log(el.ariaCurrent); // "tab"
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariacurrent">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaCurrent' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -115,9 +110,8 @@ No
 
 13.0
 
-See also
---------
+## See also
 
--   [Using the aria-current attribute](https://tink.uk/using-the-aria-current-attribute/)
+- [Using the aria-current attribute](https://tink.uk/using-the-aria-current-attribute/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaCurrent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaCurrent</a>

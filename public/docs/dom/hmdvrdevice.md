@@ -1,5 +1,4 @@
-HMDVRDevice
-===========
+# HMDVRDevice
 
 **Deprecated**
 
@@ -12,8 +11,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `HMDVRDevice` interface of the [WebVR API](webvr_api) represents a head mounted display, providing access to information about each eye, and allowing us to modify the current field of view.
 
-Methods
--------
+## Methods
 
 [`HMDVRDevice.getEyeParameters()`](hmdvrdevice/geteyeparameters)  
 Returns current parameters for the eye specified as its argument ("left" or "right") — such as field of view information — stored in a [`VREyeParameters`](vreyeparameters) object.
@@ -21,22 +19,20 @@ Returns current parameters for the eye specified as its argument ("left" or "rig
 [`HMDVRDevice.setFieldOfView()`](hmdvrdevice/setfieldofview)  
 Sets the field of view for both eyes.
 
-Properties
-----------
+## Properties
 
-*This interface doesn't define any properties of its own, but it does inherit the properties of its parent interface, [`VRDevice`](vrdisplay).*
+_This interface doesn't define any properties of its own, but it does inherit the properties of its parent interface, [`VRDevice`](vrdisplay)._
 
- [`VRDevice.hardwareUnitId`](vrdisplay/hardwareunitid) <span class="badge inline readonly">Read only </span>   
+[`VRDevice.hardwareUnitId`](vrdisplay/hardwareunitid) <span class="badge inline readonly">Read only </span>  
 Returns the distinct hardware ID for the overall hardware unit that this `VRDevice` is a part of. All devices that are part of the same physical piece of hardware will have the same `hardwareUnitId`.
 
- [`VRDevice.deviceId`](vrdisplay/displayid) <span class="badge inline readonly">Read only </span>   
+[`VRDevice.deviceId`](vrdisplay/displayid) <span class="badge inline readonly">Read only </span>  
 Returns the ID for this specific `VRDevice`. The ID shouldn’t change across browser restarts, allowing configuration data to be saved based on it.
 
- [`VRDevice.deviceName`](vrdisplay/displayname) <span class="badge inline readonly">Read only </span>   
+[`VRDevice.deviceName`](vrdisplay/displayname) <span class="badge inline readonly">Read only </span>  
 A human-readable name to identify the `VRDevice`.
 
-Examples
---------
+## Examples
 
 The following example, taken from the WebVR spec, finds the first available `HMDVRDevice` and its associated [`PositionSensorVRDevice`](positionsensorvrdevice), if it has one.
 
@@ -58,8 +54,7 @@ The following example, taken from the WebVR spec, finds the first available `HMD
       }
     });
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -197,10 +192,9 @@ No
 
 8.0
 
-See also
---------
+## See also
 
--   [WebVR API homepage](webvr_api).
--   <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
+- [WebVR API homepage](webvr_api).
+- <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HMDVRDevice" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HMDVRDevice</a>

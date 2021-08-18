@@ -1,5 +1,4 @@
-MediaMetadata.MediaMetadata()
-=============================
+# MediaMetadata.MediaMetadata()
 
 **Experimental**
 
@@ -8,23 +7,21 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MediaMetadata()` constructor creates a new [`MediaMetadata`](../mediametadata) object.
 
-Syntax
-------
+## Syntax
 
     var mediaMetadata = new MediaMetadata([metadata])
 
 ### Parameters
 
- *metadata* <span class="badge inline optional">Optional</span>   
+_metadata_ <span class="badge inline optional">Optional</span>  
 The metadata parameters are as follows:
 
--   `title`: The title of the media to be played.
--   `artist`: The name of the artist, group, creator, etc. of the media to be played.
--   `album`: The name of the album, or collection, containing the media to be played.
--   `artwork`: An array of images associated with the playing media.
+- `title`: The title of the media to be played.
+- `artist`: The name of the artist, group, creator, etc. of the media to be played.
+- `album`: The name of the album, or collection, containing the media to be played.
+- `artwork`: An array of images associated with the playing media.
 
-Example
--------
+## Example
 
 The following example creates a new [`MediaMetadata`](../mediametadata) object using the correct format of metadata.
 
@@ -44,14 +41,12 @@ The following example creates a new [`MediaMetadata`](../mediametadata) object u
       });
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediasession/#dom-mediametadata-mediametadata">Media Session Standard<br />
 <span class="small">The definition of 'MediaMetadata()' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

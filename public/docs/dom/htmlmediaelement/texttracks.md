@@ -1,5 +1,4 @@
-HTMLMediaElement.textTracks
-===========================
+# HTMLMediaElement.textTracks
 
 **Draft**
 
@@ -9,10 +8,9 @@ The read-only `textTracks` property on [`HTMLMediaElement`](../htmlmediaelement)
 
 You can detect when tracks are added to and removed from an `<audio>` or `<video>` element using the `addtrack` and `removetrack` events. However, these events aren't sent directly to the media element itself. Instead, they're sent to the track list object of the [`HTMLMediaElement`](../htmlmediaelement) that corresponds to the type of track that was added to the element
 
-The returned list is *live*; that is, as tracks are added to and removed from the media element, the list's contents change dynamically. Once you have a reference to the list, you can monitor it for changes to detect when new text tracks are added or existing ones removed.
+The returned list is _live_; that is, as tracks are added to and removed from the media element, the list's contents change dynamically. Once you have a reference to the list, you can monitor it for changes to detect when new text tracks are added or existing ones removed.
 
-Syntax
-------
+## Syntax
 
     var textTracks = mediaElement.textTracks;
 
@@ -22,8 +20,7 @@ A [`TextTrackList`](../texttracklist) object representing the list of text track
 
 Each track is represented by a [`TextTrack`](../texttrack) object which provides information about the track.
 
-Examples
---------
+## Examples
 
 We start with a `<video>` that has several `<track>` children
 
@@ -52,8 +49,7 @@ The `HTMLMediaElement.textTracks` returns a `textTracksList` thru which we can i
        }
     }
 
-Properties & Methods
---------------------
+## Properties & Methods
 
 ### properties
 
@@ -65,15 +61,13 @@ Returns the number of text tracks in `TextTrackList` object.
 getTrackById()  
 The `getTrackById(id)` method returns the first `TextTrack` in the `TextTrackList` object that matches the id, or null if there is no match.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-media-texttracks">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLMediaElement.textTracks' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change from <a href="https://www.w3.org/TR/html52/">HTML5</a></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/embedded-content-0.html#htmlmediaelement">HTML5<br />
 <span class="small">The definition of 'HTMLMediaElement.textTracks' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -129,14 +123,13 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The interface defining it, [`HTMLMediaElement`](../htmlmediaelement).
--   [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) and [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
--   [`VideoTrack`](../videotrack) and [`VideoTrackList`](../videotracklist)
--   [`AudioTrack`](../audiotrack) and [`AudioTrackList`](../audiotracklist)
--   VideoTrackList `change`, `addtrack` and `removetrack` events
--   Audio TrackList `change`, `addtrack` and `removetrack` events
+- The interface defining it, [`HTMLMediaElement`](../htmlmediaelement).
+- [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) and [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
+- [`VideoTrack`](../videotrack) and [`VideoTrackList`](../videotracklist)
+- [`AudioTrack`](../audiotrack) and [`AudioTrackList`](../audiotracklist)
+- VideoTrackList `change`, `addtrack` and `removetrack` events
+- Audio TrackList `change`, `addtrack` and `removetrack` events
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/textTracks" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/textTracks</a>

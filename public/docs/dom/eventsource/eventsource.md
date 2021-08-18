@@ -1,10 +1,8 @@
-EventSource()
-=============
+# EventSource()
 
-The `EventSource``()` constructor returns a newly-created [`EventSource`](../eventsource), which represents a remote resource.
+The ` EventSource``() ` constructor returns a newly-created [`EventSource`](../eventsource), which represents a remote resource.
 
-Syntax
-------
+## Syntax
 
     eventSource = new EventSource(url, configuration);
 
@@ -13,13 +11,12 @@ Syntax
 `url`  
 A [`USVString`](../usvstring) that represents the location of the remote resource serving the events/messages.
 
- `configuration` <span class="badge inline optional">Optional</span>   
+`configuration` <span class="badge inline optional">Optional</span>  
 Provides options to configure the new connection. The possible entries are:
 
--   `withCredentials`, defaulting to `false`, indicating if CORS should be set to `include` credentials.
+- `withCredentials`, defaulting to `false`, indicating if CORS should be set to `include` credentials.
 
-Examples
---------
+## Examples
 
     var evtSource = new EventSource('sse.php');
     var eventList = document.querySelector('ul');
@@ -33,14 +30,12 @@ Examples
 
 **Note**: You can find a full example on GitHub — see [Simple SSE demo using PHP.](https://github.com/mdn/dom-examples/tree/master/server-sent-events)
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/comms.html#dom-eventsource">HTML Living Standard<br />
 <span class="small">The definition of 'EventSource()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -122,9 +117,8 @@ No
 
 2.0
 
-See also
---------
+## See also
 
--   [`EventSource`](../eventsource)
+- [`EventSource`](../eventsource)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventSource/EventSource" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EventSource/EventSource</a>

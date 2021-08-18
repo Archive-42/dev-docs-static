@@ -1,12 +1,10 @@
-HTMLElement.accessKey
-=====================
+# HTMLElement.accessKey
 
 The `HTMLElement.accessKey` property sets the keystroke which a user can press to jump to a given element.
 
 The `HTMLElement.accessKey` property is seldom used because of its multiple conflicts with already present key bindings in browsers. To work around this, browsers implement accesskey behavior if the keys are pressed with other "qualifying" keys (such as Alt + accesskey).
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -62,9 +60,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [HTML global attribute: accesskey](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey)
+- [HTML global attribute: accesskey](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/accessKey" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/accessKey</a>

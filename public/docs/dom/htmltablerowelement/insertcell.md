@@ -1,5 +1,4 @@
-HTMLTableRowElement.insertCell()
-================================
+# HTMLTableRowElement.insertCell()
 
 The `HTMLTableRowElement.insertCell()` method inserts a new cell ([`<td>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td)) into a table row ([`<tr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr)) and returns a reference to the cell.
 
@@ -7,8 +6,7 @@ The `HTMLTableRowElement.insertCell()` method inserts a new cell ([`<td>`](https
 
 You can not use `insertCell()` to create a new `<th>` element though.
 
-Syntax
-------
+## Syntax
 
     var newCell = HTMLTableRowElement.insertCell(index);
 
@@ -16,15 +14,14 @@ Syntax
 
 ### Parameters
 
- `index` <span class="badge inline optional">Optional</span>   
+`index` <span class="badge inline optional">Optional</span>  
 `index` is the cell index of the new cell. If `index` is `-1` or equal to the number of cells, the cell is appended as the last cell in the row. If `index` is greater than the number of cells, an `IndexSizeError` exception will result. If `index` is omitted it defaults to `-1`.
 
 ### Return value
 
 `newCell` is an [`HTMLTableCellElement`](../htmltablecellelement) that references the new cell.
 
-Example
--------
+## Example
 
 This example uses [`HTMLTableElement.insertRow()`](../htmltableelement/insertrow) to append a new row to a table.
 
@@ -60,15 +57,13 @@ We then use `insertCell(0)` to insert a new cell in the new row. (To be valid HT
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/tables.html#dom-tr-insertcell">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLTableRowElement.insertCell()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-68927016">Document Object Model (DOM) Level 2 HTML Specification<br />
 <span class="small">The definition of 'HTMLTableRowElement.insertCell()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -176,10 +171,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`HTMLTableElement.insertRow()`](../htmltableelement/insertrow)
--   The HTML element representing cells: [`HTMLTableCellElement`](../htmltablecellelement)
+- [`HTMLTableElement.insertRow()`](../htmltableelement/insertrow)
+- The HTML element representing cells: [`HTMLTableCellElement`](../htmltablecellelement)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableRowElement/insertCell" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableRowElement/insertCell</a>

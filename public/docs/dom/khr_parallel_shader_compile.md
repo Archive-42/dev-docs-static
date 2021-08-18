@@ -1,5 +1,4 @@
-KHR\_parallel\_shader\_compile
-==============================
+# KHR_parallel_shader_compile
 
 **Draft**
 
@@ -9,14 +8,12 @@ The `KHR_parallel_shader_compile` extension is part of the [WebGL API](webgl_api
 
 WebGL extensions are available using the [`WebGLRenderingContext.getExtension()`](webglrenderingcontext/getextension) method. For more information, see also [Using Extensions](webgl_api/using_extensions) in the [WebGL tutorial](webgl_api/tutorial).
 
-Constants
----------
+## Constants
 
 `ext.COMPLETION_STATUS_KHR`  
 A GLenum.
 
-Examples
---------
+## Examples
 
 Enable the extension:
 
@@ -50,14 +47,12 @@ With the extension, apps would be able to poll whether programs have linked with
         }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.khronos.org/registry/webgl/extensions/KHR_parallel_shader_compile/">KHR_parallel_shader_compile<br />
 <span class="small">The definition of 'KHR_parallel_shader_compile' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -113,9 +108,8 @@ No
 
 12.0
 
-See also
---------
+## See also
 
--   [`WebGLRenderingContext.getExtension()`](webglrenderingcontext/getextension)
+- [`WebGLRenderingContext.getExtension()`](webglrenderingcontext/getextension)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/KHR_parallel_shader_compile" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/KHR_parallel_shader_compile</a>

@@ -1,5 +1,4 @@
-GlobalEventHandlers.onscroll
-============================
+# GlobalEventHandlers.onscroll
 
 The `onscroll` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `scroll` events.
 
@@ -9,8 +8,7 @@ The `scroll` event fires when the document view or an element has been scrolled,
 
 `onwheel` handles general wheel rotation, while `onscroll` handles scrolling of an object's content.
 
-Syntax
-------
+## Syntax
 
     target.onscroll = functionRef
 
@@ -23,8 +21,7 @@ Only one `onscroll` handler can be assigned to an object at a time.
 
 For greater flexibility, you can pass a `scroll` event to the [`EventTarget.addEventListener()`](../eventtarget/addeventlistener) method instead.
 
-Example
--------
+## Example
 
 This example monitors scrolling on a [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea), and logs the element's vertical scroll position accordingly.
 
@@ -54,15 +51,13 @@ This example monitors scrolling on a [`<textarea>`](https://developer.mozilla.or
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#handler-onscroll">HTML Living Standard<br />
 <span class="small">The definition of 'onscroll' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#event-type-scroll">Document Object Model (DOM) Level 3 Events Specification<br />
 <span class="small">The definition of 'onscroll' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -118,10 +113,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [Document: `scroll` event](../document/scroll_event)
--   [Element: `scroll` event](../element/scroll_event)
+- [Document: `scroll` event](../document/scroll_event)
+- [Element: `scroll` event](../element/scroll_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onscroll" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onscroll</a>

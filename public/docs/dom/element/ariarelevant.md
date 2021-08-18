@@ -1,5 +1,4 @@
-Element.ariaRelevant
-====================
+# Element.ariaRelevant
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `ariaRelevant` property of the [`Element`](../element) interface reflects the value of the [`aria-relevant`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-relevant_attribute) attribute, which indicates what notifications the user agent will trigger when the accessibility tree within a live region is modified. This is used to describe what changes in an `aria-live` region are relevant and should be announced.
 
-Syntax
-------
+## Syntax
 
     var ariaRelevant = element.ariaRelevant;
     element.ariaRelevant = ariaRelevant
@@ -30,8 +28,7 @@ Changes to the textual content of existing nodes should be considered relevant.
 "all"  
 Equivalent to `"additions removals text"`.
 
-Examples
---------
+## Examples
 
 In this example the `aria-relevant` attribute on the element with an ID of `text` is set to "all". Using `ariaRelevant` we update the value to "text".
 
@@ -42,8 +39,7 @@ In this example the `aria-relevant` attribute on the element with an ID of `text
     el.ariaRelevant = "text"
     console.log(el.ariaRelevant); // text
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

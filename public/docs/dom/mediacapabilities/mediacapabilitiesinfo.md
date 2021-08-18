@@ -1,5 +1,4 @@
-MediaCapabilitiesInfo
-=====================
+# MediaCapabilitiesInfo
 
 The interface of the promise returned by the [`mediaCapabilities`](../mediacapabilities)'s [`encodingInfo()`](encodinginfo) and [`decodingInfo()`](encodinginfo) methods returning whether the media configuration tested is supported, smooth, and power efficient.
 

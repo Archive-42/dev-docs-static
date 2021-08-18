@@ -1,5 +1,4 @@
-InputDeviceCapabilities API
-===========================
+# InputDeviceCapabilities API
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The InputDeviceCapabilities API provides details about the underlying sources of input events. The API attempts to describe how the device behaves rather than what it is. For example, the first version of the API indicates whether a device fires touch events rather than whether it is a touch screen.
 
-Input device capabilities concepts and usage
---------------------------------------------
+## Input device capabilities concepts and usage
 
 Because DOM events abstract device input, they provide no way to learn what device or type of device fired an event. This can lead to instances where the same action triggers multiple event handlers. To deal with this, developers make assumptions and use heuristics to normalize behavior on web pages.
 
@@ -21,19 +19,16 @@ The InputDeviceCapabilities API addresses this problem by abstracting the capabi
         myButton.classList.add("pressed");
     });
 
-Interfaces
-----------
+## Interfaces
 
 [`InputDeviceCapabilities`](inputdevicecapabilities)  
 Provides logical information about an input device.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/InputDeviceCapabilities/">InputDeviceCapabilities</a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

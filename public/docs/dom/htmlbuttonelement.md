@@ -1,12 +1,10 @@
-HTMLButtonElement
-=================
+# HTMLButtonElement
 
 The `HTMLButtonElement` interface provides properties and methods (beyond the regular [`HTMLElement`](htmlelement) interface it also has available to it by inheritance) for manipulating [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) elements.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement).*
+_Inherits properties from its parent, [`HTMLElement`](htmlelement)._
 
 <span class="page-not-created">`HTMLButtonElement.accessKey`</span>  
 Is a [`DOMString`](domstring) indicating the single-character keyboard key to give access to the button.
@@ -17,7 +15,7 @@ Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referen
 [`HTMLButtonElement.disabled`](htmlbuttonelement/disabled)  
 Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether or not the control is disabled, meaning that it does not accept any clicks.
 
- <span class="page-not-created">`HTMLButtonElement.form`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLButtonElement.form`</span> <span class="badge inline readonly">Read only </span>  
 Is a [`HTMLFormElement`](htmlformelement) reflecting the form that this button is associated with. If the button is a descendant of a form element, then this attribute is the ID of that form element.  
 If the button is not a descendant of a form element, then the attribute can be the ID of any form element in the same document it is related to, or the `null` value if none matches.
 
@@ -36,10 +34,10 @@ Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Referen
 <span class="page-not-created">`HTMLButtonElement.formTarget`</span>  
 Is a [`DOMString`](domstring) reflecting a name or keyword indicating where to display the response that is received after submitting the form. If specified, this attribute overrides the [`target`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-target) attribute of the [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element that owns this element.
 
- [`HTMLButtonElement.labels`](htmlbuttonelement/labels) <span class="badge inline readonly">Read only </span>   
+[`HTMLButtonElement.labels`](htmlbuttonelement/labels) <span class="badge inline readonly">Read only </span>  
 Is a [`NodeList`](nodelist) that represents a list of [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) elements that are labels for this button.
 
- <span class="page-not-created">`HTMLButtonElement.menu`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`HTMLButtonElement.menu`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is a [`HTMLMenuElement`](htmlmenuelement) representing the menu element to be displayed if the button is clicked and is of `type="menu"`.
 
 <span class="page-not-created">`HTMLButtonElement.name`</span>  
@@ -51,34 +49,32 @@ Is a `long` that represents this element's position in the tabbing order.
 <span class="page-not-created">`HTMLButtonElement.type`</span>  
 Is a [`DOMString`](domstring) indicating the behavior of the button. This is an enumerated attribute with the following possible values:
 
--   `submit`: The button submits the form. This is the default value if the attribute is not specified, or if it is dynamically changed to an empty or invalid value.
--   `reset`: The button resets the form.
--   `button`: The button does nothing.
--   `menu`: The button displays a menu. <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>
+- `submit`: The button submits the form. This is the default value if the attribute is not specified, or if it is dynamically changed to an empty or invalid value.
+- `reset`: The button resets the form.
+- `button`: The button does nothing.
+- `menu`: The button displays a menu. <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>
 
- <span class="page-not-created">`HTMLButtonElement.willValidate`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLButtonElement.willValidate`</span> <span class="badge inline readonly">Read only </span>  
 Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the button is a candidate for constraint validation. It is `false` if any conditions bar it from constraint validation, including: its `type` property is `reset` or `button`; it has a [`<datalist>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) ancestor; or the `disabled` property is set to `true`.
 
- <span class="page-not-created">`HTMLButtonElement.validationMessage`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLButtonElement.validationMessage`</span> <span class="badge inline readonly">Read only </span>  
 Is a [`DOMString`](domstring) representing the localized message that describes the validation constraints that the control does not satisfy (if any). This attribute is the empty string if the control is not a candidate for constraint validation (`willValidate` is `false`), or it satisfies its constraints.
 
- <span class="page-not-created">`HTMLButtonElement.validity`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLButtonElement.validity`</span> <span class="badge inline readonly">Read only </span>  
 Is a [`ValidityState`](validitystate) representing the validity states that this button is in.
 
 <span class="page-not-created">`HTMLButtonElement.value`</span>  
 Is a [`DOMString`](domstring) representing the current form control value of the button.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`HTMLElement`](htmlelement)*
+_Inherits methods from its parent, [`HTMLElement`](htmlelement)_
 
 <table><thead><tr class="header"><th>Name</th><th>Return Type</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>checkValidity()</code></td><td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a></td><td>Not supported for reset or button elements.</td></tr><tr class="even"><td><code>reportValidity()</code></td><td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a></td><td>Not supported for reset or button elements.</td></tr><tr class="odd"><td><code>setCustomValidity(in DOMString error)</code></td><td><code>void</code></td><td>Not supported for reset or button elements.</td></tr></tbody></table>
 
 With Gecko-based browser, use the [`:-moz-submit-invalid`](https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-submit-invalid) pseudo-class to style submit buttons based on the validation of a form.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#htmlbuttonelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLButtonElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/sec-forms.html#htmlbuttonelement">HTML 5.2<br />
@@ -92,8 +88,7 @@ The <code>type</code> attribute is no more read-only.</td></tr><tr class="odd"><
 <span class="small">The definition of 'HTMLButtonElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>No change from <a href="https://www.w3.org/TR/REC-DOM-Level-1/">Document Object Model (DOM) Level 1 Specification</a>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-34812697">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLButtonElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -621,9 +616,8 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   HTML element implementing this interface: [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)
+- HTML element implementing this interface: [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement</a>

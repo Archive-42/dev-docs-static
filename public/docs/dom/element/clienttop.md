@@ -1,5 +1,4 @@
-Element.clientTop
-=================
+# Element.clientTop
 
 The width of the top border of an element in pixels. It is a read-only, integer property of element.
 
@@ -9,13 +8,11 @@ As it happens, all that lies between the two locations (`offsetTop` and client a
 
 [Gecko](https://developer.mozilla.org/en-US/Gecko)-based applications support `clientTop` starting with Gecko 1.9 ([Firefox 3](https://developer.mozilla.org/en-US/Firefox_3), implemented in [bug 111207](https://bugzilla.mozilla.org/show_bug.cgi?id=111207)). This property is not supported in Firefox 2 and earlier.
 
-Syntax
-------
+## Syntax
 
     var top = element.clientTop;
 
-Example
--------
+## Example
 
 In the following illustration, the client area is show in white. (The segments labeled "Top", "Right", etc. have no significance regarding the client area.) The clientTop value is the distance from where the margin (yellow) area ends and the padding and content areas (white) begin.
 
@@ -27,21 +24,18 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 padding-bottom
 
-**Left** **Top** **Right** **Bottom** *margin-top* *margin-bottom* *border-top* *border-bottom*
+**Left** **Top** **Right** **Bottom** _margin-top_ _margin-bottom_ _border-top_ _border-bottom_
 
-Notes
------
+## Notes
 
 `clientTop` was first introduced in the MS IE DHTML object model.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-element-clienttop">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'clientTop' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

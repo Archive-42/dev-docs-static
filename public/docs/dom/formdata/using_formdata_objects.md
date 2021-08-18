@@ -1,10 +1,8 @@
-Using FormData Objects
-======================
+# Using FormData Objects
 
 The `FormData` object lets you compile a set of key/value pairs to send using `XMLHttpRequest`. It is primarily intended for use in sending form data, but can be used independently from forms in order to transmit keyed data. The transmitted data is in the same format that the form's [`submit()`](../htmlformelement/submit) method would use to send the data if the form's encoding type were set to `multipart/form-data`.
 
-Creating a FormData object from scratch
----------------------------------------
+## Creating a FormData object from scratch
 
 You can build a `FormData` object yourself, instantiating it then appending fields to it by calling its [`append()`](append) method, like this:
 
@@ -26,12 +24,11 @@ You can build a `FormData` object yourself, instantiating it then appending fiel
     request.open("POST", "http://foo.com/submitform.php");
     request.send(formData);
 
-**Note:** The fields "userfile" and "webmasterfile" both contain a file. The number assigned to the field "accountnum" is immediately converted into a string by the [`FormData.append()`](../formdata#append()) method (the field's value can be a [`Blob`](../blob), [`File`](../file), or a string: **if the value is neither a Blob nor a File, the value is converted to a string**).
+**Note:** The fields "userfile" and "webmasterfile" both contain a file. The number assigned to the field "accountnum" is immediately converted into a string by the [`FormData.append()`](<../formdata#append()>) method (the field's value can be a [`Blob`](../blob), [`File`](../file), or a string: **if the value is neither a Blob nor a File, the value is converted to a string**).
 
-This example builds a `FormData` instance containing values for fields named "username", "accountnum", "userfile" and "webmasterfile", then uses the `XMLHttpRequest` method [`send()`](../xmlhttprequest#send()) to send the form's data. The field "webmasterfile" is a [`Blob`](../blob). A `Blob` object represents a file-like object of immutable, raw data. Blobs represent data that isn't necessarily in a JavaScript-native format. The [`File`](../file) interface is based on `Blob`, inheriting blob functionality and expanding it to support files on the user's system. In order to build a `Blob` you can invoke the [`Blob() constructor`](../blob/blob).
+This example builds a `FormData` instance containing values for fields named "username", "accountnum", "userfile" and "webmasterfile", then uses the `XMLHttpRequest` method [`send()`](<../xmlhttprequest#send()>) to send the form's data. The field "webmasterfile" is a [`Blob`](../blob). A `Blob` object represents a file-like object of immutable, raw data. Blobs represent data that isn't necessarily in a JavaScript-native format. The [`File`](../file) interface is based on `Blob`, inheriting blob functionality and expanding it to support files on the user's system. In order to build a `Blob` you can invoke the [`Blob() constructor`](../blob/blob).
 
-Retrieving a FormData object from an HTML form
-----------------------------------------------
+## Retrieving a FormData object from an HTML form
 
 To construct a `FormData` object that contains the data from an existing [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form), specify that form element when creating the `FormData` object:
 
@@ -57,8 +54,7 @@ You can also append additional data to the `FormData` object between retrieving 
 
 This lets you augment the form's data before sending it along, to include additional information that's not necessarily user-editable.
 
-Sending files using a FormData object
--------------------------------------
+## Sending files using a FormData object
 
 You can also send files using `FormData`. Include an [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element of type `file` in your [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form):
 
@@ -99,7 +95,7 @@ Then you can send it using code like the following:
 
 **Note**: If you pass in a reference to the form, the [request method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) specified in the form will be used over the method specified in the open() call.
 
-**Warning**: When using FormData to submit POST requests using [`XMLHttpRequest`](../xmlhttprequest) or the [`Fetch_API`](../fetch_api) with the `multipart/form-data` Content-Type (e.g. when uploading Files and Blobs to the server), *do not* explicitly set the [`Content-Type`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) header on the request. Doing so will prevent the browser from being able to set the Content-Type header with the boundary expression it will use to delimit form fields in the request body.
+**Warning**: When using FormData to submit POST requests using [`XMLHttpRequest`](../xmlhttprequest) or the [`Fetch_API`](../fetch_api) with the `multipart/form-data` Content-Type (e.g. when uploading Files and Blobs to the server), _do not_ explicitly set the [`Content-Type`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) header on the request. Doing so will prevent the browser from being able to set the Content-Type header with the boundary expression it will use to delimit form fields in the request body.
 
 You can also append a [`File`](../file) or [`Blob`](../blob) directly to the [`FormData`](../formdata) object, like this:
 
@@ -107,8 +103,7 @@ You can also append a [`File`](../file) or [`Blob`](../blob) directly to the [`F
 
 When using the [`append()`](append) method it is possible to use the third optional parameter to pass a filename inside the `Content-Disposition` header that is sent to the server. When no filename is specified (or the parameter isn't supported), the name "blob" is used.
 
-Using a formdata event
-----------------------
+## Using a formdata event
 
 A more recent addition to the platform than the [`FormData`](../formdata) object is the [`formdata` event](../htmlformelement/formdata_event) — this is fired on an [`HTMLFormElement`](../htmlformelement) object after the entry list representing the form's data is constructed. This happens when the form is submitted, but can also be triggered by the invocation of a [`FormData()`](formdata) constructor.
 
@@ -147,17 +142,15 @@ When the `formdata` event fires we can access the [`FormData`](../formdata) obje
 
 **Note**: The `formdata` event and [`FormDataEvent`](../formdataevent) object are available in Chrome from version 77 (and other equivalent Chromiums), and Firefox 72 (first available behind the `dom.formdata.event.enabled` pref in Firefox 71).
 
-Submitting forms and uploading files via AJAX *without* `FormData` objects
---------------------------------------------------------------------------
+## Submitting forms and uploading files via AJAX _without_ `FormData` objects
 
-If you want to know how to serialize and submit a form via [AJAX](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX) *without* using FormData objects, please read [this paragraph](../xmlhttprequest/using_xmlhttprequest#submitting_forms_and_uploading_files).
+If you want to know how to serialize and submit a form via [AJAX](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX) _without_ using FormData objects, please read [this paragraph](../xmlhttprequest/using_xmlhttprequest#submitting_forms_and_uploading_files).
 
-See also
---------
+## See also
 
--   [Using XMLHttpRequest](../xmlhttprequest/using_xmlhttprequest)
--   [`HTMLFormElement`](../htmlformelement)
--   [`Blob`](../blob)
--   [Typed Arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays)
+- [Using XMLHttpRequest](../xmlhttprequest/using_xmlhttprequest)
+- [`HTMLFormElement`](../htmlformelement)
+- [`Blob`](../blob)
+- [Typed Arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects</a>

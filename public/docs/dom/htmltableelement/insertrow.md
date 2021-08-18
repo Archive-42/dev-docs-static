@@ -1,5 +1,4 @@
-HTMLTableElement.insertRow()
-============================
+# HTMLTableElement.insertRow()
 
 The `HTMLTableElement.insertRow()` method inserts a new row ([`<tr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr)) in a given [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table), and returns a reference to the new row.
 
@@ -10,8 +9,7 @@ If a table has multiple [`<tbody>`](https://developer.mozilla.org/en-US/docs/Web
 
 **Note:** `insertRow()` inserts the row directly into the table. The row does not need to be appended separately as would be the case if [`Document.createElement()`](../document/createelement) had been used to create the new `<tr>` element.
 
-Syntax
-------
+## Syntax
 
     var newRow = HTMLTableElement.insertRow(index);
 
@@ -19,15 +17,14 @@ Syntax
 
 ### Parameters
 
- `index` <span class="badge inline optional">Optional</span>   
+`index` <span class="badge inline optional">Optional</span>  
 The row index of the new row. If `index` is `-1` or equal to the number of rows, the row is appended as the last row. If `index` is greater than the number of rows, an `IndexSizeError` exception will result. If `index` is omitted it defaults to `-1`.
 
 ### Return value
 
 `newRow` is an [`HTMLTableRowElement`](../htmltablerowelement) that references the new row.
 
-Example
--------
+## Example
 
 This example uses `insertRow(-1)` to append a new row to a table.
 
@@ -63,16 +60,14 @@ We then use [`HTMLTableRowElement.insertCell()`](../htmltablerowelement/insertce
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/tables.html#dom-table-insertrow">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLTableElement.insertRow()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-93995626">Document Object Model (DOM) Level 2 HTML Specification<br />
 <span class="small">The definition of 'HTMLTableElement.insertRow()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Specifies in more detail where the row is inserted.</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-39872903">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLTableElement.insertRow()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -132,10 +127,9 @@ Starting with Firefox 20, the index argument has been made optional and defaults
 
 1.0
 
-See also
---------
+## See also
 
--   [`HTMLTableRowElement.insertCell()`](../htmltablerowelement/insertcell)
--   The HTML element representing rows: [`HTMLTableRowElement`](../htmltablerowelement)
+- [`HTMLTableRowElement.insertCell()`](../htmltablerowelement/insertcell)
+- The HTML element representing rows: [`HTMLTableRowElement`](../htmltablerowelement)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableElement/insertRow" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableElement/insertRow</a>

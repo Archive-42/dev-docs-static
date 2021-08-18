@@ -1,31 +1,27 @@
-GamepadEvent()
-==============
+# GamepadEvent()
 
 The `GamepadEvent()` constructor creates a new [`GamepadEvent`](../gamepadevent) object.
 
-Syntax
-------
+## Syntax
 
     var gamepadEvent = new GamepadEvent(typeArg, options)
 
 ### Parameters
 
-*typeArg*  
+_typeArg_  
 A [`DOMString`](../domstring) that must be one of `gamepadconnected` or `gamepaddisconnected`.
 
- *options* <span class="badge inline optional">Optional</span>   
+_options_ <span class="badge inline optional">Optional</span>  
 Options are as follows:
 
--   `gamepad`: An instance of [`Gamepad`](../gamepad) describing the gamepad associated with the event.
+- `gamepad`: An instance of [`Gamepad`](../gamepad) describing the gamepad associated with the event.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/gamepad/#gamepadevent-interface">Gamepad<br />
 <span class="small">The definition of 'GamepadEvent_' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

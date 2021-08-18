@@ -1,10 +1,8 @@
-HTMLImageElement.sizes
-======================
+# HTMLImageElement.sizes
 
 The [`HTMLImageElement`](../htmlimageelement) property `sizes` allows you to specify the layout width of the image for each of a list of media conditions. This provides the ability to automatically select among different images—even images of different orientations or aspect ratios—as the document state changes to match different media conditions. Each condition is specified using the same conditional format used by [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries).
 
-Syntax
-------
+## Syntax
 
     let sizes = htmlImageElement.sizes;
     htmlImageElement.sizes = sizes;
@@ -21,10 +19,9 @@ Each source size descriptor consists of a media condition as defined by the medi
 
 The source size value is a [CSS length](https://developer.mozilla.org/en-US/docs/Web/CSS/length). It may be specified using font-relative units (such as `em` or `ex`), absolute units (such as `px` or `cm`), or the `vw` unit, which lets you specify the width as a percentage of the viewport width (`1vw` being 1% of the viewport width).
 
-**Note:** The source size value must *not* be specified as a percentage of the container size; that is, lengths such as `50%` or `100%` are not allowed, as there would be uncertainty as to what the specified value is a percentage of.
+**Note:** The source size value must _not_ be specified as a percentage of the container size; that is, lengths such as `50%` or `100%` are not allowed, as there would be uncertainty as to what the specified value is a percentage of.
 
-Example
--------
+## Example
 
 In this example, a blog-like layout is created, displaying some text and an image which for which three size points are specified, depending on the width of the window. Three versions of the image are also available, with their widths specified. The browser takes all of this information and selects an image and width that best meets the specified values.
 
@@ -93,14 +90,12 @@ The JavaScript code handles the two buttons that let you toggle the third width 
 
 This result may be [viewed in its own window](https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/HTMLImageElement/sizes/_samples_/Example).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-img-sizes">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLImageElement.sizes' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -156,12 +151,11 @@ No
 
 3.0
 
-See also
---------
+## See also
 
--   [Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries)
--   [Using media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
--   [Images in HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Images_in_HTML)
--   [Responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
+- [Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries)
+- [Using media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
+- [Images in HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Images_in_HTML)
+- [Responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes</a>

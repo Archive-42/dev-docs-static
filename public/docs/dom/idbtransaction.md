@@ -1,5 +1,4 @@
-IDBTransaction
-==============
+# IDBTransaction
 
 The `IDBTransaction` interface of the [IndexedDB API](indexeddb_api) provides a static, asynchronous transaction on a database using event handler attributes. All reading and writing of data is done within transactions. You use [`IDBDatabase`](idbdatabase) to start transactions, [`IDBTransaction`](idbtransaction) to set the mode of the transaction (e.g. is it `readonly` or `readwrite`), and you access an [`IDBObjectStore`](idbobjectstore) to make a request. You can also use an `IDBTransaction` object to abort transactions.
 
@@ -16,45 +15,41 @@ Transactions are started when the transaction is created, not when the first req
 
 After the code is executed the object store should contain the value "2", since `trans2` should run after `trans1`.
 
-Transaction failures
---------------------
+## Transaction failures
 
 Transactions can fail for a fixed number of reasons, all of which (except the user agent crash) will trigger an abort callback:
 
--   Abort due to bad requests, e.g. trying to `add()` the same key twice, or `put()` with the same index key with a uniqueness constraint. This causes an error on the request, which can bubble up to an error on the transaction, which aborts the transaction. This can be prevented by using `preventDefault()` on the error event on the request.
--   An explicit `abort()` call from script.
--   An uncaught exception in the request's `success`/`error` handler.
--   An I/O error (e.g. an actual failure to write to disk, or other OS/hardware failure).
--   Quota exceeded.
--   A user agent crash.
+- Abort due to bad requests, e.g. trying to `add()` the same key twice, or `put()` with the same index key with a uniqueness constraint. This causes an error on the request, which can bubble up to an error on the transaction, which aborts the transaction. This can be prevented by using `preventDefault()` on the error event on the request.
+- An explicit `abort()` call from script.
+- An uncaught exception in the request's `success`/`error` handler.
+- An I/O error (e.g. an actual failure to write to disk, or other OS/hardware failure).
+- Quota exceeded.
+- A user agent crash.
 
-Firefox durability guarantees
------------------------------
+## Firefox durability guarantees
 
 Note that as of Firefox 40, IndexedDB transactions have relaxed durability guarantees to increase performance (see [bug 1112702](https://bugzilla.mozilla.org/show_bug.cgi?id=1112702).) Previously in a `readwrite` transaction [`IDBTransaction.oncomplete`](idbtransaction/oncomplete) was fired only when all data was guaranteed to have been flushed to disk. In Firefox 40+ the `complete` event is fired after the OS has been told to write the data but potentially before that data has actually been flushed to disk. The `complete` event may thus be delivered quicker than before, however, there exists a small chance that the entire transaction will be lost if the OS crashes or there is a loss of system power before the data is flushed to disk. Since such catastrophic events are rare, most consumers should not need to concern themselves further.
 
 If you must ensure durability for some reason (e.g. you're storing critical data that cannot be recomputed later) you can force a transaction to flush to disk before delivering the `complete` event by creating a transaction using the experimental (non-standard) `readwriteflush` mode (see [`IDBDatabase.transaction`](idbdatabase/transaction).
 
-Properties
-----------
+## Properties
 
- [`IDBTransaction.db`](idbtransaction/db) <span class="badge inline readonly">Read only </span>   
+[`IDBTransaction.db`](idbtransaction/db) <span class="badge inline readonly">Read only </span>  
 The database connection with which this transaction is associated.
 
- [`IDBTransaction.durability`](idbtransaction/durability) <span class="badge inline readonly">Read only </span>   
+[`IDBTransaction.durability`](idbtransaction/durability) <span class="badge inline readonly">Read only </span>  
 Returns the durability hint the transaction was created with.
 
- [`IDBTransaction.error`](idbtransaction/error) <span class="badge inline readonly">Read only </span>   
+[`IDBTransaction.error`](idbtransaction/error) <span class="badge inline readonly">Read only </span>  
 Returns a [`DOMException`](domexception) indicating the type of error that occurred when there is an unsuccessful transaction. This property is `null` if the transaction is not finished, is finished and successfully committed, or was aborted with the[`IDBTransaction.abort()`](idbtransaction/abort) function.
 
- [`IDBTransaction.mode`](idbtransaction/mode) <span class="badge inline readonly">Read only </span>   
+[`IDBTransaction.mode`](idbtransaction/mode) <span class="badge inline readonly">Read only </span>  
 The mode for isolating access to data in the object stores that are in the scope of the transaction. The default value is `readonly`.
 
- [`IDBTransaction.objectStoreNames`](idbtransaction/objectstorenames) <span class="badge inline readonly">Read only </span>   
+[`IDBTransaction.objectStoreNames`](idbtransaction/objectstorenames) <span class="badge inline readonly">Read only </span>  
 Returns a [`DOMStringList`](domstringlist) of the names of [`IDBObjectStore`](idbobjectstore) objects associated with the transaction.
 
-Methods
--------
+## Methods
 
 Inherits from: [`EventTarget`](eventtarget)
 
@@ -65,10 +60,9 @@ Rolls back all the changes to objects in the database associated with this trans
 Returns an [`IDBObjectStore`](idbobjectstore) object representing an <span class="internalDFN">object store</span> that is part of the <span class="internalDFN">scope</span> of this <span class="internalDFN">transaction</span>.
 
 [`IDBTransaction.commit()`](idbtransaction/commit)  
-For an active transaction, commits the transaction. Note that this doesn't normally *have* to be called — a transaction will automatically commit when all outstanding requests have been satisfied and no new requests have been made. `commit()` can be used to start the commit process without waiting for events from outstanding requests to be dispatched.
+For an active transaction, commits the transaction. Note that this doesn't normally _have_ to be called — a transaction will automatically commit when all outstanding requests have been satisfied and no new requests have been made. `commit()` can be used to start the commit process without waiting for events from outstanding requests to be dispatched.
 
-Events
-------
+## Events
 
 Listen to these events using `addEventListener()` or by assigning an event listener to the `oneventname` property of this interface.
 
@@ -84,8 +78,7 @@ Also available via the `oncomplete` property.
 Fired when a request returns an error and the event bubbles up to the transaction object.  
 Also available via the `onerror` property.
 
-Mode constants
---------------
+## Mode constants
 
 **Deprecated**
 
@@ -101,8 +94,7 @@ Even if these constants are now deprecated, you can still use them to provide ba
 
     var myIDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || { READ_WRITE: "readwrite" };
 
-Examples
---------
+## Examples
 
 In the following code snippet, we open a read/write transaction on our database and add some data to an object store. Note also the functions attached to transaction event handlers to report on the outcome of the transaction opening in the event of success or failure. For a full working example, see our [To-do Notifications](https://github.com/mdn/to-do-notifications/) app ([view example live](https://mdn.github.io/to-do-notifications/).)
 
@@ -149,15 +141,13 @@ In the following code snippet, we open a read/write transaction on our database 
       };
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#transaction">Indexed Database API 2.0<br />
 <span class="small">The definition of 'IDBTransaction' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#transaction">Indexed Database API 2.0<br />
 <span class="small">The definition of 'IDBTransaction' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -613,15 +603,14 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](idbdatabase)
--   Using transactions: [`IDBTransaction`](idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
--   Using cursors: [`IDBCursor`](idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](idbdatabase)
+- Using transactions: [`IDBTransaction`](idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
+- Using cursors: [`IDBCursor`](idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction</a>

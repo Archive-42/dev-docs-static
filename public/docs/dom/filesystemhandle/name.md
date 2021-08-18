@@ -1,5 +1,4 @@
-FileSystemHandle.name
-=====================
+# FileSystemHandle.name
 
 **Draft**
 
@@ -11,8 +10,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `name` read-only property of the [`FileSystemHandle`](../filesystemhandle) interface returns the name of the entry represented by handle.
 
-Syntax
-------
+## Syntax
 
     var String = FileSystemHandle.name;
 
@@ -20,8 +18,7 @@ Syntax
 
 [`USVString`](../usvstring)
 
-Examples
---------
+## Examples
 
 The following function allows the user to choose a file from the file picker and retrieve the `name` property.
 
@@ -36,14 +33,12 @@ The following function allows the user to choose a file from the file picker and
 
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/file-system-access/#dom-filesystemhandle-name">File System Access API<br />
 <span class="small">The definition of 'name' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -99,10 +94,9 @@ No
 
 14.0
 
-See also
---------
+## See also
 
--   [File System Access API](../file_system_access_api)
--   [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
+- [File System Access API](../file_system_access_api)
+- [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle/name" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle/name</a>

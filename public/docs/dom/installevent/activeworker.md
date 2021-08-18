@@ -1,5 +1,4 @@
-InstallEvent.activeWorker
-=========================
+# InstallEvent.activeWorker
 
 **Non-standard**
 
@@ -13,8 +12,7 @@ The `activeWorker` read-only property of the [`InstallEvent`](../installevent) i
 
 This will return `null` if no active worker is already controlling the page.
 
-Syntax
-------
+## Syntax
 
     var myActiveWorker = event.activeWorker
 
@@ -22,15 +20,13 @@ Syntax
 
 A [`ServiceWorker`](../serviceworker) object.
 
-Examples
---------
+## Examples
 
     self.addEventListener('install', function(event) {
       var myActiveWorker = event.activeWorker;
     });
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,10 +84,9 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
--   [Fetch API](../fetch_api)
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+- [Fetch API](../fetch_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/InstallEvent/activeWorker" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/InstallEvent/activeWorker</a>

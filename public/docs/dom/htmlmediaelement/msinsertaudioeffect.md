@@ -1,5 +1,4 @@
-HTMLMediaElement.msInsertAudioEffect()
-======================================
+# HTMLMediaElement.msInsertAudioEffect()
 
 **Non-standard**
 
@@ -9,8 +8,7 @@ The `HTMLMediaElement.msInsertAudioEffect()` method inserts the specified audio 
 
 This proprietary method is specific to Internet Explorer and Microsoft Edge.
 
-Syntax
-------
+## Syntax
 
     HTMLMediaElement.msInsertAudioEffect(activatableClassId: DOMString, effectRequired: boolean, config);
 
@@ -20,19 +18,18 @@ activatableClassId
 A [`DOMString`](../domstring) defining the audio effects class.
 
 effectRequired  
-A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) which if set to *true* requires an audio effect to be defined.
+A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) which if set to _true_ requires an audio effect to be defined.
 
-config<span class="badge inline optional">Optional</span>   
+config<span class="badge inline optional">Optional</span>  
 An optional [`Object`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) to help with defining any additional configuration needed.
 
 ### Return value
 
 This method does not return a value.
 
-See also
---------
+## See also
 
--   [`HTMLMediaElement`](../htmlmediaelement)
--   [Microsoft API extensions](../microsoft_extensions)
+- [`HTMLMediaElement`](../htmlmediaelement)
+- [Microsoft API extensions](../microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/msInsertAudioEffect" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/msInsertAudioEffect</a>

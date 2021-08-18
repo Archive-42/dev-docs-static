@@ -1,12 +1,10 @@
-HTMLImageElement.x
-==================
+# HTMLImageElement.x
 
 The read-only [`HTMLImageElement`](../htmlimageelement) property `x` indicates the x-coordinate of the [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element's left border edge relative to the root element's origin.
 
 The `x` and [`y`](y) properties are only valid for an image if its [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display) property has the computed value `table-column` or `table-column-group`. In other words: it has either of those values set explicitly on it, or it has inherited it from a containing element, or by being located within a column described by either [`<col>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/col) or [`<colgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup).
 
-Syntax
-------
+## Syntax
 
     let imageX = htmlImageElement.x;
 
@@ -20,8 +18,7 @@ In the diagram below, the left border edge is the left edge of the blue padding 
 
 **Note:** The `x` property is only valid if the computed value of the image's [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display) property is either `table-column` or `table-column-group`; in other words, either of those are set directly on the [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) or they're inherited from a containing element or by being located within a column described by either [`<col>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/col) or [`<colgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup).
 
-Example
--------
+## Example
 
 The example below demonstrates the use of the `HTMLImageElement` properties [`x`](x) and [`y`](y).
 
@@ -98,14 +95,12 @@ The CSS defining the appearance of the table:
 
 The resulting table looks like this:
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-htmlimageelement-x">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'HTMLImageElement.x' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-LocalFileSystemSync.requestFileSystemSync()
-===========================================
+# LocalFileSystemSync.requestFileSystemSync()
 
 **Experimental**
 
@@ -22,8 +21,7 @@ This document was last updated on March 2, 2012 and follows the [W3C Specificati
 
 This specification is more or less abandoned, failing to get significant traction.
 
-Syntax
-------
+## Syntax
 
     LocalFileSystemSync.requestFileSystemSync(
       unsigned short type,
@@ -43,8 +41,7 @@ The storage space — in bytes — that you need for your app.
 [`FileSystemSync`](../filesystemsync)  
 An object that represents the file system.
 
-Exceptions
-----------
+## Exceptions
 
 This method can raise an [FileException](../fileexception) with the following code:
 
@@ -56,8 +53,7 @@ Description
 
 The application does not have permission to access the file system interface. For example, you cannot run from `file://`. For more details, see the [article on basic concepts](../file_and_directory_entries_api/introduction#you_cannot_run_your_app_from_file:.2f.2f).
 
-Examples
---------
+## Examples
 
     //Taking care of the browser-specific prefix
     window.requestFileSystemSync  = window.requestFileSystemSync || window.webkitRequestFileSystemSync;
@@ -72,22 +68,19 @@ Examples
 
 Since this interface is synchronous, it doesn't need success and error callbacks.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dev.w3.org/2009/dap/file-system/pub/FileSystem/">File API: Directories and System Specification</a></td><td>Working Draft</td><td>Initial specification, abandoned.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.LocalFileSystemSync.requestFileSystemSync`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).
 
-See also
---------
+## See also
 
--   <span class="page-not-created">`LocalFileSystem.requestFileSystem`</span>, asynchronous equivalent of this interface
--   [File System API](../file_and_directory_entries_api/introduction)
--   [Basic Concepts About the File System API](../file_and_directory_entries_api/introduction)
+- <span class="page-not-created">`LocalFileSystem.requestFileSystem`</span>, asynchronous equivalent of this interface
+- [File System API](../file_and_directory_entries_api/introduction)
+- [Basic Concepts About the File System API](../file_and_directory_entries_api/introduction)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/LocalFileSystemSync/requestFileSystemSync" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/LocalFileSystemSync/requestFileSystemSync</a>

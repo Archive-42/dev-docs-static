@@ -1,5 +1,4 @@
-FontFace.family
-===============
+# FontFace.family
 
 **Draft**
 
@@ -12,8 +11,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `FontFace.family` property allows the author to get or set the font family of a [`FontFace`](../fontface) object. This is equivalent to the [`font-family`](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-family) descriptor of [`@font-face`](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face).
 
-Syntax
-------
+## Syntax
 
     instanceOfFontFace.family = 'font family name';
     var fontFace = instanceOfFontFace.family; // "font family name"
@@ -22,8 +20,7 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Example
--------
+## Example
 
     var fontFace = new FontFace('Roboto', 'url(https://fonts.example.com/roboto.woff2)');
     console.log(fontFace.family); // 'Roboto'
@@ -31,14 +28,12 @@ Example
     fontFace.family = 'newRoboto';
     console.log(fontFace.family); // 'newRoboto'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-font-loading/#dom-fontface-family">CSS Font Loading Module Level 3<br />
 <span class="small">The definition of 'family' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

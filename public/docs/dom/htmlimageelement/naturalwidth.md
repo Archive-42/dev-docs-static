@@ -1,12 +1,10 @@
-HTMLImageElement.naturalWidth
-=============================
+# HTMLImageElement.naturalWidth
 
 The [`HTMLImageElement`](../htmlimageelement) interface's read-only `naturalWidth` property returns the intrinsic (natural), density-corrected width of the image in [CSS pixels](https://developer.mozilla.org/en-US/docs/Glossary/CSS_pixel). This is the width the image is if drawn with nothing constraining its width; if you neither specify a width for the image nor place the image inside a container that limits or expressly specifies the image width, this is the number of CSS pixels wide the image will be.
 
 The corresponding [`naturalHeight`](naturalheight) method returns the natural height of the image.
 
-Syntax
-------
+## Syntax
 
     let naturalWidth = htmlImageElement.naturalWidth;
 
@@ -16,8 +14,7 @@ An integer value indicating the intrinsic width of the image, in CSS pixels. Thi
 
 If the intrinsic width is not available—either because the image does not specify an intrinsic width or because the image data is not available in order to obtain this information, `naturalWidth` returns 0.
 
-Example
--------
+## Example
 
 This example displays both the natural, density-adjusted size of an image as well as its rendered size as altered by the page's CSS and other factors.
 
@@ -64,14 +61,12 @@ The JavaScript code dumps the natural and as-displayed sizes into the [`<div>`](
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-img-naturalwidth">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLImageElement.naturalWidth' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

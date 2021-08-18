@@ -1,5 +1,4 @@
-Element: webkitmouseforcewillbegin event
-========================================
+# Element: webkitmouseforcewillbegin event
 
 **Non-standard**
 
@@ -13,13 +12,11 @@ To instruct macOS not to engage any default Force Touch actions if the user appl
 
 `webkitmouseforcewillbegin` is a proprietary, WebKit-specific event. It is part of the [Force Touch events](../force_touch_events) feature.
 
-Specifications
---------------
+## Specifications
 
-*Not part of any specification.* Apple has [a description at the Mac Developer Library](https://developer.apple.com/library/prerelease/mac/documentation/AppleApplications/Conceptual/SafariJSProgTopics/RespondingtoForceTouchEventsfromJavaScript.html).
+_Not part of any specification._ Apple has [a description at the Mac Developer Library](https://developer.apple.com/library/prerelease/mac/documentation/AppleApplications/Conceptual/SafariJSProgTopics/RespondingtoForceTouchEventsfromJavaScript.html).
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -75,14 +72,13 @@ Yes
 
 No
 
-See also
---------
+## See also
 
--   [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
--   [Force Touch events](../force_touch_events)
--   `webkitmouseforcedown`
--   `webkitmouseforceup`
--   `webkitmouseforcechanged`
--   [`Force_Touch_events`](../force_touch_events)
+- [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
+- [Force Touch events](../force_touch_events)
+- `webkitmouseforcedown`
+- `webkitmouseforceup`
+- `webkitmouseforcechanged`
+- [`Force_Touch_events`](../force_touch_events)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/webkitmouseforcewillbegin_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/webkitmouseforcewillbegin_event</a>

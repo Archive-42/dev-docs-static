@@ -1,5 +1,4 @@
-HTMLElement.oncopy
-==================
+# HTMLElement.oncopy
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `oncopy` property of the [`HTMLElement`](../htmlelement) interface is an [`E
 
 The `copy` event fires when the user attempts to copy text.
 
-Syntax
-------
+## Syntax
 
     target.oncopy = functionRef;
 
@@ -19,8 +17,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives a [`ClipboardEvent`](../clipboardevent) object as its sole argument.
 
-Example
--------
+## Example
 
 This example blocks every copy and paste attempt from the [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea).
 
@@ -53,13 +50,11 @@ This example blocks every copy and paste attempt from the [`<textarea>`](https:/
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 [WHATWG Standard](https://html.spec.whatwg.org/multipage/webappapis.html#handler-oncopy)
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -117,12 +112,11 @@ Samsung Internet
 
 Since Firefox 13, the preference `dom.event.clipboardevents.enabled` controls this feature. It defaults to `true` but can be disabled.
 
-See also
---------
+## See also
 
--   Clipboard API event [`copy`](../element/copy_event)
--   Related event handlers
-    -   [`HTMLElement.oncut`](oncut)
-    -   [`HTMLElement.onpaste`](onpaste)
+- Clipboard API event [`copy`](../element/copy_event)
+- Related event handlers
+  - [`HTMLElement.oncut`](oncut)
+  - [`HTMLElement.onpaste`](onpaste)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/oncopy" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/oncopy</a>

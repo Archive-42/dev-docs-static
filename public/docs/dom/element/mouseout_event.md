@@ -1,12 +1,10 @@
-Element: mouseout event
-=======================
+# Element: mouseout event
 
 The `mouseout` event is fired at an [`Element`](../element) when a pointing device (usually a mouse) is used to move the cursor so that it is no longer contained within the element or one of its children. `mouseout` is also delivered to an element if the cursor enters a child element, because the child element obscures the visible area of the element.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>Yes</td></tr><tr class="odd"><td>Interface</td><td><a href="../mouseevent"><code>MouseEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="../globaleventhandlers/onmouseout"><code>onmouseout</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 The following examples show the use of the `mouseout` event.
 
@@ -53,15 +51,13 @@ When you try this out, you'll find that `mouseout` is delivered to the individua
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-mouseout">UI Events<br />
 <span class="small">The definition of 'mouseout' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#event-type-mouseout">Document Object Model (DOM) Level 3 Events Specification<br />
 <span class="small">The definition of 'mouseout' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -117,18 +113,17 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
--   [`mousedown`](mousedown_event)
--   [`mouseup`](mouseup_event)
--   [`mousemove`](mousemove_event)
--   [`click`](click_event)
--   [`dblclick`](dblclick_event)
--   [`mouseover`](mouseover_event)
--   [`mouseenter`](mouseenter_event)
--   [`mouseleave`](mouseleave_event)
--   [`contextmenu`](contextmenu_event)
+- [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
+- [`mousedown`](mousedown_event)
+- [`mouseup`](mouseup_event)
+- [`mousemove`](mousemove_event)
+- [`click`](click_event)
+- [`dblclick`](dblclick_event)
+- [`mouseover`](mouseover_event)
+- [`mouseenter`](mouseenter_event)
+- [`mouseleave`](mouseleave_event)
+- [`contextmenu`](contextmenu_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event</a>

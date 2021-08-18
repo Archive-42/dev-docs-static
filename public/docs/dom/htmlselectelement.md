@@ -1,12 +1,10 @@
-HTMLSelectElement
-=================
+# HTMLSelectElement
 
 The `HTMLSelectElement` interface represents a [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) HTML Element. These elements also share all of the properties and methods of other HTML elements via the [`HTMLElement`](htmlelement) interface.
 
-Properties
-----------
+## Properties
 
-*This interface inherits the properties of [`HTMLElement`](htmlelement), and of [`Element`](element) and [`Node`](node).*
+_This interface inherits the properties of [`HTMLElement`](htmlelement), and of [`Element`](element) and [`Node`](node)._
 
 [`HTMLSelectElement.autofocus`](htmlselectelement/autofocus)  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) reflecting the [`autofocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-autofocus) HTML attribute, which indicates whether the control should have input focus when the page loads, unless the user overrides it, for example by typing in a different control. Only one form-associated element in a document can have this attribute specified.
@@ -14,10 +12,10 @@ A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 [`HTMLSelectElement.disabled`](htmlselectelement/disabled)  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) reflecting the [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-disabled) HTML attribute, which indicates whether the control is disabled. If it is disabled, it does not accept clicks.
 
- [`HTMLSelectElement.form`](htmlselectelement/form)<span class="badge inline readonly">Read only </span>   
+[`HTMLSelectElement.form`](htmlselectelement/form)<span class="badge inline readonly">Read only </span>  
 An [`HTMLFormElement`](htmlformelement) referencing the form that this element is associated with. If the element is not associated with of a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element, then it returns `null`.
 
- [`HTMLSelectElement.labels`](htmlselectelement/labels)<span class="badge inline readonly">Read only </span>   
+[`HTMLSelectElement.labels`](htmlselectelement/labels)<span class="badge inline readonly">Read only </span>  
 A [`NodeList`](nodelist) of [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) elements associated with the element.
 
 <span class="page-not-created">`HTMLSelectElement.length`</span>  
@@ -29,7 +27,7 @@ A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 <span class="page-not-created">`HTMLSelectElement.name`</span>  
 A [`DOMString`](domstring) reflecting the [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-name) HTML attribute, containing the name of this control used by servers and DOM search functions.
 
- [`HTMLSelectElement.options`](htmlselectelement/options)<span class="badge inline readonly">Read only </span>   
+[`HTMLSelectElement.options`](htmlselectelement/options)<span class="badge inline readonly">Read only </span>  
 An [`HTMLOptionsCollection`](htmloptionscollection) representing the set of [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) ([`HTMLOptionElement`](htmloptionelement)) elements contained by this element.
 
 <span class="page-not-created">`HTMLSelectElement.required`</span>  
@@ -38,43 +36,42 @@ A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 [`HTMLSelectElement.selectedIndex`](htmlselectelement/selectedindex)  
 A `long` reflecting the index of the first selected [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) element. The value `-1` indicates no element is selected.
 
- [`HTMLSelectElement.selectedOptions`](htmlselectelement/selectedoptions)<span class="badge inline readonly">Read only </span>   
+[`HTMLSelectElement.selectedOptions`](htmlselectelement/selectedoptions)<span class="badge inline readonly">Read only </span>  
 An [`HTMLCollection`](htmlcollection) representing the set of [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) elements that are selected.
 
 <span class="page-not-created">`HTMLSelectElement.size`</span>  
 A `long` reflecting the [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-size) HTML attribute, which contains the number of visible items in the control. The default is 1, unless `multiple` is `true`, in which case it is 4.
 
- [`HTMLSelectElement.type`](htmlselectelement/type)<span class="badge inline readonly">Read only </span>   
+[`HTMLSelectElement.type`](htmlselectelement/type)<span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) represeting the form control's type. When `multiple` is `true`, it returns `"select-multiple"`; otherwise, it returns `"select-one"`.
 
- <span class="page-not-created">`HTMLSelectElement.validationMessage`</span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLSelectElement.validationMessage`</span><span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) representing a localized message that describes the validation constraints that the control does not satisfy (if any). This attribute is the empty string if the control is not a candidate for constraint validation (`willValidate` is false), or it satisfies its constraints.
 
- <span class="page-not-created">`HTMLSelectElement.validity`</span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLSelectElement.validity`</span><span class="badge inline readonly">Read only </span>  
 A [`ValidityState`](validitystate) reflecting the validity state that this control is in.
 
 <span class="page-not-created">`HTMLSelectElement.value`</span>  
 A [`DOMString`](domstring) reflecting the value of the form control. Returns the `value` property of the first selected option element if there is one, otherwise the empty string.
 
- <span class="page-not-created">`HTMLSelectElement.willValidate`</span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLSelectElement.willValidate`</span><span class="badge inline readonly">Read only </span>  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that indicates whether the button is a candidate for constraint validation. It is `false` if any conditions bar it from constraint validation.
 
-Methods
--------
+## Methods
 
-*This interface inherits the methods of [`HTMLElement`](htmlelement), and of [`Element`](element) and [`Node`](node).*
+_This interface inherits the methods of [`HTMLElement`](htmlelement), and of [`Element`](element) and [`Node`](node)._
 
 [`HTMLSelectElement.add()`](htmlselectelement/add)  
 Adds an element to the collection of `option` elements for this `select` element.
 
- <span class="page-not-created">`HTMLSelectElement.blur()`</span><span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
-Removes input focus from this element. *This method is now implemented on [`HTMLElement`](htmlelement)*.
+<span class="page-not-created">`HTMLSelectElement.blur()`</span><span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
+Removes input focus from this element. _This method is now implemented on [`HTMLElement`](htmlelement)_.
 
 [`HTMLSelectElement.checkValidity()`](htmlselectelement/checkvalidity)  
 Checks whether the element has any constraints and whether it satisfies them. If the element fails its constraints, the browser fires a cancelable [`invalid`](htmlinputelement/invalid_event) event at the element (and returns `false`).
 
- <span class="page-not-created">`HTMLSelectElement.focus()`</span><span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
-Gives input focus to this element. *This method is now implemented on [`HTMLElement`](htmlelement)*.
+<span class="page-not-created">`HTMLSelectElement.focus()`</span><span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
+Gives input focus to this element. _This method is now implemented on [`HTMLElement`](htmlelement)_.
 
 [`HTMLSelectElement.item()`](htmlselectelement/item)  
 Gets an item from the options collection for this [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) element. You can also access an item by specifying the index in array-style brackets or parentheses, without calling this method explicitly.
@@ -89,18 +86,16 @@ Removes the element at the specified index from the options collection for this 
 This method reports the problems with the constraints on the element, if any, to the user. If there are problems, it fires a cancelable [`invalid`](htmlinputelement/invalid_event) event at the element, and returns `false`; if there are no problems, it returns `true`.
 
 [`HTMLSelectElement.setCustomValidity()`](htmlselectelement/setcustomvalidity)  
-Sets the custom validity message for the selection element to the specified message. Use the empty string to indicate that the element does *not* have a custom validity error.
+Sets the custom validity message for the selection element to the specified message. Use the empty string to indicate that the element does _not_ have a custom validity error.
 
-Events
-------
+## Events
 
 Listen to these events using [`addEventListener()`](eventtarget/addeventlistener) or by assigning an event listener to the `oneventname` property of this interface:
 
- [`input`](htmlelement/input_event) event  
+[`input`](htmlelement/input_event) event  
 Fires when the `value` of an [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input), [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select), or [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) element has been changed.
 
-Example
--------
+## Example
 
 ### Get information about the selected option
 
@@ -122,8 +117,7 @@ Example
 
 A better way to track changes to the user's selection is to watch for the [`change`](htmlelement/change_event) event to occur on the `<select>`. This will tell you when the value changes, and you can then update anything you need to. See [the example provided](htmlelement/change_event#select_element) in the documentation for the `change` event for details.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#htmlselectelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLSelectElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Since the latest snapshot, <a href="https://www.w3.org/TR/html52/">HTML5</a>, it adds the <code>autocomplete</code> property and the <code>reportValidity()</code> method.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/forms.html#htmlselectelement">HTML5<br />
@@ -135,8 +129,7 @@ The methods <code>item()</code>, <code>namedItem()</code>, <code>checkValidity()
 <code>length</code> now returns an <code>unsigned long</code>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-94282980">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLSelectElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -904,9 +897,8 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   The [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) HTML element, which implements this interface.
+- The [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) HTML element, which implements this interface.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement</a>

@@ -1,5 +1,4 @@
-FileSystemDirectoryHandle
-=========================
+# FileSystemDirectoryHandle
 
 **Draft**
 
@@ -11,15 +10,13 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `FileSystemDirectoryHandle` interface of the [`File System Access API`](file_system_access_api) provides a handle to a file system directory. The interface is accessed via the [`window.showDirectoryPicker()`](window/showdirectorypicker) method.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`FileSystemHandle`](filesystemhandle).*
+_Inherits properties from its parent, [`FileSystemHandle`](filesystemhandle)._
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`FileSystemHandle`](filesystemhandle).*
+_Inherits methods from its parent, [`FileSystemHandle`](filesystemhandle)._
 
 [`FileSystemDirectoryHandle.entries()`](filesystemdirectoryhandle/entries)  
 Returns an [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of a given object's own enumerable property `[key, value]` pairs
@@ -42,8 +39,7 @@ Returns an [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Ref
 [`FileSystemDirectoryHandle.values()`](filesystemdirectoryhandle/values)  
 Returns a new Array Iterator containing the values for each index in the `FileSystemDirectoryHandle` object.
 
-Examples
---------
+## Examples
 
 The following example returns a directory handle with the specified name, if the directory does not exist it is created.
 
@@ -78,14 +74,12 @@ The following asynchronous function uses `resolve()` to find the path to a chose
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/file-system-access/#api-filesystemdirectoryhandle">File System Access API<br />
 <span class="small">The definition of 'FileSystemDirectoryHandle' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -323,10 +317,9 @@ No
 
 14.0
 
-See also
---------
+## See also
 
--   [File System Access API](file_system_access_api)
--   [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
+- [File System Access API](file_system_access_api)
+- [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryHandle" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryHandle</a>

@@ -1,18 +1,15 @@
-HTMLFormElement.name
-====================
+# HTMLFormElement.name
 
 The `HTMLFormElement.name` property represents the name of the current [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element as a string.
 
-If your [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element contains an element named *name* then that element overrides the `form.name` property, so that you can't access it. Internet Explorer (IE) does not allow the name attribute of an element created using `createElement()` to be set or modified using the `name` property.
+If your [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element contains an element named _name_ then that element overrides the `form.name` property, so that you can't access it. Internet Explorer (IE) does not allow the name attribute of an element created using `createElement()` to be set or modified using the `name` property.
 
-Syntax
-------
+## Syntax
 
     var string = form.name;
     form.name = string;
 
-Example
--------
+## Example
 
     var form1name = document.getElementById('form1').name;
 
@@ -20,14 +17,12 @@ Example
       // Browser doesn't support this form of reference
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-form-name">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLFormElement: name' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

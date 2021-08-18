@@ -1,10 +1,8 @@
-HTMLImageElement.complete
-=========================
+# HTMLImageElement.complete
 
 The read-only [`HTMLImageElement`](../htmlimageelement) interface's `complete` attribute is a Boolean value which indicates whether or not the image has completely loaded.
 
-Syntax
-------
+## Syntax
 
     let doneLoading = htmlImageElement.complete;
 
@@ -14,16 +12,15 @@ A Boolean value which is `true` if the image has completely loaded; otherwise, t
 
 The image is considered completely loaded if any of the following are true:
 
--   Neither the [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-src) nor the [`srcset`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset) attribute is specified.
--   The `srcset` attribute is absent and the `src` attribute, while specified, is the empty string (`""`).
--   The image resource has been fully fetched and has been queued for rendering/compositing.
--   The image element has previously determined that the image is fully available and ready for use.
--   The image is "broken;" that is, the image failed to load due to an error or because image loading is disabled.
+- Neither the [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-src) nor the [`srcset`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset) attribute is specified.
+- The `srcset` attribute is absent and the `src` attribute, while specified, is the empty string (`""`).
+- The image resource has been fully fetched and has been queued for rendering/compositing.
+- The image element has previously determined that the image is fully available and ready for use.
+- The image is "broken;" that is, the image failed to load due to an error or because image loading is disabled.
 
 It's worth noting that due to the image potentially being received asynchronously, the value of `complete` may change while your script is running.
 
-Examples
---------
+## Examples
 
 Consider a photo library app that provides the ability to open images into a lightbox mode for improved viewing as well as editing of the image. These photos may be very large, so you don't want to wait for them to load, so your code uses `async`/`await` to load the images in the background.
 
@@ -59,14 +56,12 @@ So the `fixRedEyeCommand()` function, which is called by the button that trigger
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-img-complete">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLImageElement.complete' in that specification.</span></a></td><td><span class="spec-">Unknown</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

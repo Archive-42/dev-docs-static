@@ -1,12 +1,10 @@
-HTMLElement: pointerup event
-============================
+# HTMLElement: pointerup event
 
 The `pointerup` event is fired when a pointer is no longer active.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>Yes</td></tr><tr class="odd"><td>Interface</td><td><a href="../pointerevent"><code>PointerEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><code>onpointerup</code></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 Using `addEventListener()`:
 
@@ -24,13 +22,11 @@ Using the `onpointerup` event handler property:
       console.log('Pointer up');
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/pointerevents2/#the-pointerup-event">Pointer Events – Level 2</a></td><td><span class="spec-rec">Recommendation</span></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/pointerevents1/#the-pointerup-event">Pointer Events</a></td><td><span class="spec-obsolete">Obsolete</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -94,19 +90,18 @@ Samsung Internet
 
 6.0
 
-See also
---------
+## See also
 
--   `gotpointercapture`
--   `lostpointercapture`
--   `pointerover`
--   `pointerenter`
--   `pointerdown`
--   `pointermove`
--   `pointercancel`
--   `pointerout`
--   `pointerleave`
--   `onpointerup` event handler property
--   This event on `Document` targets: `pointerup`
+- `gotpointercapture`
+- `lostpointercapture`
+- `pointerover`
+- `pointerenter`
+- `pointerdown`
+- `pointermove`
+- `pointercancel`
+- `pointerout`
+- `pointerleave`
+- `onpointerup` event handler property
+- This event on `Document` targets: `pointerup`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/pointerup_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/pointerup_event</a>

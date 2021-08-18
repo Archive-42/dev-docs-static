@@ -1,15 +1,12 @@
-GamepadButton.pressed
-=====================
+# GamepadButton.pressed
 
 The `GamepadButton.pressed` property of the [`GamepadButton`](../gamepadbutton) interface returns a `boolean` indicating whether the button is currently pressed (`true`) or unpressed (`false`).
 
-Syntax
-------
+## Syntax
 
     var isPressed = navigator.getGamepads()[0].pressed;
 
-Example
--------
+## Example
 
     var gp = navigator.getGamepads()[0]; // Get the first gamepad object
 
@@ -17,19 +14,16 @@ Example
       // respond to button being pressed
     }
 
-Value
------
+## Value
 
 A [`boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/gamepad/#dom-gamepadbutton-pressed">Gamepad<br />
 <span class="small">The definition of 'GamepadButton.pressed' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -91,9 +85,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using the Gamepad API](../gamepad_api/using_the_gamepad_api)
+- [Using the Gamepad API](../gamepad_api/using_the_gamepad_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GamepadButton/pressed" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GamepadButton/pressed</a>

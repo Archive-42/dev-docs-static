@@ -1,5 +1,4 @@
-MediaKeyStatusMap
-=================
+# MediaKeyStatusMap
 
 **Experimental**
 
@@ -8,44 +7,40 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MediaKeyStatusMap` interface of the [EncryptedMediaExtensions API](encrypted_media_extensions_api) is a read-only map of media key statuses by key IDs.
 
-Properties
-----------
+## Properties
 
- [`MediaKeyStatusMap.size`](mediakeystatusmap/size) <span class="badge inline readonly">Read only </span>   
+[`MediaKeyStatusMap.size`](mediakeystatusmap/size) <span class="badge inline readonly">Read only </span>  
 Returns the number of key/value pars in the status map.
 
-Methods
--------
+## Methods
 
- [`MediaKeyStatusMap.entries()`](mediakeystatusmap/entries) <span class="badge inline readonly">Read only </span>   
+[`MediaKeyStatusMap.entries()`](mediakeystatusmap/entries) <span class="badge inline readonly">Read only </span>  
 Returns a new `Iterator` object containing an array of `[key, value]` for each element in the status map, in insertion order.
 
- [`MediaKeyStatusMap.forEach(callback[, argument])`](mediakeystatusmap/foreach) <span class="badge inline readonly">Read only </span>   
+[`MediaKeyStatusMap.forEach(callback[, argument])`](mediakeystatusmap/foreach) <span class="badge inline readonly">Read only </span>  
 Calls `callback` once for each key-value pair in the status map, in insertion order. If `argument` is present it will be passed to the callback.
 
- [`MediaKeyStatusMap.get()`](mediakeystatusmap/get) <span class="badge inline readonly">Read only </span>   
+[`MediaKeyStatusMap.get()`](mediakeystatusmap/get) <span class="badge inline readonly">Read only </span>  
 Returns the value associated with the given key, or `undefined` if there is none.
 
- [`MediaKeyStatusMap.has()`](mediakeystatusmap/has) <span class="badge inline readonly">Read only </span>   
+[`MediaKeyStatusMap.has()`](mediakeystatusmap/has) <span class="badge inline readonly">Read only </span>  
 Returns a boolean asserting whether a value has been associated with the given key.
 
- [`MediaKeyStatusMap.keys()`](mediakeystatusmap/keys) <span class="badge inline readonly">Read only </span>   
+[`MediaKeyStatusMap.keys()`](mediakeystatusmap/keys) <span class="badge inline readonly">Read only </span>  
 Returns a new `Iterator` object containing keys for each element in the status map, in insertion order.
 
- [`MediaKeyStatusMap.values()`](mediakeystatusmap/values) <span class="badge inline readonly">Read only </span>   
+[`MediaKeyStatusMap.values()`](mediakeystatusmap/values) <span class="badge inline readonly">Read only </span>  
 Returns a new `Iterator` object containing values for each element in the status map, in insertion order.
 
- <span class="page-not-created">`MediaKeyStatusMap.[@@iterator]()`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`MediaKeyStatusMap.[@@iterator]()`</span> <span class="badge inline readonly">Read only </span>  
 Returns a new `Iterator` object containing an array of `[key, value]` for each element in the status map, in insertion order.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#mediakeystatusmap-interface">Encrypted Media Extensions<br />
 <span class="small">The definition of 'MediaKeyStatusMap' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

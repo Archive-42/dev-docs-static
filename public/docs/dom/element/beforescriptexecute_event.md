@@ -1,5 +1,4 @@
-Element: beforescriptexecute event
-==================================
+# Element: beforescriptexecute event
 
 **Non-standard**
 
@@ -13,13 +12,11 @@ It is a proprietary event specific to Gecko (Firefox).
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>Yes</td></tr><tr class="odd"><td>Interface</td><td><a href="../event"><code>Event</code></a></td></tr><tr class="even"><td>Event handler property</td><td>None</td></tr></tbody></table>
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -75,9 +72,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   `afterscriptexecute` event
+- `afterscriptexecute` event
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/beforescriptexecute_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/beforescriptexecute_event</a>

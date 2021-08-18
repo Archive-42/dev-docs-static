@@ -1,5 +1,4 @@
-InstallTrigger
-==============
+# InstallTrigger
 
 **Non-standard**
 
@@ -9,8 +8,7 @@ The `InstallTrigger` interface is an interesting outlier in the Apps API; it's i
 
 **Note:** This article needs to be updated somewhat.
 
-Overview
---------
+## Overview
 
 For very simple installations, the install methods on the `InstallTrigger` object may be all that's needed in the installation script.
 

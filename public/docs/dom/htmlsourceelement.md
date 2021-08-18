@@ -1,17 +1,15 @@
-HTMLSourceElement
-=================
+# HTMLSourceElement
 
 The `HTMLSourceElement` interface provides special properties (beyond the regular [`HTMLElement`](htmlelement) object interface it also has available to it by inheritance) for manipulating [`<source>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source) elements.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement).*
+_Inherits properties from its parent, [`HTMLElement`](htmlelement)._
 
 <span class="page-not-created">`HTMLSourceElement.media`</span>  
 Is a [`DOMString`](domstring) reflecting the [`media`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source#attr-media) HTML attribute, containing the intended type of the media resource.
 
- <span class="page-not-created">`HTMLSourceElement.sizes`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`HTMLSourceElement.sizes`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is a [`DOMString`](domstring) representing image sizes between breakpoints
 
 <span class="page-not-created">`HTMLSourceElement.src`</span>  
@@ -19,25 +17,22 @@ Is a [`DOMString`](domstring) reflecting the [`src`](https://developer.mozilla.o
 
 **Note**: If the `src` property is updated (along with any siblings), the parent [`HTMLMediaElement`](htmlmediaelement)'s `load` method should be called when done, since `<source>` elements are not re-scanned automatically.
 
- <span class="page-not-created">`HTMLSourceElement.srcset`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`HTMLSourceElement.srcset`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is a [`DOMString`](domstring) reflecting the [`srcset`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source#attr-srcset) HTML attribute, containing a list of candidate images, separated by a comma (`',', U+002C COMMA`). A candidate image is a URL followed by a `'w'` with the width of the images, or an `'x'` followed by the pixel density.
 
 <span class="page-not-created">`HTMLSourceElement.type`</span>  
 Is a [`DOMString`](domstring) reflecting the [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source#attr-type) HTML attribute, containing the type of the media resource.
 
-Methods
--------
+## Methods
 
-*No specific method; inherits methods from its parent, [`HTMLElement`](htmlelement).*
+_No specific method; inherits methods from its parent, [`HTMLElement`](htmlelement)._
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#htmlsourceelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLSourceElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -249,10 +244,9 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   The HTML element implementing this interface: [`<source>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source).
--   The HTML DOM APIs of the elements that can contain a [`<source>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source) element: [`HTMLVideoElement`](htmlvideoelement), [`HTMLAudioElement`](htmlaudioelement), [`HTMLPictureElement`](htmlpictureelement).
+- The HTML element implementing this interface: [`<source>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source).
+- The HTML DOM APIs of the elements that can contain a [`<source>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source) element: [`HTMLVideoElement`](htmlvideoelement), [`HTMLAudioElement`](htmlaudioelement), [`HTMLPictureElement`](htmlpictureelement).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLSourceElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLSourceElement</a>

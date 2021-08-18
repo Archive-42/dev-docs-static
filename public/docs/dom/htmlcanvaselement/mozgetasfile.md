@@ -1,5 +1,4 @@
-HTMLCanvasElement.mozGetAsFile()
-================================
+# HTMLCanvasElement.mozGetAsFile()
 
 **Deprecated**
 
@@ -11,8 +10,7 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 The non-standard, Firefox-specific the [`HTMLCanvasElement`](../htmlcanvaselement) method [`mozGetAsFile()`](mozgetasfile) returns a memory-based [`File`](../file) object representing the image contained in the canvas.
 
-Syntax
-------
+## Syntax
 
     canvas.mozGetAsFile(name, type);
 
@@ -21,15 +19,14 @@ Syntax
 `name`  
 A [`DOMString`](../domstring) indicating the file name to give the file representing the image file in memory.
 
- `type` <span class="badge inline optional">Optional</span>   
+`type` <span class="badge inline optional">Optional</span>  
 A [`DOMString`](../domstring) which specifies the image file format to use when creating the new image file. The default type is `image/png`. For other options, see our [Image file type and format guide](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types).
 
 ### Return value
 
 A [`File`](../file) object representing the image contained in the canvas. The file's data is entirely located in memory until such time as it is explicitly written to disk.
 
-Examples
---------
+## Examples
 
 This example creates an image file from the [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element on the page, then uses a [`FileReader`](../filereader) to read the image data from the file.
 
@@ -71,13 +68,11 @@ The following code uses `mozGetAsFile()` to create a [`File`](../file) object fr
 
     window.addEventListener('load', draw);
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

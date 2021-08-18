@@ -1,5 +1,4 @@
-FileSystemFlags
-===============
+# FileSystemFlags
 
 **Experimental**
 
@@ -15,13 +14,12 @@ Here, we see that the `create` property is provided, with a value of `true`, ind
 
 Note that these option flags currently don't have any useful meaning when used in the scope of Web content, where security precautions prevent the creation of new files or the replacement of existing ones.
 
-Properties
-----------
+## Properties
 
- [`create`](filesystemflags/create) <span class="badge inline optional">Optional</span>   
+[`create`](filesystemflags/create) <span class="badge inline optional">Optional</span>  
 If this property is `true`, and the requested file or directory doesn't exist, the user agent should create it. The default is `false`. The parent directory must already exist.
 
- [`exclusive`](filesystemflags/exclusive) <span class="badge inline optional">Optional</span>   
+[`exclusive`](filesystemflags/exclusive) <span class="badge inline optional">Optional</span>  
 If `true`, and the `create` option is also `true`, the file must not exist prior to issuing the call. Instead, it must be possible for it to be created newly at call time. The default is `false`.
 
 ### Values and results
@@ -88,14 +86,12 @@ The file or directory is created, then a [`FileSystemFileEntry`](filesystemfilee
 
 \[1\] When `create` is `false`, the value of `exclusive` is irrelevant and ignored.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/entries-api/#dictdef-filesystemflags">File and Directory Entries API<br />
 <span class="small">The definition of 'FileSystemFlags' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -211,12 +207,11 @@ No
 
 Yes
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](file_and_directory_entries_api)
--   [Introduction to the File System API](file_and_directory_entries_api/introduction)
--   [`FileSystemDirectoryEntry`](filesystemdirectoryentry)
--   [`FileSystemFileEntry`](filesystemfileentry)
+- [File and Directory Entries API](file_and_directory_entries_api)
+- [Introduction to the File System API](file_and_directory_entries_api/introduction)
+- [`FileSystemDirectoryEntry`](filesystemdirectoryentry)
+- [`FileSystemFileEntry`](filesystemfileentry)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFlags" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFlags</a>

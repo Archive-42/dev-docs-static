@@ -1,10 +1,8 @@
-FeaturePolicy
-=============
+# FeaturePolicy
 
 The `FeaturePolicy` interface of the [Feature Policy API](https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy) represents the set of policies applied to the current execution context.
 
-FeaturePolicy Methods
----------------------
+## FeaturePolicy Methods
 
 [`FeaturePolicy.allowsFeature`](featurepolicy/allowsfeature)  
 Returns a Boolean that indicates whether or not a particular feature is enabled in the specified context.
@@ -18,13 +16,11 @@ Returns a list of names of all features supported by the User Agent and allowed 
 [`FeaturePolicy.getAllowlistForFeature`](featurepolicy/getallowlistforfeature)  
 Returns the Allow list for the specified feature.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-permissions-policy/">Permissions Policy</a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -214,10 +210,9 @@ No
 
 11.0
 
-See also
---------
+## See also
 
--   [`Feature-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy)
--   [Privacy, permissions, and information security](https://developer.mozilla.org/en-US/docs/Web/Privacy)
+- [`Feature-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy)
+- [Privacy, permissions, and information security](https://developer.mozilla.org/en-US/docs/Web/Privacy)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FeaturePolicy" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FeaturePolicy</a>

@@ -1,10 +1,8 @@
-HashChangeEvent.oldURL
-======================
+# HashChangeEvent.oldURL
 
 The `oldURL` read-only property of the [`HashChangeEvent`](../hashchangeevent) interface returns the previous URL from which the window was navigated.
 
-Syntax
-------
+## Syntax
 
     let oldEventUrl = event.oldURL;
 
@@ -12,21 +10,18 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Example
--------
+## Example
 
     window.addEventListener('hashchange', function(event) {
       console.log('Hash changed from ' + event.oldURL);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-hashchangeevent-oldurl">HTML Living Standard<br />
 <span class="small">The definition of 'HashChangeEvent: oldURL' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

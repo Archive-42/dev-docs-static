@@ -1,5 +1,4 @@
-MediaMetadata.title
-===================
+# MediaMetadata.title
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `title` property of the [`MediaMetaData`](../mediametadata) interface returns or sets the title of the media to be played.
 
-Syntax
-------
+## Syntax
 
     var title = mediaMetaData.title
     mediaMetaData.title = title
@@ -18,8 +16,7 @@ Syntax
 
 A [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) containing the title of the media.
 
-Examples
---------
+## Examples
 
 The following example checks for browser compatibility and sets the current metadata for the media session.
 
@@ -38,14 +35,12 @@ The following example checks for browser compatibility and sets the current meta
         ]
       });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediasession/#dom-mediametadata-title">Media Session Standard<br />
 <span class="small">The definition of 'title' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

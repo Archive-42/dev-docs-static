@@ -1,5 +1,4 @@
-Gamepad.displayId
-=================
+# Gamepad.displayId
 
 **Deprecated**
 
@@ -9,8 +8,7 @@ The `displayId` read-only property of the [`Gamepad`](../gamepad) interface retu
 
 A Gamepad is considered to be associated with a [`VRDisplay`](../vrdisplay) if it reports a pose that is in the same space as the <span class="page-not-created">`VRDisplay.pose`</span>.
 
-Syntax
-------
+## Syntax
 
     var myDisplayId = gamepadInstance.displayId;
 
@@ -18,8 +16,7 @@ Syntax
 
 A number representing the associated [`VRDisplay.displayId`](../vrdisplay/displayid). If the number is 0, then the gamepad is not associated with a VR display.
 
-Examples
---------
+## Examples
 
     window.addEventListener("gamepadconnected", function(e) {
       if(!e.gamepad.displayId) {
@@ -29,14 +26,12 @@ Examples
       }
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://immersive-web.github.io/webvr/spec/1.1/#gamepad-getvrdisplays-attribute">WebVR 1.1<br />
 <span class="small">The definition of 'displayId' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -106,10 +101,9 @@ No
 
 Currently supported only by Google Daydream.
 
-See also
---------
+## See also
 
--   [WebVR API homepage](../webvr_api)
--   <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
+- [WebVR API homepage](../webvr_api)
+- <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Gamepad/displayId" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Gamepad/displayId</a>

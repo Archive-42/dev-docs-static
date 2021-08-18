@@ -1,5 +1,4 @@
-Element: DOMActivate event
-==========================
+# Element: DOMActivate event
 
 **Deprecated**
 
@@ -9,8 +8,7 @@ The `DOMActivate` event is fired at an element when it becomes active, such as w
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>Yes</td></tr><tr class="odd"><td>Interface</td><td><a href="../mouseevent"><code>MouseEvent</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
     <svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny"
          xmlns:ev="http://www.w3.org/2001/xml-events"
@@ -40,14 +38,12 @@ Examples
       </text>
     </svg>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-DOMActivate">UI Events<br />
 <span class="small">The definition of 'DOMActivate' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -103,12 +99,11 @@ No
 
 Yes
 
-See also
---------
+## See also
 
--   [`MouseEvent`](../mouseevent)
--   [`mousedown`](mousedown_event)
--   [`mouseup`](mouseup_event)
--   [`mousemove`](mousemove_event)
+- [`MouseEvent`](../mouseevent)
+- [`mousedown`](mousedown_event)
+- [`mouseup`](mouseup_event)
+- [`mousemove`](mousemove_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/DOMActivate_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/DOMActivate_event</a>

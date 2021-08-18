@@ -1,5 +1,4 @@
-HTMLMediaElement: loadeddata event
-==================================
+# HTMLMediaElement: loadeddata event
 
 The `loadeddata` event is fired when the frame at the current playback position of the media has finished loading; often the first frame.
 
@@ -7,8 +6,7 @@ The `loadeddata` event is fired when the frame at the current playback position 
 
 Note that this event will not fire in mobile/tablet devices if data-saver is on in browser settings.
 
-Examples
---------
+## Examples
 
 These examples add an event listener for the HTMLMediaElement's `loadeddata` event, then post a message when that event handler has reacted to the event firing.
 
@@ -30,15 +28,13 @@ Using the `onloadeddata` event handler property:
           'HAVE_CURRENT_DATA or greater for the first time.');
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/media.html#event-media-loadeddata">HTML Living Standard<br />
 <span class="small">The definition of 'loadeddata media event' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/embedded-content-0.html#event-media-loadeddata">HTML5<br />
 <span class="small">The definition of 'loadeddata media event' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -94,34 +90,32 @@ Yes
 
 1.0
 
-Related Events
---------------
+## Related Events
 
--   [`HTMLMediaElement: playing event`](playing_event)
--   [`HTMLMediaElement: waiting event`](waiting_event)
--   [`HTMLMediaElement: seeking event`](seeking_event)
--   [`HTMLMediaElement: seeked event`](seeked_event)
--   [`HTMLMediaElement: ended event`](ended_event)
--   [`HTMLMediaElement: loadedmetadata event`](loadedmetadata_event)
--   [`HTMLMediaElement: loadeddata event`](loadeddata_event)
--   [`HTMLMediaElement: canplay event`](canplay_event)
--   [`HTMLMediaElement: canplaythrough event`](canplaythrough_event)
--   [`HTMLMediaElement: durationchange event`](durationchange_event)
--   [`HTMLMediaElement: timeupdate event`](timeupdate_event)
--   [`HTMLMediaElement: play event`](play_event)
--   [`HTMLMediaElement: pause event`](pause_event)
--   [`HTMLMediaElement: ratechange event`](ratechange_event)
--   [`HTMLMediaElement: volumechange event`](volumechange_event)
--   [`HTMLMediaElement: suspend event`](suspend_event)
--   [`HTMLMediaElement: emptied event`](emptied_event)
--   [`HTMLMediaElement: stalled event`](stalled_event)
+- [`HTMLMediaElement: playing event`](playing_event)
+- [`HTMLMediaElement: waiting event`](waiting_event)
+- [`HTMLMediaElement: seeking event`](seeking_event)
+- [`HTMLMediaElement: seeked event`](seeked_event)
+- [`HTMLMediaElement: ended event`](ended_event)
+- [`HTMLMediaElement: loadedmetadata event`](loadedmetadata_event)
+- [`HTMLMediaElement: loadeddata event`](loadeddata_event)
+- [`HTMLMediaElement: canplay event`](canplay_event)
+- [`HTMLMediaElement: canplaythrough event`](canplaythrough_event)
+- [`HTMLMediaElement: durationchange event`](durationchange_event)
+- [`HTMLMediaElement: timeupdate event`](timeupdate_event)
+- [`HTMLMediaElement: play event`](play_event)
+- [`HTMLMediaElement: pause event`](pause_event)
+- [`HTMLMediaElement: ratechange event`](ratechange_event)
+- [`HTMLMediaElement: volumechange event`](volumechange_event)
+- [`HTMLMediaElement: suspend event`](suspend_event)
+- [`HTMLMediaElement: emptied event`](emptied_event)
+- [`HTMLMediaElement: stalled event`](stalled_event)
 
-See also
---------
+## See also
 
--   [`HTMLAudioElement`](../htmlaudioelement)
--   [`HTMLVideoElement`](../htmlvideoelement)
--   [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
--   [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
+- [`HTMLAudioElement`](../htmlaudioelement)
+- [`HTMLVideoElement`](../htmlvideoelement)
+- [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
+- [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadeddata_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadeddata_event</a>

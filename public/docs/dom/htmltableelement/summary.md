@@ -1,5 +1,4 @@
-HTMLTableElement.summary
-========================
+# HTMLTableElement.summary
 
 **Deprecated**
 
@@ -7,24 +6,20 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `HTMLTableElement.summary` property represents the table description.
 
-Syntax
-------
+## Syntax
 
     HTMLTableElement.summary = string;
     varstring = HTMLTableElement.summary;
 
-Example
--------
+## Example
 
     HTMLTableElement.summary = "Usage statistics";
 
-Specifications
---------------
+## Specifications
 
--   W3C DOM 2 HTML Specification
+- W3C DOM 2 HTML Specification
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

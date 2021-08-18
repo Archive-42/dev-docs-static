@@ -1,10 +1,8 @@
-HTMLObjectElement.width
-=======================
+# HTMLObjectElement.width
 
 The `width` property of the [`HTMLObjectElement`](../htmlobjectelement) interface returns a [`DOMString`](../domstring) that reflects the [`width`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object#attr-width) HTML attribute, specifying the displayed width of the resource in CSS pixels.
 
-Syntax
-------
+## Syntax
 
     var String = HTMLObjectElement.width;
     HTMLObjectElement.width = String;
@@ -13,14 +11,12 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-dim-width">HTML Living Standard<br />
 <span class="small">The definition of 'width' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,16 +1,14 @@
-HTML Drag and Drop API
-======================
+# HTML Drag and Drop API
 
-**HTML Drag and Drop** interfaces enable applications to use drag-and-drop features in browsers. The user may select *draggable* elements with a mouse, drag those elements to a *droppable* element, and drop them by releasing the mouse button. A translucent representation of the *draggable* elements follows the pointer during the drag operation.
+**HTML Drag and Drop** interfaces enable applications to use drag-and-drop features in browsers. The user may select _draggable_ elements with a mouse, drag those elements to a _droppable_ element, and drop them by releasing the mouse button. A translucent representation of the _draggable_ elements follows the pointer during the drag operation.
 
-For web sites, extensions, and XUL applications, you can customize which elements can become *draggable*, the type of feedback the *draggable* elements produce, and the *droppable* elements.
+For web sites, extensions, and XUL applications, you can customize which elements can become _draggable_, the type of feedback the _draggable_ elements produce, and the _droppable_ elements.
 
 This overview of HTML Drag and Drop includes a description of the interfaces, basic steps to add drag-and-drop support to an application, and an interoperability summary of the interfaces.
 
-Drag Events
------------
+## Drag Events
 
-HTML drag-and-drop uses the [`DOM event model`](event) and *[`drag events`](dragevent)* inherited from [`mouse events`](mouseevent). A typical *drag operation* begins when a user selects a *draggable* element, drags the element to a *droppable* element, and then releases the dragged element.
+HTML drag-and-drop uses the [`DOM event model`](event) and _[`drag events`](dragevent)_ inherited from [`mouse events`](mouseevent). A typical _drag operation_ begins when a user selects a _draggable_ element, drags the element to a _droppable_ element, and then releases the dragged element.
 
 During drag operations, several event types are fired, and some events might fire many times, such as the [`drag`](document/drag_event) and [`dragover`](document/dragover_event) events.
 
@@ -20,18 +18,17 @@ Each [drag event type](dragevent#event_types) has an associated [global event ha
 
 **Note:** Neither `dragstart` nor `dragend` events are fired when dragging a file into the browser from the OS.
 
-Interfaces
-----------
+## Interfaces
 
 The HTML Drag and Drop interfaces are [`DragEvent`](dragevent), [`DataTransfer`](datatransfer), [`DataTransferItem`](datatransferitem) and [`DataTransferItemList`](datatransferitemlist).
 
 The [`DragEvent`](dragevent) interface has a constructor and one [`dataTransfer`](dragevent/datatransfer) property, which is a [`DataTransfer`](datatransfer) object.
 
-[`DataTransfer`](datatransfer) objects include the drag event's state, such as the type of drag being done (like `copy` or `move`), the drag's data (one or more items), and the MIME type of each *drag item*. [`DataTransfer`](datatransfer) objects also have methods to add or remove items to the drag's data.
+[`DataTransfer`](datatransfer) objects include the drag event's state, such as the type of drag being done (like `copy` or `move`), the drag's data (one or more items), and the MIME type of each _drag item_. [`DataTransfer`](datatransfer) objects also have methods to add or remove items to the drag's data.
 
 The [`DragEvent`](dragevent) and [`DataTransfer`](datatransfer) interfaces should be the only ones needed to add HTML Drag and Drop capabilities to an application. (Firefox supports some [Gecko-specific extensions](#gecko_specific_interfaces) to the [`DataTransfer`](datatransfer) object, but those extensions will only work on Firefox.)
 
-Each [`DataTransfer`](datatransfer) object contains an [`items`](datatransfer/items) property, which is a [`list`](datatransferitemlist) of [`DataTransferItem`](datatransferitem) objects. A [`DataTransferItem`](datatransferitem) object represents a single *drag item*, each with a [`kind`](datatransferitem/kind) property (either `string` or `file`) and a [`type`](datatransferitem/type) property for the data item's MIME type. The [`DataTransferItem`](datatransferitem) object also has methods to get the drag item's data.
+Each [`DataTransfer`](datatransfer) object contains an [`items`](datatransfer/items) property, which is a [`list`](datatransferitemlist) of [`DataTransferItem`](datatransferitem) objects. A [`DataTransferItem`](datatransferitem) object represents a single _drag item_, each with a [`kind`](datatransferitem/kind) property (either `string` or `file`) and a [`type`](datatransferitem/type) property for the data item's MIME type. The [`DataTransferItem`](datatransferitem) object also has methods to get the drag item's data.
 
 The [`DataTransferItemList`](datatransferitemlist) object is a list of [`DataTransferItem`](datatransferitem) objects. The list object has methods to add a drag item to the list, remove a drag item from the list, and clear the list of all drag items.
 
@@ -41,16 +38,15 @@ A key difference between the [`DataTransfer`](datatransfer) and [`DataTransferIt
 
 ### Gecko-specific interfaces
 
-Mozilla and Firefox support some features not in the standard drag-and-drop model. These are *convenience functions* to help with dragging multiple items or non-string data (such as files). For more information, see [Dragging and Dropping Multiple Items](html_drag_and_drop_api/multiple_items). Additionally, see the [`DataTransfer`](datatransfer) reference page for all of the [Gecko-specific properties](datatransfer#gecko_properties) and [Gecko-specific methods](datatransfer#gecko_methods).
+Mozilla and Firefox support some features not in the standard drag-and-drop model. These are _convenience functions_ to help with dragging multiple items or non-string data (such as files). For more information, see [Dragging and Dropping Multiple Items](html_drag_and_drop_api/multiple_items). Additionally, see the [`DataTransfer`](datatransfer) reference page for all of the [Gecko-specific properties](datatransfer#gecko_properties) and [Gecko-specific methods](datatransfer#gecko_methods).
 
-The basics
-----------
+## The basics
 
 This section is a summary of the basic steps to add drag-and-drop functionality to an application.
 
-### Identify what is *draggable*
+### Identify what is _draggable_
 
-Making an element *draggable* requires adding the [`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-draggable) attribute and the [`ondragstart`](globaleventhandlers/ondragstart) global event handler, as shown in the following code sample:
+Making an element _draggable_ requires adding the [`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-draggable) attribute and the [`ondragstart`](globaleventhandlers/ondragstart) global event handler, as shown in the following code sample:
 
     <script>
       function dragstart_handler(ev) {
@@ -70,14 +66,14 @@ Making an element *draggable* requires adding the [`draggable`](https://develope
 
 For more information, see:
 
--   [Draggable attribute reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable)
--   [Drag operations guide](html_drag_and_drop_api/drag_operations#draggableattribute)
+- [Draggable attribute reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable)
+- [Drag operations guide](html_drag_and_drop_api/drag_operations#draggableattribute)
 
 ### Define the drag's data
 
 The application is free to include any number of data items in a drag operation. Each data item is a [`string`](domstring) of a particular `type` — typically a MIME type such as `text/html`.
 
-Each [`drag event`](dragevent) has a [`dataTransfer`](dragevent/datatransfer) property that *holds* the event's data. This property (which is a [`DataTransfer`](datatransfer) object) also has methods to *manage* drag data. The [`setData()`](datatransfer/setdata) method is used to add an item to the drag data, as shown in the following example.
+Each [`drag event`](dragevent) has a [`dataTransfer`](dragevent/datatransfer) property that _holds_ the event's data. This property (which is a [`DataTransfer`](datatransfer) object) also has methods to _manage_ drag data. The [`setData()`](datatransfer/setdata) method is used to add an item to the drag data, as shown in the following example.
 
     function dragstart_handler(ev) {
       // Add different types of drag data
@@ -86,8 +82,8 @@ Each [`drag event`](dragevent) has a [`dataTransfer`](dragevent/datatransfer) pr
       ev.dataTransfer.setData("text/uri-list", ev.target.ownerDocument.location.href);
     }
 
--   For a list of common data types used in drag-and-drop (such as text, HTML, links, and files), see [Recommended Drag Types](html_drag_and_drop_api/recommended_drag_types).
--   For more information about drag data, see [Drag Data](html_drag_and_drop_api/drag_operations#dragdata).
+- For a list of common data types used in drag-and-drop (such as text, HTML, links, and files), see [Recommended Drag Types](html_drag_and_drop_api/recommended_drag_types).
+- For more information about drag data, see [Drag Data](html_drag_and_drop_api/drag_operations#dragdata).
 
 ### Define the drag image
 
@@ -104,9 +100,9 @@ By default, the browser supplies an image that appears beside the pointer during
 
 Learn more about drag feedback images in:
 
--   [Setting the Drag Feedback Image](html_drag_and_drop_api/drag_operations#dragfeedback)
+- [Setting the Drag Feedback Image](html_drag_and_drop_api/drag_operations#dragfeedback)
 
-### Define the drag *effect*
+### Define the drag _effect_
 
 The [`dropEffect`](datatransfer/dropeffect) property is used to control the feedback the user is given during a drag-and-drop operation. It typically affects which cursor the browser displays while dragging. For example, when the user hovers over a drop target, the browser's cursor may indicate the type of operation that will occur.
 
@@ -126,11 +122,11 @@ The following example shows how to use this property.
 
 For more details, see:
 
--   [Drag Effects](html_drag_and_drop_api/drag_operations#drageffects)
+- [Drag Effects](html_drag_and_drop_api/drag_operations#drageffects)
 
-### Define a *drop zone*
+### Define a _drop zone_
 
-By default, the browser prevents anything from happening when dropping something onto most HTML elements. To change that behavior so that an element becomes a *drop zone* or is *droppable*, the element must have both [`ondragover`](globaleventhandlers/ondragover) and [`ondrop`](globaleventhandlers/ondrop) event handler attributes.
+By default, the browser prevents anything from happening when dropping something onto most HTML elements. To change that behavior so that an element becomes a _drop zone_ or is _droppable_, the element must have both [`ondragover`](globaleventhandlers/ondragover) and [`ondrop`](globaleventhandlers/ondrop) event handler attributes.
 
 The following example shows how to use those attributes, and includes basic event handlers for each attribute.
 
@@ -153,9 +149,9 @@ Note that each handler calls [`preventDefault()`](event/preventdefault) to preve
 
 For more information, see:
 
--   [Specifying Drop Targets](html_drag_and_drop_api/drag_operations#droptargets)
+- [Specifying Drop Targets](html_drag_and_drop_api/drag_operations#droptargets)
 
-### Handle the drop *effect*
+### Handle the drop _effect_
 
 The handler for the [`drop`](document/drop_event) event is free to process the drag data in an application-specific way.
 
@@ -186,44 +182,40 @@ The following example shows a drop handler getting the source element's `id` fro
 
 For more information, see:
 
--   [Performing a Drop](html_drag_and_drop_api/drag_operations#drop)
+- [Performing a Drop](html_drag_and_drop_api/drag_operations#drop)
 
 ### Drag end
 
-At the end of a drag operation, the [`dragend`](document/dragend_event) event fires at the *source* element — the element that was the target of the drag start.
+At the end of a drag operation, the [`dragend`](document/dragend_event) event fires at the _source_ element — the element that was the target of the drag start.
 
 This event fires regardless of whether the drag completed or was canceled. The <span class="page-not-created">`dragend`</span> event handler can check the value of the [`dropEffect`](datatransfer/dropeffect) property to determine if the drag operation succeeded or not.
 
 For more information about handling the end of a drag operation, see:
 
--   [Finishing a Drag](html_drag_and_drop_api/drag_operations#dragend)
+- [Finishing a Drag](html_drag_and_drop_api/drag_operations#dragend)
 
-Interoperability
-----------------
+## Interoperability
 
 As can be seen in the [DataTransferItem interface's Browser Compatibility table](datatransferitem#browser_compatibility), drag-and-drop interoperability is relatively broad among desktop browsers (except the [`DataTransferItem`](datatransferitem) and [`DataTransferItemList`](datatransferitemlist) interfaces have less support). This data also indicates drag-and-drop support among mobile browsers is very low.
 
-Examples and demos
-------------------
+## Examples and demos
 
--   [Copying and moving elements with the `DataTransfer` interface](https://mdn.github.io/dom-examples/drag-and-drop/copy-move-DataTransfer.html)
--   [Copying and moving elements with the `DataTransferListItem` interface](https://mdn.github.io/dom-examples/drag-and-drop/copy-move-DataTransferItemList.html)
--   Dragging and dropping files (Firefox only): <https://jsfiddle.net/9C2EF/>
--   Dragging and dropping files (All browsers): [https://jsbin.com/hiqasek/](https://jsbin.com/hiqasek/edit?html,js,output)
--   A parking project using the Drag and Drop API: <https://park.glitch.me/> (You can edit [here](https://glitch.com/edit/#!/park))
+- [Copying and moving elements with the `DataTransfer` interface](https://mdn.github.io/dom-examples/drag-and-drop/copy-move-DataTransfer.html)
+- [Copying and moving elements with the `DataTransferListItem` interface](https://mdn.github.io/dom-examples/drag-and-drop/copy-move-DataTransferItemList.html)
+- Dragging and dropping files (Firefox only): <https://jsfiddle.net/9C2EF/>
+- Dragging and dropping files (All browsers): [https://jsbin.com/hiqasek/](https://jsbin.com/hiqasek/edit?html,js,output)
+- A parking project using the Drag and Drop API: <https://park.glitch.me/> (You can edit [here](https://glitch.com/edit/#!/park))
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th><strong>Specification</strong></th><th><strong>Status</strong></th><th><strong>Comment</strong></th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dnd">HTML Living Standard</a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-See also
---------
+## See also
 
--   <a href="html_drag_and_drop_api/drag_operations" class="internal">Drag Operations</a>
--   <a href="html_drag_and_drop_api/multiple_items" class="internal">Dragging and Dropping Multiple Items</a>
--   <a href="html_drag_and_drop_api/recommended_drag_types" class="internal">Recommended Drag Types</a>
--   [HTML5 Living Standard: Drag and Drop](https://html.spec.whatwg.org/multipage/interaction.html#dnd)
--   [Drag and Drop interoperability data from CanIUse](https://caniuse.com/#search=draganddrop)
+- <a href="html_drag_and_drop_api/drag_operations" class="internal">Drag Operations</a>
+- <a href="html_drag_and_drop_api/multiple_items" class="internal">Dragging and Dropping Multiple Items</a>
+- <a href="html_drag_and_drop_api/recommended_drag_types" class="internal">Recommended Drag Types</a>
+- [HTML5 Living Standard: Drag and Drop](https://html.spec.whatwg.org/multipage/interaction.html#dnd)
+- [Drag and Drop interoperability data from CanIUse](https://caniuse.com/#search=draganddrop)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API</a>

@@ -1,5 +1,4 @@
-MediaKeyStatusMap.entries()
-===========================
+# MediaKeyStatusMap.entries()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `entries()` read-only property of the [`MediaKeyStatusMap`](../mediakeystatusmap) interface returns a new Iterator object, containing an array of \[key, value\] pairs for each element in the status map, in insertion order.
 
-Syntax
-------
+## Syntax
 
     // TBD
 
@@ -21,13 +19,11 @@ None.
 
 ### Exceptions
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/">Encrypted Media Extensions</a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

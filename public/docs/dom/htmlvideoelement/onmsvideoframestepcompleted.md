@@ -1,5 +1,4 @@
-HTMLVideoElement.onMSVideoFrameStepCompleted
-============================================
+# HTMLVideoElement.onMSVideoFrameStepCompleted
 
 **Non-standard**
 
@@ -9,20 +8,17 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 This proprietary property is specific to Internet Explorer and Microsoft Edge.
 
-Syntax
-------
+## Syntax
 
 <table><thead><tr class="header"><th>Value</th><th>Description</th></tr></thead><tbody><tr class="odd"><td>Event Property</td><td>object.onMSVideoFrameStepCompleted = handler;</td></tr><tr class="even"><td>attachEvent Method</td><td>object.attachEvent("onMSVideoFrameStepCompleted", handler)</td></tr><tr class="odd"><td>addEventListener Method</td><td>object.addEventListener("", handler, useCapture)</td></tr></tbody></table>
 
-Event handler parameters
-------------------------
+## Event handler parameters
 
--   val\[in\], type=function
+- val\[in\], type=function
 
-See also
---------
+## See also
 
--   [HTMLVideoElement](../htmlvideoelement)
--   [Microsoft API extensions](../microsoft_extensions)
+- [HTMLVideoElement](../htmlvideoelement)
+- [Microsoft API extensions](../microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/onMSVideoFrameStepCompleted" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/onMSVideoFrameStepCompleted</a>

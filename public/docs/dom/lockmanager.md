@@ -1,5 +1,4 @@
-LockManager
-===========
+# LockManager
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `LockManager` interface of the [Web Locks API](web_locks_api) provides methods for requesting a new [`Lock`](lock) object and querying for an existing `Lock` object. To get an instance of `LockManager`, call [`navigator.locks`](navigator/locks).
 
-Methods
--------
+## Methods
 
 [`LockManager.request()`](lockmanager/request)  
 Requests a [`Lock`](lock) object with parameters specifying its name and characteristics.
@@ -17,14 +15,12 @@ Requests a [`Lock`](lock) object with parameters specifying its name and charact
 [`LockManager.query()`](lockmanager/query)  
 Returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with a <span class="page-not-created">`LockManagerSnapshot`</span> which contains information about held and pending locks.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/web-locks/#api-lock-manager">Web Locks API<br />
 <span class="small">The definition of 'LockManager' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

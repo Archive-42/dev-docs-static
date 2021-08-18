@@ -1,20 +1,17 @@
-Element.lastElementChild
-========================
+# Element.lastElementChild
 
 The `Element.lastElementChild` read-only property returns an element's last child [`Element`](../element), or `null` if there are no child elements.
 
 `Element.lastElementChild` includes only element nodes. To get all child nodes, including non-element nodes like text and comment nodes, use [`Node.lastChild`](../node/lastchild).
 
-Syntax
-------
+## Syntax
 
     // Getter
     element = el.lastElementChild;
 
     // No setter; read-only property
 
-Example
--------
+## Example
 
     <ul id="list">
       <li>First  (1)</li>
@@ -28,14 +25,12 @@ Example
     // logs "Third (3)"
     </script>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-parentnode-lastelementchild">DOM<br />
 <span class="small">The definition of 'ParentNode.lastElementChild' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -91,10 +86,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`Element.previousElementSibling`](previouselementsibling)
--   [`Element.firstElementChild`](firstelementchild)
+- [`Element.previousElementSibling`](previouselementsibling)
+- [`Element.firstElementChild`](firstelementchild)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/lastElementChild" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/lastElementChild</a>

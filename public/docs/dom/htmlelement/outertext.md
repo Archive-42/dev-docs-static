@@ -1,5 +1,4 @@
-HTMLElement.outerText
-=====================
+# HTMLElement.outerText
 
 **Non-standard**
 
@@ -7,18 +6,15 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 `HTMLElement.outerText` is a non-standard property. As a getter, it returns the same value as [`HTMLElement.innerText`](innertext). As a setter, it removes the current node and replaces it with the given text.
 
-Example
--------
+## Example
 
 [See this StackOverflow answer.](https://stackoverflow.com/a/18481435)
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification. Standards discussion: [whatwg/html\#668](https://github.com/whatwg/html/issues/668).
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -74,10 +70,9 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [`HTMLElement.innerText`](innertext)
--   [`Element.outerHTML`](../element/outerhtml)
+- [`HTMLElement.innerText`](innertext)
+- [`Element.outerHTML`](../element/outerhtml)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/outerText" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/outerText</a>

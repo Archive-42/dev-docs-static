@@ -1,5 +1,4 @@
-HTMLInputElement.stepUp()
-=========================
+# HTMLInputElement.stepUp()
 
 The `HTMLInputElement.stepUp()` method increments the value of a numeric type of [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element by the value of the `step` attribute, or the default `step` value if the step attribute is not explicitly set. The method, when invoked, increments the [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-value) by ([`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step) \* n), where `n` defaults to `1` if not specified, and `step` defaults to the default value for `step` if not specified.
 
@@ -64,18 +63,16 @@ If the value before invoking the `stepUp()` method is invalid—for example, if 
 
 If the form control is non time, date, or numeric in nature, and therefore does not support the `step` attribute (see the list of supported input types in the table above), or if the step value is set to `any`, an `InvalidStateError` exception is thrown.
 
-Syntax
-------
+## Syntax
 
     element.stepUp( [ stepIncrement ] );
 
 ### Parameters
 
-*`stepIncrement`*  
+_`stepIncrement`_  
 The optional `stepIncrement` parameter is a numeric value. If no parameter is passed, `stepIncrement` defaults to `1`.
 
-Example
--------
+## Example
 
 Click the button in this example to increment the [number](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number) input type:
 
@@ -126,16 +123,14 @@ Try setting the step increment to `1.2`. What happens when you invoke the method
 
 Try setting the value to `4`, which is not valid. What happens when you invoke the method?
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/input.html#dom-input-stepup">HTML Living Standard<br />
 <span class="small">The definition of 'stepUp()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/sec-forms.html#dom-htmlinputelement-stepup">HTML 5.1<br />
 <span class="small">The definition of 'stepUp()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/html52/sec-forms.html#dom-htmlinputelement-stepup">HTML5<br />
 <span class="small">The definition of 'stepUp()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -195,12 +190,11 @@ Does not have a specific UI. There are still differences with the latest spec; s
 
 1.0
 
-See also
---------
+## See also
 
--   [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
--   [`HTMLInputElement`](../htmlinputelement)
--   [`HTMLInputElement.stepDown`](stepdown)
--   `step`, `min` and `max` attributes
+- [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
+- [`HTMLInputElement`](../htmlinputelement)
+- [`HTMLInputElement.stepDown`](stepdown)
+- `step`, `min` and `max` attributes
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/stepUp" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/stepUp</a>

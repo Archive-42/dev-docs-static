@@ -1,18 +1,16 @@
-Element: underflow event
-========================
+# Element: underflow event
 
 **Non-standard**
 
 This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.
 
-The non-standard `underflow` event, which is specific to Firefox, is fired when an element is no longer overflowed by its content. This only works for elements for which [`overflow`](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) is *not* set to `visible`.
+The non-standard `underflow` event, which is specific to Firefox, is fired when an element is no longer overflowed by its content. This only works for elements for which [`overflow`](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) is _not_ set to `visible`.
 
 The counterpart `overflow` event is fired when overflow occurs.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>Yes</td></tr><tr class="odd"><td>Interface</td><td><a href="../uievent"><code>UIEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td>Unknown</td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
     <div id="wrapper">
         <div id="child"></div>
@@ -62,13 +60,11 @@ Examples
       }, false);
     </script>
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -124,9 +120,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   Related events: [`overflow`](overflow_event)
+- Related events: [`overflow`](overflow_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/underflow_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/underflow_event</a>

@@ -1,10 +1,8 @@
-Element.ariaSetSize
-===================
+# Element.ariaSetSize
 
 The `ariaSetSize` property of the [`Element`](../element) interface reflects the value of the `aria-setsize` attribute, which defines the number of items in the current set of listitems or treeitems.
 
-Syntax
-------
+## Syntax
 
     var ariaSetSize = element.ariaSetSize;
     element.ariaSetSize = ariaSetSize
@@ -13,8 +11,7 @@ Syntax
 
 A [`DOMString`](../domstring) containing an integer.
 
-Examples
---------
+## Examples
 
 In this example the `aria-setsize` attribute on the element with an ID of `tab-id` is set to "3", to inform a device that there are currently 3 tabs in the group. Using `ariaSetSize` we update the value to "4".
 
@@ -25,14 +22,12 @@ In this example the `aria-setsize` attribute on the element with an ID of `tab-i
     el.ariaSetSize = "4";
     console.log(el.ariaSetSize); // 4
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariasetsize">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaSetSize' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,9 +83,8 @@ No
 
 14.0
 
-See also
---------
+## See also
 
--   [ARIA: tab role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role)
+- [ARIA: tab role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaSetSize" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaSetSize</a>

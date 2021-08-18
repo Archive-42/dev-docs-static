@@ -1,12 +1,10 @@
-Fetch API
-=========
+# Fetch API
 
 The Fetch API provides an interface for fetching resources (including across the network). It will seem familiar to anyone who has used [`XMLHttpRequest`](xmlhttprequest), but the new API provides a more powerful and flexible feature set.
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-Concepts and usage
-------------------
+## Concepts and usage
 
 Fetch provides a generic definition of [`Request`](request) and [`Response`](response) objects (and other things involved with network requests). This will allow them to be used wherever they are needed in the future, whether it’s for service workers, Cache API, and other similar things that handle or modify requests and responses, or any kind of use case that might require you to generate your responses programmatically (that is, the use of computer program or personal programming instructions).
 
@@ -24,10 +22,10 @@ You can create a request and response directly using the [`Request()`](request/r
 
 The `fetch` specification differs from `jQuery.ajax()` in three main ways:
 
--   The Promise returned from `fetch()` **won’t reject on HTTP error status** even if the response is an HTTP `404` or `500`. Instead, it will resolve normally (with `ok` status set to `false`), and it will only reject on network failure or if anything prevented the request from completing.
--   `fetch()` **won’t send cross-origin cookies** unless you set the *credentials* [init option](windoworworkerglobalscope/fetch#parameters) (to `include`).
-    -   In [April 2018](https://github.com/whatwg/fetch/pull/585), the spec changed the default credentials policy to `'same-origin'`. The following browsers shipped an outdated native fetch, and were updated in these versions: Firefox 61.0b13, Safari 12, Chrome 68.
-    -   If you are targeting older versions of these browsers, be sure to include `credentials: 'same-origin'` [init option](windoworworkerglobalscope/fetch#parameters) on all api requests that may be affected by cookies/user login state.
+- The Promise returned from `fetch()` **won’t reject on HTTP error status** even if the response is an HTTP `404` or `500`. Instead, it will resolve normally (with `ok` status set to `false`), and it will only reject on network failure or if anything prevented the request from completing.
+- `fetch()` **won’t send cross-origin cookies** unless you set the _credentials_ [init option](windoworworkerglobalscope/fetch#parameters) (to `include`).
+  - In [April 2018](https://github.com/whatwg/fetch/pull/585), the spec changed the default credentials policy to `'same-origin'`. The following browsers shipped an outdated native fetch, and were updated in these versions: Firefox 61.0b13, Safari 12, Chrome 68.
+  - If you are targeting older versions of these browsers, be sure to include `credentials: 'same-origin'` [init option](windoworworkerglobalscope/fetch#parameters) on all api requests that may be affected by cookies/user login state.
 
 **Note**
 
@@ -37,8 +35,7 @@ Find out more about using the Fetch API features in [Using Fetch](fetch_api/usin
 
 Browsers have started to add experimental support for the [`AbortController`](abortcontroller) and [`AbortSignal`](abortsignal) interfaces (aka The Abort API), which allow operations like Fetch and XHR to be aborted if they have not already completed. See the interface pages for more details.
 
-Fetch Interfaces
-----------------
+## Fetch Interfaces
 
 [`WindowOrWorkerGlobalScope.fetch()`](windoworworkerglobalscope/fetch)  
 The `fetch()` method used to fetch a resource.
@@ -52,19 +49,16 @@ Represents a resource request.
 [`Response`](response)  
 Represents the response to a request.
 
-Fetch mixin
------------
+## Fetch mixin
 
 [`Body`](body)  
 Provides methods relating to the body of the response/request, allowing you to declare what its content type is and how it should be handled.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fetch.spec.whatwg.org/">Fetch</a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -224,14 +218,13 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [Using Fetch](fetch_api/using_fetch)
--   [ServiceWorker API](service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
--   [Fetch polyfill](https://github.com/github/fetch)
--   [Fetch basic concepts](fetch_api/basic_concepts)
+- [Using Fetch](fetch_api/using_fetch)
+- [ServiceWorker API](service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [Fetch polyfill](https://github.com/github/fetch)
+- [Fetch basic concepts](fetch_api/basic_concepts)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API</a>

@@ -1,16 +1,13 @@
-ImageBitmap.height
-==================
+# ImageBitmap.height
 
 The read-only `ImageBitmap.height` property returns the [`ImageBitmap`](../imagebitmap) object's height in CSS pixels.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#dom-imagebitmap-height">HTML Living Standard<br />
 <span class="small">The definition of 'ImageBitmap.height' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

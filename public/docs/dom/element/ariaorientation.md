@@ -1,10 +1,8 @@
-Element.ariaOrientation
-=======================
+# Element.ariaOrientation
 
 The `ariaOrientation` property of the [`Element`](../element) interface reflects the value of the [`aria-orientation`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-orientation_attribute) attribute, which indicates whether the element's orientation is horizontal, vertical, or unknown/ambiguous.
 
-Syntax
-------
+## Syntax
 
     var ariaOrientation = element.ariaOrientation;
     element.ariaOrientation = ariaOrientation
@@ -22,8 +20,7 @@ The element is vertical.
 `"undefined"`  
 The element's orientation is unknown.
 
-Examples
---------
+## Examples
 
 In this example the `aria-orientation` attribute on the element with an ID of `handle_zoomSlider` is set to "vertical". Using `ariaOrientation` we update the value to "horizontal".
 
@@ -41,14 +38,12 @@ In this example the `aria-orientation` attribute on the element with an ID of `h
     el.ariaOrientation = "horizontal"
     console.log(el.ariaOrientation); // "horizontal"
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariaorientation">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaOrientation' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

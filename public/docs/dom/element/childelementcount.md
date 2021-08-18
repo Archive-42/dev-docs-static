@@ -1,29 +1,24 @@
-Element.childElementCount
-=========================
+# Element.childElementCount
 
 The `Element.childElementCount` read-only property returns the number of child elements of this element.
 
-Syntax
-------
+## Syntax
 
     element.childElementCount;
 
-Example
--------
+## Example
 
     let sidebar = document.getElementById('sidebar');
     if (sidebar.childElementCount > 0) {
       // Do something
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-parentnode-childelementcount">DOM<br />
 <span class="small">The definition of 'ParentNode.childElementCount' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -79,10 +74,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`Document.childElementCount`](../document/childelementcount)
--   [`DocumentFragment.childElementCount`](../documentfragment/childelementcount)
+- [`Document.childElementCount`](../document/childelementcount)
+- [`DocumentFragment.childElementCount`](../documentfragment/childelementcount)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/childElementCount" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/childElementCount</a>

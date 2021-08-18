@@ -1,20 +1,17 @@
-GlobalEventHandlers.ondragstart
-===============================
+# GlobalEventHandlers.ondragstart
 
 A [`global event handler`](../globaleventhandlers) for the `dragstart` event.
 
-Syntax
-------
+## Syntax
 
     var dragstartHandler = targetElement.ondragstart;
 
 ### Return value
 
 `dragstartHandler`  
-The *dragstart* event handler for element `targetElement`.
+The _dragstart_ event handler for element `targetElement`.
 
-Example
--------
+## Example
 
 This example demonstrates using the [`ondragstart`](ondragstart) attribute handler to set an element's `dragstart` event handler.
 
@@ -70,15 +67,13 @@ This example demonstrates using the [`ondragstart`](ondragstart) attribute handl
     </body>
     </html>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/indices.html#ix-handler-ondragstart">HTML Living Standard<br />
 <span class="small">The definition of 'ondragstart' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/index.html#ix-handler-ondragstart">HTML 5.1<br />
 <span class="small">The definition of 'ondragstart' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -134,9 +129,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   `dragstart`
+- `dragstart`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondragstart" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondragstart</a>

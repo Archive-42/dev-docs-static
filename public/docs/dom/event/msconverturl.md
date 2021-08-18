@@ -1,5 +1,4 @@
-Event.msConvertURL()
-====================
+# Event.msConvertURL()
 
 **Non-standard**
 
@@ -9,8 +8,7 @@ The `msConvertURL` method instructs the HTML paste operation on how to modify th
 
 This proprietary method is specific to Internet Explorer and the Microsoft Edge browser.
 
-Syntax
-------
+## Syntax
 
     var retVal = DragEvent.msConvertURL(file, targetType, targetURL);
 
@@ -18,19 +16,19 @@ Syntax
 
 **file** \[in\]
 
-Type: *File*
+Type: _File_
 
 The file object to be converted.
 
 **targetType** \[in\]
 
-Type: *DOMString*
+Type: _DOMString_
 
 One of the following values indicating the desired conversion type: "specified", "base64", or "unchanged".
 
 **targetURL** \[in, optional\]
 
-Type: *URL*
+Type: _URL_
 
 The target URL.
 
@@ -67,9 +65,8 @@ This method does not return a value.
           } // for
         } // handlePaste
 
-See also
---------
+## See also
 
--   [Microsoft API extensions](../microsoft_extensions)
+- [Microsoft API extensions](../microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/msConvertURL" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Event/msConvertURL</a>

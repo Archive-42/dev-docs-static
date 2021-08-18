@@ -1,5 +1,4 @@
-HTMLCanvasElement.mozOpaque
-===========================
+# HTMLCanvasElement.mozOpaque
 
 **Deprecated**
 
@@ -15,14 +14,12 @@ The non-standard `HTMLCanvasElement.mozOpaque` property is a [`Boolean`](https:/
 
 This has been standardized as setting the `alpha` option to `false` when creating a drawing context with [`HTMLCanvasElement.getContext()`](getcontext). Use of `mozOpaque` should be avoided. Firefox will stop supporting it in the future.
 
-Syntax
-------
+## Syntax
 
     var opaque = canvas.mozOpaque;
     canvas.mozOpaque = true;
 
-Examples
---------
+## Examples
 
 Given this [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element:
 
@@ -35,13 +32,11 @@ You can get or set the `mozOpaque` property. For example, you could conditionall
     // deactivate it
     canvas.mozOpaque = false;
 
-Specifications
---------------
+## Specifications
 
 Not part of any standard.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -97,11 +92,10 @@ No
 
 No
 
-See also
---------
+## See also
 
--   The interface defining it, [`HTMLCanvasElement`](../htmlcanvaselement).
--   The [`moz-opaque`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas#attr-moz-opaque) HTML attribute of the [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element.
--   [Optimizing your JavaScript game for Firefox OS](https://hacks.mozilla.org/2013/05/optimizing-your-javascript-game-for-firefox-os/)
+- The interface defining it, [`HTMLCanvasElement`](../htmlcanvaselement).
+- The [`moz-opaque`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas#attr-moz-opaque) HTML attribute of the [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element.
+- [Optimizing your JavaScript game for Firefox OS](https://hacks.mozilla.org/2013/05/optimizing-your-javascript-game-for-firefox-os/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/mozOpaque" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/mozOpaque</a>

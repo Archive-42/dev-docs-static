@@ -1,5 +1,4 @@
-disabled
-========
+# disabled
 
 Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether or not the control is disabled, meaning that it does not accept any clicks.
 

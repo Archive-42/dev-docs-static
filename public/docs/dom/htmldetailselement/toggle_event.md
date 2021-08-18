@@ -1,12 +1,10 @@
-HTMLDetailsElement: toggle event
-================================
+# HTMLDetailsElement: toggle event
 
 The `toggle` event fires when the `open`/`closed` state of a [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) element is toggled.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../event"><code>Event</code></a></td></tr><tr class="even"><td>Event handler property</td><td>None</td></tr><tr class="odd"><td>Default Action</td><td>Toggles the <code>open</code> state of the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details"><code>&lt;details&gt;</code></a> element.</td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 This example logs chapters that are open. Chapters are removed from the log when they are closed.
 
@@ -64,14 +62,12 @@ This example logs chapters that are open. Chapters are removed from the log when
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/indices.html#event-toggle">HTML Living Standard<br />
 <span class="small">The definition of 'toggle event' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

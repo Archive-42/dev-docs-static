@@ -1,10 +1,8 @@
-Location
-========
+# Location
 
 The `Location` interface represents the location (URL) of the object it is linked to. Changes done on it are reflected on the object it relates to. Both the [`Document`](document) and [`Window`](window) interface have such a linked `Location`, accessible via [`Document.location`](document/location) and [`Window.location`](window/location) respectively.
 
-Anatomy Of Location
--------------------
+## Anatomy Of Location
 
 ### HTML
 
@@ -48,8 +46,7 @@ Anatomy Of Location
 
 ### Result
 
-Properties
-----------
+## Properties
 
 [`Location.ancestorOrigins`](location/ancestororigins)  
 Is a static [`DOMStringList`](domstringlist) containing, in reverse order, the origins of all ancestor browsing contexts of the document associated with the given `Location` object.
@@ -61,7 +58,7 @@ Is a stringifier that returns a [`USVString`](usvstring) containing the entire U
 Is a [`USVString`](usvstring) containing the protocol scheme of the URL, including the final `':'`.
 
 [`Location.host`](location/host)  
-Is a [`USVString`](usvstring) containing the host, that is the *hostname*, a `':'`, and the *port* of the URL.
+Is a [`USVString`](usvstring) containing the host, that is the _hostname_, a `':'`, and the _port_ of the URL.
 
 [`Location.hostname`](location/hostname)  
 Is a [`USVString`](usvstring) containing the domain of the URL.
@@ -78,11 +75,10 @@ Is a [`USVString`](usvstring) containing a `'?'` followed by the parameters or "
 [`Location.hash`](location/hash)  
 Is a [`USVString`](usvstring) containing a `'#'` followed by the fragment identifier of the URL.
 
- [`Location.origin`](location/origin) <span class="badge inline readonly">Read only </span>   
+[`Location.origin`](location/origin) <span class="badge inline readonly">Read only </span>  
 Returns a [`USVString`](usvstring) containing the canonical form of the origin of the specific location.
 
-Methods
--------
+## Methods
 
 [`Location.assign()`](location/assign)  
 Loads the resource at the URL provided in parameter.
@@ -91,13 +87,12 @@ Loads the resource at the URL provided in parameter.
 Reloads the current URL, like the Refresh button.
 
 [`Location.replace()`](location/replace)  
-Replaces the current resource with the one at the provided URL (redirects to the provided URL). The difference from the `assign()` method and setting the `href` property is that after using `replace()` the current page will not be saved in session [`History`](history), meaning the user won't be able to use the *back* button to navigate to it.
+Replaces the current resource with the one at the provided URL (redirects to the provided URL). The difference from the `assign()` method and setting the `href` property is that after using `replace()` the current page will not be saved in session [`History`](history), meaning the user won't be able to use the _back_ button to navigate to it.
 
 [`Location.toString()`](location/tostring)  
 Returns a [`USVString`](usvstring) containing the whole URL. It is a synonym for [`HTMLAnchorElement.href`](htmlanchorelement/href), though it can't be used to modify the value.
 
-Examples
---------
+## Examples
 
     // Create anchor element and use href property for the purpose of this example
     // A more correct alternative is to browse to the URL and use document.location or window.location
@@ -113,14 +108,12 @@ Examples
     console.log(url.hash);      // #search-results-close-container
     console.log(url.origin);    // https://developer.mozilla.org:8080
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/browsers.html#the-location-interface">HTML Living Standard<br />
 <span class="small">The definition of 'Location' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -480,13 +473,13 @@ Before Firefox 53, the `pathname` property returned wrong parts of the URL. For 
 
 12
 
-Before Edge 79, if a page added to *Trusted Sites* contains a cross-origin iframe, then calling `reload()` from within the iframe reloads the trusted page (in other words, the top page reloads, not the iframe).
+Before Edge 79, if a page added to _Trusted Sites_ contains a cross-origin iframe, then calling `reload()` from within the iframe reloads the trusted page (in other words, the top page reloads, not the iframe).
 
 1
 
 5.5
 
-If a page added to *Trusted Sites* contains a cross-origin iframe, then calling `reload()` from within the iframe reloads the trusted page (in other words, the top page reloads, not the iframe).
+If a page added to _Trusted Sites_ contains a cross-origin iframe, then calling `reload()` from within the iframe reloads the trusted page (in other words, the top page reloads, not the iframe).
 
 3
 
@@ -614,10 +607,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   Two methods creating such an object: [`Window.location`](window/location) and [`Document.location`](document/location).
--   URL related interfaces: [`URL`](url), [`URLSearchParams`](urlsearchparams) and <span class="page-not-created">`HTMLHyperlinkElementUtils`</span>
+- Two methods creating such an object: [`Window.location`](window/location) and [`Document.location`](document/location).
+- URL related interfaces: [`URL`](url), [`URLSearchParams`](urlsearchparams) and <span class="page-not-created">`HTMLHyperlinkElementUtils`</span>
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Location" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Location</a>

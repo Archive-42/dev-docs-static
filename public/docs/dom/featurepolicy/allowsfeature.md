@@ -1,5 +1,4 @@
-FeaturePolicy.allowsFeature()
-=============================
+# FeaturePolicy.allowsFeature()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `allowsFeature()` method of the [`FeaturePolicy`](../featurepolicy) interface enables introspection of individual directives of the Feature Policy it is run on. It returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that is `true` if and only if the specified feature is allowed in the specified context (or the default context if no context is specified).
 
-Syntax
-------
+## Syntax
 
     const allowed = FeaturePolicy.allowsFeature(<feature>)
 
@@ -31,8 +29,7 @@ An origin URL to check the feature on. If it is omitted the default origin is us
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that is `true` if and only if the feature is allowed.
 
-Example
--------
+## Example
 
 The following example queries whether or not the document is allowed to use camera API by the Feature Policy. Please note that Camera API might be restricted by the Permissions API, if the user did not grant the corresponding permission yet.
 
@@ -48,14 +45,12 @@ The following example queries whether or not the document is allowed to use came
       console.log("FP does not allows camera.")
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-permissions-policy/">Permissions Policy<br />
 <span class="small">The definition of 'allowsFeature' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

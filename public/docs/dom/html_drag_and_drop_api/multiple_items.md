@@ -1,15 +1,13 @@
-Dragging and Dropping Multiple Items
-====================================
+# Dragging and Dropping Multiple Items
 
 **Caution:**  
 All of the methods and properties with a **moz** prefix (such as **mozSetDataAt()** are Gecko specific interfaces. These interfaces will **only** work with Gecko based browsers.
 
 Mozilla supports the ability to drag multiple items using some additional non-standard methods. These are methods that mirror the [`types`](../datatransfer/types) property as well as the [`getData()`](../datatransfer/getdata), [`setData()`](../datatransfer/setdata) and [`clearData()`](../datatransfer/cleardata) methods, however, they take an additional argument that specifies the index of the item to retrieve, modify or remove.
 
-The drag processing described in this document use the [`DataTransfer`](../datatransfer) interface. This processing does *not* use the [`DataTransferItem`](../datatransferitem) interface nor the [`DataTransferItemList`](../datatransferitemlist) interface.
+The drag processing described in this document use the [`DataTransfer`](../datatransfer) interface. This processing does _not_ use the [`DataTransferItem`](../datatransferitem) interface nor the [`DataTransferItemList`](../datatransferitemlist) interface.
 
-Setting and getting with indices
---------------------------------
+## Setting and getting with indices
 
 The [`mozSetDataAt()`](../datatransfer/mozsetdataat) method allows you to add multiple items during a `dragstart` event. This function similarly to [`setData()`](../datatransfer/setdata)
 
@@ -68,8 +66,7 @@ You may also wish to check if the desired format exists using the [`mozTypesAt`]
 
     var types = event.dataTransfer.mozTypesAt(1);
 
-Dragging Non-String Data
-------------------------
+## Dragging Non-String Data
 
 The additional methods described above are also not restricted to string data; you can specify any type of data. For example, files are dragged using the [application/x-moz-file](recommended_drag_types#file) type stored as [nsIFile](https://developer.mozilla.org/en-US/docs/XPCOM_Interface_Reference/nsIFile) objects. As the [`setData()`](../datatransfer/setdata) method only supports strings, it cannot be used to specify files for dragging in this manner. Instead the [`mozSetDataAt()`](../datatransfer/mozsetdataat) method must be used.
 
@@ -79,8 +76,7 @@ By using this method, you can file objects, although you do not necessarily need
 
 Similarly, you will need to retrieve the file object or objects using the [`mozGetDataAt()`](../datatransfer/mozgetdataat) method. If you use [`getData()`](../datatransfer/getdata), you will receive an empty string as the data is not a string. Note that some simple types like numbers can be converted to strings, so it is safe to use [`getData()`](../datatransfer/getdata) in this case.
 
-Multiple Drop Example
----------------------
+## Multiple Drop Example
 
 The following example provides a box where the lists of items and formats dropped on it are displayed.
 
@@ -139,12 +135,11 @@ The `dodrop` event handler is called when dropping an item. It checks the [`mozI
 
 This processing is useful if you wish to examine the data that a drag is holding. Drop an item on the drop target in the example to see what items, formats and data was being dragged.
 
-See also
---------
+## See also
 
--   <a href="../html_drag_and_drop_api" class="internal">HTML Drag and Drop API (Overview)</a>
--   <a href="web/guide/html/drag_operations" class="internal">Drag Operations</a>
--   <a href="recommended_drag_types" class="internal">Recommended Drag Types</a>
--   [HTML5 Living Standard: Drag and Drop](https://html.spec.whatwg.org/multipage/interaction.html#dnd)
+- <a href="../html_drag_and_drop_api" class="internal">HTML Drag and Drop API (Overview)</a>
+- <a href="web/guide/html/drag_operations" class="internal">Drag Operations</a>
+- <a href="recommended_drag_types" class="internal">Recommended Drag Types</a>
+- [HTML5 Living Standard: Drag and Drop](https://html.spec.whatwg.org/multipage/interaction.html#dnd)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Multiple_items" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Multiple_items</a>

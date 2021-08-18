@@ -1,20 +1,17 @@
-Headers()
-=========
+# Headers()
 
 The `Headers()` constructor creates a new [`Headers`](../headers) object.
 
-Syntax
-------
+## Syntax
 
     var myHeaders = new Headers(init);
 
 ### Parameters
 
- `init` <span class="badge inline optional">Optional</span>   
+`init` <span class="badge inline optional">Optional</span>  
 An object containing any [HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) that you want to pre-populate your `Headers` object with. This can be a simple object literal with [`ByteString`](../bytestring) values; or an existing `Headers` object. In the last case, the new `Headers` object copies its data from the existing `Headers` object.
 
-Example
--------
+## Example
 
 Creating an empty `Headers` object is simple:
 
@@ -35,14 +32,12 @@ You can now create another `Headers` object, passing it the first `Headers` obje
     var secondHeadersObj = new Headers(myHeaders);
     secondHeadersObj.get('Content-Type'); // Would return 'image/jpeg' — it inherits it from the first headers object
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fetch.spec.whatwg.org/#dom-headers">Fetch<br />
 <span class="small">The definition of 'Headers()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -108,11 +103,10 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [ServiceWorker API](../service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [ServiceWorker API](../service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Headers/Headers" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Headers/Headers</a>

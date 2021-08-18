@@ -1,5 +1,4 @@
-KeyboardEvent.which
-===================
+# KeyboardEvent.which
 
 **Deprecated**
 
@@ -7,17 +6,15 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `which` read-only property of the [`KeyboardEvent`](../keyboardevent) interface returns the numeric `keyCode` of the key pressed, or the character code (`charCode`) for an alphanumeric key pressed.
 
-Syntax
-------
+## Syntax
 
     var keyResult = event.which;
 
 ### Return value
 
--   `keyResult` contains the numeric code for a particular key pressed, depending on whether an alphanumeric or non-alphanumeric key was pressed. Please see [`KeyboardEvent.charCode`](charcode) and [`KeyboardEvent.keyCode`](keycode) for more details.
+- `keyResult` contains the numeric code for a particular key pressed, depending on whether an alphanumeric or non-alphanumeric key was pressed. Please see [`KeyboardEvent.charCode`](charcode) and [`KeyboardEvent.keyCode`](keycode) for more details.
 
-Example
--------
+## Example
 
     <html>
     <head>
@@ -55,14 +52,12 @@ Example
     </body>
     </html>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#legacy-interface-KeyboardEvent">Document Object Model (DOM) Level 3 Events Specification<br />
 <span class="small">The definition of 'KeyboardEvent.which' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition; specified as deprecated</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -122,9 +117,8 @@ Firefox also implements this property on the `UIEvent` interface.
 
 Yes
 
-See also
---------
+## See also
 
--   [`KeyboardEvent`](../keyboardevent), the interface this property belongs too.
+- [`KeyboardEvent`](../keyboardevent), the interface this property belongs too.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/which" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/which</a>

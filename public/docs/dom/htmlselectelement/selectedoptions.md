@@ -1,12 +1,10 @@
-HTMLSelectElement.selectedOptions
-=================================
+# HTMLSelectElement.selectedOptions
 
 The **read-only** [`HTMLSelectElement`](../htmlselectelement) property `selectedOptions` contains a list of the [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) elements contained within the [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) element that are currently selected. The list of selected options is an [`HTMLCollection`](../htmlcollection) object with one entry per currently selected option.
 
 An option is considered selected if it has an <span class="page-not-created">`HTMLOptionElement.selected`</span> attribute.
 
-Syntax
-------
+## Syntax
 
     var selectedCollection = HTMLSelectElement.selectedOptions;
 
@@ -18,8 +16,7 @@ In other words, any option contained within the `<select>` element may be part o
 
 If no options are currently selected, the collection is empty and returns a [`length`](../htmlcollection/length) of 0.
 
-Example
--------
+## Example
 
 In this example, a [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) element with a number of options is used to let the user order various food items.
 
@@ -84,15 +81,13 @@ This script sets up a `click` event listener on the "Order Now" button. When cli
 
 The resulting content looks like this in action:
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/form-elements.html#dom-select-selectedoptions">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLSelectElement.selectedOptions' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change from <a href="https://www.w3.org/TR/html52/">HTML5</a></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/forms.html#dom-select-selectedoptions">HTML5<br />
 <span class="small">The definition of 'HTMLSelectElement.selectedOptions' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -148,9 +143,8 @@ No
 
 1.5
 
-See also
---------
+## See also
 
--   [Drop-down controls](https://developer.mozilla.org/en-US/docs/Learn/Forms/Other_form_controls#drop-down_controls) in [Other form controls](https://developer.mozilla.org/en-US/docs/Learn/Forms/Other_form_controls)
+- [Drop-down controls](https://developer.mozilla.org/en-US/docs/Learn/Forms/Other_form_controls#drop-down_controls) in [Other form controls](https://developer.mozilla.org/en-US/docs/Learn/Forms/Other_form_controls)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/selectedOptions" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/selectedOptions</a>

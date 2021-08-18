@@ -1,5 +1,4 @@
-File.fileSize
-=============
+# File.fileSize
 
 **Non-standard**
 
@@ -13,8 +12,7 @@ Returns the size of a file in bytes.
 
 This property is deprecated. Use [`Blob.size`](../blob/size) instead.
 
-Syntax
-------
+## Syntax
 
     var size = instanceOfFile.fileSize;
 
@@ -22,14 +20,12 @@ Syntax
 
 A number.
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-See also
---------
+## See also
 
--   [`Blob.size`](../blob/size)
+- [`Blob.size`](../blob/size)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/File/fileSize" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File/fileSize</a>

@@ -1,5 +1,4 @@
-MediaRecorder.audioBitsPerSecond
-================================
+# MediaRecorder.audioBitsPerSecond
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `audioBitsPerSecond` read-only property of the [`MediaRecorder`](../mediarecorder) interface returns the audio encoding bit rate in use. This may differ from the bit rate specified in the constructor (if it was provided).
 
-Syntax
-------
+## Syntax
 
     var audioBitsPerSecond = MediaRecorder.audioBitsPerSecond
 
@@ -17,14 +15,12 @@ Syntax
 
 A [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) (unsigned long).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-record/#dom-mediarecorder-audiobitspersecond">MediaStream Recording<br />
 <span class="small">The definition of 'audioBitsPerSecond' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

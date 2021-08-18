@@ -1,5 +1,4 @@
-MediaKeyStatusMap.size
-======================
+# MediaKeyStatusMap.size
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `size` read-only property of the [`MediaKeyStatusMap`](../mediakeystatusmap) interface returns the number of key/value paIrs in the status map.
 
-Syntax
-------
+## Syntax
 
     var size = MediaKeyStatusMap.size;
 
@@ -17,14 +15,12 @@ Syntax
 
 A long integer.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-mediakeystatusmap-size">Encrypted Media Extensions<br />
 <span class="small">The definition of 'size' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,10 +1,8 @@
-DOMTokenList.remove()
-=====================
+# DOMTokenList.remove()
 
-The `remove()` method of the [`DOMTokenList`](../domtokenlist) interface removes the specified *tokens* from the list.
+The `remove()` method of the [`DOMTokenList`](../domtokenlist) interface removes the specified _tokens_ from the list.
 
-Syntax
-------
+## Syntax
 
     tokenList.remove(token1[, token2[, ...tokenN]]);
 
@@ -17,8 +15,7 @@ A [`DOMString`](../domstring) representing the token you want to remove from the
 
 `undefined`
 
-Examples
---------
+## Examples
 
 In the following example we retrieve the list of classes set on a [`<span>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span) element as a `DOMTokenList` using [`Element.classList`](../element/classlist). We then remove a token from the list, and write the list into the `<span>`'s [`Node.textContent`](../node/textcontent).
 
@@ -44,14 +41,12 @@ To remove multiple classes at once, you can supply multiple tokens. The order yo
 
 The output looks like this:
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-domtokenlist-remove">DOM<br />
 <span class="small">The definition of 'remove()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

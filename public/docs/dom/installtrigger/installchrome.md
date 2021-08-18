@@ -1,5 +1,4 @@
-InstallTrigger.installChrome
-============================
+# InstallTrigger.installChrome
 
 ### installChrome
 
@@ -17,13 +16,13 @@ Installs new skin or locale packages in Netscape 6 and Mozilla.
 
 The `installChrome` method has the following parameters:
 
- `TYPE`   
+`TYPE`  
 `TYPE` can be `InstallTrigger.SKIN` or `InstallTrigger.LOCALE`.
 
- `url`   
+`url`  
 url is a string containing a full or relative URL to download
 
- `name`   
+`name`  
 name is displayed in the dialog, but is also used to \*select\* the theme so it must match exactly the name in the internal manifest.rdf file.
 
 #### Returns

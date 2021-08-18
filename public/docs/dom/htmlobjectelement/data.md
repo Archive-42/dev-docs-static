@@ -1,10 +1,8 @@
-HTMLObjectElement.data
-======================
+# HTMLObjectElement.data
 
 The `data` property of the [`HTMLObjectElement`](../htmlobjectelement) interface returns a [`DOMString`](../domstring) that reflects the [`data`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object#attr-data) HTML attribute, specifying the address of a resource's data.
 
-Syntax
-------
+## Syntax
 
     var data = HTMLObjectElement.data;
     HTMLObjectElement.data;
@@ -13,14 +11,12 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-object-data">HTML Living Standard<br />
 <span class="small">The definition of 'data' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

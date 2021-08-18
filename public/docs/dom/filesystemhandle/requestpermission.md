@@ -1,5 +1,4 @@
-FileSystemHandle.requestPermission()
-====================================
+# FileSystemHandle.requestPermission()
 
 **Draft**
 
@@ -11,17 +10,16 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `requestPermission()` method of the [`FileSystemHandle`](../filesystemhandle) interface requests read or readwrite permissions for the file handle.
 
-Syntax
-------
+## Syntax
 
     var PermissionState = FileSystemHandle.requestPermission(FileSystemHandlePermissionDescriptor);
 
 ### Parameters
 
-FileSystemHandlePermissionDescriptor <span class="badge inline optional">Optional</span>   
+FileSystemHandlePermissionDescriptor <span class="badge inline optional">Optional</span>  
 An object which specifies the permission mode to query for. Options are as follows:
 
--   `'mode'`: Can be either `'read'` or `'readwrite'`.
+- `'mode'`: Can be either `'read'` or `'readwrite'`.
 
 ### Return value
 
@@ -32,8 +30,7 @@ An object which specifies the permission mode to query for. Options are as follo
 `TypeError`  
 No parameter is specified or the `mode` is not that of `'read'` or `'readwrite'`
 
-Examples
---------
+## Examples
 
 The following asynchronous function requests permissions if they have not been granted.
 
@@ -60,14 +57,12 @@ The following asynchronous function requests permissions if they have not been g
       return false;
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/file-system-access/#api-filesystemhandle-requestpermission">File System Access API<br />
 <span class="small">The definition of 'requestPermission' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -123,10 +118,9 @@ No
 
 14.0
 
-See also
---------
+## See also
 
--   [File System Access API](../file_system_access_api)
--   [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
+- [File System Access API](../file_system_access_api)
+- [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle/requestPermission" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle/requestPermission</a>

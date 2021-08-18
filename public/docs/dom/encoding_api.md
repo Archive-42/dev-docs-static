@@ -1,5 +1,4 @@
-Encoding API
-============
+# Encoding API
 
 The **Encoding API** provides a mechanism for handling text in various [character encodings](https://developer.mozilla.org/en-US/docs/Glossary/character_encoding), including legacy non-[UTF-8](https://developer.mozilla.org/en-US/docs/Glossary/UTF-8) encodings.
 
@@ -7,26 +6,22 @@ The API provides four interfaces: [`TextDecoder`](textdecoder), [`TextEncoder`](
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-Interfaces
-----------
+## Interfaces
 
--   [`TextDecoder`](textdecoder)
--   [`TextEncoder`](textencoder)
--   [`TextDecoderStream`](textdecoderstream)
--   [`TextEncoderStream`](textencoderstream)
+- [`TextDecoder`](textdecoder)
+- [`TextEncoder`](textencoder)
+- [`TextDecoderStream`](textdecoderstream)
+- [`TextEncoderStream`](textencoderstream)
 
-Polyfill
---------
+## Polyfill
 
--   A [shim](https://code.google.com/p/stringencoding/) allowing to use this interface in browsers that don't support it.
+- A [shim](https://code.google.com/p/stringencoding/) allowing to use this interface in browsers that don't support it.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://encoding.spec.whatwg.org/">Encoding</a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

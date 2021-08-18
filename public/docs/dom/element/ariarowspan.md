@@ -1,10 +1,8 @@
-Element.ariaRowSpan
-===================
+# Element.ariaRowSpan
 
 The `ariaRowSpan` property of the [`Element`](../element) interface reflects the value of the `aria-rowspan` attribute, which defines the number of rows spanned by a cell or gridcell within a table, grid, or treegrid.
 
-Syntax
-------
+## Syntax
 
     var ariaRowSpan = element.ariaRowSpan;
     element.ariaRowSpan = ariaRowSpan
@@ -13,8 +11,7 @@ Syntax
 
 A [`DOMString`](../domstring) which contains an integer.
 
-Examples
---------
+## Examples
 
 In this example the `aria-rowspan` attribute on the element with an ID of `spanning-heading` is set to "3". Using `ariaRowSpan` we update the value to "2".
 
@@ -36,14 +33,12 @@ In this example the `aria-rowspan` attribute on the element with an ID of `spann
     el.ariaRowSpan = "2";
     console.log(el.ariaRowSpan);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariarowspan">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaRowSpan' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -99,9 +94,8 @@ No
 
 13.0
 
-See also
---------
+## See also
 
--   [ARIA: table role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Table_Role)
+- [ARIA: table role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Table_Role)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaRowSpan" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaRowSpan</a>

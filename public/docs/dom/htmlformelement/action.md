@@ -1,29 +1,24 @@
-HTMLFormElement.action
-======================
+# HTMLFormElement.action
 
 The `HTMLFormElement.action` property represents the action of the [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element.
 
 The action of a form is the program that is executed on the server when the form is submitted. This property can be retrieved or set.
 
-Syntax
-------
+## Syntax
 
     var string = form.action;
     form.action = string;
 
-Example
--------
+## Example
 
     form.action = '/cgi-bin/publish';
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-fs-action">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLFormElement: action' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-IDBCursorWithValue
-==================
+# IDBCursorWithValue
 
 The `IDBCursorWithValue` interface of the [IndexedDB API](indexeddb_api) represents a [cursor](indexeddb_api/basic_concepts_behind_indexeddb#gloss_cursor) for traversing or iterating over multiple records in a database. It is the same as the [`IDBCursor`](idbcursor), except that it includes the `value` property.
 
@@ -9,21 +8,18 @@ You can have an unlimited number of cursors at the same time. You always get the
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-Methods
--------
+## Methods
 
 Inherits methods from its parent interface, [`IDBCursor`](idbcursor).
 
-Properties
-----------
+## Properties
 
 Inherits properties from its parent interface, [`IDBCursor`](idbcursor).
 
- [`IDBCursorWithValue.value`](idbcursorwithvalue/value) <span class="badge inline readonly">Read only </span>   
+[`IDBCursorWithValue.value`](idbcursorwithvalue/value) <span class="badge inline readonly">Read only </span>  
 Returns the value of the current cursor.
 
-Example
--------
+## Example
 
 In this example we create a transaction, retrieve an object store, then use a cursor to iterate through all the records in the object store. T<span style="line-height: 1.5;">he cursor does not require us to select the data based on a key; we can just grab all of it. Also note that in each iteration of the loop, you can grab data from the current record under the cursor object using </span>`cursor.value.foo`<span style="line-height: 1.5;">. For a complete working example, see our [IDBCursor example](https://github.com/mdn/IDBcursor-example/)</span><span style="line-height: 1.5;"> (</span>[view example live](https://mdn.github.io/IDBcursor-example/)<span style="line-height: 1.5;">.)</span>
 
@@ -45,15 +41,13 @@ In this example we create a transaction, retrieve an object store, then use a cu
       };
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#idbcursorwithvalue">Indexed Database API 2.0<br />
 <span class="small">The definition of 'IDBCursorWithValue' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#idbcursorwithvalue">Indexed Database API 2.0<br />
 <span class="small">The definition of 'IDBCursorWithValue' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -171,15 +165,14 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](idbdatabase)
--   Using transactions: [`IDBTransaction`](idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
--   Using cursors: [`IDBCursor`](idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](idbdatabase)
+- Using transactions: [`IDBTransaction`](idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
+- Using cursors: [`IDBCursor`](idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBCursorWithValue" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBCursorWithValue</a>

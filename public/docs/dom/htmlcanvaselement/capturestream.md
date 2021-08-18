@@ -1,16 +1,14 @@
-HTMLCanvasElement.captureStream()
-=================================
+# HTMLCanvasElement.captureStream()
 
 The [`HTMLCanvasElement`](../htmlcanvaselement) `captureStream()` method returns a [`MediaStream`](../mediastream) which includes a [`CanvasCaptureMediaStreamTrack`](../canvascapturemediastreamtrack) containing a real-time video capture of the canvas's contents.
 
-Syntax
-------
+## Syntax
 
     MediaStream = canvas.captureStream(frameRate);
 
 ### Parameters
 
- `frameRate` <span class="badge inline optional">Optional</span>   
+`frameRate` <span class="badge inline optional">Optional</span>  
 A double-precision floating-point value that indicates the rate of capture of each frame. If not set, a new frame will be captured each time the canvas changes; if set to `0`, frames will not be captured automatically; instead, they will only be captured when the returned track's [`requestFrame()`](../canvascapturemediastreamtrack/requestframe) method is called.
 
 ### Return value
@@ -22,8 +20,7 @@ A reference to a [`MediaStream`](../mediastream) object, which has a single [`Ca
 `NotSupportedError`  
 The value of `frameRate` is negative.
 
-Example
--------
+## Example
 
     // Find the canvas element to capture
     var canvasElt = document.querySelector('canvas');
@@ -36,14 +33,12 @@ Example
     //      pc is an RTCPeerConnection created elsewhere
     pc.addStream(stream);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-fromelement/#dom-htmlcanvaselement-capturestream">Media Capture from DOM Elements<br />
 <span class="small">The definition of 'HTMLCanvasElement.captureStream()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -99,11 +94,10 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [`HTMLMediaElement.captureStream()`](../htmlmediaelement/capturestream), which allows capturing a stream from a media element.
--   [`MediaStream`](../mediastream)
--   <span class="page-not-created">`Media Capture and Streams API`</span>
+- [`HTMLMediaElement.captureStream()`](../htmlmediaelement/capturestream), which allows capturing a stream from a media element.
+- [`MediaStream`](../mediastream)
+- <span class="page-not-created">`Media Capture and Streams API`</span>
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/captureStream" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/captureStream</a>

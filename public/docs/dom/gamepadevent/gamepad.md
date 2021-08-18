@@ -1,15 +1,12 @@
-GamepadEvent.gamepad
-====================
+# GamepadEvent.gamepad
 
 The `GamepadEvent.gamepad` property of the **[`GamepadEvent`](../gamepadevent) interface** returns a [`Gamepad`](../gamepad) object, providing access to the associated gamepad data for fired `gamepadconnected` and `gamepaddisconnected` events.
 
-Syntax
-------
+## Syntax
 
     readonly    attribute Gamepad gamepad;
 
-Example
--------
+## Example
 
 The `gamepad` property being called on a fired <span class="page-not-created">`Window.gamepadconnected`</span> event.
 
@@ -19,19 +16,16 @@ The `gamepad` property being called on a fired <span class="page-not-created">`W
       e.gamepad.buttons.length, e.gamepad.axes.length);
     });
 
-Value
------
+## Value
 
 A [`Gamepad`](../gamepad) object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/gamepad/#dom-gamepadevent-gamepad">Gamepad<br />
 <span class="small">The definition of 'GamepadEvent.gamepad' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -95,8 +89,7 @@ No
 
 Yes
 
-See also
---------
+## See also
 
 [Using the Gamepad API](../gamepad_api/using_the_gamepad_api)
 

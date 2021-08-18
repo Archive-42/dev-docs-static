@@ -66,7 +66,6 @@ This example uses the `detect()` method to detect the barcodes within the given 
           console.log(err);
         })
 
-
 ## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/shape-detection-api/#barcodedetector">Accelerated Shape Detection in Images<br />

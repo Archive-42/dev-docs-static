@@ -1,15 +1,12 @@
-ImageData.data
-==============
+# ImageData.data
 
 The readonly `ImageData.data` property returns a [`Uint8ClampedArray`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray) that contains the [`ImageData`](../imagedata) object's pixel data. Data is stored as a one-dimensional array in the RGBA order, with integer values between `0` and `255` (inclusive).
 
-Syntax
-------
+## Syntax
 
     imageData.data
 
-Examples
---------
+## Examples
 
 ### Getting an ImageData object's pixel data
 
@@ -58,14 +55,12 @@ Since each pixel consists of four values within the `data` array, the `for` loop
 
 For more examples using `ImageData.data`, see [Pixel manipulation with canvas](../canvas_api/tutorial/pixel_manipulation_with_canvas), [`CanvasRenderingContext2D.createImageData()`](../canvasrenderingcontext2d/createimagedata), and [`CanvasRenderingContext2D.putImageData()`](../canvasrenderingcontext2d/putimagedata).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-imagedata-data">HTML Living Standard<br />
 <span class="small">The definition of 'ImageData.data' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -121,14 +116,13 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`ImageData.height`](height)
--   [`ImageData.width`](width)
--   [`ImageData`](../imagedata)
--   [`CanvasRenderingContext2D.createImageData()`](../canvasrenderingcontext2d/createimagedata)
--   [`CanvasRenderingContext2D.putImageData()`](../canvasrenderingcontext2d/putimagedata)
--   [Pixel manipulation with canvas](../canvas_api/tutorial/pixel_manipulation_with_canvas)
+- [`ImageData.height`](height)
+- [`ImageData.width`](width)
+- [`ImageData`](../imagedata)
+- [`CanvasRenderingContext2D.createImageData()`](../canvasrenderingcontext2d/createimagedata)
+- [`CanvasRenderingContext2D.putImageData()`](../canvasrenderingcontext2d/putimagedata)
+- [Pixel manipulation with canvas](../canvas_api/tutorial/pixel_manipulation_with_canvas)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ImageData/data" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ImageData/data</a>

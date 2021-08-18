@@ -1,18 +1,15 @@
-Location: hash
-==============
+# Location: hash
 
 The `hash` property of the [`Location`](../location) interface returns a [`USVString`](../usvstring) containing a `'#'` followed by the fragment identifier of the URL — the ID on the page that the URL is trying to target.
 
 The fragment is not [percent-decoded](https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding). If the URL does not have a fragment identifier, this property contains an empty string, `""`.
 
-Syntax
-------
+## Syntax
 
     string = object.hash;
     object.hash = string;
 
-Examples
---------
+## Examples
 
     <a id="myAnchor" href="/en-US/docs/Location.href#Examples">Examples</a>
     <script>
@@ -20,14 +17,12 @@ Examples
       console.log(anchor.hash); // Returns '#Examples'
     </script>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-location-hash">HTML Living Standard<br />
 <span class="small">The definition of 'hash' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-KeyboardEvent.charCode
-======================
+# KeyboardEvent.charCode
 
 **Non-standard**
 
@@ -13,8 +12,7 @@ The `charCode` read-only property of the [`KeyboardEvent`](../keyboardevent) int
 
 **Do not use this property, as it is deprecated.** Instead, get the Unicode value of the character using the [`key`](key) property.
 
-Syntax
-------
+## Syntax
 
     var code = event.charCode;
 
@@ -22,8 +20,7 @@ Syntax
 
 A number that represents the Unicode value of the character key that was pressed.
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -42,24 +39,21 @@ Example
 
 ### Result
 
-Notes
------
+## Notes
 
--   In a `keypress` event, the Unicode value of the key pressed is stored in either the [`keyCode`](keycode) or `charCode` property, but never both. If the key pressed generates a character (e.g., 'a'), `charCode` is set to the code of that character; `charCode` respects the letter case (in other words, `charCode` takes into account whether the shift key is held down). Otherwise, the code of the pressed key is stored in `keyCode`.
--   When one or more modifier keys are pressed, there are some complex rules for `charCode`. See [Gecko Keypress Event](https://developer.mozilla.org/en-US/docs/Gecko_Keypress_Event) for details.
--   `charCode` is never set in the `keydown` and `keyup` events. In these cases, `keyCode` is set instead.
--   To get the code of the key regardless of whether it was stored in `keyCode` or `charCode`, query the [`which`](which) property.
--   Characters entered through an IME do not register through `keyCode` or `charCode`. <span class="comment">Actually with the Chinese IME I'm using, entering the IME results in a keypress event with keyCode = 229 and no other key events fire until the IME exits (which may happen after multiple characters are inputted). I'm not sure if other IME's work this way.</span>
--   For a list of the `charCode` values associated with particular keys, run [Example 7: Displaying Event Object Properties](../document_object_model/examples#example_7:_displaying_event_object_properties) and view the resulting HTML table.
+- In a `keypress` event, the Unicode value of the key pressed is stored in either the [`keyCode`](keycode) or `charCode` property, but never both. If the key pressed generates a character (e.g., 'a'), `charCode` is set to the code of that character; `charCode` respects the letter case (in other words, `charCode` takes into account whether the shift key is held down). Otherwise, the code of the pressed key is stored in `keyCode`.
+- When one or more modifier keys are pressed, there are some complex rules for `charCode`. See [Gecko Keypress Event](https://developer.mozilla.org/en-US/docs/Gecko_Keypress_Event) for details.
+- `charCode` is never set in the `keydown` and `keyup` events. In these cases, `keyCode` is set instead.
+- To get the code of the key regardless of whether it was stored in `keyCode` or `charCode`, query the [`which`](which) property.
+- Characters entered through an IME do not register through `keyCode` or `charCode`. <span class="comment">Actually with the Chinese IME I'm using, entering the IME results in a keypress event with keyCode = 229 and no other key events fire until the IME exits (which may happen after multiple characters are inputted). I'm not sure if other IME's work this way.</span>
+- For a list of the `charCode` values associated with particular keys, run [Example 7: Displaying Event Object Properties](../document_object_model/examples#example_7:_displaying_event_object_properties) and view the resulting HTML table.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#widl-KeyboardEvent-charCode">Document Object Model (DOM) Level 3 Events Specification<br />
 <span class="small">The definition of 'KeyboardEvent.charCode' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition; specified as deprecated</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

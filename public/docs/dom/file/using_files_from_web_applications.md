@@ -1,12 +1,10 @@
-Using files from web applications
-=================================
+# Using files from web applications
 
 Using the File API, which was added to the DOM in HTML5, it's now possible for web content to ask the user to select local files and then read the contents of those files. This selection can be done by either using an HTML `<input type="file">` element or by drag and drop.
 
 If you want to use the DOM File API from extensions or other browser chrome code, you can; however, note there are some additional features to be aware of. See [Using the DOM File API in chrome code](https://developer.mozilla.org/en-US/docs/Extensions/Using_the_DOM_File_API_in_chrome_code) for details.
 
-Accessing selected file(s)
---------------------------
+## Accessing selected file(s)
 
 Consider this HTML:
 
@@ -30,8 +28,7 @@ It is also possible (but not mandatory) to access the [`FileList`](../filelist) 
       const fileList = this.files; /* now you can work with the file list */
     }
 
-Getting information about selected file(s)
-------------------------------------------
+## Getting information about selected file(s)
 
 The [`FileList`](../filelist) object provided by the DOM lists all of the files selected by the user, each specified as a [`File`](../file) object. You can determine how many files the user selected by checking the value of the file list's `length` attribute:
 
@@ -102,8 +99,7 @@ The following example shows a possible use of the `size` property:
     </body>
     </html>
 
-Using hidden file input elements using the click() method
----------------------------------------------------------
+## Using hidden file input elements using the click() method
 
 You can hide the admittedly ugly file [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element and present your own interface for opening the file picker and displaying which file or files the user has selected. You can do this by styling the input element with `display:none` and calling the [`click()`](../htmlelement/click) method on the [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element.
 
@@ -125,8 +121,7 @@ The code that handles the `click` event can look like this:
 
 You can style the new button for opening the file picker as you wish.
 
-Using a label element to trigger a hidden file input element
-------------------------------------------------------------
+## Using a label element to trigger a hidden file input element
 
 To allow opening the file picker without using JavaScript (the click() method), a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) element can be used. Note that in this case the input element must not be hidden using `display: none` (nor `visibility: hidden`), otherwise the label would not be keyboard-accessible. Use the [visually-hidden technique](https://a11yproject.com/posts/how-to-hide-content/) instead.
 
@@ -155,8 +150,7 @@ and this CSS:
 
 There is no need to add JavaScript code to call `fileElem.click()`. Also in this case you can style the label element as you wish. You need to provide a visual cue for the focus status of the hidden input field on its label, be it an outline as shown above, or background-color or box-shadow. (As of time of writing, Firefox doesn’t show this visual cue for `<input type="file">` elements.)
 
-Selecting files using drag and drop
------------------------------------
+## Selecting files using drag and drop
 
 You can also let the user drag and drop files into your web application.
 
@@ -197,8 +191,7 @@ The real magic happens in the `drop()` function:
 
 Here, we retrieve the `dataTransfer` field from the event, pull the file list out of it, and then pass that to `handleFiles()`. From this point on, handling the files is the same whether the user used the `input` element or drag and drop.
 
-Example: Showing thumbnails of user-selected images
----------------------------------------------------
+## Example: Showing thumbnails of user-selected images
 
 Let's say you're developing the next great photo-sharing website and want to use HTML to display thumbnail previews of images before the user actually uploads them. You can establish your input element or drop zone as discussed previously and have them call a function such as the `handleFiles()` function below.
 
@@ -225,8 +218,7 @@ Each image has the CSS class `obj` added to it, making it easy to find in the DO
 
 Next, we establish the [`FileReader`](../filereader) to handle asynchronously loading the image and attaching it to the `img` element. After creating the new `FileReader` object, we set up its `onload` function and then call `readAsDataURL()` to start the read operation in the background. When the entire contents of the image file are loaded, they are converted into a `data:` URL which is passed to the `onload` callback. Our implementation of this routine sets the `img` element's `src` attribute to the loaded image which results in the image appearing in the thumbnail on the user's screen.
 
-Using object URLs
------------------
+## Using object URLs
 
 The DOM [`URL.createObjectURL()`](../url/createobjecturl) and [`URL.revokeObjectURL()`](../url/revokeobjecturl) methods let you create simple URL strings that can be used to reference any data that can be referred to using a DOM [`File`](../file) object, including local files on the user's computer.
 
@@ -238,8 +230,7 @@ The object URL is a string identifying the [`File`](../file) object. Each time y
 
     URL.revokeObjectURL(objectURL);
 
-Example: Using object URLs to display images
---------------------------------------------
+## Example: Using object URLs to display images
 
 This example uses object URLs to display image thumbnails. In addition, it displays other file information including their names and sizes.
 
@@ -251,7 +242,7 @@ The HTML that presents the interface looks like this:
       <p>No files selected!</p>
     </div>
 
-This establishes our file [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element as well as a link that invokes the file picker (since we keep the file input hidden to prevent that less-than-attractive user interface from being displayed). This is explained in the section [Using hidden file input elements using the click() method](#using_hidden_file_input_elements_using_the_click()_method), as is the method that invokes the file picker.
+This establishes our file [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element as well as a link that invokes the file picker (since we keep the file input hidden to prevent that less-than-attractive user interface from being displayed). This is explained in the section [Using hidden file input elements using the click() method](<#using_hidden_file_input_elements_using_the_click()_method>), as is the method that invokes the file picker.
 
 The `handleFiles()` method follows:
 
@@ -309,8 +300,7 @@ If the [`FileList`](../filelist) object passed to `handleFiles()` is `null`, we 
 
 Here is a live demo of the code above:
 
-Example: Uploading a user-selected file
----------------------------------------
+## Example: Uploading a user-selected file
 
 Another thing you might want to do is let the user upload the selected file or files (such as the images selected using the previous example) to a server. This can be done asynchronously very easily.
 
@@ -428,8 +418,7 @@ This example, which uses PHP on the server side and JavaScript on the client sid
     </body>
     </html>
 
-Example: Using object URLs to display PDF
------------------------------------------
+## Example: Using object URLs to display PDF
 
 Object URLs can be used for other things than just images! They can be used to display embedded PDF files or any other resources that can be displayed by the browser.
 
@@ -444,8 +433,7 @@ And here is the change of the `src` attribute:
     iframe.setAttribute('src', obj_url);
     URL.revokeObjectURL(obj_url);
 
-Example: Using object URLs with other file types
-------------------------------------------------
+## Example: Using object URLs with other file types
 
 You can manipulate files of other formats the same way. Here is how to preview uploaded video:
 
@@ -455,20 +443,18 @@ You can manipulate files of other formats the same way. Here is how to preview u
     video.play();
     URL.revokeObjectURL(obj_url);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/number-state.html#concept-input-type-file-selected">HTML Living Standard<br />
 <span class="small">The definition of 'File upload state' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://w3c.github.io/FileAPI/">File API</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-See also
---------
+## See also
 
--   [`File`](../file)
--   [`FileList`](../filelist)
--   [`FileReader`](../filereader)
--   [`URL`](../url)
--   [`XMLHttpRequest`](../xmlhttprequest)
--   [Using XMLHttpRequest](../xmlhttprequest/using_xmlhttprequest)
+- [`File`](../file)
+- [`FileList`](../filelist)
+- [`FileReader`](../filereader)
+- [`URL`](../url)
+- [`XMLHttpRequest`](../xmlhttprequest)
+- [Using XMLHttpRequest](../xmlhttprequest/using_xmlhttprequest)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications</a>

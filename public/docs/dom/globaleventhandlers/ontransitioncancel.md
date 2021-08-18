@@ -1,16 +1,14 @@
-GlobalEventHandlers.ontransitioncancel
-======================================
+# GlobalEventHandlers.ontransitioncancel
 
 The `ontransitioncancel` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `transitioncancel` events.
 
 The `transitioncancel` event is sent when a [CSS transition](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions) is cancelled. The transition is cancelled when:
 
--   The value of the [`transition-property`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property) property that applies to the target is changed
--   The [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display) property is set to `"none"`.
--   The transition is stopped before it has run to completion, e.g. by moving the mouse off a hover-transitioning element.
+- The value of the [`transition-property`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property) property that applies to the target is changed
+- The [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display) property is set to `"none"`.
+- The transition is stopped before it has run to completion, e.g. by moving the mouse off a hover-transitioning element.
 
-Syntax
-------
+## Syntax
 
     var transitionCancelHandler = target.ontransitioncancel;
 
@@ -22,8 +20,7 @@ A [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference
 
 **Note**: `elapsedTime` does not include time prior to the transition effect beginning; that means that the value of [`transition-delay`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay) doesn't affect the value of `elapsedTime`, which is zero until the delay period ends and the animation begins.
 
-Example
--------
+## Example
 
 In this example, we use the `transitionrun` and `transitionend` events to detect when the transition begins and ends, to cause a text update to occur during the transition. This could also be used to trigger animations or other effects, to allow chaining of reactions.
 
@@ -96,14 +93,12 @@ Notice what happens when you hover your mouse cursor over the box, then move it 
 
 Also note the log that appears in the JavaScript console when you click the box, or move the cursor away before the transition has run to completion.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-transitions/#dom-globaleventhandlers-ontransitioncancel">CSS Transitions<br />
 <span class="small">The definition of 'ontransitioncancel' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -167,11 +162,10 @@ The event handler is exposed but will not actually be called unless both the "We
 
 14.0
 
-See also
---------
+## See also
 
--   The `transitioncancel` event this event handler is triggered by
--   [`TransitionEvent`](../transitionevent)
--   The `transitionrun` event, which occurs when the transition begins
+- The `transitioncancel` event this event handler is triggered by
+- [`TransitionEvent`](../transitionevent)
+- The `transitionrun` event, which occurs when the transition begins
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ontransitioncancel" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ontransitioncancel</a>

@@ -1,10 +1,8 @@
-DOMTokenList.value
-==================
+# DOMTokenList.value
 
 The `value` property of the [`DOMTokenList`](../domtokenlist) interface is a stringifier that returns the value of the list as a [`DOMString`](../domstring), or clears and sets the list to the given value.
 
-Syntax
-------
+## Syntax
 
     tokenList.value;
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`DOMString`](../domstring)
 
-Examples
---------
+## Examples
 
 In the following example we retrieve the list of classes set on a [`<span>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span) element as a `DOMTokenList` using [`Element.classList`](../element/classlist), then write the value of the list to the `<span>`'s [`Node.textContent`](../node/textcontent).
 
@@ -29,14 +26,12 @@ Now the JavaScript:
 
 The output looks like this:
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-domtokenlist-value">DOM<br />
 <span class="small">The definition of 'value' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

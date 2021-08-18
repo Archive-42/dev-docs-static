@@ -1,5 +1,4 @@
-HTMLStyleElement.scoped
-=======================
+# HTMLStyleElement.scoped
 
 **Non-standard**
 
@@ -13,14 +12,12 @@ The `HTMLStyleElement.scoped` property is a [`Boolean`](https://developer.mozill
 
 By default it contains the value of the [`scoped`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style#attr-scoped) content attribute.
 
-Syntax
-------
+## Syntax
 
     value = style.scoped;
     style.scoped = true;
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -84,10 +81,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   The [`<style>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style) HTML Element.
--   The [`:scope`](https://developer.mozilla.org/en-US/docs/Web/CSS/:scope) CSS pseudo-class.
+- The [`<style>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style) HTML Element.
+- The [`:scope`](https://developer.mozilla.org/en-US/docs/Web/CSS/:scope) CSS pseudo-class.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLStyleElement/scoped" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLStyleElement/scoped</a>

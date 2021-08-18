@@ -1,5 +1,4 @@
-GamepadPose
-===========
+# GamepadPose
 
 **Experimental**
 
@@ -10,46 +9,42 @@ The `GamepadPose` interface of the [Gamepad API](gamepad_api) represents the pos
 
 This interface is accessible through the [`Gamepad.pose`](gamepad/pose) property.
 
-Properties
-----------
+## Properties
 
- [`GamepadPose.hasOrientation`](gamepadpose/hasorientation) <span class="badge inline readonly">Read only </span>   
+[`GamepadPose.hasOrientation`](gamepadpose/hasorientation) <span class="badge inline readonly">Read only </span>  
 Returns a boolean indicating whether the gamepad is capable of returning orientation information (`true`) or not (`false`).
 
- [`GamepadPose.hasPosition`](gamepadpose/hasposition) <span class="badge inline readonly">Read only </span>   
+[`GamepadPose.hasPosition`](gamepadpose/hasposition) <span class="badge inline readonly">Read only </span>  
 Returns a boolean indicating whether the gamepad is capable of returning position information (`true`) or not (`false`).
 
- [`GamepadPose.position`](gamepadpose/position) <span class="badge inline readonly">Read only </span>   
+[`GamepadPose.position`](gamepadpose/position) <span class="badge inline readonly">Read only </span>  
 Returns the position of the [`Gamepad`](gamepad) as a 3D vector.
 
- [`GamepadPose.linearVelocity`](gamepadpose/linearvelocity) <span class="badge inline readonly">Read only </span>   
+[`GamepadPose.linearVelocity`](gamepadpose/linearvelocity) <span class="badge inline readonly">Read only </span>  
 Returns the linear velocity of the [`Gamepad`](gamepad), in meters per second.
 
- [`GamepadPose.linearAcceleration`](gamepadpose/linearacceleration) <span class="badge inline readonly">Read only </span>   
+[`GamepadPose.linearAcceleration`](gamepadpose/linearacceleration) <span class="badge inline readonly">Read only </span>  
 Returns the linear acceleration of the [`Gamepad`](gamepad), in meters per second per second.
 
- [`GamepadPose.orientation`](gamepadpose/orientation) <span class="badge inline readonly">Read only </span>   
+[`GamepadPose.orientation`](gamepadpose/orientation) <span class="badge inline readonly">Read only </span>  
 Returns the orientation of the [`Gamepad`](gamepad), as a quarternion value.
 
- [`GamepadPose.angularVelocity`](gamepadpose/angularvelocity) <span class="badge inline readonly">Read only </span>   
+[`GamepadPose.angularVelocity`](gamepadpose/angularvelocity) <span class="badge inline readonly">Read only </span>  
 Returns the angular velocity of the [`Gamepad`](gamepad), in radians per second.
 
- [`GamepadPose.angularAcceleration`](gamepadpose/angularacceleration) <span class="badge inline readonly">Read only </span>   
+[`GamepadPose.angularAcceleration`](gamepadpose/angularacceleration) <span class="badge inline readonly">Read only </span>  
 Returns the angular acceleration of the [`Gamepad`](gamepad), in meters per second per second.
 
-Examples
---------
+## Examples
 
 TBD.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/gamepad/extensions.html#gamepadpose-interface">Gamepad Extensions<br />
 <span class="small">The definition of 'GamepadPose' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -313,10 +308,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [WebVR API](webvr_api)
--   [Gamepad API](gamepad_api)
+- [WebVR API](webvr_api)
+- [Gamepad API](gamepad_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GamepadPose" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GamepadPose</a>

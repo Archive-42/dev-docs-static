@@ -1,18 +1,15 @@
-HTMLAnchorElement.host
-======================
+# HTMLAnchorElement.host
 
-The `HTMLAnchorElement.host` property is a [`USVString`](../usvstring) containing the host, that is the *hostname*, and then, if the *port* of the URL is nonempty, a `':'`, and the *port* of the URL.
+The `HTMLAnchorElement.host` property is a [`USVString`](../usvstring) containing the host, that is the _hostname_, and then, if the _port_ of the URL is nonempty, a `':'`, and the _port_ of the URL.
 
-Syntax
-------
+## Syntax
 
     // Getter
     string = anchor.host;
     // Setter
     anchor.host = string;
 
-Examples
---------
+## Examples
 
     const anchor = document.createElement("a");
 
@@ -26,14 +23,12 @@ Examples
     anchor.href = "https://developer.mozilla.org:4097/en-US/HTMLAnchorElement"
     anchor.host == "developer.mozilla.org:4097"
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-hyperlink-host">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLHyperlinkElementUtils.host' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -91,9 +86,8 @@ In Internet Explorer 9, the host of an [`<a>`](https://developer.mozilla.org/doc
 
 1.0
 
-See also
---------
+## See also
 
--   The [`HTMLAnchorElement`](../htmlanchorelement) interface it belongs to.
+- The [`HTMLAnchorElement`](../htmlanchorelement) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/host" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/host</a>

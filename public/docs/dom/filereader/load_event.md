@@ -1,12 +1,10 @@
-FileReader: load event
-======================
+# FileReader: load event
 
 The `load` event is fired when a file has been read successfully.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../progressevent"><code>ProgressEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="onload"><code>FileReader.onload</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 ### Live example
 
@@ -67,13 +65,11 @@ Examples
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/FileAPI/#dfn-load-event">File API</a></td><td><span class="spec-wd">Working Draft</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -129,9 +125,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   Related events: [`FileReader.loadstart_event`](loadstart_event), [`FileReader.loadend_event`](loadend_event), [`FileReader.progress_event`](progress_event), [`FileReader.error_event`](error_event), [`FileReader.abort_event`](abort_event)
+- Related events: [`FileReader.loadstart_event`](loadstart_event), [`FileReader.loadend_event`](loadend_event), [`FileReader.progress_event`](progress_event), [`FileReader.error_event`](error_event), [`FileReader.abort_event`](abort_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader/load_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileReader/load_event</a>

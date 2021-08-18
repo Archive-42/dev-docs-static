@@ -1,5 +1,4 @@
-GamepadHapticActuator.type
-==========================
+# GamepadHapticActuator.type
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `type` read-only property of the [`GamepadHapticActuator`](../gamepadhapticactuator) interface returns an enum representing the type of the haptic hardware.
 
-Syntax
-------
+## Syntax
 
     var myActuatorType = gamepadHapticActuatorInstance.type;
 
@@ -17,21 +15,18 @@ Syntax
 
 An enum of type `GamepadHapticActuatorType`; currently available types are:
 
--   `vibration` — vibration hardware, which creates a rumbling effect.
+- `vibration` — vibration hardware, which creates a rumbling effect.
 
-Examples
---------
+## Examples
 
 TBC
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/gamepad/extensions.html#dom-gamepadhapticactuatortype">Gamepad Extensions<br />
 <span class="small">The definition of 'GamepadHapticActuatorType' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -87,9 +82,8 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   [Gamepad API](../gamepad_api)
+- [Gamepad API](../gamepad_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GamepadHapticActuator/type" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GamepadHapticActuator/type</a>

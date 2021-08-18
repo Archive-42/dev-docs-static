@@ -1,5 +1,4 @@
-HTMLContentElement.select
-=========================
+# HTMLContentElement.select
 
 **Deprecated**
 
@@ -7,24 +6,20 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `HTMLContentElement.select` property reflects the `select` attribute. It is a [`DOMString`](../domstring) containing a space-separated list of CSS selectors that select the content to insert in place of the &lt;content&gt; element.
 
-Syntax
-------
+## Syntax
 
     object.select = "CSSselector CSSselector ...";
 
-Example
--------
+## Example
 
     // Select <h1> elements and elements with class="error"
     myContentObject.select = "h1 .error";
 
-Specifications
---------------
+## Specifications
 
 This feature is no longer defined by any standards.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -80,9 +75,8 @@ No
 
 3.0
 
-See also
---------
+## See also
 
--   [HTMLContentElement](../htmlcontentelement)
+- [HTMLContentElement](../htmlcontentelement)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLContentElement/select" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLContentElement/select</a>

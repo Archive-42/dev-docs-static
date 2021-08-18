@@ -1,15 +1,12 @@
-HTMLTableElement.deleteTFoot()
-==============================
+# HTMLTableElement.deleteTFoot()
 
 The `HTMLTableElement.deleteTFoot()` method removes the [`<tfoot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot) element from a given [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table).
 
-Syntax
-------
+## Syntax
 
     HTMLTableElement.deleteTFoot();
 
-Example
--------
+## Example
 
 This example uses JavaScript to delete a table's footer.
 
@@ -29,14 +26,12 @@ This example uses JavaScript to delete a table's footer.
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-table-deletetfoot">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLTableElement: deleteTFoot' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

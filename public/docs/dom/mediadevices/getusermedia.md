@@ -1,11 +1,10 @@
-MediaDevices.getUserMedia()
-===========================
+# MediaDevices.getUserMedia()
 
 The [`MediaDevices`](../mediadevices)`.getUserMedia()` method prompts the user for permission to use a media input which produces a [`MediaStream`](../mediastream) with tracks containing the requested types of media. That stream can include, for example, a video track (produced by either a hardware or virtual video source such as a camera, video recording device, screen sharing service, and so forth), an audio track (similarly, produced by a physical or virtual audio source like a microphone, A/D converter, or the like), and possibly other track types.
 
 It returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to a [`MediaStream`](../mediastream) object. If the user denies permission, or matching media is not available, then the promise is rejected with `NotAllowedError` or `NotFoundError` respectively.
 
-**Note:** It's possible for the returned promise to *neither* resolve nor reject, as the user is not required to make a choice at all and may ignore the request.
+**Note:** It's possible for the returned promise to _neither_ resolve nor reject, as the user is not required to make a choice at all and may ignore the request.
 
 Generally, you will access the [`MediaDevices`](../mediadevices) singleton object using [`navigator.mediaDevices`](../navigator/mediadevices), like this:
 
@@ -32,8 +31,7 @@ Similarly, using the raw promises directly, the code looks like this:
 
 **Note:** If the current document isn't loaded securely, `navigator.mediaDevices` will be `undefined`, and you cannot use `getUserMedia()`. See [Security](#security) for more information on this and other security issues related to using `getUserMedia()`.
 
-Syntax
-------
+## Syntax
 
     var promise = navigator.mediaDevices.getUserMedia(constraints);
 
@@ -48,7 +46,7 @@ The following requests both audio and video without any specific requirements:
 
     { audio: true, video: true }
 
-If `true` is specified for a media type, the resulting stream is *required* to have that type of track in it. If one cannot be included for any reason, the call to `getUserMedia()` will result in an error.
+If `true` is specified for a media type, the resulting stream is _required_ to have that type of track in it. If one cannot be included for any reason, the call to `getUserMedia()` will result in an error.
 
 While information about a user's cameras and microphones are inaccessible for privacy reasons, an application can request the camera and microphone capabilities it needs and wants, using additional constraints. The following expresses a preference for 1280x720 camera resolution:
 
@@ -59,7 +57,7 @@ While information about a user's cameras and microphones are inaccessible for pr
 
 The browser will try to honour this, but may return other resolutions if an exact match is not available, or the user overrides it.
 
-To *require* a capability, use the keywords `min`, `max`, or `exact` (a.k.a. `min == max`). The following demands a minimum resolution of 1280x720:
+To _require_ a capability, use the keywords `min`, `max`, or `exact` (a.k.a. `min == max`). The following demands a minimum resolution of 1280x720:
 
     {
       audio: true,
@@ -97,7 +95,7 @@ Not all constraints are numbers. For example, on mobile devices, the following w
 
     { audio: true, video: { facingMode: "user" } }
 
-To *require* the rear camera, use:
+To _require_ the rear camera, use:
 
     { audio: true, video: { facingMode: { exact: "environment" } } }
 
@@ -105,7 +103,7 @@ Another non-number constraint is the `deviceId` constraint. If you have a `devic
 
     { video: { deviceId: myPreferredCameraDeviceId } }
 
-The above will return the camera you requested, or a different camera if that specific camera is no longer available. Again, to *require* the specific camera, you would use:
+The above will return the camera you requested, or a different camera if that specific camera is no longer available. Again, to _require_ the specific camera, you would use:
 
     { video: { deviceId: { exact: myExactCameraOrBustDeviceId } } }
 
@@ -142,8 +140,7 @@ User media support is disabled on the [`Document`](../document) on which `getUse
 `TypeError`  
 The list of constraints specified is empty, or has all constraints set to `false`. This can also happen if you try to call `getUserMedia()` in an insecure context, since [`navigator.mediaDevices`](../navigator/mediadevices) is `undefined` in an insecure context.
 
-Privacy and security
---------------------
+## Privacy and security
 
 As an API that may involve significant privacy concerns, `getUserMedia()`'s specification lays out a wide array of privacy and security requirements that browsers are obligated to meet.
 
@@ -198,12 +195,11 @@ Attempting to access `getUserMedia()` in this situation will result in a `TypeEr
 
 Because of the obvious security concern associated with `getUserMedia()` if used unexpectedly or without security being carefully managed, it can only be used in secure contexts. There are a number of insecure ways to load a document that might, in turn, attempt to call `getUserMedia()`. The following are examples of situations in which `getUserMedia()` is not permitted to be called:
 
--   A document loaded into a sandboxed [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) element cannot call `getUserMedia()` unless the `<iframe>` has its [`sandbox`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-sandbox) attribute set to `allow-same-origin`.
--   A document loaded using a `data://` or `blob://` URL which has no origin (such as when one of these URLs is typed by the user into the address bar) cannot call `getUserMedia()`. These kinds of URLs loaded from JavaScript code inherit the script's permissions.
--   Any other situation in which there is no origin, such as when the [`srcdoc`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-srcdoc) attribute is used to specify the contents of a frame.
+- A document loaded into a sandboxed [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) element cannot call `getUserMedia()` unless the `<iframe>` has its [`sandbox`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-sandbox) attribute set to `allow-same-origin`.
+- A document loaded using a `data://` or `blob://` URL which has no origin (such as when one of these URLs is typed by the user into the address bar) cannot call `getUserMedia()`. These kinds of URLs loaded from JavaScript code inherit the script's permissions.
+- Any other situation in which there is no origin, such as when the [`srcdoc`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-srcdoc) attribute is used to specify the contents of a frame.
 
-Examples
---------
+## Examples
 
 ### Width and height
 
@@ -286,14 +282,12 @@ On mobile phones.
 
     var constraints = { video: { facingMode: (front? "user" : "environment") } };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediadevices-getusermedia">Media Capture and Streams<br />
 <span class="small">The definition of 'MediaDevices.getUserMedia()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -333,7 +327,7 @@ If you need this capability before version 53, refer to `navigator.webkitGetUser
 
 36
 
-\["If you need this capability before version 36, refer to `navigator.mozGetUserMedia`, a prefixed form of the deprecated [`navigator.getUserMedia`](https://developer.mozilla.org/docs/Web/API/Navigator/getUserMedia) API.", "Before Firefox 55, `getUserMedia()` incorrectly returns `NotSupportedError` when the list of constraints specified is empty, or has all constraints set to `false`. Starting in Firefox 55, this situation now correctly calls the failure handler with a `TypeError`.", "When using the Firefox-specific `video` constraint called `mediaSource` to request display capture, Firefox 66 and later consider values of `screen` and `window` to both cause a list of screens *and* windows to be shown.", "Starting in Firefox 66, `getUserMedia()` can no longer be used in sandboxed `<iframe>`s or `data` URLs entered in the address bar by the user."\]
+\["If you need this capability before version 36, refer to `navigator.mozGetUserMedia`, a prefixed form of the deprecated [`navigator.getUserMedia`](https://developer.mozilla.org/docs/Web/API/Navigator/getUserMedia) API.", "Before Firefox 55, `getUserMedia()` incorrectly returns `NotSupportedError` when the list of constraints specified is empty, or has all constraints set to `false`. Starting in Firefox 55, this situation now correctly calls the failure handler with a `TypeError`.", "When using the Firefox-specific `video` constraint called `mediaSource` to request display capture, Firefox 66 and later consider values of `screen` and `window` to both cause a list of screens _and_ windows to be shown.", "Starting in Firefox 66, `getUserMedia()` can no longer be used in sandboxed `<iframe>`s or `data` URLs entered in the address bar by the user."\]
 
 No
 
@@ -351,7 +345,7 @@ If you need this capability before version 53, refer to `navigator.webkitGetUser
 
 36
 
-\["If you need this capability before version 36, refer to `navigator.mozGetUserMedia`, a prefixed form of the deprecated [`navigator.getUserMedia`](https://developer.mozilla.org/docs/Web/API/Navigator/getUserMedia) API.", "Before Firefox 55, `getUserMedia()` incorrectly returns `NotSupportedError` when the list of constraints specified is empty, or has all constraints set to `false`. Starting in Firefox 55, this situation now correctly calls the failure handler with a `TypeError`.", "When using the Firefox-specific `video` constraint called `mediaSource` to request display capture, Firefox 66 and later consider values of `screen` and `window` to both cause a list of screens *and* windows to be shown.", "Starting in Firefox 66, `getUserMedia()` can no longer be used in sandboxed `<iframe>`s or `data` URLs entered in the address bar by the user."\]
+\["If you need this capability before version 36, refer to `navigator.mozGetUserMedia`, a prefixed form of the deprecated [`navigator.getUserMedia`](https://developer.mozilla.org/docs/Web/API/Navigator/getUserMedia) API.", "Before Firefox 55, `getUserMedia()` incorrectly returns `NotSupportedError` when the list of constraints specified is empty, or has all constraints set to `false`. Starting in Firefox 55, this situation now correctly calls the failure handler with a `TypeError`.", "When using the Firefox-specific `video` constraint called `mediaSource` to request display capture, Firefox 66 and later consider values of `screen` and `window` to both cause a list of screens _and_ windows to be shown.", "Starting in Firefox 66, `getUserMedia()` can no longer be used in sandboxed `<iframe>`s or `data` URLs entered in the address bar by the user."\]
 
 41
 
@@ -387,15 +381,14 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   The older [`navigator.getUserMedia()`](../navigator/getusermedia) legacy API.
--   [`mediaDevices.enumerateDevices()`](enumeratedevices): Listing available media devices
--   [WebRTC API](../webrtc_api)
--   [Media Capture and Streams API (Media Streams)](../media_streams_api)
--   [Screen Capture API](../screen_capture_api): Capturing screen contents as a [`MediaStream`](../mediastream)
--   [`mediaDevices.getDisplayMedia()`](getdisplaymedia): Getting a stream containing screen contents
--   [Taking webcam photos](../webrtc_api/taking_still_photos): A tutorial on using `getUserMedia()` to take still photos rather than video
+- The older [`navigator.getUserMedia()`](../navigator/getusermedia) legacy API.
+- [`mediaDevices.enumerateDevices()`](enumeratedevices): Listing available media devices
+- [WebRTC API](../webrtc_api)
+- [Media Capture and Streams API (Media Streams)](../media_streams_api)
+- [Screen Capture API](../screen_capture_api): Capturing screen contents as a [`MediaStream`](../mediastream)
+- [`mediaDevices.getDisplayMedia()`](getdisplaymedia): Getting a stream containing screen contents
+- [Taking webcam photos](../webrtc_api/taking_still_photos): A tutorial on using `getUserMedia()` to take still photos rather than video
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia</a>

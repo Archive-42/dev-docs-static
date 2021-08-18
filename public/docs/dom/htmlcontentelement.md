@@ -1,5 +1,4 @@
-HTMLContentElement
-==================
+# HTMLContentElement
 
 **Deprecated**
 
@@ -7,29 +6,25 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `HTMLContentElement` interface represents a [`<content>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/content) HTML Element, which is used in [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM).
 
-Properties
-----------
+## Properties
 
-*This interface inherits the properties of [`HTMLElement`](htmlelement).*
+_This interface inherits the properties of [`HTMLElement`](htmlelement)._
 
 [`HTMLContentElement.select`](htmlcontentelement/select)  
 Is a [`DOMString`](domstring) that reflects the [`select`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/content#attr-select) HTML attribute. The value is a comma-separated list of CSS selectors that select the content to insert in place of the `<content>` element.
 
-Methods
--------
+## Methods
 
-*This interface inherits the methods of [`HTMLElement`](htmlelement).*
+_This interface inherits the methods of [`HTMLElement`](htmlelement)._
 
 [`HTMLContentElement.getDistributedNodes()`](htmlcontentelement/getdistributednodes)  
 Returns a static [`NodeList`](nodelist) of the <span class="page-not-created">distributed nodes</span> associated with this `<content>` element.
 
-Specifications
---------------
+## Specifications
 
 This feature is no longer defined by any standards.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -137,10 +132,9 @@ No
 
 3.0
 
-See also
---------
+## See also
 
--   The [`<content>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/content) HTML element, implementing this interface.
--   [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM)
+- The [`<content>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/content) HTML element, implementing this interface.
+- [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLContentElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLContentElement</a>

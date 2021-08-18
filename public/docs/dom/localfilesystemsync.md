@@ -1,5 +1,4 @@
-LocalFileSystemSync
-===================
+# LocalFileSystemSync
 
 **Non-standard**
 
@@ -7,15 +6,13 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 The `LocalFileSystemSync` interface of the [File System API](file_and_directory_entries_api/introduction) gives you access to a sandboxed file system. It is intended to be used with [WebWorkers](worker). The methods are implemented by [worker](worker) objects.
 
-About this document
--------------------
+## About this document
 
 This document was last updated on March 2, 2012 and follows the [W3C Specifications (Working Draft)](https://www.w3.org/TR/file-system-api/) drafted on April 19, 2011.
 
 This specification is more or less abandoned, failing to get significant traction.
 
-Basic concepts
---------------
+## Basic concepts
 
 You can request access to a sandboxed file system by requesting `LocalFileSystemSync` object from within a web worker. The global methods in the `window` object `requestFileSystemSync()` and `resolveLocalFileSystemSyncURL()` methods are exposed to the Worker's global scope. Calling `window.requestFileSystemSync()` for creates new storage for your web app.
 
@@ -36,18 +33,15 @@ For more concepts, see the counterpart [article for the asynchronous API](localf
 
 Because you are using a synchronous API, you don't need success and error callbacks.
 
-Method overview
----------------
+## Method overview
 
 <table><tbody><tr class="odd"><td><code>FileSystemSync requestFileSystemSync (in unsigned short type, in long long size) raises FileException; </code></td></tr><tr class="even"><td><code>EntrySync resolveLocalFileSystemSyncURL (in DOMString url) raises FileException;</code></td></tr></tbody></table>
 
-Constants
----------
+## Constants
 
 <table><colgroup><col style="width: 33%" /><col style="width: 33%" /><col style="width: 33%" /></colgroup><thead><tr class="header"><th>Constant</th><th>Value</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><span id="const_temporary"><code>TEMPORARY</code></span></td><td><code>0</code></td><td><p>Transient storage that can be removed by the browser at its discretion.</p></td></tr><tr class="even"><td><span id="const_persistent"><code>PERSISTENT</code></span></td><td><code>1</code></td><td>Storage that stays in the browser unless the user or the app expunges it.</td></tr></tbody></table>
 
-Methods
--------
+## Methods
 
 ### requestFileSystemSync()
 
@@ -121,14 +115,12 @@ The URL was structurally correct, but refers to a resource that does not exist.
 
 The application does not have permission to access the file system interface.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.LocalFileSystemSync`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).
 
-See also
---------
+## See also
 
 Specification:[File API: Directories and System Specification](https://dev.w3.org/2009/dap/file-system/pub/FileSystem/)WD
 

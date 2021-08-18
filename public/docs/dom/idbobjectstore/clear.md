@@ -1,5 +1,4 @@
-IDBObjectStore.clear()
-======================
+# IDBObjectStore.clear()
 
 The `clear()` method of the [`IDBObjectStore`](../idbobjectstore) interface creates and immediately returns an [`IDBRequest`](../idbrequest) object, and clears this object store in a separate thread. This is for deleting all the current data out of an object store.
 
@@ -7,8 +6,7 @@ Clearing an object store consists of removing all records from the object store 
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     var request = objectStore.clear();
 
@@ -23,8 +21,7 @@ This method may raise a [`DOMException`](../domexception) of one of the followin
 <table><thead><tr class="header"><th>Exception</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>ReadOnlyError</code></td><td>The transaction associated with this operation is in read-only <a href="../idbtransaction#mode_constants">mode</a>.</td></tr><tr class="even"><td><code>TransactionInactiveError</code></td><td>This <a href="../idbobjectstore"><code>IDBObjectStore</code></a>'s transaction is inactive.<br />
 </td></tr></tbody></table>
 
-Example
--------
+## Example
 
 In the following code snippet, we open a read/write transaction on our database and clear all the current data out of the object store using `clear()`. For a full working example, see our [To-do Notifications](https://github.com/mdn/to-do-notifications/)<span style="line-height: 1.5;"> app (</span>[view example live](https://mdn.github.io/to-do-notifications/)<span style="line-height: 1.5;">.)</span>
 
@@ -67,15 +64,13 @@ In the following code snippet, we open a read/write transaction on our database 
       };
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbobjectstore-clear">Indexed Database API 2.0<br />
 <span class="small">The definition of 'clear()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbobjectstore-clear">Indexed Database API 2.0<br />
 <span class="small">The definition of 'clear()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -131,15 +126,14 @@ Samsung Internet
 
 1.5
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/clear" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/clear</a>

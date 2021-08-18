@@ -1,10 +1,8 @@
-MediaSessionActionDetails.action
-================================
+# MediaSessionActionDetails.action
 
 The `action` property is the only required property [`MediaSessionActionDetails`](../mediasessionactiondetails) dictionary, specifying the type of media session action which the action handler callback is being executed for.
 
-Syntax
-------
+## Syntax
 
     let mediaSessionActionDetails = { action: actionType };
 
@@ -41,15 +39,14 @@ Skips past the currently playing advertisement or commercial. This action may or
 `stop`  
 Halts playback entirely.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediasession/#dom-mediasessionactiondetails-action">Media Session Standard<br />
 <span class="small">The definition of 'MediaSessionActionDetails.action' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
 BCD tables only load in the browser
 
--   Media Session API
--   Refer to the [`MediaSession`](../mediasession) method [`setActionHandler()`](../mediasession/setactionhandler)
+- Media Session API
+- Refer to the [`MediaSession`](../mediasession) method [`setActionHandler()`](../mediasession/setactionhandler)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaSessionActionDetails/action" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaSessionActionDetails/action</a>

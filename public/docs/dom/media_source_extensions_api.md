@@ -1,5 +1,4 @@
-Media Source API
-================
+# Media Source API
 
 **Draft**
 
@@ -7,8 +6,7 @@ This page is not complete.
 
 The **Media Source API**, formally known as **Media Source Extensions** (**MSE**), provides functionality enabling plugin-free web-based streaming media. Using MSE, media streams can be created via JavaScript, and played using [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) and [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) elements.
 
-Media Source Extensions concepts and usage
-------------------------------------------
+## Media Source Extensions concepts and usage
 
 Playing video and audio has been available in web applications without plugins for a few years now, but the basic features offered have really only been useful for playing single whole tracks. We can't, for example, combine/split arraybuffers. Streaming media has up until recently been the domain of Flash, with technologies like Flash Media Server serving video streams using the RTMP protocol.
 
@@ -32,8 +30,7 @@ Live profile content can introduce latency due to its transcoding and broadcasti
 
 There are numerous available free and open source tools for transcoding content and preparing it for use with DASH, DASH file servers, and DASH client libraries written in JavaScript.
 
-Interfaces
-----------
+## Interfaces
 
 [`MediaSource`](mediasource)  
 Represents a media source to be played via an [`HTMLMediaElement`](htmlmediaelement) object.
@@ -53,8 +50,7 @@ Provides a [`SourceBuffer`](sourcebuffer) with kind, label, and language informa
 [`TrackDefaultList`](trackdefaultlist)  
 A simple container list for multiple `TrackDefault` objects.
 
-Extensions to other interfaces
-------------------------------
+## Extensions to other interfaces
 
 [`URL.createObjectURL()`](url/createobjecturl)  
 Creates an object URL pointing to a `MediaSource` object that can then be specified as the `src` value of an HTML media element to play a media stream.
@@ -65,16 +61,14 @@ When a `MediaSource` object is played by an HTML media element, this property wi
 [`HTMLVideoElement.getVideoPlaybackQuality()`](htmlvideoelement/getvideoplaybackquality)  
 Returns a [`VideoPlaybackQuality`](videoplaybackquality) object for the currently played video.
 
- [`AudioTrack.sourceBuffer`](audiotrack/sourcebuffer), [`VideoTrack.sourceBuffer`](videotrack/sourcebuffer), <span class="page-not-created">`TextTrack.sourceBuffer`</span>   
+[`AudioTrack.sourceBuffer`](audiotrack/sourcebuffer), [`VideoTrack.sourceBuffer`](videotrack/sourcebuffer), <span class="page-not-created">`TextTrack.sourceBuffer`</span>  
 Returns the [`SourceBuffer`](sourcebuffer) that created the track in question.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/media-source/">Media Source Extensions</a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -534,13 +528,12 @@ No
 
 1.5
 
-See also
---------
+## See also
 
--   [Transcoding assets for Media Source Extensions](media_source_extensions_api/transcoding_assets_for_mse)
--   Using MSE to create a basic streaming service (TBD)
--   Using MPEG DASH to create a streaming application (TBD)
--   The [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) and [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) elements.
--   [`HTMLMediaElement`](htmlmediaelement), [`HTMLVideoElement`](htmlvideoelement), [`HTMLAudioElement`](htmlaudioelement).
+- [Transcoding assets for Media Source Extensions](media_source_extensions_api/transcoding_assets_for_mse)
+- Using MSE to create a basic streaming service (TBD)
+- Using MPEG DASH to create a streaming application (TBD)
+- The [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) and [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) elements.
+- [`HTMLMediaElement`](htmlmediaelement), [`HTMLVideoElement`](htmlvideoelement), [`HTMLAudioElement`](htmlaudioelement).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Media_Source_Extensions_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Media_Source_Extensions_API</a>

@@ -1,10 +1,8 @@
-Element.ariaValueNow
-====================
+# Element.ariaValueNow
 
 The `ariaValueNow` property of the [`Element`](../element) interface reflects the value of the [`aria-valuenow`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-valuenow_attribute) attribute, which defines the current value for a range widget.
 
-Syntax
-------
+## Syntax
 
     var ariaValueNow = element.ariaValueNow;
     element.ariaValueNow = ariaValueNow
@@ -13,8 +11,7 @@ Syntax
 
 A [`DOMString`](../domstring) which contains a number.
 
-Examples
---------
+## Examples
 
 In this example the `aria-valuenow` attribute on the element with an ID of `slider` is set to "1". Using `ariaValueNow` we update the value to "2".
 
@@ -27,14 +24,12 @@ In this example the `aria-valuenow` attribute on the element with an ID of `slid
     el.ariaValueNow = "2";
     console.log(el.ariaValueNow); // 2
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariavaluenow">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaValueNow' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

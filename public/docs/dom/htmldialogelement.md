@@ -1,5 +1,4 @@
-HTMLDialogElement
-=================
+# HTMLDialogElement
 
 **Experimental**
 
@@ -8,10 +7,9 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `HTMLDialogElement` interface provides methods to manipulate [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) elements. It inherits properties and methods from the [`HTMLElement`](htmlelement) interface.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement).*
+_Inherits properties from its parent, [`HTMLElement`](htmlelement)._
 
 [`HTMLDialogElement.open`](htmldialogelement/open)  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) reflecting the [`open`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#attr-open) HTML attribute, indicating whether the dialog is available for interaction.
@@ -19,10 +17,9 @@ A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 [`HTMLDialogElement.returnValue`](htmldialogelement/returnvalue)  
 A [`DOMString`](domstring) that sets or returns the return value for the dialog.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`HTMLElement`](htmlelement).*
+_Inherits methods from its parent, [`HTMLElement`](htmlelement)._
 
 [`HTMLDialogElement.close()`](htmldialogelement/close)  
 Closes the dialog. An optional [`DOMString`](domstring) may be passed as an argument, updating the `returnValue` of the dialog.
@@ -33,17 +30,15 @@ Displays the dialog modelessly, i.e. still allowing interaction with content out
 [`HTMLDialogElement.showModal()`](htmldialogelement/showmodal)  
 Displays the dialog as a modal, over the top of any other dialogs that might be present. Interaction outside the dialog is blocked.
 
-Events
-------
+## Events
 
 [`close`](htmldialogelement/close_event)  
 Fired when the dialog is closed.  
 Also available via the [`onclose`](globaleventhandlers/onclose) property.
 
-Examples
---------
+## Examples
 
-The following example shows a simple button that, when clicked, opens a [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) containing a form via the [`HTMLDialogElement.showModal()`](htmldialogelement/showmodal) function. From there you can click the *Cancel* button to close the dialog (via the [`HTMLDialogElement.close()`](htmldialogelement/close) function), or submit the form via the submit button.
+The following example shows a simple button that, when clicked, opens a [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) containing a form via the [`HTMLDialogElement.showModal()`](htmldialogelement/showmodal) function. From there you can click the _Cancel_ button to close the dialog (via the [`HTMLDialogElement.close()`](htmldialogelement/close) function), or submit the form via the submit button.
 
       <!-- Simple pop-up dialog box, containing a form -->
       <dialog id="favDialog">
@@ -100,15 +95,13 @@ The following example shows a simple button that, when clicked, opens a [`<dialo
 
 **Note**: You can find this example on GitHub as [htmldialogelement-basic](https://github.com/mdn/dom-examples/blob/master/htmldialogelement-basic/index.html) ([see it live also](https://mdn.github.io/dom-examples/htmldialogelement-basic/)).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#htmldialogelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLDialogElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/interactive-elements.html#the-dialog-element">HTML 5.2<br />
 <span class="small">The definition of '&lt;dialog&gt;' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -370,9 +363,8 @@ No
 
 3.0
 
-See also
---------
+## See also
 
--   The HTML element implementing this interface: [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog).
+- The HTML element implementing this interface: [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement</a>

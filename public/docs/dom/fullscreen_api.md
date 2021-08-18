@@ -1,5 +1,4 @@
-Fullscreen API
-==============
+# Fullscreen API
 
 The **Fullscreen API** adds methods to present a specific [`Element`](element) (and its descendants) in full-screen mode, and to exit full-screen mode once it is no longer needed. This makes it possible to present desired content—such as an online game—using the user's entire screen, removing all browser user interface elements and other applications from the screen until full-screen mode is shut off.
 
@@ -7,13 +6,11 @@ See the article [Guide to the Fullscreen API](fullscreen_api/guide) for details 
 
 **Note:** Support for this API varies somewhat across browsers, with many requiring vendor prefixes and/or not implementing the latest specification. See the [Browser compatibility](#browser_compatibility) section below for details on support for this API. You may wish to consider using a library such as [Fscreen](https://github.com/rafrex/fscreen) for vendor agnostic access to the Fullscreen API.
 
-Interfaces
-----------
+## Interfaces
 
-*The Fullscreen API has no interfaces of its own. Instead, it augments several other interfaces to add the methods, properties, and event handlers needed to provide full-screen functionality. These are listed in the following sections.*
+_The Fullscreen API has no interfaces of its own. Instead, it augments several other interfaces to add the methods, properties, and event handlers needed to provide full-screen functionality. These are listed in the following sections._
 
-Methods
--------
+## Methods
 
 The Fullscreen API adds methods to the [`Document`](document) and [`Element`](element) interfaces to allow turning off and on full-screen mode.
 
@@ -27,12 +24,11 @@ Requests that the [user agent](https://developer.mozilla.org/en-US/docs/Glossary
 [`Element.requestFullscreen()`](element/requestfullscreen)  
 Asks the user agent to place the specified element (and, by extension, its descendants) into full-screen mode, removing all of the browser's UI elements as well as all other applications from the screen. Returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which is resolved once full-screen mode has been activated.
 
-Properties
-----------
+## Properties
 
-*The [`Document`](document) interface provides properties that can be used to determine if full-screen mode is supported and available, and if full-screen mode is currently active, which element is using the screen.*
+_The [`Document`](document) interface provides properties that can be used to determine if full-screen mode is supported and available, and if full-screen mode is currently active, which element is using the screen._
 
- [`Document.fullscreenElement`](document/fullscreenelement) / [`ShadowRoot.fullscreenElement`](shadowroot/fullscreenelement)   
+[`Document.fullscreenElement`](document/fullscreenelement) / [`ShadowRoot.fullscreenElement`](shadowroot/fullscreenelement)  
 The `fullscreenElement` property tells you the [`Element`](element) that's currently being displayed in full-screen mode on the DOM (or shadow DOM). If this is `null`, the document (or shadow DOM) is not in full-screen mode.
 
 [`document.fullscreenEnabled`](document/fullscreenenabled)  
@@ -40,9 +36,9 @@ The `fullscreenEnabled` property tells you whether or not it is possible to enga
 
 ### Event handlers
 
-*The Fullscreen API defines two events which can be used to detect when full-screen mode is turned on and off, as well as when errors occur during the process of changing between full-screen and windowed modes. Event handlers for these events are available on the [`Document`](document) and [`Element`](element) interfaces.*
+_The Fullscreen API defines two events which can be used to detect when full-screen mode is turned on and off, as well as when errors occur during the process of changing between full-screen and windowed modes. Event handlers for these events are available on the [`Document`](document) and [`Element`](element) interfaces._
 
-**Note:** These event handler properties are *not* available as HTML content attributes. In other words, you cannot specify event handlers for `fullscreenchange` and `fullscreenerror` in the HTML content. They must be added by JavaScript code.
+**Note:** These event handler properties are _not_ available as HTML content attributes. In other words, you cannot specify event handlers for `fullscreenchange` and `fullscreenerror` in the HTML content. They must be added by JavaScript code.
 
 #### Event handlers on documents
 
@@ -62,15 +58,14 @@ An event handler for the `fullscreenerror` event when sent to an element which h
 
 ### Obsolete properties
 
- [`Document.fullscreen`](document/fullscreen) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Document.fullscreen`](document/fullscreen) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 A Boolean value which is `true` if the document has an element currently being displayed in full-screen mode; otherwise, this returns `false`.
 
 **Note:** Use the [`fullscreenElement`](document/fullscreenelement) property on the [`Document`](document) or [`ShadowRoot`](shadowroot) instead; if it's not `null`, then it's an [`Element`](element) currently being displayed in full-screen mode.
 
-Events
-------
+## Events
 
-*The Fullscreen API defines two events which can be used to detect when full-screen mode is turned on and off, as well as when errors occur during the process of changing between full-screen and windowed modes.*
+_The Fullscreen API defines two events which can be used to detect when full-screen mode is turned on and off, as well as when errors occur during the process of changing between full-screen and windowed modes._
 
 `fullscreenchange`  
 Sent to an [`Element`](element) when it transitions into or out of full-screen mode.
@@ -78,28 +73,24 @@ Sent to an [`Element`](element) when it transitions into or out of full-screen m
 `fullscreenerror`  
 Sent to an `Element` if an error occurs while attempting to switch it into or out of full-screen mode.
 
-Dictionaries
-------------
+## Dictionaries
 
 [`FullscreenOptions`](fullscreenoptions)  
 Provides optional settings you can specify when calling [`requestFullscreen()`](element/requestfullscreen).
 
-Controlling access
-------------------
+## Controlling access
 
 The availability of full-screen mode can be controlled using [Feature Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy). The full-screen mode feature is identified by the string `"fullscreen"`, with a default allow-list value of `"self"`, meaning that full-screen mode is permitted in top-level document contexts, as well as to nested browsing contexts loaded from the same origin as the top-most document.
 
 See [Using Feature Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy/Using_Feature_Policy) to learn more about using Feature Policy to control access to an API.
 
-Usage notes
------------
+## Usage notes
 
 Users can choose to exit full-screen mode by pressing the ESC (or F11) key, rather than waiting for the site or app to programmatically do so. Make sure you provide, somewhere in your user interface, appropriate user interface elements that inform the user that this option is available to them.
 
 **Note:** Navigating to another page, changing tabs, or switching to another application using any application switcher (or Alt-Tab) will likewise exit full-screen mode.
 
-Examples
---------
+## Examples
 
 ### Simple fullscreen usage
 
@@ -135,13 +126,11 @@ This starts by looking at the value of the [`document`](document)'s `fullscreenE
 
 If full-screen mode is already active (`fullscreenElement` is not `null`), we call [`exitFullscreen()`](document/exitfullscreen) on the `document` to shut off full-screen mode.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://fullscreen.spec.whatwg.org/">Fullscreen API</a></td><td><span class="spec-living">Living Standard</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -603,15 +592,14 @@ BCD tables only load in the browser
 
 BCD tables only load in the browser
 
-See also
---------
+## See also
 
--   [Using full-screen mode](fullscreen_api)
--   [`Element.requestFullscreen()`](element/requestfullscreen)
--   [`Document.exitFullscreen()`](document/exitfullscreen)
--   [`Document.fullscreen`](document/fullscreen)
--   [`Document.fullscreenElement`](document/fullscreenelement)
--   [`:fullscreen`](https://developer.mozilla.org/en-US/docs/Web/CSS/:fullscreen), [`::backdrop`](https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop)
--   [`allowfullscreen`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-allowfullscreen)
+- [Using full-screen mode](fullscreen_api)
+- [`Element.requestFullscreen()`](element/requestfullscreen)
+- [`Document.exitFullscreen()`](document/exitfullscreen)
+- [`Document.fullscreen`](document/fullscreen)
+- [`Document.fullscreenElement`](document/fullscreenelement)
+- [`:fullscreen`](https://developer.mozilla.org/en-US/docs/Web/CSS/:fullscreen), [`::backdrop`](https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop)
+- [`allowfullscreen`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-allowfullscreen)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API</a>

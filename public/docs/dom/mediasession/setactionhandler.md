@@ -1,10 +1,8 @@
-MediaSession.setActionHandler()
-===============================
+# MediaSession.setActionHandler()
 
 The `setActionHandler()` method of the [`MediaSession`](../mediasession) interface sets a handler for a media session action. These actions let a web app receive notifications when the user engages a device's built-in physical or onscreen media controls, such as play, stop, or seek buttons.
 
-Syntax
-------
+## Syntax
 
     navigator.mediaSession.setActionHandler(type, callback)
 
@@ -20,15 +18,13 @@ A function to call when the specified action type is invoked. The callback recei
 
 `undefined`.
 
-Description
------------
+## Description
 
 To remove a previously-established action handler, call `setActionHandler()` again, specifying `null` as the `callback`.
 
 The action handler receives as input a single parameter: an object conforming to the [`MediaSessionActionDetails`](../mediasessionactiondetails) dictionary, which provides both the action type (so the same function can handle multiple action types), as well as data needed in order to perform the action.
 
-Examples
---------
+## Examples
 
 This example creates a new media session and assigns action handlers (which don't do anything) to it.
 
@@ -136,14 +132,12 @@ You can also, if you prefer, use a single function to handle multiple action typ
 
 Here, the `handleSeek()` function handles both `seekbackward` and `seekforward` actions.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediasession/#dom-mediasession-setactionhandler">Media Session Standard<br />
 <span class="small">The definition of 'MediaSession.setActionHandler()' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

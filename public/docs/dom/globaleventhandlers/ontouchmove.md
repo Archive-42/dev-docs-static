@@ -1,5 +1,4 @@
-GlobalEventHandlers.ontouchmove
-===============================
+# GlobalEventHandlers.ontouchmove
 
 A [`global event handler`](../globaleventhandlers) for the `touchmove` event.
 
@@ -8,22 +7,20 @@ A [`global event handler`](../globaleventhandlers) for the `touchmove` event.
 **This is an [experimental technology](https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental)**  
 Check the [Browser compatibility table](#browser_compatibility) carefully before using this in production.
 
-**Note:** This attribute has *not* been formally standardized. It is specified in the [Touch Events – Level 2](https://w3c.github.io/touch-events/) <span class="spec-draft">Draft</span> specification and not in [Touch Events](https://www.w3.org/TR/touch-events/) <span class="spec-rec">Recommendation</span>. This attribute is not widely implemented.
+**Note:** This attribute has _not_ been formally standardized. It is specified in the [Touch Events – Level 2](https://w3c.github.io/touch-events/) <span class="spec-draft">Draft</span> specification and not in [Touch Events](https://www.w3.org/TR/touch-events/) <span class="spec-rec">Recommendation</span>. This attribute is not widely implemented.
 
-Syntax
-------
+## Syntax
 
     var moveHandler = someElement.ontouchmove;
 
 ### Return value
 
 `moveHandler`  
-The *touchmove* event handler for element `someElement`.
+The _touchmove_ event handler for element `someElement`.
 
-Example
--------
+## Example
 
-This example shows two ways to use *ontouchmove* to set an element's *touchmove* event handler.
+This example shows two ways to use _ontouchmove_ to set an element's _touchmove_ event handler.
 
     <html>
     <head>
@@ -47,13 +44,11 @@ This example shows two ways to use *ontouchmove* to set an element's *touchmove*
     </body>
     </html>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/touch-events/#dom-globaleventhandlers-ontouchmove">Touch Events – Level 2</a></td><td><span class="spec-draft">Draft</span></td><td>Non-stable version.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -109,9 +104,8 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   `touchmove`
+- `touchmove`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ontouchmove" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ontouchmove</a>

@@ -1,5 +1,4 @@
-Element.clientLeft
-==================
+# Element.clientLeft
 
 The width of the left border of an element in pixels. It includes the width of the vertical scrollbar if the text direction of the element is right–to–left and if there is an overflow causing a left vertical scrollbar to be rendered. `clientLeft` does not include the left margin or the left padding. `clientLeft` is read-only.
 
@@ -9,13 +8,11 @@ When [`layout.scrollbar.side` preference](http://kb.mozillazine.org/Layout.scrol
 
 **Note:** When an element has `display: inline`, `clientLeft` returns `0` regardless of the element's border.
 
-Syntax
-------
+## Syntax
 
     var left = element.clientLeft;
 
-Example
--------
+## Example
 
 padding-top
 
@@ -25,16 +22,14 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 padding-bottom
 
-**Left** **Top** **Right** **Bottom** *margin-top* *margin-bottom* *border-top* *border-bottom*
+**Left** **Top** **Right** **Bottom** _margin-top_ _margin-bottom_ _border-top_ _border-bottom_
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-element-clientleft">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'clientLeft' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -90,8 +85,7 @@ Samsung Internet
 
 1.0
 
-Notes
------
+## Notes
 
 `clientLeft` was first introduced in the MS IE DHTML object model.
 

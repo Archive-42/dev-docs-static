@@ -1,10 +1,8 @@
-Event.eventPhase
-================
+# Event.eventPhase
 
 The `eventPhase` read-only property of the [`Event`](../event) interface indicates which phase of the event flow is currently being evaluated.
 
-Syntax
-------
+## Syntax
 
     let phase = event.eventPhase;
 
@@ -12,8 +10,7 @@ Syntax
 
 Returns an integer value which specifies the current evaluation phase of the event flow. Possible values are listed in [Event phase constants](#event_phase_constants).
 
-Constants
----------
+## Constants
 
 ### Event phase constants
 
@@ -23,8 +20,7 @@ These values describe which phase the event flow is currently being evaluated.
 
 For more details, see [section 3.1, Event dispatch and DOM event flow](https://www.w3.org/TR/DOM-Level-3-Events/#event-flow), of the DOM Level 3 Events specification.
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -134,16 +130,14 @@ Example
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-event-eventphase">DOM<br />
 <span class="small">The definition of 'Event.eventPhase' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/dom/#dom-event-eventphase">DOM4<br />
 <span class="small">The definition of 'Event.eventPhase' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-Event-eventPhase">Document Object Model (DOM) Level 2 Events Specification<br />
 <span class="small">The definition of 'Event.eventPhase' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,12 +1,10 @@
-Element: mouseenter event
-=========================
+# Element: mouseenter event
 
 The `mouseenter` event is fired at an [`Element`](../element) when a pointing device (usually a mouse) is initially moved so that its hotspot is within the element at which the event was fired.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../mouseevent"><code>MouseEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="../globaleventhandlers/onmouseenter"><code>onmouseenter</code></a></td></tr></tbody></table>
 
-Usage notes
------------
+## Usage notes
 
 Though similar to [`mouseover`](mouseover_event), `mouseenter` differs in that it doesn't [bubble](../event/bubbles) and it isn't sent to any descendants when the pointer is moved from one of its descendants' physical space to its own physical space.
 
@@ -16,8 +14,7 @@ With deep hierarchies, the number of `mouseenter` events sent can be quite huge 
 
 Combined with the corresponding `mouseleave` (which is fired at the element when the mouse exits its content area), the `mouseenter` event acts in a very similar way to the CSS [`:hover`](https://developer.mozilla.org/en-US/docs/Web/CSS/:hover) pseudo-class.
 
-Examples
---------
+## Examples
 
 The [`mouseover`](mouseover_event#example) documentation has an example illustrating the difference between `mouseover` and `mouseenter`.
 
@@ -78,15 +75,13 @@ Styling the `div` to make it more visible.
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-mouseenter">UI Events<br />
 <span class="small">The definition of 'mouseenter' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#event-type-mouseenter">Document Object Model (DOM) Level 3 Events Specification<br />
 <span class="small">The definition of 'mouseenter' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -142,19 +137,18 @@ Samsung Internet
 
 2.0
 
-See also
---------
+## See also
 
--   [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
--   [`mousedown`](mousedown_event)
--   [`mouseup`](mouseup_event)
--   [`mousemove`](mousemove_event)
--   [`click`](click_event)
--   [`dblclick`](dblclick_event)
--   [`mouseover`](mouseover_event)
--   [`mouseout`](mouseout_event)
--   [`mouseenter`](mouseenter_event)
--   [`mouseleave`](mouseleave_event)
--   [`contextmenu`](contextmenu_event)
+- [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
+- [`mousedown`](mousedown_event)
+- [`mouseup`](mouseup_event)
+- [`mousemove`](mousemove_event)
+- [`click`](click_event)
+- [`dblclick`](dblclick_event)
+- [`mouseover`](mouseover_event)
+- [`mouseout`](mouseout_event)
+- [`mouseenter`](mouseenter_event)
+- [`mouseleave`](mouseleave_event)
+- [`contextmenu`](contextmenu_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event</a>

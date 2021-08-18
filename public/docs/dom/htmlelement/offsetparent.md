@@ -1,5 +1,4 @@
-HTMLElement.offsetParent
-========================
+# HTMLElement.offsetParent
 
 The `HTMLElement.offsetParent` read-only property returns a reference to the element which is the closest (nearest in the containment hierarchy) positioned ancestor element. If there is no positioned ancestor element, the nearest ancestor `td`, `th`, `table` will be returned, or the `body` if there are no ancestor table elements either.
 
@@ -7,27 +6,24 @@ The `HTMLElement.offsetParent` read-only property returns a reference to the ele
 
 **`offsetParent` returns `null` in the following situations:**
 
--   The element or its parent element has the `display` property set to `none`.
--   The element has the `position` property set to `fixed` (firefox returns `<body>`).
--   The element is `<body>` or `<html>`.
+- The element or its parent element has the `display` property set to `none`.
+- The element has the `position` property set to `fixed` (firefox returns `<body>`).
+- The element is `<body>` or `<html>`.
 
 `offsetParent` is useful because [`offsetTop`](offsettop) and [`offsetLeft`](offsetleft) are relative to its padding edge.
 
-Syntax
-------
+## Syntax
 
     parentObj = element.offsetParent;
 
--   parentObj is an object reference to the element in which the current element is offset.
+- parentObj is an object reference to the element in which the current element is offset.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-htmlelement-offsetparent">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'offsetParent' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

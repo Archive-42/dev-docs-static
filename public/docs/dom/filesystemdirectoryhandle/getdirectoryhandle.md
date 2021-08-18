@@ -1,5 +1,4 @@
-FileSystemDirectoryHandle.getDirectoryHandle()
-==============================================
+# FileSystemDirectoryHandle.getDirectoryHandle()
 
 **Draft**
 
@@ -11,20 +10,19 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `getDirectoryHandle()` method of the [`FileSystemDirectoryHandle`](../filesystemdirectoryhandle) interface returns a [`FileSystemDirectoryHandle`](../filesystemdirectoryhandle) for a subdirectory with the specified name within the directory handle on which the method is called.
 
-Syntax
-------
+## Syntax
 
     var FileSystemDirectoryHandle = FileSystemDirectoryHandle.getDirectoryHandle();
 
 ### Parameters
 
-*name*  
+_name_  
 A [`USVString`](../usvstring) representing the [`FileSystemHandle.name`](../filesystemhandle/name) of the subdirectory you wish to retrieve.
 
- *options* <span class="badge inline optional">Optional</span>   
+_options_ <span class="badge inline optional">Optional</span>  
 An optional object containing options for the retrieved subdirectory. Options are as follows:
 
--   `create`: A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean). Default `false`. When set to `true` if the directory is not found, one with the specified name will be created and returned.
+- `create`: A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean). Default `false`. When set to `true` if the directory is not found, one with the specified name will be created and returned.
 
 ### Return value
 
@@ -41,8 +39,7 @@ If the returned entry is a file and not a directory.
 `NotFoundError`  
 if directory doesn't exist and the `create` option is set to `false`.
 
-Examples
---------
+## Examples
 
 The following example returns a directory handle with the specified name, if the directory does not exist it is created.
 
@@ -51,14 +48,12 @@ The following example returns a directory handle with the specified name, if the
     // assuming we have a directory handle: 'currentDirHandle'
     const subDir = currentDirHandle.getDirectoryHandle(dirName, {create: true});
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/file-system-access/#dom-filesystemdirectoryhandle-getdirectoryhandle">File System Access API<br />
 <span class="small">The definition of 'getDirectoryHandle' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -114,10 +109,9 @@ No
 
 14.0
 
-See also
---------
+## See also
 
--   [File System Access API](../file_system_access_api)
--   [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
+- [File System Access API](../file_system_access_api)
+- [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryHandle/getDirectoryHandle" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryHandle/getDirectoryHandle</a>

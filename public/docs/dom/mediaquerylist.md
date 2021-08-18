@@ -1,43 +1,38 @@
-MediaQueryList
-==============
+# MediaQueryList
 
 A `MediaQueryList` object stores information on a [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries) applied to a document, with support for both immediate and event-driven matching against the state of the document. You can create a `MediaQueryList` by calling [`matchMedia()`](window/matchmedia) on the [`window`](window) object. The resulting object handles sending notifications to listeners when the media query state changes (i.e. when the media query test starts or stops evaluating to `true`).
 
 This is very useful for adaptive design, since this makes it possible to observe a document to detect when its media queries change, instead of polling the values periodically, and allows you to programmatically make changes to a document based on media query status.
 
-Properties
-----------
+## Properties
 
-*The `MediaQueryList` interface inherits properties from its parent interface, [`EventTarget`](eventtarget).*
+_The `MediaQueryList` interface inherits properties from its parent interface, [`EventTarget`](eventtarget)._
 
- [`matches`](mediaquerylist/matches)<span class="badge inline readonly">Read only </span>   
+[`matches`](mediaquerylist/matches)<span class="badge inline readonly">Read only </span>  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that returns `true` if the [`document`](document) currently matches the media query list, or `false` if not.
 
- [`media`](mediaquerylist/media)<span class="badge inline readonly">Read only </span>   
+[`media`](mediaquerylist/media)<span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) representing a serialized media query.
 
-Methods
--------
+## Methods
 
-*The `MediaQueryList` interface inherits methods from its parent interface, [`EventTarget`](eventtarget).*
+_The `MediaQueryList` interface inherits methods from its parent interface, [`EventTarget`](eventtarget)._
 
- [`addListener()`](mediaquerylist/addlistener)<span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`addListener()`](mediaquerylist/addlistener)<span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Adds to the `MediaQueryList` a callback which is invoked whenever the media query status—whether or not the document matches the media queries in the list—changes. This method exists primarily for backward compatibility; if possible, you should instead use [`addEventListener()`](eventtarget/addeventlistener) to watch for the <span class="page-not-created">`change`</span> event.
 
- [`removeListener()`](mediaquerylist/removelistener)<span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`removeListener()`](mediaquerylist/removelistener)<span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Removes the specified listener callback from the callbacks to be invoked when the `MediaQueryList` changes media query status, which happens any time the document switches between matching and not matching the media queries listed in the `MediaQueryList`. This method has been kept for backward compatibility; if possible, you should generally use [`removeEventListener()`](eventtarget/removeeventlistener) to remove change notification callbacks (which should have previously been added using `addEventListener()`).
 
-Events
-------
+## Events
 
-*The following events are delivered to `MediaQueryList` objects:*
+_The following events are delivered to `MediaQueryList` objects:_
 
 <span class="page-not-created">`change`</span>  
 Sent to the `MediaQueryList` when the result of running the media query against the document changes. For example, if the media query is `(min-width: 400px)`, the `change` event is fired any time the width of the document's [viewport](https://developer.mozilla.org/en-US/docs/Glossary/Viewport) changes such that its width moves across the 400px boundary in either direction.  
 Also available using the [`onchange`](mediaquerylist/onchange) event handler property.
 
-Examples
---------
+## Examples
 
 This simple example creates a `MediaQueryList` and then sets up a listener to detect when the media query status changes, running a custom function when it does to change the appearance of the page.
 
@@ -62,14 +57,12 @@ This simple example creates a `MediaQueryList` and then sets up a listener to de
 
 You can find other examples on the individual property and method pages.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#the-mediaquerylist-interface">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'MediaQueryList' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -319,13 +312,12 @@ Prior to Safari 14, `MediaQueryList` is based on `EventTarget`, so you must use 
 
 1.0
 
-See also
---------
+## See also
 
--   [Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
--   [Using media queries from code](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries)
--   [`window.matchMedia()`](window/matchmedia)
--   [`MediaQueryListEvent`](mediaquerylistevent)
--   The article [`Window.devicePixelRatio`](window/devicepixelratio) also has a useful example
+- [Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
+- [Using media queries from code](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries)
+- [`window.matchMedia()`](window/matchmedia)
+- [`MediaQueryListEvent`](mediaquerylistevent)
+- The article [`Window.devicePixelRatio`](window/devicepixelratio) also has a useful example
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList</a>

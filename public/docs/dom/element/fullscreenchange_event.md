@@ -1,5 +1,4 @@
-Element: fullscreenchange event
-===============================
+# Element: fullscreenchange event
 
 The `fullscreenchange` event is fired immediately after an [`Element`](../element) switches into or out of full-screen mode.
 
@@ -7,8 +6,7 @@ The `fullscreenchange` event is fired immediately after an [`Element`](../elemen
 
 This event is sent to the `Element` which is transitioning into or out of full-screen mode.
 
-Examples
---------
+## Examples
 
 In this example, a handler for the `fullscreenchange` event is added to the element whose ID is `fullscreen-div`.
 
@@ -47,13 +45,11 @@ What that means to the example code is that, if an element is currently in full-
       }
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://fullscreen.spec.whatwg.org/">Fullscreen API</a></td><td><span class="spec-Living">Living Standard</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -119,12 +115,11 @@ Samsung Internet
 
 7.0
 
-See also
---------
+## See also
 
--   [Document: fullscreenchange event](../document/fullscreenchange_event)
--   [Element: fullscreenerror event](fullscreenerror_event)
--   [Fullscreen API](../fullscreen_api)
--   [Guide to the Fullscreen API](../fullscreen_api/guide)
+- [Document: fullscreenchange event](../document/fullscreenchange_event)
+- [Element: fullscreenerror event](fullscreenerror_event)
+- [Fullscreen API](../fullscreen_api)
+- [Guide to the Fullscreen API](../fullscreen_api/guide)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/fullscreenchange_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/fullscreenchange_event</a>

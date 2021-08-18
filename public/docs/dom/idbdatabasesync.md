@@ -1,5 +1,4 @@
-IDBDatabaseSync
-===============
+# IDBDatabaseSync
 
 **Draft**
 
@@ -9,18 +8,15 @@ This page is not complete.
 
 The `DatabaseSync` interface in the [IndexedDB API](indexeddb_api) represents a synchronous [connection to a database](indexeddb_api#gloss_database_connection).
 
-Method overview
----------------
+## Method overview
 
 <table><tbody><tr class="odd"><td><code>IDBObjectStoreSync createObjectStore (in DOMString name, in DOMString keypath, in optional boolean autoIncrement) raises (IDBDatabaseException); </code></td></tr><tr class="even"><td><code>IDBObjectStoreSync openObjectStore (in DOMString name, in optional unsigned short mode) raises (IDBDatabaseException);</code></td></tr><tr class="odd"><td><code>void removeObjectStore (in DOMString storeName) raises (IDBDatabaseException);</code></td></tr><tr class="even"><td><code>void setVersion (in DOMString version);</code></td></tr><tr class="odd"><td><code>IDBTransactionSync transaction (in optional DOMStringList storeNames, in optional unsigned int timeout) raises (IDBDatabaseException);</code></td></tr></tbody></table>
 
-Attributes
-----------
+## Attributes
 
 <table><thead><tr class="header"><th>Attribute</th><th>Type</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>description</code></td><td><code>readonly DOMString </code></td><td>The human-readable description of the connected database.</td></tr><tr class="even"><td><code>name </code></td><td><code>readonly DOMString </code></td><td>The name of the connected database.</td></tr><tr class="odd"><td><code>objectStores </code></td><td><code>readonly DOMStringList </code></td><td>The names of the object stores that exist in the connected database.</td></tr><tr class="even"><td><code>version </code></td><td><code>readonly DOMString</code></td><td>The version of the connected database. Has the null value when the database is first created.</td></tr></tbody></table>
 
-Methods
--------
+## Methods
 
 ### createObjectStore()
 

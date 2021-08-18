@@ -1,5 +1,4 @@
-ImageBitmapRenderingContext
-===========================
+# ImageBitmapRenderingContext
 
 **Experimental**
 
@@ -10,20 +9,17 @@ The `ImageBitmapRenderingContext` interface is a canvas rendering context that p
 
 This interface is available in both the window and the [worker](web_workers_api) context.
 
-Methods
--------
+## Methods
 
 [`ImageBitmapRenderingContext.transferFromImageBitmap()`](imagebitmaprenderingcontext/transferfromimagebitmap)  
 Displays the given `ImageBitmap` in the canvas associated with this rendering context. Ownership of the `ImageBitmap` is transferred to the canvas. This was previously named `transferImageBitmap()`, but was renamed in a spec change. The old name is being kept as an alias to avoid code breakage.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/canvas.html#the-imagebitmaprenderingcontext-interface">HTML Living Standard<br />
 <span class="small">The definition of 'ImageBitmapRenderingContext' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -135,9 +131,8 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [`OffScreenCanvas`](offscreencanvas)
+- [`OffScreenCanvas`](offscreencanvas)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ImageBitmapRenderingContext" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ImageBitmapRenderingContext</a>

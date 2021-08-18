@@ -1,5 +1,4 @@
-Element: webkitmouseforcechanged event
-======================================
+# Element: webkitmouseforcechanged event
 
 **Non-standard**
 
@@ -13,13 +12,11 @@ The non-standard `webkitmouseforcechanged` event is fired by Safari each time th
 
 This event first fires after the `mousedown` event and stops firing before the `mouseup` event.
 
-Specifications
---------------
+## Specifications
 
-*Not part of any specification.* Apple has [a description at the Mac Developer Library](https://developer.apple.com/library/prerelease/mac/documentation/AppleApplications/Conceptual/SafariJSProgTopics/RespondingtoForceTouchEventsfromJavaScript.html).
+_Not part of any specification._ Apple has [a description at the Mac Developer Library](https://developer.apple.com/library/prerelease/mac/documentation/AppleApplications/Conceptual/SafariJSProgTopics/RespondingtoForceTouchEventsfromJavaScript.html).
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -75,12 +72,11 @@ Yes
 
 No
 
-See also
---------
+## See also
 
--   [Force Touch events](../force_touch_events)
--   `webkitmouseforcewillbegin`
--   `webkitmouseforcedown`
--   `webkitmouseforceup`
+- [Force Touch events](../force_touch_events)
+- `webkitmouseforcewillbegin`
+- `webkitmouseforcedown`
+- `webkitmouseforceup`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/webkitmouseforcechanged_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/webkitmouseforcechanged_event</a>

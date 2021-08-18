@@ -1,12 +1,10 @@
-GlobalEventHandlers.onsubmit
-============================
+# GlobalEventHandlers.onsubmit
 
 The `onsubmit` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `submit` events.
 
 The `submit` event fires when the user submits a form.
 
-Syntax
-------
+## Syntax
 
     target.onsubmit = functionRef;
 
@@ -14,8 +12,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives a [`SubmitEvent`](../submitevent) object as its sole argument.
 
-Example
--------
+## Example
 
 This example demonstrates [`oninvalid`](oninvalid) and `onsubmit` event handlers on a form.
 
@@ -55,14 +52,12 @@ This example demonstrates [`oninvalid`](oninvalid) and `onsubmit` event handlers
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onsubmit">HTML Living Standard<br />
 <span class="small">The definition of 'onsubmit' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -118,9 +113,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   `submit` event
+- `submit` event
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onsubmit" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onsubmit</a>

@@ -1,5 +1,4 @@
-HTMLInputElement.stepDown()
-===========================
+# HTMLInputElement.stepDown()
 
 The `HTMLInputElement.stepDown([n])` method decrements the value of a numeric type of [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element by the value of the `step` attribute or up to `n` multiples of the step attribute if a number is passed as the parameter. The method, when invoked, decrements the [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-value) by ([`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step) \* n), where n defaults to 1 if not specified, and `step` defaults to the default value for `step` if not specified.
 
@@ -23,27 +22,25 @@ If the value before invoking the `stepDown()` method is invalid, for example, if
 If the form control is non time, date, or numeric in nature, and therefore does not support the `step` attribute (see the list of supported input types in the table above), or if the `step` value is set to `any`, an `InvalidStateError` exception is thrown.
 
 [`HTMLInputElement.stepDown()`](stepdown)  
-Decrements the [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-value) by ([`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step) \* n), where n defaults to 1 if not specified. Throws an INVALID\_STATE\_ERR exception:
+Decrements the [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-value) by ([`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step) \* n), where n defaults to 1 if not specified. Throws an INVALID_STATE_ERR exception:
 
--   if the method is not applicable to for the current [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-type) value,
--   if the element has no [`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step) value,
--   if the [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-value) cannot be converted to a number,
--   if the resulting value is above the [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max) or below the [`min`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min).
+- if the method is not applicable to for the current [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-type) value,
+- if the element has no [`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-step) value,
+- if the [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-value) cannot be converted to a number,
+- if the resulting value is above the [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-max) or below the [`min`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-min).
 
-Syntax
-------
+## Syntax
 
     element.stepDown( [ stepDecrement ] );
 
 ### Parameters
 
-*`stepDecrement`*  
-The optional `stepDecrement` parameter is a numeric value. If no parameter is passed, *stepDecrement* defaults to 1.
+_`stepDecrement`_  
+The optional `stepDecrement` parameter is a numeric value. If no parameter is passed, _stepDecrement_ defaults to 1.
 
 If the value is a float, the value will increment as if `Math.floor(stepDecrement)` was passed. If the value is negative, the value will be incremented instead of decremented.
 
-Example
--------
+## Example
 
 Click the button in this example to increment the [number](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number) input type:
 
@@ -94,16 +91,14 @@ Try setting the step decrementer to `1.2`. What happens when you invoke the meth
 
 Try setting the value to `44`, which is not valid. What happens when you invoke the method?
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/input.html#dom-input-stepdown">HTML Living Standard<br />
 <span class="small">The definition of 'stepDown()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/sec-forms.html#dom-htmlinputelement-stepdown">HTML 5.1<br />
 <span class="small">The definition of 'stepDown()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/html52/sec-forms.html#dom-htmlinputelement-stepdown">HTML5<br />
 <span class="small">The definition of 'stepDown()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -163,12 +158,11 @@ Does not have a specific UI. There are still differences with the latest spec; s
 
 1.0
 
-See also
---------
+## See also
 
--   [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
--   [`HTMLInputElement`](../htmlinputelement)
--   [`HTMLInputElement.stepUp()`](stepup)
--   `step`, `min` and `max` attributes
+- [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
+- [`HTMLInputElement`](../htmlinputelement)
+- [`HTMLInputElement.stepUp()`](stepup)
+- `step`, `min` and `max` attributes
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/stepDown" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/stepDown</a>

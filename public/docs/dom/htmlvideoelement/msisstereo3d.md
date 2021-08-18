@@ -1,5 +1,4 @@
-HTMLVideoElement.msIsStereo3D
-=============================
+# HTMLVideoElement.msIsStereo3D
 
 **Non-standard**
 
@@ -9,20 +8,17 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 This proprietary property is specific to Internet Explorer and Microsoft Edge.
 
-Syntax
-------
+## Syntax
 
     HTMLVideoElement.msIsStereo3D: boolean;
 
-Value
------
+## Value
 
-[`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) value set to *true* indicates that the video source is stereo 3D.
+[`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) value set to _true_ indicates that the video source is stereo 3D.
 
 This uses metadata set in MP4 or MPEG-2 file containers and H.264 Supplemental enhancement information (SEI) messages to determine the stereo capability of the source.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -78,10 +74,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`HTMLVideoElement`](../htmlvideoelement)
--   [Microsoft API extensions](../microsoft_extensions)
+- [`HTMLVideoElement`](../htmlvideoelement)
+- [Microsoft API extensions](../microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/msIsStereo3D" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/msIsStereo3D</a>

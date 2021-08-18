@@ -1,21 +1,17 @@
-MediaKeySession.keyStatuses
-===========================
+# MediaKeySession.keyStatuses
 
 The `MediaKeySession.keyStatuses` read-only property returns a reference to a read-only [`MediaKeyStatusMap`](../mediakeystatusmap) of the current session's keys and their statuses.
 
-Syntax
-------
+## Syntax
 
     var mediaKeyStatusMapObj = mediaKeySessionObj.keyStatuses;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-mediakeysession-keystatuses">Encrypted Media Extensions<br />
 <span class="small">The definition of 'keyStatuses' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

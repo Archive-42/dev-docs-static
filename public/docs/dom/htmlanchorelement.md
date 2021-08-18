@@ -1,17 +1,15 @@
-HTMLAnchorElement
-=================
+# HTMLAnchorElement
 
 The `HTMLAnchorElement` interface represents hyperlink elements and provides special properties and methods (beyond those of the regular [`HTMLElement`](htmlelement) object interface that they inherit from) for manipulating the layout and presentation of such elements. This interface corresponds to `<a>` element; not to be confused with `<link>`, which is represented by `HTMLLinkElement`)
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement).*
+_Inherits properties from its parent, [`HTMLElement`](htmlelement)._
 
 [`HTMLElement.accessKey`](htmlelement/accesskey)  
 Is a [`DOMString`](domstring) representing a single character that switches input focus to the hyperlink.
 
- [`HTMLAnchorElement.download`](htmlanchorelement/download) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`HTMLAnchorElement.download`](htmlanchorelement/download) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is a [`DOMString`](domstring) indicating that the linked resource is intended to be downloaded rather than displayed in the browser. The value represent the proposed name of the file. If the name is not a valid filename of the underlying OS, browser will adapt it.
 
 [`HTMLAnchorElement.hash`](htmlanchorelement/hash)  
@@ -29,7 +27,7 @@ Is a [`USVString`](usvstring) that is the result of parsing the [`href`](https:/
 <span class="page-not-created">`HTMLAnchorElement.hreflang`</span>  
 Is a [`DOMString`](domstring) that reflects the [`hreflang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attr-hreflang) HTML attribute, indicating the language of the linked resource.
 
- [`HTMLAnchorElement.origin`](htmlanchorelement/origin) <span class="badge inline readonly">Read only </span>   
+[`HTMLAnchorElement.origin`](htmlanchorelement/origin) <span class="badge inline readonly">Read only </span>  
 Returns a [`USVString`](usvstring) containing the origin of the URL, that is its scheme, its domain and its port.
 
 [`HTMLAnchorElement.password`](htmlanchorelement/password)  
@@ -44,13 +42,13 @@ Is a [`USVString`](usvstring) representing the port component, if any, of the re
 [`HTMLAnchorElement.protocol`](htmlanchorelement/protocol)  
 Is a [`USVString`](usvstring) representing the protocol component, including trailing colon ('`:`'), of the referenced URL.
 
- [`HTMLAnchorElement.referrerPolicy`](htmlanchorelement/referrerpolicy) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`HTMLAnchorElement.referrerPolicy`](htmlanchorelement/referrerpolicy) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is a [`DOMString`](domstring) that reflects the [`referrerpolicy`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attr-referrerpolicy) HTML attribute indicating which referrer to use.
 
 [`HTMLAnchorElement.rel`](htmlanchorelement/rel)  
 Is a [`DOMString`](domstring) that reflects the [`rel`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attr-rel) HTML attribute, specifying the relationship of the target object to the linked object.
 
- [`HTMLAnchorElement.relList`](htmlanchorelement/rellist) <span class="badge inline readonly">Read only </span>   
+[`HTMLAnchorElement.relList`](htmlanchorelement/rellist) <span class="badge inline readonly">Read only </span>  
 Returns a [`DOMTokenList`](domtokenlist) that reflects the [`rel`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attr-rel) HTML attribute, as a list of tokens.
 
 [`HTMLAnchorElement.search`](htmlanchorelement/search)  
@@ -73,27 +71,26 @@ Is a [`USVString`](usvstring) containing the username specified before the domai
 
 ### Obsolete properties
 
- <span class="page-not-created">`HTMLAnchorElement.charset`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLAnchorElement.charset`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) representing the character encoding of the linked resource.
 
- <span class="page-not-created">`HTMLAnchorElement.coords`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLAnchorElement.coords`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) representing a comma-separated list of coordinates.
 
- <span class="page-not-created">`HTMLAnchorElement.name`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLAnchorElement.name`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) representing the anchor name.
 
- <span class="page-not-created">`HTMLAnchorElement.rev`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLAnchorElement.rev`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) representing that the [`rev`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attr-rev) HTML attribute, specifying the relationship of the link object to the target object.
 
 **Note**: Currently the W3C HTML 5.2 spec states that `rev` is no longer obsolete, whereas the WHATWG living standard still has it labeled obsolete. Until this discrepancy is resolved, you should still assume it is obsolete.
 
- <span class="page-not-created">`HTMLAnchorElement.shape`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLAnchorElement.shape`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) representing the shape of the active area.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`HTMLElement`](htmlelement).*
+_Inherits methods from its parent, [`HTMLElement`](htmlelement)._
 
 [`HTMLOrForeignElement.blur`](htmlorforeignelement/blur)  
 Removes the keyboard focus from the current element.
@@ -106,14 +103,12 @@ Returns a [`USVString`](usvstring) containing the whole URL. It is a synonym for
 
 The `blur()` and `focus()` methods are inherited from [`HTMLElement`](htmlelement) from HTML5 on, but were defined on `HTMLAnchorElement` in DOM Level 2 HTML and earlier specifications.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#htmlanchorelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLAnchorElement' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -863,9 +858,8 @@ No
 
 2.0
 
-See also
---------
+## See also
 
--   The HTML element implementing this interface: [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a)
+- The HTML element implementing this interface: [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement</a>

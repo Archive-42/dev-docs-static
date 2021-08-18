@@ -1,12 +1,10 @@
-HTMLTableRowElement.rowIndex
-============================
+# HTMLTableRowElement.rowIndex
 
 The `HTMLTableRowElement.rowIndex` read-only property represents the position of a row in relation to the whole [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table).
 
 Even when the [`<thead>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead), [`<tbody>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody), and [`<tfoot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot) elements are out of order in the HTML, browsers render the table in the right order. Therefore the rows count from `<thead>` to `<tbody>`, from `<tbody>` to `<tfoot>`.
 
-Syntax
-------
+## Syntax
 
     var index = HTMLTableRowElement.rowIndex
 
@@ -14,8 +12,7 @@ Syntax
 
 Returns the index of the row, or `-1` if the row is not part of a table.
 
-Example
--------
+## Example
 
 This example uses JavaScript to label all the row numbers in a table.
 
@@ -47,8 +44,7 @@ This example uses JavaScript to label all the row numbers in a table.
 
 ### Result
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

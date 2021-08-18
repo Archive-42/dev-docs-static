@@ -1,5 +1,4 @@
-IDBDatabase: close event
-========================
+# IDBDatabase: close event
 
 The `close` event is fired on `IDBDatabase` when the database connection is unexpectedly closed. This could happen, for example, if the underlying storage is removed or if the user clears the database in the browser's history preferences.
 
@@ -7,8 +6,7 @@ Note that it is not fired if the database connection is closed normally using `I
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../event"><code>Event</code></a></td></tr><tr class="even"><td>Event handler property</td><td><code>onerror</code></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 This example opens a database and listens for the `close` event:
 
@@ -66,8 +64,7 @@ The same example, using the `onclose` property instead of `addEventListener()`:
 
     };
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -123,10 +120,9 @@ Yes
 
 2.0
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   `onclose` event handler property
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- `onclose` event handler property
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/close_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/close_event</a>

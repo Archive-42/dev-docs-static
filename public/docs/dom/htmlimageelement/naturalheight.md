@@ -1,10 +1,8 @@
-HTMLImageElement.naturalHeight
-==============================
+# HTMLImageElement.naturalHeight
 
 The [`HTMLImageElement`](../htmlimageelement) interface's `naturalHeight` property is a read-only value which returns the intrinsic (natural), density-corrected height of the image in [CSS pixels](https://developer.mozilla.org/en-US/docs/Glossary/CSS_pixel). This is the height the image is if drawn with nothing constraining its height; if you don't specify a height for the image, or place the image inside a container that either limits or expressly specifies the image height, it will be rendered this tall.
 
-Syntax
-------
+## Syntax
 
     let naturalHeight = htmlImageElement.naturalHeight;
 
@@ -14,8 +12,7 @@ An integer value indicating the intrinsic height, in CSS pixels, of the image. T
 
 If the intrinsic height is not available—either because the image does not specify an intrinsic height or because the image data is not available in order to obtain this information, `naturalHeight` returns 0.
 
-Example
--------
+## Example
 
 This example displays both the natural, density-adjusted size of an image as well as its rendered size as altered by the page's CSS and other factors.
 
@@ -62,14 +59,12 @@ The JavaScript code dumps the natural and as-displayed sizes into the [`<div>`](
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-img-naturalheight">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLImageElement.naturalheight' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

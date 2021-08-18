@@ -1,5 +1,4 @@
-MediaRecorder.onwarning
-=======================
+# MediaRecorder.onwarning
 
 **Deprecated**
 
@@ -7,14 +6,12 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `MediaRecorder.onwarning `event handler (part of the [MediaRecorder API](../mediastream_recording_api)) handles the recording `warning` event, allowing you to run code in response to non-fatal errors being thrown during media recording via a `MediaRecorder` (errors that don't halt recording).
 
-Syntax
-------
+## Syntax
 
     mediaRecorder.onwarning = function(event) { ... }
     mediaRecorder.addEventListener('warning', function(event) { ... })
 
-Example
--------
+## Example
 
     ...
 
@@ -24,14 +21,12 @@ Example
 
     ...
 
-Properties
-----------
+## Properties
 
 `message`  
 Contains information about the error that occurred.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -87,12 +82,11 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [Using the MediaRecorder API](../mediastream_recording_api/using_the_mediastream_recording_api)
--   [Web Dictaphone](https://mdn.github.io/web-dictaphone/): MediaRecorder + getUserMedia + Web Audio API visualization demo, by [Chris Mills](https://twitter.com/chrisdavidmills) ([source on Github](https://github.com/mdn/web-dictaphone/).)
--   [simpl.info MediaStream Recording demo](https://simpl.info/mediarecorder/), by [Sam Dutton](https://twitter.com/sw12).
--   [`Navigator.getUserMedia`](../navigator/getusermedia)
+- [Using the MediaRecorder API](../mediastream_recording_api/using_the_mediastream_recording_api)
+- [Web Dictaphone](https://mdn.github.io/web-dictaphone/): MediaRecorder + getUserMedia + Web Audio API visualization demo, by [Chris Mills](https://twitter.com/chrisdavidmills) ([source on Github](https://github.com/mdn/web-dictaphone/).)
+- [simpl.info MediaStream Recording demo](https://simpl.info/mediarecorder/), by [Sam Dutton](https://twitter.com/sw12).
+- [`Navigator.getUserMedia`](../navigator/getusermedia)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/onwarning" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/onwarning</a>

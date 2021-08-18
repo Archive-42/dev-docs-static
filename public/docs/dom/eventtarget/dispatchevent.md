@@ -1,21 +1,19 @@
-EventTarget.dispatchEvent()
-===========================
+# EventTarget.dispatchEvent()
 
 Dispatches an [`Event`](../event) at the specified [`EventTarget`](../eventtarget), (synchronously) invoking the affected [`EventListener`](../eventlistener)s in the appropriate order. The normal event processing rules (including the capturing and optional bubbling phase) also apply to events dispatched manually with `dispatchEvent()`.
 
-Syntax
-------
+## Syntax
 
     cancelled = !target.dispatchEvent(event)
 
 ### Parameter
 
--   `event` is the [`Event`](../event) object to be dispatched.
--   `target` is used to initialize the [`Event.target`](../event/target) and determine which event listeners to invoke.
+- `event` is the [`Event`](../event) object to be dispatched.
+- `target` is used to initialize the [`Event.target`](../event/target) and determine which event listeners to invoke.
 
 ### Return Value
 
--   The return value is `false` if `event` is cancelable and at least one of the event handlers which received `event` called [`Event.preventDefault()`](../event/preventdefault). Otherwise it returns `true`.
+- The return value is `false` if `event` is cancelable and at least one of the event handlers which received `event` called [`Event.preventDefault()`](../event/preventdefault). Otherwise it returns `true`.
 
 The `dispatchEvent()` method throws `UNSPECIFIED_EVENT_TYPE_ERR` if the event's type was not specified by initializing the event before the method was called, or if the event's type is `null` or an empty string.
 
@@ -23,8 +21,7 @@ The `dispatchEvent()` method throws `UNSPECIFIED_EVENT_TYPE_ERR` if the event's 
 
 Exceptions thrown by event handlers are reported as uncaught exceptions. The event handlers run on a nested callstack; they block the caller until they complete, but exceptions do not propagate to the caller.
 
-Notes
------
+## Notes
 
 Unlike "native" events, which are fired by the DOM and invoke event handlers asynchronously via the [event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop), `dispatchEvent()` invokes event handlers synchronously. All applicable event handlers will execute and return before the code continues on after the call to `dispatchEvent()`.
 
@@ -32,19 +29,16 @@ Unlike "native" events, which are fired by the DOM and invoke event handlers asy
 
 See also the [Event object reference](../event).
 
-Example
--------
+## Example
 
 See [Creating and triggering events](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-eventtarget-dispatchevent">DOM<br />
 <span class="small">The definition of 'EventTarget.dispatchEvent()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition in the DOM 2 Events specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

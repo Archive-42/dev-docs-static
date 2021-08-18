@@ -1,5 +1,4 @@
-Element: auxclick event
-=======================
+# Element: auxclick event
 
 The `auxclick` event is fired at an [`Element`](../element) when a non-primary pointing device button (any mouse button other than the primary—usually leftmost—button) has been pressed and released both within the same element.
 
@@ -7,8 +6,7 @@ The `auxclick` event is fired at an [`Element`](../element) when a non-primary p
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>Yes</td></tr><tr class="odd"><td>Interface</td><td><a href="../mouseevent"><code>MouseEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="../globaleventhandlers/onauxclick"><code>onauxclick</code></a></td></tr></tbody></table>
 
-Preventing default actions
---------------------------
+## Preventing default actions
 
 For the vast majority of browsers that map middle click to opening a link in a new tab, including Firefox, it is possible to cancel this behavior by calling [`preventDefault()`](../event/preventdefault) from within an `auxclick` event handler.
 
@@ -16,8 +14,7 @@ When listening for `auxclick` events originating on elements that do not support
 
 Additionally, you may need to avoid opening a system context menu after a right click. Due to timing differences between operating systems, this too is not a preventable default behavior of `auxclick`. Instead, this can be done by preventing the default behavior of the `contextmenu` event.
 
-Examples
---------
+## Examples
 
 In this example we define functions for two event handlers — [`onclick`](../globaleventhandlers/onclick) and [`onauxclick`](../globaleventhandlers/onauxclick). The former changes the color of the button background, while the latter changes the button foreground (text) color. You also can see the two functions in action by trying the demo out with a multi-button mouse ([see it live on GitHub](https://mdn.github.io/dom-examples/auxclick/); also [see the source code](https://github.com/mdn/dom-examples/blob/master/auxclick/index.html)).
 
@@ -55,14 +52,12 @@ Notice that in addition to capturing the `auxclick` event using [`onauxclick`](.
 
 **Note**: If you are using a three-button mouse, you'll notice that the `onauxclick` handler is run when any of the non-left mouse buttons are clicked (usually including any "special" buttons on gaming mice).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-auxclick">UI Events<br />
 <span class="small">The definition of 'auxclick' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -100,7 +95,7 @@ Samsung Internet
 
 53
 
-Starting in Firefox 68, the `auxclick` event is used to trigger the *new tab on middle-click* action; previously, this had been done with the `click` event. Apps can prevent middle-click from opening new tabs (or middle-click to paste, if that feature is enabled) by intercepting `auxclick` on links, and `auxclick` event handlers can now open popups without triggering the popup blocker.
+Starting in Firefox 68, the `auxclick` event is used to trigger the _new tab on middle-click_ action; previously, this had been done with the `click` event. Apps can prevent middle-click from opening new tabs (or middle-click to paste, if that feature is enabled) by intercepting `auxclick` on links, and `auxclick` event handlers can now open popups without triggering the popup blocker.
 
 No
 
@@ -120,16 +115,15 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
--   `click`
--   `contextmenu`
--   `dblclick`
--   `mousedown`
--   `mouseup`
--   `pointerdown`
--   `pointerup`
+- [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
+- `click`
+- `contextmenu`
+- `dblclick`
+- `mousedown`
+- `mouseup`
+- `pointerdown`
+- `pointerup`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/auxclick_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/auxclick_event</a>

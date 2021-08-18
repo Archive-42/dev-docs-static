@@ -1,5 +1,4 @@
-IDBLocaleAwareKeyRange
-======================
+# IDBLocaleAwareKeyRange
 
 **Non-standard**
 
@@ -12,22 +11,19 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `IDBLocaleAwareKeyRange` interface of the [IndexedDB API](indexeddb_api) is a Firefox-specific version of [`IDBKeyRange`](idbkeyrange) — it functions in exactly the same fashion, and has the same properties and methods, but it is intended for use with [`IDBIndex`](idbindex) objects when the original index had a `locale` value specified upon its creation (see [`createIndex()`'s optionalParameters](idbobjectstore/createindex#parameters)) — that is, it has [locale aware sorting](indexeddb_api/using_indexeddb#locale-aware_sorting) enabled.
 
-Methods
--------
+## Methods
 
-*This interface inherits all the methods of its parent interface, [`IDBKeyRange`](idbkeyrange).*
+_This interface inherits all the methods of its parent interface, [`IDBKeyRange`](idbkeyrange)._
 
-Properties
-----------
+## Properties
 
-*This interface inherits all the properties of its parent interface, [`IDBKeyRange`](idbkeyrange).*
+_This interface inherits all the properties of its parent interface, [`IDBKeyRange`](idbkeyrange)._
 
 Bear in mind however that `IDBLocaleAwareKeyRange` has its own implementation of [`IDBKeyRange.bound`](idbkeyrange/bound). This is because when you use `bound()`, it checks if lower bound &lt; upper bound, and throws an exception if that’s not the case. With locale-aware indexes, the meaning of &lt; depends on the locale, so for example in Lithuanian Y is sorted between I and K. The only difference between `IDBKeyRange` and `IDBLocaleAwareKeyRange` is that the latter doesn’t do the aforementioned check.
 
 Developers should always use `IDBLocaleAwareKeyRange` when dealing with locale-aware indexes.
 
-Examples
---------
+## Examples
 
     function displayData() {
       var keyRangeValue = IDBLocaleAwareKeyRange.bound("A", "F");
@@ -57,13 +53,11 @@ Examples
       };
     };
 
-Specifications
---------------
+## Specifications
 
 Not currently part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -119,15 +113,14 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Using IndexedDB](indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](idbdatabase)
--   Using transactions: [`IDBTransaction`](idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
--   Using cursors: [`IDBCursor`](idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](idbdatabase)
+- Using transactions: [`IDBTransaction`](idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
+- Using cursors: [`IDBCursor`](idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBLocaleAwareKeyRange" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBLocaleAwareKeyRange</a>

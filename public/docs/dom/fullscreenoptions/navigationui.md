@@ -1,10 +1,8 @@
-FullscreenOptions.navigationUI
-==============================
+# FullscreenOptions.navigationUI
 
 The [`FullscreenOptions`](../fullscreenoptions) dictionary's `navigationUI` property is used when calling [`requestFullscreen()`](../element/requestfullscreen) to specify to what extent the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) should include its standard user interface while the element is presented in full-screen mode.
 
-Syntax
-------
+## Syntax
 
     let fullscreenOptions = {
       navigationUI: value
@@ -23,8 +21,7 @@ The browser will present page navigation controls and possibly other user interf
 `"auto"`  
 The browser will choose which of the above settings to apply. This is the default value.
 
-Example
--------
+## Example
 
 In this example, the entire document is placed into full-screen mode by calling [`requestFullscreen()`](../element/requestfullscreen) on the document's [`Document.documentElement`](../document/documentelement), which is the document's root [`<html>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html) element.
 
@@ -36,14 +33,12 @@ In this example, the entire document is placed into full-screen mode by calling 
 
 The promise's resolve handler does nothing, but if the promise is rejected, an error message is displayed by calling [`alert()`](../window/alert).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fullscreen.spec.whatwg.org/#dictdef-fullscreenoptions">Fullscreen API<br />
 <span class="small">The definition of 'FullscreenOptions' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -99,11 +94,10 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   [Fullscreen API](../fullscreen_api)
--   [Guide to the Fullscreen API](../fullscreen_api/guide)
--   [`Element.requestFullscreen()`](../element/requestfullscreen)
+- [Fullscreen API](../fullscreen_api)
+- [Guide to the Fullscreen API](../fullscreen_api/guide)
+- [`Element.requestFullscreen()`](../element/requestfullscreen)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FullscreenOptions/navigationUI" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FullscreenOptions/navigationUI</a>

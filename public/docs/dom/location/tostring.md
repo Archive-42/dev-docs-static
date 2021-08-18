@@ -1,27 +1,22 @@
-Location: toString()
-====================
+# Location: toString()
 
 The `toString()` stringifier method of the [`Location`](../location) interface returns a [`USVString`](../usvstring) containing the whole URL. It is a read-only version of [`Location.href`](href).
 
-Syntax
-------
+## Syntax
 
     string = object.toString();
 
-Examples
---------
+## Examples
 
     // Let's imagine an <a id="myAnchor" href="/en-US/docs/Location/toString"> element is in the document
     var anchor = document.getElementById("myAnchor");
     var result = anchor.toString(); // Returns: 'https://developer.mozilla.org/en-US/docs/Location/toString'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-location-href">HTML Living Standard</a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

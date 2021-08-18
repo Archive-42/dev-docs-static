@@ -1,12 +1,10 @@
-GlobalEventHandlers.onselect
-============================
+# GlobalEventHandlers.onselect
 
 The `onselect` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes [`select` events](../element/select_event).
 
 The `select` event only fires after text inside an `<input type="text">` or [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) is selected.
 
-Syntax
-------
+## Syntax
 
     target.onselect = functionRef;
 
@@ -14,8 +12,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives a [`UIEvent`](../uievent) object as its sole argument.
 
-Examples
---------
+## Examples
 
 This example logs the text you select inside a [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) element.
 
@@ -37,14 +34,12 @@ This example logs the text you select inside a [`<textarea>`](https://developer.
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onselect">HTML Living Standard<br />
 <span class="small">The definition of 'onselect' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -100,9 +95,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`select` event](../element/select_event)
+- [`select` event](../element/select_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onselect" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onselect</a>

@@ -1,14 +1,12 @@
-FileSystemEntry.getMetadata()
-=============================
+# FileSystemEntry.getMetadata()
 
 **Deprecated**
 
 This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the [compatibility table](#browser_compatibility) at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.
 
-The [`FileSystemEntry`](../filesystementry) interface's method `getMetadata``()` obtains a [`Metadata`](../metadata) object with information about the file system entry, such as its modification date and time and its size.
+The [`FileSystemEntry`](../filesystementry) interface's method ` getMetadata``() ` obtains a [`Metadata`](../metadata) object with information about the file system entry, such as its modification date and time and its size.
 
-Syntax
-------
+## Syntax
 
     FileSystemEntry.getMetadata(successCallback[, errorCallback]);
 
@@ -17,7 +15,7 @@ Syntax
 `successCallback`  
 A function which is called when the copy operation is successfully completed. Receives a single input parameter: a [`Metadata`](../metadata) object with information about the file.
 
- `errorCallback` <span class="badge inline optional">Optional</span>   
+`errorCallback` <span class="badge inline optional">Optional</span>  
 An optional callback which is executed if an error occurs while looking up the metadata. There's a single parameter: a [`FileError`](../fileerror) describing what went wrong.
 
 ### Return value
@@ -32,8 +30,7 @@ The [`FileSystemEntry`](../filesystementry) refers to an item which doesn't exis
 `FileError.SECURITY_ERR`  
 Security restrictions prohibit obtaining the requested metadata.
 
-Example
--------
+## Example
 
 This example checks the size of a log file in a temporary folder and, if it exceeds a megabyte, moves it into a different directory.
 
@@ -47,8 +44,7 @@ This example checks the size of a log file in a temporary folder and, if it exce
       });
     }, handleError);
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -104,10 +100,9 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](../file_and_directory_entries_api)
--   [Introduction to the File System API](../file_and_directory_entries_api/introduction)
+- [File and Directory Entries API](../file_and_directory_entries_api)
+- [Introduction to the File System API](../file_and_directory_entries_api/introduction)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry/getMetadata" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry/getMetadata</a>

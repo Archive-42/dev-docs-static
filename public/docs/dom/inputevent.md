@@ -1,48 +1,42 @@
-InputEvent
-==========
+# InputEvent
 
 The `InputEvent` interface represents an event notifying the user of editable content changes.
 
-Constructor
------------
+## Constructor
 
 [`InputEvent()`](inputevent/inputevent)  
 Creates an `InputEvent` object.
 
-Properties
-----------
+## Properties
 
-*This interface inherits properties from its parents, [`UIEvent`](uievent) and [`Event`](event).*
+_This interface inherits properties from its parents, [`UIEvent`](uievent) and [`Event`](event)._
 
- [`InputEvent.data`](inputevent/data)<span class="badge inline readonly">Read only </span>   
+[`InputEvent.data`](inputevent/data)<span class="badge inline readonly">Read only </span>  
 Returns a [`DOMString`](domstring) with the inserted characters. This may be an empty string if the change doesn't insert text (such as when deleting characters, for example).
 
- [`InputEvent.dataTransfer`](inputevent/datatransfer)<span class="badge inline readonly">Read only </span>   
+[`InputEvent.dataTransfer`](inputevent/datatransfer)<span class="badge inline readonly">Read only </span>  
 Returns a [`DataTransfer`](datatransfer) object containing information about richtext or plaintext data being added to or removed from editable content.
 
- [`InputEvent.inputType`](inputevent/inputtype)<span class="badge inline readonly">Read only </span>   
+[`InputEvent.inputType`](inputevent/inputtype)<span class="badge inline readonly">Read only </span>  
 Returns the type of change for editable content such as, for example, inserting, deleting, or formatting text. See the property page for a complete list of input types.
 
- [`InputEvent.isComposing`](inputevent/iscomposing)<span class="badge inline readonly">Read only </span>   
+[`InputEvent.isComposing`](inputevent/iscomposing)<span class="badge inline readonly">Read only </span>  
 Returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) value indicating if the event is fired after `compositionstart` and before `compositionend`.
 
-Methods
--------
+## Methods
 
-*This interface inherits methods from its parents, [`UIEvent`](uievent) and [`Event`](event).*
+_This interface inherits methods from its parents, [`UIEvent`](uievent) and [`Event`](event)._
 
 [`InputEvent.getTargetRanges()`](inputevent/gettargetranges)  
 Returns an array of static ranges that will be affected by a change to the DOM if the input event is not canceled.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/input-events/#interface-InputEvent">Input Events Level 2<br />
 <span class="small">The definition of 'InputEvent' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr><tr class="even"><td><a href="https://w3c.github.io/uievents/#interface-inputevent">UI Events<br />
 <span class="small">The definition of 'InputEvent' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -258,10 +252,9 @@ No
 
 8.0
 
-See also
---------
+## See also
 
--   [`beforeinput` event](htmlelement/beforeinput_event)
--   [`input` event](htmlelement/input_event)
+- [`beforeinput` event](htmlelement/beforeinput_event)
+- [`input` event](htmlelement/input_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/InputEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/InputEvent</a>

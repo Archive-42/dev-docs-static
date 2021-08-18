@@ -1,5 +1,4 @@
-Element: error event
-====================
+# Element: error event
 
 The `error` event is fired on an [`Element`](../element) object when a resource failed to load, or can't be used. For example, if a script has an execution error or an image can't be found or is invalid.
 
@@ -7,8 +6,7 @@ The `error` event is fired on an [`Element`](../element) object when a resource 
 
 The event object is a [`UIEvent`](../uievent) instance if it was generated from a user interface element, or an [`Event`](../event) instance otherwise.
 
-Examples
---------
+## Examples
 
 ### Live example
 
@@ -41,13 +39,11 @@ Examples
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-error">UI Events</a></td><td><span class="spec-wd">Working Draft</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -103,9 +99,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   This event on `Window` targets: [`error`](../window/error_event) event
+- This event on `Window` targets: [`error`](../window/error_event) event
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/error_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/error_event</a>

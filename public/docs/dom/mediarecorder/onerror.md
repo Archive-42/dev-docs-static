@@ -1,10 +1,8 @@
-MediaRecorder.onerror
-=====================
+# MediaRecorder.onerror
 
 The [`MediaRecorder`](../mediarecorder) interface's `onerror` event handler is called by the [MediaStream Recording API](../mediastream_recording_api) when an error occurs. You can provide an event handler to deal with errors that occur while creating or using a media recorder. The error object is of type [`MediaRecorderErrorEvent`](../mediarecordererrorevent), and its [`error`](../mediarecordererrorevent/error) property contains a [`DOMException`](../domexception) object that describes the error that occurred.
 
-Syntax
-------
+## Syntax
 
     MediaRecorder.onerror = errorHandlerFunction;
 
@@ -29,8 +27,7 @@ An non-security related error occurred that cannot otherwise be categorized. Rec
 
 These errors may occur either directly because of a call to a `MediaRecorder` method, or indirectly due to a problem arising during the recording process.
 
-Example
--------
+## Example
 
 This example creates a new [`MediaRecorder`](../mediarecorder) instance and starts recording using the [user agent's](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) default media format. It returns either the `MediaRecorder` or the name of the error that occurred if any exceptions are thrown during the setup process.
 
@@ -75,14 +72,12 @@ This example creates a new [`MediaRecorder`](../mediarecorder) instance and star
       return recorder;
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-record/#dom-mediarecorder-onerror">MediaStream Recording<br />
 <span class="small">The definition of 'MediaRecorder.onerror' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -138,12 +133,11 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [Using the MediaRecorder API](../mediastream_recording_api/using_the_mediastream_recording_api)
--   [Web Dictaphone](https://mdn.github.io/web-dictaphone/): MediaRecorder + getUserMedia + Web Audio API visualization demo, by [Chris Mills](https://twitter.com/chrisdavidmills) ([source on Github](https://github.com/mdn/web-dictaphone/).)
--   [simpl.info MediaStream Recording demo](https://simpl.info/mediarecorder/), by [Sam Dutton](https://twitter.com/sw12).
--   [`Navigator.getUserMedia`](../navigator/getusermedia)
+- [Using the MediaRecorder API](../mediastream_recording_api/using_the_mediastream_recording_api)
+- [Web Dictaphone](https://mdn.github.io/web-dictaphone/): MediaRecorder + getUserMedia + Web Audio API visualization demo, by [Chris Mills](https://twitter.com/chrisdavidmills) ([source on Github](https://github.com/mdn/web-dictaphone/).)
+- [simpl.info MediaStream Recording demo](https://simpl.info/mediarecorder/), by [Sam Dutton](https://twitter.com/sw12).
+- [`Navigator.getUserMedia`](../navigator/getusermedia)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/onerror" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/onerror</a>

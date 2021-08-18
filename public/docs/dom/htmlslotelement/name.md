@@ -1,10 +1,8 @@
-HTMLSlotElement.name
-====================
+# HTMLSlotElement.name
 
 The `name` property of the [`HTMLSlotElement`](../htmlslotelement) interface returns or sets the slot name. A slot is a placeholder inside a web component that users can fill with their own markup.
 
-Syntax
-------
+## Syntax
 
     var name = htmlSlotElement.name
     htmlSlotElement.name = name
@@ -13,8 +11,7 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Examples
---------
+## Examples
 
 The following snippet is taken from our [slotchange example](https://github.com/mdn/web-components-examples/tree/master/slotchange) ([see it live also](https://mdn.github.io/web-components-examples/slotchange/)).
 
@@ -28,14 +25,12 @@ Here we grab references to all the slots, then add a slotchange event listener t
 
 Every time the element inserted in the slot changes, we log a report to the console saying which slot has changed, and what the new node inside the slot is.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-slot-name">HTML Living Standard<br />
 <span class="small">The definition of 'name' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

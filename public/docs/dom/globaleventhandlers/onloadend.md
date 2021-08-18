@@ -1,10 +1,8 @@
-GlobalEventHandlers.onloadend
-=============================
+# GlobalEventHandlers.onloadend
 
 The `onloadend` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `loadend` event is raised (when progress has stopped on the loading of a resource.)
 
-Syntax
-------
+## Syntax
 
     img.onloadend = funcRef;
 
@@ -12,8 +10,7 @@ Syntax
 
 `funcRef` is the handler function to be called when the resource's `loadend` event fires.
 
-Examples
---------
+## Examples
 
 ### HTML content
 
@@ -35,8 +32,7 @@ Examples
       console.log('Image load finished');
     });
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

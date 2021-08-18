@@ -1,5 +1,4 @@
-Element: dblclick event
-=======================
+# Element: dblclick event
 
 The `dblclick` event fires when a pointing device button (such as a mouse's primary button) is double-clicked; that is, when it's rapidly clicked twice on a single element within a very short span of time.
 
@@ -7,8 +6,7 @@ The `dblclick` event fires when a pointing device button (such as a mouse's prim
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>Yes</td></tr><tr class="odd"><td>Interface</td><td><a href="../mouseevent"><code>MouseEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="../globaleventhandlers/ondblclick"><code>ondblclick</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 This example toggles the size of a card when you double click on it.
 
@@ -46,15 +44,13 @@ This example toggles the size of a card when you double click on it.
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-dblclick">UI Events<br />
 <span class="small">The definition of 'dblclick' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#event-type-dblclick">Document Object Model (DOM) Level 3 Events Specification<br />
 <span class="small">The definition of 'dblclick' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -112,16 +108,15 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
--   [`auxclick`](auxclick_event)
--   [`click`](click_event)
--   [`contextmenu`](contextmenu_event)
--   [`mousedown`](mousedown_event)
--   [`mouseup`](mouseup_event)
--   [`pointerdown`](../htmlelement/pointerdown_event)
--   [`pointerup`](../htmlelement/pointerup_event)
+- [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
+- [`auxclick`](auxclick_event)
+- [`click`](click_event)
+- [`contextmenu`](contextmenu_event)
+- [`mousedown`](mousedown_event)
+- [`mouseup`](mouseup_event)
+- [`pointerdown`](../htmlelement/pointerdown_event)
+- [`pointerup`](../htmlelement/pointerup_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/dblclick_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/dblclick_event</a>

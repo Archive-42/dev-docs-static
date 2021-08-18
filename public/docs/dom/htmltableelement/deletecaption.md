@@ -1,15 +1,12 @@
-HTMLTableElement.deleteCaption()
-================================
+# HTMLTableElement.deleteCaption()
 
 The `HTMLTableElement.deleteCaption()` method removes the [`<caption>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption) element from a given [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table). If there is no `<caption>` element associated with the table, this method does nothing.
 
-Syntax
-------
+## Syntax
 
     HTMLTableElement.deleteCaption()
 
-Example
--------
+## Example
 
 This example uses JavaScript to delete a table's caption.
 
@@ -28,14 +25,12 @@ This example uses JavaScript to delete a table's caption.
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-table-deletecaption">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLTableElement: deleteCaption' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

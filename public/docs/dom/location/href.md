@@ -1,31 +1,26 @@
-Location: href
-==============
+# Location: href
 
 The `href` property of the [`Location`](../location) interface is a stringifier that returns a [`USVString`](../usvstring) containing the whole URL, and allows the href to be updated.
 
-Setting the value of `href` *navigates* to the provided URL. If you want *redirection*, use [`Location.replace()`](replace).
+Setting the value of `href` _navigates_ to the provided URL. If you want _redirection_, use [`Location.replace()`](replace).
 
-Syntax
-------
+## Syntax
 
     string = object.href;
     object.href = string;
 
-Examples
---------
+## Examples
 
     // Lets imagine an <a id="myAnchor" href="https://developer.mozilla.org/en-US/Location/href"> element is in the document
     var anchor = document.getElementById("myAnchor");
     var result = anchor.href; // Returns: 'https://developer.mozilla.org/en-US/Location/href'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-location-href">HTML Living Standard<br />
 <span class="small">The definition of 'href' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

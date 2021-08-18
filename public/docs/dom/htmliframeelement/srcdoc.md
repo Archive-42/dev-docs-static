@@ -1,23 +1,19 @@
-HTMLIFrameElement.srcdoc
-========================
+# HTMLIFrameElement.srcdoc
 
 The `srcdoc` property of the [`HTMLIFrameElement`](../htmliframeelement) specifies the content of the page.
 
-Examples
---------
+## Examples
 
     var iframe = document.createElement("iframe");
     iframe.srcdoc = `<!DOCTYPE html><p>Hello World!</p>`;
     document.body.appendChild(iframe);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#attr-iframe-srcdoc">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLIFrameElement: srcdoc' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

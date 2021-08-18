@@ -1,5 +1,4 @@
-Element.innerHTML
-=================
+# Element.innerHTML
 
 The [`Element`](../element) property `innerHTML` gets or sets the HTML or XML markup contained within the element.
 
@@ -7,8 +6,7 @@ The [`Element`](../element) property `innerHTML` gets or sets the HTML or XML ma
 
 To insert the HTML into the document rather than replace the contents of an element, use the method [`insertAdjacentHTML()`](insertadjacenthtml).
 
-Syntax
-------
+## Syntax
 
     const content = element.innerHTML;
 
@@ -26,8 +24,7 @@ An attempt was made to set the value of `innerHTML` using a string which is not 
 `NoModificationAllowedError`  
 An attempt was made to insert the HTML into a node whose parent is a [`Document`](../document).
 
-Usage notes
------------
+## Usage notes
 
 The `innerHTML` property can be used to examine the current HTML source of the page, including any changes that have been made since the page was initially loaded.
 
@@ -87,8 +84,7 @@ For that reason, it is recommended that you do not use `innerHTML` when insertin
 
 **Warning:** If your project is one that will undergo any form of security review, using `innerHTML` most likely will result in your code being rejected. For example, [if you use `innerHTML`](https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Reviewing#Step_2:_Automatic_validation) in a [browser extension](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions) and submit the extension to [addons.mozilla.org](https://addons.mozilla.org/), it will not pass the automated review process.
 
-Example
--------
+## Example
 
 This example uses `innerHTML` to create a mechanism for logging messages into a box on a web page.
 
@@ -157,14 +153,12 @@ The following CSS styles our example content.
 
 The resulting content looks like this. You can see output into the log by moving the mouse in and out of the box, clicking in it, and so forth.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/DOM-Parsing/#dom-innerhtml-innerhtml">DOM Parsing and Serialization<br />
 <span class="small">The definition of 'Element.innerHTML' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -232,13 +226,12 @@ This API was previously available on the `Node` API.
 
 This API was previously available on the `Node` API.
 
-See also
---------
+## See also
 
--   [`Node.textContent`](../node/textcontent) and [`HTMLElement.innerText`](../htmlelement/innertext)
--   [`Element.insertAdjacentHTML()`](insertadjacenthtml)
--   [`Element.outerHTML`](outerhtml)
--   Parsing HTML into a DOM tree: [`DOMParser`](../domparser)
--   Serializing XML or HTML into a DOM tree: [`XMLSerializer`](../xmlserializer)
+- [`Node.textContent`](../node/textcontent) and [`HTMLElement.innerText`](../htmlelement/innertext)
+- [`Element.insertAdjacentHTML()`](insertadjacenthtml)
+- [`Element.outerHTML`](outerhtml)
+- Parsing HTML into a DOM tree: [`DOMParser`](../domparser)
+- Serializing XML or HTML into a DOM tree: [`XMLSerializer`](../xmlserializer)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML</a>

@@ -1,5 +1,4 @@
-FileSystemWritableFileStream.truncate()
-=======================================
+# FileSystemWritableFileStream.truncate()
 
 **Draft**
 
@@ -17,8 +16,7 @@ The file cursor is also updated when `truncate()` is called. If the offset is sm
 
 No changes are written to the actual file on disk until the stream has been closed. Changes are typically written to a temporary file instead.
 
-Syntax
-------
+## Syntax
 
     FileSystemWritableFileStream.truncate().then(...);
 
@@ -39,19 +37,16 @@ If the <span class="page-not-created">`PermissionState`</span> is not 'granted'.
 TypeError  
 If the size is undefined or not an unsigned long.
 
-Examples
---------
+## Examples
 
     // todo
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/file-system-access/#api-filesystemwritablefilestream-truncate">File System Access API<br />
 <span class="small">The definition of 'truncate' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -107,10 +102,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [File System Access API](../file_system_access_api)
--   [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
+- [File System Access API](../file_system_access_api)
+- [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemWritableFileStream/truncate" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemWritableFileStream/truncate</a>

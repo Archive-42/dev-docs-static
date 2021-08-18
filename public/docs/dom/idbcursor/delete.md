@@ -1,5 +1,4 @@
-IDBCursor.delete()
-==================
+# IDBCursor.delete()
 
 The `delete()` method of the [`IDBCursor`](../idbcursor) interface returns an [`IDBRequest`](../idbrequest) object, and, in a separate thread, deletes the record at the cursor's position, without changing the cursor's position. Once the record is deleted, the cursor's value is set to null.
 
@@ -7,8 +6,7 @@ Be aware that you can't call `delete()` (or [`IDBCursor.update()`](update)) on c
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     myIDBCursor.delete();
 
@@ -22,8 +20,7 @@ This method may raise a [`DOMException`](../domexception) of one of the followin
 
 <table><thead><tr class="header"><th>Exception</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>TransactionInactiveError</code></td><td>This IDBCursor's transaction is inactive.</td></tr><tr class="even"><td><code>ReadOnlyError</code></td><td>The transaction mode is read-only.</td></tr><tr class="odd"><td><code>InvalidStateError</code></td><td>The cursor was created using <a href="../idbindex/openkeycursor"><code>IDBindex.openKeyCursor</code></a>, is currently being iterated, or has iterated past its end.</td></tr></tbody></table>
 
-Example
--------
+## Example
 
 In this simple fragment we create a transaction, retrieve an object store, then use a cursor to iterate through all the records in the object store. If the `albumTitle` of the current cursor is "Grace under pressure", we delete that entire record using `var request = cursor.delete();`.
 
@@ -54,15 +51,13 @@ The cursor does not require us to select the data based on a key; we can just gr
       };
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbcursor-delete">Indexed Database API 2.0<br />
 <span class="small">The definition of 'delete()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbcursor-delete">Indexed Database API 2.0<br />
 <span class="small">The definition of 'delete()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -118,15 +113,14 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor/delete" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor/delete</a>

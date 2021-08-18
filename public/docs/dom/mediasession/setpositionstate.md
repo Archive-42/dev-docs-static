@@ -1,18 +1,16 @@
-MediaSession.setPositionState()
-===============================
+# MediaSession.setPositionState()
 
 The [`MediaSession`](../mediasession) method `setPositionState()` is used to update the current document's media playback position and speed for presentation by user's device in any kind of interface that provides details about ongoing media. This can be particularly useful if your code implements a player for type of media not directly supported by the browser.
 
 Call this method on the `navigator` object's [`mediaSession`](../navigator/mediasession) object.
 
-Syntax
-------
+## Syntax
 
     navigator.mediaSession.setPositionState(stateDict);
 
 ### Parameters
 
- `stateDict` <span class="badge inline optional">Optional</span>   
+`stateDict` <span class="badge inline optional">Optional</span>  
 An object conforming to the [`MediaPositionState`](../mediapositionstate) dictionary, providing updated information about the playback position and speed of the document's ongoing media. If the object is empty, the existing playback state information is cleared.
 
 ### Return value
@@ -24,12 +22,11 @@ An object conforming to the [`MediaPositionState`](../mediapositionstate) dictio
 `TypeError`  
 This error can occur in an array of circumstances:
 
--   The specified [`MediaPositionState`](../mediapositionstate) object's [`duration`](../mediapositionstate/duration) is missing, negative, or `null`.
--   [`position`](../mediapositionstate/position) is missing or null, or is either negative or greater than `duration`.
--   The [`playbackRate`](../mediapositionstate/playbackrate) is zero.
+- The specified [`MediaPositionState`](../mediapositionstate) object's [`duration`](../mediapositionstate/duration) is missing, negative, or `null`.
+- [`position`](../mediapositionstate/position) is missing or null, or is either negative or greater than `duration`.
+- The [`playbackRate`](../mediapositionstate/playbackrate) is zero.
 
-Example
--------
+## Example
 
 Below is a function which updates the position state of the current [`MediaSession`](../mediasession) track.
 
@@ -41,7 +38,7 @@ Below is a function which updates the position state of the current [`MediaSessi
       });
     }
 
-We can use this function when updating [`media session   metadata`](../mediametadata) and within callbacks for actions, such as below.
+We can use this function when updating [`media session metadata`](../mediametadata) and within callbacks for actions, such as below.
 
     navigator.mediaSession.setActionHandler('seekbackward', details => {
 
@@ -54,14 +51,12 @@ We can use this function when updating [`media session   metadata`](../mediameta
 
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediasession/#dom-mediasession-setpositionstate">Media Session Standard<br />
 <span class="small">The definition of 'MediaSession.setPositionState()' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

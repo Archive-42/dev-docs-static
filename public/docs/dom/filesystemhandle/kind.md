@@ -1,5 +1,4 @@
-FileSystemHandle.kind
-=====================
+# FileSystemHandle.kind
 
 **Draft**
 
@@ -11,21 +10,19 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `kind` read-only property of the [`FileSystemHandle`](../filesystemhandle) interface returns the type of entry. This is `'file'` if the associated entry is a file or `'directory'`. It is used to distinguish files from directories when iterating over the contents of a directory.
 
-Syntax
-------
+## Syntax
 
     var FileSystemHandleKind = FileSystemHandle.kind;
 
 ### Value
 
-*FileSystemHandleKind*  
+_FileSystemHandleKind_  
 Can be either:
 
--   `'file'`: If handle is a [`FileSystemFileHandle`](../filesystemfilehandle).
--   `'directory'`: If handle is a [`FileSystemDirectoryHandle`](../filesystemdirectoryhandle).
+- `'file'`: If handle is a [`FileSystemFileHandle`](../filesystemfilehandle).
+- `'directory'`: If handle is a [`FileSystemDirectoryHandle`](../filesystemdirectoryhandle).
 
-Examples
---------
+## Examples
 
 The following function allows the user to choose a file from the file picker and then tests to see whether the handle returned is a file or directory
 
@@ -44,14 +41,12 @@ The following function allows the user to choose a file from the file picker and
 
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/file-system-access/#dom-filesystemhandle-kind">File System Access API<br />
 <span class="small">The definition of 'kind' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -107,10 +102,9 @@ No
 
 14.0
 
-See also
---------
+## See also
 
--   [File System Access API](../file_system_access_api)
--   [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
+- [File System Access API](../file_system_access_api)
+- [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle/kind" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle/kind</a>

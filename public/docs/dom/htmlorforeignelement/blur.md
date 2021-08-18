@@ -1,15 +1,12 @@
-HTMLElement.blur()
-==================
+# HTMLElement.blur()
 
 The `HTMLElement.blur()` method removes keyboard focus from the current element.
 
-Syntax
-------
+## Syntax
 
     element.blur();
 
-Examples
---------
+## Examples
 
 ### Remove focus from a text input
 
@@ -31,8 +28,7 @@ Examples
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/editing.html#dom-blur">HTML Living Standard<br />
 <span class="small">The definition of 'blur' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/editing.html#blur()-0">HTML 5.1<br />
@@ -40,8 +36,7 @@ Specifications
 <span class="small">The definition of 'blur' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-28216144">Document Object Model (DOM) Level 2 HTML Specification<br />
 <span class="small">The definition of 'blur' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -97,9 +92,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   DOM method [`HTMLOrForeignElement.focus`](focus)
+- DOM method [`HTMLOrForeignElement.focus`](focus)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/blur" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/blur</a>

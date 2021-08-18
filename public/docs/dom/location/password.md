@@ -1,5 +1,4 @@
-Location: password
-==================
+# Location: password
 
 **Deprecated**
 
@@ -9,21 +8,18 @@ The `password` property of the [`Location`](../location) interface is a [`USVStr
 
 If it is set without first setting the `username` property, it silently fails.
 
-Syntax
-------
+## Syntax
 
     string = object.password;
     object.password = string;
 
-Examples
---------
+## Examples
 
     // Let's <a id="myAnchor" href="https://anonymous:flabada@developer.mozilla.org/en-US/docs/location.username"> be in the document
     var anchor = document.getElementByID("myAnchor");
     var result = anchor.password; // Returns:'flabada'
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

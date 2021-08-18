@@ -1,5 +1,4 @@
-HTMLMarqueeElement
-==================
+# HTMLMarqueeElement
 
 **Draft**
 
@@ -11,10 +10,9 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `HTMLMarqueeElement` interface provides methods to manipulate [`<marquee>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/marquee) elements. It inherits properties and methods from the [`HTMLElement`](htmlelement) interface.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement).*
+_Inherits properties from its parent, [`HTMLElement`](htmlelement)._
 
 <span class="page-not-created">`HTMLMarqueeElement.behavior`</span>  
 Sets how the text is scrolled within the marquee. Possible values are `scroll`, `slide` and `alternate`. If no value is specified, the default value is `scroll`.
@@ -60,10 +58,9 @@ Fires when the marquee has finished the amount of scrolling that is set by the l
 <span class="page-not-created">`HTMLMarqueeElement.onstart`</span>  
 Fires when the marquee starts scrolling.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`HTMLElement`](htmlelement).*
+_Inherits methods from its parent, [`HTMLElement`](htmlelement)._
 
 <span class="page-not-created">`HTMLMarqueeElement.start()`</span>  
 Starts scrolling of the marquee.
@@ -71,8 +68,7 @@ Starts scrolling of the marquee.
 <span class="page-not-created">`HTMLMarqueeElement.stop()`</span>  
 Stops scrolling of the marquee.
 
-Examples
---------
+## Examples
 
     <marquee>This text will scroll from right to left</marquee>
 
@@ -84,8 +80,7 @@ Examples
       </marquee>
     </marquee>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/obsolete.html#htmlmarqueeelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLMarqueeElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Made obsolete in favor of CSS but define its expected behavior for backward compatibility.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/obsolete.html#htmlmarqueeelement">HTML 5.2<br />
@@ -93,8 +88,7 @@ Specifications
 <span class="small">The definition of 'HTMLMarqueeElement' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>No changes.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/obsolete.html#htmlmarqueeelement">HTML5<br />
 <span class="small">The definition of 'HTMLMarqueeElement' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Made obsolete in favor of CSS but define its expected behavior for backward compatibility.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -570,9 +564,8 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   [`<marquee>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/marquee)
+- [`<marquee>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/marquee)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMarqueeElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLMarqueeElement</a>

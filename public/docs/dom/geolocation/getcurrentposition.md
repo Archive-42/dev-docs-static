@@ -1,5 +1,4 @@
-Geolocation.getCurrentPosition()
-================================
+# Geolocation.getCurrentPosition()
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `Geolocation.getCurrentPosition()` method is used to get the current position of the device.
 
-Syntax
-------
+## Syntax
 
     navigator.geolocation.getCurrentPosition(success[, error[, [options]])
 
@@ -17,19 +15,18 @@ Syntax
 `success`  
 A callback function that takes a [`GeolocationPosition`](../geolocationposition) object as its sole input parameter.
 
- `error` <span class="badge inline optional">Optional</span>   
+`error` <span class="badge inline optional">Optional</span>  
 An optional callback function that takes a [`GeolocationPositionError`](../geolocationpositionerror) object as its sole input parameter.
 
- `options` <span class="badge inline optional">Optional</span>   
+`options` <span class="badge inline optional">Optional</span>  
 An optional [`PositionOptions`](../positionoptions) object.  
 Options includes:
 
--   `maximumAge`: integer (milliseconds) | infinity - maximum cached position age.
--   `timeout`: integer (milliseconds) - amount of time before the error callback is invoked, if 0 it will never invoke.
--   `enableHighAccuracy`: false | true
+- `maximumAge`: integer (milliseconds) | infinity - maximum cached position age.
+- `timeout`: integer (milliseconds) - amount of time before the error callback is invoked, if 0 it will never invoke.
+- `enableHighAccuracy`: false | true
 
-Examples
---------
+## Examples
 
     var options = {
       enableHighAccuracy: true,
@@ -52,13 +49,11 @@ Examples
 
     navigator.geolocation.getCurrentPosition(success, error, options);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/geolocation-api/">Geolocation API</a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -114,10 +109,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [Using the Geolocation API](../geolocation_api/using_the_geolocation_api)
--   [`Navigator.geolocation`](../navigator/geolocation)
+- [Using the Geolocation API](../geolocation_api/using_the_geolocation_api)
+- [`Navigator.geolocation`](../navigator/geolocation)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition</a>

@@ -1,10 +1,8 @@
-MediaDevices.ondevicechange
-===========================
+# MediaDevices.ondevicechange
 
 The `MediaDevices.ondevicechange` property is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) which specifies a function to be called when the `devicechange` event occurs on a [`MediaDevices`](../mediadevices) instance. This happens whenever the set of media devices available to the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) and, by extension, to the web site or app has changed. You can at any time use [`enumerateDevices()`](enumeratedevices) to get the updated list of available devices.
 
-Syntax
-------
+## Syntax
 
     MediaDevices.ondevicechange = eventHandler;
 
@@ -12,8 +10,7 @@ Syntax
 
 A function you provide which accepts as input a [`Event`](../event) object describing the `devicechange` event that occurred. There is no information about the change included in the event object; to get the updated list of devices, you'll have to use [`enumerateDevices()`](enumeratedevices).
 
-Example
--------
+## Example
 
 In this example, we create a function called `updateDeviceList()`, which is called once when [`MediaDevices.getUserMedia()`](getusermedia) successfully obtains a stream, and then is called any time the device list changes. It displays in the browser window two lists: one of audio devices and one of video devices, with both the device's label (name) and whether it's an input or an output device. Because the example provides a handler for the `devicechange` event, the list is refreshed any time a media device is attached to or removed from the device running the sample.
 
@@ -66,14 +63,12 @@ With this code in place, each time the user plugs in a camera, microphone, or ot
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediadevices-ondevicechange">Media Capture and Streams<br />
 <span class="small">The definition of 'ondevicechange' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -129,11 +124,10 @@ Yes
 
 No
 
-See also
---------
+## See also
 
--   The `devicechange` event and its type, [`Event`](../event).
--   [`MediaDevices.enumerateDevices()`](enumeratedevices)
--   [`MediaDeviceInfo`](../mediadeviceinfo)
+- The `devicechange` event and its type, [`Event`](../event).
+- [`MediaDevices.enumerateDevices()`](enumeratedevices)
+- [`MediaDeviceInfo`](../mediadeviceinfo)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/ondevicechange" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/ondevicechange</a>

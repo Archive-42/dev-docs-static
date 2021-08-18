@@ -1,19 +1,16 @@
-HTMLSelectElement.remove()
-==========================
+# HTMLSelectElement.remove()
 
 The `HTMLSelectElement.remove()` method removes the element at the specified index from the options collection for this select element.
 
-Syntax
-------
+## Syntax
 
     collection.remove(index);
 
 ### Parameters
 
--   `index` is a long for the index of the [`HTMLOptionElement`](../htmloptionelement) to remove from the collection. If the index is not found the method has no effect.
+- `index` is a long for the index of the [`HTMLOptionElement`](../htmloptionelement) to remove from the collection. If the index is not found the method has no effect.
 
-Example
--------
+## Example
 
     var sel = document.getElementById("existingList");
     sel.remove(1);
@@ -35,8 +32,7 @@ Example
       </select>
     */
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-select-remove">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLSelectElement.remove()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/forms.html#dom-select-remove">HTML5<br />
@@ -44,8 +40,7 @@ Specifications
 <span class="small">The definition of 'HTMLSelectElement.remove()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-33404570">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLSelectElement.remove()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -101,10 +96,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`ChildNode.remove`](../childnode/remove), the method that gets called when remove is called without arguments on a [`HTMLSelectElement`](../htmlselectelement).
--   [`HTMLSelectElement`](../htmlselectelement) that implements it.
+- [`ChildNode.remove`](../childnode/remove), the method that gets called when remove is called without arguments on a [`HTMLSelectElement`](../htmlselectelement).
+- [`HTMLSelectElement`](../htmlselectelement) that implements it.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/remove" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/remove</a>

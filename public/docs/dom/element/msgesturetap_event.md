@@ -1,5 +1,4 @@
-Element: MSGestureTap event
-===========================
+# Element: MSGestureTap event
 
 **Non-standard**
 
@@ -11,13 +10,11 @@ It is a proprietary event specific to Microsoft Edge and Internet Explorer.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Unknown</td></tr><tr class="even"><td>Cancelable</td><td>Unknown</td></tr><tr class="odd"><td>Interface</td><td><a href="../msgestureevent"><code>MSGestureEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td>Unknown</td></tr></tbody></table>
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -73,17 +70,16 @@ No
 
 No
 
-See also
---------
+## See also
 
--   Related events:
-    -   `MSGestureStart`
-    -   `MSGestureEnd`
-    -   `MSGestureChange`
-    -   `MSGestureHold`
-    -   `MSInertiaStart`
-    -   `gesturestart`
-    -   `gesturechange`
-    -   `gestureend`
+- Related events:
+  - `MSGestureStart`
+  - `MSGestureEnd`
+  - `MSGestureChange`
+  - `MSGestureHold`
+  - `MSInertiaStart`
+  - `gesturestart`
+  - `gesturechange`
+  - `gestureend`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/MSGestureTap_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/MSGestureTap_event</a>

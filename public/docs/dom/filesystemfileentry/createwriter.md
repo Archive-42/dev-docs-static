@@ -1,5 +1,4 @@
-FileSystemFileEntry.createWriter()
-==================================
+# FileSystemFileEntry.createWriter()
 
 **Experimental**
 
@@ -16,8 +15,7 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 The [`FileSystemFileEntry`](../filesystemfileentry) interface's method `createWriter()` returns a <span class="page-not-created">`FileWriter`</span> object which can be used to write data into the file represented by the directory entry.
 
-Syntax
-------
+## Syntax
 
     FileSystemFileEntry.createWriter(successCallback[, errorCallback]);
 
@@ -26,15 +24,14 @@ Syntax
 `successCallback`  
 A callback function which is called when the <span class="page-not-created">`FileWriter`</span> has been created successfully; the `FileWriter` is passed into the callback as the only parameter.
 
- `errorCallback` <span class="badge inline optional">Optional</span>   
+`errorCallback` <span class="badge inline optional">Optional</span>  
 If provided, this must be a method which is called when an error occurs while trying to create the <span class="page-not-created">`FileWriter`</span>. This callback receives as input a [`FileError`](../fileerror) object describing the error.
 
 ### Return value
 
 [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined).
 
-Example
--------
+## Example
 
 This example establishes a method, `writeToFileEntry()`, which outputs a text string to the file corresponding to the passed-in directory entry.
 
@@ -52,8 +49,7 @@ The success callback for the `createWriter()` call takes the text which was pass
 
 This API has no official W3C or WHATWG specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -113,10 +109,9 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](../file_and_directory_entries_api)
--   [Introduction to the File System API](../file_and_directory_entries_api/introduction)
+- [File and Directory Entries API](../file_and_directory_entries_api)
+- [Introduction to the File System API](../file_and_directory_entries_api/introduction)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileEntry/createWriter" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileEntry/createWriter</a>

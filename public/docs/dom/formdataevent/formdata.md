@@ -1,10 +1,8 @@
-FormDataEvent.formData
-======================
+# FormDataEvent.formData
 
 The `formData` read only property of the [`FormDataEvent`](../formdataevent) interface contains the [`FormData`](../formdata) object representing the data contained in the form when the event was fired.
 
-Syntax
-------
+## Syntax
 
     formData = formDataEvent.formData
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`FormData`](../formdata) object.
 
-Examples
---------
+## Examples
 
     // grab reference to form
 
@@ -46,14 +43,12 @@ Examples
       request.send(data);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-formdataevent-formdata">HTML Living Standard<br />
 <span class="small">The definition of 'formData' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -109,12 +104,11 @@ No
 
 12.0
 
-See also
---------
+## See also
 
--   [`XMLHTTPRequest`](../xmlhttprequest)
--   [Using XMLHttpRequest](../xmlhttprequest/using_xmlhttprequest)
--   [Using FormData objects](../formdata/using_formdata_objects)
--   [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
+- [`XMLHTTPRequest`](../xmlhttprequest)
+- [Using XMLHttpRequest](../xmlhttprequest/using_xmlhttprequest)
+- [Using FormData objects](../formdata/using_formdata_objects)
+- [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/formData" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FormDataEvent/formData</a>

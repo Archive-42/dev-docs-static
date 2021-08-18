@@ -1,31 +1,26 @@
-HTMLAnchorElement.pathname
-==========================
+# HTMLAnchorElement.pathname
 
 The `HTMLAnchorElement.pathname` property is a [`USVString`](../usvstring) containing an initial `'/'` followed by the path of the URL not including the query string or fragment (or the empty string if there is no path).
 
-Syntax
-------
+## Syntax
 
     // Getter
     string = anchor.pathname;
     // Setter
     anchor.pathname = string;
 
-Examples
---------
+## Examples
 
     // An <a id="myAnchor" href="/en-US/docs/HTMLAnchorElement"> element is in the document
     const anchor = document.getElementById("myAnchor");
     anchor.pathname; // returns '/en-US/docs/HTMLAnchorElement'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-hyperlink-pathname">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLHyperlinkElementUtils.pathname' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -85,9 +80,8 @@ Before Firefox 53, the `pathname` and `search` `HTMLHyperlinkElementUtils` prope
 
 1.0
 
-See also
---------
+## See also
 
--   The [`HTMLAnchorElement`](../htmlanchorelement) interface it belongs to.
+- The [`HTMLAnchorElement`](../htmlanchorelement) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/pathname" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/pathname</a>

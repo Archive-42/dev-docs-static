@@ -1,5 +1,4 @@
-MediaSource.clearLiveSeekableRange()
-====================================
+# MediaSource.clearLiveSeekableRange()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `clearLiveSeekableRange()` method of the [`MediaSource`](../mediasource) interface clears a seekable range previously set with a call to [`setLiveSeekableRange()`](setliveseekablerange).
 
-Syntax
-------
+## Syntax
 
     mediaSource.clearLiveSeekableRange()
 
@@ -21,14 +19,12 @@ None.
 
 [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/media-source/#dom-mediasource-clearliveseekablerange">Media Source Extensions<br />
 <span class="small">The definition of 'clearLiveSeekableRange()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-FederatedCredential
-===================
+# FederatedCredential
 
 **Experimental**
 
@@ -10,34 +9,30 @@ The `FederatedCredential` interface of the [Credential Management API](credentia
 
 In browsers that support it, an instance of this interface may be passed in the `credential` member of the `init` object for global [`WindowOrWorkerGlobalScope.fetch`](windoworworkerglobalscope/fetch).
 
-Constructor
------------
+## Constructor
 
 [`FederatedCredential()`](federatedcredential/federatedcredential)  
 Creates a new `FederatedCredential` object.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its ancestor, [`Credential`](credential).*
+_Inherits properties from its ancestor, [`Credential`](credential)._
 
- [`FederatedCredential.provider`](federatedcredential/provider) <span class="badge inline readonly">Read only </span>   
+[`FederatedCredential.provider`](federatedcredential/provider) <span class="badge inline readonly">Read only </span>  
 Returns a [`USVString`](usvstring) containing a credential's federated identity provider.
 
- [`FederatedCredential.protocol`](federatedcredential/protocol) <span class="badge inline readonly">Read only </span>   
+[`FederatedCredential.protocol`](federatedcredential/protocol) <span class="badge inline readonly">Read only </span>  
 Returns a [`DOMString`](domstring) containing a credential's federated identity protocol.
 
 ### Event handlers
 
 None.
 
-Methods
--------
+## Methods
 
 None.
 
-Examples
---------
+## Examples
 
     var cred = new FederatedCredential({
       id: id,
@@ -52,13 +47,11 @@ Examples
       // Do something else.
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-credential-management/">Credential Management Level 1</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

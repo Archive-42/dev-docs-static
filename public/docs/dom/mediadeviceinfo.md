@@ -1,32 +1,28 @@
-MediaDeviceInfo
-===============
+# MediaDeviceInfo
 
 The `MediaDeviceInfo` interface contains information that describes a single media input or output device. The list of devices obtained by calling [`navigator.mediaDevices.enumerateDevices()`](mediadevices/enumeratedevices) is an array of `MediaDeviceInfo` objects, one per media device.
 
-Properties
-----------
+## Properties
 
- [`MediaDeviceInfo.deviceId`](mediadeviceinfo/deviceid)<span class="badge inline readonly">Read only </span>   
+[`MediaDeviceInfo.deviceId`](mediadeviceinfo/deviceid)<span class="badge inline readonly">Read only </span>  
 Returns a [`DOMString`](domstring) that is an identifier for the represented device that is persisted across sessions. It is un-guessable by other applications and unique to the origin of the calling application. It is reset when the user clears cookies (for Private Browsing, a different identifier is used that is not persisted across sessions).
 
- [`MediaDeviceInfo.groupId`](mediadeviceinfo/groupid)<span class="badge inline readonly">Read only </span>   
+[`MediaDeviceInfo.groupId`](mediadeviceinfo/groupid)<span class="badge inline readonly">Read only </span>  
 Returns a [`DOMString`](domstring) that is a group identifier. Two devices have the same group identifier if they belong to the same physical device — for example a monitor with both a built-in camera and a microphone.
 
- [`MediaDeviceInfo.kind`](mediadeviceinfo/kind)<span class="badge inline readonly">Read only </span>   
+[`MediaDeviceInfo.kind`](mediadeviceinfo/kind)<span class="badge inline readonly">Read only </span>  
 Returns an enumerated value that is either `"videoinput"`, `"audioinput"` or `"audiooutput"`.
 
- [`MediaDeviceInfo.label`](mediadeviceinfo/label)<span class="badge inline readonly">Read only </span>   
+[`MediaDeviceInfo.label`](mediadeviceinfo/label)<span class="badge inline readonly">Read only </span>  
 Returns a [`DOMString`](domstring) that is a label describing this device (for example "External USB Webcam").
 
-For security reasons, the `label` field is always blank unless an active media stream exists *or* the user has granted persistent permission for media device access. The set of device labels could otherwise be used as part of a fingerprinting mechanism to identify a user.
+For security reasons, the `label` field is always blank unless an active media stream exists _or_ the user has granted persistent permission for media device access. The set of device labels could otherwise be used as part of a fingerprinting mechanism to identify a user.
 
-Methods
--------
+## Methods
 
 None.
 
-Example
--------
+## Example
 
 Here's an example that uses [`enumerateDevices()`](mediadevices/enumeratedevices) to get a list of devices.
 
@@ -60,14 +56,12 @@ or if one or more media streams are active, or if persistent permissions have be
     audioinput: default (Built-in Microphone) id=RKxXByjnabbADGQNNZqLVLdmXlS0YkETYCIbg+XxnvM=
     audioinput: Built-in Microphone id=r2/xw1xUPIyZunfV1lGrKOma5wTOvCkWfZ368XCndm0=
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediadeviceinfo">Media Capture and Streams<br />
 <span class="small">The definition of 'MediaDevicesInfo' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -257,11 +251,10 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [WebRTC API](webrtc_api)
--   [`navigator.mediaDevices.enumerateDevices()`](mediadevices/enumeratedevices)
--   [`navigator.mediaDevices.getUserMedia()`](mediadevices/getusermedia)
+- [WebRTC API](webrtc_api)
+- [`navigator.mediaDevices.enumerateDevices()`](mediadevices/enumeratedevices)
+- [`navigator.mediaDevices.getUserMedia()`](mediadevices/getusermedia)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDeviceInfo" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaDeviceInfo</a>

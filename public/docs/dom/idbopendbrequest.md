@@ -1,22 +1,18 @@
-IDBOpenDBRequest
-================
+# IDBOpenDBRequest
 
 The `IDBOpenDBRequest` interface of the IndexedDB API provides access to the results of requests to open or delete databases (performed using [`IDBFactory.open`](idbfactory/open) and [`IDBFactory.deleteDatabase`](idbfactory/deletedatabase)), using specific event handler attributes.
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-Properties
-----------
+## Properties
 
-*Also inherits methods from its parents [`IDBRequest`](idbrequest) and [`EventTarget`](eventtarget)*.
+_Also inherits methods from its parents [`IDBRequest`](idbrequest) and [`EventTarget`](eventtarget)_.
 
-Methods
--------
+## Methods
 
-*No methods, but inherits methods from its parents [`IDBRequest`](idbrequest) and [`EventTarget`](eventtarget).*
+_No methods, but inherits methods from its parents [`IDBRequest`](idbrequest) and [`EventTarget`](eventtarget)._
 
-Events
-------
+## Events
 
 Listen to these events using `addEventListener()` or by assigning an event listener to the `oneventname` property of this interface.
 
@@ -26,8 +22,7 @@ Fired when an open connection to a database is blocking a `versionchange` transa
 [`upgradeneeded`](idbopendbrequest/upgradeneeded_event)  
 Fired when an attempt was made to open a database with a version number higher than its current version. Also available via the `onupgradeneeded` property.
 
-Example
--------
+## Example
 
 In the following example you can see the onupgradeneeded handler being used to update the database structure if a database with a higher version number is loaded. For a full working example, see our [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) app ([view example live](https://mdn.github.io/to-do-notifications/).)
 
@@ -78,15 +73,13 @@ In the following example you can see the onupgradeneeded handler being used to u
       objectStore.createIndex("notified", "notified", { unique: false });
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#idbopendbrequest">Indexed Database API 2.0<br />
 <span class="small">The definition of 'IDBOpenDBRequest' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#idbopendbrequest">Indexed Database API 2.0<br />
 <span class="small">The definition of 'IDBOpenDBRequest' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -282,15 +275,14 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](idbdatabase)
--   Using transactions: [`IDBTransaction`](idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
--   Using cursors: [`IDBCursor`](idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](idbdatabase)
+- Using transactions: [`IDBTransaction`](idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
+- Using cursors: [`IDBCursor`](idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBOpenDBRequest" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBOpenDBRequest</a>

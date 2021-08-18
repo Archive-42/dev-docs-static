@@ -1,5 +1,4 @@
-MediaKeySystemAccess.getConfiguration()
-=======================================
+# MediaKeySystemAccess.getConfiguration()
 
 **Experimental**
 
@@ -8,19 +7,16 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MediaKeySystemAccess.getConfiguration()` method returns a [`MediaKeySystemConfiguration`](../mediakeysystemconfiguration) object with the supported combination of configuration options.
 
-Syntax
-------
+## Syntax
 
     var mediaKeySystemConfiguration = mediaKeySystemAccess.getConfiguration();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemaccess-getconfiguration">Encrypted Media Extensions<br />
 <span class="small">The definition of 'getConfiguration()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,15 +1,12 @@
-HTMLSelectElement.disabled
-==========================
+# HTMLSelectElement.disabled
 
 The `HTMLSelectElement.disabled` is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that reflects the `disabled` HTML attribute, which indicates whether the control is disabled. If it is disabled, it does not accept clicks. A disabled element is unusable and un-clickable.
 
-Syntax
-------
+## Syntax
 
     aSelectElement.disabled = aBool;
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -41,15 +38,13 @@ Example
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-fe-disabled">HTML Living Standard<br />
 <span class="small">The definition of 'disabled' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/forms.html#dom-select-disabled">HTML5<br />
 <span class="small">The definition of 'HTMLSelectElement' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition, snapshot of <a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a>.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

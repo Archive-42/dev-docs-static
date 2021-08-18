@@ -1,47 +1,44 @@
-HTMLOutputElement
-=================
+# HTMLOutputElement
 
 The `HTMLOutputElement` interface provides properties and methods (beyond those inherited from [`HTMLElement`](htmlelement)) for manipulating the layout and presentation of [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output) elements.
 
-Properties
-----------
+## Properties
 
-*This interface also inherits properties from its parent, [`HTMLElement`](htmlelement).*
+_This interface also inherits properties from its parent, [`HTMLElement`](htmlelement)._
 
 <span class="page-not-created">`HTMLOutputElement.defaultValue`</span>  
 A [`DOMString`](domstring) representing the default value of the element, initially the empty string.
 
- <span class="page-not-created">`HTMLOutputElement.form`</span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLOutputElement.form`</span><span class="badge inline readonly">Read only </span>  
 An [`HTMLFormElement`](htmlformelement) indicating the form associated with the control, reflecting the [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output#attr-form) HTML attribute if it is defined.
 
- <span class="page-not-created">`HTMLOutputElement.htmlFor`</span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLOutputElement.htmlFor`</span><span class="badge inline readonly">Read only </span>  
 A [`DOMTokenList`](domtokenlist) reflecting the [`for`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output#attr-for) HTML attribute, containing a list of IDs of other elements in the same document that contribute to (or otherwise affect) the calculated `value`.
 
- [`HTMLOutputElement.labels`](htmloutputelement/labels)<span class="badge inline readonly">Read only </span>   
+[`HTMLOutputElement.labels`](htmloutputelement/labels)<span class="badge inline readonly">Read only </span>  
 A [`NodeList`](nodelist) of [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) elements associated with the element.
 
 <span class="page-not-created">`HTMLOutputElement.name`</span>  
 A [`DOMString`](domstring) reflecting the [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output#attr-name) HTML attribute, containing the name for the control that is submitted with form data.
 
- <span class="page-not-created">`HTMLOutputElement.type`</span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLOutputElement.type`</span><span class="badge inline readonly">Read only </span>  
 The [`DOMString`](domstring) "`output`".
 
- <span class="page-not-created">`HTMLOutputElement.validationMessage`</span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLOutputElement.validationMessage`</span><span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) representing a localized message that describes the validation constraints that the control does not satisfy (if any). This is the empty string if the control is not a candidate for constraint validation (`willValidate` is `false`), or it satisfies its constraints.
 
- <span class="page-not-created">`HTMLOutputElement.validity`</span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLOutputElement.validity`</span><span class="badge inline readonly">Read only </span>  
 A [`ValidityState`](validitystate) representing the validity states that this element is in.
 
 <span class="page-not-created">`HTMLOutputElement.value`</span>  
 A [`DOMString`](domstring) representing the value of the contents of the elements. Behaves like the [`Node.textContent`](node/textcontent) property.
 
- <span class="page-not-created">`HTMLOutputElement.willValidate`</span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLOutputElement.willValidate`</span><span class="badge inline readonly">Read only </span>  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the element is a candidate for constraint validation.
 
-Methods
--------
+## Methods
 
-*This interface also inherits methods from its parent, [`HTMLElement`](htmlelement).*
+_This interface also inherits methods from its parent, [`HTMLElement`](htmlelement)._
 
 <span class="page-not-created">`HTMLOutputElement.checkValidity()`</span>  
 Checks the validity of the element and returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) holding the check result.
@@ -54,10 +51,9 @@ When the problem is reported, the user agent may focus the element and change th
 <span class="page-not-created">`HTMLOutputElement.setCustomValidity()`</span>  
 Sets a custom validity message for the element. If this message is not the empty string, then the element is suffering from a custom validity error, and does not validate.
 
-Modes
------
+## Modes
 
-This element behaves in one of two modes: *default* mode and *value* mode.
+This element behaves in one of two modes: _default_ mode and _value_ mode.
 
 ### Default mode
 
@@ -71,16 +67,14 @@ Resetting the form puts the element into default mode, and sets the [`textConten
 
 The element goes into value mode when the contents of the `value` property are set. The `value` property otherwise behaves like the [`textContent`](node/textcontent) property. When the element is in value mode, the default value is accessible only through the `defaultValue` property.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#htmloutputelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLOutputElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/forms.html#the-output-element">HTML 5.1<br />
 <span class="small">The definition of 'HTMLOutputElement' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>No change</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/html52/forms.html#the-output-element">HTML5<br />
 <span class="small">The definition of 'HTMLOutputElement' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -486,9 +480,8 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   The HTML element implementing this interface: [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output).
+- The HTML element implementing this interface: [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLOutputElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLOutputElement</a>

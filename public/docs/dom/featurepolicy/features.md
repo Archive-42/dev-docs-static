@@ -1,5 +1,4 @@
-FeaturePolicy.features()
-========================
+# FeaturePolicy.features()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `features()` method of the [`FeaturePolicy`](../featurepolicy) interface returns a list of names of all features supported by the User Agent. Feature whose name appears on the list might not be allowed by the Feature Policy of the current execution context and/or might not be accessible because of user's permissions.
 
-Syntax
-------
+## Syntax
 
     const supportedFeatures = FeaturePolicy.features()
 
@@ -21,8 +19,7 @@ None.
 
 A list of strings that represent names of all Feature Policy directives supported by the User Agent.
 
-Example
--------
+## Example
 
 The following example logs all the supported directives in the console.
 
@@ -37,14 +34,12 @@ The following example logs all the supported directives in the console.
       console.log(directive)
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-permissions-policy/">Permissions Policy<br />
 <span class="small">The definition of 'features' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

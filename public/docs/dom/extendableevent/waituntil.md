@@ -1,5 +1,4 @@
-ExtendableEvent.waitUntil()
-===========================
+# ExtendableEvent.waitUntil()
 
 The `ExtendableEvent.waitUntil()` method tells the event dispatcher that work is ongoing. It can also be used to detect whether that work was successful. In service workers, `waitUntil()` tells the browser that work is ongoing until the promise settles, and it shouldn't terminate the service worker if it wants that work to complete.
 
@@ -11,8 +10,7 @@ The `waitUntil()` method must be initially called within the event callback, but
 
 **Note**: The behavior described in the above paragraph was fixed in Firefox 43 (see [bug 1180274](https://bugzilla.mozilla.org/show_bug.cgi?id=1180274)).
 
-Syntax
-------
+## Syntax
 
     extendableEvent.waitUntil(promise);
 
@@ -20,8 +18,7 @@ Syntax
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
-Example
--------
+## Example
 
 Using `waitUntil()` within a service worker's `install` event:
 
@@ -37,14 +34,12 @@ Using `waitUntil()` within a service worker's `install` event:
       event.waitUntil(preCache());
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/ServiceWorker/#dom-extendableevent-waituntil">Service Workers<br />
 <span class="small">The definition of 'waitUntil()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -126,11 +121,10 @@ No
 
 ?
 
-See also
---------
+## See also
 
--   [Using Service Workers](../service_worker_api/using_service_workers)
--   [Is ServiceWorker ready?](https://jakearchibald.github.io/isserviceworkerready/)
--   [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+- [Using Service Workers](../service_worker_api/using_service_workers)
+- [Is ServiceWorker ready?](https://jakearchibald.github.io/isserviceworkerready/)
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ExtendableEvent/waitUntil" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ExtendableEvent/waitUntil</a>

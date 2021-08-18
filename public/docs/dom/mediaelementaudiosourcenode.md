@@ -1,5 +1,4 @@
-MediaElementAudioSourceNode
-===========================
+# MediaElementAudioSourceNode
 
 The `MediaElementAudioSourceNode` interface represents an audio source consisting of an HTML5 [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) or [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) element. It is an [`AudioNode`](audionode) that acts as an audio source.
 
@@ -7,27 +6,23 @@ A `MediaElementSourceNode` has no inputs and exactly one output, and is created 
 
 <table><tbody><tr class="odd"><td>Number of inputs</td><td><code>0</code></td></tr><tr class="even"><td>Number of outputs</td><td><code>1</code></td></tr><tr class="odd"><td>Channel count</td><td>defined by the media in the <a href="htmlmediaelement"><code>HTMLMediaElement</code></a> passed to the <a href="audiocontext/createmediaelementsource"><code>AudioContext.createMediaElementSource</code></a> method that created it.</td></tr></tbody></table>
 
-Constructor
------------
+## Constructor
 
 [`MediaElementAudioSourceNode()`](mediaelementaudiosourcenode/mediaelementaudiosourcenode)  
 Creates a new `MediaElementAudioSourceNode` object instance.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`AudioNode`](audionode)*.
+_Inherits properties from its parent, [`AudioNode`](audionode)_.
 
- [`mediaElement`](mediaelementaudiosourcenode/mediaelement) <span class="badge inline readonly">Read only </span>   
+[`mediaElement`](mediaelementaudiosourcenode/mediaelement) <span class="badge inline readonly">Read only </span>  
 The [`HTMLMediaElement`](htmlmediaelement) used when constructing this `MediaStreamAudioSourceNode`.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`AudioNode`](audionode)*.
+_Inherits methods from its parent, [`AudioNode`](audionode)_.
 
-Example
--------
+## Example
 
 This simple example creates a source from an [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) element using `createMediaElementSource()`, then passes the audio through a [`GainNode`](gainnode) before feeding it into the [`AudioDestinationNode`](audiodestinationnode) for playback. When the mouse pointer is moved, the `updatePage()` function is invoked, which calculates the current gain as a ratio of mouse Y position divided by overall window height. You can therefore increase and decrease the volume of the playing music by moving the mouse pointer up and down.
 
@@ -71,14 +66,12 @@ This simple example creates a source from an [`<audio>`](https://developer.mozil
 
 **Note**: As a consequence of calling `createMediaElementSource()`, audio playback from the [`HTMLMediaElement`](htmlmediaelement) will be re-routed into the processing graph of the AudioContext. So playing/pausing the media can still be done through the media element API and the player controls.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#mediaelementaudiosourcenode">Web Audio API<br />
 <span class="small">The definition of 'MediaElementAudioSourceNode' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -194,9 +187,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](web_audio_api/using_web_audio_api)
+- [Using the Web Audio API](web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaElementAudioSourceNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaElementAudioSourceNode</a>

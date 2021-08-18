@@ -1,18 +1,15 @@
-Location: search
-================
+# Location: search
 
-The `search` property of the [`Location`](../location) interface is a search string, also called a *query string*; that is, a [`USVString`](../usvstring) containing a `'?'` followed by the parameters of the URL.
+The `search` property of the [`Location`](../location) interface is a search string, also called a _query string_; that is, a [`USVString`](../usvstring) containing a `'?'` followed by the parameters of the URL.
 
 Modern browsers provide `URLSearchParams` and `URL.searchParams` to make it easy to parse out the parameters from the querystring.
 
-Syntax
-------
+## Syntax
 
     string = object.search;
     object.search = string;
 
-Examples
---------
+## Examples
 
     // Let an <a id="myAnchor" href="/en-US/docs/Location.search?q=123"> element be in the document
     var anchor = document.getElementById("myAnchor");
@@ -22,14 +19,12 @@ Examples
     let params = new URLSearchParams(queryString);
     let q = parseInt(params.get("q")); // is the number 123
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-location-search">HTML Living Standard<br />
 <span class="small">The definition of 'search' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

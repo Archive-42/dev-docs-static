@@ -1,5 +1,4 @@
-GlobalEventHandlers.ontouchstart
-================================
+# GlobalEventHandlers.ontouchstart
 
 **Experimental**
 
@@ -8,10 +7,9 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `ontouchstart` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `touchstart` events.
 
-**Note:** This attribute has *not* been formally standardized. It is specified in the [Touch Events – Level 2](https://w3c.github.io/touch-events/) <span class="spec-draft">Draft</span> specification and not in [Touch Events](https://www.w3.org/TR/touch-events/) <span class="spec-rec">Recommendation</span>. This attribute is not widely implemented.
+**Note:** This attribute has _not_ been formally standardized. It is specified in the [Touch Events – Level 2](https://w3c.github.io/touch-events/) <span class="spec-draft">Draft</span> specification and not in [Touch Events](https://www.w3.org/TR/touch-events/) <span class="spec-rec">Recommendation</span>. This attribute is not widely implemented.
 
-Syntax
-------
+## Syntax
 
     var startHandler = someElement.ontouchstart;
 
@@ -20,8 +18,7 @@ Syntax
 `startHandler`  
 The `touchstart` event handler for element `someElement`.
 
-Example
--------
+## Example
 
 This example shows two ways to use `ontouchstart` to set an element's `touchstart` event handler.
 
@@ -42,13 +39,11 @@ This example shows two ways to use `ontouchstart` to set an element's `touchstar
     </body>
     </html>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/touch-events/#dom-globaleventhandlers-ontouchstart">Touch Events – Level 2</a></td><td><span class="spec-draft">Draft</span></td><td>Non-stable version.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -104,9 +99,8 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   `touchstart`
+- `touchstart`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ontouchstart" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ontouchstart</a>

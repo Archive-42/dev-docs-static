@@ -1,5 +1,4 @@
-InstallEvent
-============
+# InstallEvent
 
 **Non-standard**
 
@@ -13,27 +12,23 @@ The parameter passed into the [`oninstall`](serviceworkerglobalscope/oninstall) 
 
 This interface inherits from the [`ExtendableEvent`](extendableevent) interface.
 
-Constructor
------------
+## Constructor
 
 [`InstallEvent.InstallEvent()`](installevent/installevent)  
 Creates a new `InstallEvent` object.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its ancestor, [`Event`](event)*.
+_Inherits properties from its ancestor, [`Event`](event)_.
 
- [`InstallEvent.activeWorker`](installevent/activeworker) <span class="badge inline readonly">Read only </span>   
+[`InstallEvent.activeWorker`](installevent/activeworker) <span class="badge inline readonly">Read only </span>  
 Returns the [`ServiceWorker`](serviceworker) that is currently controlling the page.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`ExtendableEvent`](extendableevent)*.
+_Inherits methods from its parent, [`ExtendableEvent`](extendableevent)_.
 
-Examples
---------
+## Examples
 
 This code snippet is from the [service worker prefetch sample](https://github.com/GoogleChrome/samples/blob/gh-pages/service-worker/prefetch/service-worker.js) (see [prefetch running live](https://googlechrome.github.io/samples/service-worker/prefetch/).) The code calls [`ExtendableEvent.waitUntil()`](extendableevent/waituntil) in [`ServiceWorkerGlobalScope.oninstall`](serviceworkerglobalscope/oninstall) and delays treating the [`ServiceWorkerRegistration.installing`](serviceworkerregistration/installing) worker as installed until the passed promise resolves successfully. The promise resolves when all resources have been fetched and cached, or when any exception occurs.
 
@@ -68,8 +63,7 @@ The code snippet also shows a best practice for versioning caches used by the se
       );
     });
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -183,11 +177,10 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [`NotificationEvent`](notificationevent)
--   [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
--   [Fetch API](fetch_api)
+- [`NotificationEvent`](notificationevent)
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+- [Fetch API](fetch_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/InstallEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/InstallEvent</a>

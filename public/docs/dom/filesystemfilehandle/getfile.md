@@ -1,5 +1,4 @@
-FileSystemFileHandle.getFile()
-==============================
+# FileSystemFileHandle.getFile()
 
 **Draft**
 
@@ -9,12 +8,11 @@ This page is not complete.
 
 This feature is available only in [secure contexts](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts) (HTTPS), in some or all [supporting browsers](#browser_compatibility).
 
-The `getFile()` method of the [`FileSystemFileHandle`](../filesystemfilehandle) interface returns a [`file   object`](../file) representing the state on disk of the entry represented by the handle.
+The `getFile()` method of the [`FileSystemFileHandle`](../filesystemfilehandle) interface returns a [`file object`](../file) representing the state on disk of the entry represented by the handle.
 
 If the file on disk changes or is removed after this method is called, the returned [`file object`](../file) will likely be no longer readable.
 
-Syntax
-------
+## Syntax
 
     var File = FileSystemFileHandle.getFile();
 
@@ -31,8 +29,7 @@ A [`File object`](../file).
 NotAllowedError  
 Thrown if the [`PermissionStatus.state`](../permissionstatus/state) is not `granted` in read mode.
 
-Examples
---------
+## Examples
 
 The following asynchronous function presents a file picker and once a file is chosen, uses the `getFile()` method to retrieve the contents.
 
@@ -44,14 +41,12 @@ The following asynchronous function presents a file picker and once a file is ch
       const fileData = await fileHandle.getFile();
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/file-system-access/#api-filesystemfilehandle-getfile">File System Access API<br />
 <span class="small">The definition of 'getFile' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -107,10 +102,9 @@ No
 
 14.0
 
-See also
---------
+## See also
 
--   [File System Access API](../file_system_access_api)
--   [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
+- [File System Access API](../file_system_access_api)
+- [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileHandle/getFile" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileHandle/getFile</a>

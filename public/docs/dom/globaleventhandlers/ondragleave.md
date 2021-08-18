@@ -1,20 +1,17 @@
-GlobalEventHandlers.ondragleave
-===============================
+# GlobalEventHandlers.ondragleave
 
 A [`global event handler`](../globaleventhandlers) for the `dragleave` event.
 
-Syntax
-------
+## Syntax
 
     var dragleaveHandler = targetElement.ondragleave;
 
 ### Return value
 
 `dragleaveHandler`  
-The *dragleave* event handler for element `targetElement`.
+The _dragleave_ event handler for element `targetElement`.
 
-Example
--------
+## Example
 
 This example demonstrates using the [`ondragleave`](ondragleave) attribute handler to set an element's `dragleave` event handler.
 
@@ -104,15 +101,13 @@ This example demonstrates using the [`ondragleave`](ondragleave) attribute handl
     </body>
     </html>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/indices.html#ix-handler-ondragleave">HTML Living Standard<br />
 <span class="small">The definition of 'ondragleave' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/index.html#ix-handler-ondragleave">HTML 5.1<br />
 <span class="small">The definition of 'ondragleave' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -168,9 +163,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   `dragleave`
+- `dragleave`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondragleave" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondragleave</a>

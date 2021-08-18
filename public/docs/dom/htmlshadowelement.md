@@ -1,5 +1,4 @@
-HTMLShadowElement
-=================
+# HTMLShadowElement
 
 **Deprecated**
 
@@ -7,26 +6,22 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `HTMLShadowElement` interface represents a [`<shadow>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/shadow) HTML Element, which is used in [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM).
 
-Properties
-----------
+## Properties
 
-*This interface inherits the properties of [`HTMLElement`](htmlelement).*
+_This interface inherits the properties of [`HTMLElement`](htmlelement)._
 
-Methods
--------
+## Methods
 
-*This interface inherits the methods of [`HTMLElement`](htmlelement).*
+_This interface inherits the methods of [`HTMLElement`](htmlelement)._
 
 [`HTMLShadowElement.getDistributedNodes()`](htmlshadowelement/getdistributednodes)  
 Returns a static [`NodeList`](nodelist) of the <span class="page-not-created">distributed nodes</span> associated with this `<shadow>` element.
 
-Specifications
---------------
+## Specifications
 
 This feature is no longer defined by any specifications.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -108,10 +103,9 @@ No
 
 3.0
 
-See also
---------
+## See also
 
--   The [`<shadow>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/shadow) HTML element, implementing this interface.
--   [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM)
+- The [`<shadow>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/shadow) HTML element, implementing this interface.
+- [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLShadowElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLShadowElement</a>

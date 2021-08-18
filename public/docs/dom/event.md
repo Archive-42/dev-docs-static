@@ -1,5 +1,4 @@
-Event
-=====
+# Event
 
 The `Event` interface represents an event which takes place in the DOM.
 
@@ -13,131 +12,127 @@ Many DOM elements can be set up to accept (or "listen" for) these events, and ex
 
 When there are many nested elements, each with its own handler(s), event processing can become very complicated—especially where a parent element receives the very same event as its child elements because "spatially" they overlap so the event technically occurs in both, and the processing order of such events depends on the [Event bubbling and capture](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling_and_capture) settings of each handler triggered.
 
-Interfaces based on Event
--------------------------
+## Interfaces based on Event
 
 Below is a list of interfaces which are based on the main `Event` interface, with links to their respective documentation in the MDN API reference.
 
 Note that all event interfaces have names which end in "Event".
 
--   [`AnimationEvent`](animationevent)
--   [`AudioProcessingEvent`](audioprocessingevent)
--   <span class="page-not-created">`BeforeInputEvent`</span>
--   [`BeforeUnloadEvent`](beforeunloadevent)
--   [`BlobEvent`](blobevent)
--   [`ClipboardEvent`](clipboardevent)
--   [`CloseEvent`](closeevent)
--   [`CompositionEvent`](compositionevent)
--   <span class="page-not-created">`CSSFontFaceLoadEvent`</span>
--   [`CustomEvent`](customevent)
--   [`DeviceLightEvent`](devicelightevent)
--   [`DeviceMotionEvent`](devicemotionevent)
--   [`DeviceOrientationEvent`](deviceorientationevent)
--   [`DeviceProximityEvent`](deviceproximityevent)
--   <span class="page-not-created">`DOMTransactionEvent`</span>
--   [`DragEvent`](dragevent)
--   <span class="page-not-created">`EditingBeforeInputEvent`</span>
--   [`ErrorEvent`](errorevent)
--   [`FetchEvent`](fetchevent)
--   [`FocusEvent`](focusevent)
--   [`GamepadEvent`](gamepadevent)
--   [`HashChangeEvent`](hashchangeevent)
--   [`IDBVersionChangeEvent`](idbversionchangeevent)
--   [`InputEvent`](inputevent)
--   [`KeyboardEvent`](keyboardevent)
--   [`MediaStreamEvent`](mediastreamevent)
--   [`MessageEvent`](messageevent)
--   [`MouseEvent`](mouseevent)
--   [`MutationEvent`](mutationevent)
--   [`OfflineAudioCompletionEvent`](offlineaudiocompletionevent)
--   [`OverconstrainedError`](overconstrainederror)
--   [`PageTransitionEvent`](pagetransitionevent)
--   [`PaymentRequestUpdateEvent`](paymentrequestupdateevent)
--   [`PointerEvent`](pointerevent)
--   [`PopStateEvent`](popstateevent)
--   [`ProgressEvent`](progressevent)
--   <span class="page-not-created">`RelatedEvent`</span>
--   [`RTCDataChannelEvent`](rtcdatachannelevent)
--   [`RTCIdentityErrorEvent`](rtcidentityerrorevent)
--   [`RTCIdentityEvent`](rtcidentityevent)
--   [`RTCPeerConnectionIceEvent`](rtcpeerconnectioniceevent)
--   <span class="page-not-created">`SensorEvent`</span>
--   [`StorageEvent`](storageevent)
--   [`SVGEvent`](svgevent)
--   <span class="page-not-created">`SVGZoomEvent`</span>
--   [`TimeEvent`](timeevent)
--   [`TouchEvent`](touchevent)
--   [`TrackEvent`](trackevent)
--   [`TransitionEvent`](transitionevent)
--   [`UIEvent`](uievent)
--   [`UserProximityEvent`](userproximityevent)
--   [`WebGLContextEvent`](webglcontextevent)
--   [`WheelEvent`](wheelevent)
+- [`AnimationEvent`](animationevent)
+- [`AudioProcessingEvent`](audioprocessingevent)
+- <span class="page-not-created">`BeforeInputEvent`</span>
+- [`BeforeUnloadEvent`](beforeunloadevent)
+- [`BlobEvent`](blobevent)
+- [`ClipboardEvent`](clipboardevent)
+- [`CloseEvent`](closeevent)
+- [`CompositionEvent`](compositionevent)
+- <span class="page-not-created">`CSSFontFaceLoadEvent`</span>
+- [`CustomEvent`](customevent)
+- [`DeviceLightEvent`](devicelightevent)
+- [`DeviceMotionEvent`](devicemotionevent)
+- [`DeviceOrientationEvent`](deviceorientationevent)
+- [`DeviceProximityEvent`](deviceproximityevent)
+- <span class="page-not-created">`DOMTransactionEvent`</span>
+- [`DragEvent`](dragevent)
+- <span class="page-not-created">`EditingBeforeInputEvent`</span>
+- [`ErrorEvent`](errorevent)
+- [`FetchEvent`](fetchevent)
+- [`FocusEvent`](focusevent)
+- [`GamepadEvent`](gamepadevent)
+- [`HashChangeEvent`](hashchangeevent)
+- [`IDBVersionChangeEvent`](idbversionchangeevent)
+- [`InputEvent`](inputevent)
+- [`KeyboardEvent`](keyboardevent)
+- [`MediaStreamEvent`](mediastreamevent)
+- [`MessageEvent`](messageevent)
+- [`MouseEvent`](mouseevent)
+- [`MutationEvent`](mutationevent)
+- [`OfflineAudioCompletionEvent`](offlineaudiocompletionevent)
+- [`OverconstrainedError`](overconstrainederror)
+- [`PageTransitionEvent`](pagetransitionevent)
+- [`PaymentRequestUpdateEvent`](paymentrequestupdateevent)
+- [`PointerEvent`](pointerevent)
+- [`PopStateEvent`](popstateevent)
+- [`ProgressEvent`](progressevent)
+- <span class="page-not-created">`RelatedEvent`</span>
+- [`RTCDataChannelEvent`](rtcdatachannelevent)
+- [`RTCIdentityErrorEvent`](rtcidentityerrorevent)
+- [`RTCIdentityEvent`](rtcidentityevent)
+- [`RTCPeerConnectionIceEvent`](rtcpeerconnectioniceevent)
+- <span class="page-not-created">`SensorEvent`</span>
+- [`StorageEvent`](storageevent)
+- [`SVGEvent`](svgevent)
+- <span class="page-not-created">`SVGZoomEvent`</span>
+- [`TimeEvent`](timeevent)
+- [`TouchEvent`](touchevent)
+- [`TrackEvent`](trackevent)
+- [`TransitionEvent`](transitionevent)
+- [`UIEvent`](uievent)
+- [`UserProximityEvent`](userproximityevent)
+- [`WebGLContextEvent`](webglcontextevent)
+- [`WheelEvent`](wheelevent)
 
-Constructor
------------
+## Constructor
 
 [`Event()`](event/event)  
 Creates an `Event` object, returning it to the caller.
 
-Properties
-----------
+## Properties
 
- [`Event.bubbles`](event/bubbles) <span class="badge inline readonly">Read only </span>   
+[`Event.bubbles`](event/bubbles) <span class="badge inline readonly">Read only </span>  
 A boolean indicating whether or not the event bubbles up through the DOM.
 
 [`Event.cancelBubble`](event/cancelbubble)  
 A historical alias to [`Event.stopPropagation()`](event/stoppropagation). Setting its value to `true` before returning from an event handler prevents propagation of the event.
 
- [`Event.cancelable`](event/cancelable) <span class="badge inline readonly">Read only </span>   
+[`Event.cancelable`](event/cancelable) <span class="badge inline readonly">Read only </span>  
 A boolean indicating whether the event is cancelable.
 
- [`Event.composed`](event/composed) <span class="badge inline readonly">Read only </span>   
+[`Event.composed`](event/composed) <span class="badge inline readonly">Read only </span>  
 A boolean indicating whether or not the event can bubble across the boundary between the shadow DOM and the regular DOM.
 
- [`Event.currentTarget`](event/currenttarget) <span class="badge inline readonly">Read only </span>   
-A reference to the currently registered target for the event. This is the object to which the event is currently slated to be sent. It's possible this has been changed along the way through *retargeting*.
+[`Event.currentTarget`](event/currenttarget) <span class="badge inline readonly">Read only </span>  
+A reference to the currently registered target for the event. This is the object to which the event is currently slated to be sent. It's possible this has been changed along the way through _retargeting_.
 
- [`Event.deepPath`](event/composedpath) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`Event.deepPath`](event/composedpath) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 An [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of DOM [`Node`](node)s through which the event has bubbled.
 
- [`Event.defaultPrevented`](event/defaultprevented) <span class="badge inline readonly">Read only </span>   
+[`Event.defaultPrevented`](event/defaultprevented) <span class="badge inline readonly">Read only </span>  
 Indicates whether or not the call to [`event.preventDefault()`](event/preventdefault) canceled the event.
 
- [`Event.eventPhase`](event/eventphase) <span class="badge inline readonly">Read only </span>   
+[`Event.eventPhase`](event/eventphase) <span class="badge inline readonly">Read only </span>  
 Indicates which phase of the event flow is being processed.
 
- [`Event.explicitOriginalTarget`](event/explicitoriginaltarget) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="badge inline readonly">Read only </span>   
+[`Event.explicitOriginalTarget`](event/explicitoriginaltarget) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="badge inline readonly">Read only </span>  
 The explicit original target of the event (Mozilla-specific.)
 
- [`Event.originalTarget`](event/originaltarget) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="badge inline readonly">Read only </span>   
+[`Event.originalTarget`](event/originaltarget) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="badge inline readonly">Read only </span>  
 The original target of the event, before any retargetings. (Mozilla-specific.)
 
- [`Event.returnValue`](event/returnvalue) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Event.returnValue`](event/returnvalue) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 A historical property introduced by Internet Explorer and eventually adopted into the DOM specification in order to ensure existing sites continue to work. Ideally, you should try to use [`Event.preventDefault()`](event/preventdefault) and [`Event.defaultPrevented`](event/defaultprevented) instead, but you can use `returnValue` if you choose to do so.
 
- [`Event.srcElement`](event/srcelement) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`Event.srcElement`](event/srcelement) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 A non-standard alias (from old versions of Microsoft Internet Explorer) for [`Event.target`](event/target). Some other browsers are starting to support it for web compatibility purposes.
 
- [`Event.target`](event/target) <span class="badge inline readonly">Read only </span>   
+[`Event.target`](event/target) <span class="badge inline readonly">Read only </span>  
 A reference to the target to which the event was originally dispatched.
 
- [`Event.timeStamp`](event/timestamp) <span class="badge inline readonly">Read only </span>   
+[`Event.timeStamp`](event/timestamp) <span class="badge inline readonly">Read only </span>  
 The time at which the event was created (in milliseconds). By specification, this value is time since epoch—but in reality, browsers' definitions vary. In addition, work is underway to change this to be a [`DOMHighResTimeStamp`](domhighrestimestamp) instead.
 
- [`Event.type`](event/type) <span class="badge inline readonly">Read only </span>   
+[`Event.type`](event/type) <span class="badge inline readonly">Read only </span>  
 The name of the event. Case-insensitive.
 
- [`Event.isTrusted`](event/istrusted) <span class="badge inline readonly">Read only </span>   
+[`Event.isTrusted`](event/istrusted) <span class="badge inline readonly">Read only </span>  
 Indicates whether or not the event was initiated by the browser (after a user click, for instance) or by a script (using an event creation method, like [`Event.initEvent`](event/initevent)).
 
 ### Deprecated properties
 
- [`Event.scoped`](event/composed) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Event.scoped`](event/composed) <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the given event will bubble across through the shadow root into the standard DOM. Use [`composed`](event/composed) instead.
 
-Methods
--------
+## Methods
 
 [`Event.composedPath()`](event/composedpath)  
 Returns the event’s path (objects on which listeners will be invoked). This does not include nodes in shadow trees if the shadow root was created with its [`ShadowRoot.mode`](shadowroot/mode) closed.
@@ -153,26 +148,24 @@ Stops the propagation of events further along in the DOM.
 
 ### Deprecated methods
 
- [`Event.initEvent()`](event/initevent) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Event.initEvent()`](event/initevent) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Initializes the value of an Event created. If the event has already been dispatched, this method does nothing.
 
- <span class="page-not-created">`Event.getPreventDefault()`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`Event.getPreventDefault()`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns the value of [`Event.defaultPrevented`](event/defaultprevented).
 
- <span class="page-not-created">`Event.preventBubble()`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`Event.preventBubble()`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Prevents the event from bubbling. Use [`event.stopPropagation`](event/stoppropagation) instead.
 
- <span class="page-not-created">`Event.preventCapture()`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`Event.preventCapture()`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Prevents the event from bubbling. Use [`event.stopPropagation`](event/stoppropagation) instead.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#interface-event">DOM<br />
 <span class="small">The definition of 'Event' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -936,11 +929,10 @@ Starting with Samsung Internet 5.0, Firefox 54 and Opera 36, this property retur
 
 1.0
 
-See also
---------
+## See also
 
--   Types of events available: [Event reference](https://developer.mozilla.org/en-US/docs/Web/Events)
--   [Comparison of Event Targets](event/comparison_of_event_targets) (`target` vs `currentTarget` vs `relatedTarget` vs `originalTarget`)
--   [Creating and triggering custom events](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events)
+- Types of events available: [Event reference](https://developer.mozilla.org/en-US/docs/Web/Events)
+- [Comparison of Event Targets](event/comparison_of_event_targets) (`target` vs `currentTarget` vs `relatedTarget` vs `originalTarget`)
+- [Creating and triggering custom events](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Event</a>

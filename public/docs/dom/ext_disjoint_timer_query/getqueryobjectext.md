@@ -1,10 +1,8 @@
-EXT\_disjoint\_timer\_query.getQueryObjectEXT()
-===============================================
+# EXT_disjoint_timer_query.getQueryObjectEXT()
 
 The `EXT_disjoint_timer_query.getQueryObjectEXT()` method of the [WebGL API](../webgl_api) returns the state of a query object.
 
-Syntax
-------
+## Syntax
 
     any ext.getQueryObjectEXT(query, pname);
 
@@ -20,11 +18,10 @@ A [`GLenum`](../webgl_api/types) specifying which information to return. Must be
 
 Depends on `pname`:
 
--   If `pname` is `ext.QUERY_RESULT_EXT`: A [`GLuint64EXT`](../webgl_api/types) containing the query result.
--   If `pname` is `ext.QUERY_RESULT_AVAILABLE_EXT`: A [`GLboolean`](../webgl_api/types) indicating whether or not a query result is available.
+- If `pname` is `ext.QUERY_RESULT_EXT`: A [`GLuint64EXT`](../webgl_api/types) containing the query result.
+- If `pname` is `ext.QUERY_RESULT_AVAILABLE_EXT`: A [`GLboolean`](../webgl_api/types) indicating whether or not a query result is available.
 
-Examples
---------
+## Examples
 
     var ext = gl.getExtension('EXT_disjoint_timer_query');
     var query = ext.createQueryEXT();
@@ -43,14 +40,12 @@ Examples
       var timeElapsed = ext.getQueryObjectEXT(query, ext.QUERY_RESULT_EXT);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.khronos.org/registry/webgl/extensions/EXT_disjoint_timer_query/">EXT_disjoint_timer_query<br />
 <span class="small">The definition of 'EXT_disjoint_timer_query' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -120,11 +115,10 @@ No
 
 Removed due to the [GLitch exploit](https://www.vusec.net/projects/glitch/).
 
-See also
---------
+## See also
 
--   [`WebGLRenderingContext.getExtension()`](../webglrenderingcontext/getextension)
--   [`WebGLTimerQueryEXT`](../webglquery)
--   [`EXT_disjoint_timer_query`](../ext_disjoint_timer_query)
+- [`WebGLRenderingContext.getExtension()`](../webglrenderingcontext/getextension)
+- [`WebGLTimerQueryEXT`](../webglquery)
+- [`EXT_disjoint_timer_query`](../ext_disjoint_timer_query)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EXT_disjoint_timer_query/getQueryObjectEXT" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EXT_disjoint_timer_query/getQueryObjectEXT</a>

@@ -1,10 +1,8 @@
-MediaKeySession.closed
-======================
+# MediaKeySession.closed
 
 The `MediaKeySession.closed` read-only property returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) signaling when a [`MediaKeySession`](../mediakeysession) closes. This promise can only be fulfilled and is never rejected. Closing a session means that licenses and keys associated with it are no longer valid for decrypting media data.
 
-Syntax
-------
+## Syntax
 
     var promise = mediaKeySessionObj.closed;
 
@@ -12,14 +10,12 @@ Syntax
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-mediakeysession-closed">Encrypted Media Extensions<br />
 <span class="small">The definition of 'closed' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

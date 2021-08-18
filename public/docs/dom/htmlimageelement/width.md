@@ -1,10 +1,8 @@
-HTMLImageElement.width
-======================
+# HTMLImageElement.width
 
 The `width` property of the [`HTMLImageElement`](../htmlimageelement) interface indicates the width at which an image is drawn in [CSS pixels](https://developer.mozilla.org/en-US/docs/Glossary/CSS_pixel) if it's being drawn or rendered to any visual medium such as a screen or printer. Otherwise, it's the natural, pixel density-corrected width of the image.
 
-Syntax
-------
+## Syntax
 
     htmlImageElement.width = newWidth;
     let width = htmlImageElement.width;
@@ -13,11 +11,10 @@ Syntax
 
 An integer value indicating the width of the image. The way the width is defined depends on whether or not the image is being rendered to a visual medium, such as a screen or printer:
 
--   If the image is being rendered to a visual medium, the width is expressed in [CSS pixels](https://developer.mozilla.org/en-US/docs/Glossary/CSS_pixel).
--   If the image is not being rendered to a visual medium, its width is represented using the image's natural (intrinsic) width, adjusted for the display density as indicated by [`naturalWidth`](naturalwidth).
+- If the image is being rendered to a visual medium, the width is expressed in [CSS pixels](https://developer.mozilla.org/en-US/docs/Glossary/CSS_pixel).
+- If the image is not being rendered to a visual medium, its width is represented using the image's natural (intrinsic) width, adjusted for the display density as indicated by [`naturalWidth`](naturalwidth).
 
-Example
--------
+## Example
 
 In this example, two different sizes are provided for an image of a clock using the [`srcset`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset) attribute. One is 200px wide and the other is 400px wide. The [`sizes`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-sizes) attribute is used to specify the width at which the image should be drawn given the viewport's width.
 
@@ -48,14 +45,12 @@ JavaScript looks at the `width` property to determine the width of the image at 
 
 This example may be easier to try out [in its own window](https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/HTMLImageElement/width/_samples_/Example).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-img-width">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLImageElement.width' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

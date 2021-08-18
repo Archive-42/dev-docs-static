@@ -1,5 +1,4 @@
-Using Fetch
-===========
+# Using Fetch
 
 The [Fetch API](../fetch_api) provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline, such as requests and responses. It also provides a global [`fetch()`](../windoworworkerglobalscope/fetch) method that provides an easy, logical way to fetch resources asynchronously across the network.
 
@@ -7,8 +6,8 @@ This kind of functionality was previously achieved using [`XMLHttpRequest`](../x
 
 The `fetch` specification differs from `jQuery.ajax()` in the following significant ways:
 
--   The Promise returned from `fetch()` **won’t reject on HTTP error status** even if the response is an HTTP 404 or 500. Instead, as soon as the server responds with headers, the Promise will resolve normally (with the [`ok`](../response/ok) property of the response set to false if the response isn’t in the range 200–299), and it will only reject on network failure or if anything prevented the request from completing.
--   `fetch()` **won’t send cross-origin cookies** unless you set the *credentials* [init option](../windoworworkerglobalscope/fetch#parameters). (Since [April 2018](https://github.com/whatwg/fetch/pull/585). The spec changed the default credentials policy to `same-origin`. Firefox changed since 61.0b13.)
+- The Promise returned from `fetch()` **won’t reject on HTTP error status** even if the response is an HTTP 404 or 500. Instead, as soon as the server responds with headers, the Promise will resolve normally (with the [`ok`](../response/ok) property of the response set to false if the response isn’t in the range 200–299), and it will only reject on network failure or if anything prevented the request from completing.
+- `fetch()` **won’t send cross-origin cookies** unless you set the _credentials_ [init option](../windoworworkerglobalscope/fetch#parameters). (Since [April 2018](https://github.com/whatwg/fetch/pull/585). The spec changed the default credentials policy to `same-origin`. Firefox changed since 61.0b13.)
 
 A basic fetch request is really simple to set up. Have a look at the following code:
 
@@ -58,10 +57,10 @@ See [`fetch()`](../windoworworkerglobalscope/fetch) for the full options availab
 
 Note that `mode: "no-cors"` only allows a limited set of headers in the request:
 
--   `Accept`
--   `Accept-Language`
--   `Content-Language`
--   `Content-Type` with a value of `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain`
+- `Accept`
+- `Accept-Language`
+- `Content-Language`
+- `Content-Type` with a value of `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain`
 
 ### Sending a request with credentials included
 
@@ -77,7 +76,7 @@ To cause browsers to send a request with credentials included on both same-origi
 
 **Note**
 
-Browsers should not send credentials in *preflight requests* irrespective of this setting. For more information see: [CORS &gt; Requests with credentials](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#requests_with_credentials).
+Browsers should not send credentials in _preflight requests_ irrespective of this setting. For more information see: [CORS &gt; Requests with credentials](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#requests_with_credentials).
 
 If you only want to send credentials if the request URL is on the same origin as the calling script, add `credentials: 'same-origin'`.
 
@@ -251,8 +250,7 @@ This is pretty useful, as request and response bodies are one use only. Making a
 
 There is also a [`clone()`](../request/clone) method that creates a copy. Both methods of creating a copy will fail if the body of the original request or response has already been read, but reading the body of a cloned response or request will not cause it to be marked as read in the original.
 
-Headers
--------
+## Headers
 
 The [`Headers`](../headers) interface allows you to create your own headers object via the [`Headers()`](../headers/headers) constructor. A headers object is a simple multi-map of names to values:
 
@@ -311,30 +309,29 @@ A good use case for headers is checking whether the content type is correct befo
 
 ### Guard
 
-Since headers can be sent in requests and received in responses, and have various limitations about what information can and should be mutable, headers' objects have a *guard* property. This is not exposed to the Web, but it affects which mutation operations are allowed on the headers object.
+Since headers can be sent in requests and received in responses, and have various limitations about what information can and should be mutable, headers' objects have a _guard_ property. This is not exposed to the Web, but it affects which mutation operations are allowed on the headers object.
 
 Possible guard values are:
 
--   `none`: default.
--   `request`: guard for a headers object obtained from a request ([`Request.headers`](../request/headers)).
--   `request-no-cors`: guard for a headers object obtained from a request created with [`Request.mode`](../request/mode) `no-cors`.
--   `response`: guard for a headers object obtained from a response ([`Response.headers`](../response/headers)).
--   `immutable`: guard that renders a headers object read-only; mostly used for ServiceWorkers.
+- `none`: default.
+- `request`: guard for a headers object obtained from a request ([`Request.headers`](../request/headers)).
+- `request-no-cors`: guard for a headers object obtained from a request created with [`Request.mode`](../request/mode) `no-cors`.
+- `response`: guard for a headers object obtained from a response ([`Response.headers`](../response/headers)).
+- `immutable`: guard that renders a headers object read-only; mostly used for ServiceWorkers.
 
 **Note**
 
 You may not append or set the `Content-Length` header on a guarded headers object for a `response`. Similarly, inserting `Set-Cookie` into a response header is not allowed: ServiceWorkers are not allowed to set cookies via synthesized responses.
 
-Response objects
-----------------
+## Response objects
 
 As you have seen above, [`Response`](../response) instances are returned when `fetch()` promises are resolved.
 
 The most common response properties you'll use are:
 
--   [`Response.status`](../response/status) — An integer (default value 200) containing the response status code.
--   [`Response.statusText`](../response/statustext) — A string (default value ""), which corresponds to the HTTP status code message. Note that HTTP/2 [does not support](https://fetch.spec.whatwg.org/#concept-response-status-message) status messages.
--   [`Response.ok`](../response/ok) — seen in use above, this is a shorthand for checking that status is in the range 200-299 inclusive. This returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean).
+- [`Response.status`](../response/status) — An integer (default value 200) containing the response status code.
+- [`Response.statusText`](../response/statustext) — A string (default value ""), which corresponds to the HTTP status code message. Note that HTTP/2 [does not support](https://fetch.spec.whatwg.org/#concept-response-status-message) status messages.
+- [`Response.ok`](../response/ok) — seen in use above, this is a shorthand for checking that status is in the range 200-299 inclusive. This returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean).
 
 They can also be created programmatically via JavaScript, but this is only really useful in [`ServiceWorkers`](../service_worker_api), when you are providing a custom response to a received request using a [`respondWith()`](../fetchevent/respondwith) method:
 
@@ -355,25 +352,24 @@ The [`Response()`](../response/response) constructor takes two optional argument
 
 The static method [`error()`](../response/error) returns an error response. Similarly, [`redirect()`](../response/redirect) returns a response resulting in a redirect to a specified URL. These are also only relevant to Service Workers.
 
-Body
-----
+## Body
 
 Both requests and responses may contain body data. A body is an instance of any of the following types:
 
--   [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
--   [`ArrayBufferView`](../arraybufferview) (Uint8Array and friends)
--   [`Blob`](../blob)/File
--   string
--   [`URLSearchParams`](../urlsearchparams)
--   [`FormData`](../formdata)
+- [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
+- [`ArrayBufferView`](../arraybufferview) (Uint8Array and friends)
+- [`Blob`](../blob)/File
+- string
+- [`URLSearchParams`](../urlsearchparams)
+- [`FormData`](../formdata)
 
 The [`Body`](../body) mixin defines the following methods to extract a body (implemented by both [`Request`](../request) and [`Response`](../response)). These all return a promise that is eventually resolved with the actual content.
 
--   [`arrayBuffer()`](../body/arraybuffer)
--   [`blob()`](../body/blob)
--   [`json()`](../body/json)
--   [`text()`](../body/text)
--   [`formData()`](../body/formdata)
+- [`arrayBuffer()`](../body/arraybuffer)
+- [`blob()`](../body/blob)
+- [`json()`](../body/json)
+- [`text()`](../body/text)
+- [`formData()`](../body/formdata)
 
 This makes usage of non-textual data much easier than it was with XHR.
 
@@ -387,8 +383,7 @@ Request bodies can be set by passing body parameters:
 
 Both request and response (and by extension the `fetch()` function), will try to intelligently determine the content type. A request will also automatically set a `Content-Type` header if none is set in the dictionary.
 
-Feature detection
------------------
+## Feature detection
 
 Fetch API support can be detected by checking for the existence of [`Headers`](../headers), [`Request`](../request), [`Response`](../response) or [`fetch()`](../windoworworkerglobalscope/fetch) on the [`Window`](../window) or [`Worker`](../worker) scope. For example:
 
@@ -398,18 +393,15 @@ Fetch API support can be detected by checking for the existence of [`Headers`](.
       // do something with XMLHttpRequest?
     }
 
-Polyfill
---------
+## Polyfill
 
 To use Fetch in unsupported browsers, there is a [Fetch Polyfill](https://github.com/github/fetch) available that recreates the functionality for non-supporting browsers.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fetch.spec.whatwg.org/">Fetch</a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -569,13 +561,12 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [ServiceWorker API](../service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
--   [Fetch polyfill](https://github.com/github/fetch)
--   [Fetch examples on Github](https://github.com/mdn/fetch-examples/)
+- [ServiceWorker API](../service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [Fetch polyfill](https://github.com/github/fetch)
+- [Fetch examples on Github](https://github.com/mdn/fetch-examples/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch</a>

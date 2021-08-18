@@ -1,10 +1,8 @@
-LayoutShift
-===========
+# LayoutShift
 
 The `LayoutShift` interface of the Layout Instability API provides insights into the stability of web pages based on movements of the elements on the page.
 
-Properties
-----------
+## Properties
 
 `LayoutShift.value`  
 Returns the `impact fraction` (fraction of the viewport that was shifted) times the `distance fraction` (distance moved as a fraction of viewport).
@@ -18,14 +16,12 @@ Returns the time of the most recent user input.
 `LayoutShift.sources`  
 Returns an array of [`LayoutShiftAttribution`](layoutshiftattribution) objects with information on the elements that were shifted.
 
-Methods
--------
+## Methods
 
 `LayoutShift.toJSON()`  
 Converts the properties to JSON.
 
-Examples
---------
+## Examples
 
 The following example shows how to capture layout shifts and log them to the console.
 
@@ -60,14 +56,12 @@ Note that in this example data is only sent to the server when the user leaves t
       // Do nothing if the browser doesn't support this API.
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/layout-instability/#layoutshift">Layout Instability API<br />
 <span class="small">The definition of 'LayoutShift' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

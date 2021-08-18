@@ -1,12 +1,10 @@
-DynamicsCompressorNode.attack
-=============================
+# DynamicsCompressorNode.attack
 
 The `attack` property of the [`DynamicsCompressorNode`](../dynamicscompressornode) interface is a [k-rate](../audioparam#k-rate) [`AudioParam`](../audioparam) representing the amount of time, in seconds, required to reduce the gain by 10 dB. It defines how quickly the signal is adapted when its volume is increased.
 
 The `attack` property's default value is `0.003` and it can be set between `0` and `1`.
 
-Syntax
-------
+## Syntax
 
     var audioCtx = new AudioContext();
     var compressor = audioCtx.createDynamicsCompressor();
@@ -18,8 +16,7 @@ An [`AudioParam`](../audioparam).
 
 **Note**: Though the [`AudioParam`](../audioparam) returned is read-only, the value it represents is not.
 
-Example
--------
+## Example
 
 The below code demonstrates a simple usage of `createDynamicsCompressor()` to add compression to an audio track. For a more complete example, have a look at our [basic Compressor example](https://mdn.github.io/webaudio-examples/compressor-example/) ([view the source code](https://github.com/mdn/webaudio-examples/tree/master/compressor-example)).
 
@@ -57,14 +54,12 @@ The below code demonstrates a simple usage of `createDynamicsCompressor()` to ad
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-dynamicscompressornode-attack">Web Audio API<br />
 <span class="small">The definition of 'attack' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -120,9 +115,8 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](../web_audio_api/using_web_audio_api)
+- [Using the Web Audio API](../web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/DynamicsCompressorNode/attack" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DynamicsCompressorNode/attack</a>

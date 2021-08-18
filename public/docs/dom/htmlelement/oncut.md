@@ -1,5 +1,4 @@
-HTMLElement.oncut
-=================
+# HTMLElement.oncut
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `HTMLElement.oncut` property of the [`HTMLElement`](../htmlelement) interfac
 
 The `cut` event fires when the user attempts to cut text.
 
-Syntax
-------
+## Syntax
 
     target.oncut = functionRef;
 
@@ -19,8 +17,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives a [`ClipboardEvent`](../clipboardevent) object as its sole argument.
 
-Example
--------
+## Example
 
 This example allows text to be copied from the [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea), but doesn't allow text to be cut. It also logs each copy and cut attempt.
 
@@ -51,13 +48,11 @@ This example allows text to be copied from the [`<textarea>`](https://developer.
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 [WHATWG Standard](https://html.spec.whatwg.org/multipage/webappapis.html#handler-oncut)
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -115,12 +110,11 @@ Samsung Internet
 
 Since Firefox 13, the preference `dom.event.clipboardevents.enabled` controls this feature. It defaults to `true` but can be disabled.
 
-See also
---------
+## See also
 
--   Clipboard API event `cut`
--   Related event handlers
-    -   [`HTMLElement.oncopy`](oncopy)
-    -   [`HTMLElement.onpaste`](onpaste)
+- Clipboard API event `cut`
+- Related event handlers
+  - [`HTMLElement.oncopy`](oncopy)
+  - [`HTMLElement.onpaste`](onpaste)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/oncut" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/oncut</a>

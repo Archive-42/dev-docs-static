@@ -1,28 +1,25 @@
-Element.closest()
-=================
+# Element.closest()
 
 The `closest()` method traverses the [`Element`](../element) and its parents (heading toward the document root) until it finds a node that matches the provided selector string. Will return itself or the matching ancestor. If no such element exists, it returns `null`.
 
-Syntax
-------
+## Syntax
 
     var closestElement = targetElement.closest(selectors);
 
 ### Parameters
 
--   `selectors` is a [`DOMString`](../domstring) containing a selector list.  
-    ex: `p:hover, .toto + q`
+- `selectors` is a [`DOMString`](../domstring) containing a selector list.  
+  ex: `p:hover, .toto + q`
 
 ### Return value
 
--   `closestElement` is the [`Element`](../element) which is the closest ancestor of the selected element. It may be `null`.
+- `closestElement` is the [`Element`](../element) which is the closest ancestor of the selected element. It may be `null`.
 
 ### Exceptions
 
--   [`SyntaxError`](../domexception#exception-syntaxerror) is thrown if the `selectors` is not a valid selector list string.
+- [`SyntaxError`](../domexception#exception-syntaxerror) is thrown if the `selectors` is not a valid selector list string.
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -50,8 +47,7 @@ Example
     var r4 = el.closest(":not(div)");
     // returns the closest ancestor which is not a div, here it is the outmost article
 
-Polyfill
---------
+## Polyfill
 
 For browsers that do not support `Element.closest()`, but carry support for `element.matches()` (or a prefixed equivalent, meaning IE9+), a polyfill exists:
 
@@ -88,14 +84,12 @@ However, if you really do require IE 8 support, then the following polyfill will
       };
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-element-closest">DOM<br />
 <span class="small">The definition of 'Element.closest()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -151,13 +145,12 @@ No
 
 4.0
 
--   In Edge 15-18 `document.createElement(tagName).closest(tagName)` will return `null` if the element is not first connected (directly or indirectly) to the context object, for example the [`Document`](../document) object in the case of the normal DOM.
+- In Edge 15-18 `document.createElement(tagName).closest(tagName)` will return `null` if the element is not first connected (directly or indirectly) to the context object, for example the [`Document`](../document) object in the case of the normal DOM.
 
-See also
---------
+## See also
 
--   The [`Element`](../element) interface.
--   [The syntax of Selectors](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors)
--   Other methods that take selectors: [`element.querySelector()`](queryselector) and [`element.matches()`](matches).
+- The [`Element`](../element) interface.
+- [The syntax of Selectors](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors)
+- Other methods that take selectors: [`element.querySelector()`](queryselector) and [`element.matches()`](matches).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/closest" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/closest</a>

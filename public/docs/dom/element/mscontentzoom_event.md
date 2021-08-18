@@ -1,5 +1,4 @@
-Element: msContentZoom event
-============================
+# Element: msContentZoom event
 
 **Non-standard**
 
@@ -13,20 +12,17 @@ Zoomed elements can expose their zoom level through `msContentZoom` (ie. scrollT
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Unknown</td></tr><tr class="even"><td>Cancelable</td><td>Unknown</td></tr><tr class="odd"><td>Interface</td><td>Unknown</td></tr><tr class="even"><td>Event handler property</td><td>Unknown</td></tr></tbody></table>
 
-Example
--------
+## Example
 
       contentZoom.addEventListener("MSContentZoom", function(e) {
          zoomFactor.value = contentZoom.msContentZoomFactor.toFixed(2);
       });
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -82,10 +78,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [CSS Style Declaration](../cssstyledeclaration)
--   [Microsoft API extensions](../microsoft_extensions)
+- [CSS Style Declaration](../cssstyledeclaration)
+- [Microsoft API extensions](../microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/msContentZoom_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/msContentZoom_event</a>

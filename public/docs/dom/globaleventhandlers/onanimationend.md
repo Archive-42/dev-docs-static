@@ -1,12 +1,10 @@
-GlobalEventHandlers.onanimationend
-==================================
+# GlobalEventHandlers.onanimationend
 
 The `onanimationend` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is the [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) for processing `animationend` events.
 
 The `animationend` event fires when a [CSS animation](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) reaches the end of its active period (which is calculated as `animation-duration` \* [`animation-iteration-count`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-iteration-count)) + [`animation-delay`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-delay)).
 
-Syntax
-------
+## Syntax
 
     var animEndHandler = target.onanimationend;
 
@@ -14,10 +12,9 @@ Syntax
 
 ### Value
 
-A [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) to be called when an `animationend` event occurs indicating that a CSS animation has ended on the *`target`*, where the target object is an HTML element ([`HTMLElement`](../htmlelement)), document ([`Document`](../document)), or window ([`Window`](../window)). The function receives as input a single parameter: an [`AnimationEvent`](../animationevent) object describing the event which occurred.
+A [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) to be called when an `animationend` event occurs indicating that a CSS animation has ended on the _`target`_, where the target object is an HTML element ([`HTMLElement`](../htmlelement)), document ([`Document`](../document)), or window ([`Window`](../window)). The function receives as input a single parameter: an [`AnimationEvent`](../animationevent) object describing the event which occurred.
 
-Example
--------
+## Example
 
 ### CSS content
 
@@ -98,14 +95,12 @@ This sets the class of the box we want to animate to the class that contains the
 
 Assembled together, you get this:
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-animations-1/#eventdef-animationevent-animationend">CSS Animations Level 1<br />
 <span class="small">The definition of 'onanimationend' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -171,11 +166,10 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   The `animationend` event, which triggers this event handler
--   [`AnimationEvent`](../animationevent)
--   The `animationstart` event
+- The `animationend` event, which triggers this event handler
+- [`AnimationEvent`](../animationevent)
+- The `animationstart` event
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onanimationend" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onanimationend</a>

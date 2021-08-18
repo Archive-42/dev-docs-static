@@ -1,18 +1,15 @@
-HTMLFormElement.method
-======================
+# HTMLFormElement.method
 
 The `HTMLFormElement.method` property represents the [HTTP](https://developer.mozilla.org/en-US/docs/Glossary/HTTP) method used to submit the [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form).
 
 Unless explicitly specified, the default method is 'get'.
 
-Syntax
-------
+## Syntax
 
     var string = form.method;
     form.method = string;
 
-Example
--------
+## Example
 
     document.forms['myform'].method = 'post';
 
@@ -20,14 +17,12 @@ Example
     document.body.appendChild(formElement);
     console.log(formElement.method); // 'get'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-fs-method">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLFormElement: method' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

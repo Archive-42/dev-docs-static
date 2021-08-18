@@ -1,5 +1,4 @@
-HTMLTableElement.bgColor
-========================
+# HTMLTableElement.bgColor
 
 **Deprecated**
 
@@ -11,30 +10,26 @@ The `bgColor` attribute is deprecated in HTML 4.01. The CSS [`background-color`]
 
 Also available on DOM [`tbody`](tbodies), [`row`](rows) and [`cell`](https://developer.mozilla.org/en-US/docs/DOM/table.cells) objects.
 
-Syntax
-------
+## Syntax
 
     color = table.bgColor
     table.bgColor = color
 
 ### Parameters
 
--   `color` is a string representing a color value.
+- `color` is a string representing a color value.
 
-Example
--------
+## Example
 
     // Set table background color to lightblue
     var t = document.getElementById('TableA');
     t.bgColor = 'lightblue';
 
-Specifications
---------------
+## Specifications
 
--   [DOM Level 2 HTML:*HTMLTableElement* .bgColor](https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-83532985)
+- [DOM Level 2 HTML:_HTMLTableElement_ .bgColor](https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-83532985)
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

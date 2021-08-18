@@ -1,5 +1,4 @@
-FederatedCredential
-===================
+# FederatedCredential
 
 **Non-standard**
 
@@ -7,25 +6,22 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 The `FederatedCredential` constructor creates a new [`FederatedCredential`](../federatedcredential) object. In supporting browsers, an instance of this class may be passed the `credential` received from the `init` object for global [`WindowOrWorkerGlobalScope.fetch`](../windoworworkerglobalscope/fetch).
 
-Syntax
-------
+## Syntax
 
     var myCredential = new FederatedCredential(init)
 
 ### Parameters
 
- *init*   
+_init_  
 Options are:
 
--   `provider`: A [`USVString`](../usvstring); identifying the credential provider.
+- `provider`: A [`USVString`](../usvstring); identifying the credential provider.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-credential-management/">Credential Management Level 1</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,10 +1,8 @@
-HTMLScriptElement.referrerPolicy
-================================
+# HTMLScriptElement.referrerPolicy
 
 The `referrerPolicy` property of the [`HTMLScriptElement`](../htmlscriptelement) interface reflects the HTML [`referrerpolicy`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-referrerpolicy) of the [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) element and fetches made by that script, defining which referrer is sent when fetching the resource.
 
-Syntax
-------
+## Syntax
 
     refStr = scriptElem.referrerPolicy;
     scriptElem.referrerPolicy = refStr;
@@ -40,23 +38,20 @@ Send a full URL when performing a same-origin or cross-origin request. This poli
 
 **Note**: An empty string value (`""`) is both the default value, and a fallback value if `referrerpolicy` is not supported. If `referrerpolicy` is not explicitly specified on the `<script>` element, it will adopt a higher-level referrer policy, i.e. one set on the whole document or domain. If a higher-level policy is not available, the empty string is treated as being equivalent to `no-referrer-when-downgrade`.
 
-Examples
---------
+## Examples
 
     var scriptElem = document.createElement("script");
     scriptElem.src = "/";
     scriptElem.referrerPolicy = "unsafe-url";
     document.body.appendChild(scriptElem);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute">Referrer Policy<br />
 <span class="small">The definition of 'referrerpolicy attribute' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Added the <code>referrerPolicy</code> attribute.</td></tr><tr class="even"><td><a href="https://html.spec.whatwg.org/multipage/#dom-script-referrerpolicy">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLScriptElement: referrerPolicy' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -112,9 +107,8 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   [`HTMLIFrameElement.referrerPolicy`](../htmliframeelement/referrerpolicy)
+- [`HTMLIFrameElement.referrerPolicy`](../htmliframeelement/referrerpolicy)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLScriptElement/referrerPolicy" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLScriptElement/referrerPolicy</a>

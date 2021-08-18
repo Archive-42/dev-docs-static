@@ -1,5 +1,4 @@
-IDBTransaction: abort event
-===========================
+# IDBTransaction: abort event
 
 The `abort` event is fired when an `IndexedDB` transaction is aborted.
 
@@ -7,14 +6,13 @@ The `abort` event is fired when an `IndexedDB` transaction is aborted.
 
 This can happen for any of the following reasons:
 
--   bad requests, (for example, trying to add the same key twice, or put the same index key when the key has a uniqueness constraint),
--   an explicit [`abort()`](abort) call
--   an uncaught exception in the request's success/error handler,
--   an I/O error (an actual failure to write to disk, for example disk detached, or other OS/hardware failure)
--   quota exceeded.
+- bad requests, (for example, trying to add the same key twice, or put the same index key when the key has a uniqueness constraint),
+- an explicit [`abort()`](abort) call
+- an uncaught exception in the request's success/error handler,
+- an I/O error (an actual failure to write to disk, for example disk detached, or other OS/hardware failure)
+- quota exceeded.
 
-Examples
---------
+## Examples
 
 This example opens a database (creating the database if it does not exist), then opens a transaction, adds a listener to the `abort` event, then aborts the transaction to trigger the event.
 
@@ -92,8 +90,7 @@ The same example, but assigning the event handler to the [`onabort`](onabort) pr
       transaction.abort();
     };
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -149,10 +146,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   [`onabort`](onabort) event handler property
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- [`onabort`](onabort) event handler property
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/abort_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/abort_event</a>

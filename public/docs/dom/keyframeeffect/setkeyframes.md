@@ -1,5 +1,4 @@
-KeyframeEffect.setKeyframes()
-=============================
+# KeyframeEffect.setKeyframes()
 
 **Experimental**
 
@@ -8,19 +7,16 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `setKeyframes()` method of the [`KeyframeEffect`](../keyframeeffect) interface replaces the keyframes that make up the affected `KeyframeEffect` with a new set of keyframes.
 
-Syntax
-------
+## Syntax
 
     existingKeyframeEffect.setKeyframes(keyframes);
 
-Attributes
-----------
+## Attributes
 
 ### Parameters
 
 keyframes  
-<span style="line-height: 1.5;">A keyframe object or </span>`null`<span style="line-height: 1.5;">. If set to `null`, the keyframes are replaced with a sequence of empty keyframes.</span>  
-  
+<span style="line-height: 1.5;">A keyframe object or </span>`null`<span style="line-height: 1.5;">. If set to `null`, the keyframes are replaced with a sequence of empty keyframes.</span>
 
 There are two different ways to format keyframes:
 
@@ -97,8 +93,8 @@ Keyframes may specify property-value pairs for any of the [`animatable css prope
 
 Two exceptional CSS properties are:
 
--   [`float`](https://developer.mozilla.org/en-US/docs/Web/CSS/float), which must be written as `cssFloat` since "float" is a reserved word in JavaScript. It's just for reference here, this will have no effect on animation since "float" is not an animatable CSS property.
--   [`offset`](https://developer.mozilla.org/en-US/docs/Web/CSS/offset), which must be written as `cssOffset` since "offset" represents the keyframe offset as described below.
+- [`float`](https://developer.mozilla.org/en-US/docs/Web/CSS/float), which must be written as `cssFloat` since "float" is a reserved word in JavaScript. It's just for reference here, this will have no effect on animation since "float" is not an animatable CSS property.
+- [`offset`](https://developer.mozilla.org/en-US/docs/Web/CSS/offset), which must be written as `cssOffset` since "offset" represents the keyframe offset as described below.
 
 The following special attributes may also be specified:
 
@@ -121,8 +117,7 @@ Void.
 
 **Note**: If the keyframes cannot be processed or are malformed, the `KeyframeEffect`'s keyframes are not modified.
 
-Examples
---------
+## Examples
 
     // passing an array of keyframe objects
     existingKeyframeEffect.setKeyframes(
@@ -147,14 +142,12 @@ Examples
       }
     );
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/web-animations-1/#dom-keyframeeffect-setkeyframes">Web Animations<br />
 <span class="small">The definition of 'KeyframeEffect.setKeyframes()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Editor's draft.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -210,10 +203,9 @@ No
 
 14.0
 
-See also
---------
+## See also
 
--   [KeyframeEffect Interface](../keyframeeffect)
--   [Web Animations API](../web_animations_api)
+- [KeyframeEffect Interface](../keyframeeffect)
+- [Web Animations API](../web_animations_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/setKeyframes" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/setKeyframes</a>

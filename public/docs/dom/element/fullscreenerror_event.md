@@ -1,5 +1,4 @@
-Element: fullscreenerror event
-==============================
+# Element: fullscreenerror event
 
 The `fullscreenerror` event is fired when the browser cannot switch to full-screen mode.
 
@@ -9,8 +8,7 @@ As with the [`fullscreenchange`](fullscreenchange_event) event, two `fullscreene
 
 For some reasons that switching into full-screen mode might fail, see [the guide to the Fullscreen API](../fullscreen_api/guide).
 
-Examples
---------
+## Examples
 
     const requestor = document.querySelector('div');
 
@@ -21,13 +19,11 @@ Examples
 
     requestor.requestFullscreen();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://fullscreen.spec.whatwg.org/">Fullscreen API</a></td><td><span class="spec-living">Living Standard</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -93,11 +89,10 @@ Samsung Internet
 
 7.0
 
-See also
---------
+## See also
 
--   [`fullscreenchange`](fullscreenchange_event)
--   [Fullscreen API](../fullscreen_api)
--   [Guide to the Fullscreen API](../fullscreen_api/guide)
+- [`fullscreenchange`](fullscreenchange_event)
+- [Fullscreen API](../fullscreen_api)
+- [Guide to the Fullscreen API](../fullscreen_api/guide)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/fullscreenerror_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/fullscreenerror_event</a>

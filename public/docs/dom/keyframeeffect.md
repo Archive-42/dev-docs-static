@@ -1,5 +1,4 @@
-KeyframeEffect
-==============
+# KeyframeEffect
 
 **Experimental**
 
@@ -8,19 +7,17 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `KeyframeEffect` interface of the [Web Animations API](web_animations_api) lets us create sets of animatable properties and values, called **keyframes.** These can then be played using the [`Animation()`](animation/animation) constructor.
 
-Constructor
------------
+## Constructor
 
 [`KeyframeEffect()`](keyframeeffect/keyframeeffect)  
 Returns a new `KeyframeEffect` object instance, and also allows you to clone an existing keyframe effect object instance.
 
-Properties
-----------
+## Properties
 
 [`KeyframeEffect.target`](keyframeeffect/target)  
 Gets and sets the element, or originating element of the pseudo-element, being animated by this object. This may be `null` for animations that do not target a specific element or pseudo-element.
 
- <span class="page-not-created">`KeyframeEffect.pseudoElement`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`KeyframeEffect.pseudoElement`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Gets and sets the selector of the pseudo-element being animated by this object. This may be `null` for animations that do not target a pseudo-element.
 
 [`KeyframeEffect.iterationComposite`](keyframeeffect/iterationcomposite)  
@@ -29,10 +26,9 @@ Gets and sets the iteration composite operation for resolving the property value
 [`KeyframeEffect.composite`](keyframeeffect/composite)  
 Gets and sets the composite operation property for resolving the property value changes between this and other keyframe effects.
 
-Methods
--------
+## Methods
 
-*This interface inherits some of its methods from its parent, [`AnimationEffect`](animationeffect).*
+_This interface inherits some of its methods from its parent, [`AnimationEffect`](animationeffect)._
 
 [`AnimationEffect.getComputedTiming()`](animationeffect/getcomputedtiming)  
 Returns the calculated, current timing values for this keyframe effect.
@@ -49,8 +45,7 @@ Replaces the set of keyframes that make up this effect.
 [`AnimationEffect.updateTiming()`](animationeffect/updatetiming)  
 Updates the specified timing properties.
 
-Examples
---------
+## Examples
 
 In the [Follow the White Rabbit example](https://codepen.io/rachelnabors/pen/eJyWzm/?editors=0010), the KeyframeEffect constructor is used to create a set of keyframes that dictate how the White Rabbit should animate down the hole:
 
@@ -63,14 +58,12 @@ In the [Follow the White Rabbit example](https://codepen.io/rachelnabors/pen/eJy
         { duration: 3000, fill: 'forwards' } // keyframe options
       );
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/web-animations-1/#the-keyframeeffect-interface">Web Animations<br />
 <span class="small">The definition of 'KeyframeEffect' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -322,10 +315,9 @@ No
 
 11.0
 
-See also
---------
+## See also
 
--   [Web Animations API](web_animations_api)
--   [`Animation`](animation)
+- [Web Animations API](web_animations_api)
+- [`Animation`](animation)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect</a>

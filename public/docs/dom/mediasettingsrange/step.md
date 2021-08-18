@@ -1,5 +1,4 @@
-MediaSettingsRange.step
-=======================
+# MediaSettingsRange.step
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `step` read-only property of the [`MediaSettingsRange`](../mediasettingsrange) interface returns the minimum difference between consecutive values of the settings range.
 
-Syntax
-------
+## Syntax
 
     var step = mediaSettingsRange.step
 
@@ -17,14 +15,12 @@ Syntax
 
 A double integer.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-image/#dom-mediasettingsrange-step">MediaStream Image Capture<br />
 <span class="small">The definition of 'step' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

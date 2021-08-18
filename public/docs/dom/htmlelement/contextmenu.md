@@ -1,5 +1,4 @@
-HTMLElement.contextMenu
-=======================
+# HTMLElement.contextMenu
 
 BCD tables only load in the browser
 
@@ -16,8 +15,8 @@ The `HTMLElement.contextMenu` property refers to the context menu assigned to an
     // Change the label of the first menu entry
     contextMenu.firstElementChild.label = "New label";
 
--   [`contextmenu`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-contextmenu)
--   [`<menu>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/menu)
--   [`<menuitem>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/menuitem)
+- [`contextmenu`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-contextmenu)
+- [`<menu>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/menu)
+- [`<menuitem>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/menuitem)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/contextMenu" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/contextMenu</a>

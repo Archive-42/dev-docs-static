@@ -1,23 +1,19 @@
-HTMLTableElement.tFoot
-======================
+# HTMLTableElement.tFoot
 
 The `HTMLTableElement.tFoot` property represents the [`<tfoot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot) element of a [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table). Its value will be `null` if there is no such element.
 
-Syntax
-------
+## Syntax
 
     HTMLTableSectionElementObject = table.tFoot
     table.tFoot = HTMLTableSectionElementObject
 
-Example
--------
+## Example
 
     if (table.tFoot == my_foot) {
       // ...
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/tabular-data.html#dom-table-tfoot">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLTableElement.tFoot' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change from <a href="https://www.w3.org/TR/html52/">HTML5</a></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/tabular-data.html#dom-table-tfoot">HTML5<br />
@@ -25,8 +21,7 @@ Specifications
 <span class="small">The definition of 'HTMLTableElement.tFoot' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>No change from <a href="https://www.w3.org/TR/REC-DOM-Level-1/">Document Object Model (DOM) Level 1 Specification</a></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-64197097">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLTableElement.tFoot' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -82,9 +77,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The interface implementing this property: [`HTMLTableElement`](../htmltableelement).
+- The interface implementing this property: [`HTMLTableElement`](../htmltableelement).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableElement/tFoot" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableElement/tFoot</a>

@@ -1,10 +1,8 @@
-MediaDevices.getSupportedConstraints()
-======================================
+# MediaDevices.getSupportedConstraints()
 
-The `getSupportedConstraints``()` method of the [`MediaDevices`](../mediadevices) interface returns an object based on the [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints) dictionary, whose member fields each specify one of the constrainable properties the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) understands.
+The ` getSupportedConstraints``() ` method of the [`MediaDevices`](../mediadevices) interface returns an object based on the [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints) dictionary, whose member fields each specify one of the constrainable properties the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) understands.
 
-Syntax
-------
+## Syntax
 
     var supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
 
@@ -16,8 +14,7 @@ None.
 
 A new object based on the [`MediaTrackSupportedConstraints`](../mediatracksupportedconstraints) dictionary listing the constraints supported by the user agent. Because only constraints supported by the user agent are included in the list, each of these Boolean properties has the value `true`.
 
-Example
--------
+## Example
 
 This example outputs a list of the constraints supported by your browser.
 
@@ -35,14 +32,12 @@ This example outputs a list of the constraints supported by your browser.
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediadevices-getsupportedconstraints">Media Capture and Streams<br />
 <span class="small">The definition of 'getSupportedConstraints()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,10 +1,8 @@
-Encrypted Media Extensions API
-==============================
+# Encrypted Media Extensions API
 
 The Encrypted Media Extensions API provides interfaces for controlling the playback of content which is subject to a digital restrictions management scheme.
 
-Interfaces
-----------
+## Interfaces
 
 [`MediaKeyMessageEvent`](mediakeymessageevent)  
 Contains the content and related data when the content decryption module (CDM) generates a message for the session.
@@ -24,13 +22,11 @@ Provides access to a Key System for decryption and/or a content protection provi
 [`MediaKeySystemConfiguration`](mediakeysystemconfiguration)  
 Provides configuration information about the media key system.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/">Encrypted Media Extensions</a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-HTMLDialogElement.show()
-========================
+# HTMLDialogElement.show()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `show()` method of the [`HTMLDialogElement`](../htmldialogelement) interface displays the dialog modelessly, i.e. still allowing interaction with content outside of the dialog.
 
-Syntax
-------
+## Syntax
 
     dialogInstance.show();
 
@@ -21,10 +19,9 @@ None.
 
 Void.
 
-Examples
---------
+## Examples
 
-The following example shows a simple button that, when clicked, opens a [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) containing a form via the `show()` method. From there you can click the *Cancel* button to close the dialog (via the [`HTMLDialogElement.close()`](close) method), or submit the form via the submit button.
+The following example shows a simple button that, when clicked, opens a [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) containing a form via the `show()` method. From there you can click the _Cancel_ button to close the dialog (via the [`HTMLDialogElement.close()`](close) method), or submit the form via the submit button.
 
       <!-- Simple pop-up dialog box, containing a form -->
       <dialog id="favDialog">
@@ -79,15 +76,13 @@ The following example shows a simple button that, when clicked, opens a [`<dialo
         })();
       </script>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/forms.html#dom-dialog-show">HTML Living Standard<br />
 <span class="small">The definition of 'show()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/interactive-elements.html#dom-htmldialogelement-show">HTML 5.1<br />
 <span class="small">The definition of 'show()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -147,9 +142,8 @@ No
 
 3.0
 
-See also
---------
+## See also
 
--   The HTML element implementing this interface: [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog).
+- The HTML element implementing this interface: [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/show" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/show</a>

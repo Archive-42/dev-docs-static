@@ -1,5 +1,4 @@
-Element.currentStyle
-====================
+# Element.currentStyle
 
 **Non-standard**
 
@@ -7,8 +6,7 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 `Element.currentStyle` is a proprietary property which is similar to the standardized [`window.getComputedStyle()`](../window/getcomputedstyle) method. It is available in old versions of Microsoft Internet Explorer. However, it returns the units set in CSS while `window.getComputedStyle()` returns the values in pixels.
 
-Polyfill
---------
+## Polyfill
 
 This polyfill returns the values in pixels and is likely to be rather slow, as it has to call [`window.getComputedStyle()`](../window/getcomputedstyle) every time its value is read.
 
@@ -23,15 +21,13 @@ This polyfill returns the values in pixels and is likely to be rather slow, as i
       });
     }
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-Microsoft [had a description on MSDN](https://web.archive.org/web/20150629144515/https://msdn.microsoft.com/en-us/library/ms535231(v=vs.85).aspx).
+Microsoft [had a description on MSDN](<https://web.archive.org/web/20150629144515/https://msdn.microsoft.com/en-us/library/ms535231(v=vs.85).aspx>).
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -87,10 +83,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`Element.runtimeStyle`](runtimestyle)
--   [`window.getComputedStyle()`](../window/getcomputedstyle)
+- [`Element.runtimeStyle`](runtimestyle)
+- [`window.getComputedStyle()`](../window/getcomputedstyle)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/currentStyle" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/currentStyle</a>

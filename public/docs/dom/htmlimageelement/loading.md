@@ -1,10 +1,8 @@
-HTMLImageElement.loading
-========================
+# HTMLImageElement.loading
 
 The [`HTMLImageElement`](../htmlimageelement) property `loading` is a string whose value provides a hint to the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) on how to handle the loading of the image which is currently outside the window's [visual viewport](https://developer.mozilla.org/en-US/docs/Glossary/Visual_Viewport). This helps to optimize the loading of the document's contents by postponing loading the image until it's expected to be needed, rather than immediately during the initial page load.
 
-Syntax
-------
+## Syntax
 
     let imageLoadScheduling = htmlImageElement.loading;
     htmlImageElement.loading = eagerOrLazy;
@@ -19,8 +17,7 @@ The default behavior, `eager` tells the browser to load the image as soon as the
 `lazy`  
 Tells the user agent to hold off on loading the image until the browser estimates that it will be needed imminently. For instance, if the user is scrolling through the document, a value of `lazy` will cause the image to only be loaded shortly before it will appear in the window's [visual viewport](https://developer.mozilla.org/en-US/docs/Glossary/Visual_Viewport).
 
-Usage notes
------------
+## Usage notes
 
 ### Timing of the load event
 
@@ -38,8 +35,7 @@ When an image whose loading has been delayed by the `loading` attribute being se
 
 To prevent this reflow from occurring, you should explicitly specify the size of the image's presentation using the image element's [`width`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-width) and [`height`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-height) attributes. By establishing the intrinsic aspect ratio in this manner, you prevent elements from shifting around while the document loads, which can be disconcerting or offputting at best and can cause users to click the wrong thing at worst, depending on the exact timing of the deferred loads and reflows.
 
-Example
--------
+## Example
 
 The `addImageToList()` function shown below adds a photo thumbnail to a list of items, using lazy-loading to avoid loading the image from the network until it's actually needed.
 
@@ -59,14 +55,12 @@ The `addImageToList()` function shown below adds a photo thumbnail to a list of 
       list.appendChild(newItem);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#attr-img-loading">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLImageElement.loading' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -126,12 +120,11 @@ See [bug 196698](https://webkit.org/b/196698)
 
 12.0
 
-See also
---------
+## See also
 
--   The [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element
--   [Web performance](https://developer.mozilla.org/en-US/docs/Learn/Performance) in the MDN Learning Area
--   [Lazy loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading) in the MDN web performance guide
--   [Use lazy loading for images](#) in [Tips for authoring fast-loading HTML pages](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Author_fast-loading_HTML_pages)
+- The [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element
+- [Web performance](https://developer.mozilla.org/en-US/docs/Learn/Performance) in the MDN Learning Area
+- [Lazy loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading) in the MDN web performance guide
+- [Use lazy loading for images](#) in [Tips for authoring fast-loading HTML pages](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Author_fast-loading_HTML_pages)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/loading" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/loading</a>

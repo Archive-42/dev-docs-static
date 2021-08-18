@@ -1,5 +1,4 @@
-Element.computedStyleMap()
-==========================
+# Element.computedStyleMap()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `computedStyleMap()` method of the [`Element`](../element) interface returns a [`StylePropertyMapReadOnly`](../stylepropertymapreadonly) interface which provides a read-only representation of a CSS declaration block that is an alternative to [`CSSStyleDeclaration`](../cssstyledeclaration).
 
-Syntax
-------
+## Syntax
 
     var stylePropertyMapReadOnly = element.computedStyleMap()
 
@@ -21,8 +19,7 @@ None.
 
 A [`StylePropertyMapReadOnly`](../stylepropertymapreadonly) interface.
 
-Examples
---------
+## Examples
 
 We start with some simple HTML: a paragraph with a link, and a definition list to which we will add all the CSS Property / Value pairs.
 
@@ -66,14 +63,12 @@ In [browsers that support `computedStyleMap()`](#browser_compatibility), you'll 
 
 Did you realize how many default CSS properties a link had? Update the '`a`' to the '`p`', and you'll notice a difference in the `margin-top` and `margin-bottom` default computed values.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.css-houdini.org/css-typed-om-1/#dom-element-computedstylemap">CSS Typed OM Level 1<br />
 <span class="small">The definition of 'computedStyleMap()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

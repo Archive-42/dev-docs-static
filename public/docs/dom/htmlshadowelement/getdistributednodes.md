@@ -1,5 +1,4 @@
-HTMLShadowElement.getDistributedNodes()
-=======================================
+# HTMLShadowElement.getDistributedNodes()
 
 **Deprecated**
 
@@ -7,24 +6,20 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `HTMLShadowElement.getDistributedNodes()` method returns a static [`NodeList`](../nodelist) of the <span class="page-not-created">distributed nodes</span> associated with this `<shadow>` element.
 
-Syntax
-------
+## Syntax
 
     var nodeList = object.getDistributedNodes()
 
-Example
--------
+## Example
 
     // Get the distributed nodes
     var nodes = myShadowObject.getDistributedNodes();
 
-Specifications
---------------
+## Specifications
 
 This feature is no longer defined by any specifications.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -80,9 +75,8 @@ No
 
 3.0
 
-See also
---------
+## See also
 
--   [HTMLShadowElement](../htmlshadowelement)
+- [HTMLShadowElement](../htmlshadowelement)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLShadowElement/getDistributedNodes" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLShadowElement/getDistributedNodes</a>

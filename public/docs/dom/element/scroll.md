@@ -1,10 +1,8 @@
-Element.scroll()
-================
+# Element.scroll()
 
 The `scroll()` method of the [`Element`](../element) interface scrolls the element to a particular set of coordinates inside a given element.
 
-Syntax
-------
+## Syntax
 
     element.scroll(x-coord, y-coord)
     element.scroll(options)
@@ -24,8 +22,7 @@ The pixel along the vertical axis of the element that you want displayed in the 
 `options`  
 A [`ScrollToOptions`](../scrolltooptions) dictionary.
 
-Examples
---------
+## Examples
 
     // Put the 1000th vertical pixel at the top of the element
     element.scroll(0, 1000);
@@ -38,14 +35,12 @@ Using `options`:
       behavior: 'smooth'
     });
 
-Specifications
---------------
+## Specifications
 
 <table><colgroup><col style="width: 33%" /><col style="width: 33%" /><col style="width: 33%" /></colgroup><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-element-scroll-options-options">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'element.scroll()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td><p>Initial definition.</p></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

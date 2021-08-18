@@ -1,10 +1,8 @@
-Working with the History API
-============================
+# Working with the History API
 
 HTML5 introduced the [`pushState()`](../history/pushstate) and [`replaceState()`](../history/replacestate) methods for add and modifying history entries, respectively. These methods work in conjunction with the [`onpopstate`](../windoweventhandlers/onpopstate) event.
 
-Adding and modifying history entries
-------------------------------------
+## Adding and modifying history entries
 
 Using [`pushState()`](../history/pushstate) changes the referrer that gets used in the HTTP header for [`XMLHttpRequest`](../xmlhttprequest) objects created after you change the state. The referrer will be the URL of the document whose window is `this` at the time of creation of the [`XMLHttpRequest`](../xmlhttprequest) object.
 
@@ -26,11 +24,11 @@ If the user clicks **Back** once again, the URL will change to `https://mozilla.
 
 ### The pushState() method
 
-`pushState()` takes three parameters: a *state* object; a *title* (currently ignored); and (optionally), a *URL*.
+`pushState()` takes three parameters: a _state_ object; a _title_ (currently ignored); and (optionally), a _URL_.
 
 Let's examine each of these three parameters in more detail.
 
- **state object**   
+**state object**  
 The state object is a JavaScript object which is associated with the new history entry created by `pushState()`. Whenever the user navigates to the new state, a `popstate` event is fired, and the `state` property of the event contains a copy of the history entry's state object.  
 The state object can be anything that can be serialized. Because Firefox saves state objects to the user's disk so they can be restored after the user restarts the browser, we impose a size limit of 640k characters on the serialized representation of a state object. If you pass a state object whose serialized representation is larger than this to `pushState()`, the method will throw an exception. If you need more space than this, you're encouraged to use `sessionStorage` and/or `localStorage`.
 
@@ -46,10 +44,10 @@ In a sense, calling `pushState()` is similar to setting `window.location = "#foo
 
 But `pushState()` has a few advantages:
 
--   The new URL can be any URL in the same origin as the current URL. In contrast, setting `window.location` keeps you at the same [`document`](../document) only if you modify only the hash.
--   You don't have to change the URL if you don't want to. In contrast, setting `window.location = "#foo";` creates a new history entry only if the current hash isn't `#foo`.
--   You can associate arbitrary data with your new history entry. With the hash-based approach, you need to encode all of the relevant data into a short string.
--   If `title `is subsequently used by browsers, this data can be utilized (independent of, say, the hash).
+- The new URL can be any URL in the same origin as the current URL. In contrast, setting `window.location` keeps you at the same [`document`](../document) only if you modify only the hash.
+- You don't have to change the URL if you don't want to. In contrast, setting `window.location = "#foo";` creates a new history entry only if the current hash isn't `#foo`.
+- You can associate arbitrary data with your new history entry. With the hash-based approach, you need to encode all of the relevant data into a short string.
+- If `title `is subsequently used by browsers, this data can be utilized (independent of, say, the hash).
 
 Note that `pushState()` never causes a `hashchange` event to be fired, even if the new URL differs from the old URL only in its hash.
 
@@ -72,7 +70,7 @@ Suppose `https://mozilla.org/foo.html` executes the following JavaScript:
     let stateObj = { foo: "bar" }
     history.pushState(stateObj, "page 2", "bar.html")
 
-The explanation of these two lines above can be found at the above section *[Example of pushState() method](#example_of_pushstate_method)* section.
+The explanation of these two lines above can be found at the above section _[Example of pushState() method](#example_of_pushstate_method)_ section.
 
 Next, suppose `https://mozilla.org/bar.html` executes the following JavaScript:
 
@@ -96,11 +94,10 @@ You can read the state of the current history entry without waiting for a `popst
 
     let currentState = history.state
 
-See also
---------
+## See also
 
--   [History API](../history_api)
--   [Ajax navigation example](example)
--   [`window.history`](../window/history)
+- [History API](../history_api)
+- [Ajax navigation example](example)
+- [`window.history`](../window/history)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API</a>

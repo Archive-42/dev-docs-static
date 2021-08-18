@@ -1,5 +1,4 @@
-Locks.mode
-==========
+# Locks.mode
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `mode` read-only property of the [`Lock`](../lock) interface returns the access mode passed to [`LockManager.request()`](../lockmanager/request) when the lock was requested. The mode is either `"exclusive"` (the default) or `"shared"`.
 
-Syntax
-------
+## Syntax
 
     var mode = Lock.mode
 
@@ -17,8 +15,7 @@ Syntax
 
 One of `"exclusive"` or `"shared"`.
 
-Example
--------
+## Example
 
 The following examples show how the mode property is passed in the call to [`LockManager.request()`](../lockmanager/request). `LockManager` is the object returned by [`navigator.locks`](../navigator/locks).
 
@@ -36,14 +33,12 @@ The following examples show how the mode property is passed in the call to [`Loc
       console.log(`The lock mode is: ${lock.mode}`);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/web-locks/#dom-lock-mode">Web Locks API<br />
 <span class="small">The definition of 'mode' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-IDBVersionChangeEvent.version
-=============================
+# IDBVersionChangeEvent.version
 
 **Deprecated**
 
@@ -11,18 +10,15 @@ While this property is still implemented in older browsers, the latest specifica
 
 The `version` property of the [`IDBVersionChangeEvent`](../idbversionchangeevent) interface returns The new version of the database in a [versionchange](../idbtransaction#version_change) transaction.
 
-Syntax
-------
+## Syntax
 
     readonly    attribute unsigned long long? version;
 
-Value
------
+## Value
 
-A [64-bit integer](https://developer.mozilla.org/en-US/docs/NSPR_API_Reference/Long_Long_(64-bit)_Integers).
+A [64-bit integer](<https://developer.mozilla.org/en-US/docs/NSPR_API_Reference/Long_Long_(64-bit)_Integers>).
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -78,15 +74,14 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBVersionChangeEvent/version" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBVersionChangeEvent/version</a>

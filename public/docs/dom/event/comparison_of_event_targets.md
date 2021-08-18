@@ -1,5 +1,4 @@
-Comparison of Event Targets
-===========================
+# Comparison of Event Targets
 
 ### Event targets
 

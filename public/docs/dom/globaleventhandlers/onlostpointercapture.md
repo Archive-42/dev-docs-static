@@ -1,10 +1,8 @@
-GlobalEventHandlers.onlostpointercapture
-========================================
+# GlobalEventHandlers.onlostpointercapture
 
 The `onlostpointercapture` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `lostpointercapture` events.
 
-Syntax
-------
+## Syntax
 
     target.onlostpointercapture = functionRef;
 
@@ -12,8 +10,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives a [`PointerEvent`](../pointerevent) object as its sole argument.
 
-Example
--------
+## Example
 
     function overHandler(event) {
       // Determine the target event's lostpointercapture handler
@@ -25,14 +22,12 @@ Example
       el.onlostpointercapture = overHandler;
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/pointerevents2/#the-lostpointercapture-event">Pointer Events – Level 2<br />
 <span class="small">The definition of 'onlostpointercapture' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,11 +83,10 @@ No
 
 7.0
 
-See also
---------
+## See also
 
--   `Document: lostpointercapture` event
--   `HTMLElement: lostpointercapture` event
--   [`Element.releasePointerCapture()`](../element/releasepointercapture)
+- `Document: lostpointercapture` event
+- `HTMLElement: lostpointercapture` event
+- [`Element.releasePointerCapture()`](../element/releasepointercapture)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onlostpointercapture" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onlostpointercapture</a>

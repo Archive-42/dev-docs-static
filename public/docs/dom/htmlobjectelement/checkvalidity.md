@@ -1,10 +1,8 @@
-HTMLObjectElement.checkValidity
-===============================
+# HTMLObjectElement.checkValidity
 
 The `checkValidity()` method of the [`HTMLObjectElement`](../htmlobjectelement) interface returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that always is true, because object objects are never candidates for constraint validation.
 
-Syntax
-------
+## Syntax
 
     const valid = HTMLObjectElement.checkValidity();
 
@@ -20,14 +18,12 @@ None.
 
 None.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-cva-checkvalidity">HTML Living Standard<br />
 <span class="small">The definition of 'checkValidity' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

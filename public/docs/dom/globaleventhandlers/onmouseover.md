@@ -1,17 +1,14 @@
-GlobalEventHandlers.onmouseover
-===============================
+# GlobalEventHandlers.onmouseover
 
 The `onmouseover` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `mouseover` events.
 
 The `mouseover` event fires when the user moves the mouse over a particular element.
 
-Syntax
-------
+## Syntax
 
     element.onmouseover = function;
 
-Example
--------
+## Example
 
 This example adds an `onmouseover` and an `onmouseout` event to a paragraph. Try moving your mouse over and out of the element.
 
@@ -35,14 +32,12 @@ This example adds an `onmouseover` and an `onmouseout` event to a paragraph. Try
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onmouseover">HTML Living Standard<br />
 <span class="small">The definition of 'onmouseover' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

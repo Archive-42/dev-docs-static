@@ -1,10 +1,8 @@
-GlobalEventHandlers.onanimationstart
-====================================
+# GlobalEventHandlers.onanimationstart
 
 An event handler for the `animationstart` event. This event is sent when a [CSS Animation](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) starts to play.
 
-Syntax
-------
+## Syntax
 
     var animStartHandler = target.onanimationstart;
 
@@ -12,10 +10,9 @@ Syntax
 
 ### Value
 
-A [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) to be called when an `animationstart` event occurs indicating that a CSS animation has begun on the *`target`*, where the target object is an HTML element ([`HTMLElement`](../htmlelement)), document ([`Document`](../document)), or window ([`Window`](../window)). The function receives as input a single parameter: an [`AnimationEvent`](../animationevent) object describing the event which occurred.
+A [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) to be called when an `animationstart` event occurs indicating that a CSS animation has begun on the _`target`_, where the target object is an HTML element ([`HTMLElement`](../htmlelement)), document ([`Document`](../document)), or window ([`Window`](../window)). The function receives as input a single parameter: an [`AnimationEvent`](../animationevent) object describing the event which occurred.
 
-Example
--------
+## Example
 
 ### CSS content
 
@@ -96,14 +93,12 @@ This sets the class of the box we want to animate to the class that contains the
 
 Assembled together, you get this:
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-animations-1/#eventdef-animationevent-animationstart">CSS Animations Level 1<br />
 <span class="small">The definition of 'onanimationstart' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -169,10 +164,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   The `animationstart` event this event handler is triggered by.
--   [`AnimationEvent`](../animationevent)
+- The `animationstart` event this event handler is triggered by.
+- [`AnimationEvent`](../animationevent)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onanimationstart" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onanimationstart</a>

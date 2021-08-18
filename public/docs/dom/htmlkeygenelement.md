@@ -1,5 +1,4 @@
-HTMLKeygenElement
-=================
+# HTMLKeygenElement
 
 **Deprecated**
 
@@ -9,8 +8,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The [`<keygen>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/keygen) elements expose the `HTMLKeygenElement` interface, which provides special properties and methods (beyond the regular [`element`](element) object interface they also have available to them by inheritance) for manipulating the layout and presentation of `keygen` elements.
 
-Properties
-----------
+## Properties
 
 autofocus  
 Is a `Boolean` that reflects the [`autofocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/keygen#attr-autofocus) HTML attribute, indicating that the form control should have input focus when the page loads.
@@ -18,37 +16,35 @@ Is a `Boolean` that reflects the [`autofocus`](https://developer.mozilla.org/en-
 challenge  
 Is a `DOMString` that reflects the [`challenge`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/keygen#attr-challenge) HTML attribute, containing a challenge string that is packaged with the submitted key.
 
-form <span class="badge inline readonly">Read only </span>   
+form <span class="badge inline readonly">Read only </span>  
 Is a `HTMLFormElement` that indicates the control's form owner, reflecting the [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/keygen#attr-form) HTML attribute if it is defined.
 
 keytype  
 Is a `DOMString` that reflects the [`keytype`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/keygen#attr-keytype) HTML attribute, containing the type of key used.
 
-labels <span class="badge inline readonly">Read only </span> <span class="notecard inline warning">Unimplemented (see [bug 556743](https://bugzilla.mozilla.org/show_bug.cgi?id=556743))</span>   
+labels <span class="badge inline readonly">Read only </span> <span class="notecard inline warning">Unimplemented (see [bug 556743](https://bugzilla.mozilla.org/show_bug.cgi?id=556743))</span>  
 Is a `NodeList` that represents a list of label elements associated with this keygen element.
 
 name  
 Is a `DOMString` that reflects the [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/keygen#attr-name) HTML attribute, containing the name for the control that is submitted with form data.
 
-type <span class="badge inline readonly">Read only </span>   
+type <span class="badge inline readonly">Read only </span>  
 Is a `DOMString` that must be the value `keygen`.
 
-validationMessage <span class="badge inline readonly">Read only </span>   
+validationMessage <span class="badge inline readonly">Read only </span>  
 Is a `DOMString` representing a localized message that describes the validation constraints that the control does not satisfy (if any). This is the empty string if the control is not a candidate for constraint validation (`willValidate` is false), or it satisfies its constraints.
 
-validity <span class="badge inline readonly">Read only </span>   
+validity <span class="badge inline readonly">Read only </span>  
 Is a `ValidityState` representing the validity states that this element is in.
 
 willValidate  
 Is a `Boolean` that is always false because `keygen` objects are never candidates for constraint validation.
 
-Methods
--------
+## Methods
 
 <table><thead><tr class="header"><th>Name &amp; Arguments</th><th>Return</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>checkValidity()</code></td><td><code>Boolean</code></td><td>Always returns true because <code>keygen</code> objects are never candidates for constraint validation.</td></tr><tr class="even"><td><code>setCustomValidity(in DOMString error)</code></td><td><code>void</code></td><td>Sets a custom validity message for the element. If this message is not the empty string, then the element is suffering from a custom validity error, and does not validate.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

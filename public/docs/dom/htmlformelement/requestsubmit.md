@@ -1,16 +1,14 @@
-HTMLFormElement.requestSubmit()
-===============================
+# HTMLFormElement.requestSubmit()
 
 The [`HTMLFormElement`](../htmlformelement) method `requestSubmit()` requests that the form be submitted using a specific submit button.
 
-Syntax
-------
+## Syntax
 
     htmlFormElement.requestSubmit(submitter);
 
 ### Parameters
 
- `submitter` <span class="badge inline optional">Optional</span>   
+`submitter` <span class="badge inline optional">Optional</span>  
 The submit button whose attributes describe the method by which the form is to be submitted. This may be either an [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) or [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) element whose `type` attribute is `submit`.
 
 If you omit the `submitter` parameter, the form element itself is used as the submitter.
@@ -27,15 +25,13 @@ The specified `submitter` is not a submit button.
 `NotFoundError`  
 The specified `submitter` isn't a member of the form on which `requestSubmit()` was called. The submitter must be either a descendant of the form element or must have an [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-form) attribute referring to the form.
 
-Usage notes
------------
+## Usage notes
 
 The obvious question is: Why does this method exist, when we've had the [`submit()`](submit) method since the dawn of time?
 
 The answer is simple. `submit()` submits the form, but that's all it does. `requestSubmit()`, on the other hand, acts as if a submit button were clicked. The form's content is validated, and the form is submitted only if validation succeeds. Once the form has been submitted, the [`submit`](submit_event) event is sent back to the form object.
 
-Examples
---------
+## Examples
 
 In the example below, the form is submitted by attempting to send the request using `requestSubmit()` if it's available. If a submit button with the ID `main-submit` is found, that's used to submit the form. Otherwise, the form is submitted with no `submitter` parameter, so it's submitted directly by the form itself.
 
@@ -54,14 +50,12 @@ If, on the other hand, `requestSubmit()` isn't available, this code falls back t
       myForm.submit();
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-form-requestsubmit">HTML Living Standard<br />
 <span class="small">The definition of 'requestSubmit()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

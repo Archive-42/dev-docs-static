@@ -1,5 +1,4 @@
-IDBCursor
-=========
+# IDBCursor
 
 **Note:** Not to be confused with [`IDBCursorWithValue`](idbcursorwithvalue) which is just an `IDBCursor` interface with an additional `value` property.
 
@@ -11,28 +10,26 @@ You can have an unlimited number of cursors at the same time. You always get the
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-Properties
-----------
+## Properties
 
 **Note:** [`IDBCursorWithValue`](idbcursorwithvalue) is an `IDBCursor` interface with an additional `value` property.
 
- [`IDBCursor.source`](idbcursor/source) <span class="badge inline readonly">Read only </span>   
+[`IDBCursor.source`](idbcursor/source) <span class="badge inline readonly">Read only </span>  
 Returns the [`IDBObjectStore`](idbobjectstore) or [`IDBIndex`](idbindex) that the cursor is iterating. This function never returns null or throws an exception, even if the cursor is currently being iterated, has iterated past its end, or its transaction is not active.
 
- [`IDBCursor.direction`](idbcursor/direction) <span class="badge inline readonly">Read only </span>   
+[`IDBCursor.direction`](idbcursor/direction) <span class="badge inline readonly">Read only </span>  
 Returns the direction of traversal of the cursor. See [Constants](#const_next) for possible values.
 
- [`IDBCursor.key`](idbcursor/key) <span class="badge inline readonly">Read only </span>   
+[`IDBCursor.key`](idbcursor/key) <span class="badge inline readonly">Read only </span>  
 Returns the key for the record at the cursor's position. If the cursor is outside its range, this is set to `undefined`. The cursor's key can be any data type.
 
- [`IDBCursor.primaryKey`](idbcursor/primarykey) <span class="badge inline readonly">Read only </span>   
+[`IDBCursor.primaryKey`](idbcursor/primarykey) <span class="badge inline readonly">Read only </span>  
 Returns the cursor's current effective primary key. If the cursor is currently being iterated or has iterated outside its range, this is set to `undefined`. The cursor's primary key can be any data type.
 
- [`IDBCursor.request`](idbcursor/request) <span class="badge inline readonly">Read only </span>   
+[`IDBCursor.request`](idbcursor/request) <span class="badge inline readonly">Read only </span>  
 Returns the [`IDBRequest`](idbrequest) that was used to obtain the cursor.
 
-Methods
--------
+## Methods
 
 [`IDBCursor.advance()`](idbcursor/advance)  
 Sets the number of times a cursor should move its position forward.
@@ -49,8 +46,7 @@ Returns an [`IDBRequest`](idbrequest) object, and, in a separate thread, deletes
 [`IDBCursor.update()`](idbcursor/update)  
 Returns an [`IDBRequest`](idbrequest) object, and, in a separate thread, updates the value at the current position of the cursor in the object store. This can be used to update specific records.
 
-Constants
----------
+## Constants
 
 **Deprecated**
 
@@ -58,13 +54,12 @@ This feature is no longer recommended. Though some browsers might still support 
 
 These constants are no longer available — they were removed in Gecko 25. You should use the string constants directly instead. ([bug 891944](https://bugzilla.mozilla.org/show_bug.cgi?id=891944))
 
--   `NEXT `: `"next"` : The cursor shows all records, including duplicates. It starts at the lower bound of the key range and moves upwards (monotonically increasing in the order of keys).
--   `NEXTUNIQUE` : `"nextunique"` : The cursor shows all records, excluding duplicates. If multiple records exist with the same key, only the first one iterated is retrieved. It starts at the lower bound of the key range and moves upwards.
--   `PREV `: `"prev"` : The cursor shows all records, including duplicates. It starts at the upper bound of the key range and moves downwards (monotonically decreasing in the order of keys).
--   `PREVUNIQUE `: `"prevunique"` : The cursor shows all records, excluding duplicates. If multiple records exist with the same key, only the first one iterated is retrieved. It starts at the upper bound of the key range and moves downwards.
+- `NEXT `: `"next"` : The cursor shows all records, including duplicates. It starts at the lower bound of the key range and moves upwards (monotonically increasing in the order of keys).
+- `NEXTUNIQUE` : `"nextunique"` : The cursor shows all records, excluding duplicates. If multiple records exist with the same key, only the first one iterated is retrieved. It starts at the lower bound of the key range and moves upwards.
+- `PREV `: `"prev"` : The cursor shows all records, including duplicates. It starts at the upper bound of the key range and moves downwards (monotonically decreasing in the order of keys).
+- `PREVUNIQUE `: `"prevunique"` : The cursor shows all records, excluding duplicates. If multiple records exist with the same key, only the first one iterated is retrieved. It starts at the upper bound of the key range and moves downwards.
 
-Examples
---------
+## Examples
 
 In this simple fragment we create a transaction, retrieve an object store, then use a cursor to iterate through all the records in the object store. The cursor does not require us to select the data based on a key; we can just grab all of it. Also note that in each iteration of the loop, you can grab data from the current record under the cursor object using `cursor.value.foo`. For a complete working example, see our [IDBCursor example](https://github.com/mdn/indexeddb-examples/tree/master/idbcursor) ([view example live](https://mdn.github.io/indexeddb-examples/idbcursor/).)
 
@@ -86,15 +81,13 @@ In this simple fragment we create a transaction, retrieve an object store, then 
       };
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#cursor-interface">Indexed Database API 2.0<br />
 <span class="small">The definition of 'cursor' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#cursor-interface">Indexed Database API 2.0<br />
 <span class="small">The definition of 'cursor' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Added <code>continuePrimaryKey()</code> and support for binary keys, and the <a href="idbcursor/request"><code>IDBCursor.request</code></a> property.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -450,15 +443,14 @@ Yes
 
 1.5
 
-See also
---------
+## See also
 
--   [Using IndexedDB](indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](idbdatabase)
--   Using transactions: [`IDBTransaction`](idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
--   Using cursors: [`IDBCursor`](idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](idbdatabase)
+- Using transactions: [`IDBTransaction`](idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
+- Using cursors: [`IDBCursor`](idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor</a>

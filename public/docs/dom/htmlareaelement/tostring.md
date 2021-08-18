@@ -1,15 +1,12 @@
-HTMLAreaElement.toString()
-==========================
+# HTMLAreaElement.toString()
 
 The `HTMLAreaElement.toString()` stringifier method returns a [`USVString`](../usvstring) containing the whole URL. It is a read-only version of [`HTMLAreaElement.href`](href).
 
-Syntax
-------
+## Syntax
 
     area.toString();
 
-Examples
---------
+## Examples
 
 ### Calling toString on an area element
 
@@ -17,14 +14,12 @@ Examples
     const area = document.getElementById("myArea");
     area.toString(); // returns 'https://developer.mozilla.org/en-US/docs/HTMLAreaElement'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-hyperlink-href">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLHyperlinkElementUtils.href' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -80,9 +75,8 @@ Yes
 
 6.0
 
-See also
---------
+## See also
 
--   The [`HTMLAreaElement`](../htmlareaelement) interface it belongs to.
+- The [`HTMLAreaElement`](../htmlareaelement) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAreaElement/toString" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLAreaElement/toString</a>

@@ -1,5 +1,4 @@
-Headers
-=======
+# Headers
 
 The `Headers` interface of the [Fetch API](fetch_api) allows you to perform various actions on [HTTP request and response headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). These actions include retrieving, setting, adding to, and removing headers from the list of the request's headers. A `Headers` object has an associated header list, which is initially empty and consists of zero or more name and value pairs. You can add to this using methods like [`append()`](headers/append) (see [Examples](#examples).) In all methods of this interface, header names are matched by case-insensitive byte sequence.
 
@@ -13,14 +12,12 @@ An object implementing `Headers` can directly be used in a [`for...of`](https://
 
 **Note**: you can find more out about the available headers by reading our [HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) reference.
 
-Constructor
------------
+## Constructor
 
 [`Headers()`](headers/headers)  
 Creates a new `Headers` object.
 
-Methods
--------
+## Methods
 
 [`Headers.append()`](headers/append)  
 Appends a new value onto an existing header inside a `Headers` object, or adds the header if it does not already exist.
@@ -60,8 +57,7 @@ Returns an [`iterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/
 [`Headers.getAll()`](headers/getall)  
 Used to return an array of all the values of a header within a `Headers` object with a given name; this method has now been deleted from the spec, and [`Headers.get()`](headers/get) now returns all values of a given name instead of just the first one.
 
-Examples
---------
+## Examples
 
 In the following snippet, we create a new header using the `Headers()` constructor, add a new header to it using `append()`, then return that header value using `get()`:
 
@@ -83,14 +79,12 @@ The same can be achieved by passing an array of arrays or an object literal to t
 
     myHeaders.get('Content-Type') // should return 'text/xml'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fetch.spec.whatwg.org/#headers-class">Fetch<br />
 <span class="small">The definition of 'Headers' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -560,11 +554,10 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [ServiceWorker API](service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [ServiceWorker API](service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Headers" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Headers</a>

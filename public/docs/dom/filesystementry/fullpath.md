@@ -1,5 +1,4 @@
-FileSystemEntry.fullPath
-========================
+# FileSystemEntry.fullPath
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The read-only `fullPath` property of the [`FileSystemEntry`](../filesystementry)
 
 This can also be thought of as a path which is relative to the root directory, with a "/" prepended to it to make it absolute.
 
-Syntax
-------
+## Syntax
 
     var fullPath = FileSystemEntry.fullPath;
 
@@ -19,8 +17,7 @@ Syntax
 
 A [`USVString`](../usvstring) indicating the entry's full path.
 
-Example
--------
+## Example
 
 This example shows a function which is called with a file system; it then gets a [`FileSystemFileEntry`](../filesystemfileentry) for a file named `data.json` and returns its full path.
 
@@ -36,16 +33,14 @@ This example shows a function which is called with a file system; it then gets a
 
 Obviously, this is somewhat contrived, since we know that the file's full path is `"/data.json"`, having just looked it up ourselves, but the concept holds up for scenarios in which you don't know it.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/entries-api/#dom-filesystementry-fullpath">File and Directory Entries API<br />
 <span class="small">The definition of 'fullPath' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial specification.</td></tr></tbody></table>
 
 This API has no official W3C or WHATWG specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -101,11 +96,10 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](../file_and_directory_entries_api)
--   [Introduction to the File System API](../file_and_directory_entries_api/introduction)
--   [`FileSystemEntry`](../filesystementry)
+- [File and Directory Entries API](../file_and_directory_entries_api)
+- [Introduction to the File System API](../file_and_directory_entries_api/introduction)
+- [`FileSystemEntry`](../filesystementry)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry/fullPath" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry/fullPath</a>

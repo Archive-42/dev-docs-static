@@ -1,12 +1,10 @@
-FileReader.readAsDataURL()
-==========================
+# FileReader.readAsDataURL()
 
 The `readAsDataURL` method is used to read the contents of the specified [`Blob`](../blob) or [`File`](../file). When the read operation is finished, the [`readyState`](readystate) becomes `DONE`, and the `loadend` is triggered. At that time, the [`result`](result) attribute contains the data as a [data: URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) representing the file's data as a base64 encoded string.
 
 **Note:** The blob's [`result`](result) cannot be directly decoded as Base64 without first removing the Data-URL declaration preceding the Base64-encoded data. To retrieve only the Base64 encoded string, first remove `data:*/*;base64,` from the result.
 
-Syntax
-------
+## Syntax
 
     instanceOfFileReader.readAsDataURL(blob);
 
@@ -15,8 +13,7 @@ Syntax
 `blob`  
 The [`Blob`](../blob) or [`File`](../file) from which to read.
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -42,8 +39,7 @@ Example
 
 ### Live Result
 
-Example reading multiple files
-------------------------------
+## Example reading multiple files
 
 ### HTML
 
@@ -84,14 +80,12 @@ Example reading multiple files
 
 **Note:** The [`FileReader()`](../filereader) constructor was not supported by Internet Explorer for versions before 10. For a full compatibility code you can see our [crossbrowser possible solution for image preview](https://mdn.mozillademos.org/files/3699/crossbrowser_image_preview.html). See also [this more powerful example](https://mdn.mozillademos.org/files/3698/image_upload_preview.html).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/FileAPI/#readAsDataURL">File API<br />
 <span class="small">The definition of 'readAsDataURL()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -149,10 +143,9 @@ Using the camera in Android 8.x raises an exception. See [bug 1511083](https://b
 
 1.0
 
-See also
---------
+## See also
 
--   [`FileReader`](../filereader)
--   [`URL.createObjectURL()`](../url/createobjecturl)
+- [`FileReader`](../filereader)
+- [`URL.createObjectURL()`](../url/createobjecturl)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL</a>

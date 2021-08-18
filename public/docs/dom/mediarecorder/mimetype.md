@@ -1,5 +1,4 @@
-MediaRecorder.mimeType
-======================
+# MediaRecorder.mimeType
 
 The `mimeType` read-only property returns the [MIME](https://developer.mozilla.org/en-US/docs/Glossary/mime) media type that was specified when creating the [`MediaRecorder`](../mediarecorder) object, or, if none was specified, which was chosen by the browser. This is the file format of the file that would result from writing all of the recorded data to disk.
 
@@ -7,19 +6,17 @@ Keep in mind that not all codecs are supported by a given container; if you writ
 
 **Note:** The term "MIME type" is officially considered to be historical; these strings are now officially known as **media types**. MDN Web Docs content uses the terms interchangeably.
 
-Syntax
-------
+## Syntax
 
     var mimeType = mediaRecorder.mimeType
 
 ### Value
 
-The MIME media type which describes the format of the recorded media, as a [`DOMString`](../domstring). This string *may* include the [`codecs` parameter,](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter) giving details about the codecs and the codec configurations used by the media recorder.
+The MIME media type which describes the format of the recorded media, as a [`DOMString`](../domstring). This string _may_ include the [`codecs` parameter,](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter) giving details about the codecs and the codec configurations used by the media recorder.
 
 The media type strings are standardized by the Internet Assigned Numbers Authority (IANA). For their official list of defined media type strings, see the article [Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml) on the IANA site. See also [media types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) to learn more about media types and how they're used in web content and by web browsers.
 
-Example
--------
+## Example
 
     ...
 
@@ -52,14 +49,12 @@ Changing line 14 to the following causes `MediaRecorder` to try to use AVC Const
 
 Assuming this configuration is acceptable to the user agent, the value returned later by `m.mimeType` would then be `video/mp4; codecs="avc1.424028, mp4a.40.2"`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-record/#dom-mediarecorder-mimetype">MediaStream Recording<br />
 <span class="small">The definition of 'MediaRecorder.mimeType' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -129,13 +124,12 @@ Prior to Chrome 49, only video is supported, not audio.
 
 5.0
 
-See also
---------
+## See also
 
--   [Using the MediaRecorder API](../mediastream_recording_api/using_the_mediastream_recording_api)
--   [The "codecs" parameter in common media types](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter)
--   [Web Dictaphone](https://mdn.github.io/web-dictaphone/): MediaRecorder + getUserMedia + Web Audio API visualization demo, by [Chris Mills](https://twitter.com/chrisdavidmills) ([source on Github](https://github.com/mdn/web-dictaphone/).)
--   [simpl.info MediaStream Recording demo](https://simpl.info/mediarecorder/), by [Sam Dutton](https://twitter.com/sw12).
--   [`MediaDevices.getUserMedia()`](../mediadevices/getusermedia)
+- [Using the MediaRecorder API](../mediastream_recording_api/using_the_mediastream_recording_api)
+- [The "codecs" parameter in common media types](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter)
+- [Web Dictaphone](https://mdn.github.io/web-dictaphone/): MediaRecorder + getUserMedia + Web Audio API visualization demo, by [Chris Mills](https://twitter.com/chrisdavidmills) ([source on Github](https://github.com/mdn/web-dictaphone/).)
+- [simpl.info MediaStream Recording demo](https://simpl.info/mediarecorder/), by [Sam Dutton](https://twitter.com/sw12).
+- [`MediaDevices.getUserMedia()`](../mediadevices/getusermedia)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/mimeType" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/mimeType</a>

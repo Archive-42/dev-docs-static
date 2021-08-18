@@ -1,5 +1,4 @@
-Encoding API Encodings
-======================
+# Encoding API Encodings
 
 The constructors for [`TextDecoder`](../textdecoder) and [`TextDecoderStream`](../textdecoderstream) can be passed an optional `label`, representing the encoding to be used. The default is `UTF-8`.
 

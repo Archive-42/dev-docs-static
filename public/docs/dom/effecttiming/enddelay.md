@@ -1,5 +1,4 @@
-EffectTiming.endDelay
-=====================
+# EffectTiming.endDelay
 
 **Experimental**
 
@@ -12,8 +11,7 @@ This is useful for sequencing animations based on the end time of another animat
 
 [`Element.animate()`](../element/animate), [`KeyframeEffectReadOnly()`](../keyframeeffect/keyframeeffect), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) all accept an object of timing properties including `endDelay.` The value of `endDelay` corresponds directly to <span class="page-not-created">`AnimationEffectTimingReadOnly.endDelay`</span> in [`timing`](../animationeffect/gettiming) objects returned by [`AnimationEffectReadOnly`](../animationeffect), [`KeyframeEffectReadOnly`](../keyframeeffect), and [`KeyframeEffect`](../keyframeeffect).
 
-Syntax
-------
+## Syntax
 
     var timingProperties = {
       endDelay: delayInMilliseconds
@@ -25,14 +23,12 @@ Syntax
 
 A number representing the end delay, specified in milliseconds. The default value is 0.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/web-animations-1/#end-delay">Web Animations<br />
 <span class="small">The definition of 'endDelay' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Editor's draft.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,11 +84,10 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [Web Animations API](../web_animations_api)
--   [`Element.animate()`](../element/animate), [`KeyframeEffectReadOnly()`](../keyframeeffect/keyframeeffect), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) all accept an object of timing properties including this one.
--   The value of this property corresponds to the one in <span class="page-not-created">`AnimationEffectTimingReadOnly`</span> (which is the [`timing`](../animationeffect/gettiming) object for [`AnimationEffectReadOnly`](../animationeffect), [`KeyframeEffectReadOnly`](../keyframeeffect), and [`KeyframeEffect`](../keyframeeffect)).
+- [Web Animations API](../web_animations_api)
+- [`Element.animate()`](../element/animate), [`KeyframeEffectReadOnly()`](../keyframeeffect/keyframeeffect), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) all accept an object of timing properties including this one.
+- The value of this property corresponds to the one in <span class="page-not-created">`AnimationEffectTimingReadOnly`</span> (which is the [`timing`](../animationeffect/gettiming) object for [`AnimationEffectReadOnly`](../animationeffect), [`KeyframeEffectReadOnly`](../keyframeeffect), and [`KeyframeEffect`](../keyframeeffect)).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/endDelay" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/endDelay</a>

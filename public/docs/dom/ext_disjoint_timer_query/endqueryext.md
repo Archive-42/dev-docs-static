@@ -1,10 +1,8 @@
-EXT\_disjoint\_timer\_query.endQueryEXT()
-=========================================
+# EXT_disjoint_timer_query.endQueryEXT()
 
 The `EXT_disjoint_timer_query.endQueryEXT()` method of the [WebGL API](../webgl_api) ends a timer query.
 
-Syntax
-------
+## Syntax
 
     void ext.endQueryEXT(target);
 
@@ -17,8 +15,7 @@ A [`GLenum`](../webgl_api/types) specifying the target of the time query. Must b
 
 None.
 
-Examples
---------
+## Examples
 
     var ext = gl.getExtension('EXT_disjoint_timer_query');
     var query = ext.createQueryEXT();
@@ -28,14 +25,12 @@ Examples
 
     ext.endQueryEXT(ext.TIME_ELAPSED_EXT);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.khronos.org/registry/webgl/extensions/EXT_disjoint_timer_query/">EXT_disjoint_timer_query<br />
 <span class="small">The definition of 'EXT_disjoint_timer_query' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -105,11 +100,10 @@ No
 
 Removed due to the [GLitch exploit](https://www.vusec.net/projects/glitch/).
 
-See also
---------
+## See also
 
--   [`WebGLRenderingContext.getExtension()`](../webglrenderingcontext/getextension)
--   [`WebGLTimerQueryEXT`](../webglquery)
--   [`EXT_disjoint_timer_query`](../ext_disjoint_timer_query)
+- [`WebGLRenderingContext.getExtension()`](../webglrenderingcontext/getextension)
+- [`WebGLTimerQueryEXT`](../webglquery)
+- [`EXT_disjoint_timer_query`](../ext_disjoint_timer_query)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EXT_disjoint_timer_query/endQueryEXT" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EXT_disjoint_timer_query/endQueryEXT</a>

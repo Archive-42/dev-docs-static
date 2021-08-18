@@ -1,10 +1,8 @@
-MediaCapabilities.decodingInfo()
-================================
+# MediaCapabilities.decodingInfo()
 
 The `MediaCapabilities.decodingInfo()` method, part of the [Media Capabilities API](../mediacapabilities), returns a promise with the tested media configuration's [mediaCapabilitiesInfo](mediacapabilitiesinfo); this contains the three Boolean properties `supported`, `smooth`, and `powerefficient`, which describe whether decoding the media described would be supported, smooth, and powerefficient.
 
-Syntax
-------
+## Syntax
 
     mediaCapabilities.decodingInfo(MediaDecodingConfiguration)
 
@@ -17,16 +15,15 @@ A valid [`MediaDecodingConfiguration`](../mediadecodingconfiguration) dictionary
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) fulfilling with a [`MediaCapabilitiesInfo`](../mediacapabilitiesinfo) interface containing three Boolean attributes:
 
--   `supported`
--   `smooth`
--   `powerEfficient`
+- `supported`
+- `smooth`
+- `powerEfficient`
 
 ### Exceptions
 
 A `TypeError` is raised if the `MediaConfiguration` passed to the `decodingInfo()` method is invalid, either because the type is not video or audio, the `contentType` is not a valid codec MIME type, the media decoding configuration is not a valid value for the [media decoding type](../mediadecodingtype), or any other error in the media configuration passed to the method, including omitting values required in the [media decoding configuration](../mediadecodingconfiguration).
 
-Example
--------
+## Example
 
     //Create media configuration to be tested
     const mediaConfig = {
@@ -47,14 +44,12 @@ Example
             (result.powerEfficient ? '' : 'not ') + 'power efficient.')
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/media-capabilities/#dom-mediacapabilities-decodinginfo-configuration-configuration">Media Capabilities<br />
 <span class="small">The definition of 'decodingInfo()' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -110,12 +105,11 @@ No
 
 9.0
 
-See also
---------
+## See also
 
--   [`MediaDecodingConfiguration`](../mediadecodingconfiguration)
--   [`VideoConfiguration`](../videoconfiguration)
--   [`AudioConfiguration`](../audioconfiguration)
--   [`MediaCapabilities.encodingInfo()`](encodinginfo)
+- [`MediaDecodingConfiguration`](../mediadecodingconfiguration)
+- [`VideoConfiguration`](../videoconfiguration)
+- [`AudioConfiguration`](../audioconfiguration)
+- [`MediaCapabilities.encodingInfo()`](encodinginfo)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaCapabilities/decodingInfo" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaCapabilities/decodingInfo</a>

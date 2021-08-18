@@ -1,5 +1,4 @@
-Lock
-====
+# Lock
 
 **Experimental**
 
@@ -8,17 +7,15 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `Lock` interface of the [Web Locks API](web_locks_api) provides the name and mode of a previously requested lock, which is received in the callback to [`LockManager.request()`](lockmanager/request).
 
-Properties
-----------
+## Properties
 
- [`Lock.mode`](lock/mode) <span class="badge inline readonly">Read only </span>   
+[`Lock.mode`](lock/mode) <span class="badge inline readonly">Read only </span>  
 Returns the access mode passed to [`LockManager.request()`](lockmanager/request) when the lock was requested. The mode is either `"exclusive"` (the default) or `"shared"`.
 
- [`Lock.name`](lock/name) <span class="badge inline readonly">Read only </span>   
+[`Lock.name`](lock/name) <span class="badge inline readonly">Read only </span>  
 Returns the name passed to [`LockManager.request()`](lockmanager/request) when the lock was requested.
 
-Examples
---------
+## Examples
 
 The following examples show how the mode and name properties are passed in the call to [`LockManager.request()`](lockmanager/request). `LockManager` is the object returned by [`navigator.locks`](navigator/locks).
 
@@ -30,14 +27,12 @@ The following examples show how the mode and name properties are passed in the c
       console.log(`The lock mode is: ${lock.mode}`);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/web-locks/#api-lock">Web Locks API<br />
 <span class="small">The definition of 'Lock' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

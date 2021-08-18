@@ -1,10 +1,8 @@
-Element.ariaRowCount
-====================
+# Element.ariaRowCount
 
 The `ariaRowCount` property of the [`Element`](../element) interface reflects the value of the `aria-rowcount` attribute, which defines the total number of rows in a table, grid, or treegrid.
 
-Syntax
-------
+## Syntax
 
     var ariaRowCount = element.ariaRowCount;
     element.ariaRowCount = ariaRowCount
@@ -13,8 +11,7 @@ Syntax
 
 A [`DOMString`](../domstring) which contains an integer.
 
-Examples
---------
+## Examples
 
 In this example the `aria-rowcount` attribute on the element with an ID of `semantic-table` is set to "100", representing the total number of rows in the table, rather than the currently visible rows. Using `ariaRowCount` we update the value to "101".
 
@@ -51,14 +48,12 @@ In this example the `aria-rowcount` attribute on the element with an ID of `sema
     el.ariaRowCount = "101"
     console.log(el.ariaRowCount); // 101
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariarowcount">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaRowCount' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -114,6 +109,6 @@ No
 
 13.0
 
--   [ARIA: table role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Table_Role)
+- [ARIA: table role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Table_Role)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaRowCount" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaRowCount</a>

@@ -1,10 +1,8 @@
-ImageCapture.grabFrame()
-========================
+# ImageCapture.grabFrame()
 
 The `grabFrame()` method of the [`ImageCapture`](../imagecapture) interface takes a snapshot of the live video in a [`MediaStreamTrack`](../mediastreamtrack) and returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with a [`ImageBitmap`](../imagebitmap) containing the snapshot.
 
-Syntax
-------
+## Syntax
 
     const bitmapPromise = imageCapture.grabFrame()
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to an [`ImageBitmap`](../imagebitmap) object.
 
-Example
--------
+## Example
 
 This example is extracted from this [Simple Image Capture demo](https://simpl.info/imagecapture/). It shows how to use the [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) returned by `grabFrame()` to copy the returned frame to a [`<canvas>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element. For simplicity it does not show how to instantiate the [`ImageCapture`](../imagecapture) object.
 
@@ -36,14 +33,12 @@ This example is extracted from this [Simple Image Capture demo](https://simpl.in
       });
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-image/#dom-imagecapture-grabframe">MediaStream Image Capture<br />
 <span class="small">The definition of 'grabFrame()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

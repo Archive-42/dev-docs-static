@@ -1,12 +1,10 @@
-GlobalEventHandlers.onreset
-===========================
+# GlobalEventHandlers.onreset
 
 The `onreset` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `reset` events.
 
 The `reset` event fires when the user clicks a reset button in a form (`<input type="reset">`).
 
-Syntax
-------
+## Syntax
 
     target.onreset = functionRef;
 
@@ -14,8 +12,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives an [`Event`](../event) object as its sole argument.
 
-Example
--------
+## Example
 
 This example logs the current [`Event.timeStamp`](../event/timestamp) whenever you reset the form.
 
@@ -40,14 +37,12 @@ This example logs the current [`Event.timeStamp`](../event/timestamp) whenever y
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onreset">HTML Living Standard<br />
 <span class="small">The definition of 'onreset' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -103,10 +98,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   `reset` event
--   HTML [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element
+- `reset` event
+- HTML [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onreset" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onreset</a>

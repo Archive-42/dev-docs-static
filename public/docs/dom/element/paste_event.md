@@ -1,5 +1,4 @@
-Element: paste event
-====================
+# Element: paste event
 
 The `paste` event is fired when the user has initiated a "paste" action through the browser's user interface.
 
@@ -13,8 +12,7 @@ To override the default behavior (for example to insert some different data or a
 
 It's possible to construct and dispatch a [synthetic](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events) `paste` event, but this will not affect the document's contents.
 
-Examples
---------
+## Examples
 
 ### Live example
 
@@ -41,13 +39,11 @@ Examples
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/clipboard-apis/#clipboard-event-paste">Clipboard API and events</a></td><td><span class="spec-wd">Working Draft</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -131,11 +127,10 @@ Yes
 
 7.0
 
-See also
---------
+## See also
 
--   Related events: [`cut`](cut_event), [`copy`](copy_event)
--   This event on [`Document`](../document) targets: [`paste`](../document/paste_event)
--   This event on [`Window`](../window) targets: [`paste`](../window/paste_event)
+- Related events: [`cut`](cut_event), [`copy`](copy_event)
+- This event on [`Document`](../document) targets: [`paste`](../document/paste_event)
+- This event on [`Window`](../window) targets: [`paste`](../window/paste_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/paste_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/paste_event</a>

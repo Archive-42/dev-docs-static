@@ -1,5 +1,4 @@
-IDBObjectStore.delete()
-=======================
+# IDBObjectStore.delete()
 
 The `delete()` method of the [`IDBObjectStore`](../idbobjectstore) interface returns an [`IDBRequest`](../idbrequest) object, and, in a separate thread, deletes the specified record or records.
 
@@ -9,8 +8,7 @@ Bear in mind that if you are using a [`IDBCursor`](../idbcursor), you can use th
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     var request = objectStore.delete(Key);
 
@@ -31,8 +29,7 @@ This method may raise a [`DOMException`](../domexception) of the following types
 
 <table><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><thead><tr class="header"><th>Exception</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>TransactionInactiveError</code></td><td>This object store's transaction is inactive.</td></tr><tr class="even"><td><code>ReadOnlyError</code></td><td>The object store's transaction mode is read-only.</td></tr><tr class="odd"><td><code>InvalidStateError</code></td><td>The object store has been deleted.</td></tr><tr class="even"><td><code>DataError</code></td><td><p>The key is not a <a href="https://dvcs.w3.org/hg/IndexedDB/raw-file/tip/Overview.html#dfn-valid-key">valid key</a> or a <a href="https://dvcs.w3.org/hg/IndexedDB/raw-file/tip/Overview.html#dfn-key-range">key range</a>.</p></td></tr></tbody></table>
 
-Example
--------
+## Example
 
 In the following code snippet, we open a read/write transaction on our database and delete one specific record out of our object store using `delete()` — a sample record with the key "Walk dog". For a full working example, see our [To-do Notifications](https://github.com/mdn/to-do-notifications/)<span style="line-height: 1.5;"> app (</span>[view example live](https://mdn.github.io/to-do-notifications/)<span style="line-height: 1.5;">.)</span>
 
@@ -74,15 +71,13 @@ In the following code snippet, we open a read/write transaction on our database 
       };
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbobjectstore-delete">Indexed Database API 2.0<br />
 <span class="small">The definition of 'delete()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbobjectstore-delete">Indexed Database API 2.0<br />
 <span class="small">The definition of 'delete()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -138,15 +133,14 @@ Samsung Internet
 
 1.5
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/delete" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/delete</a>

@@ -1,5 +1,4 @@
-FederatedCredential.protocol
-============================
+# FederatedCredential.protocol
 
 **Experimental**
 
@@ -12,8 +11,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `protocol` property of the [`FederatedCredential`](../federatedcredential) interface returns a read-only [`DOMString`](../domstring) containing a credential's federated identity protocol. If this property is [`null`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null), the protocol may be inferred from the [`FederatedCredential.provider`](provider) property.
 
-Syntax
-------
+## Syntax
 
     var protocol = FederatedCredential.protocol
 
@@ -21,19 +19,16 @@ Syntax
 
 A [`DOMString`](../domstring) containing a credential's federated identity protocol (e.g. `openidconnect`).
 
-Examples
---------
+## Examples
 
     // TBD
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comments</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-credential-management/#dom-federatedcredential-protocol">Credential Management Level 1<br />
 <span class="small">The definition of 'protocol' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

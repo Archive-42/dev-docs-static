@@ -1,12 +1,10 @@
-EventTarget.removeEventListener()
-=================================
+# EventTarget.removeEventListener()
 
 The `EventTarget.removeEventListener()` method removes from the [`EventTarget`](../eventtarget) an event listener previously registered with [`EventTarget.addEventListener()`](addeventlistener). The event listener to be removed is identified using a combination of the event type, the event listener function itself, and various optional options that may affect the matching process; see [Matching event listeners for removal](#matching_event_listeners_for_removal)
 
 Note that event listeners can also be removed by passing an [`AbortSignal`](../abortsignal) to an [`addEventListener()`](addeventlistener) and then later calling [`abort()`](../abortcontroller/abort) on the controller owning the signal.
 
-Syntax
-------
+## Syntax
 
     target.removeEventListener(type, listener[, options]);
     target.removeEventListener(type, listener[, useCapture]);
@@ -19,15 +17,15 @@ A string which specifies the type of event for which to remove an event listener
 `listener`  
 The [`EventListener`](../eventlistener) function of the event handler to remove from the event target.
 
- `options` <span class="badge inline optional">Optional</span>   
+`options` <span class="badge inline optional">Optional</span>  
 An options object that specifies characteristics about the event listener.
 
 The available options are:
 
--   `capture`: A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) which indicates that events of this type will be dispatched to the registered `listener` before being dispatched to any [`EventTarget`](../eventtarget) beneath it in the DOM tree.
--   <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> `mozSystemGroup`: A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) available only for code running in XBL or in Firefox's chrome which indicates if the listener will be added to the system group.
+- `capture`: A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) which indicates that events of this type will be dispatched to the registered `listener` before being dispatched to any [`EventTarget`](../eventtarget) beneath it in the DOM tree.
+- <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> `mozSystemGroup`: A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) available only for code running in XBL or in Firefox's chrome which indicates if the listener will be added to the system group.
 
- `useCapture` <span class="badge inline optional">Optional</span>   
+`useCapture` <span class="badge inline optional">Optional</span>  
 Specifies whether the [`EventListener`](../eventlistener) to be removed is registered as a capturing listener or not. If this parameter is absent, a default value of `false` is assumed.
 
 If a listener is registered twice, one with capture and one without, remove each one separately. Removal of a capturing listener does not affect a non-capturing version of the same listener, and vice versa.
@@ -72,15 +70,13 @@ Only the `capture` setting matters to `removeEventListener()`.
 
 It's worth noting that some browser releases have been inconsistent on this, and unless you have specific reasons otherwise, it's probably wise to use the same values used for the call to `addEventListener()` when calling `removeEventListener()`.
 
-Notes
------
+## Notes
 
 If an [`EventListener`](../eventlistener) is removed from an [`EventTarget`](../eventtarget) while it is processing an event, it will not be triggered by the current actions. An [`EventListener`](../eventlistener) will not be invoked for the event it was registered for after being removed. However, it can be reattached.
 
 Calling `removeEventListener()` with arguments that do not identify any currently registered [`EventListener`](../eventlistener) on the `EventTarget` has no effect.
 
-Example
--------
+## Example
 
 This example shows how to add a `mouseover`-based event listener that removes a `click`-based event listener.
 
@@ -111,16 +107,14 @@ This example shows how to add a `mouseover`-based event listener that removes a 
         );
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-eventtarget-removeeventlistener">DOM<br />
 <span class="small">The definition of 'EventTarget.removeEventListener()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/dom/#dom-eventtarget-removeeventlistener">DOM4<br />
 <span class="small">The definition of 'EventTarget.removeEventListener()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget-removeEventListener">Document Object Model (DOM) Level 2 Events Specification<br />
 <span class="small">The definition of 'EventTarget.removeEventListener()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -258,8 +252,7 @@ Yes
 
 5.0
 
-Polyfill to support older browsers
-----------------------------------
+## Polyfill to support older browsers
 
 `addEventListener()` and `removeEventListener()` are not present in older browsers. You can work around this by inserting the following code at the beginning of your scripts, allowing the use of `addEventListener()` and `removeEventListener()` in implementations that do not natively support it. However, this method will not work on Internet Explorer 7 or earlier, since extending the `Element.prototype` was not supported until Internet Explorer 8.
 
@@ -313,9 +306,8 @@ Polyfill to support older browsers
       };
     }
 
-See also
---------
+## See also
 
--   [`EventTarget.addEventListener()`](addeventlistener)
+- [`EventTarget.addEventListener()`](addeventlistener)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener</a>

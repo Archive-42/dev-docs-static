@@ -1,5 +1,4 @@
-HTML Sanitizer API
-==================
+# HTML Sanitizer API
 
 **Draft**
 
@@ -11,8 +10,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The HTML Sanitizer API allow developers to take untrusted strings of HTML, and sanitize them for safe insertion into a document’s DOM.
 
-Sanitizer API Concepts and Usage
---------------------------------
+## Sanitizer API Concepts and Usage
 
 Web applications often need to work with strings of HTML on the client side, perhaps as part of a client-side templating solution, perhaps as part of rendering user generated content. It is difficult to do so in a safe way. The Sanitizer API allows for rendering HTML in a safe manner.
 
@@ -22,14 +20,12 @@ The most common use-case - preventing XSS - is handled by the built-in default l
 
 The API has two methods to sanitize strings. One returns a string and the other returns a document fragment. See the [examples section below](#examples) for more.
 
-Sanitizer API Interfaces
-------------------------
+## Sanitizer API Interfaces
 
 [`Sanitizer`](sanitizer)  
 The `Sanitizer` interface of the [`HTML Sanitizer API`](html_sanitizer_api) provides the functionality to take untrusted strings of HTML, and sanitize them for safe insertion into a document’s DOM.
 
-Examples
---------
+## Examples
 
 This example shows the result of sanitizing a string using the [`Sanitizer.sanitizeToString()`](sanitizer/sanitizetostring) method. A [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) is returned with disallowed `script` and `blink` elements removed.
 
@@ -48,14 +44,12 @@ The other method available is the [`Sanitizer.sanitize()`](sanitizer/sanitize) m
     const result = new Sanitizer().sanitize(stringToClean);
     // Result: A DocumentFragment containing text nodes and a <b> element, with a <i> child element
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/sanitizer-api/#sanitizer-api">HTML Sanitizer API<br />
 <span class="small">The definition of 'sanitizeToString' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

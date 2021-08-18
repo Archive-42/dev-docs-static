@@ -1,12 +1,10 @@
-FileList
-========
+# FileList
 
 An object of this type is returned by the `files` property of the HTML [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element; this lets you access the list of files selected with the `<input type="file">` element. It's also used for a list of files dropped into web content when using the drag and drop API; see the [`DataTransfer`](datatransfer) object for details on this usage.
 
 **Note:** Prior to Gecko 1.9.2, the input element only supported a single file being selected at a time, meaning that the FileList would contain only one file. Starting with Gecko 1.9.2, if the input element's multiple attribute is true, the FileList may contain multiple files.
 
-Using the file list
--------------------
+## Using the file list
 
 All `<input>` element nodes have a `files` attribute of type `FileList` on them which allows access to the items in this list. For example, if the HTML includes the following file input:
 
@@ -16,18 +14,15 @@ The following line of code fetches the first file in the node's file list as a [
 
     var file = document.getElementById('fileItem').files[0];
 
-Method overview
----------------
+## Method overview
 
 <table><tbody><tr class="odd"><td><code>File item(index);</code></td></tr></tbody></table>
 
-Properties
-----------
+## Properties
 
 <table><thead><tr class="header"><th>Attribute</th><th>Type</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>length</code></td><td><code>integer</code></td><td>A read-only value indicating the number of files in the list.</td></tr></tbody></table>
 
-Methods
--------
+## Methods
 
 ### item()
 
@@ -46,8 +41,7 @@ The zero-based index of the file to retrieve from the list.
 
 The [`File`](file) representing the requested file.
 
-Example
--------
+## Example
 
 This example iterates over all the files selected by the user using an `input` element:
 
@@ -108,15 +102,13 @@ Here is a complete example.
 
     </html>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/FileAPI/#filelist-section">File API<br />
 <span class="small">The definition of 'FileList' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr><tr class="even"><td><a href="https://html.spec.whatwg.org/multipage/#concept-input-type-file-selected">HTML Living Standard<br />
 <span class="small">The definition of 'selected files' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -224,11 +216,10 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using files from web applications](file/using_files_from_web_applications)
--   `File`
--   `FileReader`
+- [Using files from web applications](file/using_files_from_web_applications)
+- `File`
+- `FileReader`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileList" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileList</a>

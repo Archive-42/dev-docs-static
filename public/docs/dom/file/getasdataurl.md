@@ -1,5 +1,4 @@
-File.getAsDataURL()
-===================
+# File.getAsDataURL()
 
 **Non-standard**
 
@@ -9,15 +8,13 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the [compatibility table](#browser_compatibility) at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.
 
-Summary
--------
+## Summary
 
 The getAsDataURL provides a [`data:`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) URL that encodes the entire contents of the referenced file.
 
 **Note:** This method is obsolete; you should use the [`FileReader`](../filereader) method [`readAsDataURL()`](../filereader/readasdataurl) instead.
 
-Syntax
-------
+## Syntax
 
     var url = instanceOfFile.getAsDataURL();
 
@@ -25,8 +22,7 @@ Syntax
 
 A string representing a [`data:`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) URL
 
-Example
--------
+## Example
 
     // fileInput is a HTMLInputElement: <input type="file" id="myfileinput" multiple>
     var fileInput = document.getElementById("myfileinput");
@@ -47,15 +43,13 @@ Example
       img.src = files[0].getAsDataURL();
     }
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-See also
---------
+## See also
 
--   [`File`](../file)
--   [`FileReader`](../filereader)
+- [`File`](../file)
+- [`FileReader`](../filereader)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/File/getAsDataURL" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File/getAsDataURL</a>

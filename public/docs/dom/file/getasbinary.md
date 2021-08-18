@@ -1,5 +1,4 @@
-File.getAsBinary()
-==================
+# File.getAsBinary()
 
 **Non-standard**
 
@@ -11,15 +10,13 @@ This feature is no longer recommended. Though some browsers might still support 
 
 **Note:**This method was removed from Firefox 7.0 and onward.
 
-Summary
--------
+## Summary
 
 The `getAsBinary` method allows to access the file's data in raw binary format.
 
 **Note:** This method is obsolete; you should use the [`FileReader`](../filereader) method [`readAsBinaryString()`](../filereader/readasbinarystring) or [`readAsArrayBuffer()`](../filereader/readasarraybuffer) instead.
 
-Syntax
-------
+## Syntax
 
     var binary = instanceOfFile.getAsBinary();
 
@@ -27,8 +24,7 @@ Syntax
 
 A string.
 
-Example
--------
+## Example
 
     // fileInput is an HTMLInputElement: <input type="file" id="myfileinput" multiple>
     var fileInput = document.getElementById("myfileinput");
@@ -60,15 +56,13 @@ Example
       }
     }
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-See also
---------
+## See also
 
--   [`File`](../file)
--   [`FileReader`](../filereader)
+- [`File`](../file)
+- [`FileReader`](../filereader)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/File/getAsBinary" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File/getAsBinary</a>

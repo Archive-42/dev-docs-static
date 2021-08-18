@@ -1,18 +1,15 @@
-HTMLAreaElement.protocol
-========================
+# HTMLAreaElement.protocol
 
 The `HTMLAreaElement.protocol` property is a [`USVString`](../usvstring) representing the protocol scheme of the URL, including the final `':'`.
 
-Syntax
-------
+## Syntax
 
     // Getter
     string = area.protocol;
     // Setter
     area.protocol = string;
 
-Examples
---------
+## Examples
 
 ### Getting the protocol of an area link
 
@@ -20,14 +17,12 @@ Examples
     const area = document.getElementById("myArea");
     area.protocol; // returns 'https:'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-hyperlink-protocol">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLHyperlinkElementUtils.protocol' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -83,9 +78,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The [`HTMLAreaElement`](../htmlareaelement) interface it belongs to.
+- The [`HTMLAreaElement`](../htmlareaelement) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAreaElement/protocol" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLAreaElement/protocol</a>

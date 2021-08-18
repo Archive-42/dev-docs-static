@@ -1,5 +1,4 @@
-IntersectionObserverEntry.target
-================================
+# IntersectionObserverEntry.target
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The [`IntersectionObserverEntry`](../intersectionobserverentry) interface's read-only `target` property indicates which targeted [`Element`](../element) has changed its amount of intersection with the intersection root.
 
-Syntax
-------
+## Syntax
 
     var target = IntersectionObserverEntry.target;
 
@@ -17,8 +15,7 @@ Syntax
 
 The `IntersectionObserverEntry`'s `target` property specifies which [`Element`](../element) previously targeted by calling [`IntersectionObserver.observe()`](../intersectionobserver/observe) experienced a change in intersection with the root.
 
-Example
--------
+## Example
 
 In this simple example, each targeted element's [`opacity`](https://developer.mozilla.org/en-US/docs/Web/CSS/opacity) is set to its [`intersectionRatio`](intersectionratio).
 
@@ -30,14 +27,12 @@ In this simple example, each targeted element's [`opacity`](https://developer.mo
 
 To see a more concrete example, take a look at [Handling intersection changes](../intersection_observer_api/timing_element_visibility#handling_intersection_changes) in [Timing element visibility with the Intersection Observer API](../intersection_observer_api/timing_element_visibility).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/IntersectionObserver/#dom-intersectionobserverentry-target">Intersection Observer<br />
 <span class="small">The definition of 'IntersectionObserverEntry.target' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

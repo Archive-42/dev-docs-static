@@ -1,20 +1,17 @@
-HTMLStyleElement.media
-======================
+# HTMLStyleElement.media
 
 The `HTMLStyleElement.media` property specifies the intended destination medium for style information.
 
-Syntax
-------
+## Syntax
 
     medium = style.media
     style.media = medium
 
 ### Parameters
 
--   `medium` is a string describing a single medium or a comma-separated list.
+- `medium` is a string describing a single medium or a comma-separated list.
 
-Example
--------
+## Example
 
     <!doctype html>
     <html>
@@ -35,8 +32,7 @@ Example
     </body>
     </html>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/semantics.html#attr-style-media">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLStyleElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/semantics.html#attr-style-media">HTML 5.1<br />
@@ -45,8 +41,7 @@ Specifications
 <span class="small">The definition of 'HTMLStyleElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-16428977">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLStyleElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

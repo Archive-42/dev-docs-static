@@ -1,5 +1,4 @@
-IDBRequest
-==========
+# IDBRequest
 
 The `IDBRequest` interface of the IndexedDB API provides access to results of asynchronous requests to databases and database objects using event handler attributes. Each reading and writing operation on a database is done using a request.
 
@@ -13,33 +12,30 @@ The interface [`IDBOpenDBRequest`](idbopendbrequest) is derived from `IDBRequest
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-Properties
-----------
+## Properties
 
-*Also inherits properties from [`EventTarget`](eventtarget).*
+_Also inherits properties from [`EventTarget`](eventtarget)._
 
- [`IDBRequest.error`](idbrequest/error) <span class="badge inline readonly">Read only </span>   
+[`IDBRequest.error`](idbrequest/error) <span class="badge inline readonly">Read only </span>  
 Returns a [`DOMException`](domexception) in the event of an unsuccessful request, indicating what went wrong.
 
- [`IDBRequest.result`](idbrequest/result) <span class="badge inline readonly">Read only </span>   
+[`IDBRequest.result`](idbrequest/result) <span class="badge inline readonly">Read only </span>  
 Returns the result of the request. If the request failed and the result is not available, an InvalidStateError exception is thrown.
 
- [`IDBRequest.source`](idbrequest/source) <span class="badge inline readonly">Read only </span>   
+[`IDBRequest.source`](idbrequest/source) <span class="badge inline readonly">Read only </span>  
 The source of the request, such as an [`IDBIndex`](idbindex) or an [`IDBObjectStore`](idbobjectstore). If no source exists (such as when calling [`IDBFactory.open`](idbfactory/open)), it returns null.
 
- [`IDBRequest.readyState`](idbrequest/readystate) <span class="badge inline readonly">Read only </span>   
+[`IDBRequest.readyState`](idbrequest/readystate) <span class="badge inline readonly">Read only </span>  
 The state of the request. Every request starts in the `pending` state. The state changes to `done` when the request completes successfully or when an error occurs.
 
- [`IDBRequest.transaction`](idbrequest/transaction) <span class="badge inline readonly">Read only </span>   
+[`IDBRequest.transaction`](idbrequest/transaction) <span class="badge inline readonly">Read only </span>  
 The transaction for the request. This property can be null for certain requests, for example those returned from [`IDBFactory.open`](idbfactory/open) unless an upgrade is needed. (You're just connecting to a database, so there is no transaction to return).
 
-Methods
--------
+## Methods
 
-*No methods, but inherits methods from [`EventTarget`](eventtarget).*
+_No methods, but inherits methods from [`EventTarget`](eventtarget)._
 
-Events
-------
+## Events
 
 Listen to these events using `addEventListener()` or by assigning an event listener to the `oneventname` property of this interface.
 
@@ -51,8 +47,7 @@ Also available via the `onerror` property.
 Fired when an `IDBRequest` succeeds.  
 Also available via the `onsuccess` property.
 
-Example
--------
+## Example
 
 In the following code snippet, we open a database asynchronously and make a request; `onerror` and `onsuccess` functions are included to handle the success and error cases. For a full working example, see our [To-do Notifications](https://github.com/chrisdavidmills/to-do-notifications/tree/gh-pages) app ([view example live](https://chrisdavidmills.github.io/to-do-notifications/).)
 
@@ -74,15 +69,13 @@ In the following code snippet, we open a database asynchronously and make a requ
       db = DBOpenRequest.result;
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#idbrequest">Indexed Database API 2.0<br />
 <span class="small">The definition of 'IDBRequest' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#request-api">Indexed Database API 2.0<br />
 <span class="small">The definition of 'IDBRequest' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -408,15 +401,14 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](idbdatabase)
--   Using transactions: [`IDBTransaction`](idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
--   Using cursors: [`IDBCursor`](idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](idbdatabase)
+- Using transactions: [`IDBTransaction`](idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
+- Using cursors: [`IDBCursor`](idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBRequest" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBRequest</a>

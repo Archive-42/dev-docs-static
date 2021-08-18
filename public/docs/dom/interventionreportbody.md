@@ -1,5 +1,4 @@
-InterventionReportBody
-======================
+# InterventionReportBody
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `InterventionReportBody` interface of the [Reporting API](reporting_api) rep
 
 An intervention report is generated when usage of a feature in a web document has been blocked by the browser for reasons such as security, performance, or user annoyance. So for example, a script was been stopped because it was significantly slowing down the browser, or the browser's autoplay policy blocked audio from playing without a user gesture to trigger it.
 
-Properties
-----------
+## Properties
 
 `id`  
 A string representing the intervention that generated the report. This can be used to group reports by deprecated feature.
@@ -28,8 +26,7 @@ A number representing the line in the source file in which the intervention occu
 `columnNumber`  
 A number representing the column in the source file in which the intervention occurred, if known, or `null` otherwise.
 
-Examples
---------
+## Examples
 
     let options = {
       types: ['intervention'],
@@ -46,21 +43,18 @@ Examples
       console.log(firstReport.body.columnNumber);
     }, options);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/reporting/#intervention-report">Reporting API<br />
 <span class="small">The definition of 'InterventionReportBody' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.DeprecationReportBody`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).
 
-See also
---------
+## See also
 
--   [Reporting API](reporting_api)
+- [Reporting API](reporting_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/InterventionReportBody" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/InterventionReportBody</a>

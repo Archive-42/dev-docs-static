@@ -1,5 +1,4 @@
-HTMLTableElement.cellSpacing
-============================
+# HTMLTableElement.cellSpacing
 
 **Deprecated**
 
@@ -7,8 +6,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 While you should instead use the CSS [`border-spacing`](https://developer.mozilla.org/en-US/docs/Web/CSS/border-spacing) property, the obsolete [`HTMLTableElement`](../htmltableelement) interface's `cellSpacing` property represents the spacing around the individual [`<th>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th) and [`<td>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td) elements representing a table's cells. Any two cells are separated by the sum of the `cellSpacing` of each of the two cells.
 
-Syntax
-------
+## Syntax
 
     HTMLTableElement.cellSpacing = spacing;
     var spacing = HTMLTableElement.cellSpacing;
@@ -17,21 +15,18 @@ Syntax
 
 A [`DOMString`](../domstring) which is either a number of pixels (such as `"10"`) or a percentage value (like `"10%"`).
 
-Example
--------
+## Example
 
 This example sets cell spacing for a given table to 10 pixels.
 
     var t = document.getElementById('TableA');
     t.cellSpacing = "10";
 
-Specifications
---------------
+## Specifications
 
--   W3C DOM 2 HTML Specification [*HTMLTableElement* .cellSpacing](https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-68907883).
+- W3C DOM 2 HTML Specification [_HTMLTableElement_ .cellSpacing](https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-68907883).
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

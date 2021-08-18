@@ -1,10 +1,8 @@
-Element.ariaRowIndexText
-========================
+# Element.ariaRowIndexText
 
 The `ariaRowIndexText` property of the [`Element`](../element) interface reflects the value of the `aria-rowindextext` attribute, which defines a human readable text alternative of aria-rowindex.
 
-Syntax
-------
+## Syntax
 
     var ariaRowIndexText = element.ariaRowIndexText;
     element.ariaRowIndexText = ariaRowIndexText
@@ -13,8 +11,7 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Examples
---------
+## Examples
 
 In this example the `aria-rowindextext` attribute on the element with an ID of `role-heading` is set to "Heading row". Using `ariaRowIndexText` we update the value to "Updated heading row".
 
@@ -51,21 +48,18 @@ In this example the `aria-rowindextext` attribute on the element with an ID of `
     el.ariaRowIndexText = "Updated heading row"
     console.log(el.ariaRowIndexText); // "Updated heading row"
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariarowindextext">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaRowIndexText' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.Element.ariaRowIndexText`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).
 
-See also
---------
+## See also
 
--   [ARIA: table role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Table_Role)
+- [ARIA: table role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Table_Role)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaRowIndexText" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaRowIndexText</a>

@@ -1,7 +1,6 @@
-EXT\_disjoint\_timer\_query
-===========================
+# EXT_disjoint_timer_query
 
-The **EXT\_disjoint\_timer\_query** extension is part of the [WebGL API](webgl_api) and provides a way to measure the duration of a set of GL commands, without stalling the rendering pipeline.
+The **EXT_disjoint_timer_query** extension is part of the [WebGL API](webgl_api) and provides a way to measure the duration of a set of GL commands, without stalling the rendering pipeline.
 
 WebGL extensions are available using the [`WebGLRenderingContext.getExtension()`](webglrenderingcontext/getextension) method. For more information, see also [Using Extensions](webgl_api/using_extensions) in the [WebGL tutorial](webgl_api/tutorial).
 
@@ -10,16 +9,14 @@ WebGL extensions are available using the [`WebGLRenderingContext.getExtension()`
 In WebGL 2, the <span class="page-not-created">`getQueryObject`</span> was renamed to <span class="page-not-created">`getQueryParameter`</span>.  
 In WebGL 2, other queries (such as occlusion queries and primitive queries) are possible using [`WebGLQuery`](webglquery) objects.
 
-Types
------
+## Types
 
 This extension exposes a new type:
 
 GLuint64EXT  
 Unsigned 64-bit integer number.
 
-Constants
----------
+## Constants
 
 This extension exposes seven new constants.
 
@@ -44,8 +41,7 @@ The current time.
 `ext.GPU_DISJOINT_EXT`  
 A [`GLboolean`](webgl_api/types) indicating whether or not the GPU performed any disjoint operation.
 
-Methods
--------
+## Methods
 
 This extension exposes eight new methods.
 
@@ -73,19 +69,16 @@ Returns information about a query target.
 [`ext.getQueryObjectEXT()`](ext_disjoint_timer_query/getqueryobjectext)  
 Return the state of a query object.
 
-Examples
---------
+## Examples
 
     var ext = gl.getExtension('EXT_disjoint_timer_query');
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.khronos.org/registry/webgl/extensions/EXT_disjoint_timer_query/">EXT_disjoint_timer_query<br />
 <span class="small">The definition of 'EXT_disjoint_timer_query' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -475,9 +468,8 @@ No
 
 Removed due to the [GLitch exploit](https://www.vusec.net/projects/glitch/).
 
-See also
---------
+## See also
 
--   [`WebGLRenderingContext.getExtension()`](webglrenderingcontext/getextension)
+- [`WebGLRenderingContext.getExtension()`](webglrenderingcontext/getextension)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EXT_disjoint_timer_query" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EXT_disjoint_timer_query</a>

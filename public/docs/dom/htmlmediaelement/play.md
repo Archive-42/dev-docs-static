@@ -1,10 +1,8 @@
-HTMLMediaElement.play()
-=======================
+# HTMLMediaElement.play()
 
 The [`HTMLMediaElement`](../htmlmediaelement) `play()` method attempts to begin playback of the media. It returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which is resolved when playback has been successfully started. Failure to begin playback for any reason, such as permission issues, result in the promise being rejected.
 
-Syntax
-------
+## Syntax
 
     var promise = HTMLMediaElement.play();
 
@@ -30,8 +28,7 @@ The media source (which may be specified as a [`MediaStream`](../mediastream), [
 
 Other exceptions may be reported, depending on browser implementation details, media player implementation, and so forth.
 
-Usage notes
------------
+## Usage notes
 
 Although the term "autoplay" is usually thought of as referring to pages that immediately begin playing media upon being loaded, web browsers' autoplay policies also apply to any script-initiated playback of media, including calls to `play()`.
 
@@ -41,8 +38,7 @@ If the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent
 
 For even more in-depth information about autoplay and autoplay blocking, see our article [Autoplay guide for media and Web Audio APIs](https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide).
 
-Example
--------
+## Example
 
 This example demonstrates how to confirm that playback has begun and how to gracefully handle blocked automatic playback:
 
@@ -76,8 +72,7 @@ When this example is executed, it begins by collecting references to the [`<vide
 
 You can [try out or remix this example in real time on Glitch](https://media-play-promise.glitch.me/).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#dom-media-play">HTML Living Standard<br />
 <span class="small">The definition of 'play()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition; living specification.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/embedded-content-0.html#dom-media-play">HTML5<br />
@@ -85,8 +80,7 @@ Specifications
 
 **Note:** The WHATWG and W3C versions of the specification differ (as of August, 2018) as to whether this method returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or nothing at all, respectively.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -168,12 +162,11 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [Web media technologies](https://developer.mozilla.org/en-US/docs/Web/Media)
--   Learning: [Video and audio content](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Video_and_audio_content)
--   [Autoplay guide for media and Web Audio APIs](https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide)
--   [Using the Web Audio API](../web_audio_api/using_web_audio_api)
+- [Web media technologies](https://developer.mozilla.org/en-US/docs/Web/Media)
+- Learning: [Video and audio content](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Video_and_audio_content)
+- [Autoplay guide for media and Web Audio APIs](https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide)
+- [Using the Web Audio API](../web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play</a>

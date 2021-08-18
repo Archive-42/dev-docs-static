@@ -1,5 +1,4 @@
-MediaRecorder.start()
-=====================
+# MediaRecorder.start()
 
 The [`MediaRecorder`](../mediarecorder) method `start()`, which is part of the MediaStream Recording API, begins recording media into one or more [`Blob`](../blob) objects. You can record the entire duration of the media into a single `Blob` (or until you call [`requestData()`](requestdata)), or you can specify the number of milliseconds to record at a time. Then, each time that amount of media has been recorded, an event will be delivered to let you act upon the recorded media, while a new `Blob` is created to record the next slice of the media
 
@@ -9,14 +8,13 @@ When the source stream ends, `state` is set to `inactive` and data gathering sto
 
 **Note**: If the browser is unable to start recording or continue recording, it will raise a [`DOMError`](../domerror) event, followed by a <span class="page-not-created">`MediaRecorder.dataavailable`</span> event containing the `Blob` it has gathered, followed by the [`MediaRecorder.stop`](stop) event.
 
-Syntax
-------
+## Syntax
 
     mediaRecorder.start(timeslice)
 
 ### Parameters
 
- `timeslice` <span class="badge inline optional">Optional</span>   
+`timeslice` <span class="badge inline optional">Optional</span>  
 The number of milliseconds to record into each [`Blob`](../blob). If this parameter isn't included, the entire media duration is recorded into a single `Blob` unless the [`requestData()`](requestdata) method is called to obtain the `Blob` and trigger the creation of a new `Blob` into which the media continues to be recorded.
 
 ### Return value
@@ -42,8 +40,7 @@ The [`MediaStream`](../mediastream) is configured to disallow recording. This ma
 `UnknownError`  
 Something else went wrong during the recording process.
 
-Example
--------
+## Example
 
     ...
 
@@ -54,14 +51,12 @@ Example
 
     ...
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-record/#dom-mediarecorder-start">MediaStream Recording<br />
 <span class="small">The definition of 'MediaRecorder.start()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -117,12 +112,11 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [Using the MediaRecorder API](../mediastream_recording_api/using_the_mediastream_recording_api)
--   [Web Dictaphone](https://mdn.github.io/web-dictaphone/): MediaRecorder + getUserMedia + Web Audio API visualization demo, by [Chris Mills](https://twitter.com/chrisdavidmills) ([source on Github](https://github.com/mdn/web-dictaphone/).)
--   [simpl.info MediaStream Recording demo](https://simpl.info/mediarecorder/), by [Sam Dutton](https://twitter.com/sw12).
--   [`getUserMedia()`](../mediadevices/getusermedia)
+- [Using the MediaRecorder API](../mediastream_recording_api/using_the_mediastream_recording_api)
+- [Web Dictaphone](https://mdn.github.io/web-dictaphone/): MediaRecorder + getUserMedia + Web Audio API visualization demo, by [Chris Mills](https://twitter.com/chrisdavidmills) ([source on Github](https://github.com/mdn/web-dictaphone/).)
+- [simpl.info MediaStream Recording demo](https://simpl.info/mediarecorder/), by [Sam Dutton](https://twitter.com/sw12).
+- [`getUserMedia()`](../mediadevices/getusermedia)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/start" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/start</a>

@@ -1,10 +1,8 @@
-ImageCapture() constructor
-==========================
+# ImageCapture() constructor
 
 The `ImageCapture()` constructor creates a new [`ImageCapture`](../imagecapture) object.
 
-Syntax
-------
+## Syntax
 
     const imageCapture = new ImageCapture(videoTrack)
 
@@ -17,8 +15,7 @@ A [`MediaStreamTrack`](../mediastreamtrack) from which the still images will be 
 
 A new `ImageCapture` object which can be used to capture still frames from the specified video track.
 
-Example
--------
+## Example
 
 The following example shows how to use a call to [`MediaDevices.getUserMedia()`](../mediadevices/getusermedia) to retrieve the [`MediaStreamTrack`](../mediastreamtrack) needed by the `ImageCapture()` constructor.
 
@@ -30,14 +27,12 @@ The following example shows how to use a call to [`MediaDevices.getUserMedia()`]
       })
       .catch(error => console.log(error));
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-image/#dom-imagecapture-imagecapture">MediaStream Image Capture<br />
 <span class="small">The definition of 'ImageCapture' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

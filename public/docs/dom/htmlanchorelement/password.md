@@ -1,33 +1,28 @@
-HTMLAnchorElement.password
-==========================
+# HTMLAnchorElement.password
 
 The `HTMLAnchorElement.password` property is a [`USVString`](../usvstring) containing the password specified before the domain name.
 
 If it is set without first setting the `username` property, it silently fails.
 
-Syntax
-------
+## Syntax
 
     // Getter
     string = anchor.password;
     // Setter
     anchor.password = string;
 
-Examples
---------
+## Examples
 
     // An <a id="myAnchor" href="https://anonymous:flabada@developer.mozilla.org/en-US/docs/HTMLAnchorElement"> is in the document
     const anchor = document.getElementByID("myAnchor");
     anchor.password; // returns 'flabada'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-hyperlink-password">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLHyperlinkElementUtils.password' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -83,9 +78,8 @@ No
 
 2.0
 
-See also
---------
+## See also
 
--   The [`HTMLAnchorElement`](../htmlanchorelement) interface it belongs to.
+- The [`HTMLAnchorElement`](../htmlanchorelement) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/password" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/password</a>

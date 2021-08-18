@@ -1,12 +1,10 @@
-HTMLElement: animationend event
-===============================
+# HTMLElement: animationend event
 
 The `animationend` event is fired when a [CSS Animation](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) has completed. If the animation aborts before reaching completion, such as if the element is removed from the DOM or the animation is removed from the element, the `animationend` event is not fired.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../animationevent"><code>AnimationEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="../globaleventhandlers/onanimationend"><code>onanimationend</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 This example gets an element that's being animated and listens for the `animationend` event:
 
@@ -108,13 +106,11 @@ The same, but using the `onanimationend` event handler property:
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-animations-1/#eventdef-animationevent-animationend">CSS Animations Level 1</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -170,14 +166,13 @@ Yes
 
 4.0
 
-See also
---------
+## See also
 
--   [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations)
--   [Using CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)
--   [`AnimationEvent`](../animationevent)
--   Related events: [`animationstart`](animationstart_event), [`animationcancel`](animationcancel_event), [`animationiteration`](animationiteration_event)
--   This event on [`Document`](../document) targets: [`animationend`](../document/animationend_event)
--   This event on [`Window`](../window) targets: [`animationend`](../window/animationend_event)
+- [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations)
+- [Using CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)
+- [`AnimationEvent`](../animationevent)
+- Related events: [`animationstart`](animationstart_event), [`animationcancel`](animationcancel_event), [`animationiteration`](animationiteration_event)
+- This event on [`Document`](../document) targets: [`animationend`](../document/animationend_event)
+- This event on [`Window`](../window) targets: [`animationend`](../window/animationend_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/animationend_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/animationend_event</a>

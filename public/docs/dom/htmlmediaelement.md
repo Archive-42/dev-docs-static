@@ -1,12 +1,10 @@
-HTMLMediaElement
-================
+# HTMLMediaElement
 
 The `HTMLMediaElement` interface adds to [`HTMLElement`](htmlelement) the properties and methods needed to support basic media-related capabilities that are common to audio and video. The [`HTMLVideoElement`](htmlvideoelement) and [`HTMLAudioElement`](htmlaudioelement) elements both inherit this interface.
 
-Properties
-----------
+## Properties
 
-*This interface also inherits properties from its ancestors [`HTMLElement`](htmlelement), [`Element`](element), [`Node`](node), and [`EventTarget`](eventtarget).*
+_This interface also inherits properties from its ancestors [`HTMLElement`](htmlelement), [`Element`](element), [`Node`](node), and [`EventTarget`](eventtarget)._
 
 [`HTMLMediaElement.audioTracks`](htmlmediaelement/audiotracks)  
 A [`AudioTrackList`](audiotracklist) that lists the [`AudioTrack`](audiotrack) objects contained in the element.
@@ -16,7 +14,7 @@ A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 **Note**: Automatically playing audio when the user doesn't expect or desire it is a poor user experience and should be avoided in most cases, though there are exceptions. See the [Autoplay guide for media and Web Audio APIs](https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide) for more information. Keep in mind that browsers may ignore autoplay requests, so you should ensure that your code isn't dependent on autoplay working.
 
- [`HTMLMediaElement.buffered`](htmlmediaelement/buffered) <span class="badge inline readonly">Read only </span>   
+[`HTMLMediaElement.buffered`](htmlmediaelement/buffered) <span class="badge inline readonly">Read only </span>  
 Returns a [`TimeRanges`](timeranges) object that indicates the ranges of the media source that the browser has buffered (if any) at the moment the `buffered` property is accessed.
 
 [`HTMLMediaElement.controller`](htmlmediaelement/controller)  
@@ -25,13 +23,13 @@ Is a <span class="page-not-created">`MediaController`</span> object that represe
 [`HTMLMediaElement.controls`](htmlmediaelement/controls)  
 Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that reflects the [`controls`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#attr-controls) HTML attribute, indicating whether user interface items for controlling the resource should be displayed.
 
- [`HTMLMediaElement.controlsList`](htmlmediaelement/controlslist) <span class="badge inline readonly">Read only </span>   
+[`HTMLMediaElement.controlsList`](htmlmediaelement/controlslist) <span class="badge inline readonly">Read only </span>  
 Returns a [`DOMTokenList`](domtokenlist) that helps the user agent select what controls to show on the media element whenever the user agent shows its own set of controls. The `DOMTokenList` takes one or more of three possible values: `nodownload`, `nofullscreen`, and `noremoteplayback`.
 
 [`HTMLMediaElement.crossOrigin`](htmlmediaelement/crossorigin)  
 A [`DOMString`](domstring) indicating the [CORS setting](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) for this media element.
 
- [`HTMLMediaElement.currentSrc`](htmlmediaelement/currentsrc) <span class="badge inline readonly">Read only </span>   
+[`HTMLMediaElement.currentSrc`](htmlmediaelement/currentsrc) <span class="badge inline readonly">Read only </span>  
 Returns a [`DOMString`](domstring) with the absolute URL of the chosen media resource.
 
 [`HTMLMediaElement.currentTime`](htmlmediaelement/currenttime)  
@@ -46,13 +44,13 @@ A `double` indicating the default playback rate for the media.
 [`HTMLMediaElement.disableRemotePlayback`](htmlmediaelement/disableremoteplayback)  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that sets or returns the remote playback state, indicating whether the media element is allowed to have a remote playback UI.
 
- [`HTMLMediaElement.duration`](htmlmediaelement/duration) <span class="badge inline readonly">Read only </span>   
+[`HTMLMediaElement.duration`](htmlmediaelement/duration) <span class="badge inline readonly">Read only </span>  
 A read-only double-precision floating-point value indicating the total duration of the media in seconds. If no media data is available, the returned value is `NaN`. If the media is of indefinite length (such as streamed live media, a WebRTC call's media, or similar), the value is `+Infinity`.
 
- [`HTMLMediaElement.ended`](htmlmediaelement/ended) <span class="badge inline readonly">Read only </span>   
+[`HTMLMediaElement.ended`](htmlmediaelement/ended) <span class="badge inline readonly">Read only </span>  
 Returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that indicates whether the media element has finished playing.
 
- [`HTMLMediaElement.error`](htmlmediaelement/error) <span class="badge inline readonly">Read only </span>   
+[`HTMLMediaElement.error`](htmlmediaelement/error) <span class="badge inline readonly">Read only </span>  
 Returns a [`MediaError`](mediaerror) object for the most recent error, or `null` if there has not been an error.
 
 [`HTMLMediaElement.loop`](htmlmediaelement/loop)  
@@ -61,40 +59,40 @@ A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 [`HTMLMediaElement.mediaGroup`](htmlmediaelement/mediagroup)  
 A [`DOMString`](domstring) that reflects the [`mediagroup`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#attr-mediagroup) HTML attribute, which indicates the name of the group of elements it belongs to. A group of media elements shares a common <span class="page-not-created">`MediaController`</span>.
 
- <span class="page-not-created">`HTMLMediaElement.mediaKeys`</span> <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`HTMLMediaElement.mediaKeys`</span> <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a [`MediaKeys`](mediakeys) object or `null`. MediaKeys is a set of keys that an associated HTMLMediaElement can use for decryption of media data during playback.
 
 [`HTMLMediaElement.muted`](htmlmediaelement/muted)  
 Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that determines whether audio is muted. `true` if the audio is muted and `false` otherwise.
 
- [`HTMLMediaElement.networkState`](htmlmediaelement/networkstate) <span class="badge inline readonly">Read only </span>   
+[`HTMLMediaElement.networkState`](htmlmediaelement/networkstate) <span class="badge inline readonly">Read only </span>  
 Returns a `unsigned short` (enumeration) indicating the current state of fetching the media over the network.
 
- [`HTMLMediaElement.paused`](htmlmediaelement/paused) <span class="badge inline readonly">Read only </span>   
+[`HTMLMediaElement.paused`](htmlmediaelement/paused) <span class="badge inline readonly">Read only </span>  
 Returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that indicates whether the media element is paused.
 
 [`HTMLMediaElement.playbackRate`](htmlmediaelement/playbackrate)  
 Is a `double` that indicates the rate at which the media is being played back.
 
- <span class="page-not-created">`HTMLMediaElement.played`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLMediaElement.played`</span> <span class="badge inline readonly">Read only </span>  
 Returns a [`TimeRanges`](timeranges) object that contains the ranges of the media source that the browser has played, if any.
 
 <span class="page-not-created">`HTMLMediaElement.preload`</span>  
 Is a [`DOMString`](domstring) that reflects the [`preload`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#attr-preload) HTML attribute, indicating what data should be preloaded, if any. Possible values are: `none`, `metadata`, `auto`.
 
- <span class="page-not-created">`HTMLMediaElement.preservesPitch`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+<span class="page-not-created">`HTMLMediaElement.preservesPitch`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that determines if the pitch of the sound will be preserved. If set to `false`, the pitch will adjust to the speed of the audio. This is implemented with prefixes in Firefox (`mozPreservesPitch`) and WebKit (`webkitPreservesPitch`).
 
- [`HTMLMediaElement.readyState`](htmlmediaelement/readystate) <span class="badge inline readonly">Read only </span>   
+[`HTMLMediaElement.readyState`](htmlmediaelement/readystate) <span class="badge inline readonly">Read only </span>  
 Returns a `unsigned short` (enumeration) indicating the readiness state of the media.
 
- [`HTMLMediaElement.seekable`](htmlmediaelement/seekable) <span class="badge inline readonly">Read only </span>   
+[`HTMLMediaElement.seekable`](htmlmediaelement/seekable) <span class="badge inline readonly">Read only </span>  
 Returns a [`TimeRanges`](timeranges) object that contains the time ranges that the user is able to seek to, if any.
 
- <span class="page-not-created">`HTMLMediaElement.seeking`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLMediaElement.seeking`</span> <span class="badge inline readonly">Read only </span>  
 Returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that indicates whether the media is in the process of seeking to a new position.
 
- [`HTMLMediaElement.sinkId`](htmlmediaelement/sinkid) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`HTMLMediaElement.sinkId`](htmlmediaelement/sinkid) <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a [`DOMString`](domstring) that is the unique ID of the audio device delivering output, or an empty string if it is using the user agent default. This ID should be one of the `MediaDeviceInfo.deviceid` values returned from [`MediaDevices.enumerateDevices()`](mediadevices/enumeratedevices), `id-multimedia`, or `id-communications`.
 
 [`HTMLMediaElement.src`](htmlmediaelement/src)  
@@ -103,10 +101,10 @@ Is a [`DOMString`](domstring) that reflects the [`src`](https://developer.mozill
 [`HTMLMediaElement.srcObject`](htmlmediaelement/srcobject)  
 Is a [`MediaStream`](mediastream) representing the media to play or that has played in the current `HTMLMediaElement`, or `null` if not assigned.
 
- [`HTMLMediaElement.textTracks`](htmlmediaelement/texttracks) <span class="badge inline readonly">Read only </span>   
+[`HTMLMediaElement.textTracks`](htmlmediaelement/texttracks) <span class="badge inline readonly">Read only </span>  
 Returns the list of [`TextTrack`](texttrack) objects contained in the element.
 
- [`HTMLMediaElement.videoTracks`](htmlmediaelement/videotracks) <span class="badge inline readonly">Read only </span>   
+[`HTMLMediaElement.videoTracks`](htmlmediaelement/videotracks) <span class="badge inline readonly">Read only </span>  
 Returns the list of [`VideoTrack`](videotrack) objects contained in the element.
 
 [`HTMLMediaElement.volume`](htmlmediaelement/volume)  
@@ -120,51 +118,49 @@ Sets the [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Ev
 [`HTMLMediaElement.onwaitingforkey`](htmlmediaelement/onwaitingforkey)  
 Sets the [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) called when playback is blocked while waiting for an encryption key.
 
-Obsolete attributes
--------------------
+## Obsolete attributes
 
 These attributes are obsolete and should not be used, even if a browser still supports them.
 
- <span class="page-not-created">`HTMLMediaElement.mozAudioCaptured`</span> <span class="badge inline readonly">Read only </span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLMediaElement.mozAudioCaptured`</span> <span class="badge inline readonly">Read only </span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean). Related to audio stream capture.
 
- <span class="page-not-created">`HTMLMediaElement.mozChannels`</span> <span class="badge inline readonly">Read only </span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLMediaElement.mozChannels`</span> <span class="badge inline readonly">Read only </span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns a `double` representing the number of channels in the audio resource (e.g., `2` for stereo).
 
- <span class="page-not-created">`HTMLMediaElement.mozFragmentEnd`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLMediaElement.mozFragmentEnd`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a `double` that provides access to the fragment end time if the media element has a fragment URI for `currentSrc`, otherwise it is equal to the media duration.
 
- <span class="page-not-created">`HTMLMediaElement.mozFrameBufferLength`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLMediaElement.mozFrameBufferLength`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a `unsigned long` that indicates the number of samples that will be returned in the framebuffer of each `MozAudioAvailable` event. This number is a total for all channels, and by default is set to be the number of channels \* 1024 (e.g., 2 channels \* 1024 samples = 2048 total).
 
-The `mozFrameBufferLength` property can be set to a new value for lower latency, larger amounts of data, etc. The size given *must* be a number between 512 and 16384. Using any other size results in an exception being thrown. The best time to set a new length is after the [loadedmetadata](htmlmediaelement/loadedmetadata_event) event fires, when the audio info is known, but before the audio has started or `MozAudioAvailable` events have begun firing.
+The `mozFrameBufferLength` property can be set to a new value for lower latency, larger amounts of data, etc. The size given _must_ be a number between 512 and 16384. Using any other size results in an exception being thrown. The best time to set a new length is after the [loadedmetadata](htmlmediaelement/loadedmetadata_event) event fires, when the audio info is known, but before the audio has started or `MozAudioAvailable` events have begun firing.
 
- <span class="page-not-created">`HTMLMediaElement.mozSampleRate`</span> <span class="badge inline readonly">Read only </span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLMediaElement.mozSampleRate`</span> <span class="badge inline readonly">Read only </span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns a `double` representing the number of samples per second that will be played. For example, 44100 samples per second is the sample rate used by CD audio.
 
 ### Obsolete event handlers
 
- <span class="page-not-created">`HTMLMediaElement.onmozinterruptbegin`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLMediaElement.onmozinterruptbegin`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Sets the [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) called when the media element is interrupted because of the Audio Channel manager. This was Firefox-specific, having been implemented for Firefox OS, and was removed in Firefox 55.
 
- <span class="page-not-created">`HTMLMediaElement.onmozinterruptend`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLMediaElement.onmozinterruptend`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Sets the [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) called when the interruption is concluded. This was Firefox-specific, having been implemented for Firefox OS, and was removed in Firefox 55.
 
-Methods
--------
+## Methods
 
-*This interface also inherits methods from its ancestors [`HTMLElement`](htmlelement), [`Element`](element), [`Node`](node), and [`EventTarget`](eventtarget).*
+_This interface also inherits methods from its ancestors [`HTMLElement`](htmlelement), [`Element`](element), [`Node`](node), and [`EventTarget`](eventtarget)._
 
 <span class="page-not-created">`HTMLMediaElement.addTextTrack()`</span>  
 Adds a text track (such as a track for subtitles) to a media element.
 
- [`HTMLMediaElement.captureStream()`](htmlmediaelement/capturestream) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`HTMLMediaElement.captureStream()`](htmlmediaelement/capturestream) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns [`MediaStream`](mediastream), captures a stream of the media content.
 
 [`HTMLMediaElement.canPlayType()`](htmlmediaelement/canplaytype)  
 Given a string specifying a MIME media type (potentially with the [`codecs` parameter](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter) included), `canPlayType()` returns the string `probably` if the media should be playable, `maybe` if there's not enough information to determine whether the media will play or not, or an empty string if the media cannot be played.
 
- [`HTMLMediaElement.fastSeek()`](htmlmediaelement/fastseek) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`HTMLMediaElement.fastSeek()`](htmlmediaelement/fastseek) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Quickly seeks to the given time with low precision.
 
 [`HTMLMediaElement.load()`](htmlmediaelement/load)  
@@ -176,36 +172,34 @@ Pauses the media playback.
 [`HTMLMediaElement.play()`](htmlmediaelement/play)  
 Begins playback of the media.
 
- [`HTMLMediaElement.seekToNextFrame()`](htmlmediaelement/seektonextframe) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`HTMLMediaElement.seekToNextFrame()`](htmlmediaelement/seektonextframe) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Seeks to the next frame in the media. This non-standard, experimental method makes it possible to manually drive reading and rendering of media at a custom speed, or to move through the media frame-by-frame to perform filtering or other operations.
 
- [`HTMLMediaElement.setMediaKeys()`](htmlmediaelement/setmediakeys) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`HTMLMediaElement.setMediaKeys()`](htmlmediaelement/setmediakeys) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Sets the [`MediaKeys`](mediakeys) keys to use when decrypting media during playback.
 
- [`HTMLMediaElement.setSinkId()`](htmlmediaelement/setsinkid) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`HTMLMediaElement.setSinkId()`](htmlmediaelement/setsinkid) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Sets the ID of the audio device to use for output and returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). This only works when the application is authorized to use the specified device.
 
-Obsolete methods
-----------------
+## Obsolete methods
 
-*These methods are obsolete and should not be used, even if a browser still supports them.*
+_These methods are obsolete and should not be used, even if a browser still supports them._
 
- <span class="page-not-created">`HTMLMediaElement.mozCaptureStream()`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+<span class="page-not-created">`HTMLMediaElement.mozCaptureStream()`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 \[enter description\]
 
- <span class="page-not-created">`HTMLMediaElement.mozCaptureStreamUntilEnded()`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLMediaElement.mozCaptureStreamUntilEnded()`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 \[enter description\]
 
- <span class="page-not-created">`HTMLMediaElement.mozGetMetadata()`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLMediaElement.mozGetMetadata()`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Returns [`Object`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object), which contains properties that represent metadata from the playing media resource as `{key: value}` pairs. A separate copy of the data is returned each time the method is called. This method must be called after the [loadedmetadata](htmlmediaelement/loadedmetadata_event) event fires.
 
- <span class="page-not-created">`HTMLMediaElement.mozLoadFrom()`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLMediaElement.mozLoadFrom()`</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 This method, available only in Mozilla's implementation, loads data from another media element. This works similarly to `load()` except that instead of running the normal resource selection algorithm, the source is set to the `other` element's `currentSrc`. This is optimized so this element gets access to all of the `other` element's cached and buffered data; in fact, the two elements share downloaded data, so data downloaded by either element is available to both.
 
-Events
-------
+## Events
 
-*Inherits methods from its parent, [`HTMLElement`](htmlelement)* , defined in the [`GlobalEventHandlers`](globaleventhandlers) mixin. Listen to these events using `addEventListener()` or by assigning an event listener to the `oneventname` property of this interface.
+_Inherits methods from its parent, [`HTMLElement`](htmlelement)_ , defined in the [`GlobalEventHandlers`](globaleventhandlers) mixin. Listen to these events using `addEventListener()` or by assigning an event listener to the `oneventname` property of this interface.
 
 [`abort`](htmlmediaelement/abort_event)  
 Fired when the resource was not fully loaded, but not as the result of an error.
@@ -273,16 +267,14 @@ Fired when the volume has changed.
 [`waiting`](htmlmediaelement/waiting_event)  
 Fired when playback has stopped because of a temporary lack of data.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#introduction">Encrypted Media Extensions<br />
 <span class="small">The definition of 'Encrypted Media Extensions' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Adds <a href="mediakeys"><code>MediaKeys</code></a>, <span class="page-not-created"><code>MediaEncryptedEvent</code></span>, <span class="page-not-created"><code>setMediaKeys</code></span>, <span class="page-not-created"><code>onencrypted</code></span>, and <span class="page-not-created"><code>onwaitingforkey</code></span>.</td></tr><tr class="even"><td><a href="https://html.spec.whatwg.org/multipage/the-video-element.html#htmlmediaelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLMediaElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change from <a href="https://www.w3.org/TR/html52/">HTML5</a></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/html52/embedded-content-0.html#htmlmediaelement">HTML5<br />
 <span class="small">The definition of 'HTMLMediaElement' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -2538,19 +2530,18 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
 ### References
 
--   [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) and [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) HTML elements.
--   [`HTMLVideoElement`](htmlvideoelement) and [`HTMLAudioElement`](htmlaudioelement) interfaces, derived from `HTMLMediaElement`.
+- [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) and [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) HTML elements.
+- [`HTMLVideoElement`](htmlvideoelement) and [`HTMLAudioElement`](htmlaudioelement) interfaces, derived from `HTMLMediaElement`.
 
 ### Guides
 
--   [Web media technologies](https://developer.mozilla.org/en-US/docs/Web/Media)
--   Learning area: [Video and audio content](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Video_and_audio_content)
--   [Guide to media types and formats on the web](https://developer.mozilla.org/en-US/docs/Web/Media/Formats)
--   [Handling media support issues in web content](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Support_issues)
+- [Web media technologies](https://developer.mozilla.org/en-US/docs/Web/Media)
+- Learning area: [Video and audio content](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Video_and_audio_content)
+- [Guide to media types and formats on the web](https://developer.mozilla.org/en-US/docs/Web/Media/Formats)
+- [Handling media support issues in web content](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Support_issues)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement</a>

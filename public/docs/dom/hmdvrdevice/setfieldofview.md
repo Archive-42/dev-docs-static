@@ -1,5 +1,4 @@
-HMDVRDevice.setFieldOfView()
-============================
+# HMDVRDevice.setFieldOfView()
 
 **Deprecated**
 
@@ -12,8 +11,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `setFieldOfView()` method of the [`HMDVRDevice`](../hmdvrdevice) interface can be used to set the field of view for one eye, or both eyes simultaneously.
 
-Syntax
-------
+## Syntax
 
     HMDVRDevice.setFieldOfView(leftFOV,rightFOV,zNear,zFar);
 
@@ -35,8 +33,7 @@ The distance from the eyes of the farthest point of the view. The furthest away 
 
 Void.
 
-Examples
---------
+## Examples
 
 The following simple example shows a function that can be used to set a custom field of view with four specified degree values for up, right, down and left. The [`VRFieldOfView()`](../vrfieldofview/vrfieldofview) constructor is used to create a [`VRFieldOfView`](../vrfieldofview) object from the supplied values, which is then fed into the `setFieldOfView()` method (the default `zNear` and `zFar` values are always used, in this case.)
 
@@ -53,8 +50,7 @@ The following simple example shows a function that can be used to set a custom f
 
 **Note**: When testing, setting a weird/tiny field of view can really mess up your view. It is a good idea to grab the current field of view first (using [`VREyeParameters.currentFieldOfView`](../vreyeparameters/fieldofview)) before making any drastic changes, so you can reset it afterwards if needed.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -120,10 +116,9 @@ No
 
 8.0
 
-See also
---------
+## See also
 
--   [WebVR API homepage](../webvr_api).
--   <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
+- [WebVR API homepage](../webvr_api).
+- <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HMDVRDevice/setFieldOfView" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HMDVRDevice/setFieldOfView</a>

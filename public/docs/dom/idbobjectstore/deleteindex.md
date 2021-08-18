@@ -1,5 +1,4 @@
-IDBObjectStore.deleteIndex()
-============================
+# IDBObjectStore.deleteIndex()
 
 The `deleteIndex()` method of the [`IDBObjectStore`](../idbobjectstore) interface destroys the index with the specified name in the connected database, used during a version upgrade.
 
@@ -7,8 +6,7 @@ Note that this method must be called only from a `VersionChange` transaction mod
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     objectStore.deleteIndex(indexName);
 
@@ -28,8 +26,7 @@ This method may raise a [`DOMException`](../domexception) of one of the followin
 <table><thead><tr class="header"><th>Exception</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>InvalidStateError</code></td><td>Occurs if the method was not called from a <code>versionchange</code> transaction mode callback.</td></tr><tr class="even"><td><code>TransactionInactiveError</code></td><td>Occurs if the transaction this <a href="../idbobjectstore"><code>IDBObjectStore</code></a> belongs to is not active (e.g. has been deleted or removed.) In Firefox previous to version 41, an <code>InvalidStateError</code> was raised in this case as well, which was misleading; this has now been fixed (see <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1176165">bug 1176165</a>.)</td></tr><tr class="odd"><td><code>NotFoundError</code></td><td>Occurs if there is no index with the given name (case-sensitive) in the database.<br />
 </td></tr></tbody></table>
 
-Example
--------
+## Example
 
 In the following example you can see the [`IDBOpenDBRequest.onupgradeneeded`](../idbopendbrequest/onupgradeneeded) handler being used to update the database structure if a database with a higher version number is loaded. [`IDBObjectStore.createIndex`](createindex) is used to create new indexes on the object store, after which we delete the unneeded old indexes with `deleteIndex()`. For a full working example, see our [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) app ([view example live](https://mdn.github.io/to-do-notifications/).)
 
@@ -81,15 +78,13 @@ In the following example you can see the [`IDBOpenDBRequest.onupgradeneeded`](..
 
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbobjectstore-deleteindex">Indexed Database API 2.0<br />
 <span class="small">The definition of 'deleteIndex()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbobjectstore-deleteindex">Indexed Database API 2.0<br />
 <span class="small">The definition of 'deleteIndex()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -145,15 +140,14 @@ Samsung Internet
 
 1.5
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/deleteIndex" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore/deleteIndex</a>

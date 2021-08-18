@@ -1,14 +1,13 @@
-Intersection Observer API
-=========================
+# Intersection Observer API
 
 The Intersection Observer API provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element or with a top-level document's [viewport](https://developer.mozilla.org/en-US/docs/Glossary/Viewport).
 
 Historically, detecting visibility of an element, or the relative visibility of two elements in relation to each other, has been a difficult task for which solutions have been unreliable and prone to causing the browser and the sites the user is accessing to become sluggish. As the web has matured, the need for this kind of information has grown. Intersection information is needed for many reasons, such as:
 
--   Lazy-loading of images or other content as a page is scrolled.
--   Implementing "infinite scrolling" web sites, where more and more content is loaded and rendered as you scroll, so that the user doesn't have to flip through pages.
--   Reporting of visibility of advertisements in order to calculate ad revenues.
--   Deciding whether or not to perform tasks or animation processes based on whether or not the user will see the result.
+- Lazy-loading of images or other content as a page is scrolled.
+- Implementing "infinite scrolling" web sites, where more and more content is loaded and rendered as you scroll, so that the user doesn't have to flip through pages.
+- Reporting of visibility of advertisements in order to calculate ad revenues.
+- Deciding whether or not to perform tasks or animation processes based on whether or not the user will see the result.
 
 Implementing intersection detection in the past involved event handlers and loops calling methods like [`Element.getBoundingClientRect()`](element/getboundingclientrect) to build up the needed information for every element affected. Since all this code runs on the main thread, even one of these can cause performance problems. When a site is loaded with these tests, things can get downright ugly.
 
@@ -16,15 +15,14 @@ Consider a web page that uses infinite scrolling. It uses a vendor-provided libr
 
 The Intersection Observer API lets code register a callback function that is executed whenever an element they wish to monitor enters or exits another element (or the [viewport](https://developer.mozilla.org/en-US/docs/Glossary/Viewport)), or when the amount by which the two intersect changes by a requested amount. This way, sites no longer need to do anything on the main thread to watch for this kind of element intersection, and the browser is free to optimize the management of intersections as it sees fit.
 
-One thing the Intersection Observer API can't tell you: the exact number of pixels that overlap or specifically which ones they are; however, it covers the much more common use case of "If they intersect by somewhere around *N*%, I need to do something."
+One thing the Intersection Observer API can't tell you: the exact number of pixels that overlap or specifically which ones they are; however, it covers the much more common use case of "If they intersect by somewhere around _N_%, I need to do something."
 
-Intersection observer concepts and usage
-----------------------------------------
+## Intersection observer concepts and usage
 
 The Intersection Observer API allows you to configure a callback that is called when either of these circumstances occur:
 
--   A **target** element intersects either the device's viewport or a specified element. That specified element is called the **root element** or **root** for the purposes of the Intersection Observer API.
--   The first time the observer is initially asked to watch a target element.
+- A **target** element intersects either the device's viewport or a specified element. That specified element is called the **root element** or **root** for the purposes of the Intersection Observer API.
+- The first time the observer is initially asked to watch a target element.
 
 Typically, you'll want to watch for intersection changes with regard to the element's closest scrollable ancestor, or, if the element isn't a descendant of a scrollable element, the viewport. To watch for intersection relative to the root element, specify `null`.
 
@@ -103,9 +101,9 @@ Before we can track the intersection of an element with a container, we need to 
 
 The **root intersection rectangle** is the rectangle used to check against the target or targets. This rectangle is determined like this:
 
--   If the intersection root is the implicit root (that is, the top-level [`Document`](document)), the root intersection rectangle is the viewport's rectangle.
--   If the intersection root has an overflow clip, the root intersection rectangle is the root element's content area.
--   Otherwise, the root intersection rectangle is the intersection root's bounding client rectangle (as returned by calling [`getBoundingClientRect()`](element/getboundingclientrect) on it).
+- If the intersection root is the implicit root (that is, the top-level [`Document`](document)), the root intersection rectangle is the viewport's rectangle.
+- If the intersection root has an overflow clip, the root intersection rectangle is the root element's content area.
+- Otherwise, the root intersection rectangle is the intersection root's bounding client rectangle (as returned by calling [`getBoundingClientRect()`](element/getboundingclientrect) on it).
 
 The root intersection rectangle can be adjusted further by setting the **root margin**, `rootMargin`, when creating the [`IntersectionObserver`](intersectionobserver). The values in `rootMargin` define offsets added to each side of the intersection root's bounding box to create the final intersection root bounds (which are disclosed in [`IntersectionObserverEntry.rootBounds`](intersectionobserverentry/rootbounds) when the callback is executed).
 
@@ -117,16 +115,16 @@ For example, if you want to be informed every time a target's visibility passes 
 
 When the callback is invoked, it receives a list of `IntersectionObserverEntry` objects, one for each observed target which has had the degree to which it intersects the root change such that the amount exposed crosses over one of the thresholds, in either direction.
 
-You can see if the target *currently* intersects the root by looking at the entry's [`isIntersecting`](intersectionobserverentry/isintersecting) property; if its value is `true`, the target is at least partially intersecting the root element or document. This lets you determine whether the entry represents a transition from the elements intersecting to no longer intersecting or a transition from not intersecting to intersecting.
+You can see if the target _currently_ intersects the root by looking at the entry's [`isIntersecting`](intersectionobserverentry/isintersecting) property; if its value is `true`, the target is at least partially intersecting the root element or document. This lets you determine whether the entry represents a transition from the elements intersecting to no longer intersecting or a transition from not intersecting to intersecting.
 
 Note that it's possible to have a non-zero intersection rectangle, which can happen if the intersection is exactly along the boundary between the two or the area of [`boundingClientRect`](intersectionobserverentry/boundingclientrect) is zero. This state of the target and root sharing a boundary line is not considered enough to be considered transitioning into an intersecting state.
 
 To get a feeling for how thresholds work, try scrolling the box below around. Each colored box within it displays the percentage of itself that's visible in all four of its corners, so you can see these ratios change over time as you scroll the container. Each box has a different set of thresholds:
 
--   The first box has a threshold for each percentage point of visibility; that is, the [`IntersectionObserver.thresholds`](intersectionobserver/thresholds) array is `[0.00, 0.01, 0.02, ..., 0.99, 1.00]`.
--   The second box has a single threshold, at the 50% mark.
--   The third box has thresholds every 10% of visibility (0%, 10%, 20%, etc.).
--   The last box has thresholds each 25%.
+- The first box has a threshold for each percentage point of visibility; that is, the [`IntersectionObserver.thresholds`](intersectionobserver/thresholds) array is `[0.00, 0.01, 0.02, ..., 0.99, 1.00]`.
+- The second box has a single threshold, at the 50% mark.
+- The third box has thresholds every 10% of visibility (0%, 10%, 20%, etc.).
+- The last box has thresholds each 25%.
 
 #### Clipping and the intersection rectangle
 
@@ -159,8 +157,7 @@ The code snippet below shows a callback which keeps a counter of how many times 
       });
     }
 
-Interfaces
-----------
+## Interfaces
 
 [`IntersectionObserver`](intersectionobserver)  
 The primary interface for the Intersection Observer API. Provides methods for creating and managing an observer which can watch any number of target elements for the same intersection configuration. Each observer can asynchronously observe changes in the intersection between one or more target elements and a shared ancestor element or with their top-level [`Document`](document)'s [viewport](https://developer.mozilla.org/en-US/docs/Glossary/Viewport). The ancestor or viewport is referred to as the **root**.
@@ -168,8 +165,7 @@ The primary interface for the Intersection Observer API. Provides methods for cr
 [`IntersectionObserverEntry`](intersectionobserverentry)  
 Describes the intersection between the target element and its root container at a specific moment of transition. Objects of this type can only be obtained in two ways: as an input to your `IntersectionObserver` callback, or by calling [`IntersectionObserver.takeRecords()`](intersectionobserver/takerecords).
 
-A simple example
-----------------
+## A simple example
 
 This simple example causes a target element to change its color and transparency as it becomes more or less visible. At [Timing element visibility with the Intersection Observer API](intersection_observer_api/timing_element_visibility), you can find a more extensive example showing how to time how long a set of elements (such as ads) are visible to the user and to react to that information by recording statistics or by updating elements..
 
@@ -327,13 +323,11 @@ Below is the resulting content. Scroll this page up and down and notice how the 
 
 There's an even more extensive example at [Timing element visibility with the Intersection Observer API](intersection_observer_api/timing_element_visibility).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/IntersectionObserver/">Intersection Observer</a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -607,11 +601,10 @@ Yes
 
 5.0
 
-See also
---------
+## See also
 
--   [Intersection Observer polyfill](https://github.com/w3c/IntersectionObserver)
--   [Timing element visibility with the Intersection Observer API](intersection_observer_api/timing_element_visibility)
--   [`IntersectionObserver`](intersectionobserver) and [`IntersectionObserverEntry`](intersectionobserverentry)
+- [Intersection Observer polyfill](https://github.com/w3c/IntersectionObserver)
+- [Timing element visibility with the Intersection Observer API](intersection_observer_api/timing_element_visibility)
+- [`IntersectionObserver`](intersectionobserver) and [`IntersectionObserverEntry`](intersectionobserverentry)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API</a>

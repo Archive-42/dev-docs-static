@@ -1,19 +1,16 @@
-MediaError.message
-==================
+# MediaError.message
 
 The read-only property `MediaError.message` returns a [`DOMString`](../domstring) which contains a human-readable string offering specific diagnostic details related to the error described by the `MediaError` object, or an empty string (`""`) if no diagnostic information can be determined or provided.
 
-Syntax
-------
+## Syntax
 
     var errorMessage = mediaError.message;
 
 ### Value
 
-A [`DOMString`](../domstring) providing a detailed, specific explanation of what went wrong and possibly how it might be fixed. This is *not* a generic description of the [`MediaError.code`](code) property's value, but instead goes deeper into the specifics of this particular error and its circumstances. If no specific details are available, this string is empty.
+A [`DOMString`](../domstring) providing a detailed, specific explanation of what went wrong and possibly how it might be fixed. This is _not_ a generic description of the [`MediaError.code`](code) property's value, but instead goes deeper into the specifics of this particular error and its circumstances. If no specific details are available, this string is empty.
 
-Example
--------
+## Example
 
 This example creates a [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) element, establishes an error handler for it, then lets the user click buttons to choose whether to assign a valid audio file or a missing file to the element's [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio#attr-src) attribute. The error handler outputs a message to a box onscreen describing the error, including both the `code` and the `message`.
 
@@ -60,14 +57,12 @@ This gets the [`MediaError`](../mediaerror) object describing the error from the
 
 You can try out this example below, and can [see the example in action outside this page here](https://mdn.github.io/dom-examples/media/mediaerror/).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#dom-mediaerror-message">HTML Living Standard<br />
 <span class="small">The definition of 'MediaError.message' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -123,10 +118,9 @@ No
 
 7.0
 
-See also
---------
+## See also
 
--   [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) and [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
--   The interface defining it, [`MediaError`](../mediaerror).
+- [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) and [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
+- The interface defining it, [`MediaError`](../mediaerror).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaError/message" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaError/message</a>

@@ -1,5 +1,4 @@
-MediaKeyStatusMap.values()
-==========================
+# MediaKeyStatusMap.values()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `values` property of the [`MediaKeyStatusMap`](../mediakeystatusmap) interface returns a new Iterator object, containing values for each element in the status map, in insertion order.
 
-Syntax
-------
+## Syntax
 
     var iterator = mediaKeyStatusMap.values()
 
@@ -21,13 +19,11 @@ None.
 
 A new iterator.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/">Encrypted Media Extensions</a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

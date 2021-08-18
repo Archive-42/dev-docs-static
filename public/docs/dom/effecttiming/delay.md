@@ -1,5 +1,4 @@
-EffectTiming.delay
-==================
+# EffectTiming.delay
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The [`EffectTiming`](../effecttiming) dictionary's `delay` property in the [Web 
 
 [`Element.animate()`](../element/animate), [`KeyframeEffectReadOnly()`](../keyframeeffect/keyframeeffect), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) all accept an object of timing properties including `delay`. The value of `delay` corresponds directly to [`EffectTiming.delay`](delay) in [`timing`](../animationeffect/gettiming) objects returned by [`AnimationEffectReadOnly`](../animationeffect), [`KeyframeEffectReadOnly`](../keyframeeffect), and [`KeyframeEffect`](../keyframeeffect).
 
-Syntax
-------
+## Syntax
 
     var timingProperties = {
       delay: delayInMilliseconds
@@ -23,8 +21,7 @@ Syntax
 
 A number specifying the delay, in milliseconds, from the start of the animation's play cycle to the beginning of its **active interval** (the time index at which actual animation begins). Defaults to 0.
 
-Examples
---------
+## Examples
 
 In the [Pool of Tears](https://codepen.io/rachelnabors/pen/EPJdJx?editors=0010) example, each tear is passed a random delay via its timing object:
 
@@ -47,14 +44,12 @@ In the [Pool of Tears](https://codepen.io/rachelnabors/pen/EPJdJx?editors=0010) 
         });
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/web-animations-1/#dom-effecttiming-delay">Web Animations<br />
 <span class="small">The definition of 'delay' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Editor's draft.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -110,12 +105,11 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [Web Animations API](../web_animations_api)
--   [`Element.animate()`](../element/animate), [`KeyframeEffectReadOnly()`](../keyframeeffect/keyframeeffect), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) all accept an object of timing properties including this one.
--   The value of this property corresponds to the one in [`EffectTiming`](../effecttiming) (which is the [`timing`](../animationeffect/gettiming) object for [`AnimationEffectReadOnly`](../animationeffect), [`KeyframeEffectReadOnly`](../keyframeeffect), and [`KeyframeEffect`](../keyframeeffect)).
--   CSS's `transition-delay` and `animation-delay`
+- [Web Animations API](../web_animations_api)
+- [`Element.animate()`](../element/animate), [`KeyframeEffectReadOnly()`](../keyframeeffect/keyframeeffect), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) all accept an object of timing properties including this one.
+- The value of this property corresponds to the one in [`EffectTiming`](../effecttiming) (which is the [`timing`](../animationeffect/gettiming) object for [`AnimationEffectReadOnly`](../animationeffect), [`KeyframeEffectReadOnly`](../keyframeeffect), and [`KeyframeEffect`](../keyframeeffect)).
+- CSS's `transition-delay` and `animation-delay`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/delay" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/delay</a>

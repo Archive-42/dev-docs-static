@@ -1,5 +1,4 @@
-MediaKeyStatusMap.has()
-=======================
+# MediaKeyStatusMap.has()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `has` property of the [`MediaKeyStatusMap`](../mediakeystatusmap) interface returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean), asserting whether a value has been associated with the given key.
 
-Syntax
-------
+## Syntax
 
     var boolean = mediaKeyStatusMap(key)
 
@@ -22,13 +20,11 @@ The key whose value you want returned
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/">Encrypted Media Extensions</a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

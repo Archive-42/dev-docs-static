@@ -1,12 +1,10 @@
-IDBDatabase: versionchange event
-================================
+# IDBDatabase: versionchange event
 
 The `versionchange` event is fired when a database structure change ([`IDBOpenDBRequest.onupgradeneeded`](../idbopendbrequest/onupgradeneeded) event or [`IDBFactory.deleteDatabase`](../idbfactory/deletedatabase)) was requested.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../event"><code>Event</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="onversionchange"><code>onversionchange</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 This example opens a database and, on success, adds a listener to `versionchange`:
 
@@ -60,8 +58,7 @@ The same example, using the `onversionchange` event handler property:
 
     };
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -117,10 +114,9 @@ Samsung Internet
 
 1.5
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   [`onversionchange`](onversionchange) event handler property
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- [`onversionchange`](onversionchange) event handler property
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/versionchange_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/versionchange_event</a>

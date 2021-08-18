@@ -1,5 +1,4 @@
-HTMLDialogElement.close()
-=========================
+# HTMLDialogElement.close()
 
 **Experimental**
 
@@ -8,24 +7,22 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `close()` method of the [`HTMLDialogElement`](../htmldialogelement) interface closes the dialog. An optional [`DOMString`](../domstring) may be passed as an argument, updating the `returnValue` of the dialog.
 
-Syntax
-------
+## Syntax
 
     dialogInstance.close(returnValue);
 
 ### Parameters
 
-returnValue <span class="badge inline optional">Optional</span>   
+returnValue <span class="badge inline optional">Optional</span>  
 A [`DOMString`](../domstring) representing an updated value for the [`HTMLDialogElement.returnValue`](returnvalue) of the dialog.
 
 ### Return value
 
 Void.
 
-Examples
---------
+## Examples
 
-The following example shows a simple button that, when clicked, opens a [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) containing a form via the `showModal()` method. From there you can click the *Cancel* button to close the dialog (via the [`HTMLDialogElement.close()`](close) method), or submit the form via the submit button.
+The following example shows a simple button that, when clicked, opens a [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) containing a form via the `showModal()` method. From there you can click the _Cancel_ button to close the dialog (via the [`HTMLDialogElement.close()`](close) method), or submit the form via the submit button.
 
       <!-- Simple pop-up dialog box, containing a form -->
       <dialog id="favDialog">
@@ -82,15 +79,13 @@ The following example shows a simple button that, when clicked, opens a [`<dialo
 
 **Note**: You can find this example on GitHub as [htmldialogelement-basic](https://github.com/mdn/dom-examples/blob/master/htmldialogelement-basic/index.html) ([see it live also](https://mdn.github.io/dom-examples/htmldialogelement-basic/)).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/forms.html#dom-dialog-close">HTML Living Standard<br />
 <span class="small">The definition of 'close()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/interactive-elements.html#dom-htmldialogelement-close">HTML 5.1<br />
 <span class="small">The definition of 'close()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -150,9 +145,8 @@ No
 
 3.0
 
-See also
---------
+## See also
 
--   The HTML element implementing this interface: [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog).
+- The HTML element implementing this interface: [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close</a>

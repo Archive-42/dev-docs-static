@@ -1,5 +1,4 @@
-File.fileName
-=============
+# File.fileName
 
 **Non-standard**
 
@@ -15,8 +14,7 @@ Returns the name of the file. For security reasons the path is excluded from thi
 
 This property is deprecated. Use [`File.name`](name) instead.
 
-Syntax
-------
+## Syntax
 
     var name = instanceOfFile.fileName;
 
@@ -24,14 +22,12 @@ Syntax
 
 A string
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-See also
---------
+## See also
 
--   [`File.name`](name)
+- [`File.name`](name)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/File/fileName" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File/fileName</a>

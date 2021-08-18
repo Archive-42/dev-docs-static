@@ -1,5 +1,4 @@
-FederatedCredential.provider
-============================
+# FederatedCredential.provider
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `provider` property of the [`FederatedCredential`](../federatedcredential) interface returns a [`USVString`](../usvstring) containing a credential's federated identity provider.
 
-Syntax
-------
+## Syntax
 
     var provider = FederatedCredential.provider
 
@@ -17,18 +15,15 @@ Syntax
 
 A [`USVString`](../usvstring) containing a credential's federated identity provider.
 
-Example
--------
+## Example
 
     // TBD
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comments</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-credential-management/">Credential Management Level 1</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

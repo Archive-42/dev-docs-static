@@ -1,11 +1,10 @@
-Ajax navigation example
-=======================
+# Ajax navigation example
 
-This is an example of an AJAX website composed only of three pages (*first\_page.php*, *second\_page.php* and *third\_page.php*). To see how it works, please create the following files (or git clone [https://github.com/giabao/mdn-ajax-nav-example.git](https://github.com/giabao/mdn-ajax-nav-example) ):
+This is an example of an AJAX website composed only of three pages (_first_page.php_, _second_page.php_ and _third_page.php_). To see how it works, please create the following files (or git clone [https://github.com/giabao/mdn-ajax-nav-example.git](https://github.com/giabao/mdn-ajax-nav-example) ):
 
-**Note:** For fully integrating the [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) elements within this *mechanism*, please take a look at the paragraph [Submitting forms and uploading files](../xmlhttprequest/using_xmlhttprequest#submitting_forms_and_uploading_files).
+**Note:** For fully integrating the [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) elements within this _mechanism_, please take a look at the paragraph [Submitting forms and uploading files](../xmlhttprequest/using_xmlhttprequest#submitting_forms_and_uploading_files).
 
-**first\_page.php**:
+**first_page.php**:
 
     <?php
         $page_title = "First page";
@@ -51,7 +50,7 @@ This is an example of an AJAX website composed only of three pages (*first\_page
         }
     ?>
 
-**second\_page.php**:
+**second_page.php**:
 
     <?php
         $page_title = "Second page";
@@ -97,7 +96,7 @@ This is an example of an AJAX website composed only of three pages (*first\_page
         }
     ?>
 
-**third\_page.php**:
+**third_page.php**:
 
     <?php
         $page_title = "Third page";
@@ -155,11 +154,11 @@ This is an example of an AJAX website composed only of three pages (*first\_page
         opacity: 0.65;
     }
 
-**include/after\_content.php**:
+**include/after_content.php**:
 
     <p>This is the footer. It is shared between all ajax pages.</p>
 
-**include/before\_content.php**:
+**include/before_content.php**:
 
     <p>
     [ <a class="ajax-nav" href="first_page.php">First example</a>
@@ -174,7 +173,7 @@ This is an example of an AJAX website composed only of three pages (*first\_page
     <script type="text/javascript" src="js/ajax_nav.js"></script>
     <link rel="stylesheet" href="css/style.css" />
 
-**js/ajax\_nav.js**:
+**js/ajax_nav.js**:
 
     "use strict";
 
@@ -383,13 +382,11 @@ This is an example of an AJAX website composed only of three pages (*first\_page
 
     })();
 
-  
 For more information, please see: [Working with the History API](working_with_the_history_api).
 
-See also
---------
+## See also
 
--   [`window.history`](../window/history)
--   [`WindowEventHandlers.onpopstate`](../windoweventhandlers/onpopstate)
+- [`window.history`](../window/history)
+- [`WindowEventHandlers.onpopstate`](../windoweventhandlers/onpopstate)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API/Example" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/History_API/Example</a>

@@ -1,5 +1,4 @@
-InstallEvent.InstallEvent()
-===========================
+# InstallEvent.InstallEvent()
 
 **Non-standard**
 
@@ -11,23 +10,21 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `InstallEvent()` constructor creates a new [`InstallEvent`](../installevent) object.
 
-Syntax
-------
+## Syntax
 
     var myInstallEvent = new InstallEvent(type, init);
 
 ### Parameters
 
-*type*  
+_type_  
 The type of the event.
 
- *init* <span class="badge inline optional">Optional</span>   
+_init_ <span class="badge inline optional">Optional</span>  
 An options object containing any custom settings that you want to apply to the event object. Available options are as follows:
 
--   `activeWorker`: The [`ServiceWorker`](../serviceworker) that is currently actively controlling the page.
+- `activeWorker`: The [`ServiceWorker`](../serviceworker) that is currently actively controlling the page.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -85,10 +82,9 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
--   [Fetch API](../fetch_api)
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+- [Fetch API](../fetch_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/InstallEvent/InstallEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/InstallEvent/InstallEvent</a>

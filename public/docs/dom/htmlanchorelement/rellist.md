@@ -1,17 +1,14 @@
-HTMLAnchorElement.relList
-=========================
+# HTMLAnchorElement.relList
 
 The `HTMLAnchorElement.relList` read-only property reflects the [`rel`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attr-rel) attribute. It is a live [`DOMTokenList`](../domtokenlist) containing the set of [link types](https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types) indicating the relationship between the resource represented by the [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) element and the current document.
 
 The property itself is read-only, meaning you can't substitute the [`DOMTokenList`](../domtokenlist) with another one, but its contents can still be changed.
 
-Syntax
-------
+## Syntax
 
     var relstr = anchorElt.relList;
 
-Example
--------
+## Example
 
     var anchors = document.getElementsByTagName("a");
     var length = anchors.length;
@@ -24,14 +21,12 @@ Example
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#dom-a-rellist">HTML Living Standard<br />
 <span class="small">The definition of 'relList' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -87,10 +82,9 @@ No
 
 9.0
 
-See also
---------
+## See also
 
--   The equivalent property on [`<area>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area) and [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link), [`HTMLAreaElement.relList`](../htmlareaelement/rellist) and [`HTMLLinkElement.relList`](../htmllinkelement/rellist).
--   The very same list but as a space-separated tokens in a [`DOMString`](../domstring): [`HTMLAnchorElement.rel`](rel)
+- The equivalent property on [`<area>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area) and [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link), [`HTMLAreaElement.relList`](../htmlareaelement/rellist) and [`HTMLLinkElement.relList`](../htmllinkelement/rellist).
+- The very same list but as a space-separated tokens in a [`DOMString`](../domstring): [`HTMLAnchorElement.rel`](rel)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/relList" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/relList</a>

@@ -1,10 +1,8 @@
-GainNode.gain
-=============
+# GainNode.gain
 
 The `gain` property of the [`GainNode`](../gainnode) interface is an [a-rate](../audioparam#a-rate) [`AudioParam`](../audioparam) representing the amount of gain to apply.
 
-Syntax
-------
+## Syntax
 
     var audioCtx = new AudioContext();
     var gainNode = audioCtx.createGain();
@@ -16,8 +14,7 @@ An [`AudioParam`](../audioparam).
 
 **Note**: Though the `AudioParam` returned is read-only, the value it represents is not.
 
-Example
--------
+## Example
 
 The following example shows basic usage of an [`AudioContext`](../audiocontext) to create a `GainNode`, which is then used to mute and unmute the audio when a Mute button is clicked by changing the `gain` property value.
 
@@ -75,14 +72,12 @@ The below snippet wouldn't work as is — for a complete working example, check 
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-gainnode-gain">Web Audio API<br />
 <span class="small">The definition of 'gain' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -138,9 +133,8 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](../web_audio_api/using_web_audio_api)
+- [Using the Web Audio API](../web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GainNode/gain" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GainNode/gain</a>

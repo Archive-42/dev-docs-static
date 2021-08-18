@@ -1,5 +1,4 @@
-FileReader
-==========
+# FileReader
 
 The `FileReader` object lets web applications asynchronously read the contents of files (or raw data buffers) stored on the user's computer, using [`File`](file) or [`Blob`](blob) objects to specify the file or data to read.
 
@@ -9,26 +8,24 @@ File objects may be obtained from a [`FileList`](filelist) object returned as a 
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-Constructor
------------
+## Constructor
 
 [`FileReader()`](filereader/filereader)  
 Returns a newly constructed `FileReader`.
 
 See [Using files from web applications](file/using_files_from_web_applications) for details and examples.
 
-Properties
-----------
+## Properties
 
- [`FileReader.error`](filereader/error) <span class="badge inline readonly">Read only </span>   
+[`FileReader.error`](filereader/error) <span class="badge inline readonly">Read only </span>  
 A [`DOMException`](domexception) representing the error that occurred while reading the file.
 
- [`FileReader.readyState`](filereader/readystate) <span class="badge inline readonly">Read only </span>   
+[`FileReader.readyState`](filereader/readystate) <span class="badge inline readonly">Read only </span>  
 A number indicating the state of the `FileReader`. This is one of the following:
 
 <table><tbody><tr class="odd"><td><code>EMPTY</code></td><td><code>0</code></td><td>No data has been loaded yet.</td></tr><tr class="even"><td><code>LOADING</code></td><td><code>1</code></td><td>Data is currently being loaded.</td></tr><tr class="odd"><td><code>DONE</code></td><td><code>2</code></td><td>The entire read request has been completed.</td></tr></tbody></table>
 
- [`FileReader.result`](filereader/result) <span class="badge inline readonly">Read only </span>   
+[`FileReader.result`](filereader/result) <span class="badge inline readonly">Read only </span>  
 The file's contents. This property is only valid after the read operation is complete, and the format of the data depends on which of the methods was used to initiate the read operation.
 
 ### Event handlers
@@ -53,8 +50,7 @@ A handler for the `progress` event. This event is triggered while reading a [`Bl
 
 As `FileReader` inherits from [`EventTarget`](eventtarget), all those events can also be listened for by using the [`addEventListener`](eventtarget/addeventlistener) method.
 
-Methods
--------
+## Methods
 
 [`FileReader.abort()`](filereader/abort)  
 Aborts the read operation. Upon return, the `readyState` will be `DONE`.
@@ -71,8 +67,7 @@ Starts reading the contents of the specified [`Blob`](blob), once finished, the 
 [`FileReader.readAsText()`](filereader/readastext)  
 Starts reading the contents of the specified [`Blob`](blob), once finished, the `result` attribute contains the contents of the file as a text string. An optional encoding name can be specified.
 
-Events
-------
+## Events
 
 Listen to these events using [`addEventListener()`](eventtarget/addeventlistener) or by assigning an event listener to the `oneventname` property of this interface.
 
@@ -100,14 +95,12 @@ Also available via the <span class="page-not-created">`onloadstart`</span> prope
 Fired periodically as data is read.  
 Also available via the <span class="page-not-created">`onprogress`</span> property.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/FileAPI/#dfn-filereader">File API<br />
 <span class="small">The definition of 'FileReader' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -731,12 +724,11 @@ No
 
 Yes
 
-See also
---------
+## See also
 
--   [Using files from web applications](file/using_files_from_web_applications)
--   [`File`](file)
--   [`Blob`](blob)
--   [`FileReaderSync`](filereadersync)
+- [Using files from web applications](file/using_files_from_web_applications)
+- [`File`](file)
+- [`Blob`](blob)
+- [`FileReaderSync`](filereadersync)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileReader</a>

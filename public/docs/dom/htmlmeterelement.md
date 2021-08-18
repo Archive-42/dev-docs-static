@@ -1,12 +1,10 @@
-HTMLMeterElement
-================
+# HTMLMeterElement
 
 The HTML [`<meter>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meter) elements expose the `HTMLMeterElement` interface, which provides special properties and methods (beyond the [`HTMLElement`](htmlelement) object interface they also have available to them by inheritance) for manipulating the layout and presentation of [`<meter>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meter) elements.
 
-Properties
-----------
+## Properties
 
-*Also inherits properties from its parent, [`HTMLElement`](htmlelement).*
+_Also inherits properties from its parent, [`HTMLElement`](htmlelement)._
 
 <span class="page-not-created">`HTMLMeterElement.high`</span>  
 A `double` representing the value of the high boundary, reflecting the [`high`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meter#attr-high) attribute.
@@ -26,24 +24,21 @@ A `double` representing the optimum, reflecting the [`optimum`](https://develope
 <span class="page-not-created">`HTMLMeterElement.value`</span>  
 A `double` representing the currrent value, reflecting the [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meter#attr-value) attribute.
 
- [`HTMLMeterElement.labels`](htmlmeterelement/labels)<span class="badge inline readonly">Read only </span>   
+[`HTMLMeterElement.labels`](htmlmeterelement/labels)<span class="badge inline readonly">Read only </span>  
 A [`NodeList`](nodelist) of [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) elements that are associated with the element.
 
-Methods
--------
+## Methods
 
-*This interface does not implement any specific methods but inherits methods from its parent, [`HTMLElement`](htmlelement).*
+_This interface does not implement any specific methods but inherits methods from its parent, [`HTMLElement`](htmlelement)._
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#htmlmeterelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLMeterElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/forms.html#the-meter-element">HTML 5.1<br />
 <span class="small">The definition of 'HTMLMeterElement' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>No change</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/html52/forms.html#the-meter-element">HTML5<br />
 <span class="small">The definition of 'HTMLMeterElement' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -281,9 +276,8 @@ No
 
 ?
 
-See also
---------
+## See also
 
--   The HTML element implementing this interface: [`<meter>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meter)
+- The HTML element implementing this interface: [`<meter>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meter)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMeterElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLMeterElement</a>

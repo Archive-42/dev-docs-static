@@ -1,19 +1,16 @@
-HTMLElement.offsetTop
-=====================
+# HTMLElement.offsetTop
 
 The `HTMLElement.offsetTop` read-only property returns the distance of the outer border of the current element relative to the inner border of the top of the [`offsetParent`](offsetparent) node.
 
-Syntax
-------
+## Syntax
 
     topPos = element.offsetTop;
 
 ### Parameters
 
--   `topPos` is the number of pixels from the top of the *closest relatively positioned* parent element.
+- `topPos` is the number of pixels from the top of the _closest relatively positioned_ parent element.
 
-Example
--------
+## Example
 
     var d = document.getElementById("div1");
     var topPos = d.offsetTop;
@@ -23,14 +20,12 @@ Example
       // than 10 pixels from its parent
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-htmlelement-offsettop">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'offsetTop' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 BCD tables only load in the browser
 

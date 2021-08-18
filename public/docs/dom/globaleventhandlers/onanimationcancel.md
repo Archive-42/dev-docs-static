@@ -1,12 +1,10 @@
-GlobalEventHandlers.onanimationcancel
-=====================================
+# GlobalEventHandlers.onanimationcancel
 
 The `onanimationcancel` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is the [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) for processing `animationcancel` events.
 
 An `animationcancel` event is sent when a [CSS animation](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) unexpectedly aborts, that is, any time it stops running without sending an `animationend` event. This can happen, for example, when the [`animation-name`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-name) is changed such that the animation is removed, or when the animating node is hidden—either directly or because any of its containing nodes are hidden—using CSS.
 
-Syntax
-------
+## Syntax
 
     var animCancelHandler = target.onanimationcancel;
 
@@ -14,10 +12,9 @@ Syntax
 
 ### Value
 
-A [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) to be called when an `animationcancel` event occurs indicating that a CSS animation has begun on the *`target`*, where the target object is an HTML element ([`HTMLElement`](../htmlelement)), document ([`Document`](../document)), or window ([`Window`](../window)). The function receives as input a single parameter: an [`AnimationEvent`](../animationevent) object describing the event which occurred.
+A [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) to be called when an `animationcancel` event occurs indicating that a CSS animation has begun on the _`target`_, where the target object is an HTML element ([`HTMLElement`](../htmlelement)), document ([`Document`](../document)), or window ([`Window`](../window)). The function receives as input a single parameter: an [`AnimationEvent`](../animationevent) object describing the event which occurred.
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -90,7 +87,7 @@ Then we set up the `handleCancelEvent()` function, which is called in response t
       log("Animation canceled", event);
     };
 
-Then we add a method to handle toggle [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display) between `"``flex"` and `"``none"` and establish it as the handler for a `click` event on the "Hide/Show" the Box button:
+Then we add a method to handle toggle [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display) between ` "``flex" ` and ` "``none" ` and establish it as the handler for a `click` event on the "Hide/Show" the Box button:
 
     document.getElementById('toggleBox').addEventListener('click', function() {
       if (box.style.display == "none") {
@@ -110,14 +107,12 @@ Assembled together, you get this:
 
 If your browser supports `animationcancel`, hiding the box using the button will cause a message to be displayed about the event.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-animations-1/#eventdef-animationevent-animationcancel">CSS Animations Level 1<br />
 <span class="small">The definition of 'onanimationcancel' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -181,10 +176,9 @@ The event handler is exposed but will not actually be called unless both the "We
 
 No
 
-See also
---------
+## See also
 
--   The `animationcancel` event this event handler is triggered by.
--   [`AnimationEvent`](../animationevent)
+- The `animationcancel` event this event handler is triggered by.
+- [`AnimationEvent`](../animationevent)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onanimationcancel" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onanimationcancel</a>

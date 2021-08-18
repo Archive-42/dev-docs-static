@@ -1,5 +1,4 @@
-HTMLSlotElement: slotchange event
-=================================
+# HTMLSlotElement: slotchange event
 
 The `slotchange` event is fired on an [`HTMLSlotElement`](../htmlslotelement) instance ([`<slot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) element) when the node(s) contained in that slot change.
 
@@ -9,8 +8,7 @@ The `slotchange` event is fired on an [`HTMLSlotElement`](../htmlslotelement) in
 
 In order to trigger a **slotchange** event, one has to set or remove the `slot `attribute.
 
-Examples
---------
+## Examples
 
     element.setAttribute('slot', slotName);
     // element.assignedSlot = $slot
@@ -29,14 +27,12 @@ Here we grab references to all the `<slot>`s, then add a `slotchange` event list
 
 Every time the element inserted in the slot changes, we log a report to the console saying which slot has changed, and what the new node inside the slot is.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#mutation-observers">DOM<br />
 <span class="small">The definition of '"Mutation observers" and slotchange event' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -92,8 +88,7 @@ No
 
 6.0
 
-See also
---------
+## See also
 
 [`HTMLSlotElement`](../htmlslotelement)
 

@@ -1,20 +1,16 @@
-InstallTrigger.enabled
-======================
+# InstallTrigger.enabled
 
-Summary
--------
+## Summary
 
 Indicates whether or not Software Installation is enabled for this client machine.
 
-Method of
----------
+## Method of
 
 [InstallTrigger](../installtrigger) object
 
-Syntax
-------
+## Syntax
 
-    Boolean enabled (); 
+    Boolean enabled ();
 
 ### Parameters
 
@@ -24,8 +20,7 @@ None
 
 True if Software Installation is enabled for this client machine; otherwise, false. The method reflects the value of the Software Installation preference in the user interface, and of the `xpinstall.enabled `preference in pref.js.
 
-Example
--------
+## Example
 
 The following code uses the [startSoftwareUpdate](startsoftwareupdate) method to unconditionally trigger a download from `http://royalairways/royalpkg.xpi` as long as Software Installation is enabled on the browser:
 

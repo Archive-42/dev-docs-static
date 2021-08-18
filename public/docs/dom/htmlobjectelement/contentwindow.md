@@ -1,10 +1,8 @@
-HTMLObjectElement.contentWindow
-===============================
+# HTMLObjectElement.contentWindow
 
 The `contentWindow` read-only property of the [`HTMLObjectElement`](../htmlobjectelement) interface returns a <span class="page-not-created">`WindowProxy`</span> representing the window proxy of the object element's nested browsing context, if any; otherwise null.
 
-Syntax
-------
+## Syntax
 
     var WindowProxy = HTMLObjectElement.contentWindow;
 
@@ -12,14 +10,12 @@ Syntax
 
 A <span class="page-not-created">`WindowProxy`</span>.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-object-contentwindow">HTML Living Standard<br />
 <span class="small">The definition of 'contentWindow' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

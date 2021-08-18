@@ -1,15 +1,12 @@
-HTMLFormElement: formdata event
-===============================
+# HTMLFormElement: formdata event
 
 The `formdata` event fires after the entry list representing the form's data is constructed. This happens when the form is submitted, but can also be triggered by the invocation of a [`FormData()`](../formdata/formdata) constructor.
 
-General info
-------------
+## General info
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../formdataevent"><code>FormDataEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="../globaleventhandlers/onformdata"><code>GlobalEventHandlers.onformdata</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
     // grab reference to form
 
@@ -59,14 +56,12 @@ The `onformdata` version would look like this:
       request.send(data);
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/indices.html#event-formdata">HTML Living Standard<br />
 <span class="small">The definition of 'formdata' in that specification.</span></a></td><td><span class="spec-">Unknown</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -122,10 +117,9 @@ No
 
 12.0
 
-See also
---------
+## See also
 
--   HTML [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element
--   [`FormDataEvent`](../formdataevent)
+- HTML [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element
+- [`FormDataEvent`](../formdataevent)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/formdata_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/formdata_event</a>

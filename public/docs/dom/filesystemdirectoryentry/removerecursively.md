@@ -1,5 +1,4 @@
-FileSystemDirectoryEntry.removeRecursively()
-============================================
+# FileSystemDirectoryEntry.removeRecursively()
 
 **Deprecated**
 
@@ -10,12 +9,11 @@ This feature is no longer recommended. Though some browsers might still support 
 **This is an [experimental technology](https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental)**  
 Check the [Browser compatibility table](#browser_compatibility) carefully before using this in production.
 
-The [`FileSystemDirectoryEntry`](../filesystemdirectoryentry) interface's method `removeRecursively``()` removes the directory as well as all of its content, hierarchically iterating over its entire subtree of descendant files and directories.
+The [`FileSystemDirectoryEntry`](../filesystemdirectoryentry) interface's method ` removeRecursively``() ` removes the directory as well as all of its content, hierarchically iterating over its entire subtree of descendant files and directories.
 
 To remove a single file, or an empty directory, you can also use [`FileSystemEntry.remove()`](../filesystementry/remove).
 
-Syntax
-------
+## Syntax
 
     FileSystemDirectoryEntry.removeRecursively(successCallback[, errorCallback]);
 
@@ -24,7 +22,7 @@ Syntax
 `successCallback`  
 A function to call once the directory removal process has completed. The callback has no parameters.
 
- `errorCallback` <span class="badge inline optional">Optional</span>   
+`errorCallback` <span class="badge inline optional">Optional</span>  
 A function to be called if an error occurs while attempting to remove the directory subtree. Receives a [`FileError`](../fileerror) describing the error which occurred as input.
 
 ### Return value
@@ -50,14 +48,13 @@ The directory is not accessible; perhaps it's in use by another application or i
 `FileError.SECURITY_ERR`  
 The directory could not be removed for security reasons. Possible reasons include:
 
--   The directory and/or its contents may not be safe to access from a Web application.
--   Too many file system calls are being made.
--   Other security concerns as raised by the user agent or the operating system.
+- The directory and/or its contents may not be safe to access from a Web application.
+- Too many file system calls are being made.
+- Other security concerns as raised by the user agent or the operating system.
 
 If you try to delete a directory which contains one or more files that can't be removed, or if an error occurs while deletion of a number of files is underway, some files may not be deleted. You should provide an `errorCallback` to watch for and handle this, perhaps by trying again.
 
-Example
--------
+## Example
 
     directory.removeRecursively(function() {
       /* The directory was removed successfully */
@@ -65,8 +62,7 @@ Example
       /* an error occurred while removing the directory */
     });
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -126,12 +122,11 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](../file_and_directory_entries_api)
--   [Introduction to the File System API](../file_and_directory_entries_api/introduction)
--   [`FileSystemDirectoryEntry`](../filesystemdirectoryentry)
--   [`FileSystemEntry.remove()`](../filesystementry/remove)
+- [File and Directory Entries API](../file_and_directory_entries_api)
+- [Introduction to the File System API](../file_and_directory_entries_api/introduction)
+- [`FileSystemDirectoryEntry`](../filesystemdirectoryentry)
+- [`FileSystemEntry.remove()`](../filesystementry/remove)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryEntry/removeRecursively" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryEntry/removeRecursively</a>

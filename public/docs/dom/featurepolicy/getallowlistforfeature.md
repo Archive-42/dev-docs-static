@@ -1,5 +1,4 @@
-FeaturePolicy.getAllowlistForFeature()
-======================================
+# FeaturePolicy.getAllowlistForFeature()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `getAllowlistForFeature()` method of the [`FeaturePolicy`](../featurepolicy) allows query of the allow list for a specific feature for the current Feature Policy.
 
-Syntax
-------
+## Syntax
 
     const allowlist = FeaturePolicy.getAllowlistForFeature(<feature>)
 
@@ -23,13 +21,11 @@ A specific feature name must be specified.
 
 An [Allow list](web/http/feature_policy/using_feature_policy) for the specified feature.
 
-Errors
-------
+## Errors
 
 The function will raise a warning if the specified Feature Policy directive name is not known. However, it will also return empty array, indicating that no origin is allowed to use the feature.
 
-Example
--------
+## Example
 
 The following example prints all the origins that are allowed to use Camera API by the Feature Policy. Please note that Camera API might be restricted by the Permissions API, if the user did not grant the corresponding permission yet.
 
@@ -43,14 +39,12 @@ The following example prints all the origins that are allowed to use Camera API 
       console.log(origin)
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-permissions-policy/">Permissions Policy<br />
 <span class="small">The definition of 'getAllowlistForFeature' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

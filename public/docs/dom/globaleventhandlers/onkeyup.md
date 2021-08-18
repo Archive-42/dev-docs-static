@@ -1,12 +1,10 @@
-GlobalEventHandlers.onkeyup
-===========================
+# GlobalEventHandlers.onkeyup
 
 The `onkeyup` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `keyup` events.
 
 The `keyup` event fires when the user releases a key that was previously pressed.
 
-Syntax
-------
+## Syntax
 
     target.onkeyup = functionRef;
 
@@ -14,8 +12,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives a [`KeyboardEvent`](../keyboardevent) object as its sole argument.
 
-Example
--------
+## Example
 
 This example logs the [`KeyboardEvent.code`](../keyboardevent/code) value whenever you release a key inside the [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element.
 
@@ -37,14 +34,12 @@ This example logs the [`KeyboardEvent.code`](../keyboardevent/code) value whenev
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onkeyup">HTML Living Standard<br />
 <span class="small">The definition of 'onkeyup' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -111,12 +106,11 @@ Since Firefox 65, the `keyup` and `keydown` events are now fired during IME comp
       // do something
     });
 
-See also
---------
+## See also
 
--   `keyup` event
--   Related event handlers
-    -   [`GlobalEventHandlers.onkeydown`](onkeydown)
-    -   [`GlobalEventHandlers.onkeypress`](onkeypress)
+- `keyup` event
+- Related event handlers
+  - [`GlobalEventHandlers.onkeydown`](onkeydown)
+  - [`GlobalEventHandlers.onkeypress`](onkeypress)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeyup" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeyup</a>

@@ -1,21 +1,17 @@
-MediaKeySession.remove()
-========================
+# MediaKeySession.remove()
 
 The `MediaKeySession.remove()` method returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) after removing any session data associated with the current object.
 
-Return value
-------------
+## Return value
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to a boolean indicating whether the load succeeded or failed.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-mediakeysession-sessionid">Encrypted Media Extensions<br />
 <span class="small">The definition of 'remove()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

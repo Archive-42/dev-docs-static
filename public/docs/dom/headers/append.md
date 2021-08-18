@@ -1,5 +1,4 @@
-Headers.append()
-================
+# Headers.append()
 
 The `append()` method of the [`Headers`](../headers) interface appends a new value onto an existing header inside a `Headers` object, or adds the header if it does not already exist.
 
@@ -7,8 +6,7 @@ The difference between [`set()`](set) and `append()` is that if the specified he
 
 For security reasons, some headers can only be controlled by the user agent. These headers include the [forbidden header names](https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name) and [forbidden response header names](https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_response_header_name).
 
-Syntax
-------
+## Syntax
 
     myHeaders.append(name, value);
 
@@ -24,8 +22,7 @@ The value of the HTTP header you want to add.
 
 Void.
 
-Example
--------
+## Example
 
 Creating an empty `Headers` object is simple:
 
@@ -44,14 +41,12 @@ If the specified header already exists, `append()` will change its value to the 
 
 To overwrite the old value with a new one, use [`Headers.set`](set).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fetch.spec.whatwg.org/#dom-headers-append">Fetch<br />
 <span class="small">The definition of 'append()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -117,11 +112,10 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [ServiceWorker API](../service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [ServiceWorker API](../service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Headers/append" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Headers/append</a>

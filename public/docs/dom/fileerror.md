@@ -1,5 +1,4 @@
-FileError
-=========
+# FileError
 
 **Deprecated**
 
@@ -15,8 +14,7 @@ In the [File System API](file_and_directory_entries_api/introduction), a `FileEr
 
 `FileError` objects are passed to error callbacks. The objects have a code that shows the type of error that occurred.
 
-Best practices
---------------
+## Best practices
 
 Most people don't read the page on errors and exceptions unless they're stumped. So the following are a few tips that could help you avoid some pitfalls.
 
@@ -28,13 +26,11 @@ Although error callbacks are optional, you should include them in the arguments 
 
 For security reasons, browsers do not allow you to run your app from `file://`. In fact, many of the powerful storage APIs (such as File System, BlobBuilder, and FileReader) throw errors if you run the app locally from `file://`. When you're just testing your app, and you don't want to set up a web server, you can bypass the security restriction on Chrome. Just start Chrome with the `--allow-file-access-from-files` flag. Use the flag only for testing purposes.
 
-Attribute
----------
+## Attribute
 
 <table><thead><tr class="header"><th>Attribute</th><th>Type</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><span><code>code</code></span></td><td><code>unsigned short</code></td><td>The most appropriate error code for the condition. See <a href="#error_codes">Error codes</a> for possible values.</td></tr></tbody></table>
 
-Error codes
------------
+## Error codes
 
 **Note**
 
@@ -100,9 +96,9 @@ Either there's not enough remaining storage space or the storage quota was reach
 
 Access to the files were denied for one of the following reasons:
 
--   The files might be unsafe for access within a Web application.
--   Too many calls are being made on file resources.
--   Other unspecified security error code or situations.
+- The files might be unsafe for access within a Web application.
+- Too many calls are being made on file resources.
+- Other unspecified security error code or situations.
 
 `TYPE_MISMATCH_ERR`
 
@@ -110,8 +106,7 @@ Access to the files were denied for one of the following reasons:
 
 The app looked up an entry, but the entry found is of the wrong type. For example, the app is asking for a directory, when the entry is really a file.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -171,13 +166,12 @@ No
 
 1.0-6.0
 
-See also
---------
+## See also
 
--   [Basic Concepts About the File System API](file_and_directory_entries_api/introduction)
--   [`FileReader`](filereader)
--   [`File`](file)
--   [`Blob`](blob)
--   [Specification: FileAPI Errors and exceptions](https://www.w3.org/TR/file-system-api/#errors-and-exceptions)WD
+- [Basic Concepts About the File System API](file_and_directory_entries_api/introduction)
+- [`FileReader`](filereader)
+- [`File`](file)
+- [`Blob`](blob)
+- [Specification: FileAPI Errors and exceptions](https://www.w3.org/TR/file-system-api/#errors-and-exceptions)WD
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileError" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileError</a>

@@ -1,10 +1,8 @@
-History.replaceState()
-======================
+# History.replaceState()
 
 The `History.replaceState()` method modifies the current history entry, replacing it with the `stateObj`, `title`, and `URL` passed in the method parameters. This method is particularly useful when you want to update the state object or URL of the current history entry in response to some user action.
 
-Syntax
-------
+## Syntax
 
     history.replaceState(stateObj, title, [url])
 
@@ -16,11 +14,10 @@ The state object is a JavaScript object which is associated with the history ent
 `title`  
 [Most browsers currently ignore this parameter](https://github.com/whatwg/html/issues/2174), although they may use it in the future. Passing the empty string here should be safe against future changes to the method. Alternatively, you could pass a short title for the state.
 
- `url` <span class="badge inline optional">Optional</span>   
+`url` <span class="badge inline optional">Optional</span>  
 The URL of the history entry. The new URL must be of the same origin as the current URL; otherwise replaceState throws an exception.
 
-Examples
---------
+## Examples
 
 Suppose https://www.mozilla.org/foo.html executes the following JavaScript:
 
@@ -35,15 +32,13 @@ This will cause the URL bar to display `https://www.mozilla.org/bar2.html`, but 
 
 Suppose now that the user navigates to `https://www.microsoft.com`, then clicks the Back button. At this point, the URL bar will display `https://www.mozilla.org/bar2.html`. If the user now clicks Back again, the URL bar will display https://www.mozilla.org/foo.html, and totally bypass bar.html.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/history.html#dom-history-replacestate">HTML Living Standard<br />
 <span class="small">The definition of 'History.replaceState()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change from <a href="https://www.w3.org/TR/html52/">HTML5</a>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/history.html#dom-history-replacestate">HTML5<br />
 <span class="small">The definition of 'History.replaceState()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

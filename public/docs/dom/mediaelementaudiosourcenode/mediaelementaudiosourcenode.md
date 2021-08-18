@@ -1,31 +1,28 @@
-MediaElementAudioSourceNode()
-=============================
+# MediaElementAudioSourceNode()
 
 The `MediaElementAudioSourceNode()` constructor creates a new [`MediaElementAudioSourceNode`](../mediaelementaudiosourcenode) object instance.
 
-Syntax
-------
+## Syntax
 
     var myAudioSource = new MediaElementAudioSourceNode(context, options);
 
 ### Parameters
 
-*Inherits parameters from the [`AudioNodeOptions`](../audionodeoptions) dictionary*.
+_Inherits parameters from the [`AudioNodeOptions`](../audionodeoptions) dictionary_.
 
-*context*  
+_context_  
 An [`AudioContext`](../audiocontext) representing the audio context you want the node to be associated with.
 
-*options*  
+_options_  
 A `MediaElementAudioSourceOptions` dictionary object defining the properties you want the `MediaElementAudioSourceNode` to have:
 
--   `mediaElement`: An [`HTMLMediaElement`](../htmlmediaelement) that will be used as the source for the audio.
+- `mediaElement`: An [`HTMLMediaElement`](../htmlmediaelement) that will be used as the source for the audio.
 
 ### Return value
 
 A new [`MediaElementAudioSourceNode`](../mediaelementaudiosourcenode) object instance.
 
-Example
--------
+## Example
 
     var ac = new AudioContext();
     var mediaElement = document.createElement('audio');
@@ -36,14 +33,12 @@ Example
 
     var myAudioSource = new MediaElementAudioSourceNode(ac, options);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#mediaelementaudiosourcenode">Web Audio API<br />
 <span class="small">The definition of 'MediaElementAudioSourceNode' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

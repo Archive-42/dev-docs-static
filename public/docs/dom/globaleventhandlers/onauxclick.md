@@ -1,5 +1,4 @@
-GlobalEventHandlers.onauxclick
-==============================
+# GlobalEventHandlers.onauxclick
 
 **Experimental**
 
@@ -10,10 +9,9 @@ The `onauxclick` property of the [`GlobalEventHandlers`](../globaleventhandlers)
 
 The `auxclick` event is raised when a non-primary button has been pressed on an input device (e.g., a middle mouse button). It fires after the `mousedown` and `mouseup` events, in that order.
 
-**Note:** Browser vendors are implementing this property as part of a plan to improve compatibility with regards to button behaviors. Specifically, event behavior is being updated so that `click` only fires for primary button clicks (e.g., left mouse button), while `auxclick` fires for non-primary button clicks. Historically, `click` has generally fired for the click of *any* device input button, although with browser behavior being somewhat inconsistent.
+**Note:** Browser vendors are implementing this property as part of a plan to improve compatibility with regards to button behaviors. Specifically, event behavior is being updated so that `click` only fires for primary button clicks (e.g., left mouse button), while `auxclick` fires for non-primary button clicks. Historically, `click` has generally fired for the click of _any_ device input button, although with browser behavior being somewhat inconsistent.
 
-Syntax
-------
+## Syntax
 
     target.onauxclick = functionRef;
 
@@ -23,8 +21,7 @@ Syntax
 
 Only one `onauxclick` handler can be assigned to an object at a time. You may prefer to use the [`EventTarget.addEventListener()`](../eventtarget/addeventlistener) method instead, since it's more flexible.
 
-Example
--------
+## Example
 
 In this example we define functions for two event handlers — [`onclick`](onclick) and `onauxclick`. The former changes the color of the button background, while the latter changes the button foreground (text) color. You can see the two functions in action by trying the demo out with a multi-button mouse ([see it live on GitHub](https://mdn.github.io/dom-examples/auxclick/); also [see the source code](https://github.com/mdn/dom-examples/blob/master/auxclick/index.html)).
 
@@ -47,14 +44,12 @@ In this example we define functions for two event handlers — [`onclick`](oncli
 
 **Note**: If you are using a three-button mouse, you'll notice that the `onauxclick` handler is run when either of the non-left mouse buttons are clicked.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-auxclick">UI Events<br />
 <span class="small">The definition of 'onauxclick' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -110,12 +105,11 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   `auxclick` event
--   Related event handlers
-    -   [`GlobalEventHandlers.onclick`](onclick)
-    -   [`GlobalEventHandlers.ondblclick`](ondblclick)
+- `auxclick` event
+- Related event handlers
+  - [`GlobalEventHandlers.onclick`](onclick)
+  - [`GlobalEventHandlers.ondblclick`](ondblclick)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onauxclick" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onauxclick</a>

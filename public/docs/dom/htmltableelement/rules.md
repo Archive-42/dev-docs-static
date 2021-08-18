@@ -1,5 +1,4 @@
-HTMLTableElement.rules
-======================
+# HTMLTableElement.rules
 
 **Deprecated**
 
@@ -7,8 +6,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `HTMLTableElement.rules` property indicates which cell borders to render in the table.
 
-Syntax
-------
+## Syntax
 
     HTMLTableElement.rules = rules;
     var rules = HTMLTableElement.rules;
@@ -32,20 +30,17 @@ Lines between cols
 `all`  
 Lines between all cells
 
-Example
--------
+## Example
 
     // Turn on all the internal borders of a table
     var t = document.getElementById("TableID");
     t.rules = "all";
 
-Specifications
---------------
+## Specifications
 
--   W3C DOM 2 HTML Specification
+- W3C DOM 2 HTML Specification
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,17 +1,14 @@
-ElementCSSInlineStyle.style
-===========================
+# ElementCSSInlineStyle.style
 
-The `style` read-only property returns the *inline* style of an element in the form of a [`CSSStyleDeclaration`](../cssstyledeclaration) object that contains a list of all styles properties for that element with values assigned for the attributes that are defined in the element's inline [`style` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style).
+The `style` read-only property returns the _inline_ style of an element in the form of a [`CSSStyleDeclaration`](../cssstyledeclaration) object that contains a list of all styles properties for that element with values assigned for the attributes that are defined in the element's inline [`style` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style).
 
 See the [CSS Properties Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference) for a list of the CSS properties accessible via `style`. The `style` property has the same (and highest) priority in the CSS cascade as an inline style declaration set via the `style` attribute.
 
-Syntax
-------
+## Syntax
 
     style = CSSStyleDeclaration.style
 
-Value
------
+## Value
 
 A [`CSSStyleDeclaration`](../cssstyledeclaration) object, with the following properties:
 
@@ -24,8 +21,7 @@ Null.
 owner node  
 `this`
 
-Setting styles
---------------
+## Setting styles
 
 While this property is considered read-only, it is possible to set an inline style by assigning a string directly to the `style` property. In this case the string is forwarded to [`CSSStyleDeclaration.cssText`](../cssstyledeclaration/csstext). Using `style` in this manner will completely overwrite all inline styles on the element.
 
@@ -67,14 +63,12 @@ The output would be something like:
 
 Note the presence of the value `bold` for `font-weight` in the computed style and the absence of it in the element's `style` property
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom/#dom-elementcssinlinestyle-style">CSS Object Model (CSSOM)<br />
 <span class="small">The definition of 'the <code>ElementCSSInlineStyle.style</code> property' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -130,9 +124,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [Using dynamic styling information](../css_object_model/using_dynamic_styling_information)
+- [Using dynamic styling information](../css_object_model/using_dynamic_styling_information)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ElementCSSInlineStyle/style" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ElementCSSInlineStyle/style</a>

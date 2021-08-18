@@ -1,12 +1,10 @@
-EventTarget.addEventListener()
-==============================
+# EventTarget.addEventListener()
 
 The [`EventTarget`](../eventtarget) method `addEventListener()` sets up a function that will be called whenever the specified event is delivered to the target. Common targets are [`Element`](../element), [`Document`](../document), and [`Window`](../window), but the target may be any object that supports events (such as [`XMLHttpRequest`](../xmlhttprequest)).
 
 `addEventListener()` works by adding a function or an object that implements [`EventListener`](../eventlistener) to the list of event listeners for the specified event type on the [`EventTarget`](../eventtarget) on which it's called.
 
-Syntax
-------
+## Syntax
 
     target.addEventListener(type, listener);
     target.addEventListener(type, listener, options);
@@ -21,7 +19,7 @@ A case-sensitive string representing the [event type](https://developer.mozilla.
 `listener`  
 The object that receives a notification (an object that implements the [`Event`](../event) interface) when an event of the specified type occurs. This must be an object implementing the [`EventListener`](../eventlistener) interface, or a JavaScript [function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions). See [The event listener callback](#the_event_listener_callback) for details on the callback itself.
 
- `options` <span class="badge inline optional">Optional</span>   
+`options` <span class="badge inline optional">Optional</span>  
 An options object specifies characteristics about the event listener. The available options are:
 
 `capture`  
@@ -36,11 +34,11 @@ A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 `signal`  
 An [`AbortSignal`](../abortsignal). The listener will be removed when the given `AbortSignal`’s [`abort()`](../abortcontroller/abort) method is called.
 
- `mozSystemGroup` <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+`mozSystemGroup` <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating that the listener should be added to the system group. Available only in code running in XBL or in the [chrome](https://developer.mozilla.org/en-US/docs/Glossary/Chrome) of the Firefox browser.
 
- `useCapture` <span class="badge inline optional">Optional</span>   
-A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether events of this type will be dispatched to the registered `listener` *before* being dispatched to any `EventTarget` beneath it in the DOM tree. Events that are bubbling upward through the tree will not trigger a listener designated to use capture. Event bubbling and capturing are two ways of propagating events that occur in an element that is nested within another element, when both elements have registered a handle for that event. The event propagation mode determines the order in which elements receive the event. See [DOM Level 3 Events](https://www.w3.org/TR/DOM-Level-3-Events/#event-flow) and [JavaScript Event order](https://www.quirksmode.org/js/events_order.html#link4) for a detailed explanation. If not specified, `useCapture` defaults to `false`.
+`useCapture` <span class="badge inline optional">Optional</span>  
+A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether events of this type will be dispatched to the registered `listener` _before_ being dispatched to any `EventTarget` beneath it in the DOM tree. Events that are bubbling upward through the tree will not trigger a listener designated to use capture. Event bubbling and capturing are two ways of propagating events that occur in an element that is nested within another element, when both elements have registered a handle for that event. The event propagation mode determines the order in which elements receive the event. See [DOM Level 3 Events](https://www.w3.org/TR/DOM-Level-3-Events/#event-flow) and [JavaScript Event order](https://www.quirksmode.org/js/events_order.html#link4) for a detailed explanation. If not specified, `useCapture` defaults to `false`.
 
 **Note**
 For event listeners attached to the event target, the event is in the target phase, rather than the capturing and bubbling phases. Events in the target phase will trigger all listeners on an element in the order they were registered, regardless of the useCapture parameter.
@@ -48,15 +46,14 @@ For event listeners attached to the event target, the event is in the target pha
 **Note**
 `useCapture` has not always been optional. Ideally, you should include it for the widest possible browser compatibility.
 
- `wantsUntrusted` <span class="badge inline optional">Optional</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+`wantsUntrusted` <span class="badge inline optional">Optional</span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 A Firefox (Gecko)-specific parameter. If `true`, the listener receives synthetic events dispatched by web content (the default is `false` for browser [chrome](https://developer.mozilla.org/en-US/docs/Glossary/Chrome) and `true` for regular web pages). This parameter is useful for code found in add-ons, as well as the browser itself.
 
 ### Return value
 
 `undefined`
 
-Usage notes
------------
+## Usage notes
 
 ### The event listener callback
 
@@ -114,8 +111,7 @@ If you'd prefer, you can use a third-party library like [Modernizr](https://mode
 
 You can learn more from the article about `EventListenerOptions` from the [Web Incubator Community Group](https://wicg.github.io/admin/charter.html).
 
-Examples
---------
+## Examples
 
 ### Add a simple listener
 
@@ -341,16 +337,15 @@ Click the outer, middle, inner containers respectively to see how the options wo
 
 Before using a particular value in the `options` object, it's a good idea to ensure that the user's browser supports it, since these are an addition that not all browsers have supported historically. See [Safely detecting option support](#safely_detecting_option%0A__support) for details.
 
-Other notes
------------
+## Other notes
 
 ### Why use addEventListener()?
 
 `addEventListener()` is the way to register an event listener as specified in W3C DOM. The benefits are as follows:
 
--   It allows adding more than a single handler for an event. This is particularly useful for [AJAX](https://developer.mozilla.org/en-US/docs/Glossary/AJAX) libraries, JavaScript modules, or any other kind of code that needs to work well with other libraries/extensions.
--   It gives you finer-grained control of the phase when the listener is activated (capturing vs. bubbling).
--   It works on any DOM element, not just HTML elements.
+- It allows adding more than a single handler for an event. This is particularly useful for [AJAX](https://developer.mozilla.org/en-US/docs/Glossary/AJAX) libraries, JavaScript modules, or any other kind of code that needs to work well with other libraries/extensions.
+- It gives you finer-grained control of the phase when the listener is activated (capturing vs. bubbling).
+- It works on any DOM element, not just HTML elements.
 
 The alternative, [older way to register event listeners](#older_way_to_register_event_listeners), is described below.
 
@@ -390,7 +385,7 @@ If an event handler (for example, [`onclick`](../globaleventhandlers/onclick)) i
       ...
     </table>
 
-Note that the value of `this` inside a function, *called by* the code in the attribute value, behaves as per [standard rules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this). This is shown in the following example:
+Note that the value of `this` inside a function, _called by_ the code in the attribute value, behaves as per [standard rules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this). This is shown in the following example:
 
     <script>
       function logID() { console.log(this.id); }
@@ -448,7 +443,7 @@ Another solution is using a special function called `handleEvent()` to catch any
     }
     const s = new Something(document.body);
 
-Another way of handling the reference to *this* is to pass to the `EventListener` a function that calls the method of the object that contains the fields that need to be accessed:
+Another way of handling the reference to _this_ is to pass to the `EventListener` a function that calls the method of the object that contains the fields that need to be accessed:
 
     class SomeClass {
 
@@ -540,11 +535,11 @@ Because object properties can be used to store data in memory as long as a varia
       }
     }, 5000);
 
-In this example, even though the scope in which both the event listener and the interval function are defined would have finished executing before the original value of `someObject.aProperty` would have changed, because `someObject` persists in memory (by *reference*) in both the event listener and interval function, both have access to the same data (i.e. when one changes the data, the other can respond to the change).
+In this example, even though the scope in which both the event listener and the interval function are defined would have finished executing before the original value of `someObject.aProperty` would have changed, because `someObject` persists in memory (by _reference_) in both the event listener and interval function, both have access to the same data (i.e. when one changes the data, the other can respond to the change).
 
 **Note**
 
-Objects are stored in variables by reference, meaning only the memory location of the actual data is stored in the variable. Among other things, this means variables that "store" objects can actually affect other variables that get assigned ("store") the same object reference. When two variables reference the same object (e.g., `let a = b = {aProperty: 'Yeah'};`), changing the data in either variable will affect the other.
+Objects are stored in variables by reference, meaning only the memory location of the actual data is stored in the variable. Among other things, this means variables that "store" objects can actually affect other variables that get assigned ("store") the same object reference. When two variables reference the same object (e.g., `let a = b = {aProperty: 'Yeah'};`), changing the data in either variable will affect the other.
 
 **Note**
 
@@ -736,16 +731,14 @@ On older browsers that don't support the `options` parameter to `addEventListene
 
 You don't need to worry about the value of `passive` for the basic `scroll` event. Since it can't be canceled, event listeners can't block page rendering anyway.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-eventtarget-addeventlistener">DOM<br />
 <span class="small">The definition of 'EventTarget.addEventListener()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/dom/#dom-eventtarget-addeventlistener">DOM4<br />
 <span class="small">The definition of 'EventTarget.addEventListener()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget-addEventListener">Document Object Model (DOM) Level 2 Events Specification<br />
 <span class="small">The definition of 'EventTarget.addEventListener()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -865,11 +858,10 @@ Yes
 
 5.0
 
-See also
---------
+## See also
 
--   [`EventTarget.removeEventListener()`](removeeventlistener)
--   [Creating and triggering custom events](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events)
--   [More details on the use of `this` in event handlers](https://www.quirksmode.org/js/this.html)
+- [`EventTarget.removeEventListener()`](removeeventlistener)
+- [Creating and triggering custom events](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events)
+- [More details on the use of `this` in event handlers](https://www.quirksmode.org/js/this.html)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener</a>

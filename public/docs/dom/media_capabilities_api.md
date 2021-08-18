@@ -1,10 +1,8 @@
-Media Capabilities API
-======================
+# Media Capabilities API
 
 The **Media Capabilities API** allows developers to determine decoding and encoding abilities of the device, exposing information such as whether media is supported and whether playback should be smooth and power efficient, with real time feedback about playback to better enable adaptive streaming, and access to display property information.
 
-Examples
---------
+## Examples
 
 ### Detect audio file support and expected performance
 
@@ -32,8 +30,7 @@ This example defines a audio configuration then checks to see if the user agent 
         });
     }
 
-Media Capabilities API concepts and usage
------------------------------------------
+## Media Capabilities API concepts and usage
 
 There are a myriad of video and audio codecs. Different browsers support different media types and new media types are always being developed. With the Media Capabilities API, developers can ensure each user is getting the best bitrate and storage savings for their browser, device, and OS capabilities.
 
@@ -45,8 +42,7 @@ To test support, smoothness and power efficiency of a video or audio file, you d
 
 Media capabilities information enables websites to enable adaptative streaming to alter the quality of content based on actual user-perceived quality, and react to a pick of CPU/GPU usage in real time.
 
-Media Capabilities Interfaces
------------------------------
+## Media Capabilities Interfaces
 
 [`MediaCapabilities`](mediacapabilities)  
 Provides information about the decoding abilities of the device, system and browser based on codecs, profile, resolution, and bitrates. The information can be used to serve optimal media streams to the user and determine if playback should be smooth and power efficient .
@@ -60,8 +56,7 @@ Will describe the color gamut, or the range of color, the screen can display (no
 ScreenLuminance  
 Will describe the known luminance characteristics of the screen (not currently supported anywhere).
 
-Media Capabilities dictionaries
--------------------------------
+## Media Capabilities dictionaries
 
 [`MediaConfiguration`](mediaconfiguration)  
 Describes how video and audio configuration dictionaries must be configured, or defined, to be passed as a parameter of the [`MediaCapabilities.encodingInfo()`](mediacapabilities/encodinginfo) and [`MediaCapabilities.decodingInfo()`](mediacapabilities/decodinginfo) methods. It is inherited by the [`MediaDecodingConfiguration`](mediadecodingconfiguration) and [`MediaEncodingConfiguration`](mediaencodingconfiguration) dictionaries.
@@ -78,13 +73,11 @@ Describes the required video properties that must be configured when querying a 
 [`AudioConfiguration`](audioconfiguration)  
 Describes the required audio properties that must be configured when querying an audio configuration to be passed as part of a [`MediaConfiguration`](mediaconfiguration) parameter to the [`MediaCapabilities.encodingInfo()`](mediacapabilities/encodinginfo) and [`MediaCapabilities.decodingInfo()`](mediacapabilities/decodinginfo) methods.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/media-capabilities/">Media Capabilities</a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -192,12 +185,11 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [HTMLMediaElement](htmlmediaelement)'s method [canPlayType()](htmlmediaelement/canplaytype)
--   [MediaSource](mediasource)'s method [isTypeSupported()](mediasource/istypesupported)
--   [`Navigator`](navigator) interface
--   [Using the Media Capabilities API](media_capabilities_api/using_the_media_capabilities_api)
+- [HTMLMediaElement](htmlmediaelement)'s method [canPlayType()](htmlmediaelement/canplaytype)
+- [MediaSource](mediasource)'s method [isTypeSupported()](mediasource/istypesupported)
+- [`Navigator`](navigator) interface
+- [Using the Media Capabilities API](media_capabilities_api/using_the_media_capabilities_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Media_Capabilities_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Media_Capabilities_API</a>

@@ -1,10 +1,8 @@
-File.lastModified
-=================
+# File.lastModified
 
 The `File.lastModified` read-only property provides the last modified date of the file as the number of milliseconds since the Unix epoch (January 1, 1970 at midnight). Files without a known last modified date return the current date.
 
-Syntax
-------
+## Syntax
 
     const time = instanceOfFile.lastModified;
 
@@ -12,8 +10,7 @@ Syntax
 
 A number that represents the number of milliseconds since the Unix epoch.
 
-Example
--------
+## Example
 
 ### Reading from file input
 
@@ -44,8 +41,7 @@ If a File is created dynamically, the last modified time can be supplied in the 
     const fileWithoutDate = new File([], 'file.bin');
     console.log(fileWithoutDate.lastModified); //returns current time
 
-Reduced time precision
-----------------------
+## Reduced time precision
 
 To offer protection against timing attacks and fingerprinting, the precision of `someFile.lastModified` might get rounded depending on browser settings.  
 In Firefox, the `privacy.reduceTimerPrecision` preference is enabled by default and defaults to 20us in Firefox 59; in 60 it will be 2ms.
@@ -66,14 +62,12 @@ In Firefox, the `privacy.reduceTimerPrecision` preference is enabled by default 
 
 In Firefox, you can also enabled `privacy.resistFingerprinting`, the precision will be 100ms or the value of `privacy.resistFingerprinting.reduceTimerPrecision.microseconds`, whichever is larger.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/FileAPI/#file-attrs">File API<br />
 <span class="small">The definition of 'lastModified' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -129,9 +123,8 @@ No
 
 Yes
 
-See also
---------
+## See also
 
--   [`File`](../file)
+- [`File`](../file)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/File/lastModified" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File/lastModified</a>

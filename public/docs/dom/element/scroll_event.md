@@ -1,5 +1,4 @@
-Element: scroll event
-=====================
+# Element: scroll event
 
 The `scroll` event fires an element has been scrolled.
 
@@ -7,8 +6,7 @@ The `scroll` event fires an element has been scrolled.
 
 **Note:** In iOS UIWebViews, `scroll` events are not fired while scrolling is taking place; they are only fired after the scrolling has completed. See [Bootstrap issue \#16202](https://github.com/twbs/bootstrap/issues/16202). Safari and WKWebViews are not affected by this bug.
 
-Examples
---------
+## Examples
 
 ### Scroll event throttling
 
@@ -40,13 +38,11 @@ Note, however, that input events and animation frames are fired at about the sam
 
 **Note**: You can find more examples on the <span class="page-not-created">`resize`</span> event page.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#scrolling-events">CSS Object Model (CSSOM) View Module</a></td><td><span class="spec-wd">Working Draft</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -102,9 +98,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   Document: [`scroll`](../document/scroll_event) event
+- Document: [`scroll`](../document/scroll_event) event
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event</a>

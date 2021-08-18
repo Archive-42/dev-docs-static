@@ -1,5 +1,4 @@
-KeyboardEvent.metaKey
-=====================
+# KeyboardEvent.metaKey
 
 The `KeyboardEvent.metaKey` read-only property returning a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that indicates if the Meta key was pressed (`true`) or not (`false`) when the event occurred. Some operating systems may intercept the key so it is never detected.
 
@@ -7,8 +6,7 @@ The `KeyboardEvent.metaKey` read-only property returning a [`Boolean`](https://d
 
 At least as of Firefox 48, the ⊞ Windows key is no longer considered the "Meta" key. `KeyboardEvent.metaKey` is `false` when the ⊞ Windows key is pressed.
 
-Syntax
-------
+## Syntax
 
     var metaKeyPressed = instanceOfKeyboardEvent.metaKey
 
@@ -16,8 +14,7 @@ Syntax
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
 
-Example
--------
+## Example
 
     function ismetaKey(e) {
       alert("metaKey = " + e.metaKey);
@@ -25,14 +22,12 @@ Example
 
     <button onclick="ismetaKey(event)">Click me with the meta key</button>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#widl-KeyboardEvent-metaKey">Document Object Model (DOM) Level 3 Events Specification<br />
 <span class="small">The definition of 'KeyboardEvent.metaKey' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,9 +83,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`KeyboardEvent`](../keyboardevent)
+- [`KeyboardEvent`](../keyboardevent)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/metaKey" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/metaKey</a>

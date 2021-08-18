@@ -1,5 +1,4 @@
-GlobalEventHandlers.onabort
-===========================
+# GlobalEventHandlers.onabort
 
 **Experimental**
 
@@ -16,8 +15,7 @@ While the [standard for aborting a document load](https://html.spec.whatwg.org/m
 
 TODO: define what "abort" is. Closing the window via window manager? Stopping the load of the page? By which means and reasons (user, network/server)? At which stages would it fire / be caught? For IE, `onabort` is only available with `<img>` tags.
 
-Syntax
-------
+## Syntax
 
     window.onabort = functionRef;
 
@@ -25,21 +23,18 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function).
 
-Example
--------
+## Example
 
     window.onabort = function() {
       alert('Load aborted.');
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onabort">HTML Living Standard<br />
 <span class="small">The definition of 'onabort' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

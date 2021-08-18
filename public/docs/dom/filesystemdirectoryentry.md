@@ -1,5 +1,4 @@
-FileSystemDirectoryEntry
-========================
+# FileSystemDirectoryEntry
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `FileSystemDirectoryEntry` interface of the [File and Directory Entries API](file_and_directory_entries_api) represents a directory in a file system. It provides methods which make it possible to access and manipulate the files in a directory, as well as to access the entries within the directory.
 
-Basic concepts
---------------
+## Basic concepts
 
 You can create a new directory by calling [`getDirectory()`](filesystemdirectoryentry/getdirectory). If you want to create subdirectories, create each child directory in sequence. If you try creating a directory using a full path that includes parent directories that do not exist yet, an error is returned. So create the hierarchy by recursively adding a new path after creating the parent directory.
 
@@ -37,15 +35,13 @@ In the following code snippet, we create a directory called "Documents."
     // Opening a file system with temporary storage
     window.requestFileSystem(TEMPORARY, 1024*1024 /*1MB*/, onFs, onError);
 
-Properties
-----------
+## Properties
 
-*This interface has no properties of its own, but inherits properties from its parent interface, [`FileSystemEntry`](filesystementry).*
+_This interface has no properties of its own, but inherits properties from its parent interface, [`FileSystemEntry`](filesystementry)._
 
-Methods
--------
+## Methods
 
-*This interface inherits methods from its parent interface, [`FileSystemEntry`](filesystementry).*
+_This interface inherits methods from its parent interface, [`FileSystemEntry`](filesystementry)._
 
 [`createReader()`](filesystemdirectoryentry/createreader)  
 Creates a [`FileSystemDirectoryReader`](filesystemdirectoryreader) object which can be used to read the entries in this directory.
@@ -61,14 +57,12 @@ Returns a [`FileSystemFileEntry`](filesystemfileentry) object representing a fil
 [`removeRecursively()`](filesystemdirectoryentry/removerecursively)  
 Deletes a directory and all of its contents, including the contents of subdirectories. This has been removed from the spec.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/entries-api/#api-directoryentry">File and Directory Entries API<br />
 <span class="small">The definition of 'FileSystemDirectoryEntry' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -240,13 +234,12 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](file_and_directory_entries_api)
--   [Introduction to the File System API](file_and_directory_entries_api/introduction)
--   [`FileSystemDirectoryReader`](filesystemdirectoryreader)
--   [`FileSystemEntry`](filesystementry)
--   [`FileSystemFileEntry`](filesystemfileentry)
+- [File and Directory Entries API](file_and_directory_entries_api)
+- [Introduction to the File System API](file_and_directory_entries_api/introduction)
+- [`FileSystemDirectoryReader`](filesystemdirectoryreader)
+- [`FileSystemEntry`](filesystementry)
+- [`FileSystemFileEntry`](filesystemfileentry)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryEntry" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryEntry</a>

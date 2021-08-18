@@ -1,35 +1,29 @@
-MediaRecorderErrorEvent
-=======================
+# MediaRecorderErrorEvent
 
 The `MediaRecorderErrorEvent` interface represents errors returned by the [MediaStream Recording API.](mediastream_recording_api) It is an [`Event`](event) object that encapsulates a reference to a [`DOMException`](domexception) describing the error that occurred.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent interface, [`Event`](event)*.
+_Inherits properties from its parent interface, [`Event`](event)_.
 
- [`error`](mediarecordererrorevent/error) <span class="badge inline readonly">Read only </span>   
+[`error`](mediarecordererrorevent/error) <span class="badge inline readonly">Read only </span>  
 A [`DOMException`](domexception) containing information about the error that occurred. Read only.
 
-Constructor
------------
+## Constructor
 
 [`MediaStreamRecorderEvent()`](mediarecordererrorevent/mediarecordererrorevent)  
 Creates and returns a new `MediaRecorderErrorEvent` event object with the given parameters.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent interface, [`Event`](event)*.
+_Inherits methods from its parent interface, [`Event`](event)_.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-record/#errorevent-section">MediaStream Recording<br />
 <span class="small">The definition of 'MediaRecorderErrorEvent' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

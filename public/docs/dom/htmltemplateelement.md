@@ -1,30 +1,25 @@
-HTMLTemplateElement
-===================
+# HTMLTemplateElement
 
 The `HTMLTemplateElement` interface enables access to the contents of an HTML [`<template>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) element.
 
-Properties
-----------
+## Properties
 
-*This interface inherits the properties of [`HTMLElement`](htmlelement).*
+_This interface inherits the properties of [`HTMLElement`](htmlelement)._
 
- [`content`](htmltemplateelement/content) <span class="badge inline readonly">Read only </span>   
+[`content`](htmltemplateelement/content) <span class="badge inline readonly">Read only </span>  
 A read-only [`DocumentFragment`](documentfragment) which contains the DOM subtree representing the [`<template>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) element's template contents.
 
-Methods
--------
+## Methods
 
-*This interface inherits the methods of [`HTMLElement`](htmlelement).*
+_This interface inherits the methods of [`HTMLElement`](htmlelement)._
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/scripting.html#htmltemplateelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLTemplateElement interface' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/scripting-1.html#htmltemplateelement">HTML5<br />
 <span class="small">The definition of 'HTMLTemplateElement interface' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,21 +1,17 @@
-MediaKeySession.expiration
-==========================
+# MediaKeySession.expiration
 
 The `MediaKeySession.expiration` read-only property returns the time after which the keys in the current session can no longer be used to decrypt media data, or NaN if no such time exists. This value is determined by the CDM and measured in milliseconds since January 1, 1970, UTC. This value may change during a session lifetime, such as when an action triggers the start of a window.
 
-Syntax
-------
+## Syntax
 
     var expirationTime = mediaKeySessionObj.expiration;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-mediakeysession-expiration">Encrypted Media Extensions<br />
 <span class="small">The definition of 'expiration' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

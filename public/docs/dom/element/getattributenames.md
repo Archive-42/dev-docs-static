@@ -1,17 +1,14 @@
-Element.getAttributeNames()
-===========================
+# Element.getAttributeNames()
 
 The `getAttributeNames()` method of the [`Element`](../element) interface returns the attribute names of the element as an [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) of strings. If the element has no attributes it returns an empty array.
 
 Using `getAttributeNames()` along with [`getAttribute()`](getattribute), is a memory-efficient and performant alternative to accessing [`Element.attributes`](attributes).
 
-Syntax
-------
+## Syntax
 
     let attributeNames = element.getAttributeNames();
 
-Example
--------
+## Example
 
     // Iterate over element's attributes
     for (let name of element.getAttributeNames()) {
@@ -19,8 +16,7 @@ Example
       console.log(name, value);
     }
 
-Polyfill
---------
+## Polyfill
 
     if (Element.prototype.getAttributeNames == undefined) {
       Element.prototype.getAttributeNames = function () {
@@ -34,14 +30,12 @@ Polyfill
       };
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-element-getattributenames">DOM<br />
 <span class="small">The definition of 'Element.getAttributeNames' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

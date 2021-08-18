@@ -1,17 +1,15 @@
-HTMLLinkElement
-===============
+# HTMLLinkElement
 
 The `HTMLLinkElement` interface represents reference information for external resources and the relationship of those resources to a document and vice-versa (corresponds to `<link>` element; not to be confused with `<a>`, which is represented by `HTMLAnchorElement`). This object inherits all of the properties and methods of the [`HTMLElement`](htmlelement) interface.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement), and [`LinkStyle`](linkstyle).*
+_Inherits properties from its parent, [`HTMLElement`](htmlelement), and [`LinkStyle`](linkstyle)._
 
 [`HTMLLinkElement.as`](htmllinkelement/as)  
 Is a [`DOMString`](domstring) representing the type of content being loaded by the HTML link.
 
- <span class="page-not-created">`HTMLLinkElement.crossOrigin`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`HTMLLinkElement.crossOrigin`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is a [`DOMString`](domstring) that corresponds to the CORS setting for this link element. See [CORS settings attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) for details.
 
 <span class="page-not-created">`HTMLLinkElement.disabled`</span>  
@@ -26,19 +24,19 @@ Is a [`DOMString`](domstring) representing the language code for the linked reso
 <span class="page-not-created">`HTMLLinkElement.media`</span>  
 Is a [`DOMString`](domstring) representing a list of one or more media formats to which the resource applies.
 
- [`HTMLLinkElement.referrerPolicy`](htmllinkelement/referrerpolicy) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`HTMLLinkElement.referrerPolicy`](htmllinkelement/referrerpolicy) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is a [`DOMString`](domstring) that reflects the [`referrerpolicy`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#attr-referrerpolicy) HTML attribute indicating which referrer to use.
 
 [`HTMLLinkElement.rel`](htmllinkelement/rel)  
 Is a [`DOMString`](domstring) representing the forward relationship of the linked resource from the document to the resource.
 
- [`HTMLLinkElement.relList`](htmllinkelement/rellist) <span class="badge inline readonly">Read only </span>   
+[`HTMLLinkElement.relList`](htmllinkelement/rellist) <span class="badge inline readonly">Read only </span>  
 Is a [`DOMTokenList`](domtokenlist) that reflects the [`rel`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#attr-rel) HTML attribute, as a list of tokens.
 
- <span class="page-not-created">`HTMLLinkElement.sizes`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLLinkElement.sizes`</span> <span class="badge inline readonly">Read only </span>  
 Is a <span class="page-not-created">`DOMSettableTokenList`</span> that reflects the [`sizes`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#attr-sizes) HTML attribute, as a list of tokens.
 
- <span class="page-not-created">`LinkStyle.sheet`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`LinkStyle.sheet`</span> <span class="badge inline readonly">Read only </span>  
 Returns the [`StyleSheet`](stylesheet) object associated with the given element, or `null` if there is none.
 
 <span class="page-not-created">`HTMLLinkElement.type`</span>  
@@ -46,24 +44,22 @@ Is a [`DOMString`](domstring) representing the MIME type of the linked resource.
 
 ### Obsolete properties
 
- <span class="page-not-created">`HTMLLinkElement.charset`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLLinkElement.charset`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) representing the character encoding for the target resource.
 
- <span class="page-not-created">`HTMLLinkElement.rev`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLLinkElement.rev`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) representing the reverse relationship of the linked resource from the resource to the document.
 
 **Note**: Currently the W3C HTML 5.2 spec states that `rev` is no longer obsolete, whereas the WHATWG living standard still has it labeled obsolete. Until this discrepancy is resolved, you should still assume it is obsolete.
 
- <span class="page-not-created">`HTMLLinkElement.target`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLLinkElement.target`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) representing the name of the target frame to which the resource applies.
 
-Methods
--------
+## Methods
 
-*No specific method; inherits methods from its parent, [`HTMLElement`](htmlelement), and [`LinkStyle`](linkstyle).*
+_No specific method; inherits methods from its parent, [`HTMLElement`](htmlelement), and [`LinkStyle`](linkstyle)._
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/preload/">Preload</a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Defines <code>&lt;link rel="preload"&gt;</code>, and the <code>as</code> property. Note that currently Firefox only supports preloading of cacheable resources.</td></tr><tr class="even"><td><a href="https://html.spec.whatwg.org/multipage/#htmllinkelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLLinkElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Adds the following properties: <code>crossOrigin</code>, <code>referrerPolicy</code>, and <code>as</code>.</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/html51/document-metadata.html#the-link-element">HTML 5.1<br />
@@ -73,8 +69,7 @@ The following properties have been added: <code>relList</code>, and <code>sizes<
 <span class="small">The definition of 'HTMLLinkElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Added a second inheritence, the <a href="linkstyle"><code>LinkStyle</code></a> interface.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-35143001">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLLinkElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -598,9 +593,8 @@ Before Samsung Internet 5.0, this property returned the deprecated child `DOMSet
 
 1.0
 
-See also
---------
+## See also
 
--   The HTML element implementing this interface: [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link).
+- The HTML element implementing this interface: [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLLinkElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLLinkElement</a>

@@ -1,5 +1,4 @@
-IDBTransaction.oncomplete
-=========================
+# IDBTransaction.oncomplete
 
 The `oncomplete` event handler of the [`IDBTransaction`](../idbtransaction) interface handles the complete event, fired when the transaction successfully completes.
 
@@ -9,13 +8,11 @@ As of Firefox 40, IndexedDB transactions have relaxed durability guarantees to i
 
 **Note**: In Firefox, if you wish to ensure durability for some reason (e.g. you're storing critical data that cannot be recomputed later) you can force a transaction to flush to disk before delivering the `complete` event by creating a transaction using the experimental (non-standard) `readwriteflush` mode (see [`IDBDatabase.transaction`](../idbdatabase/transaction).) This is currently experimental, and can only be used if the `dom.indexedDB.experimental` pref is set to `true` in `about:config`.
 
-Syntax
-------
+## Syntax
 
     transaction.oncomplete = function(event) { ... };
 
-Example
--------
+## Example
 
 In the following code snippet, we open a read/write transaction on our database and add some data to an object store. Note also the functions attached to transaction event handlers to report on the outcome of the transaction opening in the event of success or failure. Note the `transaction.oncomplete = function(event) { };` block, which reports back when the transaction was successful. For a full working example, see our [To-do Notifications](https://github.com/mdn/to-do-notifications/)<span style="line-height: 1.5;"> app (</span>[view example live](https://mdn.github.io/to-do-notifications/)<span style="line-height: 1.5;">.)</span>
 
@@ -62,15 +59,13 @@ In the following code snippet, we open a read/write transaction on our database 
       };
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbtransaction-oncomplete">Indexed Database API 2.0<br />
 <span class="small">The definition of 'oncomplete' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbtransaction-oncomplete">Indexed Database API 2.0<br />
 <span class="small">The definition of 'oncomplete' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -126,16 +121,15 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
--   `complete` event
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- `complete` event
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/oncomplete" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/oncomplete</a>

@@ -1,5 +1,4 @@
-Element: keydown event
-======================
+# Element: keydown event
 
 The `keydown` event is fired when a key is pressed.
 
@@ -20,8 +19,7 @@ Since Firefox 65, the `keydown` and `keyup` events are now fired during IME comp
       // do something
     });
 
-Examples
---------
+## Examples
 
 ### addEventListener keydown example
 
@@ -43,13 +41,11 @@ This example logs the [`KeyboardEvent.code`](../keyboardevent/code) value whenev
 
     input.onkeydown = logKey;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-keydown">UI Events</a></td><td><span class="spec-wd">Working Draft</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -105,12 +101,11 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   `input`
--   `keypress`
--   `keyup`
--   [Document `keydown` event](../document/keydown_event)
+- `input`
+- `keypress`
+- `keyup`
+- [Document `keydown` event](../document/keydown_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event</a>

@@ -1,5 +1,4 @@
-HTMLVideoElement.msFrameStep()
-==============================
+# HTMLVideoElement.msFrameStep()
 
 **Non-standard**
 
@@ -9,24 +8,22 @@ The `HTMLVideoElement.msFrameStep()` method steps the video by one frame forward
 
 This proprietary method is specific to Internet Explorer and Microsoft Edge.
 
-Syntax
-------
+## Syntax
 
     HTMLVideoElement.msFrameStep(forward);
 
 ### Parameters
 
 forward  
-A [Boolean](https://developer.mozilla.org/en-US/docs/Glossary/Boolean) which if set to *true* steps the video forward by one frame, if *false* steps the video backwards by one frame.
+A [Boolean](https://developer.mozilla.org/en-US/docs/Glossary/Boolean) which if set to _true_ steps the video forward by one frame, if _false_ steps the video backwards by one frame.
 
 ### Return value
 
 This method does not return a value.
 
-See also
---------
+## See also
 
--   [`HTMLMediaElement`](../htmlmediaelement)
--   [Microsoft API extensions](../microsoft_extensions)
+- [`HTMLMediaElement`](../htmlmediaelement)
+- [Microsoft API extensions](../microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/msFrameStep" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/msFrameStep</a>

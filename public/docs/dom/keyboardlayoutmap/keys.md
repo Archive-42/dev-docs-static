@@ -1,5 +1,4 @@
-KeyboardLayoutMap.keys
-======================
+# KeyboardLayoutMap.keys
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `keys` read-only property of the [`KeyboardLayoutMap`](../keyboardlayoutmap) interface returns a new Array Iterator object that contains the keys for each index in the array.
 
-Syntax
-------
+## Syntax
 
     iterator = KeyboardLayoutMap.keys
 
@@ -17,14 +15,12 @@ Syntax
 
 An iterator.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/keyboard-map/#keyboardlayoutmap-interface">Keyboard Map<br />
 <span class="small">The definition of 'keys' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

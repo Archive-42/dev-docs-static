@@ -1,15 +1,12 @@
-FileReader.onabort
-==================
+# FileReader.onabort
 
 The `FileReader.onabort` property contains an event handler executed when the `abort` event is fired, i.e. when the process of reading the file is aborted.
 
-Syntax
-------
+## Syntax
 
     reader.onabort = function() { ... };
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

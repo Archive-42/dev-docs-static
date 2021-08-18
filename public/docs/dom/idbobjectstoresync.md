@@ -1,29 +1,24 @@
-IDBObjectStoreSync
-==================
+# IDBObjectStoreSync
 
 **Important**: The synchronous version of the IndexedDB API was originally intended for use only with [Web Workers](web_workers_api/using_web_workers), and was eventually removed from the spec because its need was questionable. It may however be reintroduced in the future if there is enough demand from web developers.
 
 The `IDBObjectStoreSync` interface of the [IndexedDB API](indexeddb_api) provides synchronous access to an [object store](indexeddb_api#gloss_object_store) of a database.
 
-Method overview
----------------
+## Method overview
 
 <table><tbody><tr class="odd"><td><code>any add (in any value, in optional any key) raises (IDBDatabaseException);</code></td></tr><tr class="even"><td><a href="idbindexsync"><code>IDBIndexSync</code></a> <code>createIndex (in DOMString name, in DOMString storeName, in DOMString keypath, in optional boolean unique);</code></td></tr><tr class="odd"><td><code>any get (in any key) raises (IDBDatabaseException); </code></td></tr><tr class="even"><td><code>IDBCursorSync openCursor (in optional IDBKeyRange range, in optional unsigned short direction) raises (IDBDatabaseException);</code></td></tr><tr class="odd"><td><code>IDBIndexSync openIndex (in DOMString name) raises (IDBDatabaseException); </code></td></tr><tr class="even"><td><code>any put (in any value, in optional any key) raises (IDBDatabaseException); </code></td></tr><tr class="odd"><td><code>void remove (in any key) raises (IDBDatabaseException);</code></td></tr><tr class="even"><td><code>void removeIndex (in DOMString indexName) raises (IDBDatabaseException);</code></td></tr></tbody></table>
 
-Attributes
-----------
+## Attributes
 
 <table><thead><tr class="header"><th>Attribute</th><th>Type</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>indexNames</code></td><td><code>readonly DOMStringList</code></td><td>A list of the names of the <a href="indexeddb_api#gloss_index">indexes</a> on this object store.</td></tr><tr class="even"><td><code>keyPath</code></td><td><code>readonly DOMString</code></td><td>The <a href="indexeddb_api#gloss_key_path">key path</a> of this object store. If this attribute is set to null, then the application must provide a key for each modification operation.</td></tr><tr class="odd"><td><code>mode</code></td><td><code>readonly unsigned short</code></td><td>The mode for isolating access to the data in this object store. For possible values, see <a href="#constants">Constants</a>.</td></tr><tr class="even"><td><code>name</code></td><td><code>readonly DOMString</code></td><td>The name of this object store.</td></tr></tbody></table>
 
-Constants
----------
+## Constants
 
 ### Mode constants
 
 <table><thead><tr class="header"><th>Constant</th><th>Value</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>READ_ONLY</code></td><td>1</td><td>Modification operations are not allowed on this object store.</td></tr><tr class="even"><td><code>READ_WRITE</code></td><td>0</td><td>Modification operations are allowed on this object store.</td></tr><tr class="odd"><td><code>SNAPSHOT_READ</code></td><td>2</td><td>Any read operations must access a snapshot view of the data, which cannot change once it is created.</td></tr></tbody></table>
 
-Methods
--------
+## Methods
 
 ### add()
 
@@ -52,10 +47,10 @@ A key to use for identifying the record.
 The key for the stored record.
 
 `CONSTRAINT_ERR`  
-If a record exists in this index with a key corresponding to the *key* parameter or the index is auto-populated, or if no record exists with a key corresponding to the *value* parameter in the index's referenced object store.
+If a record exists in this index with a key corresponding to the _key_ parameter or the index is auto-populated, or if no record exists with a key corresponding to the _value_ parameter in the index's referenced object store.
 
 `DATA_ERR`  
-If this object store uses [out-of-line keys](indexeddb_api#gloss_out-of-line_key), and the *key* parameter was not passed.
+If this object store uses [out-of-line keys](indexeddb_api#gloss_out-of-line_key), and the _key_ parameter was not passed.
 
 `SERIAL_ERR`  
 If the data being stored could not be serialized by the internal structured cloning algorithm.

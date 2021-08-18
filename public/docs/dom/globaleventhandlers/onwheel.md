@@ -1,5 +1,4 @@
-GlobalEventHandlers.onwheel
-===========================
+# GlobalEventHandlers.onwheel
 
 The `onwheel` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `wheel` events.
 
@@ -7,8 +6,7 @@ The `wheel` event fires when the user rotates the mouse (or other pointing devic
 
 **Note:** Don't confuse `onwheel` with [`onscroll`](onscroll): `onwheel` handles general wheel rotation, while `onscroll` handles scrolling of an object's content.
 
-Syntax
-------
+## Syntax
 
     target.onwheel = functionRef;
 
@@ -16,8 +14,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives a [`WheelEvent`](../wheelevent) object as its sole argument.
 
-Examples
---------
+## Examples
 
 This example shows how to scale an element using the mouse (or other pointing device) wheel.
 
@@ -70,14 +67,12 @@ This example shows how to scale an element using the mouse (or other pointing de
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onwheel">HTML Living Standard<br />
 <span class="small">The definition of 'onwheel' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -133,10 +128,9 @@ No
 
 2.0
 
-See also
---------
+## See also
 
--   [Document: `wheel` event](../document/wheel_event)
--   [Element: `wheel` event](../element/wheel_event)
+- [Document: `wheel` event](../document/wheel_event)
+- [Element: `wheel` event](../element/wheel_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onwheel" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onwheel</a>

@@ -1,8 +1,6 @@
-Timing element visibility with the Intersection Observer API
-============================================================
+# Timing element visibility with the Intersection Observer API
 
-Site structure: The HTML
-------------------------
+## Site structure: The HTML
 
 The [Intersection Observer API](../intersection_observer_api) makes it easy to be asynchronously notified when elements of interest become more or less obscured by a shared ancestor node or element, including the [`Document`](../document) itself. In this article, we'll build a mock blog which has a number of ads interspersed among the contents of the page, then use the Intersection Observer API to track how much time each ad is visible to the user. When an ad exceeds one minute of visible time, it will be replaced with a new one.
 
@@ -38,8 +36,7 @@ This is the framework for the entire site. At the top is the site's header regio
 
 Finally comes the main body. We start with an empty [`<main>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main) element here. This box will be populated using script later.
 
-Styling the site with CSS
--------------------------
+## Styling the site with CSS
 
 With the structure of the site defined, we turn to the styling for the site. Let's look at the style for each component of the page individually.
 
@@ -173,8 +170,7 @@ Finally, the ads have the following initial styling. Individual ads may customiz
 
 There's nothing magic in here. It's fairly basic CSS.
 
-Tying it together with JavaScript
----------------------------------
+## Tying it together with JavaScript
 
 That brings us to the JavaScript code which makes everything work. Let's start with the global variables:
 
@@ -543,15 +539,13 @@ Then we load a new ad by calling `loadRandomAd()`, specifying the ad to be repla
 
 The new ad's element object is returned to the caller in case it's needed.
 
-Result
-------
+## Result
 
 The resulting page looks like this. Try experimenting with scrolling around and watch how visibility changes affect the timers in each ad. Also note that each ad is replaced after one minute of visibility, and how the timers pause while the document is tabbed into the background.
 
-See also
---------
+## See also
 
--   [Intersection Observer API](../intersection_observer_api)
--   [Page Visibility API](../page_visibility_api)
+- [Intersection Observer API](../intersection_observer_api)
+- [Page Visibility API](../page_visibility_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API/Timing_element_visibility" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API/Timing_element_visibility</a>

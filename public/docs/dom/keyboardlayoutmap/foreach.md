@@ -1,5 +1,4 @@
-KeyboardLayoutMap.forEach()
-===========================
+# KeyboardLayoutMap.forEach()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `forEach()` method of the [`KeyboardLayoutMap`](../keyboardlayoutmap) interface executes a provided function once for each element of the map.
 
-Syntax
-------
+## Syntax
 
     KeyboardLayoutMap.forEach(function callback(currentValue[, index[, array]]) {
         //your iterator
@@ -23,27 +21,25 @@ The function to execute for each element, taking three arguments:
 `currentValue`  
 The value of the current element being processed.
 
- `index` <span class="badge inline optional">Optional</span>   
+`index` <span class="badge inline optional">Optional</span>  
 The index of the current element being processed.
 
- `array` <span class="badge inline optional">Optional</span>   
+`array` <span class="badge inline optional">Optional</span>  
 The KeyboardLayoutMap that `forEach()` is being called on.
 
- `thisArg` <span class="badge inline optional">Optional</span>   
+`thisArg` <span class="badge inline optional">Optional</span>  
 Value to use as `this` (i.e the reference `Object`) when executing `callback`.
 
 ### Return value
 
 [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/keyboard-map/#keyboardlayoutmap-interface">Keyboard Map<br />
 <span class="small">The definition of 'forEach()' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

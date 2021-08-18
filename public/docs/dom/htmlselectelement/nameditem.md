@@ -1,26 +1,23 @@
-HTMLSelectElement.namedItem()
-=============================
+# HTMLSelectElement.namedItem()
 
 The `HTMLSelectElement.namedItem()` method returns the [`HTMLOptionElement`](../htmloptionelement) corresponding to the [`HTMLOptionElement`](../htmloptionelement) whose `name` or `id` match the specified name, or `null` if no option matches.
 
-In JavaScript, using the array bracket syntax with a [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), like `selectElt["value"]` is equivalent to `selectElt``.namedItem("value")`.
+In JavaScript, using the array bracket syntax with a [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String), like `selectElt["value"]` is equivalent to ` selectElt``.namedItem("value") `.
 
-Syntax
-------
+## Syntax
 
     var item = collection.namedItem(str);
     var item = collection[str];
 
 ### Parameters
 
--   `str` is a [`DOMString`](../domstring).
+- `str` is a [`DOMString`](../domstring).
 
 ### Return value
 
--   `item` is a [`HTMLOptionElement`](../htmloptionelement).
+- `item` is a [`HTMLOptionElement`](../htmloptionelement).
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -35,15 +32,13 @@ Example
 
     elem1 = document.forms[0]['myFormControl']['o1']; // Returns the HTMLOptionElement representing #o1
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-select-nameditem">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLSelectElement.namedItem()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change since the latest snapshot, <a href="https://www.w3.org/TR/html52/">HTML5</a>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/forms.html#dom-select-nameditem">HTML5<br />
 <span class="small">The definition of 'HTMLSelectElement.namedItem()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition, snapshot of <a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -103,9 +98,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`HTMLSelectElement`](../htmlselectelement) that implements it.
+- [`HTMLSelectElement`](../htmlselectelement) that implements it.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/namedItem" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/namedItem</a>

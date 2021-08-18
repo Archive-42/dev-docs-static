@@ -1,5 +1,4 @@
-Element: focus event
-====================
+# Element: focus event
 
 The `focus` event fires when an element has received focus. The main difference between this event and [`focusin`](focusin_event) is that `focusin` bubbles while `focus` does not.
 
@@ -7,8 +6,7 @@ The opposite of `focus` is [`blur`](blur_event).
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../focusevent"><code>FocusEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="../globaleventhandlers/onfocus"><code>onfocus</code></a></td></tr><tr class="odd"><td>Sync / Async</td><td>Sync</td></tr><tr class="even"><td>Composed</td><td>Yes</td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 ### Simple example
 
@@ -58,13 +56,11 @@ There are two ways of implementing event delegation for this event: by using the
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-focus">UI Events</a></td><td><span class="spec-wd">Working Draft</span></td><td>Added info that this event is composed.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#event-type-focus">Document Object Model (DOM) Level 3 Events Specification</a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -128,10 +124,9 @@ The interface for this event is [`Event`](https://developer.mozilla.org/docs/Web
 
 1.0
 
-See also
---------
+## See also
 
--   Related events: [`blur`](blur_event), [`focusin`](focusin_event), [`focusout`](focusout_event)
--   This event on `Window` targets: [`focus`](../window/focus_event) event
+- Related events: [`blur`](blur_event), [`focusin`](focusin_event), [`focusout`](focusout_event)
+- This event on `Window` targets: [`focus`](../window/focus_event) event
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event</a>

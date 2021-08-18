@@ -1,5 +1,4 @@
-HMDVRDevice.getEyeParameters()
-==============================
+# HMDVRDevice.getEyeParameters()
 
 **Deprecated**
 
@@ -14,8 +13,7 @@ The `getEyeParameters()` method of the [`HMDVRDevice`](../hmdvrdevice) interface
 
 This includes field of view information, and more.
 
-Syntax
-------
+## Syntax
 
     var myLeftEye = HMDVRDevice.getEyeParameters('left');
 
@@ -28,8 +26,7 @@ A [`DOMString`](../domstring) representing the eye you want to return informatio
 
 A [`VREyeParameters`](../vreyeparameters) object.
 
-Examples
---------
+## Examples
 
 The following example is taken from the Mozilla VR Team's [threejs-vr-boilerplate](https://github.com/MozVR/vr-web-examples/tree/master/threejs-vr-boilerplate) code — to be precise, the [VREffect.js file](https://github.com/MozVR/vr-web-examples/blob/master/threejs-vr-boilerplate/js/VREffect.js#L28-L29). Early on in the code the `getEyeParameters()` method is used to access information about each eye, which is then used for rendering calculations later on.
 
@@ -45,8 +42,7 @@ The following example is taken from the Mozilla VR Team's [threejs-vr-boilerplat
       ...
     }
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -112,10 +108,9 @@ No
 
 8.0
 
-See also
---------
+## See also
 
--   [WebVR API homepage](../webvr_api).
--   <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
+- [WebVR API homepage](../webvr_api).
+- <https://mixedreality.mozilla.org/> — demos, downloads, and other resources from the Mozilla VR team.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HMDVRDevice/getEyeParameters" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HMDVRDevice/getEyeParameters</a>

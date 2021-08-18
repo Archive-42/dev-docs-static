@@ -1,5 +1,4 @@
-HTMLFrameSetElement
-===================
+# HTMLFrameSetElement
 
 **Deprecated**
 
@@ -7,26 +6,23 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `HTMLFrameSetElement` interface provides special properties (beyond those of the regular [`HTMLElement`](htmlelement) interface they also inherit) for manipulating [`<frameset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/frameset) elements.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement) and from [`WindowEventHandlers`](windoweventhandlers).*
+_Inherits properties from its parent, [`HTMLElement`](htmlelement) and from [`WindowEventHandlers`](windoweventhandlers)._
 
- <span class="page-not-created">`HTMLFrameSetElement.cols`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLFrameSetElement.cols`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) structured as a comma-separated list specifying the width of each column inside a frameset.
 
- <span class="page-not-created">`HTMLFrameSetElement.rows`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLFrameSetElement.rows`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) structured as a comma-separated list specifying the height of each column inside a frameset.
 
-Methods
--------
+## Methods
 
-*No specific method; inherits methods from its parent, [`HTMLElement`](htmlelement) and from [`WindowEventHandlers`](windoweventhandlers).*
+_No specific method; inherits methods from its parent, [`HTMLElement`](htmlelement) and from [`WindowEventHandlers`](windoweventhandlers)._
 
-Event handlers
---------------
+## Event handlers
 
-*No specific event handler; inherits event handlers from its parent, [`HTMLElement`](htmlelement) and from [`WindowEventHandlers`](windoweventhandlers).*
+_No specific event handler; inherits event handlers from its parent, [`HTMLElement`](htmlelement) and from [`WindowEventHandlers`](windoweventhandlers)._
 
 [`WindowEventHandlers.onafterprint`](windoweventhandlers/onafterprint)  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `afterprint` event is raised.
@@ -40,7 +36,7 @@ Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event
 [`WindowEventHandlers.onhashchange`](windoweventhandlers/onhashchange)  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `hashchange` event is raised.
 
- [`WindowEventHandlers.onlanguagechange`](windoweventhandlers/onlanguagechange) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`WindowEventHandlers.onlanguagechange`](windoweventhandlers/onlanguagechange) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `languagechange` event is raised.
 
 [`WindowEventHandlers.onmessage`](windoweventhandlers/onmessage)  
@@ -70,8 +66,7 @@ Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event
 [`WindowEventHandlers.onunload`](windoweventhandlers/onunload)  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `unload` event is raised.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#htmlframesetelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLFrameSetElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>From the <a href="https://www.w3.org/TR/html52/">HTML5</a> snapshot, the <a href="windoweventhandlers"><code>WindowEventHandlers</code></a> interface now have a <code>onlanguagechange</code> property.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/obsolete.html#htmlframesetelement">HTML5<br />
@@ -80,8 +75,7 @@ Frames are now obsolete. Implements <a href="windoweventhandlers"><code>WindowEv
 <span class="small">The definition of 'HTMLBodyElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>No change from <a href="https://www.w3.org/TR/REC-DOM-Level-1/">Document Object Model (DOM) Level 1 Specification</a>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-43829095">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLBodyElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -241,10 +235,9 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   HTML element implementing this interface: [`<frameset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/frameset)
--   The equivalent of this element outside of frames: [`HTMLBodyElement`](htmlbodyelement).
+- HTML element implementing this interface: [`<frameset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/frameset)
+- The equivalent of this element outside of frames: [`HTMLBodyElement`](htmlbodyelement).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFrameSetElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLFrameSetElement</a>

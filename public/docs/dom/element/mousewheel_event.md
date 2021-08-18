@@ -1,5 +1,4 @@
-Element: mousewheel event
-=========================
+# Element: mousewheel event
 
 **Deprecated**
 
@@ -9,14 +8,13 @@ This feature is no longer recommended. Though some browsers might still support 
 
 This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.
 
-The *obsolete* and *non-standard* `mousewheel` event is fired asynchronously at an [`Element`](../element) to provide updates while a mouse wheel or similar device is operated. The `mousewheel` event was never part of any standard, and while it was implemented by several browsers, it was never implemented by Firefox.
+The _obsolete_ and _non-standard_ `mousewheel` event is fired asynchronously at an [`Element`](../element) to provide updates while a mouse wheel or similar device is operated. The `mousewheel` event was never part of any standard, and while it was implemented by several browsers, it was never implemented by Firefox.
 
 **Important:** Instead of this obsolete event, use the standard [`wheel`](wheel_event) event.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>Yes</td></tr><tr class="odd"><td>Interface</td><td><a href="../mousewheelevent"><code>MouseWheelEvent</code></a> <span class="icon deprecated" data-viewbox="0 0 100 100" data-xmlns="http://www.w3.org/2000/svg" data-role="img"> This deprecated API should no longer be used, but will probably still work. </span></td></tr><tr class="even"><td>Event handler property</td><td><a href="../globaleventhandlers/onmousewheel"><code>onmousewheel</code></a></td></tr></tbody></table>
 
-The detail property
--------------------
+## The detail property
 
 The value of the [`detail`](../uievent/detail) property is always zero, except in Opera, which uses `detail` similarly to the Firefox-only [`DOMMouseScroll`](dommousescroll_event) event's `detail` value, which indicates the scroll distance in terms of lines, with negative values indicating the scrolling movement is either toward the bottom or toward the right, and positive values indicating scrolling to the top or left.
 
@@ -24,12 +22,11 @@ The value of the [`detail`](../uievent/detail) property is always zero, except i
 
 On Linux, `2` or `-2` is set per native wheel event.
 
-wheelDelta, wheelDeltaX and wheelDeltaY value
----------------------------------------------
+## wheelDelta, wheelDeltaX and wheelDeltaY value
 
 The `wheelDelta` attribute value is an abstract value which indicates how far the wheel turned. If the wheel has rotated away from the user, it's positive, otherwise negative. This means that the delta value sign is different from DOM Level 3 Event's `wheel`. However, the meaning of the amount of these values is not the same between browsers. See following explanation for the detail.
 
-IE and Opera (Presto) only support `wheelDelta` attribute and do *not* support horizontal scroll.
+IE and Opera (Presto) only support `wheelDelta` attribute and do _not_ support horizontal scroll.
 
 The `wheelDeltaX` attribute value indicates the `wheelDelta` attribute value along the horizontal axis. When a user operates the device for scrolling to right, the value is negative. Otherwise, i.e., if it's to left, the value is positive.
 
@@ -69,13 +66,11 @@ On Linux, the value is `80` or `-80` per native wheel event. This is different f
 
 On Mac, the `detail` attribute value is computed from accelerated scroll amount of native event. The value is usually much bigger than Safari's or Chrome's value.
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -131,11 +126,10 @@ No
 
 ?
 
-See also
---------
+## See also
 
--   [`MouseWheelEvent`](../mousewheelevent)
--   Gecko's legacy mouse wheel events: `DOMMouseScroll`, `MozMousePixelScroll`
--   Standardized wheel event: `wheel`
+- [`MouseWheelEvent`](../mousewheelevent)
+- Gecko's legacy mouse wheel events: `DOMMouseScroll`, `MozMousePixelScroll`
+- Standardized wheel event: `wheel`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/mousewheel_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/mousewheel_event</a>

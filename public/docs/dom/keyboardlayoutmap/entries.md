@@ -1,5 +1,4 @@
-KeyboardLayoutMap.entries
-=========================
+# KeyboardLayoutMap.entries
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `entries` read-only property of the [`KeyboardLayoutMap`](../keyboardlayoutmap) interface returns an array of a given object's own enumerable property `[key, value]` pairs, in the same order as that provided by a [`for...in`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in) loop (the difference being that a for-in loop enumerates properties in the prototype chain as well).
 
-Syntax
-------
+## Syntax
 
     KeyboardLayoutMap.entries()
 
@@ -17,14 +15,12 @@ Syntax
 
 An array of the given `KeyboardLayoutMap` object's own enumerable property `[key, value]` pairs.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/keyboard-map/#keyboardlayoutmap-interface">Keyboard Map<br />
 <span class="small">The definition of 'entries' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-File System Access API
-======================
+# File System Access API
 
 **Draft**
 
@@ -11,8 +10,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The File System Access API allows read, write and file management capabilities.
 
-Concepts and Usage
-------------------
+## Concepts and Usage
 
 This API allows interaction with files on a user's local device, or on a user-accessible network file system. Core functionality of this API includes reading files, writing or saving files, and access to directory structure.
 
@@ -26,8 +24,7 @@ There is also “save” functionality, using the [`FilesystemWritableFileStream
 
 This API opens up potential functionality the web has been lacking. Still, security has been of utmost concern when designing the API, and access to file/directory data is disallowed unless the user specifically permits it.
 
-Interfaces
-----------
+## Interfaces
 
 [`FileSystemHandle`](filesystemhandle)  
 The `FileSystemHandle` interface is an object which represents an entry. Multiple handles can represent the same entry. For the most part you do not work with `FileSystemEntry` directly but rather it's child interfaces [`FileSystemFileEntry`](filesystemfileentry) and [`FileSystemDirectoryEntry`](filesystemdirectoryentry).
@@ -41,8 +38,7 @@ provides a handle to a file system directory.
 [`FileSystemWritableFileStream`](filesystemwritablefilestream)  
 is a [`WritableStream`](writablestream) object with additional convenience methods, which operates on a single file on disk.
 
-Examples
---------
+## Examples
 
 ### Accessing files
 
@@ -156,20 +152,17 @@ The following show different examples of options that can be passed into the `wr
     // resizes the file to be size bytes long
     writableStream.write({ type: "truncate", size: size })
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/file-system-access/">File System Access API</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.FileSystemAccess`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).
 
-See also
---------
+## See also
 
--   [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
+- [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API</a>

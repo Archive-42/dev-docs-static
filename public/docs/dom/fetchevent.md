@@ -1,38 +1,34 @@
-FetchEvent
-==========
+# FetchEvent
 
 This is the event type for `fetch` events dispatched on the [service worker global scope](serviceworkerglobalscope). It contains information about the fetch, including the request and how the receiver will treat the response. It provides the [`event.respondWith()`](fetchevent/respondwith) method, which allows us to provide a response to this fetch.
 
-Constructor
------------
+## Constructor
 
 [`FetchEvent()`](fetchevent/fetchevent)  
 Creates a new `FetchEvent` object. This constructor is not typically used. The browser creates these objects itself and provides them to `fetch` event callbacks.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its ancestor, [`Event`](event)*.
+_Inherits properties from its ancestor, [`Event`](event)_.
 
- [`FetchEvent.clientId`](fetchevent/clientid) <span class="badge inline readonly">Read only </span>   
+[`FetchEvent.clientId`](fetchevent/clientid) <span class="badge inline readonly">Read only </span>  
 The [`id`](client/id) of the same-origin [`client`](client) that initiated the fetch.
 
- [`FetchEvent.preloadResponse`](fetchevent/preloadresponse) <span class="badge inline readonly">Read only </span>   
+[`FetchEvent.preloadResponse`](fetchevent/preloadresponse) <span class="badge inline readonly">Read only </span>  
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for a [`Response`](response), or `undefined` if this fetch is not a navigation, or [navigation preload](navigationpreloadmanager) is not enabled.
 
- [`FetchEvent.replacesClientId`](fetchevent/replacesclientid) <span class="badge inline readonly">Read only </span>   
+[`FetchEvent.replacesClientId`](fetchevent/replacesclientid) <span class="badge inline readonly">Read only </span>  
 The [`id`](client/id) of the [`client`](client) that is being replaced during a page navigation.
 
- [`FetchEvent.resultingClientId`](fetchevent/resultingclientid) <span class="badge inline readonly">Read only </span>   
+[`FetchEvent.resultingClientId`](fetchevent/resultingclientid) <span class="badge inline readonly">Read only </span>  
 The [`id`](client/id) of the [`client`](client) that replaces the previous client during a page navigation.
 
- [`FetchEvent.request`](fetchevent/request) <span class="badge inline readonly">Read only </span>   
+[`FetchEvent.request`](fetchevent/request) <span class="badge inline readonly">Read only </span>  
 The [`Request`](request) the browser intends to make.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`ExtendableEvent`](extendableevent)*.
+_Inherits methods from its parent, [`ExtendableEvent`](extendableevent)_.
 
 [`FetchEvent.respondWith()`](fetchevent/respondwith)  
 Prevent the browser's default fetch handling, and provide (a promise for) a response yourself.
@@ -40,8 +36,7 @@ Prevent the browser's default fetch handling, and provide (a promise for) a resp
 [`ExtendableEvent.waitUntil()`](extendableevent/waituntil)  
 Extends the lifetime of the event. Used to notify the browser of tasks that extend beyond the returning of a response, such as streaming and caching.
 
-Examples
---------
+## Examples
 
 This fetch event uses the browser default for non-GET requests. For GET requests it tries to return a match in the cache, and falls back to the network. If it finds a match in the cache, it asynchronously updates the cache for next time.
 
@@ -68,14 +63,12 @@ This fetch event uses the browser default for non-GET requests. For GET requests
       }());
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/ServiceWorker/#dom-fetchevent-fetchevent">Service Workers<br />
 <span class="small">The definition of 'FetchEvent()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -439,10 +432,9 @@ No
 
 ?
 
-See also
---------
+## See also
 
--   [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
--   [Fetch API](fetch_api)
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+- [Fetch API](fetch_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FetchEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FetchEvent</a>

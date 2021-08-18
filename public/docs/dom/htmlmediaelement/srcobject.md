@@ -1,12 +1,10 @@
-HTMLMediaElement.srcObject
-==========================
+# HTMLMediaElement.srcObject
 
 The `srcObject` property of the [`HTMLMediaElement`](../htmlmediaelement) interface sets or returns the object which serves as the source of the media associated with the [`HTMLMediaElement`](../htmlmediaelement). The object can be a [`MediaStream`](../mediastream), a [`MediaSource`](../mediasource), a [`Blob`](../blob), or a [`File`](../file) (which inherits from `Blob`).
 
 **Note:** As of March 2020, only Safari supports setting objects other than `MediaStream`. Until other browsers catch up, for `MediaSource`, `Blob` and `File`, consider falling back to creating a URL with [`URL.createObjectURL()`](../url/createobjecturl) and assign it to [`HTMLMediaElement.src`](src). See below for an example.
 
-Syntax
-------
+## Syntax
 
     var sourceObject = HTMLMediaElement.srcObject;
 
@@ -16,13 +14,11 @@ Syntax
 
 A [`MediaStream`](../mediastream), [`MediaSource`](../mediasource), [`Blob`](../blob), or [`File`](../file) object (though see the compatibility table for what is actually supported).
 
-Usage notes
------------
+## Usage notes
 
 Older versions of the Media Source specification required using [`createObjectURL()`](../url/createobjecturl) to create an object URL then setting [`src`](src) to that URL. Now you can just set `srcObject` to the [`MediaStream`](../mediastream) directly.
 
-Examples
---------
+## Examples
 
 ### Basic example
 
@@ -72,14 +68,12 @@ Second, a new [`MediaSource`](../mediasource) is assigned to a newly-created [`<
       video.src = URL.createObjectURL(mediaSource);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#dom-media-srcobject">HTML Living Standard<br />
 <span class="small">The definition of 'srcObject' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

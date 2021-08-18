@@ -1,21 +1,18 @@
-MediaCapabilitiesInfo
-=====================
+# MediaCapabilitiesInfo
 
 The `MediaCapabilitiesInfo` interface of the [Media Capabilities API](media_capabilities_api) is made available when the promise returned by the [`MediaCapabilities.encodingInfo()`](mediacapabilities/encodinginfo) or [`MediaCapabilities.decodingInfo()`](mediacapabilities/decodinginfo) methods of the [`MediaCapabilities`](mediacapabilities) interface fulfills, providing information as to whether the media type is supported, and whether encoding or decoding such media would be smooth and power efficient.
 
-Properties
-----------
+## Properties
 
 The `MediaCapabilitiesInfo` interface contains three Boolean attribues:
 
--   `supported`: Given the properties defined in the [`MediaConfiguration`](mediaconfiguration), can the specified piece of media content be encoded (if [`MediaEncodingConfiguration`](mediaencodingconfiguration) is set) or decode (if [`MediaDecodingConfiguration`](mediadecodingconfiguration) is set) at all? If yes, `supported` is *true*. Otherwise, it is *false*.
--   `smooth`: Given the properties defined in the [`MediaConfiguration`](mediaconfiguration), will the playback of the specified piece of media be high quality? Will it be smooth? If `supported` is `true`, and playback will be smooth, `smooth` is *true*, Otherwise, is it *false.*
--   `powerEfficient`: Given the properties defined in the [`MediaConfiguration`](mediaconfiguration), will the playback of the specified piece of media be power efficient? If `supported` is `true`, and playback will be power efficient, `powerEfficient` is *true*, Otherwise, is it *false.*
+- `supported`: Given the properties defined in the [`MediaConfiguration`](mediaconfiguration), can the specified piece of media content be encoded (if [`MediaEncodingConfiguration`](mediaencodingconfiguration) is set) or decode (if [`MediaDecodingConfiguration`](mediadecodingconfiguration) is set) at all? If yes, `supported` is _true_. Otherwise, it is _false_.
+- `smooth`: Given the properties defined in the [`MediaConfiguration`](mediaconfiguration), will the playback of the specified piece of media be high quality? Will it be smooth? If `supported` is `true`, and playback will be smooth, `smooth` is _true_, Otherwise, is it _false._
+- `powerEfficient`: Given the properties defined in the [`MediaConfiguration`](mediaconfiguration), will the playback of the specified piece of media be power efficient? If `supported` is `true`, and playback will be power efficient, `powerEfficient` is _true_, Otherwise, is it _false._
 
 Browsers will report a supported media configuration as `smooth` and `powerEfficient` until stats on this device have been recorded. All supported audio codecs are reported to be power efficient.
 
-Example
--------
+## Example
 
     // MediaConfiguration to be tested
     const mediaConfig = {
@@ -36,14 +33,12 @@ Example
             (result.powerEfficient ? '' : 'not ') + 'power efficient.')    // is it power efficient?
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/media-capabilities/#media-capabilities-info">Media Capabilities<br />
 <span class="small">The definition of 'MediaCapabilitiesInfo' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -177,11 +172,10 @@ No
 
 9.0
 
-See also
---------
+## See also
 
--   [`MediaConfiguration`](mediaconfiguration)
--   [`MediaCapabilities.encodingInfo()`](mediacapabilities/encodinginfo)
--   [`MediaCapabilities.decodingInfo()`](mediacapabilities/decodinginfo)
+- [`MediaConfiguration`](mediaconfiguration)
+- [`MediaCapabilities.encodingInfo()`](mediacapabilities/encodinginfo)
+- [`MediaCapabilities.decodingInfo()`](mediacapabilities/decodinginfo)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaCapabilitiesInfo" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaCapabilitiesInfo</a>

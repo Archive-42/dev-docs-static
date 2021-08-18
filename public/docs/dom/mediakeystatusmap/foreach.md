@@ -1,5 +1,4 @@
-MediaKeyStatusMap.forEach()
-===========================
+# MediaKeyStatusMap.forEach()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `forEach` property of the [`MediaKeyStatusMap`](../mediakeystatusmap) interface calls callback once for each key-value pair in the status map, in insertion order. If an argument is present it will be passed to the callback.
 
-Syntax
-------
+## Syntax
 
     mediaKeyStatusMap.forEach(callback[, thisArg])
 
@@ -34,13 +32,11 @@ Value used as `this` when executing `callback`.
 
 [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/">Encrypted Media Extensions</a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

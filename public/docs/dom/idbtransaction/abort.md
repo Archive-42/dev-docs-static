@@ -1,5 +1,4 @@
-IDBTransaction.abort()
-======================
+# IDBTransaction.abort()
 
 The `abort()` method of the [`IDBTransaction`](../idbtransaction) interface rolls back all the changes to objects in the database associated with this transaction.
 
@@ -7,8 +6,7 @@ All pending [`IDBRequest`](../idbrequest) objects created during this transactio
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     transaction.abort();
 
@@ -18,8 +16,7 @@ This method may raise a [`DOMException`](../domexception) of the following type:
 
 <table><thead><tr class="header"><th><strong>Exception</strong></th><th><strong>Description</strong></th></tr></thead><tbody><tr class="odd"><td><a href="../domexception#exception-invalidstateerror"><code>InvalidStateError</code></a></td><td>The transaction has already been committed or aborted.</td></tr></tbody></table>
 
-Example
--------
+## Example
 
 In the following code snippet, we open a read/write transaction on our database and add some data to an object store. Note also the functions attached to transaction event handlers to report on the outcome of the transaction opening in the event of success or failure. At the end, we abort any activity done under the current transaction using `abort()`. For a full working example, see our [To-do Notifications](https://github.com/mdn/to-do-notifications/)<span style="line-height: 1.5;"> app (</span>[view example live](https://mdn.github.io/to-do-notifications/)<span style="line-height: 1.5;">.)</span>
 
@@ -68,15 +65,13 @@ In the following code snippet, we open a read/write transaction on our database 
      transaction.abort();
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbtransaction-abort">Indexed Database API 2.0<br />
 <span class="small">The definition of 'abort()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbtransaction-abort">Indexed Database API 2.0<br />
 <span class="small">The definition of 'abort()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -132,15 +127,14 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/abort" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/abort</a>

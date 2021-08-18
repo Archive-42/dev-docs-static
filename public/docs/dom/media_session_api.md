@@ -1,5 +1,4 @@
-Media Session API
-=================
+# Media Session API
 
 The Media Session API provides a way to customize media notifications. It does this by providing metadata for display by the user agent for the media your web app is playing.
 
@@ -7,22 +6,19 @@ It also provides action handlers that the browser can use to access platform med
 
 The aim is to allow users to know what's playing and to control it, without needing to open the specific page that launched it. To be able to support the Media Session API, a browser first needs a mechanism by which to access and be controlled by the OS-level media controls (such as Firefox's [MediaControl](https://bugzilla.mozilla.org/show_bug.cgi?id=1648100)).
 
-Media Session concepts and usage
---------------------------------
+## Media Session concepts and usage
 
 The [`MediaMetadata`](mediametadata) interface lets a web site provide rich metadata to the platform UI for media that is playing. This metadata includes the title, artist (creator) name, album (collection), and artwork. The platform can show this metadata in media centers, notifications, device lockscreens, etc.
 
 The [`MediaSession`](mediasession) interface lets users control playback of media through user-agent defined interface elements. Interaction with these elements triggers action handlers in the web page, playing the media. Since multiple pages may be simultaneously using this API, the user agent is responsible for calling the correct page's action handlers. The user agent provides default behaviors, when no page-defined behavior is available.
 
-Accessing the Media Session API
--------------------------------
+## Accessing the Media Session API
 
 The primary interface for the Media Session API is the [`MediaSession`](mediasession) interface. Rather than creating your own `MediaSession` instance, you access the API using the [`navigator.mediaSession`](navigator/mediasession) property. For example, to set the current state of the media session to `playing`:
 
     navigator.mediaSession.playbackState = "playing";
 
-Interfaces
-----------
+## Interfaces
 
 [`MediaMetadata`](mediametadata)  
 Allows a web page to provide rich media metadata for display in a platform UI.
@@ -30,8 +26,7 @@ Allows a web page to provide rich media metadata for display in a platform UI.
 [`MediaSession`](mediasession)  
 Allows a web page to provide custom behaviors for standard media playback interactions.
 
-Dictionaries
-------------
+## Dictionaries
 
 [`MediaImage`](mediaimage)  
 A `MediaImage` object contains information describing an image associated with the media. This might be a CD or DVD cover, a movie poster, a poster frame, or the like.
@@ -42,8 +37,7 @@ Used to contain information about the current playback position, playback speed,
 [`MediaSessionActionDetails`](mediasessionactiondetails)  
 Provides information needed in order to perform the action that has been requested, including the type of action to perform and any other information needed, such as seek distances or times.
 
-Examples
---------
+## Examples
 
 The following example shows feature detection for the Media Session API. It then instantiates a metadata object for the session, and adds action handlers for the user control actions:
 
@@ -84,13 +78,11 @@ Some user agents disable autoplay for media elements on mobile devices and requi
       .catch(error => { console.log(error) });
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediasession/">Media Session Standard</a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

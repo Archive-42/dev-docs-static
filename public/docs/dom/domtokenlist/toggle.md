@@ -1,10 +1,8 @@
-DOMTokenList.toggle()
-=====================
+# DOMTokenList.toggle()
 
 The `toggle()` method of the [`DOMTokenList`](../domtokenlist) interface removes a given `token` from the list and returns `false`. If `token` doesn't exist it's added and the function returns `true`.
 
-Syntax
-------
+## Syntax
 
     tokenList.toggle(token [, force]);
 
@@ -13,15 +11,14 @@ Syntax
 `token`  
 A [`DOMString`](../domstring) representing the token you want to toggle.
 
- `force` <span class="badge inline optional">Optional</span>   
-If included, turns the toggle into a one way-only operation. If set to `false`, then `token` will *only* be removed, but not added. If set to `true`, then `token` will *only* be added, but not removed.
+`force` <span class="badge inline optional">Optional</span>  
+If included, turns the toggle into a one way-only operation. If set to `false`, then `token` will _only_ be removed, but not added. If set to `true`, then `token` will _only_ be added, but not removed.
 
 ### Return value
 
 `true` or `false`, indicating whether `token` is in the list after the call.
 
-Examples
---------
+## Examples
 
 In the following example we retrieve the list of classes set on a [`<span>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span) element as a `DOMTokenList` using [`Element.classList`](../element/classlist). We then replace a token in the list, and write the list into the `<span>`'s [`Node.textContent`](../node/textcontent).
 
@@ -46,14 +43,12 @@ Now the JavaScript:
 
 The output looks like this:
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-domtokenlist-toggle">DOM<br />
 <span class="small">The definition of 'toggle()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

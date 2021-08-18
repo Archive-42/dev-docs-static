@@ -1,13 +1,11 @@
-FileReader.readAsBinaryString()
-===============================
+# FileReader.readAsBinaryString()
 
 The `readAsBinaryString` method is used to start reading the contents of the specified [`Blob`](../blob) or [`File`](../file). When the read operation is finished, the [`readyState`](readystate) becomes `DONE`, and the `loadend` is triggered. At that time, the [`result`](result) attribute contains the raw binary data from the file.
 
 Note that this method was once removed from the File API specification, but re-introduced for backward compatibility.  
 Using [`FileReader.readAsArrayBuffer()`](readasarraybuffer) is recommended.
 
-Syntax
-------
+## Syntax
 
     instanceOfFileReader.readAsBinaryString(blob);
 
@@ -16,8 +14,7 @@ Syntax
 `blob`  
 The [`Blob`](../blob) or [`File`](../file) from which to read.
 
-Example
--------
+## Example
 
     var canvas = document.createElement('canvas');
     var height = 200;
@@ -43,14 +40,12 @@ Example
       reader.readAsBinaryString(blob);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/FileAPI/#readAsBinaryString">File API<br />
 <span class="small">The definition of 'readAsBinaryString' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -106,9 +101,8 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [`FileReader`](../filereader)
+- [`FileReader`](../filereader)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsBinaryString" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsBinaryString</a>

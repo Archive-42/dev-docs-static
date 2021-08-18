@@ -1,10 +1,8 @@
-HTMLImageElement.height
-=======================
+# HTMLImageElement.height
 
 The `height` property of the [`HTMLImageElement`](../htmlimageelement) interface indicates the height at which the image is drawn, in <span class="page-not-created">CSS pixels</span> if the image is being drawn or rendered to any visual medium such as the screen or a printer; otherwise, it's the natural, pixel density corrected height of the image.
 
-Syntax
-------
+## Syntax
 
     htmlImageElement.height = newHeight;
     let height = htmlImageElement.height;
@@ -13,11 +11,10 @@ Syntax
 
 An integer value indicating the height of the image. The terms in which the height is defined depends on whether the image is being rendered to a visual medium or not.
 
--   If the image is being rendered to a visual medium such as a screen or printer, the height is expressed in <span class="page-not-created">CSS pixels</span>.
--   Otherwise, the image's height is represented using its natural (intrinsic) height, adjusted for the display density as indicated by [`naturalHeight`](naturalheight).
+- If the image is being rendered to a visual medium such as a screen or printer, the height is expressed in <span class="page-not-created">CSS pixels</span>.
+- Otherwise, the image's height is represented using its natural (intrinsic) height, adjusted for the display density as indicated by [`naturalHeight`](naturalheight).
 
-Example
--------
+## Example
 
 In this example, two different sizes are provided for an image of a clock using the [`srcset`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-srcset) attribute. One is 200px wide and the other is 400px wide. Further, the [`sizes`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-sizes) attribute is provided to specify the width at which the image should be drawn given the viewport's width.
 
@@ -48,14 +45,12 @@ The JavaScript code looks at the `height` to determine the height of the image g
 
 This example may be easier to try out [in its own window](https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/HTMLImageElement/height/_samples_/Example).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-img-height">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLImageElement.height' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,25 +1,22 @@
-MediaSessionActionDetails
-=========================
+# MediaSessionActionDetails
 
 The [Media Session API'](media_session_api)s `MediaSessionActionDetails` dictionary is the type used by the sole input parameter into the callback which is executed when a [media session action](#media_action_types) occurs. It specifies the type of action which needs to be performed as well as the data needed to perform the action.
 
-Properties
-----------
+## Properties
 
 [`action`](mediasessionactiondetails/action)  
 A [Media Session action type](mediasessionaction) string taken from the `MediaSessionAction` enumerated type, indicating which type of action needs to be performed. See [Media action types](#media_action_types) below for possible values.
 
- [`fastSeek`](mediasessionactiondetails/fastseek) <span class="badge inline optional">Optional</span>   
-An `seekto` action may *optionally* include this property, which is a Boolean value indicating whether or not to perform a "fast" seek. A "fast" seek is a seek being performed in a rapid sequence, such as when fast-forwarding or reversing through the media, rapidly skipping through it. This property can be used to indicate that you should use the shortest possible method to seek the media. `fastSeek` is not included on the final action in the seek sequence in this situation.
+[`fastSeek`](mediasessionactiondetails/fastseek) <span class="badge inline optional">Optional</span>  
+An `seekto` action may _optionally_ include this property, which is a Boolean value indicating whether or not to perform a "fast" seek. A "fast" seek is a seek being performed in a rapid sequence, such as when fast-forwarding or reversing through the media, rapidly skipping through it. This property can be used to indicate that you should use the shortest possible method to seek the media. `fastSeek` is not included on the final action in the seek sequence in this situation.
 
- [`seekOffset`](mediasessionactiondetails/seekoffset) <span class="badge inline optional">Optional</span>   
+[`seekOffset`](mediasessionactiondetails/seekoffset) <span class="badge inline optional">Optional</span>  
 If the `action` is either `seekforward` or `seekbackward` and this property is present, it is a floating point value which indicates the number of seconds to move the play position forward or backward. If this property isn't present, those actions should choose a reasonable default distance to skip forward or backward (such as 7 or 10 seconds).
 
- [`seekTime`](mediasessionactiondetails/seektime) <span class="badge inline optional">Optional</span>   
+[`seekTime`](mediasessionactiondetails/seektime) <span class="badge inline optional">Optional</span>  
 If the `action` is `seekto`, this property must be present and must be a floating-point value indicating the absolute time within the media to move the playback position to, where 0 indicates the beginning of the media. This property is not present for other action types.
 
-Media action types
-------------------
+## Media action types
 
 A media session action's type is specified using a string from the `MediaSessionAction` enumerated type.
 
@@ -54,8 +51,7 @@ Skips past the currently playing advertisement or commercial. This action may or
 `stop`  
 Halts playback entirely.
 
-Examples
---------
+## Examples
 
 ### Adding action handlers
 
@@ -118,14 +114,12 @@ In this example, instead of seeking a specified distance, the `seekforward` and 
       }
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediasession/#dictdef-mediasessionactiondetails">Media Session Standard<br />
 <span class="small">The definition of 'MediaSessionActionDetails' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-GeolocationCoordinates
-======================
+# GeolocationCoordinates
 
 **Secure context**
 
@@ -7,45 +6,41 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `GeolocationCoordinates` interface represents the position and altitude of the device on Earth, as well as the accuracy with which these properties are calculated.
 
-Properties
-----------
+## Properties
 
-*The `GeolocationCoordinates` interface doesn't inherit any properties.*
+_The `GeolocationCoordinates` interface doesn't inherit any properties._
 
- [`GeolocationCoordinates.latitude`](geolocationcoordinates/latitude) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>   
+[`GeolocationCoordinates.latitude`](geolocationcoordinates/latitude) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>  
 Returns a `double` representing the position's latitude in decimal degrees.
 
- [`GeolocationCoordinates.longitude`](geolocationcoordinates/longitude) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>   
+[`GeolocationCoordinates.longitude`](geolocationcoordinates/longitude) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>  
 Returns a `double` representing the position's longitude in decimal degrees.
 
- [`GeolocationCoordinates.altitude`](geolocationcoordinates/altitude) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>   
+[`GeolocationCoordinates.altitude`](geolocationcoordinates/altitude) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>  
 Returns a `double` representing the position's altitude in meters, relative to sea level. This value can be `null` if the implementation cannot provide the data.
 
- [`GeolocationCoordinates.accuracy`](geolocationcoordinates/accuracy) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>   
+[`GeolocationCoordinates.accuracy`](geolocationcoordinates/accuracy) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>  
 Returns a `double` representing the accuracy of the `latitude` and `longitude` properties, expressed in meters.
 
- [`GeolocationCoordinates.altitudeAccuracy`](geolocationcoordinates/altitudeaccuracy) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>   
+[`GeolocationCoordinates.altitudeAccuracy`](geolocationcoordinates/altitudeaccuracy) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>  
 Returns a `double` representing the accuracy of the `altitude` expressed in meters. This value can be `null`.
 
- [`GeolocationCoordinates.heading`](geolocationcoordinates/heading) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>   
+[`GeolocationCoordinates.heading`](geolocationcoordinates/heading) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>  
 Returns a `double` representing the direction towards which the device is facing. This value, specified in degrees, indicates how far off from heading true north the device is. `0` degrees represents true north, and the direction is determined clockwise (which means that east is `90` degrees and west is `270` degrees). If `speed` is `0`, `heading` is `NaN`. If the device is unable to provide `heading` information, this value is `null`.
 
- [`GeolocationCoordinates.speed`](geolocationcoordinates/speed) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>   
+[`GeolocationCoordinates.speed`](geolocationcoordinates/speed) <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>  
 Returns a `double` representing the velocity of the device in meters per second. This value can be `null`.
 
-Methods
--------
+## Methods
 
-*The `GeolocationCoordinates` interface neither implements, nor inherits any method.*
+_The `GeolocationCoordinates` interface neither implements, nor inherits any method._
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/geolocation-api/#coordinates_interface">Geolocation API<br />
 <span class="small">The definition of 'GeolocationCoordinates' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -351,10 +346,9 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   [Using the Geolocation API](geolocation_api/using_the_geolocation_api)
--   [`Geolocation`](geolocation)
+- [Using the Geolocation API](geolocation_api/using_the_geolocation_api)
+- [`Geolocation`](geolocation)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates</a>

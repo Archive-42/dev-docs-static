@@ -1,14 +1,12 @@
-GlobalEventHandlers
-===================
+# GlobalEventHandlers
 
 The `GlobalEventHandlers` mixin describes the event handlers common to several interfaces like [`HTMLElement`](htmlelement), [`Document`](document), or [`Window`](window). Each of these interfaces can, of course, add more event handlers in addition to the ones listed below.
 
 **Note**: `GlobalEventHandlers` is a mixin and not an interface; you can't actually create an object of type `GlobalEventHandlers`.
 
-Properties
-----------
+## Properties
 
-*This interface doesn't include any properties except for the event handlers listed below.*
+_This interface doesn't include any properties except for the event handlers listed below._
 
 ### Event handlers
 
@@ -17,19 +15,19 @@ These event handlers are defined on the [`GlobalEventHandlers`](globaleventhandl
 [`GlobalEventHandlers.onabort`](globaleventhandlers/onabort)  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the [`abort`](htmlmediaelement/abort_event) event is raised.
 
- [`GlobalEventHandlers.onanimationcancel`](globaleventhandlers/onanimationcancel) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`GlobalEventHandlers.onanimationcancel`](globaleventhandlers/onanimationcancel) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 An [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) called when an `animationcancel` event is sent, indicating that a running [CSS animation](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) has been canceled.
 
- [`GlobalEventHandlers.onanimationend`](globaleventhandlers/onanimationend) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`GlobalEventHandlers.onanimationend`](globaleventhandlers/onanimationend) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 An [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) called when an `animationend` event is sent, indicating that a [CSS animation](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) has stopped playing.
 
- [`GlobalEventHandlers.onanimationiteration`](globaleventhandlers/onanimationiteration) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`GlobalEventHandlers.onanimationiteration`](globaleventhandlers/onanimationiteration) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 An [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) called when an `animationiteration` event has been sent, indicating that a [CSS animation](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) has begun playing a new iteration of the animation sequence.
 
- [`GlobalEventHandlers.onanimationstart`](globaleventhandlers/onanimationstart) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`GlobalEventHandlers.onanimationstart`](globaleventhandlers/onanimationstart) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 An [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) called when an `animationstart` event is sent, indicating that a [CSS animation](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) has started playing.
 
- [`GlobalEventHandlers.onauxclick`](globaleventhandlers/onauxclick) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`GlobalEventHandlers.onauxclick`](globaleventhandlers/onauxclick) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 An [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) called when an `auxclick` event is sent, indicating that a non-primary button has been pressed on an input device (e.g. a middle mouse button).
 
 [`GlobalEventHandlers.onblur`](globaleventhandlers/onblur)  
@@ -77,7 +75,7 @@ Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event
 [`GlobalEventHandlers.ondragenter`](globaleventhandlers/ondragenter)  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `dragenter` event is raised.
 
- [`GlobalEventHandlers.ondragexit`](globaleventhandlers/ondragleave) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`GlobalEventHandlers.ondragexit`](globaleventhandlers/ondragleave) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `dragexit` event is raised.
 
 [`GlobalEventHandlers.ondragleave`](globaleventhandlers/ondragleave)  
@@ -161,7 +159,7 @@ Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event
 [`GlobalEventHandlers.onmouseup`](globaleventhandlers/onmouseup)  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `mouseup` event is raised.
 
- [`GlobalEventHandlers.onmousewheel`](globaleventhandlers/onmousewheel) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`GlobalEventHandlers.onmousewheel`](globaleventhandlers/onmousewheel) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `mousewheel` event is raised. Deprecated. Use `onwheel` instead.
 
 [`GlobalEventHandlers.onwheel`](globaleventhandlers/onwheel)  
@@ -200,10 +198,10 @@ Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event
 [`GlobalEventHandlers.onpointerleave`](globaleventhandlers/onpointerleave)  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `pointerleave` event is raised.
 
- <span class="page-not-created">`GlobalEventHandlers.onpointerlockchange`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`GlobalEventHandlers.onpointerlockchange`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `pointerlockchange` event is raised.
 
- <span class="page-not-created">`GlobalEventHandlers.onpointerlockerror`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`GlobalEventHandlers.onpointerlockerror`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `pointerlockerror` event is raised.
 
 <span class="page-not-created">`GlobalEventHandlers.onprogress`</span>  
@@ -236,10 +234,10 @@ Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event
 [`GlobalEventHandlers.onselectionchange`](globaleventhandlers/onselectionchange)  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `selectionchange` event is raised, i.e. when the text selected on a web page changes.
 
- <span class="page-not-created">`GlobalEventHandlers.onshow`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`GlobalEventHandlers.onshow`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `show` event is raised.
 
- <span class="page-not-created">`GlobalEventHandlers.onsort`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+<span class="page-not-created">`GlobalEventHandlers.onsort`</span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `sort` event is raised.
 
 <span class="page-not-created">`GlobalEventHandlers.onstalled`</span>  
@@ -257,16 +255,16 @@ Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event
 <span class="page-not-created">`GlobalEventHandlers.onvolumechange`</span>  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `volumechange` event is raised.
 
- [`GlobalEventHandlers.ontouchcancel`](globaleventhandlers/ontouchcancel) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`GlobalEventHandlers.ontouchcancel`](globaleventhandlers/ontouchcancel) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `touchcancel` event is raised.
 
- [`GlobalEventHandlers.ontouchend`](globaleventhandlers/ontouchend) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`GlobalEventHandlers.ontouchend`](globaleventhandlers/ontouchend) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `touchend` event is raised.
 
- [`GlobalEventHandlers.ontouchmove`](globaleventhandlers/ontouchmove) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`GlobalEventHandlers.ontouchmove`](globaleventhandlers/ontouchmove) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `touchmove` event is raised.
 
- [`GlobalEventHandlers.ontouchstart`](globaleventhandlers/ontouchstart) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`GlobalEventHandlers.ontouchstart`](globaleventhandlers/ontouchstart) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `touchstart` event is raised.
 
 [`GlobalEventHandlers.ontransitioncancel`](globaleventhandlers/ontransitioncancel)  
@@ -284,13 +282,11 @@ An [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_ha
 <span class="page-not-created">`GlobalEventHandlers.onwaiting`</span>  
 Is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) representing the code to be called when the `waiting` event is raised.
 
-Methods
--------
+## Methods
 
-*This interface defines no methods.*
+_This interface defines no methods._
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/selection-api/">Selection API<br />
 <span class="small">The definition of 'Extension to GlobalEventHandlers' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Adds <code>onselectionchange.</code></td></tr><tr class="even"><td><a href="https://w3c.github.io/pointerlock/#extensions-to-the-document-interface">Pointer Lock<br />
@@ -299,8 +295,7 @@ Specifications
 <span class="small">The definition of 'GlobalEventHandlers' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Snapshot of <a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a>. Added <code>onsort</code> since the <a href="https://www.w3.org/TR/html52/">HTML5</a> snapshot.</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/html52/#globaleventhandlers">HTML5<br />
 <span class="small">The definition of 'GlobalEventHandlers' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Snapshot of <a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a>. Creation of <code>GlobalEventHandlers</code> (properties where on the target before it).</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -2952,11 +2947,10 @@ No
 
 2.0
 
-See also
---------
+## See also
 
--   [`Element`](element)
--   [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers)
--   [`Event`](event)
+- [`Element`](element)
+- [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers)
+- [`Event`](event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers</a>

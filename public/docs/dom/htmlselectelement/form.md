@@ -1,15 +1,12 @@
-HTMLSelectElement.form
-======================
+# HTMLSelectElement.form
 
 The `HTMLSelectElement.form` read-only property returns a [`HTMLFormElement`](../htmlformelement) representing the form that this element is associated with. If the element is not associated with of a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element, then it returns `null`.
 
-Syntax
-------
+## Syntax
 
     aForm = aSelectElement.form.selectname;
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -34,15 +31,13 @@ A property available on all form elements, "type" returns the type of the callin
     }
     </script>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-fae-form">HTML Living Standard<br />
 <span class="small">The definition of 'form' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/forms.html#dom-select-form">HTML5<br />
 <span class="small">The definition of 'HTMLSelectElement' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition, snapshot of <a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a>.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

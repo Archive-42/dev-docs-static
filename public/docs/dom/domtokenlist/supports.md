@@ -1,5 +1,4 @@
-DOMTokenList.supports()
-=======================
+# DOMTokenList.supports()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `supports()` method of the [`DOMTokenList`](../domtokenlist) interface returns `true` if a given `token` is in the associated attribute's supported tokens. This method is intended to support feature detection.
 
-Syntax
-------
+## Syntax
 
     let trueOrFalse = element.supports(token)
 
@@ -22,8 +20,7 @@ A [`DOMString`](../domstring) containing the token to query for.
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the token was found.
 
-Example
--------
+## Example
 
     let iframe = document.getElementById('display');
 
@@ -40,13 +37,11 @@ Example
       //
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-credential-management/">Credential Management Level 1</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-IntersectionObserverEntry.boundingClientRect
-============================================
+# IntersectionObserverEntry.boundingClientRect
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The [`IntersectionObserverEntry`](../intersectionobserverentry) interface's read-only `boundingClientRect` property returns a [`DOMRectReadOnly`](../domrectreadonly) which in essence describes a rectangle describing the smallest rectangle that contains the entire target element.
 
-Syntax
-------
+## Syntax
 
     var boundsRect = IntersectionObserverEntry.boundingClientRect;
 
@@ -19,14 +17,12 @@ A [`DOMRectReadOnly`](../domrectreadonly) which describes the smallest rectangle
 
 In the general case, however, it's safe to think of this as the bounds rectangle of the target element.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/IntersectionObserver/#dom-intersectionobserverentry-boundingclientrect">Intersection Observer<br />
 <span class="small">The definition of 'IntersectionObserverEntry.boundingClientRect' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,20 +1,17 @@
-HTMLAnchorElement.hash
-======================
+# HTMLAnchorElement.hash
 
 The `HTMLAnchorElement.hash` property returns a [`USVString`](../usvstring) containing a `'#'` followed by the fragment identifier of the URL.
 
 The fragment is not [percent-decoded](https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding). If the URL does not have a fragment identifier, this property contains an empty string, `""`.
 
-Syntax
-------
+## Syntax
 
     // Getter
     string = anchor.hash;
     // Setter
     anchor.hash = string;
 
-Examples
---------
+## Examples
 
 ### Getting the hash from an anchor link
 
@@ -27,14 +24,12 @@ you can get the hash of the anchor like this:
     const anchor = document.getElementById("myAnchor");
     anchor.hash; // returns '#Examples'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-hyperlink-hash">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLHyperlinkElementUtils.hash' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -94,9 +89,8 @@ From Firefox 29 to Firefox 40, the returned value was incorrectly percent-decode
 
 1.0
 
-See also
---------
+## See also
 
--   The [`HTMLAnchorElement`](../htmlanchorelement) interface it belongs to.
+- The [`HTMLAnchorElement`](../htmlanchorelement) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/hash" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/hash</a>

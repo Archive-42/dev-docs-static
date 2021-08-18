@@ -1,5 +1,4 @@
-Element: keyup event
-====================
+# Element: keyup event
 
 The `keyup` event is fired when a key is released.
 
@@ -16,8 +15,7 @@ Since Firefox 65, the `keyup` and `keydown` events are now fired during IME comp
       // do something
     });
 
-Examples
---------
+## Examples
 
 ### addEventListener keyup example
 
@@ -39,13 +37,11 @@ This example logs the [`KeyboardEvent.code`](../keyboardevent/code) value whenev
 
     input.onkeyup = logKey;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-keyup">UI Events</a></td><td><span class="spec-wd">Working Draft</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -101,12 +97,11 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   `input`
--   `keydown`
--   `keypress`
--   [Document `keyup` event](../document/keyup_event)
+- `input`
+- `keydown`
+- `keypress`
+- [Document `keyup` event](../document/keyup_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/keyup_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/keyup_event</a>

@@ -1,12 +1,10 @@
-HTMLTableElement.createCaption()
-================================
+# HTMLTableElement.createCaption()
 
 The `HTMLTableElement.createCaption()` method returns the [`<caption>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption) element associated with a given [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table). If no `<caption>` element exists on the table, this method creates it, and then returns it.
 
 **Note:** If no caption exists, `createCaption()` inserts a new caption directly into the table. The caption does not need to be added separately as would be the case if [`Document.createElement()`](../document/createelement) had been used to create the new `<caption>` element.
 
-Syntax
-------
+## Syntax
 
     HTMLTableElement = table.createCaption();
 
@@ -14,8 +12,7 @@ Syntax
 
 [`HTMLTableCaptionElement`](../htmltablecaptionelement)
 
-Example
--------
+## Example
 
 This example uses JavaScript to add a caption to a table that initially lacks one.
 
@@ -34,14 +31,12 @@ This example uses JavaScript to add a caption to a table that initially lacks on
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-table-createcaption">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLTableElement: createCaption' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-KeyboardEvent.keyCode
-=====================
+# KeyboardEvent.keyCode
 
 **Deprecated**
 
@@ -11,8 +10,7 @@ You should avoid using this if possible; it's been deprecated for some time. Ins
 
 Web developers shouldn't use the `keyCode` attribute for printable characters when handling `keydown` and `keyup` events. As described above, the `keyCode` attribute is not useful for printable characters, especially those input with the Shift or Alt key pressed. When implementing a shortcut key handler, the `keypress` event is usually better (at least when Gecko is the runtime in use). See [Gecko Keypress Event](https://developer.mozilla.org/en-US/docs/Gecko_Keypress_Event) for details.
 
-Example
--------
+## Example
 
     window.addEventListener("keydown", function (event) {
       if (event.defaultPrevented) {
@@ -32,14 +30,12 @@ Example
       }
     }, true);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#widl-KeyboardEvent-keyCode">Document Object Model (DOM) Level 3 Events Specification<br />
 <span class="small">The definition of 'KeyboardEvent.keyCode' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition; specified as deprecated</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -95,8 +91,7 @@ Samsung Internet
 
 1.5
 
-Value of keyCode
-----------------
+## Value of keyCode
 
 ### Printable keys in standard position
 
@@ -1505,7 +1500,7 @@ Greek
 
 \*4
 
-`0xDC (220)`  
+`0xDC (220)`
 
 \*4
 
@@ -3463,8 +3458,7 @@ Gecko 29
 
 \* Recent Mac doesn't have `"NumLock"` key and state. Therefore, unlocked state isn't available.
 
-Constants for keyCode value
----------------------------
+## Constants for keyCode value
 
 Gecko defines a lot of `keyCode` values in `KeyboardEvent` for making the mapping table explicitly. These values are useful for add-on developers of Firefox, but not so useful in public web pages.
 

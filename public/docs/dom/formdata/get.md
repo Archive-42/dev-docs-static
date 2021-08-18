@@ -1,12 +1,10 @@
-FormData.get()
-==============
+# FormData.get()
 
 The `get()` method of the [`FormData`](../formdata) interface returns the first value associated with a given key from within a `FormData` object. If you expect multiple values and want all of them, use the [`getAll()`](getall) method instead.
 
 **Note**: This method is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     formData.get(name);
 
@@ -19,8 +17,7 @@ A [`USVString`](../usvstring) representing the name of the key you want to retri
 
 A [`FormDataEntryValue`](../formdataentryvalue) containing the value. If the key doesn't exist, the method returns null.
 
-Example
--------
+## Example
 
 The following line creates an empty `FormData` object:
 
@@ -35,14 +32,12 @@ The following `get()` function will only return the first `username` value appen
 
     formData.get('username'); // Returns "Chris"
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://xhr.spec.whatwg.org/#dom-formdata-get">XMLHttpRequest<br />
 <span class="small">The definition of 'get()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -98,12 +93,11 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [`XMLHTTPRequest`](../xmlhttprequest)
--   [Using XMLHttpRequest](../xmlhttprequest/using_xmlhttprequest)
--   [Using FormData objects](using_formdata_objects)
--   [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
+- [`XMLHTTPRequest`](../xmlhttprequest)
+- [Using XMLHttpRequest](../xmlhttprequest/using_xmlhttprequest)
+- [Using FormData objects](using_formdata_objects)
+- [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData/get" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FormData/get</a>

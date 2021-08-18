@@ -1,5 +1,4 @@
-EffectTiming.fill
-=================
+# EffectTiming.fill
 
 **Experimental**
 
@@ -14,8 +13,7 @@ Note that authors are discouraged from using fill modes to persist the effect of
 
 [`Element.animate()`](../element/animate), and [`KeyframeEffect()`](../keyframeeffect/keyframeeffect) accept an object of timing properties including `fill.` The value of `fill` corresponds directly to [`fill`](fill) in [`EffectTiming`](../effecttiming) objects returned by [`getTiming()`](../animationeffect/gettiming) in [`AnimationEffect`](../animationeffect) and [`KeyframeEffect`](../keyframeeffect).
 
-Syntax
-------
+## Syntax
 
     var timingProperties = {
       fill: "none" | "forwards" | "backwards" | "both" | "auto"
@@ -40,8 +38,7 @@ Combining the effects of **both** `forwards` and `backwards`: The animation's ef
 `"auto"`  
 If the animation effect the fill mode is being applied to is a keyframe effect ([`KeyframeEffect`](../keyframeeffect) or [`KeyframeEffectReadOnly`](../keyframeeffect)), `"auto"` is equivalent to `"none"`. Otherwise, the result is `"both"`.
 
-Examples
---------
+## Examples
 
 Here are a few examples.
 
@@ -86,7 +83,7 @@ Now let's check out the JavaScript. First we'll define the two objects that desc
       { transform: "rotate(90deg)" }
     ];
 
-The `boxRotationKeyframes` object is an array of keyframes, each describing the state of the affected element at a point in the animation process. In this case, we have just two keyframes; the first defines what affect is applied to the element *immediately after the animation first begins to play*, and the second defines the effect applied to the element in the *last moment before it ends*. Those phrases are crucial. Let's look at why.
+The `boxRotationKeyframes` object is an array of keyframes, each describing the state of the affected element at a point in the animation process. In this case, we have just two keyframes; the first defines what affect is applied to the element _immediately after the animation first begins to play_, and the second defines the effect applied to the element in the _last moment before it ends_. Those phrases are crucial. Let's look at why.
 
 The first keyframe says that when the animation begins, the element should be rotated 90° to the left. That means that unless we specify otherwise using the `fill` property, the instant the animation is started the element will be rotated to the left 90°, and then it will animate smoothly from there. Since by default the box isn't rotated,
 
@@ -136,13 +133,12 @@ In the [Follow the White Rabbit](https://codepen.io/rachelnabors/pen/eJyWzm?edit
     // Set up the rabbit's animation to play on command by calling rabbitDownAnimation.play() later
     var rabbitDownAnimation = new Animation(rabbitDownKeyframes, document.timeline);
 
-Alternatives to fill modes
---------------------------
+## Alternatives to fill modes
 
 Fill modes are primarily provided as a means of representing the [animation-fill-mode](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode) feature of CSS animations. When used to persist the effect of an animation indefinitely, however, they have a number of drawbacks:
 
--   The forwards fill of an animation (or backwards fill if the animation is playing in reverse) will continue to override any changes to specified style indefinitely which can lead to confusing behavior. This is because animations take priority in the [CSS cascade](https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade#cascading_order) over normal author styles.
--   In order to avoid leaking memory when many filling animations overlap, the browser is required to remove overlapped animations which can lead to surprising results in some cases.
+- The forwards fill of an animation (or backwards fill if the animation is playing in reverse) will continue to override any changes to specified style indefinitely which can lead to confusing behavior. This is because animations take priority in the [CSS cascade](https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade#cascading_order) over normal author styles.
+- In order to avoid leaking memory when many filling animations overlap, the browser is required to remove overlapped animations which can lead to surprising results in some cases.
 
 Rather than using fill modes to persist an animation, it is often simpler to set the final value of the animation effect directly in specified style:
 
@@ -150,7 +146,7 @@ Rather than using fill modes to persist an animation, it is often simpler to set
       elem.style.transform = 'translateY(100px)';
     });
 
-Alternatively, it may be simpler still to set the final value in specified style before triggering the animation and then animate *from* the start value. This is the approach used in [FLIP animation](https://aerotwist.com/blog/flip-your-animations/).
+Alternatively, it may be simpler still to set the final value in specified style before triggering the animation and then animate _from_ the start value. This is the approach used in [FLIP animation](https://aerotwist.com/blog/flip-your-animations/).
 
     elem.style.transform = 'translateY(100px)';
     elem.animate({ transform: 'none', offset: 0 }, 200);
@@ -169,14 +165,12 @@ For some complex effects where animations layer on top of one another, it may be
       animation.cancel();
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/web-animations-1/#enumdef-fillmode">Web Animations<br />
 <span class="small">The definition of 'fill' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Editor's draft.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -232,12 +226,11 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [Web Animations API](../web_animations_api)
--   [`Element.animate()`](../element/animate) and [`KeyframeEffect.KeyframeEffect()`](../keyframeeffect/keyframeeffect) both accept an object of timing properties including this one.
--   The value of this property corresponds to the one in [`EffectTiming`](../effecttiming) as returned by [`getTiming()`](../animationeffect/gettiming) in [`AnimationEffect`](../animationeffect) and [`KeyframeEffect`](../keyframeeffect).
--   CSS's `animation-fill-mode`
+- [Web Animations API](../web_animations_api)
+- [`Element.animate()`](../element/animate) and [`KeyframeEffect.KeyframeEffect()`](../keyframeeffect/keyframeeffect) both accept an object of timing properties including this one.
+- The value of this property corresponds to the one in [`EffectTiming`](../effecttiming) as returned by [`getTiming()`](../animationeffect/gettiming) in [`AnimationEffect`](../animationeffect) and [`KeyframeEffect`](../keyframeeffect).
+- CSS's `animation-fill-mode`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/fill" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/fill</a>

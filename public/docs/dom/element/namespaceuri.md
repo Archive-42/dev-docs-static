@@ -1,15 +1,12 @@
-Element.namespaceURI
-====================
+# Element.namespaceURI
 
 The `Element.namespaceURI` read-only property returns the namespace URI of the element, or `null` if the element is not in a namespace.
 
-Syntax
-------
+## Syntax
 
     namespace = element.namespaceURI
 
-Example
--------
+## Example
 
 In this snippet, an element is being examined for its <span class="page-not-created">`localName`</span> and its `namespaceURI`. If the `namespaceURI` returns the XUL namespace and the `localName` returns "browser", then the node is understood to be a XUL `<browser/>`.
 
@@ -18,8 +15,7 @@ In this snippet, an element is being examined for its <span class="page-not-crea
       // this is a XUL browser
     }
 
-Notes
------
+## Notes
 
 This is not a computed value that is the result of a namespace lookup based on an examination of the namespace declarations in scope. The namespace URI of a node is frozen at the node creation time.
 
@@ -29,14 +25,12 @@ You can create an element with the specified `namespaceURI` using the DOM Level 
 
 The DOM does not handle or enforce namespace validation per se. It is up to the DOM application to do any validation necessary. Also note that the namespace prefix, once it is associated with a particular element, cannot be changed.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-element-namespaceuri">DOM<br />
 <span class="small">The definition of 'Element: namespaceURI' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -92,11 +86,10 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`Element.localName`](localname)
--   [`Element.prefix`](prefix)
--   [`Attr.namespaceURI`](../attr/namespaceuri)
+- [`Element.localName`](localname)
+- [`Element.prefix`](prefix)
+- [`Attr.namespaceURI`](../attr/namespaceuri)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/namespaceURI" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/namespaceURI</a>

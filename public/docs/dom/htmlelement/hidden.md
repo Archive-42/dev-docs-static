@@ -1,24 +1,22 @@
-HTMLElement.hidden
-==================
+# HTMLElement.hidden
 
 The [`HTMLElement`](../htmlelement) property `hidden` is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) which is `true` if the element is hidden; otherwise the value is `false`. This is quite different from using the CSS property [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display) to control the visibility of an element. The `hidden` property applies to all presentation modes and should not be used to hide content that is meant to be directly accessible to the user.
 
 Appropriate use cases for `hidden` include:
 
--   Content that isn't yet relevant but may be needed later
--   Content that was previously needed but is not any longer
--   Content that is reused by other parts of the page in a template-like fashion
--   Creating an offscreen canvas as a drawing buffer
+- Content that isn't yet relevant but may be needed later
+- Content that was previously needed but is not any longer
+- Content that is reused by other parts of the page in a template-like fashion
+- Creating an offscreen canvas as a drawing buffer
 
 Inappropriate use cases include:
 
--   Hiding panels in a tabbed dialog box
--   Hiding content in one presentation while intending it to be visible in others
+- Hiding panels in a tabbed dialog box
+- Hiding content in one presentation while intending it to be visible in others
 
 Elements that are not `hidden` must not link to elements which are.
 
-Syntax
-------
+## Syntax
 
     isHidden = HTMLElement.hidden;
 
@@ -28,8 +26,7 @@ Syntax
 
 A Boolean which is `true` if the element is hidden from view; otherwise, the value is `false`.
 
-Example
--------
+## Example
 
 Here's an example where a hidden block is used to contain a thank you message that is displayed after a user agrees to an unusual request.
 
@@ -92,16 +89,14 @@ The content is styled using the CSS below.
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/interaction.html#dom-hidden">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLElement.hidden' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/editing.html#the-hidden-attribute">HTML 5.1<br />
 <span class="small">The definition of 'HTMLElement.hidden' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/html52/editing.html#the-hidden-attribute">HTML5<br />
 <span class="small">The definition of 'HTMLElement.hidden' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -157,10 +152,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`hidden`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-hidden) attribute
--   [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display)
+- [`hidden`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-hidden) attribute
+- [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/hidden" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/hidden</a>

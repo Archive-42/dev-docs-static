@@ -1,5 +1,4 @@
-FileSystemDirectoryReader.readEntries()
-=======================================
+# FileSystemDirectoryReader.readEntries()
 
 **Deprecated**
 
@@ -16,8 +15,7 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 The [`FileSystemDirectoryReader`](../filesystemdirectoryreader) interface's `readEntries()` method retrieves the directory entries within the directory being read and delivers them in an array to a provided callback function. The objects in the array are all based upon [`FileSystemEntry`](../filesystementry). Generally, they are either [`FileSystemFileEntry`](../filesystemfileentry) objects, which represent standard files, or [`FileSystemDirectoryEntry`](../filesystemdirectoryentry) objects, which represent directories.
 
-Syntax
-------
+## Syntax
 
     readEntries(successCallback[, errorCallback]);
 
@@ -26,15 +24,14 @@ Syntax
 `successCallback`  
 A function which is called when the directory's contents have been retrieved. The function receives a single input parameter: an array of file system entry objects, each based on [`FileSystemEntry`](../filesystementry). Generally, they are either [`FileSystemFileEntry`](../filesystemfileentry) objects, which represent standard files, or [`FileSystemDirectoryEntry`](../filesystemdirectoryentry) objects, which represent directories. If there are no files left, or you've already called `readEntries()` on this [`FileSystemDirectoryReader`](../filesystemdirectoryreader), the array is empty.
 
- `errorCallback` <span class="badge inline optional">Optional</span>   
+`errorCallback` <span class="badge inline optional">Optional</span>  
 A callback function which is called if an error occurs while reading from the directory. It receives one input parameter: a [`FileError`](../fileerror) object describing the error which occurred.
 
 ### Return value
 
 [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined).
 
-Example
--------
+## Example
 
 In this example, a drop zone is created, which responds to the `drop` event by scanning through the dropped files and directories, outputting a hierarchical directory listing.
 
@@ -148,15 +145,13 @@ Then we iterate over the items in the list of dropped items. For each one, we ca
 
 You can see how this works by trying it out below. Find some files and directories and drag them in, and take a look at the resulting output.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/entries-api/">File and Directory Entries API</a></td><td><span class="spec-draft">Draft</span></td><td>Draft of proposed API</td></tr></tbody></table>
 
 This API has no official W3C or WHATWG specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -214,12 +209,11 @@ No
 
 On Chrome 77, `readEntries()` will only return the first 100 `FileSystemEntry` instances. In order to obtain all of the instances, `readEntries()` must be called multiple times.
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](../file_and_directory_entries_api)
--   [Introduction to the File System API](../file_and_directory_entries_api/introduction)
--   [`FileSystemDirectoryEntry`](../filesystemdirectoryentry)
--   [`FileSystem`](../filesystem)
+- [File and Directory Entries API](../file_and_directory_entries_api)
+- [Introduction to the File System API](../file_and_directory_entries_api/introduction)
+- [`FileSystemDirectoryEntry`](../filesystemdirectoryentry)
+- [`FileSystem`](../filesystem)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryReader/readEntries" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryReader/readEntries</a>

@@ -1,5 +1,4 @@
-MediaKeySystemAccess.keySystem
-==============================
+# MediaKeySystemAccess.keySystem
 
 **Experimental**
 
@@ -8,19 +7,16 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MediaKeySystemAccess.keySystem` read-only property returns a [`DOMString`](../domstring) identifying the key system being used.
 
-Syntax
-------
+## Syntax
 
     var keySystem = mediaKeySystemAccess.keySystem;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemaccess-keysystem">Encrypted Media Extensions<br />
 <span class="small">The definition of 'keySystem' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

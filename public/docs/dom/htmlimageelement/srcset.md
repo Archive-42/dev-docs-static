@@ -1,26 +1,24 @@
-HTMLImageElement.srcset
-=======================
+# HTMLImageElement.srcset
 
 The [`HTMLImageElement`](../htmlimageelement) property `srcset` is a string which identifies one or more **image candidate strings**, separated using commas (`,`) each specifying image resources to use under given circumstances. Each image candidate string contains an image URL and an optional width or pixel density descriptor that indicates the conditions under which that candidate should be used instead of the image specified by the [`src`](src) property.
 
 The `srcset` property, along with the [`sizes`](sizes) property, are a crucial component in designing responsive web sites, as they can be used together to make pages that use appropriate images for the rendering situation.
 
-Syntax
-------
+## Syntax
 
     htmlImageElement.srcset = imageCandidateStrings;
     let srcset = htmlImageElement.srcset;
 
 ### Value
 
-A [`USVString`](../usvstring) containing a comma-separated list of one or more image candidate strings to be used when determining which image resource to present inside the [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element represented by the `HTMLImageElement`*.*
+A [`USVString`](../usvstring) containing a comma-separated list of one or more image candidate strings to be used when determining which image resource to present inside the [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element represented by the `HTMLImageElement`_._
 
 Each image candidate string must begin with a valid URL referencing a non-interactive graphic resource. This is followed by whitespace and then a condition descriptor that indicates the circumstances in which the indicated image should be used. Space characters, other than the whitespace separating the URL and the corresponding condition descriptor, are ignored; this includes both leading and trailing space, as well as space before or after each comma.
 
 If the condition descriptor is not provided (in other words, the image candidate provides only a URL), the candidate is used as the fallback if none of the other candidates match. Otherwise, the condition descriptor may take one of two forms:
 
--   To indicate that the image resource specified by the image candidate string should be used when the image is being rendered with a particular width in pixels, provide a **width descriptor** comprised the number giving that width in pixels followed by the lower case letter "w". For example, to provide an image resource to be used when the renderer needs a 450 pixel wide image, use the width descriptor string `450w`. The specified width must be a positive, non-zero, integer, and *must* match the intrinsic width of the referenced image.
--   Alternatively, you can use a **pixel density descriptor**, which specifies the condition in which the corresponding image resource should be used as the display's pixel density. This is written by stating the pixel density as a positive, non-zero floating-point value followed by the lower-case letter "x". As an example, to state that the corresponding image should be used when the pixel density is double the standard density, you can give the pixel density descriptor `2x` or `2.0x`.
+- To indicate that the image resource specified by the image candidate string should be used when the image is being rendered with a particular width in pixels, provide a **width descriptor** comprised the number giving that width in pixels followed by the lower case letter "w". For example, to provide an image resource to be used when the renderer needs a 450 pixel wide image, use the width descriptor string `450w`. The specified width must be a positive, non-zero, integer, and _must_ match the intrinsic width of the referenced image.
+- Alternatively, you can use a **pixel density descriptor**, which specifies the condition in which the corresponding image resource should be used as the display's pixel density. This is written by stating the pixel density as a positive, non-zero floating-point value followed by the lower-case letter "x". As an example, to state that the corresponding image should be used when the pixel density is double the standard density, you can give the pixel density descriptor `2x` or `2.0x`.
 
 You may mix and match the two types of descriptor. You must not, however, provide multiple image candidate strings that specify the same descriptor. All of the following are valid image candidate strings:
 
@@ -38,8 +36,7 @@ Here, options are provided for an icon at widths of 32px and 64px, as well as at
 
 For more information on what image formats are available for use in the [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element, see [Image file type and format guide](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types).
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -83,14 +80,12 @@ In the displayed output below, the selected URL will correspond with whether you
 
 For additional examples, see our guide to [responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-img-srcset">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLImageElement.srcset' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -146,11 +141,10 @@ No
 
 2.0
 
-See also
---------
+## See also
 
--   [Images in HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Images_in_HTML)
--   [Responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
--   [Image file type and format guide](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types)
+- [Images in HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Images_in_HTML)
+- [Responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
+- [Image file type and format guide](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/srcset" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/srcset</a>

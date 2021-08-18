@@ -1,5 +1,4 @@
-MediaKeyMessageEvent.messageType
-================================
+# MediaKeyMessageEvent.messageType
 
 **Experimental**
 
@@ -8,19 +7,16 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The **MediaKeyMessageEvent.messageType** read-only property indicates the type of message. It may be one of `license-request`, `license-renewal`, `license-release`, or `individualization-request`.
 
-Syntax
-------
+## Syntax
 
     var messageType = mediaKeyMessageEvent.messageType;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-mediakeymessageevent-messagetype">Encrypted Media Extensions<br />
 <span class="small">The definition of 'messageType' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

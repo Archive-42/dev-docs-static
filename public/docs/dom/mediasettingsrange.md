@@ -1,5 +1,4 @@
-MediaSettingsRange
-==================
+# MediaSettingsRange
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MediaSettingsRange` interface of the [MediaStream Image Capture API](mediastream_image_capture_api) provides the possible range and value size of [`PhotoCapabilities.imageHeight`](photocapabilities/imageheight) and [`PhotoCapabilities.imageWidth`](photocapabilities/imagewidth). A [`PhotoCapabilities`](photocapabilities) object can be retrieved by calling <span class="page-not-created">`ImageCapture.PhotoCapabilities()`</span>.
 
-Properties
-----------
+## Properties
 
 [`MediaSettingsRange.max`](mediasettingsrange/max)  
 Returns the maximum value of this settings.
@@ -20,8 +18,7 @@ Returns the minimum value of this setting.
 [`MediaSettingsRange.step`](mediasettingsrange/step)  
 Returns the minimum difference between consecutive values of this setting.
 
-Example
--------
+## Example
 
 The following example, extracted from [Chrome's Image Capture / Photo Resolution Sample](https://googlechrome.github.io/samples/image-capture/photo-resolution.html), uses the results from `getPhotoCapabilities().imageWidth` to modify the size of an input range.
 
@@ -52,14 +49,12 @@ The following example, extracted from [Chrome's Image Capture / Photo Resolution
     })
     .catch(error => console.log('Argh!', error.name || error));
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-image/#mediasettingsrange-section">MediaStream Image Capture<br />
 <span class="small">The definition of 'MediaSettingsRange' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-FontFace.weight
-===============
+# FontFace.weight
 
 **Draft**
 
@@ -12,8 +11,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `weight` property of the [`FontFace`](../fontface) interface retrieves or sets the weight of the font. It is equivalent to the [`font-weight`](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-weight) descriptor.
 
-Syntax
-------
+## Syntax
 
     var weightDescriptor = FontFace.weight;
     FontFace.weight = weightDescriptor;
@@ -22,14 +20,12 @@ Syntax
 
 A [`CSSOMString`](../cssomstring) containing a descriptor as it would be defined in a style sheet's `@font-face` rule.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-font-loading/#dom-fontface-weight">CSS Font Loading Module Level 3<br />
 <span class="small">The definition of 'weight' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

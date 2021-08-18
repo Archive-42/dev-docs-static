@@ -1,5 +1,4 @@
-Gyroscope
-=========
+# Gyroscope
 
 The `Gyroscope` interface of the [Sensor APIs](sensor_apis) provides on each reading the angular velocity of the device along all three axes.
 
@@ -7,26 +6,23 @@ To use this sensor, the user must grant permission to the `'gyroscope'` device s
 
 If a feature policy blocks use of a feature it is because your code is inconsistent with the policies set on your server. This is not something that would ever be shown to a user. See [`Feature-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy) for implementation instructions.
 
-Constructor
------------
+## Constructor
 
 [`Gyroscope.Gyroscope()`](gyroscope/gyroscope)  
 Creates a new `Gyroscope` object.
 
-Properties
-----------
+## Properties
 
- [`Gyroscope.x`](gyroscope/x) <span class="badge inline readonly">Read only </span>   
+[`Gyroscope.x`](gyroscope/x) <span class="badge inline readonly">Read only </span>  
 Returns a double, containing the angular velocity of the device along the device's x axis.
 
- [`Gyroscope.y`](gyroscope/y) <span class="badge inline readonly">Read only </span>   
+[`Gyroscope.y`](gyroscope/y) <span class="badge inline readonly">Read only </span>  
 Returns a double, containing the angular velocity of the device along the device's y axis.
 
- [`Gyroscope.z`](gyroscope/z) <span class="badge inline readonly">Read only </span>   
+[`Gyroscope.z`](gyroscope/z) <span class="badge inline readonly">Read only </span>  
 Returns a double, containing the angular velocity of the device along the device's z axis.
 
-Example
--------
+## Example
 
 The gyroscope is typically read in the [`Sensor.onreading`](sensor/onreading) event callback. In the example below this occurs sixty times a second.
 
@@ -39,14 +35,12 @@ The gyroscope is typically read in the [`Sensor.onreading`](sensor/onreading) ev
     });
     gyroscope.start();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/generic-sensor/">Generic Sensor API</a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Defines sensors in general.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/gyroscope/#gyroscope-interface">Gyroscope<br />
 <span class="small">The definition of 'Gyroscope' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

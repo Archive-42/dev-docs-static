@@ -1,5 +1,4 @@
-GeolocationCoordinates.longitude
-================================
+# GeolocationCoordinates.longitude
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The [`GeolocationCoordinates`](../geolocationcoordinates) interface's read-only `longitude` property is a double-precision floating point value which represents the longitude of a geographical position, specified in decimal degrees. Together with a [`DOMTimeStamp`](../domtimestamp) indicating a time of measurement, the `GeolocationCoordinates` object is part of the [`GeolocationPosition`](../geolocationposition) interface, which is the object type returned by Geolocation API functions that obtain and return a geographical position.
 
-Syntax
-------
+## Syntax
 
     let longitude = geolocationCoordinatesInstance.longitude
 
@@ -18,8 +16,7 @@ The value in `longitude` is the geographical longitude of the location on Earth 
 
 **Note**: The zero meridian (also known as the prime meridian or the reference meridian) is not precisely the same as the Greenwhich meridian that most people think of. It is, instead, the [IERS Reference Meridian](#), which is located 5.3 [arcseconds](https://en.wikipedia.org/wiki/Arcseconds) (102 meters / 335 feet) east of the [Greenwich meridian](https://en.wikipedia.org/wiki/Greenwich_meridian). This is the same standard used by the [Global Positioning System](#) (GPS).
 
-Examples
---------
+## Examples
 
 In this simple example, we fetch the user's location and display the resulting coordinates once they're returned.
 
@@ -63,14 +60,12 @@ The HTML used to present the results looks like this:
 
 Take this example for a test drive here:
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/geolocation-api/#dom-geolocationcoordinates-longitude">Geolocation API<br />
 <span class="small">The definition of 'Coordinates.longitude' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -130,11 +125,10 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [Using the Geolocation API](../geolocation_api/using_the_geolocation_api)
--   The [`GeolocationCoordinates`](../geolocationcoordinates) interface it belongs to.
--   The [`GeolocationPosition`](../geolocationposition) interface, which is the top-level interface used to return geolocation data from the Geolocation API functions [`Geolocation.getCurrentPosition()`](../geolocation/getcurrentposition) and [`watchPosition()`](../geolocation/watchposition).
+- [Using the Geolocation API](../geolocation_api/using_the_geolocation_api)
+- The [`GeolocationCoordinates`](../geolocationcoordinates) interface it belongs to.
+- The [`GeolocationPosition`](../geolocationposition) interface, which is the top-level interface used to return geolocation data from the Geolocation API functions [`Geolocation.getCurrentPosition()`](../geolocation/getcurrentposition) and [`watchPosition()`](../geolocation/watchposition).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates/longitude" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates/longitude</a>

@@ -1,18 +1,15 @@
-HTMLAnchorElement.username
-==========================
+# HTMLAnchorElement.username
 
 The `HTMLAnchorElement.username` property is a [`USVString`](../usvstring) containing the username specified before the domain name.
 
-Syntax
-------
+## Syntax
 
     // Getter
     string = anchor.username;
     // Setter
     anchor.username = string;
 
-Examples
---------
+## Examples
 
 ### Getting the username from an anchor link
 
@@ -20,14 +17,12 @@ Examples
     const anchor = document.getElementByID("myAnchor");
     anchor.username; // returns 'anonymous'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-hyperlink-username">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLHyperlinkElementUtils.username' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -83,9 +78,8 @@ No
 
 2.0
 
-See also
---------
+## See also
 
--   The [`HTMLAnchorElement`](../htmlanchorelement) interface it belongs to.
+- The [`HTMLAnchorElement`](../htmlanchorelement) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/username" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/username</a>

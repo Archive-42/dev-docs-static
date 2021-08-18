@@ -1,5 +1,4 @@
-MediaSession
-============
+# MediaSession
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The `MediaSession` interface of the [Media Session API](media_session_api) allow
 
 For example, a smartphone might have a standard panel in its lock screen that provides controls for media playback and information display. A browser on the device can use `MediaSession` to make browser playback controllable from that standard/global user interface.
 
-Properties
-----------
+## Properties
 
 [`metadata`](mediasession/metadata)  
 Returns an instance of [`MediaMetadata`](mediametadata), which contains rich media metadata for display in a platform UI.
@@ -19,8 +17,7 @@ Returns an instance of [`MediaMetadata`](mediametadata), which contains rich med
 [`playbackState`](mediasession/playbackstate)  
 Indicates whether the current media session is playing. Valid values are `none`, `paused`, or `playing`.
 
-Methods
--------
+## Methods
 
 [`setActionHandler()`](mediasession/setactionhandler)  
 Sets an action handler for a [media session action](mediasessionaction), such as play or pause.
@@ -28,8 +25,7 @@ Sets an action handler for a [media session action](mediasessionaction), such as
 [`setPositionState()`](mediasession/setpositionstate)  
 Sets the current playback position and speed of the media currently being presented.
 
-Examples
---------
+## Examples
 
 The following example creates a new media session and assigns action handlers to it:
 
@@ -95,14 +91,12 @@ The following example sets up two functions for playing and pausing, then uses t
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediasession/#the-mediasession-interface">Media Session Standard<br />
 <span class="small">The definition of 'MediaSession' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,46 +1,44 @@
-Element
-=======
+# Element
 
 `Element` is the most general base class from which all element objects (i.e. objects that represent elements) in a [`Document`](document) inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from `Element`. For example, the [`HTMLElement`](htmlelement) interface is the base interface for HTML elements, while the [`SVGElement`](svgelement) interface is the basis for all SVG elements. Most functionality is specified further down the class hierarchy.
 
 Languages outside the realm of the Web platform, like XUL through the `XULElement` interface, also implement `Element`.
 
-Properties
-----------
+## Properties
 
-*`Element` inherits properties from its parent interface, [`Node`](node), and by extension that interface's parent, [`EventTarget`](eventtarget).*
+_`Element` inherits properties from its parent interface, [`Node`](node), and by extension that interface's parent, [`EventTarget`](eventtarget)._
 
- [`Element.assignedSlot`](element/assignedslot)<span class="badge inline readonly">Read only </span>   
+[`Element.assignedSlot`](element/assignedslot)<span class="badge inline readonly">Read only </span>  
 Returns a [`HTMLSlotElement`](htmlslotelement) representing the [`<slot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) the node is inserted in.
 
- [`Element.attributes`](element/attributes) <span class="badge inline readonly">Read only </span>   
+[`Element.attributes`](element/attributes) <span class="badge inline readonly">Read only </span>  
 Returns a [`NamedNodeMap`](namednodemap) object containing the assigned attributes of the corresponding HTML element.
 
- [`Element.childElementCount`](element/childelementcount) <span class="badge inline readonly">Read only </span>   
+[`Element.childElementCount`](element/childelementcount) <span class="badge inline readonly">Read only </span>  
 Returns the number of child elements of this element.
 
- [`Element.children`](element/children) <span class="badge inline readonly">Read only </span>   
+[`Element.children`](element/children) <span class="badge inline readonly">Read only </span>  
 Returns the child elements of this element.
 
- [`Element.classList`](element/classlist) <span class="badge inline readonly">Read only </span>   
+[`Element.classList`](element/classlist) <span class="badge inline readonly">Read only </span>  
 Returns a [`DOMTokenList`](domtokenlist) containing the list of class attributes.
 
 [`Element.className`](element/classname)  
 Is a [`DOMString`](domstring) representing the class of the element.
 
- [`Element.clientHeight`](element/clientheight) <span class="badge inline readonly">Read only </span>   
+[`Element.clientHeight`](element/clientheight) <span class="badge inline readonly">Read only </span>  
 Returns a [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) representing the inner height of the element.
 
- [`Element.clientLeft`](element/clientleft) <span class="badge inline readonly">Read only </span>   
+[`Element.clientLeft`](element/clientleft) <span class="badge inline readonly">Read only </span>  
 Returns a [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) representing the width of the left border of the element.
 
- [`Element.clientTop`](element/clienttop) <span class="badge inline readonly">Read only </span>   
+[`Element.clientTop`](element/clienttop) <span class="badge inline readonly">Read only </span>  
 Returns a [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) representing the width of the top border of the element.
 
- [`Element.clientWidth`](element/clientwidth) <span class="badge inline readonly">Read only </span>   
+[`Element.clientWidth`](element/clientwidth) <span class="badge inline readonly">Read only </span>  
 Returns a [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) representing the inner width of the element.
 
- [`Element.firstElementChild`](element/firstelementchild) <span class="badge inline readonly">Read only </span>   
+[`Element.firstElementChild`](element/firstelementchild) <span class="badge inline readonly">Read only </span>  
 Returns the first child element of this element.
 
 [`Element.id`](element/id)  
@@ -49,18 +47,18 @@ Is a [`DOMString`](domstring) representing the id of the element.
 [`Element.innerHTML`](element/innerhtml)  
 Is a [`DOMString`](domstring) representing the markup of the element's content.
 
- [`Element.lastElementChild`](element/lastelementchild) <span class="badge inline readonly">Read only </span>   
+[`Element.lastElementChild`](element/lastelementchild) <span class="badge inline readonly">Read only </span>  
 Returns the last child element of this element.
 
- [`Element.localName`](element/localname) <span class="badge inline readonly">Read only </span>   
+[`Element.localName`](element/localname) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) representing the local part of the qualified name of the element.
 
- [`Element.namespaceURI`](element/namespaceuri) <span class="badge inline readonly">Read only </span>   
+[`Element.namespaceURI`](element/namespaceuri) <span class="badge inline readonly">Read only </span>  
 The namespace URI of the element, or `null` if it is no namespace.
 
 **Note:** In Firefox 3.5 and earlier, HTML elements are in no namespace. In later versions, HTML elements are in the `http://www.w3.org/1999/xhtml` namespace in both HTML and XML trees.
 
- [`Element.nextElementSibling`](element/nextelementsibling) <span class="badge inline readonly">Read only </span>   
+[`Element.nextElementSibling`](element/nextelementsibling) <span class="badge inline readonly">Read only </span>  
 Is an [`Element`](element), the element immediately following the given one in the tree, or `null` if there's no sibling node.
 
 [`Element.outerHTML`](element/outerhtml)  
@@ -69,48 +67,48 @@ Is a [`DOMString`](domstring) representing the markup of the element including i
 [`Element.part`](element/part)  
 Represents the part identifier(s) of the element (i.e. set using the `part` attribute), returned as a [`DOMTokenList`](domtokenlist).
 
- [`Element.prefix`](element/prefix) <span class="badge inline readonly">Read only </span>   
+[`Element.prefix`](element/prefix) <span class="badge inline readonly">Read only </span>  
 A [`DOMString`](domstring) representing the namespace prefix of the element, or `null` if no prefix is specified.
 
- [`Element.previousElementSibling`](element/previouselementsibling) <span class="badge inline readonly">Read only </span>   
+[`Element.previousElementSibling`](element/previouselementsibling) <span class="badge inline readonly">Read only </span>  
 Is a [`Element`](element), the element immediately preceding the given one in the tree, or `null` if there is no sibling element.
 
- [`Element.scrollHeight`](element/scrollheight) <span class="badge inline readonly">Read only </span>   
+[`Element.scrollHeight`](element/scrollheight) <span class="badge inline readonly">Read only </span>  
 Returns a [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) representing the scroll view height of an element.
 
 [`Element.scrollLeft`](element/scrollleft)  
 Is a [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) representing the left scroll offset of the element.
 
- [`Element.scrollLeftMax`](element/scrollleftmax) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="badge inline readonly">Read only </span>   
+[`Element.scrollLeftMax`](element/scrollleftmax) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="badge inline readonly">Read only </span>  
 Returns a [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) representing the maximum left scroll offset possible for the element.
 
 [`Element.scrollTop`](element/scrolltop)  
 A [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) representing number of pixels the top of the document is scrolled vertically.
 
- [`Element.scrollTopMax`](element/scrolltopmax) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="badge inline readonly">Read only </span>   
+[`Element.scrollTopMax`](element/scrolltopmax) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="badge inline readonly">Read only </span>  
 Returns a [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) representing the maximum top scroll offset possible for the element.
 
- [`Element.scrollWidth`](element/scrollwidth) <span class="badge inline readonly">Read only </span>   
+[`Element.scrollWidth`](element/scrollwidth) <span class="badge inline readonly">Read only </span>  
 Returns a [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) representing the scroll view width of the element.
 
- [`Element.shadowRoot`](element/shadowroot)<span class="badge inline readonly">Read only </span>   
+[`Element.shadowRoot`](element/shadowroot)<span class="badge inline readonly">Read only </span>  
 Returns the open shadow root that is hosted by the element, or null if no open shadow root is present.
 
- [`Element.openOrClosedShadowRoot`](element/openorclosedshadowroot) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span><span class="badge inline readonly">Read only </span>   
+[`Element.openOrClosedShadowRoot`](element/openorclosedshadowroot) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span><span class="badge inline readonly">Read only </span>  
 Returns the shadow root that is hosted by the element, regardless if its open or closed. **Available only to [WebExtensions](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions).**
 
- [`Element.slot`](element/slot) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Element.slot`](element/slot) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns the name of the shadow DOM slot the element is inserted in.
 
- [`Element.tabStop`](element/tabstop) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>   
+[`Element.tabStop`](element/tabstop) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span>  
 Is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating if the element can receive input focus via the tab key.
 
- [`Element.tagName`](element/tagname) <span class="badge inline readonly">Read only </span>   
+[`Element.tagName`](element/tagname) <span class="badge inline readonly">Read only </span>  
 Returns a [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) with the name of the tag for the given element.
 
 ### Properties included from ARIA
 
-*The `Element` interface includes the following properties, defined on the `ARIAMixin` mixin.*
+_The `Element` interface includes the following properties, defined on the `ARIAMixin` mixin._
 
 [`Element.ariaAtomic`](element/ariaatomic)  
 Is a [`DOMString`](domstring) reflecting the `aria-atomic` attribute, which indicates whether assistive technologies will present all, or only parts of, the changed region based on the change notifications defined by the `aria-relevant` attribute.
@@ -240,10 +238,9 @@ An event handler for the `fullscreenchange` event, which is sent when the elemen
 [`Element.onfullscreenerror`](element/onfullscreenerror)  
 An event handler for the `fullscreenerror` event, which is sent when an error occurs while attempting to change into full-screen mode.
 
-Methods
--------
+## Methods
 
-*`Element` inherits methods from its parents [`Node`](node), and its own parent, [`EventTarget`](eventtarget).*
+_`Element` inherits methods from its parents [`Node`](node), and its own parent, [`EventTarget`](eventtarget)._
 
 [`EventTarget.addEventListener()`](eventtarget/addeventlistener)  
 Registers an event handler to a specific event type on the element.
@@ -251,7 +248,7 @@ Registers an event handler to a specific event type on the element.
 [`Element.attachShadow()`](element/attachshadow)  
 Attaches a shadow DOM tree to the specified element and returns a reference to its [`ShadowRoot`](shadowroot).
 
- [`Element.animate()`](element/animate) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Element.animate()`](element/animate) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 A shortcut method to create and run an animation on an element. Returns the created Animation object instance.
 
 [`Element.append()`](element/append)  
@@ -260,16 +257,16 @@ Inserts a set of [`Node`](node) objects or [`DOMString`](domstring) objects afte
 [`Element.closest()`](element/closest)  
 Returns the [`Element`](element) which is the closest ancestor of the current element (or the current element itself) which matches the selectors given in parameter.
 
- [`Element.createShadowRoot()`](element/createshadowroot) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Element.createShadowRoot()`](element/createshadowroot) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Creates a [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) on the element, turning it into a shadow host. Returns a [`ShadowRoot`](shadowroot).
 
- [`Element.computedStyleMap()`](element/computedstylemap) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Element.computedStyleMap()`](element/computedstylemap) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns a [`StylePropertyMapReadOnly`](stylepropertymapreadonly) interface which provides a read-only representation of a CSS declaration block that is an alternative to [`CSSStyleDeclaration`](cssstyledeclaration).
 
 [`EventTarget.dispatchEvent()`](eventtarget/dispatchevent)  
 Dispatches an event to this node in the DOM and returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that indicates whether no handler canceled the event.
 
- [`Element.getAnimations()`](element/getanimations) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Element.getAnimations()`](element/getanimations) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Returns an array of Animation objects currently active on the element.
 
 [`Element.getAttribute()`](element/getattribute)  
@@ -332,7 +329,7 @@ Returns a [`NodeList`](nodelist) of nodes which match the specified selector str
 [`Element.releasePointerCapture()`](element/releasepointercapture)  
 Releases (stops) pointer capture that was previously set for a specific [`pointer event`](pointerevent).
 
- [`ChildNode.remove()`](childnode/remove) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`ChildNode.remove()`](childnode/remove) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Removes the element from the children list of its parent.
 
 [`Element.removeAttribute()`](element/removeattribute)  
@@ -347,10 +344,10 @@ Removes an event listener from the element.
 [`Element.replaceChildren()`](element/replacechildren)  
 Replaces the existing children of a [`Node`](node) with a specified new set of children.
 
- [`Element.requestFullscreen()`](element/requestfullscreen) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Element.requestFullscreen()`](element/requestfullscreen) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Asynchronously asks the browser to make the element full-screen.
 
- [`Element.requestPointerLock()`](element/requestpointerlock) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Element.requestPointerLock()`](element/requestpointerlock) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Allows to asynchronously ask for the pointer to be locked on the given element.
 
 [`Element.scroll()`](element/scroll)  
@@ -359,7 +356,7 @@ Scrolls to a particular set of coordinates inside a given element.
 [`Element.scrollBy()`](element/scrollby)  
 Scrolls an element by the given amount.
 
- [`Element.scrollIntoView()`](element/scrollintoview) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>   
+[`Element.scrollIntoView()`](element/scrollintoview) <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code. </span>  
 Scrolls the page until the element gets into the view.
 
 [`Element.scrollTo()`](element/scrollto)  
@@ -371,7 +368,7 @@ Sets the value of a named attribute of the current node.
 [`Element.setAttributeNS()`](element/setattributens)  
 Sets the value of the attribute with the specified name and namespace, from the current node.
 
- [`Element.setCapture()`](element/setcapture) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span><span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Element.setCapture()`](element/setcapture) <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized. </span><span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Sets up mouse event capture, redirecting all mouse events to this element.
 
 [`Element.setPointerCapture()`](element/setpointercapture)  
@@ -382,23 +379,22 @@ Toggles a boolean attribute, removing it if it is present and adding it if it is
 
 ### Obsolete methods
 
- [`Element.getAttributeNode()`](element/getattributenode) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Element.getAttributeNode()`](element/getattributenode) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Retrieves the node representation of the named attribute from the current node and returns it as an [`Attr`](attr).
 
- [`Element.getAttributeNodeNS()`](element/getattributenodens) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Element.getAttributeNodeNS()`](element/getattributenodens) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Retrieves the node representation of the attribute with the specified name and namespace, from the current node and returns it as an [`Attr`](attr).
 
- [`Element.removeAttributeNode()`](element/removeattributenode) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Element.removeAttributeNode()`](element/removeattributenode) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Removes the node representation of the named attribute from the current node.
 
- [`Element.setAttributeNode()`](element/setattributenode) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Element.setAttributeNode()`](element/setattributenode) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Sets the node representation of the named attribute from the current node.
 
- [`Element.setAttributeNodeNS()`](element/setattributenodens) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`Element.setAttributeNodeNS()`](element/setattributenodens) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Sets the node representation of the attribute with the specified name and namespace, from the current node.
 
-Events
-------
+## Events
 
 Listen to these events using `addEventListener()` or by assigning an event listener to the `oneventname` property of this interface.
 
@@ -509,7 +505,7 @@ Also available via the [`oncontextmenu`](globaleventhandlers/oncontextmenu) prop
 Fired when a pointing device button (e.g., a mouse's primary button) is clicked twice on a single element.  
 Also available via the [`ondblclick`](globaleventhandlers/ondblclick) property.
 
- [`DOMActivate`](element/domactivate_event) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`DOMActivate`](element/domactivate_event) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Occurs when an element is activated, for instance, through a mouse click or a keypress.
 
 [`mousedown`](element/mousedown_event)  
@@ -570,8 +566,7 @@ Also available via the [`ontouchmove`](globaleventhandlers/ontouchmove) property
 Fired when one or more touch points are placed on the touch surface.  
 Also available via the [`ontouchstart`](globaleventhandlers/ontouchstart) property
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/web-animations-1/">Web Animations</a></td><td><span class="spec-wd">Working Draft</span></td><td>Added the <code>getAnimations()</code> method.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/pointerevents2/#extensions-to-the-element-interface">Pointer Events – Level 2<br />
 <span class="small">The definition of 'Element' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Added the following event handlers: <code>ongotpointercapture</code> and <code>onlostpointercapture</code>.<br />
@@ -596,8 +591,7 @@ Added the <code>schemaTypeInfo</code> property. This property was never implemen
 <span class="small">The definition of 'Element' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>The <code>normalize()</code> method has been moved to <a href="node"><code>Node</code></a>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-745549614">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'Element' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -1079,7 +1073,7 @@ No
 
 53
 
-Starting in Firefox 68, the `auxclick` event is used to trigger the *new tab on middle-click* action; previously, this had been done with the `click` event. Apps can prevent middle-click from opening new tabs (or middle-click to paste, if that feature is enabled) by intercepting `auxclick` on links, and `auxclick` event handlers can now open popups without triggering the popup blocker.
+Starting in Firefox 68, the `auxclick` event is used to trigger the _new tab on middle-click_ action; previously, this had been done with the `click` event. Apps can prevent middle-click from opening new tabs (or middle-click to paste, if that feature is enabled) by intercepting `auxclick` on links, and `auxclick` event handlers can now open popups without triggering the popup blocker.
 
 No
 
@@ -2695,7 +2689,7 @@ Chrome does not fire the `keypress` event for [known keyboard shortcuts](https:/
 
 Yes
 
-As of Firefox 65, the `keypress` event is no longer fired for [non-printable keys](https://developer.mozilla.org/docs/Web/API/KeyboardEvent/keyCode#Non-printable_keys_(function_keys)), except for the Enter key, and the Shift + Enter and Ctrl + Enter key combinations (these were kept for cross-browser compatibility purposes).
+As of Firefox 65, the `keypress` event is no longer fired for [non-printable keys](<https://developer.mozilla.org/docs/Web/API/KeyboardEvent/keyCode#Non-printable_keys_(function_keys)>), except for the Enter key, and the Shift + Enter and Ctrl + Enter key combinations (these were kept for cross-browser compatibility purposes).
 
 ?
 
@@ -2713,7 +2707,7 @@ Chrome does not fire the `keypress` event for [known keyboard shortcuts](https:/
 
 Yes
 
-As of Firefox 65, the `keypress` event is no longer fired for [non-printable keys](https://developer.mozilla.org/docs/Web/API/KeyboardEvent/keyCode#Non-printable_keys_(function_keys)), except for the Enter key, and the Shift + Enter and Ctrl + Enter key combinations (these were kept for cross-browser compatibility purposes).
+As of Firefox 65, the `keypress` event is no longer fired for [non-printable keys](<https://developer.mozilla.org/docs/Web/API/KeyboardEvent/keyCode#Non-printable_keys_(function_keys)>), except for the Enter key, and the Shift + Enter and Ctrl + Enter key combinations (these were kept for cross-browser compatibility purposes).
 
 ?
 
@@ -4067,13 +4061,13 @@ In Internet Explorer 7 and earlier, `setAttribute` doesn't set styles and remove
 
 12
 
-Returns a `ClientRectList` with [ClientRect](http://msdn.microsoft.com/en-us/library/hh826029(VS.85).aspx) objects (which do not contain `x` and `y` properties) instead of [`DOMRect`](https://developer.mozilla.org/docs/Web/API/DOMRect) objects.
+Returns a `ClientRectList` with [ClientRect](<http://msdn.microsoft.com/en-us/library/hh826029(VS.85).aspx>) objects (which do not contain `x` and `y` properties) instead of [`DOMRect`](https://developer.mozilla.org/docs/Web/API/DOMRect) objects.
 
 1
 
 9
 
-Returns a `ClientRectList` with [ClientRect](http://msdn.microsoft.com/en-us/library/hh826029(VS.85).aspx) objects (which do not contain `x` and `y` properties) instead of [`DOMRect`](https://developer.mozilla.org/docs/Web/API/DOMRect) objects.
+Returns a `ClientRectList` with [ClientRect](<http://msdn.microsoft.com/en-us/library/hh826029(VS.85).aspx>) objects (which do not contain `x` and `y` properties) instead of [`DOMRect`](https://developer.mozilla.org/docs/Web/API/DOMRect) objects.
 
 ≤12.1
 

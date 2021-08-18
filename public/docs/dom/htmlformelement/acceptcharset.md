@@ -1,27 +1,22 @@
-HTMLFormElement.acceptCharset
-=============================
+# HTMLFormElement.acceptCharset
 
 The `HTMLFormElement.acceptCharset` property represents a list of the supported [character encodings](https://developer.mozilla.org/en-US/docs/Glossary/character_encoding) for the given [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element. This list can be comma-separated or space-separated.
 
-Syntax
-------
+## Syntax
 
     var string = form.acceptCharset;
     form.acceptCharset = string;
 
-Example
--------
+## Example
 
     inputs = document.forms['myform'].acceptCharset;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-form-acceptcharset">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLFormElement: acceptCharset' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

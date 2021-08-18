@@ -1,20 +1,16 @@
-MathMLElement
-=============
+# MathMLElement
 
 The `MathMLElement` interface represents any [MathML](https://developer.mozilla.org/en-US/docs/Web/MathML) element.
 
-Properties
-----------
+## Properties
 
-*This interface has no properties, but inherits properties from: <span class="page-not-created">`DocumentAndElementEventHandlers`</span>, [`Element`](element), [`ElementCSSInlineStyle`](elementcssinlinestyle), [`GlobalEventHandlers`](globaleventhandlers), [`HTMLOrForeignElement`](htmlorforeignelement)*
+_This interface has no properties, but inherits properties from: <span class="page-not-created">`DocumentAndElementEventHandlers`</span>, [`Element`](element), [`ElementCSSInlineStyle`](elementcssinlinestyle), [`GlobalEventHandlers`](globaleventhandlers), [`HTMLOrForeignElement`](htmlorforeignelement)_
 
-Methods
--------
+## Methods
 
-*This interface has no methods, but inherits methods from: <span class="page-not-created">`DocumentAndElementEventHandlers`</span>, [`Element`](element), [`ElementCSSInlineStyle`](elementcssinlinestyle), [`GlobalEventHandlers`](globaleventhandlers), [`HTMLOrForeignElement`](htmlorforeignelement)*
+_This interface has no methods, but inherits methods from: <span class="page-not-created">`DocumentAndElementEventHandlers`</span>, [`Element`](element), [`ElementCSSInlineStyle`](elementcssinlinestyle), [`GlobalEventHandlers`](globaleventhandlers), [`HTMLOrForeignElement`](htmlorforeignelement)_
 
-Examples
---------
+## Examples
 
 ### MathML
 
@@ -28,13 +24,11 @@ Examples
 
     document.querySelector('msqrt').constructor.name; // MathMLElement
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://mathml-refresh.github.io/mathml-core/#dom-mathmlelement">MathMLElement interface</a></td><td></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -90,11 +84,10 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`Element`](element)
--   [`HTMLElement`](htmlelement)
--   [`SVGElement`](svgelement)
+- [`Element`](element)
+- [`HTMLElement`](htmlelement)
+- [`SVGElement`](svgelement)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MathMLElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MathMLElement</a>

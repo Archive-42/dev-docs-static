@@ -1,5 +1,4 @@
-HTMLOrForeignElement.tabIndex
-=============================
+# HTMLOrForeignElement.tabIndex
 
 The `tabIndex` property of the [`HTMLOrForeignElement`](../htmlorforeignelement) mixin represents the tab order of the current element.
 
@@ -12,8 +11,7 @@ Elements that are disabled do not participate in the tabbing order.
 
 Values don't need to be sequential, nor must they begin with any particular value. They may even be negative, though each browser trims very large values.
 
-Syntax
-------
+## Syntax
 
     element.tabIndex = index;
     var index = element.tabIndex;
@@ -22,23 +20,20 @@ Syntax
 
 `index` is an integer
 
-Example
--------
+## Example
 
     const b1 = document.getElementById('button1');
 
     b1.tabIndex = 1;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-tabindex">HTML Living Standard<br />
 <span class="small">The definition of 'tabindex' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change from <a href="https://www.w3.org/TR/DOM-Level-2-HTML/">Document Object Model (DOM) Level 2 HTML Specification</a>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-40676705">Document Object Model (DOM) Level 2 HTML Specification<br />
 <span class="small">The definition of 'tabindex' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>No change from <a href="https://www.w3.org/TR/REC-DOM-Level-1/">Document Object Model (DOM) Level 1 Specification</a>.</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-40676705">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'tabindex' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -100,10 +95,9 @@ Returns incorrect value for elements without an explicit tabindex attribute. See
 
 1.0
 
-See also
---------
+## See also
 
--   [Accessibility of keyboard-navigable JavaScript widgets](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets)
--   The HTML `tabindex` global attribute.
+- [Accessibility of keyboard-navigable JavaScript widgets](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets)
+- The HTML `tabindex` global attribute.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/tabIndex" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/tabIndex</a>

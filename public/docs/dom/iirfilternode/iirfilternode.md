@@ -1,25 +1,23 @@
-IIRFilterNode()
-===============
+# IIRFilterNode()
 
 The `IIRFilterNode()` constructor of the [Web Audio API](../web_audio_api) creates a new [`IIRFilterNode`](../iirfilternode) object which an [`AudioNode`](../audionode) processor which implements a general infinite impulse response filter.
 
-Syntax
-------
+## Syntax
 
     var iIRFilterNode = new IIRFilterNode(context, options)
 
 ### Parameters
 
-*Inherits parameters from the [`AudioNodeOptions`](../audionodeoptions) dictionary*.
+_Inherits parameters from the [`AudioNodeOptions`](../audionodeoptions) dictionary_.
 
-*context*  
+_context_  
 A reference to an [`AudioContext`](../audiocontext).
 
-*options*  
+_options_  
 Options are as follows:
 
--   `feedforward`: A sequence of feedforward coefficients.
--   `feedback`: A sequence of feedback coefficients.
+- `feedforward`: A sequence of feedforward coefficients.
+- `feedback`: A sequence of feedback coefficients.
 
 Unlike other nodes in the Web Audio API, the options passed into the IIR filter upon creation are not optional. The filter needs these values to work and with the vast range of filters available, there is no default.
 
@@ -27,8 +25,7 @@ Unlike other nodes in the Web Audio API, the options passed into the IIR filter 
 
 A new [`IIRFilterNode`](../iirfilternode) object instance.
 
-Examples
---------
+## Examples
 
     let feedForward = [0.00020298, 0.0004059599, 0.00020298];
     let feedBackward = [1.0126964558, -1.9991880801, 0.9873035442];
@@ -38,14 +35,12 @@ Examples
 
     const iirFilter = new IIRFilterNode(audioCtx, { feedforward: feedForward, feedback: feedBackward });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-iirfilternode-iirfilternode">Web Audio API<br />
 <span class="small">The definition of 'IIRFilterNode()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

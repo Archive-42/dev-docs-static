@@ -1,5 +1,4 @@
-MediaRecorder.resume()
-======================
+# MediaRecorder.resume()
 
 The `MediaRecorder.resume()` method (part of the [MediaRecorder API](../mediastream_recording_api)) is used to resume media recording when it has been previously paused.
 
@@ -10,8 +9,7 @@ When the `resume()` method is invoked, the browser queues a task that runs the f
 3.  Continue gathering data into the current [`Blob`](../blob).
 4.  Raise a `resume` event.
 
-Syntax
-------
+## Syntax
 
     MediaRecorder.resume()
 
@@ -19,8 +17,7 @@ Syntax
 
 An `InvalidState` error is raised if the `resume()` method is called while the `MediaRecorder` object’s [`MediaRecorder.state`](state) is "inactive" — the recording cannot be resumed if it is not already paused; if [`MediaRecorder.state`](state) is already "recording", `resume()` has no effect.
 
-Example
--------
+## Example
 
     ...
 
@@ -36,14 +33,12 @@ Example
 
     ...
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-record/#dom-mediarecorder-resume">MediaStream Recording<br />
 <span class="small">The definition of 'MediaRecorder.resume()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -99,12 +94,11 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [Using the MediaRecorder API](../mediastream_recording_api/using_the_mediastream_recording_api)
--   [Web Dictaphone](https://mdn.github.io/web-dictaphone/): MediaRecorder + getUserMedia + Web Audio API visualization demo, by [Chris Mills](https://twitter.com/chrisdavidmills) ([source on Github](https://github.com/mdn/web-dictaphone/).)
--   [simpl.info MediaStream Recording demo](https://simpl.info/mediarecorder/), by [Sam Dutton](https://twitter.com/sw12).
--   [`Navigator.getUserMedia`](../navigator/getusermedia)
+- [Using the MediaRecorder API](../mediastream_recording_api/using_the_mediastream_recording_api)
+- [Web Dictaphone](https://mdn.github.io/web-dictaphone/): MediaRecorder + getUserMedia + Web Audio API visualization demo, by [Chris Mills](https://twitter.com/chrisdavidmills) ([source on Github](https://github.com/mdn/web-dictaphone/).)
+- [simpl.info MediaStream Recording demo](https://simpl.info/mediarecorder/), by [Sam Dutton](https://twitter.com/sw12).
+- [`Navigator.getUserMedia`](../navigator/getusermedia)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/resume" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/resume</a>

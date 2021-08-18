@@ -1,5 +1,4 @@
-HTMLVideoElement.msHorizontalMirror
-===================================
+# HTMLVideoElement.msHorizontalMirror
 
 **Non-standard**
 
@@ -9,20 +8,17 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 This proprietary property is specific to Internet Explorer and Microsoft Edge.
 
-Syntax
-------
+## Syntax
 
     HTMLVideoElement.msHorizontalMirror: boolean;
 
-Value
------
+## Value
 
-Boolean value set to *true* flips the video playback horizontally.
+Boolean value set to _true_ flips the video playback horizontally.
 
 Video perspective is flipped on a horizontal axis - this may be useful for playback of a webcam video, providing the user with better mirroring of their real behaviors (ie. when user moves left, their representation on-screen would move left as well).
 
-Example
--------
+## Example
 
            var myVideo = document.getElementById("videoTag1");
            myVideo.msHorizontalMirror = true;
@@ -35,10 +31,9 @@ Example \#2:
           video.msHorizontalMirror = true;
         });
 
-See also
---------
+## See also
 
--   [`HTMLVideoElement`](../htmlvideoelement)
--   [Microsoft API extensions](../microsoft_extensions)
+- [`HTMLVideoElement`](../htmlvideoelement)
+- [Microsoft API extensions](../microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/msHorizontalMirror" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/msHorizontalMirror</a>

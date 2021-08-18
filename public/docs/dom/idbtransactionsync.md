@@ -1,5 +1,4 @@
-IDBTransactionSync
-==================
+# IDBTransactionSync
 
 **Draft**
 
@@ -9,18 +8,15 @@ This page is not complete.
 
 The `IDBTransactionSync` interface of the [IndexedDB API](indexeddb_api) provides a synchronous [transaction](indexeddb_api#gloss_transaction) on a database. When an application creates an IDBTransactionSync object, it blocks until the browser is able to reserve the require database objects.
 
-Method overview
----------------
+## Method overview
 
 <table><tbody><tr class="odd"><td><code>void abort() raises (IDBDatabaseException); </code></td></tr><tr class="even"><td><code>void commit() raises (IDBDatabaseException);</code></td></tr><tr class="odd"><td><code>IDBObjectStoreSync objectStore(in DOMString name) raises (IDBDatabaseException);</code></td></tr></tbody></table>
 
-Attributes
-----------
+## Attributes
 
 <table><thead><tr class="header"><th>Attribute</th><th>Type</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><span id="attr_db"><code>db</code></span></td><td><code>IDBDatabaseSync</code></td><td>The <a href="indexeddb_api#gloss_database_connection">database connection</a> that this transaction is associated with.</td></tr><tr class="even"><td><span id="attr_static"><code>static</code></span></td><td><code>boolean</code></td><td>If true, this transaction is <a href="indexeddb_api#gloss_static">static</a>; if false, this transaction is <a href="indexeddb_api#gloss_dynamic">dynamic</a>.</td></tr></tbody></table>
 
-Methods
--------
+## Methods
 
 ### abort()
 

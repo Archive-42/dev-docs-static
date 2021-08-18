@@ -1,5 +1,4 @@
-ExtendableCookieChangeEvent.ExtendableCookieChangeEvent()
-=========================================================
+# ExtendableCookieChangeEvent.ExtendableCookieChangeEvent()
 
 **Secure context**
 
@@ -11,8 +10,7 @@ The `ExtendableCookieChangeEvent()` constructor creates a new [`ExtendableCookie
 
 This event constructor is generally not needed for production web sites. It's primary use is for tests that require an instance of this event.
 
-Syntax
-------
+## Syntax
 
     var extendableCookieChangeEvent = new ExtendableCookieChangeEvent(type, [eventInitDict]);
 
@@ -21,7 +19,7 @@ Syntax
 `type`  
 A [`DOMString`](../domstring) with the value `"changed"` or `"deleted"`.
 
- `eventInitDict`<span class="badge inline optional">Optional</span>   
+`eventInitDict`<span class="badge inline optional">Optional</span>  
 An object containing:
 
 `changed`  
@@ -30,14 +28,12 @@ An array containing a changed cookie.
 `deleted`  
 An array containing a deleted cookie.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/cookie-store/#dom-extendablecookiechangeevent-extendablecookiechangeevent">Cookie Store API<br />
 <span class="small">The definition of 'ExtendableCookieChangeEvent()' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

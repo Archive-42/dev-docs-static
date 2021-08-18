@@ -1,5 +1,4 @@
-MediaRecorder.pause()
-=====================
+# MediaRecorder.pause()
 
 The `Media.pause()` method (part of the [MediaRecorder API](../mediastream_recording_api)) is used to pause recording of media streams.
 
@@ -10,8 +9,7 @@ When a `MediaRecorder` object’s `pause()`method is called, the browser queues 
 3.  Stop gathering data into the current [`Blob`](../blob), but keep it available so that recording can be resumed later on.
 4.  Raise a `pause` event.
 
-Syntax
-------
+## Syntax
 
     MediaRecorder.pause()
 
@@ -24,8 +22,7 @@ Syntax
 `InvalidStateError`  
 The `MediaRecorder` is currently `"inactive"`; you can't pause recording if it's not active. If you call `pause()` while already paused, it silently does nothing.
 
-Example
--------
+## Example
 
     ...
 
@@ -36,14 +33,12 @@ Example
 
     ...
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-record/#dom-mediarecorder-pause">MediaStream Recording<br />
 <span class="small">The definition of 'MediaRecorder.pause()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -99,12 +94,11 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [Using the MediaRecorder API](../mediastream_recording_api/using_the_mediastream_recording_api)
--   [Web Dictaphone](https://mdn.github.io/web-dictaphone/): MediaRecorder + getUserMedia + Web Audio API visualization demo, by [Chris Mills](https://twitter.com/chrisdavidmills) ([source on Github](https://github.com/mdn/web-dictaphone/).)
--   [simpl.info MediaStream Recording demo](https://simpl.info/mediarecorder/), by [Sam Dutton](https://twitter.com/sw12).
--   [`Navigator.getUserMedia`](../navigator/getusermedia)
+- [Using the MediaRecorder API](../mediastream_recording_api/using_the_mediastream_recording_api)
+- [Web Dictaphone](https://mdn.github.io/web-dictaphone/): MediaRecorder + getUserMedia + Web Audio API visualization demo, by [Chris Mills](https://twitter.com/chrisdavidmills) ([source on Github](https://github.com/mdn/web-dictaphone/).)
+- [simpl.info MediaStream Recording demo](https://simpl.info/mediarecorder/), by [Sam Dutton](https://twitter.com/sw12).
+- [`Navigator.getUserMedia`](../navigator/getusermedia)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/pause" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/pause</a>

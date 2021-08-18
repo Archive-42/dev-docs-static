@@ -1,5 +1,4 @@
-Index
-=====
+# Index
 
 **Found 5961 pages:**
 
@@ -167,7 +166,7 @@ The `AbstractWorker` interface of the [Web Workers API](web_workers_api) is an a
 
 **API, AbstractWorker, EventHandler, Property, Reference, Web Workers, Workers, onerror**
 
-The `AbstractWorker``.onerror` property of the `AbstractWorker` interface represents an `EventHandler`, that is a function to be called when the `error` event occurs and bubbles through the `Worker`.
+The ` AbstractWorker``.onerror ` property of the `AbstractWorker` interface represents an `EventHandler`, that is a function to be called when the `error` event occurs and bubbles through the `Worker`.
 
 21
 
@@ -467,7 +466,7 @@ The `smoothingTimeConstant` property of the `AnalyserNode` interface is a double
 
 58
 
-[ANGLE\_instanced\_arrays](angle_instanced_arrays)
+[ANGLE_instanced_arrays](angle_instanced_arrays)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -475,27 +474,27 @@ The `ANGLE_instanced_arrays` extension is part of the [WebGL API](webgl_api) and
 
 59
 
-[ANGLE\_instanced\_arrays.drawArraysInstancedANGLE()](angle_instanced_arrays/drawarraysinstancedangle)
+[ANGLE_instanced_arrays.drawArraysInstancedANGLE()](angle_instanced_arrays/drawarraysinstancedangle)
 
-**ANGLE\_instanced\_arrays, API, Method, Reference, WebGL, WebGL extension**
+**ANGLE_instanced_arrays, API, Method, Reference, WebGL, WebGL extension**
 
 The `ANGLE_instanced_arrays.drawArraysInstancedANGLE()` method of the [WebGL API](webgl_api) renders primitives from array data like the `WebGLRenderingContext.drawArrays()` method. In addition, it can execute multiple instances of the range of elements.
 
 60
 
-[ANGLE\_instanced\_arrays.drawElementsInstancedANGLE()](angle_instanced_arrays/drawelementsinstancedangle)
+[ANGLE_instanced_arrays.drawElementsInstancedANGLE()](angle_instanced_arrays/drawelementsinstancedangle)
 
-**ANGLE\_instanced\_arrays, API, Method, Reference, WebGL, WebGL extension**
+**ANGLE_instanced_arrays, API, Method, Reference, WebGL, WebGL extension**
 
 The `ANGLE_instanced_arrays.drawElementsInstancedANGLE()` method of the [WebGL API](webgl_api) renders primitives from array data like the `WebGLRenderingContext.drawElements()` method. In addition, it can execute multiple instances of a set of elements.
 
 61
 
-[ANGLE\_instanced\_arrays.vertexAttribDivisorANGLE()](angle_instanced_arrays/vertexattribdivisorangle)
+[ANGLE_instanced_arrays.vertexAttribDivisorANGLE()](angle_instanced_arrays/vertexattribdivisorangle)
 
-**ANGLE\_instanced\_arrays, API, Method, Reference, WebGL, WebGL extension**
+**ANGLE_instanced_arrays, API, Method, Reference, WebGL, WebGL extension**
 
-The **ANGLE\_instanced\_arrays.vertexAttribDivisorANGLE()** method of the [WebGL API](webgl_api) modifies the rate at which generic vertex attributes advance when rendering multiple instances of primitives with `ANGLE_instanced_arrays.drawArraysInstancedANGLE()` and `ANGLE_instanced_arrays.drawElementsInstancedANGLE()`.
+The **ANGLE_instanced_arrays.vertexAttribDivisorANGLE()** method of the [WebGL API](webgl_api) modifies the rate at which generic vertex attributes advance when rendering multiple instances of primitives with `ANGLE_instanced_arrays.drawArraysInstancedANGLE()` and `ANGLE_instanced_arrays.drawElementsInstancedANGLE()`.
 
 62
 
@@ -535,7 +534,7 @@ The `commitStyles()` method of the [Web Animations API](web_animations_api)'s `A
 
 **API, Animation, Animations, Property, Reference, Web Animations, web animations api**
 
-The `Animation``.currentTime` property of the [Web Animations API](web_animations_api) returns and sets the current time value of the animation in milliseconds, whether running or paused.
+The ` Animation``.currentTime ` property of the [Web Animations API](web_animations_api) returns and sets the current time value of the animation in milliseconds, whether running or paused.
 
 67
 
@@ -543,7 +542,7 @@ The `Animation``.currentTime` property of the [Web Animations API](web_animation
 
 **API, Animation, Experimental, Property, Reference, Web Animations, effect, web animations api**
 
-The `Animation``.effect` property of the [Web Animations API](web_animations_api) gets and sets the target effect of an animation. The target effect may be either an effect object of a type based on `AnimationEffect`, such as `KeyframeEffect`, or `null`.
+The ` Animation``.effect ` property of the [Web Animations API](web_animations_api) gets and sets the target effect of an animation. The target effect may be either an effect object of a type based on `AnimationEffect`, such as `KeyframeEffect`, or `null`.
 
 68
 
@@ -559,7 +558,7 @@ The `finish()`method of the [Web Animations API](web_animations_api)'s `Animatio
 
 **API, Animation, Experimental, Property, Reference, Web Animations, finished, web animations api**
 
-The `Animation``.finished` read-only property of the [Web Animations API](web_animations_api) returns a `Promise` which resolves once the animation has finished playing.
+The ` Animation``.finished ` read-only property of the [Web Animations API](web_animations_api) returns a `Promise` which resolves once the animation has finished playing.
 
 70
 
@@ -567,7 +566,7 @@ The `Animation``.finished` read-only property of the [Web Animations API](web_an
 
 **API, Animation, Property, Reference, id, web animations api**
 
-The `Animation``.id` property of the [Web Animations API](web_animations_api) returns or sets a string used to identify the animation.
+The ` Animation``.id ` property of the [Web Animations API](web_animations_api) returns or sets a string used to identify the animation.
 
 71
 
@@ -607,7 +606,7 @@ The `pause()` method of the [Web Animations API](web_animations_api)'s `Animatio
 
 **API, Animation, Animations, Property, Reference, Web Animations, web animations api**
 
-The read-only `Animation``.pending` property of the [Web Animations API](web_animations_api) indicates whether the animation is currently waiting for an asynchronous operation such as initiating playback or pausing a running animation.
+The read-only ` Animation``.pending ` property of the [Web Animations API](web_animations_api) indicates whether the animation is currently waiting for an asynchronous operation such as initiating playback or pausing a running animation.
 
 76
 
@@ -631,7 +630,7 @@ The `play()` method of the [Web Animations API](web_animations_api)'s `Animation
 
 **API, Animation, Interface, Property, Reference, Web Animations, playbackRate, web animations api**
 
-The `Animation``.playbackRate` property of the [Web Animations API](web_animations_api) returns or sets the playback rate of the animation.
+The ` Animation``.playbackRate ` property of the [Web Animations API](web_animations_api) returns or sets the playback rate of the animation.
 
 79
 
@@ -639,7 +638,7 @@ The `Animation``.playbackRate` property of the [Web Animations API](web_animatio
 
 **API, Animation, Property, Reference, Web Animations, playState, web animations api**
 
-The `Animation``.playState` property of the [Web Animations API](web_animations_api) returns and sets an enumerated value describing the playback state of an animation.
+The ` Animation``.playState ` property of the [Web Animations API](web_animations_api) returns and sets an enumerated value describing the playback state of an animation.
 
 80
 
@@ -695,7 +694,7 @@ The `updatePlaybackRate()`method of the [Web Animations API](web_animations_api)
 
 **API, Animation, Interface, Reference, Web Animations, web animations api**
 
-The `AnimationEffect` interface of the [Web Animations API](web_animations_api) defines current and future *animation effects* like `KeyframeEffect`, which can be passed to `Animation` objects for playing, and `KeyframeEffect` (which is used by [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) and [Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions)).
+The `AnimationEffect` interface of the [Web Animations API](web_animations_api) defines current and future _animation effects_ like `KeyframeEffect`, which can be passed to `Animation` objects for playing, and `KeyframeEffect` (which is used by [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) and [Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions)).
 
 87
 
@@ -751,7 +750,7 @@ The `AnimationEvent.animationName` read-only property is a `DOMString` containin
 
 **API, AnimationEvent, CSSOM, Experimental, Property, Reference, Web Animations**
 
-The `AnimationEvent.elapsedTime` read-only property is a `float` giving the amount of time the animation has been running, in seconds, when this event fired, excluding any time the animation was paused. For an `HTMLElement/animationstart_event` event, `elapsedTime` is `0.0` unless there was a negative value for `animation-delay`, in which case the event will be fired with `elapsedTime` containing `(-1 * `*delay*`)`.
+The `AnimationEvent.elapsedTime` read-only property is a `float` giving the amount of time the animation has been running, in seconds, when this event fired, excluding any time the animation was paused. For an `HTMLElement/animationstart_event` event, `elapsedTime` is `0.0` unless there was a negative value for `animation-delay`, in which case the event will be fired with `elapsedTime` containing `(-1 * `_delay_`)`.
 
 94
 
@@ -767,7 +766,7 @@ The `AnimationEvent.initAnimationEvent()` method Initializes an animation event 
 
 **API, AnimationEvent, CSS, CSSOM, Experimental, Property, Reference, Web Animations**
 
-The `AnimationEvent.pseudoElement` read-only property is a `DOMString`, starting with `'::'`, containing the name of the [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) the animation runs on. If the animation doesn't run on a pseudo-element but on the element, an empty string: `''``.`
+The `AnimationEvent.pseudoElement` read-only property is a `DOMString`, starting with `'::'`, containing the name of the [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) the animation runs on. If the animation doesn't run on a pseudo-element but on the element, an empty string: ` ''``. `
 
 96
 
@@ -1135,7 +1134,7 @@ The `AudioContextOptions` dictionary is used to specify configuration options wh
 
 **API, Audio, Audio Context, AudioContext, AudioContextOptions, Context, Options, Property, Reference, Web Audio, Web Audio API, latency, latencyHint**
 
-The `AudioContextOptions` dictionary (used when instantiating an `AudioContext`) may contain a property named `latencyHint`, which indicates the *preferred* maximum latency in seconds for the audio context.
+The `AudioContextOptions` dictionary (used when instantiating an `AudioContext`) may contain a property named `latencyHint`, which indicates the _preferred_ maximum latency in seconds for the audio context.
 
 142
 
@@ -1247,7 +1246,7 @@ The `setPosition()` method of the `AudioListener` Interface defines the position
 
 **API, AudioListener, Deprecated, Property, Reference, Web Audio API, speedOfSound**
 
-The `speedOfSound` property of the `AudioListener` interface is a double value representing the speed of sound, in *meters per second*.
+The `speedOfSound` property of the `AudioListener` interface is a double value representing the speed of sound, in _meters per second_.
 
 156
 
@@ -1391,7 +1390,7 @@ The `defaultValue` read-only property of the `AudioParam` interface represents t
 
 **API, AudioParam, Method, Reference, Web Audio API, exponentialRampToValueAtTime**
 
-The `exponentialRampToValueAtTime()` method of the `AudioParam` Interface schedules a gradual exponential change in the value of the `AudioParam`. The change starts at the time specified for the *previous* event, follows an exponential ramp to the new value given in the `value` parameter, and reaches the new value at the time given in the `endTime` parameter.
+The `exponentialRampToValueAtTime()` method of the `AudioParam` Interface schedules a gradual exponential change in the value of the `AudioParam`. The change starts at the time specified for the _previous_ event, follows an exponential ramp to the new value given in the `value` parameter, and reaches the new value at the time given in the `endTime` parameter.
 
 174
 
@@ -1399,7 +1398,7 @@ The `exponentialRampToValueAtTime()` method of the `AudioParam` Interface schedu
 
 **API, Audio, AudioParam, Method, Reference, Web Audio API, linearRampToValueAtTime**
 
-The `linearRampToValueAtTime()` method of the `AudioParam` Interface schedules a gradual linear change in the value of the `AudioParam`. The change starts at the time specified for the *previous* event, follows a linear ramp to the new value given in the `value` parameter, and reaches the new value at the time given in the `endTime` parameter.
+The `linearRampToValueAtTime()` method of the `AudioParam` Interface schedules a gradual linear change in the value of the `AudioParam`. The change starts at the time specified for the _previous_ event, follows a linear ramp to the new value given in the `value` parameter, and reaches the new value at the time given in the `endTime` parameter.
 
 175
 
@@ -1663,7 +1662,7 @@ The `AudioWorkletGlobalScope` interface of the [Web Audio API](web_audio_api) re
 
 **API, Audio, AudioWorkletGlobalScope, AudioWorkletProcessor, Method, Reference, Web Audio API**
 
-The `registerProcessor` method of the `AudioWorkletGlobalScope` interface registers a class constructor derived from `AudioWorkletProcessor` interface under a specified *name*.
+The `registerProcessor` method of the `AudioWorkletGlobalScope` interface registers a class constructor derived from `AudioWorkletProcessor` interface under a specified _name_.
 
 208
 
@@ -1735,7 +1734,7 @@ The `AudioWorkletProcessor()` constructor creates a new `AudioWorkletProcessor` 
 
 **API, AudioWorkletProcessor, Experimental, Property, Reference, parameterDescriptors**
 
-The read-only `parameterDescriptors` property of an `AudioWorkletProcessor`-derived class is a *static getter*, which returns an iterable of `AudioParamDescriptor`-based objects.
+The read-only `parameterDescriptors` property of an `AudioWorkletProcessor`-derived class is a _static getter_, which returns an iterable of `AudioParamDescriptor`-based objects.
 
 217
 
@@ -2559,7 +2558,7 @@ The `getFrequencyResponse()` method of the `BiquadFilterNode` interface takes th
 
 **API, BiquadFilterNode, Property, Q, Reference, Web Audio API**
 
-The `Q` property of the `BiquadFilterNode` interface is an [a-rate](audioparam#a-rate) `AudioParam`, a double representing a [Q factor](https://en.wikipedia.org/wiki/Q_factor), or *quality factor*.
+The `Q` property of the `BiquadFilterNode` interface is an [a-rate](audioparam#a-rate) `AudioParam`, a double representing a [Q factor](https://en.wikipedia.org/wiki/Q_factor), or _quality factor_.
 
 320
 
@@ -3087,7 +3086,7 @@ The `BluetoothRemoteGATTDescriptor.uuid` read-only property returns the UUID of 
 
 **API, Bluetooth, BluetoothGattDescriptor, BluetoothRemoteGATTDescriptor, Experimental, Property, Reference, Web Bluetooth API, value**
 
-The **`BluetoothRemoteGATTDescriptor``.value`** read-only property returns an `ArrayBuffer` containing the currently cached descriptor value. This value gets updated when the value of the descriptor is read.
+The **` BluetoothRemoteGATTDescriptor``.value `** read-only property returns an `ArrayBuffer` containing the currently cached descriptor value. This value gets updated when the value of the descriptor is read.
 
 386
 
@@ -3279,7 +3278,7 @@ The `json()` method of the `Body` mixin takes a `Response` stream and reads it t
 
 **API, BODY, Experimental, Fetch, Method, Reference, Text**
 
-The `text()` method of the `Body` mixin takes a `Response` stream and reads it to completion. It returns a promise that resolves with a `USVString` object (text). The response is *always* decoded using UTF-8.
+The `text()` method of the `Body` mixin takes a `Response` stream and reads it to completion. It returns a promise that resolves with a `USVString` object (text). The response is _always_ decoded using UTF-8.
 
 410
 
@@ -3287,7 +3286,7 @@ The `text()` method of the `Body` mixin takes a `Response` stream and reads it t
 
 **API, Broadcast Channel API, HTML API, Overview, Reference**
 
-The **Broadcast Channel API** allows basic communication between browsing context (that is, *windows*, *tabs*, *frames*, or *iframes*) and workers on the same origin.
+The **Broadcast Channel API** allows basic communication between browsing context (that is, _windows_, _tabs_, _frames_, or _iframes_) and workers on the same origin.
 
 411
 
@@ -3495,7 +3494,7 @@ The `CacheStorage` interface represents the storage for `Cache` objects.
 
 **API, CacheStorage, Experimental, Method, Reference, Service Workers, ServiceWorker, delete**
 
-The `delete``()` method of the `CacheStorage` interface finds the `Cache` object matching the `cacheName`, and if found, deletes the `Cache` object and returns a `Promise` that resolves to `true`. If no `Cache` object is found, it resolves to `false`.
+The ` delete``() ` method of the `CacheStorage` interface finds the `Cache` object matching the `cacheName`, and if found, deletes the `Cache` object and returns a `Promise` that resolves to `true`. If no `Cache` object is found, it resolves to `false`.
 
 437
 
@@ -3511,7 +3510,7 @@ The `has()` method of the `CacheStorage` interface returns a `Promise` that reso
 
 **API, CacheStorage, Experimental, Method, Reference, Service Workers, Service worker API, ServiceWorker, keys**
 
-The `keys``()` method of the `CacheStorage` interface returns a `Promise` that will resolve with an array containing strings corresponding to all of the named `Cache` objects tracked by the `CacheStorage` object in the order they were created. Use this method to iterate over a list of all `Cache` objects.
+The ` keys``() ` method of the `CacheStorage` interface returns a `Promise` that will resolve with an array containing strings corresponding to all of the named `Cache` objects tracked by the `CacheStorage` object in the order they were created. Use this method to iterate over a list of all `Cache` objects.
 
 439
 
@@ -3711,7 +3710,7 @@ The `CanvasGradient` interface represents an [opaque object](https://en.wikipedi
 
 **API, Canvas, CanvasGradient, Gradients, Method, Reference**
 
-The `CanvasGradient``.addColorStop()` method adds a new color stop, defined by an `offset` and a `color`, to a given canvas gradient.
+The ` CanvasGradient``.addColorStop() ` method adds a new color stop, defined by an `offset` and a `color`, to a given canvas gradient.
 
 464
 
@@ -3735,7 +3734,7 @@ The `CanvasPattern` interface represents an [opaque object](https://en.wikipedia
 
 **API, Canvas, CanvasPattern, Experimental, Method, Reference**
 
-The `CanvasPattern``.setTransform()` method uses an `SVGMatrix` or `DOMMatrix` object as the pattern's transformation matrix and invokes it on the pattern.
+The ` CanvasPattern``.setTransform() ` method uses an `SVGMatrix` or `DOMMatrix` object as the pattern's transformation matrix and invokes it on the pattern.
 
 467
 
@@ -3759,7 +3758,7 @@ The `CanvasRenderingContext2D` method `addHitRegion()` adds a hit region to the 
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.arc()` method of the [Canvas 2D API](canvasrenderingcontext2d) adds a circular arc to the current sub-path.
+The ` CanvasRenderingContext2D``.arc() ` method of the [Canvas 2D API](canvasrenderingcontext2d) adds a circular arc to the current sub-path.
 
 470
 
@@ -3767,7 +3766,7 @@ The `CanvasRenderingContext2D``.arc()` method of the [Canvas 2D API](canvasrende
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.arcTo()` method of the Canvas 2D API adds a circular arc to the current sub-path, using the given control points and radius. The arc is automatically connected to the path's latest point with a straight line, if necessary for the specified parameters.
+The ` CanvasRenderingContext2D``.arcTo() ` method of the Canvas 2D API adds a circular arc to the current sub-path, using the given control points and radius. The arc is automatically connected to the path's latest point with a straight line, if necessary for the specified parameters.
 
 471
 
@@ -3775,7 +3774,7 @@ The `CanvasRenderingContext2D``.arcTo()` method of the Canvas 2D API adds a circ
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.beginPath()` method of the Canvas 2D API starts a new path by emptying the list of sub-paths. Call this method when you want to create a new path.
+The ` CanvasRenderingContext2D``.beginPath() ` method of the Canvas 2D API starts a new path by emptying the list of sub-paths. Call this method when you want to create a new path.
 
 472
 
@@ -3783,7 +3782,7 @@ The `CanvasRenderingContext2D``.beginPath()` method of the Canvas 2D API starts 
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.bezierCurveTo()` method of the Canvas 2D API adds a cubic [Bézier curve](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) to the current sub-path. It requires three points: the first two are control points and the third one is the end point. The starting point is the latest point in the current path, which can be changed using `CanvasRenderingContext2D.moveTo` before creating the Bézier curve.
+The ` CanvasRenderingContext2D``.bezierCurveTo() ` method of the Canvas 2D API adds a cubic [Bézier curve](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) to the current sub-path. It requires three points: the first two are control points and the third one is the end point. The starting point is the latest point in the current path, which can be changed using `CanvasRenderingContext2D.moveTo` before creating the Bézier curve.
 
 473
 
@@ -3807,7 +3806,7 @@ The `CanvasRenderingContext2D` method `clearHitRegions()` removes all hit region
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.clearRect()` method of the Canvas 2D API erases the pixels in a rectangular area by setting them to transparent black.
+The ` CanvasRenderingContext2D``.clearRect() ` method of the Canvas 2D API erases the pixels in a rectangular area by setting them to transparent black.
 
 476
 
@@ -3815,7 +3814,7 @@ The `CanvasRenderingContext2D``.clearRect()` method of the Canvas 2D API erases 
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.clip()` method of the Canvas 2D API turns the current or given path into the current clipping region. The previous clipping region, if any, is intersected with the current or given path to create the new clipping region.
+The ` CanvasRenderingContext2D``.clip() ` method of the Canvas 2D API turns the current or given path into the current clipping region. The previous clipping region, if any, is intersected with the current or given path to create the new clipping region.
 
 477
 
@@ -3823,7 +3822,7 @@ The `CanvasRenderingContext2D``.clip()` method of the Canvas 2D API turns the cu
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.closePath()` method of the Canvas 2D API attempts to add a straight line from the current point to the start of the current sub-path. If the shape has already been closed or has only one point, this function does nothing.
+The ` CanvasRenderingContext2D``.closePath() ` method of the Canvas 2D API attempts to add a straight line from the current point to the start of the current sub-path. If the shape has already been closed or has only one point, this function does nothing.
 
 478
 
@@ -3847,7 +3846,7 @@ The `CanvasRenderingContext2D.createImageData()` method of the Canvas 2D API cre
 
 **API, Canvas, CanvasRenderingContext2D, Gradients, Method, Reference**
 
-The `CanvasRenderingContext2D``.createLinearGradient()` method of the Canvas 2D API creates a gradient along the line connecting two given coordinates.
+The ` CanvasRenderingContext2D``.createLinearGradient() ` method of the Canvas 2D API creates a gradient along the line connecting two given coordinates.
 
 481
 
@@ -3855,7 +3854,7 @@ The `CanvasRenderingContext2D``.createLinearGradient()` method of the Canvas 2D 
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.createPattern()` method of the Canvas 2D API creates a pattern using the specified image and repetition. This method returns a `CanvasPattern`.
+The ` CanvasRenderingContext2D``.createPattern() ` method of the Canvas 2D API creates a pattern using the specified image and repetition. This method returns a `CanvasPattern`.
 
 482
 
@@ -3863,7 +3862,7 @@ The `CanvasRenderingContext2D``.createPattern()` method of the Canvas 2D API cre
 
 **API, Canvas, CanvasRenderingContext2D, Gradients, Method, Reference**
 
-The `CanvasRenderingContext2D``.createRadialGradient()` method of the Canvas 2D API creates a radial gradient using the size and coordinates of two circles.
+The ` CanvasRenderingContext2D``.createRadialGradient() ` method of the Canvas 2D API creates a radial gradient using the size and coordinates of two circles.
 
 483
 
@@ -3871,7 +3870,7 @@ The `CanvasRenderingContext2D``.createRadialGradient()` method of the Canvas 2D 
 
 **API, Canvas, CanvasRenderingContext2D, Experimental, Property, Reference**
 
-The `CanvasRenderingContext2D``.currentTransform` property of the Canvas 2D API returns or sets a `DOMMatrix` (current specification) or `SVGMatrix` (old specification) object for the current transformation matrix.
+The ` CanvasRenderingContext2D``.currentTransform ` property of the Canvas 2D API returns or sets a `DOMMatrix` (current specification) or `SVGMatrix` (old specification) object for the current transformation matrix.
 
 484
 
@@ -3879,7 +3878,7 @@ The `CanvasRenderingContext2D``.currentTransform` property of the Canvas 2D API 
 
 **API, Canvas, CanvasRenderingContext2D, Experimental, Property, Reference**
 
-The `CanvasRenderingContext2D``.direction` property of the Canvas 2D API specifies the current text direction used to draw text.
+The ` CanvasRenderingContext2D``.direction ` property of the Canvas 2D API specifies the current text direction used to draw text.
 
 485
 
@@ -3887,7 +3886,7 @@ The `CanvasRenderingContext2D``.direction` property of the Canvas 2D API specifi
 
 **API, Accessibility, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.drawFocusIfNeeded()` method of the Canvas 2D API draws a focus ring around the current or given path, if the specified element is focused.
+The ` CanvasRenderingContext2D``.drawFocusIfNeeded() ` method of the Canvas 2D API draws a focus ring around the current or given path, if the specified element is focused.
 
 486
 
@@ -3911,7 +3910,7 @@ The non-standard and internal only `CanvasRenderingContext2D.drawWidgetAsOnScree
 
 **API, Canvas, CanvasRenderingContext2D, Method, Non-standard, Reference**
 
-The deprecated, non-standard and internal only `CanvasRenderingContext2D``.drawWindow()` method of the Canvas 2D API renders a region of a window into the `canvas`. The contents of the window's viewport are rendered, ignoring viewport clipping and scrolling.
+The deprecated, non-standard and internal only ` CanvasRenderingContext2D``.drawWindow() ` method of the Canvas 2D API renders a region of a window into the `canvas`. The contents of the window's viewport are rendered, ignoring viewport clipping and scrolling.
 
 489
 
@@ -3919,7 +3918,7 @@ The deprecated, non-standard and internal only `CanvasRenderingContext2D``.drawW
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.ellipse()` method of the Canvas 2D API adds an elliptical arc to the current sub-path.
+The ` CanvasRenderingContext2D``.ellipse() ` method of the Canvas 2D API adds an elliptical arc to the current sub-path.
 
 490
 
@@ -3927,7 +3926,7 @@ The `CanvasRenderingContext2D``.ellipse()` method of the Canvas 2D API adds an e
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.fill()` method of the Canvas 2D API fills the current or given path with the current `CanvasRenderingContext2D.fillStyle`.
+The ` CanvasRenderingContext2D``.fill() ` method of the Canvas 2D API fills the current or given path with the current `CanvasRenderingContext2D.fillStyle`.
 
 491
 
@@ -3935,7 +3934,7 @@ The `CanvasRenderingContext2D``.fill()` method of the Canvas 2D API fills the cu
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.fillRect()` method of the Canvas 2D API draws a rectangle that is filled according to the current `CanvasRenderingContext2D.fillStyle`.
+The ` CanvasRenderingContext2D``.fillRect() ` method of the Canvas 2D API draws a rectangle that is filled according to the current `CanvasRenderingContext2D.fillStyle`.
 
 492
 
@@ -3943,7 +3942,7 @@ The `CanvasRenderingContext2D``.fillRect()` method of the Canvas 2D API draws a 
 
 **API, Canvas, CanvasRenderingContext2D, Property, Reference**
 
-The `CanvasRenderingContext2D``.fillStyle` property of the [Canvas 2D API](canvas_api) specifies the color, gradient, or pattern to use inside shapes. The default style is `#000` (black).
+The ` CanvasRenderingContext2D``.fillStyle ` property of the [Canvas 2D API](canvas_api) specifies the color, gradient, or pattern to use inside shapes. The default style is `#000` (black).
 
 493
 
@@ -3959,7 +3958,7 @@ The `CanvasRenderingContext2D` method `fillText()`, part of the Canvas 2D API, d
 
 **API, Canvas, CanvasRenderingContext2D, Experimental, Property**
 
-The `CanvasRenderingContext2D``.filter` property of the Canvas 2D API provides filter effects such as blurring and grayscaling. It is similar to the CSS `filter` property and accepts the same values.
+The ` CanvasRenderingContext2D``.filter ` property of the Canvas 2D API provides filter effects such as blurring and grayscaling. It is similar to the CSS `filter` property and accepts the same values.
 
 495
 
@@ -3967,7 +3966,7 @@ The `CanvasRenderingContext2D``.filter` property of the Canvas 2D API provides f
 
 **API, Canvas, CanvasRenderingContext2D, Property, Reference**
 
-The `CanvasRenderingContext2D``.font` property of the Canvas 2D API specifies the current text style to use when drawing text. This string uses the same syntax as the [CSS font](https://developer.mozilla.org/en-US/docs/Web/CSS/font) specifier.
+The ` CanvasRenderingContext2D``.font ` property of the Canvas 2D API specifies the current text style to use when drawing text. This string uses the same syntax as the [CSS font](https://developer.mozilla.org/en-US/docs/Web/CSS/font) specifier.
 
 496
 
@@ -3999,7 +3998,7 @@ The `getLineDash()` method of the Canvas 2D API's `CanvasRenderingContext2D` int
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.getTransform()` method of the Canvas 2D API retrieves the current transformation matrix being applied to the context.
+The ` CanvasRenderingContext2D``.getTransform() ` method of the Canvas 2D API retrieves the current transformation matrix being applied to the context.
 
 500
 
@@ -4007,7 +4006,7 @@ The `CanvasRenderingContext2D``.getTransform()` method of the Canvas 2D API retr
 
 **API, Canvas, CanvasRenderingContext2D, Property, Reference**
 
-The `CanvasRenderingContext2D``.globalAlpha` property of the Canvas 2D API specifies the alpha (transparency) value that is applied to shapes and images before they are drawn onto the canvas.
+The ` CanvasRenderingContext2D``.globalAlpha ` property of the Canvas 2D API specifies the alpha (transparency) value that is applied to shapes and images before they are drawn onto the canvas.
 
 501
 
@@ -4015,7 +4014,7 @@ The `CanvasRenderingContext2D``.globalAlpha` property of the Canvas 2D API speci
 
 **API, Blending, Canvas, CanvasRenderingContext2D, Compositing, Property, Reference**
 
-The `CanvasRenderingContext2D``.globalCompositeOperation` property of the Canvas 2D API sets the type of compositing operation to apply when drawing new shapes.
+The ` CanvasRenderingContext2D``.globalCompositeOperation ` property of the Canvas 2D API sets the type of compositing operation to apply when drawing new shapes.
 
 502
 
@@ -4039,7 +4038,7 @@ The `imageSmoothingQuality` property of the `CanvasRenderingContext2D` interface
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.isPointInPath()` method of the Canvas 2D API reports whether or not the specified point is contained in the current path.
+The ` CanvasRenderingContext2D``.isPointInPath() ` method of the Canvas 2D API reports whether or not the specified point is contained in the current path.
 
 505
 
@@ -4047,7 +4046,7 @@ The `CanvasRenderingContext2D``.isPointInPath()` method of the Canvas 2D API rep
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.isPointInStroke()` method of the Canvas 2D API reports whether or not the specified point is inside the area contained by the stroking of a path.
+The ` CanvasRenderingContext2D``.isPointInStroke() ` method of the Canvas 2D API reports whether or not the specified point is inside the area contained by the stroking of a path.
 
 506
 
@@ -4055,7 +4054,7 @@ The `CanvasRenderingContext2D``.isPointInStroke()` method of the Canvas 2D API r
 
 **API, Canvas, CanvasRenderingContext2D, Property, Reference**
 
-The `CanvasRenderingContext2D``.lineCap` property of the Canvas 2D API determines the shape used to draw the end points of lines.
+The ` CanvasRenderingContext2D``.lineCap ` property of the Canvas 2D API determines the shape used to draw the end points of lines.
 
 507
 
@@ -4063,7 +4062,7 @@ The `CanvasRenderingContext2D``.lineCap` property of the Canvas 2D API determine
 
 **API, Canvas, CanvasRenderingContext2D, Property, Reference**
 
-The `CanvasRenderingContext2D``.lineDashOffset` property of the Canvas 2D API sets the line dash offset, or "phase."
+The ` CanvasRenderingContext2D``.lineDashOffset ` property of the Canvas 2D API sets the line dash offset, or "phase."
 
 508
 
@@ -4071,7 +4070,7 @@ The `CanvasRenderingContext2D``.lineDashOffset` property of the Canvas 2D API se
 
 **API, Canvas, CanvasRenderingContext2D, Property, Reference**
 
-The `CanvasRenderingContext2D``.lineJoin` property of the Canvas 2D API determines the shape used to join two line segments where they meet.
+The ` CanvasRenderingContext2D``.lineJoin ` property of the Canvas 2D API determines the shape used to join two line segments where they meet.
 
 509
 
@@ -4087,7 +4086,7 @@ The `CanvasRenderingContext2D` method `lineTo()`, part of the Canvas 2D API, add
 
 **API, Canvas, CanvasRenderingContext2D, Property, Reference**
 
-The `CanvasRenderingContext2D``.lineWidth` property of the Canvas 2D API sets the thickness of lines.
+The ` CanvasRenderingContext2D``.lineWidth ` property of the Canvas 2D API sets the thickness of lines.
 
 511
 
@@ -4111,7 +4110,7 @@ The `CanvasRenderingContext2D.miterLimit` property of the Canvas 2D API sets the
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.moveTo()` method of the Canvas 2D API begins a new sub-path at the point specified by the given `(x, y)` coordinates.
+The ` CanvasRenderingContext2D``.moveTo() ` method of the Canvas 2D API begins a new sub-path at the point specified by the given `(x, y)` coordinates.
 
 514
 
@@ -4119,7 +4118,7 @@ The `CanvasRenderingContext2D``.moveTo()` method of the Canvas 2D API begins a n
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.putImageData()` method of the Canvas 2D API paints data from the given `ImageData` object onto the canvas. If a dirty rectangle is provided, only the pixels from that rectangle are painted. This method is not affected by the canvas transformation matrix.
+The ` CanvasRenderingContext2D``.putImageData() ` method of the Canvas 2D API paints data from the given `ImageData` object onto the canvas. If a dirty rectangle is provided, only the pixels from that rectangle are painted. This method is not affected by the canvas transformation matrix.
 
 515
 
@@ -4127,7 +4126,7 @@ The `CanvasRenderingContext2D``.putImageData()` method of the Canvas 2D API pain
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.quadraticCurveTo()` method of the Canvas 2D API adds a quadratic [Bézier curve](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) to the current sub-path. It requires two points: the first one is a control point and the second one is the end point. The starting point is the latest point in the current path, which can be changed using `CanvasRenderingContext2D.moveTo` before creating the quadratic Bézier curve.
+The ` CanvasRenderingContext2D``.quadraticCurveTo() ` method of the Canvas 2D API adds a quadratic [Bézier curve](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) to the current sub-path. It requires two points: the first one is a control point and the second one is the end point. The starting point is the latest point in the current path, which can be changed using `CanvasRenderingContext2D.moveTo` before creating the quadratic Bézier curve.
 
 516
 
@@ -4135,7 +4134,7 @@ The `CanvasRenderingContext2D``.quadraticCurveTo()` method of the Canvas 2D API 
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.rect()` method of the Canvas 2D API adds a rectangle to the current path.
+The ` CanvasRenderingContext2D``.rect() ` method of the Canvas 2D API adds a rectangle to the current path.
 
 517
 
@@ -4151,7 +4150,7 @@ The `CanvasRenderingContext2D` method `removeHitRegion()` removes a given hit re
 
 **Canvas, CanvasRenderingContext2D, Experimental, Method, Reference**
 
-The `CanvasRenderingContext2D``.resetTransform()` method of the Canvas 2D API resets the current transform to the identity matrix.
+The ` CanvasRenderingContext2D``.resetTransform() ` method of the Canvas 2D API resets the current transform to the identity matrix.
 
 519
 
@@ -4159,7 +4158,7 @@ The `CanvasRenderingContext2D``.resetTransform()` method of the Canvas 2D API re
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.restore()` method of the Canvas 2D API restores the most recently saved canvas state by popping the top entry in the drawing state stack. If there is no saved state, this method does nothing.
+The ` CanvasRenderingContext2D``.restore() ` method of the Canvas 2D API restores the most recently saved canvas state by popping the top entry in the drawing state stack. If there is no saved state, this method does nothing.
 
 520
 
@@ -4167,7 +4166,7 @@ The `CanvasRenderingContext2D``.restore()` method of the Canvas 2D API restores 
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.rotate()` method of the Canvas 2D API adds a rotation to the transformation matrix.
+The ` CanvasRenderingContext2D``.rotate() ` method of the Canvas 2D API adds a rotation to the transformation matrix.
 
 521
 
@@ -4175,7 +4174,7 @@ The `CanvasRenderingContext2D``.rotate()` method of the Canvas 2D API adds a rot
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.save()` method of the Canvas 2D API saves the entire state of the canvas by pushing the current state onto a stack.
+The ` CanvasRenderingContext2D``.save() ` method of the Canvas 2D API saves the entire state of the canvas by pushing the current state onto a stack.
 
 522
 
@@ -4183,7 +4182,7 @@ The `CanvasRenderingContext2D``.save()` method of the Canvas 2D API saves the en
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.scale()` method of the Canvas 2D API adds a scaling transformation to the canvas units horizontally and/or vertically.
+The ` CanvasRenderingContext2D``.scale() ` method of the Canvas 2D API adds a scaling transformation to the canvas units horizontally and/or vertically.
 
 523
 
@@ -4191,7 +4190,7 @@ The `CanvasRenderingContext2D``.scale()` method of the Canvas 2D API adds a scal
 
 **API, Canvas, CanvasRenderingContext2D, Experimental, Method, Reference**
 
-The `CanvasRenderingContext2D``.scrollPathIntoView()` method of the Canvas 2D API scrolls the current or given path into view. It is similar to `Element.scrollIntoView()`.
+The ` CanvasRenderingContext2D``.scrollPathIntoView() ` method of the Canvas 2D API scrolls the current or given path into view. It is similar to `Element.scrollIntoView()`.
 
 524
 
@@ -4207,7 +4206,7 @@ The `setLineDash()` method of the Canvas 2D API's `CanvasRenderingContext2D` int
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.setTransform()` method of the Canvas 2D API resets (overrides) the current transformation to the identity matrix, and then invokes a transformation described by the arguments of this method. This lets you scale, rotate, translate (move), and skew the context.
+The ` CanvasRenderingContext2D``.setTransform() ` method of the Canvas 2D API resets (overrides) the current transformation to the identity matrix, and then invokes a transformation described by the arguments of this method. This lets you scale, rotate, translate (move), and skew the context.
 
 526
 
@@ -4215,7 +4214,7 @@ The `CanvasRenderingContext2D``.setTransform()` method of the Canvas 2D API rese
 
 **API, Canvas, CanvasRenderingContext2D, Property, Reference**
 
-The `CanvasRenderingContext2D``.shadowBlur` property of the Canvas 2D API specifies the amount of blur applied to shadows. The default is `0` (no blur).
+The ` CanvasRenderingContext2D``.shadowBlur ` property of the Canvas 2D API specifies the amount of blur applied to shadows. The default is `0` (no blur).
 
 527
 
@@ -4223,7 +4222,7 @@ The `CanvasRenderingContext2D``.shadowBlur` property of the Canvas 2D API specif
 
 **API, Canvas, CanvasRenderingContext2D, Property, Reference**
 
-The `CanvasRenderingContext2D``.shadowColor` property of the Canvas 2D API specifies the color of shadows.
+The ` CanvasRenderingContext2D``.shadowColor ` property of the Canvas 2D API specifies the color of shadows.
 
 528
 
@@ -4231,7 +4230,7 @@ The `CanvasRenderingContext2D``.shadowColor` property of the Canvas 2D API speci
 
 **API, Canvas, CanvasRenderingContext2D, Property, Reference**
 
-The `CanvasRenderingContext2D``.shadowOffsetX` property of the Canvas 2D API specifies the distance that shadows will be offset horizontally.
+The ` CanvasRenderingContext2D``.shadowOffsetX ` property of the Canvas 2D API specifies the distance that shadows will be offset horizontally.
 
 529
 
@@ -4239,7 +4238,7 @@ The `CanvasRenderingContext2D``.shadowOffsetX` property of the Canvas 2D API spe
 
 **API, Canvas, CanvasRenderingContext2D, Property, Reference**
 
-The `CanvasRenderingContext2D``.shadowOffsetY` property of the Canvas 2D API specifies the distance that shadows will be offset vertically.
+The ` CanvasRenderingContext2D``.shadowOffsetY ` property of the Canvas 2D API specifies the distance that shadows will be offset vertically.
 
 530
 
@@ -4247,7 +4246,7 @@ The `CanvasRenderingContext2D``.shadowOffsetY` property of the Canvas 2D API spe
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.stroke()` method of the Canvas 2D API strokes (outlines) the current or given path with the current stroke style.
+The ` CanvasRenderingContext2D``.stroke() ` method of the Canvas 2D API strokes (outlines) the current or given path with the current stroke style.
 
 531
 
@@ -4255,7 +4254,7 @@ The `CanvasRenderingContext2D``.stroke()` method of the Canvas 2D API strokes (o
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.strokeRect()` method of the Canvas 2D API draws a rectangle that is stroked (outlined) according to the current `CanvasRenderingContext2D.strokeStyle` and other context settings.
+The ` CanvasRenderingContext2D``.strokeRect() ` method of the Canvas 2D API draws a rectangle that is stroked (outlined) according to the current `CanvasRenderingContext2D.strokeStyle` and other context settings.
 
 532
 
@@ -4279,7 +4278,7 @@ The `CanvasRenderingContext2D` method `strokeText()`, part of the Canvas 2D API,
 
 **API, Canvas, CanvasRenderingContext2D, Property, Reference**
 
-The `CanvasRenderingContext2D``.textAlign` property of the Canvas 2D API specifies the current text alignment used when drawing text.
+The ` CanvasRenderingContext2D``.textAlign ` property of the Canvas 2D API specifies the current text alignment used when drawing text.
 
 535
 
@@ -4287,7 +4286,7 @@ The `CanvasRenderingContext2D``.textAlign` property of the Canvas 2D API specifi
 
 **API, Canvas, CanvasRenderingContext2D, Property, Reference**
 
-The `CanvasRenderingContext2D``.textBaseline` property of the Canvas 2D API specifies the current text baseline used when drawing text.
+The ` CanvasRenderingContext2D``.textBaseline ` property of the Canvas 2D API specifies the current text baseline used when drawing text.
 
 536
 
@@ -4295,7 +4294,7 @@ The `CanvasRenderingContext2D``.textBaseline` property of the Canvas 2D API spec
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.transform()` method of the Canvas 2D API multiplies the current transformation with the matrix described by the arguments of this method. This lets you scale, rotate, translate (move), and skew the context.
+The ` CanvasRenderingContext2D``.transform() ` method of the Canvas 2D API multiplies the current transformation with the matrix described by the arguments of this method. This lets you scale, rotate, translate (move), and skew the context.
 
 537
 
@@ -4303,7 +4302,7 @@ The `CanvasRenderingContext2D``.transform()` method of the Canvas 2D API multipl
 
 **API, Canvas, CanvasRenderingContext2D, Method, Reference**
 
-The `CanvasRenderingContext2D``.translate()` method of the Canvas 2D API adds a translation transformation to the current matrix.
+The ` CanvasRenderingContext2D``.translate() ` method of the Canvas 2D API adds a translation transformation to the current matrix.
 
 538
 
@@ -4543,7 +4542,7 @@ The `claim()` method of the `Clients` interface allows an active service worker 
 
 **API, Clients, Experimental, Method, Reference, Service Workers, get**
 
-The `get``()` method of the `Clients` interface gets a service worker client matching a given `id` and returns it in a `Promise`.
+The ` get``() ` method of the `Clients` interface gets a service worker client matching a given `id` and returns it in a `Promise`.
 
 568
 
@@ -4741,7 +4740,7 @@ The `data` read-only property of the `CompositionEvent` interface returns the ch
 
 **API, CompositionEvent, Deprecated, Method, Reference, initCompositionEvent**
 
-The `initCompositionEvent``()` method of the `CompositionEvent` interface initializes the attributes of a `CompositionEvent` object instance.
+The ` initCompositionEvent``() ` method of the `CompositionEvent` interface initializes the attributes of a `CompositionEvent` object instance.
 
 593
 
@@ -4755,7 +4754,7 @@ The `locale` read-only property of the `CompositionEvent` interface returns the 
 
 [Compression Streams API](compression_streams_api)
 
-**API, Compression, Compression\_Streams\_API, Decompression, Overview, Reference**
+**API, Compression, Compression_Streams_API, Decompression, Overview, Reference**
 
 The **Compression Streams API** provides a JavaScript API for compressing and decompressing streams of data using the gzip or deflate formats.
 
@@ -4805,7 +4804,7 @@ The Console API provides functionality to allow developers to perform debugging 
 
 **API, Debugging, Interface, Reference, console, web console**
 
-The `console` object provides access to the browser's debugging console (e.g. the [Web Console](https://developer.mozilla.org/en-US/docs/Tools/Web_Console) in Firefox). The specifics of how it works varies from browser to browser, but there is a *de facto* set of features that are typically provided.
+The `console` object provides access to the browser's debugging console (e.g. the [Web Console](https://developer.mozilla.org/en-US/docs/Tools/Web_Console) in Firefox). The specifics of how it works varies from browser to browser, but there is a _de facto_ set of features that are typically provided.
 
 601
 
@@ -5101,7 +5100,7 @@ The `ContentIndex` interface of the `Content Index API` allows developers to reg
 
 **Content, Content Index API, Index, Interface, Method, PWA, content index, content indexing**
 
-The `add()` method of the `ContentIndex` interface registers an item with the `Content   Index API`.
+The `add()` method of the `ContentIndex` interface registers an item with the `Content Index API`.
 
 638
 
@@ -5501,7 +5500,7 @@ There are several properties you can look at in order to determine the width and
 
 **API, Beginner, CSSOM, Guide, NeedsBeginnerUpdate**
 
-The CSS Object Model (CSSOM), part of the DOM, exposes specific interfaces allowing manipulation of a wide amount of information regarding CSS. Initially defined in the *DOM Level 2 Style* recommendation, these interfaces forms now a specification, *CSS Object Model (CSSOM)* which aims at superseding it.
+The CSS Object Model (CSSOM), part of the DOM, exposes specific interfaces allowing manipulation of a wide amount of information regarding CSS. Initially defined in the _DOM Level 2 Style_ recommendation, these interfaces forms now a specification, _CSS Object Model (CSSOM)_ which aims at superseding it.
 
 688
 
@@ -5989,7 +5988,7 @@ The `CSSMathValue.operator` read-only property of the `CSSMathValue` interface i
 
 **API, CSS Typed Object Model API, CSSMatrixComponent, CSSTransformComponent, CSSTransformValue, Experimental, Houdini, Interface**
 
-The `CSSMatrixComponent` interface of the `CSS_Object_Model#css_typed_object_model` represents the [matrix()](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix()) and [matrix3d()](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix()) values of the individual `transform` property in CSS. It inherits properties and methods from its parent `CSSTransformValue`.
+The `CSSMatrixComponent` interface of the `CSS_Object_Model#css_typed_object_model` represents the [matrix()](<https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix()>) and [matrix3d()](<https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix()>) values of the individual `transform` property in CSS. It inherits properties and methods from its parent `CSSTransformValue`.
 
 749
 
@@ -5997,7 +5996,7 @@ The `CSSMatrixComponent` interface of the `CSS_Object_Model#css_typed_object_mod
 
 **API, CSS Typed Object Model API, CSSMatrixComponent, CSSTransformComponent, CSSTransformValue, Constructor, Experimental, Houdini**
 
-The `CSSMatrixComponent()` constructor creates a new `CSSMatrixComponent` object representing the [matrix()](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix()) and [matrix3d()](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix()) values of the individual `transform` property in CSS.
+The `CSSMatrixComponent()` constructor creates a new `CSSMatrixComponent` object representing the [matrix()](<https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix()>) and [matrix3d()](<https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix()>) values of the individual `transform` property in CSS.
 
 750
 
@@ -6205,7 +6204,7 @@ The `style` read-only property of the `CSSPageRule` interface returns a `CSSStyl
 
 **API, CSS Typed Object Model API, CSSPerspective, CSSTransformComponent, CSSTransformValue, Experimental, Houdini, Interface**
 
-The `CSSPerspective` interface of the `CSS_Object_Model#css_typed_object_model` represents the [perspective()](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/perspective()) value of the individual `transform` property in CSS. It inherits properties and methods from its parent `CSSTransformValue`.
+The `CSSPerspective` interface of the `CSS_Object_Model#css_typed_object_model` represents the [perspective()](<https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/perspective()>) value of the individual `transform` property in CSS. It inherits properties and methods from its parent `CSSTransformValue`.
 
 776
 
@@ -6213,7 +6212,7 @@ The `CSSPerspective` interface of the `CSS_Object_Model#css_typed_object_model` 
 
 **API, CSS Typed Object Model API, CSSPerspective, CSSTransformComponent, CSSTransformValue, Constructor, Experimental, Houdini**
 
-The `CSSPerspective()` constructor creates a new `CSSPerspective` object representing the [perspective()](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/perspective()) value of the individual `transform` property in CSS.
+The `CSSPerspective()` constructor creates a new `CSSPerspective` object representing the [perspective()](<https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/perspective()>) value of the individual `transform` property in CSS.
 
 777
 
@@ -6413,7 +6412,7 @@ The `angle` property of the `CSSRotate` interface gets and sets the angle of rot
 
 **API, CSS Types Object Model API, CSSRotate, CSSTransformComponent, CSSTransformValue, Constructor, Experimental, Houdini**
 
-The `CSSRotate()` constructor creates a new `CSSRotate` object representing the [rotate()](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotate()) value of the individual `transform` property in CSS.
+The `CSSRotate()` constructor creates a new `CSSRotate` object representing the [rotate()](<https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotate()>) value of the individual `transform` property in CSS.
 
 802
 
@@ -6493,7 +6492,7 @@ A `CSSRuleList` is an (indirect-modify only) array-like object containing an ord
 
 **API, CSS Typed Object Model API, CSSScale, CSSTransformComponent, CSSTransformValue, Experimental, Houdini, Interface**
 
-The `CSSScale` interface of the `CSS_Object_Model#css_typed_object_model` represents the [scale()](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale()) and [scale3d()](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale()) values of the individual `transform` property in CSS. It inherits properties and methods from its parent `CSSTransformValue`.
+The `CSSScale` interface of the `CSS_Object_Model#css_typed_object_model` represents the [scale()](<https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale()>) and [scale3d()](<https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale()>) values of the individual `transform` property in CSS. It inherits properties and methods from its parent `CSSTransformValue`.
 
 812
 
@@ -6501,7 +6500,7 @@ The `CSSScale` interface of the `CSS_Object_Model#css_typed_object_model` repres
 
 **API, CSS Typed Object Model API, CSSScale, CSSTransformComponent, CSSTransformValue, Constructor, Experimental, Houdini**
 
-The `CSSScale()` constructor creates a new `CSSScale` object representing the [scale()](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale()) and [scale3d()](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale()) values of the individual `transform` property in CSS.
+The `CSSScale()` constructor creates a new `CSSScale` object representing the [scale()](<https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale()>) and [scale3d()](<https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale()>) values of the individual `transform` property in CSS.
 
 813
 
@@ -6741,7 +6740,7 @@ The `CSSStyleSheet` interface represents a single [CSS](https://developer.mozill
 
 **API, CSS, CSSOM, CSSOM API, CSSStyleSheet, Layout, Method, Object Model, Obsolete, Reference, Style, StyleSheet, addRule, legacy, rules**
 
-The obsolete `CSSStyleSheet` interface's `addRule()` *legacy method* adds a new rule to the stylesheet. You should avoid using this method, and should instead use the more standard `CSSStyleSheet.insertRule` method.
+The obsolete `CSSStyleSheet` interface's `addRule()` _legacy method_ adds a new rule to the stylesheet. You should avoid using this method, and should instead use the more standard `CSSStyleSheet.insertRule` method.
 
 843
 
@@ -6789,7 +6788,7 @@ The obsolete `CSSStyleSheet` method `removeRule()` removes a rule from the style
 
 **API, CSS, CSSOM, CSSOM API, CSSStyleSheet, Layout, Object Model, Obsolete, Property, Read-only, Reference, Style, StyleSheet, legacy**
 
-`rules` is a *deprecated* *legacy property* of the `CSSStyleSheet` interface. Functionally identical to the preferred `CSSStyleSheet.cssRules` property, it provides access to a live-updating list of the CSS rules comprising the stylesheet.
+`rules` is a _deprecated_ _legacy property_ of the `CSSStyleSheet` interface. Functionally identical to the preferred `CSSStyleSheet.cssRules` property, it provides access to a live-updating list of the CSS rules comprising the stylesheet.
 
 849
 
@@ -6949,7 +6948,7 @@ The `transitionProperty` property of the `CSSTransition` interface returns the *
 
 **API, CSS Typed Object Model API, CSSTransformComponent, CSSTransformFunction, CSSTranslate, Experimental, Houdini, Interface**
 
-The `CSSTranslate` interface of the `CSS_Object_Model#css_typed_object_model` represents the [translate()](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate()) value of the individual `transform` property in CSS. It inherits properties and methods from its parent `CSSTransformValue`.
+The `CSSTranslate` interface of the `CSS_Object_Model#css_typed_object_model` represents the [translate()](<https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate()>) value of the individual `transform` property in CSS. It inherits properties and methods from its parent `CSSTransformValue`.
 
 869
 
@@ -6957,7 +6956,7 @@ The `CSSTranslate` interface of the `CSS_Object_Model#css_typed_object_model` re
 
 **API, CSS Typed Object Model API, CSSTransformComponent, CSSTransformValue, CSSTranslate, Constructor, Experimental, Houdini**
 
-The `CSSTranslate()` constructor creates a new `CSSTranslate` object representing the [translate()](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate()) value of the individual `transform` property in CSS.
+The `CSSTranslate()` constructor creates a new `CSSTranslate` object representing the [translate()](<https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate()>) value of the individual `transform` property in CSS.
 
 870
 
@@ -7269,7 +7268,7 @@ The `DataTransfer.dropEffect` property controls the feedback (typically visual) 
 
 **API, HTML DOM, Property, Reference, drag and drop**
 
-The `DataTransfer.effectAllowed` property specifies the effect that is allowed for a drag operation. The *copy* operation is used to indicate that the data being dragged will be copied from its present location to the drop location. The *move* operation is used to indicate that the data being dragged will be moved, and the *link* operation is used to indicate that some form of relationship or connection will be created between the source and drop locations.
+The `DataTransfer.effectAllowed` property specifies the effect that is allowed for a drag operation. The _copy_ operation is used to indicate that the data being dragged will be copied from its present location to the drop location. The _move_ operation is used to indicate that the data being dragged will be moved, and the _link_ operation is used to indicate that some form of relationship or connection will be created between the source and drop locations.
 
 909
 
@@ -7389,7 +7388,7 @@ The `DataTransfer.types` read-only property returns an array of the drag data fo
 
 **API, DataTransferItem, HTML DOM, HTML Drag and Drop API, Interface, Reference, drag and drop**
 
-The `DataTransferItem` object represents one drag data item. During a *drag operation*, each `DragEvent` has a `DragEvent.dataTransfer` property which contains a `DataTransferItemList` of drag data items. Each item in the list is a `DataTransferItem` object.
+The `DataTransferItem` object represents one drag data item. During a _drag operation_, each `DragEvent` has a `DragEvent.dataTransfer` property which contains a `DataTransferItemList` of drag data items. Each item in the list is a `DataTransferItem` object.
 
 924
 
@@ -7413,7 +7412,7 @@ The `getAsFileSystemHandle()` method of the `DataTransferItem` interface returns
 
 **API, DataTransferItem, HTML DOM, HTML Drag and Drop API, Method, Reference, drag and drop, getAsString**
 
-The `DataTransferItem.getAsString()` method invokes the given callback with the drag data item's string data as the argument if the item's `DataTransferItem.kind` is a *Plain unicode string* (i.e. `kind` is `string`).
+The `DataTransferItem.getAsString()` method invokes the given callback with the drag data item's string data as the argument if the item's `DataTransferItem.kind` is a _Plain unicode string_ (i.e. `kind` is `string`).
 
 927
 
@@ -7421,7 +7420,7 @@ The `DataTransferItem.getAsString()` method invokes the given callback with the 
 
 **API, DataTransferItem, HTML DOM, HTML Drag and Drop API, Property, Reference, drag and drop, kind**
 
-The read-only `DataTransferItem.kind` property returns a `DataTransferItem` representing the *drag data item* kind: some text or some file.
+The read-only `DataTransferItem.kind` property returns a `DataTransferItem` representing the _drag data item_ kind: some text or some file.
 
 928
 
@@ -7445,7 +7444,7 @@ If the item described by the `DataTransferItem` is a file, `webkitGetAsEntry()` 
 
 **API, DataTransferItemList, HTML DOM, HTML Drag and Drop API, Interface, Reference, drag and drop**
 
-The `DataTransferItemList` object is a list of `DataTransferItem` objects representing items being dragged. During a *drag operation*, each `DragEvent` has a `DragEvent.dataTransfer` property and that property is a `DataTransferItemList`.
+The `DataTransferItemList` object is a list of `DataTransferItem` objects representing items being dragged. During a _drag operation_, each `DragEvent` has a `DragEvent.dataTransfer` property and that property is a `DataTransferItemList`.
 
 931
 
@@ -7909,7 +7908,7 @@ The W3C's [DOM Level 1 Core](https://www.w3.org/TR/REC-DOM-Level-1/level-one-cor
 
 **DOM**
 
-*No summary!*
+_No summary!_
 
 989
 
@@ -8277,7 +8276,7 @@ The `cut` event is fired when the user has initiated a "cut" action through the 
 
 **API, Document, HTML DOM, Property, Reference**
 
-In browsers, `document.defaultView` returns the `Window` object associated with Browsing\_context, or `null` if none is available.
+In browsers, `document.defaultView` returns the `Window` object associated with Browsing_context, or `null` if none is available.
 
 1035
 
@@ -8965,7 +8964,7 @@ The `pointermove` event is fired when a pointer changes coordinates, and the poi
 
 **Document, Event, PointerEvent, Reference, Web, onpointerout, pointerout**
 
-The `pointerout` event is fired for several reasons including: pointing device is moved out of the *hit test* boundaries of an element; firing the `Document/pointerup_event` event for a device that does not support hover (see `Document/pointerup_event`); after firing the `Document/pointercancel_event` event (see `Document/pointercancel_event`); when a pen stylus leaves the hover range detectable by the digitizer.
+The `pointerout` event is fired for several reasons including: pointing device is moved out of the _hit test_ boundaries of an element; firing the `Document/pointerup_event` event for a device that does not support hover (see `Document/pointerup_event`); after firing the `Document/pointercancel_event` event (see `Document/pointercancel_event`); when a pen stylus leaves the hover range detectable by the digitizer.
 
 1121
 
@@ -9701,7 +9700,7 @@ The `DOMPoint` interface's `x` property holds the horizontal coordinate, x, for 
 
 **API, Coordinate, DOM, DOMPoint, Geometry, Geometry Interfaces, Point, Property, Reference, y**
 
-The `DOMPoint` interface's `y` property holds the vertical coordinate, *y*, for a point in space.
+The `DOMPoint` interface's `y` property holds the vertical coordinate, _y_, for a point in space.
 
 1213
 
@@ -9725,7 +9724,7 @@ The `DOMPointInit` dictionary is used to provide the values of the coordinates a
 
 **API, DOM, DOMPointInit, Geometry, Geometry Interfaces, Point, Property, Reference, W, perspective**
 
-The `DOMPointInit` dictionary's `w` property is used to specify the *w* perspective value of a point in space when either creating or serializing to JSON a `DOMPoint` or `DOMPointReadOnly` object.
+The `DOMPointInit` dictionary's `w` property is used to specify the _w_ perspective value of a point in space when either creating or serializing to JSON a `DOMPoint` or `DOMPointReadOnly` object.
 
 1216
 
@@ -9741,7 +9740,7 @@ The `DOMPointInit` dictionary's `x` property is used to specify the x component 
 
 **API, Coordinates, DOM, DOMPointInit, Geometry, Geometry Interfaces, Point, Property, Reference, y**
 
-The `DOMPointInit` dictionary's `y` property is used to specify the *y*-coordinate of a point in 2D or 3D space when either creating or serializing to JSON a `DOMPoint` or `DOMPointReadOnly` object.
+The `DOMPointInit` dictionary's `y` property is used to specify the _y_-coordinate of a point in 2D or 3D space when either creating or serializing to JSON a `DOMPoint` or `DOMPointReadOnly` object.
 
 1218
 
@@ -9749,7 +9748,7 @@ The `DOMPointInit` dictionary's `y` property is used to specify the *y*-coordina
 
 **API, Coordinates, DOM, DOMPointInit, Geometry, Geometry Interfaces, Point, Property, Reference, z**
 
-The `DOMPointInit` dictionary's `z` property is used to specify the *z*-coordinate of a point in 2D or 3D space when either creating or serializing to JSON a `DOMPoint` or `DOMPointReadOnly` object.
+The `DOMPointInit` dictionary's `z` property is used to specify the _z_-coordinate of a point in 2D or 3D space when either creating or serializing to JSON a `DOMPoint` or `DOMPointReadOnly` object.
 
 1219
 
@@ -9981,7 +9980,7 @@ The `DOMTokenList` interface represents a set of space-separated tokens. Such a 
 
 **API, Add, DOM, DOMTokenList, Method, Reference**
 
-The `add()` method of the `DOMTokenList` interface adds the given *token* to the list.
+The `add()` method of the `DOMTokenList` interface adds the given _token_ to the list.
 
 1248
 
@@ -10037,7 +10036,7 @@ The `length` read-only property of the `DOMTokenList` interface is an `integer` 
 
 **API, DOM, DOMTokenList, Method, Reference, remove**
 
-The `remove()` method of the `DOMTokenList` interface removes the specified *tokens* from the list.
+The `remove()` method of the `DOMTokenList` interface removes the specified _tokens_ from the list.
 
 1255
 
@@ -10253,7 +10252,7 @@ The `duration` property of the dictionary `EffectTiming` in the [Web Animations 
 
 **API, Animation, EffectTiming, Experimental, KeyframeEffect, Property, Reference, Timing Function, Web Animations, animate, easing, waapi, web animations api**
 
-The `EffectTiming` dictionary's `easing` property in the [Web Animations API](web_animations_api) specifies the timing function used to scale the time to produce easing effects, where *easing* is the rate of the animation's change over time.
+The `EffectTiming` dictionary's `easing` property in the [Web Animations API](web_animations_api) specifies the timing function used to scale the time to produce easing effects, where _easing_ is the rate of the animation's change over time.
 
 1282
 
@@ -11221,7 +11220,7 @@ The `mouseup` event is fired at an `Element` when a button on a pointing device 
 
 **DOM, Deprecated, Event, Interface, Non-standard, UI, mouse, mousewheel, scrolling, wheel**
 
-The *obsolete* and *non-standard* `mousewheel` event is fired asynchronously at an `Element` to provide updates while a mouse wheel or similar device is operated. The `mousewheel` event was never part of any standard, and while it was implemented by several browsers, it was never implemented by Firefox.
+The _obsolete_ and _non-standard_ `mousewheel` event is fired asynchronously at an `Element` to provide updates while a mouse wheel or similar device is operated. The `mousewheel` event was never part of any standard, and while it was implemented by several browsers, it was never implemented by Firefox.
 
 1403
 
@@ -11229,7 +11228,7 @@ The *obsolete* and *non-standard* `mousewheel` event is fired asynchronously at 
 
 **API, DOM, Event, Firefox, Mouse Wheel, MozMousePixelScroll, Mozilla, Non-standard, Reference, mouse, wheel**
 
-The Firefox-only, *non-standard*, and *obsolete* `MozMousePixelScroll` event is fired at an `Element` asynchronously when a mouse wheel or similar device is operated. It's represented by the `MouseScrollEvent` interface.
+The Firefox-only, _non-standard_, and _obsolete_ `MozMousePixelScroll` event is fired at an `Element` asynchronously when a mouse wheel or similar device is operated. It's represented by the `MouseScrollEvent` interface.
 
 1404
 
@@ -11421,7 +11420,7 @@ The `Element` method `querySelectorAll()` returns a static (not live) `NodeList`
 
 **API, DOM, Element, Method, PointerEvent, Reference**
 
-The `releasePointerCapture()` method of the `Element` interface releases (stops) *pointer capture* that was previously set for a specific (`PointerEvent`) *pointer*.
+The `releasePointerCapture()` method of the `Element` interface releases (stops) _pointer capture_ that was previously set for a specific (`PointerEvent`) _pointer_.
 
 1428
 
@@ -11629,7 +11628,7 @@ Call this method during the handling of a mousedown event to retarget all mouse 
 
 **API, DOM, Element, Method, PointerEvent, Reference**
 
-The `setPointerCapture()` method of the `Element` interface is used to designate a specific element as the *capture target* of future pointer events. Subsequent events for the pointer will be targeted at the capture element until capture is released (via `Element.releasePointerCapture()` or the `HTMLElement/pointerup_event` event is fired).
+The `setPointerCapture()` method of the `Element` interface is used to designate a specific element as the _capture target_ of future pointer events. Subsequent events for the pointer will be targeted at the capture element until capture is released (via `Element.releasePointerCapture()` or the `HTMLElement/pointerup_event` event is fired).
 
 1454
 
@@ -11773,7 +11772,7 @@ The `ElementCSSInlineStyle` mixin describes CSSOM-specific features common to th
 
 **API, CSSOM, HTMLElement, Property, Reference, SVGElement, Style**
 
-The `style` read-only property returns the *inline* style of an element in the form of a `CSSStyleDeclaration` object that contains a list of all styles properties for that element with values assigned for the attributes that are defined in the element's inline [`style` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style).
+The `style` read-only property returns the _inline_ style of an element in the form of a `CSSStyleDeclaration` object that contains a list of all styles properties for that element with values assigned for the attributes that are defined in the element's inline [`style` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style).
 
 1472
 
@@ -12053,7 +12052,7 @@ The `error` event of the `EventSource` API is fired when a connection with an ev
 
 **API, Constructor, EventSource, Reference, Server-sent events**
 
-The `EventSource``()` constructor returns a newly-created `EventSource`, which represents a remote resource.
+The ` EventSource``() ` constructor returns a newly-created `EventSource`, which represents a remote resource.
 
 1507
 
@@ -12161,7 +12160,7 @@ The `EventTarget.removeEventListener()` method removes from the `EventTarget` an
 
 1520
 
-[EXT\_blend\_minmax](ext_blend_minmax)
+[EXT_blend_minmax](ext_blend_minmax)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -12169,7 +12168,7 @@ The `EXT_blend_minmax` extension is part of the [WebGL API](webgl_api) and exten
 
 1521
 
-[EXT\_color\_buffer\_float](ext_color_buffer_float)
+[EXT_color_buffer_float](ext_color_buffer_float)
 
 **API, Reference, WebGL, WebGL extension, WebGL2**
 
@@ -12177,7 +12176,7 @@ The `EXT_color_buffer_float` extension is part of [WebGL](webgl_api) and adds th
 
 1522
 
-[EXT\_color\_buffer\_half\_float](ext_color_buffer_half_float)
+[EXT_color_buffer_half_float](ext_color_buffer_half_float)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -12185,15 +12184,15 @@ The `EXT_color_buffer_half_float` extension is part of the [WebGL API](webgl_api
 
 1523
 
-[EXT\_disjoint\_timer\_query](ext_disjoint_timer_query)
+[EXT_disjoint_timer_query](ext_disjoint_timer_query)
 
 **API, Reference, WebGL, WebGL extension**
 
-The **EXT\_disjoint\_timer\_query** extension is part of the [WebGL API](webgl_api) and provides a way to measure the duration of a set of GL commands, without stalling the rendering pipeline.
+The **EXT_disjoint_timer_query** extension is part of the [WebGL API](webgl_api) and provides a way to measure the duration of a set of GL commands, without stalling the rendering pipeline.
 
 1524
 
-[EXT\_disjoint\_timer\_query.beginQueryEXT()](ext_disjoint_timer_query/beginqueryext)
+[EXT_disjoint_timer_query.beginQueryEXT()](ext_disjoint_timer_query/beginqueryext)
 
 **API, Method, Reference, WebGL, WebGL extension**
 
@@ -12201,7 +12200,7 @@ The `EXT_disjoint_timer_query.beginQueryEXT()` method of the [WebGL API](webgl_a
 
 1525
 
-[EXT\_disjoint\_timer\_query.createQueryEXT()](ext_disjoint_timer_query/createqueryext)
+[EXT_disjoint_timer_query.createQueryEXT()](ext_disjoint_timer_query/createqueryext)
 
 **API, Method, Reference, WebGL, WebGL extension**
 
@@ -12209,7 +12208,7 @@ The `EXT_disjoint_timer_query.createQueryEXT()` method of the [WebGL API](webgl_
 
 1526
 
-[EXT\_disjoint\_timer\_query.deleteQueryEXT()](ext_disjoint_timer_query/deletequeryext)
+[EXT_disjoint_timer_query.deleteQueryEXT()](ext_disjoint_timer_query/deletequeryext)
 
 **API, Method, Reference, WebGL, WebGL extension**
 
@@ -12217,7 +12216,7 @@ The `EXT_disjoint_timer_query.deleteQueryEXT()` method of the [WebGL API](webgl_
 
 1527
 
-[EXT\_disjoint\_timer\_query.endQueryEXT()](ext_disjoint_timer_query/endqueryext)
+[EXT_disjoint_timer_query.endQueryEXT()](ext_disjoint_timer_query/endqueryext)
 
 **API, Method, Reference, WebGL, WebGL extension**
 
@@ -12225,7 +12224,7 @@ The `EXT_disjoint_timer_query.endQueryEXT()` method of the [WebGL API](webgl_api
 
 1528
 
-[EXT\_disjoint\_timer\_query.getQueryEXT()](ext_disjoint_timer_query/getqueryext)
+[EXT_disjoint_timer_query.getQueryEXT()](ext_disjoint_timer_query/getqueryext)
 
 **API, Method, Reference, WebGL, WebGL extension**
 
@@ -12233,7 +12232,7 @@ The `EXT_disjoint_timer_query.getQueryEXT()` method of the [WebGL API](webgl_api
 
 1529
 
-[EXT\_disjoint\_timer\_query.getQueryObjectEXT()](ext_disjoint_timer_query/getqueryobjectext)
+[EXT_disjoint_timer_query.getQueryObjectEXT()](ext_disjoint_timer_query/getqueryobjectext)
 
 **API, Method, Reference, WebGL, WebGL extension**
 
@@ -12241,7 +12240,7 @@ The `EXT_disjoint_timer_query.getQueryObjectEXT()` method of the [WebGL API](web
 
 1530
 
-[EXT\_disjoint\_timer\_query.isQueryEXT()](ext_disjoint_timer_query/isqueryext)
+[EXT_disjoint_timer_query.isQueryEXT()](ext_disjoint_timer_query/isqueryext)
 
 **API, Method, Reference, WebGL, WebGL extension**
 
@@ -12249,7 +12248,7 @@ The `EXT_disjoint_timer_query.isQueryEXT()` method of the [WebGL API](webgl_api)
 
 1531
 
-[EXT\_disjoint\_timer\_query.queryCounterEXT()](ext_disjoint_timer_query/querycounterext)
+[EXT_disjoint_timer_query.queryCounterEXT()](ext_disjoint_timer_query/querycounterext)
 
 **API, Method, Reference, WebGL, WebGL extension**
 
@@ -12257,15 +12256,15 @@ The `EXT_disjoint_timer_query.queryCounterEXT()` method of the [WebGL API](webgl
 
 1532
 
-[EXT\_float\_blend](ext_float_blend)
+[EXT_float_blend](ext_float_blend)
 
-**32-bit, API, Blending, Draw Buffer, EXT\_float\_blend, Floating-Point, Reference, WebGL, WebGL extension, WebGL extensions, float**
+**32-bit, API, Blending, Draw Buffer, EXT_float_blend, Floating-Point, Reference, WebGL, WebGL extension, WebGL extensions, float**
 
 The [WebGL API](webgl_api)'s `EXT_float_blend` extension allows blending and draw buffers with 32-bit floating-point components.
 
 1533
 
-[EXT\_frag\_depth](ext_frag_depth)
+[EXT_frag_depth](ext_frag_depth)
 
 **API, Fragment Shader, Reference, WebGL, WebGL extension**
 
@@ -12273,7 +12272,7 @@ The `EXT_frag_depth` extension is part of the [WebGL API](webgl_api) and enables
 
 1534
 
-[EXT\_shader\_texture\_lod](ext_shader_texture_lod)
+[EXT_shader_texture_lod](ext_shader_texture_lod)
 
 **API, Reference, WebGL, WebGL extensions**
 
@@ -12281,7 +12280,7 @@ The `EXT_shader_texture_lod` extension is part of the [WebGL API](webgl_api) and
 
 1535
 
-[EXT\_sRGB](ext_srgb)
+[EXT_sRGB](ext_srgb)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -12289,7 +12288,7 @@ The `EXT_sRGB` extension is part of the [WebGL API](webgl_api) and adds sRGB sup
 
 1536
 
-[EXT\_texture\_compression\_bptc](ext_texture_compression_bptc)
+[EXT_texture_compression_bptc](ext_texture_compression_bptc)
 
 **API, Reference, WebGL, WebGL extensions**
 
@@ -12297,7 +12296,7 @@ The `EXT_texture_compression_bptc` extension is part of the [WebGL API](webgl_ap
 
 1537
 
-[EXT\_texture\_compression\_rgtc](ext_texture_compression_rgtc)
+[EXT_texture_compression_rgtc](ext_texture_compression_rgtc)
 
 **API, Reference, WebGL, WebGL extensions**
 
@@ -12305,7 +12304,7 @@ The `EXT_texture_compression_rgtc` extension is part of the [WebGL API](webgl_ap
 
 1538
 
-[EXT\_texture\_filter\_anisotropic](ext_texture_filter_anisotropic)
+[EXT_texture_filter_anisotropic](ext_texture_filter_anisotropic)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -12313,7 +12312,7 @@ The `EXT_texture_filter_anisotropic` extension is part of the [WebGL API](webgl_
 
 1539
 
-[EXT\_texture\_norm16](ext_texture_norm16)
+[EXT_texture_norm16](ext_texture_norm16)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -12397,7 +12396,7 @@ The `data` read-only property of the `ExtendableMessageEvent` interface returns 
 
 **API, Constructor, Experimental, ExtendableMessageEvent, Reference, Service Workers**
 
-The `Extendable``MessageEvent()` constructor creates a new `ExtendableMessageEvent` object instance.
+The ` Extendable``MessageEvent() ` constructor creates a new `ExtendableMessageEvent` object instance.
 
 1550
 
@@ -13055,7 +13054,7 @@ The `FileSystemDirectoryEntry` interface of the [File and Directory Entries API]
 
 **API, File System API, File and Directory Entries API, FileSystemDirectoryEntry, Files, Method, Non-standard, Reference, createReader**
 
-The `FileSystemDirectoryEntry` interface's method `createReader``()` returns a `FileSystemDirectoryReader` object which can be used to read the entries in the directory.
+The `FileSystemDirectoryEntry` interface's method ` createReader``() ` returns a `FileSystemDirectoryReader` object which can be used to read the entries in the directory.
 
 1634
 
@@ -13063,7 +13062,7 @@ The `FileSystemDirectoryEntry` interface's method `createReader``()` returns a `
 
 **API, File System API, File and Directory Entries API, FileSystemDirectoryEntry, Files, Method, Non-standard, Reference, getDirectory**
 
-The `FileSystemDirectoryEntry` interface's method `getDirectory``()` returns a `FileSystemDirectoryEntry` object corresponding to a directory contained somewhere within the directory subtree rooted at the directory on which it's called.
+The `FileSystemDirectoryEntry` interface's method ` getDirectory``() ` returns a `FileSystemDirectoryEntry` object corresponding to a directory contained somewhere within the directory subtree rooted at the directory on which it's called.
 
 1635
 
@@ -13071,7 +13070,7 @@ The `FileSystemDirectoryEntry` interface's method `getDirectory``()` returns a `
 
 **API, File System API, File and Directory Entries API, FileSystemDirectoryEntry, Files, Method, Non-standard, Reference, getFile**
 
-The `FileSystemDirectoryEntry` interface's method `getFile``()` returns a `FileSystemFileEntry` object corresponding to a file contained somewhere within the directory subtree rooted at the directory on which it's called.
+The `FileSystemDirectoryEntry` interface's method ` getFile``() ` returns a `FileSystemFileEntry` object corresponding to a file contained somewhere within the directory subtree rooted at the directory on which it's called.
 
 1636
 
@@ -13079,7 +13078,7 @@ The `FileSystemDirectoryEntry` interface's method `getFile``()` returns a `FileS
 
 **API, File System API, File and Directory Entries API, FileSystemDirectoryEntry, Files, Method, Non-standard, Obsolete, Reference, removeRecursively**
 
-The `FileSystemDirectoryEntry` interface's method `removeRecursively``()` removes the directory as well as all of its content, hierarchically iterating over its entire subtree of descendant files and directories.
+The `FileSystemDirectoryEntry` interface's method ` removeRecursively``() ` removes the directory as well as all of its content, hierarchically iterating over its entire subtree of descendant files and directories.
 
 1637
 
@@ -13175,7 +13174,7 @@ The `FileSystemEntry` interface of the File and Directory Entries API represents
 
 **API, File System API, File and Directory Entries APIs, FileSystemEntry, Files, Method, Non-standard, Reference, copyTo**
 
-The `FileSystemEntry` interface's method `copyTo``()` copies the file specified by the entry to a new location on the file system.
+The `FileSystemEntry` interface's method ` copyTo``() ` copies the file specified by the entry to a new location on the file system.
 
 1649
 
@@ -13199,7 +13198,7 @@ The read-only `fullPath` property of the `FileSystemEntry` interface returns a `
 
 **API, File System API, File and Directory Entries API, FileSystemEntry, Files, Method, Non-standard, Reference, getMetadata**
 
-The `FileSystemEntry` interface's method `getMetadata``()` obtains a `Metadata` object with information about the file system entry, such as its modification date and time and its size.
+The `FileSystemEntry` interface's method ` getMetadata``() ` obtains a `Metadata` object with information about the file system entry, such as its modification date and time and its size.
 
 1652
 
@@ -13207,7 +13206,7 @@ The `FileSystemEntry` interface's method `getMetadata``()` obtains a `Metadata` 
 
 **API, File System API, File and Directory Entry API, FileSystemEntry, Files, Method, Non-standard, Reference, getParent**
 
-The `FileSystemEntry` interface's method `getParent``()` obtains a `FileSystemDirectoryEntry`.
+The `FileSystemEntry` interface's method ` getParent``() ` obtains a `FileSystemDirectoryEntry`.
 
 1653
 
@@ -13231,7 +13230,7 @@ The read-only `isFile` property of the `FileSystemEntry` interface is `true` if 
 
 **API, File System API, File and Directory Entries API, FileSystemEntry, Files, Method, Non-standard, Reference, moveTo**
 
-The `FileSystemEntry` interface's method `moveTo``()` moves the file specified by the entry to a new location on the file system, or renames the file if the destination directory is the same as the source.
+The `FileSystemEntry` interface's method ` moveTo``() ` moves the file specified by the entry to a new location on the file system, or renames the file if the destination directory is the same as the source.
 
 1656
 
@@ -13247,7 +13246,7 @@ The read-only `name` property of the `FileSystemEntry` interface returns a `USVS
 
 **API, File System API, File and Directory Entries API, FileSystemEntry, Files, Method, Non-standard, Reference, delete, remove**
 
-The `FileSystemEntry` interface's method `remove``()` deletes the file or directory from the file system. Directories must be empty before they can be removed.
+The `FileSystemEntry` interface's method ` remove``() ` deletes the file or directory from the file system. Directories must be empty before they can be removed.
 
 1658
 
@@ -13255,7 +13254,7 @@ The `FileSystemEntry` interface's method `remove``()` deletes the file or direct
 
 **API, File System API, File and Directory Entries API, FileSystemEntry, Files, Method, Non-standard, Reference, toURL**
 
-The `FileSystemEntry` interface's method `toURL``()` creates and returns a string containing a URL which can be used to identify the file system entry. This is done by exposing a new URL scheme—`filesystem:`—that can be used as the value of `src` and `href` attributes.
+The `FileSystemEntry` interface's method ` toURL``() ` creates and returns a string containing a URL which can be used to identify the file system entry. This is done by exposing a new URL scheme—`filesystem:`—that can be used as the value of `src` and `href` attributes.
 
 1659
 
@@ -13287,7 +13286,7 @@ The `FileSystemFileEntry` interface's method `createWriter()` returns a `FileWri
 
 **API, File, File System API, File and Directory Entries API, FileSystemFileEntry, Files, Method, Non-standard, Reference**
 
-The `FileSystemFileEntry` interface's method `file``()` returns a `File` object which can be used to read data from the file represented by the directory entry.
+The `FileSystemFileEntry` interface's method ` file``() ` returns a `File` object which can be used to read data from the file represented by the directory entry.
 
 1663
 
@@ -13751,7 +13750,7 @@ The `FormDataEvent()` constructor creates a new `FormDataEvent` object instance.
 
 **Guide, Overview, Web Performance**
 
-The `PerformanceFrameTiming` interface provides *frame* timing data about the browser's event loop. A *frame* represents the amount of work a browser does in [one event loop iteration](https://html.spec.whatwg.org/multipage/webappapis.html#processing-model-8) such as processing DOM events, resizing, scrolling, rendering, CSS animations, etc. A *frame rate* of 60 fps (frames per second) for a 60 Hz refresh rate is a common target for a good *responsive* user experience. This means the browser should process a frame in about 16.7 ms.
+The `PerformanceFrameTiming` interface provides _frame_ timing data about the browser's event loop. A _frame_ represents the amount of work a browser does in [one event loop iteration](https://html.spec.whatwg.org/multipage/webappapis.html#processing-model-8) such as processing DOM events, resizing, scrolling, rendering, CSS animations, etc. A _frame rate_ of 60 fps (frames per second) for a 60 Hz refresh rate is a common target for a good _responsive_ user experience. This means the browser should process a frame in about 16.7 ms.
 
 1721
 
@@ -13759,7 +13758,7 @@ The `PerformanceFrameTiming` interface provides *frame* timing data about the br
 
 **Guide, Web Performance**
 
-The `PerformanceFrameTiming` interface provides *frame* timing data about the browser's event loop. A *frame* represents the amount of work a browser does in [one event loop iteration](https://html.spec.whatwg.org/multipage/webappapis.html#processing-model-8) such as processing DOM events, resizing, scrolling, rendering, CSS animations, etc. A *frame rate* of 60 fps (frames per second) for a 60 Hz refresh rate is a common target for a good *responsive* user experience. This means the browser should process a frame in about 16.7ms.
+The `PerformanceFrameTiming` interface provides _frame_ timing data about the browser's event loop. A _frame_ represents the amount of work a browser does in [one event loop iteration](https://html.spec.whatwg.org/multipage/webappapis.html#processing-model-8) such as processing DOM events, resizing, scrolling, rendering, CSS animations, etc. A _frame rate_ of 60 fps (frames per second) for a 60 Hz refresh rate is a common target for a good _responsive_ user experience. This means the browser should process a frame in about 16.7ms.
 
 1722
 
@@ -14253,7 +14252,7 @@ The `GestureEvent` is a proprietary interface specific to WebKit which gives inf
 
 [getCandidateWindowClientRect](getcandidatewindowclientrect)
 
-*No summary!*
+_No summary!_
 
 1784
 
@@ -14977,7 +14976,7 @@ The `get()` method of the `Headers` interface returns a byte string of all the v
 
 **API, Experimental, Fetch, Headers, Method, Obsolete, Reference, getAll**
 
-The `getAll()` method of the `Headers` interface used to return an array of all the values of a header within a `Headers` object with a given name; in newer versions of the Fetch spec, it has been deleted, and `Headers.get()` has been updated to fetch *all* header values instead of only the first one.
+The `getAll()` method of the `Headers` interface used to return an array of all the values of a header within a `Headers` object with a given name; in newer versions of the Fetch spec, it has been deleted, and `Headers.get()` has been updated to fetch _all_ header values instead of only the first one.
 
 1875
 
@@ -15025,7 +15024,7 @@ The `Headers.values()` method returns an `Iteration_protocols` allowing to go th
 
 **API, Advanced, WebHID, WebHID API**
 
-The `HID` interface provides methods for connecting to *HID devices*, listing attached HID devices and event handlers for connected HID devices.
+The `HID` interface provides methods for connecting to _HID devices_, listing attached HID devices and event handlers for connected HID devices.
 
 1881
 
@@ -15039,7 +15038,7 @@ The DOM `Window` object provides access to the browser's session history (not to
 
 [Ajax navigation example](history_api/example)
 
-This is an example of an AJAX website composed only of three pages (*first\_page.php*, *second\_page.php* and *third\_page.php*). To see how it works, please create the following files (or git clone [https://github.com/giabao/mdn-ajax-nav-example.git](https://github.com/giabao/mdn-ajax-nav-example) ):
+This is an example of an AJAX website composed only of three pages (_first_page.php_, _second_page.php_ and _third_page.php_). To see how it works, please create the following files (or git clone [https://github.com/giabao/mdn-ajax-nav-example.git](https://github.com/giabao/mdn-ajax-nav-example) ):
 
 1883
 
@@ -15055,7 +15054,7 @@ HTML5 introduced the `History.pushState` and `History.replaceState` methods for 
 
 **API, HTML DOM, History API, Interface, Web**
 
-The `History` interface allows manipulation of the browser *session history*, that is the pages visited in the tab or frame that the current page is loaded in.
+The `History` interface allows manipulation of the browser _session history_, that is the pages visited in the tab or frame that the current page is loaded in.
 
 1885
 
@@ -15183,7 +15182,7 @@ The `setFieldOfView()` method of the `HMDVRDevice` interface can be used to set 
 
 **API, Batch, Guide, HTML DOM, JavaScript, Microtask, Queue, Reference, ServiceWorker, SharedWorker, Window, Worker, asynchronous, queueMicrotask**
 
-A **microtask** is a short function which is executed after the function or program which created it exits *and* only if the JavaScript execution stack is empty, but before returning control to the event loop being used by the user agent to drive the script's execution environment.
+A **microtask** is a short function which is executed after the function or program which created it exits _and_ only if the JavaScript execution stack is empty, but before returning control to the event loop being used by the user agent to drive the script's execution environment.
 
 1901
 
@@ -15271,7 +15270,7 @@ The `HTMLAnchorElement.hash` property returns a `USVString` containing a `'#'` f
 
 **API, HTMLAnchorElement, Property, Reference**
 
-The `HTMLAnchorElement.host` property is a `USVString` containing the host, that is the *hostname*, and then, if the *port* of the URL is nonempty, a `':'`, and the *port* of the URL.
+The `HTMLAnchorElement.host` property is a `USVString` containing the host, that is the _hostname_, and then, if the _port_ of the URL is nonempty, a `':'`, and the _port_ of the URL.
 
 1912
 
@@ -15335,7 +15334,7 @@ The `HTMLAnchorElement.protocol` property is a `USVString` representing the prot
 
 **API, Experimental, HTMLAnchorElement, Property, Reference, Referrer Policy**
 
-The `HTMLAnchorElement``.referrerPolicy` property reflect the HTML `referrerpolicy` attribute of the `a` element defining which referrer is sent when fetching the resource.
+The ` HTMLAnchorElement``.referrerPolicy ` property reflect the HTML `referrerpolicy` attribute of the `a` element defining which referrer is sent when fetching the resource.
 
 1920
 
@@ -15359,7 +15358,7 @@ The `HTMLAnchorElement.relList` read-only property reflects the `rel` attribute.
 
 **API, HTMLAnchorElement, Property, Reference**
 
-The `HTMLAnchorElement.search` property is a search string, also called a *query string*, that is `USVString` containing a `'?'` followed by the parameters of the URL.
+The `HTMLAnchorElement.search` property is a search string, also called a _query string_, that is `USVString` containing a `'?'` followed by the parameters of the URL.
 
 1923
 
@@ -15399,7 +15398,7 @@ The `HTMLAreaElement.hash` property returns a `USVString` containing a `'#'` fol
 
 **API, HTMLAreaElement, Property, Reference**
 
-The `HTMLAreaElement.host` property is a `USVString` containing the host, that is the *hostname*, and then, if the *port* of the URL is nonempty, a `':'`, and the *port* of the URL.
+The `HTMLAreaElement.host` property is a `USVString` containing the host, that is the _hostname_, and then, if the _port_ of the URL is nonempty, a `':'`, and the _port_ of the URL.
 
 1928
 
@@ -15463,7 +15462,7 @@ The `HTMLAreaElement.protocol` property is a `USVString` representing the protoc
 
 **API, Experimental, HTMLAreaElement, Property, Reference, Referrer Policy**
 
-The `HTMLAreaElement``.referrerPolicy` property reflect the HTML `referrerpolicy` attribute of the `area` element defining which referrer is sent when fetching the resource.
+The ` HTMLAreaElement``.referrerPolicy ` property reflect the HTML `referrerpolicy` attribute of the `area` element defining which referrer is sent when fetching the resource.
 
 1936
 
@@ -15487,7 +15486,7 @@ The `HTMLAreaElement.relList` read-only property reflects the `rel` attribute. I
 
 **API, HTMLAreaElement, Property, Reference**
 
-The `HTMLAreaElement.search` property is a search string, also called a *query string*, that is `USVString` containing a `'?'` followed by the parameters of the URL.
+The `HTMLAreaElement.search` property is a search string, also called a _query string_, that is `USVString` containing a `'?'` followed by the parameters of the URL.
 
 1939
 
@@ -15667,7 +15666,7 @@ The `HTMLCanvasElement.toDataURL()` method returns a [data URI](https://develope
 
 **API, Experimental, HTMLCanvasElement, Method, OffscreenCanvas, Reference**
 
-The `HTMLCanvasElement``.transferControlToOffscreen()` method transfers control to an `OffscreenCanvas` object, either on the main thread or on a worker.
+The ` HTMLCanvasElement``.transferControlToOffscreen() ` method transfers control to an `OffscreenCanvas` object, either on the main thread or on a worker.
 
 1962
 
@@ -16068,7 +16067,7 @@ The `HTMLElement.offsetHeight` read-only property returns the height of an eleme
 
 **API, CSSOM View, NeedsMarkupWork, Property, Read-only, Reference**
 
-The `HTMLElement.offsetLeft` read-only property returns the number of pixels that the *upper left corner* of the current element is offset to the left within the `HTMLElement.offsetParent` node.
+The `HTMLElement.offsetLeft` read-only property returns the number of pixels that the _upper left corner_ of the current element is offset to the left within the `HTMLElement.offsetParent` node.
 
 2013
 
@@ -16172,7 +16171,7 @@ The `pointermove` event is fired when a pointer changes coordinates, and the poi
 
 **Event, HTML DOM, HTMLElement, PointerEvent, Reference**
 
-The `pointerout` event is fired for several reasons including: pointing device is moved out of the *hit test* boundaries of an element; firing the `pointerup` event for a device that does not support hover (see `pointerup`); after firing the `pointercancel` event (see `pointercancel`); when a pen stylus leaves the hover range detectable by the digitizer.
+The `pointerout` event is fired for several reasons including: pointing device is moved out of the _hit test_ boundaries of an element; firing the `pointerup` event for a device that does not support hover (see `pointerup`); after firing the `pointercancel` event (see `pointercancel`); when a pen stylus leaves the hover range detectable by the digitizer.
 
 2026
 
@@ -16260,7 +16259,7 @@ Implements the document object model (DOM) representation of the font element. T
 
 **API, HTML DOM, HTMLFontElement, Property, Reference**
 
-The obsolete `HTMLFontElement``.color` property is a `DOMString` that reflects the `color` HTML attribute, containing either a named color or a color specified in the hexadecimal \#RRGGBB format.
+The obsolete ` HTMLFontElement``.color ` property is a `DOMString` that reflects the `color` HTML attribute, containing either a named color or a color specified in the hexadecimal \#RRGGBB format.
 
 2037
 
@@ -16268,7 +16267,7 @@ The obsolete `HTMLFontElement``.color` property is a `DOMString` that reflects t
 
 **API, HTML DOM, HTMLFontElement, Property, Reference**
 
-The obsolete `HTMLFontElement``.face` property is a `DOMString` that reflects the `face` HTML attribute, containing a comma-separated list of one or more font names.
+The obsolete ` HTMLFontElement``.face ` property is a `DOMString` that reflects the `face` HTML attribute, containing a comma-separated list of one or more font names.
 
 2038
 
@@ -16284,7 +16283,7 @@ The obsolete `HTMLFontElement.size` property is a `DOMString` that reflects the 
 
 **API, Collection, Form Collection, Form List, Forms, HTML DOM, HTML forms, HTMLFormControlsCollection, Interface, NeedsHTML5Update, Reference**
 
-The `HTMLFormControlsCollection` interface represents a *collection* of HTML *form control elements*.
+The `HTMLFormControlsCollection` interface represents a _collection_ of HTML _form control elements_.
 
 2040
 
@@ -16530,13 +16529,13 @@ The `featurePolicy` read-only property of the `HTMLIFrameElement` interface retu
 
 **API, HTMLIFrameElement, Property, Reference, Referrer Policy**
 
-The `HTMLIFrameElement``.referrerPolicy` property reflects the HTML `referrerpolicy` attribute of the `iframe` element defining which referrer is sent when fetching the resource.
+The ` HTMLIFrameElement``.referrerPolicy ` property reflects the HTML `referrerpolicy` attribute of the `iframe` element defining which referrer is sent when fetching the resource.
 
 2071
 
 [HTMLIFrameElement.src](htmliframeelement/src)
 
-The `HTMLIFrameElement``.src` property reflects the HTML `referrerpolicy` attribute of the `iframe` element defining which referrer is sent when fetching the resource.
+The ` HTMLIFrameElement``.src ` property reflects the HTML `referrerpolicy` attribute of the `iframe` element defining which referrer is sent when fetching the resource.
 
 2072
 
@@ -16558,7 +16557,7 @@ The `HTMLImageElement` interface represents an HTML `img` element, providing the
 
 **API, Align, HTML, HTML DOM, HTMLImageElement, Image, Obsolete, Property, Reference, alignment, float, img**
 
-The *obsolete* `align` property of the `HTMLImageElement` interface is a string which indicates how to position the image relative to its container.
+The _obsolete_ `align` property of the `HTMLImageElement` interface is a string which indicates how to position the image relative to its container.
 
 2075
 
@@ -16630,7 +16629,7 @@ The `height` property of the `HTMLImageElement` interface indicates the height a
 
 **API, HTML, HTML DOM, HTMLImageElement, Horizontal, Image, Layout, Obsolete, Property, Reference, hspace, img, left, margin, right, spacing**
 
-The *obsolete* `hspace` property of the `HTMLImageElement` interface specifies the number of pixels of empty space to leave empty on the left and right sides of the `img` element when laying out the page.
+The _obsolete_ `hspace` property of the `HTMLImageElement` interface specifies the number of pixels of empty space to leave empty on the left and right sides of the `img` element when laying out the page.
 
 2084
 
@@ -16662,7 +16661,7 @@ The `HTMLImageElement` property `loading` is a string whose value provides a hin
 
 **API, HTML, HTML DOM, HTMLImageElement, Long description, Obsolete, Property, Reference, description, img, longDesc**
 
-The *deprecated* property `longDesc` on the `HTMLImageElement` interface specifies the URL of a text or HTML file which contains a long-form description of the image.
+The _deprecated_ property `longDesc` on the `HTMLImageElement` interface specifies the URL of a text or HTML file which contains a long-form description of the image.
 
 2088
 
@@ -16670,7 +16669,7 @@ The *deprecated* property `longDesc` on the `HTMLImageElement` interface specifi
 
 **API, HTML, HTML DOM, HTMLImageElement, Image, Obsolete, Performance, Property, Quality, Reference, img, lowSrc, speed**
 
-The `HTMLImageElement` interface's *obsolete* `lowsrc` property can be used to specify the URL of a reduced-quality or otherwise faster-loading version of the image specified by the `HTMLImageElement.src` property.
+The `HTMLImageElement` interface's _obsolete_ `lowsrc` property can be used to specify the URL of a reduced-quality or otherwise faster-loading version of the image specified by the `HTMLImageElement.src` property.
 
 2089
 
@@ -16678,7 +16677,7 @@ The `HTMLImageElement` interface's *obsolete* `lowsrc` property can be used to s
 
 **API, Deprecated, HTML, HTML DOM, HTMLImageElement, Image, Property, Reference, img, name**
 
-The `HTMLImageElement` interface's *deprecated* `name` property specifies a name for the element. This has been replaced by the `Element.id` property available on all elements.
+The `HTMLImageElement` interface's _deprecated_ `name` property specifies a name for the element. This has been replaced by the `Element.id` property available on all elements.
 
 2090
 
@@ -16702,7 +16701,7 @@ The `HTMLImageElement` interface's read-only `naturalWidth` property returns the
 
 **API, Experimental, HTMLImageElement, Property, Referrer Policy**
 
-The `HTMLImageElement``.referrerPolicy` property reflects the HTML `referrerpolicy` attribute of the `img` element defining which referrer is sent when fetching the resource.
+The ` HTMLImageElement``.referrerPolicy ` property reflects the HTML `referrerpolicy` attribute of the `img` element defining which referrer is sent when fetching the resource.
 
 2093
 
@@ -16742,7 +16741,7 @@ The `useMap` property on the `HTMLImageElement` interface reflects the value of 
 
 **API, HTML, HTML DOM, HTMLImageElement, Image, Obsolete, Property, Reference, Vertical, bottom, img, margin, space, spacing, top, vspace**
 
-The *obsolete* `vspace` property of the `HTMLImageElement` interface specifies the number of pixels of empty space to leave empty on the top and bottom of the `img` element when laying out the page.
+The _obsolete_ `vspace` property of the `HTMLImageElement` interface specifies the number of pixels of empty space to leave empty on the top and bottom of the `img` element when laying out the page.
 
 2098
 
@@ -16948,7 +16947,7 @@ The `as` property of the `HTMLLinkElement` interface returns a `DOMString` repre
 
 **API, Experimental, HTMLLinkElement, Property, Reference**
 
-The `HTMLLinkElement``.referrerPolicy` property reflect the HTML `referrerpolicy` attribute of the `link` element defining which referrer is sent when fetching the resource.
+The ` HTMLLinkElement``.referrerPolicy ` property reflect the HTML `referrerpolicy` attribute of the `link` element defining which referrer is sent when fetching the resource.
 
 2124
 
@@ -17130,7 +17129,7 @@ The `HTMLMediaElement.disableRemotePlayback` property determines whether the med
 
 **API, HTML DOM, HTMLMediaElement, Property, Read-only, Time, Web, duration, seconds**
 
-The *read-only* `HTMLMediaElement` property `duration` indicates the length of the element's media in seconds.
+The _read-only_ `HTMLMediaElement` property `duration` indicates the length of the element's media in seconds.
 
 2147
 
@@ -17240,7 +17239,7 @@ The `HTMLMediaElement.mediaGroup` property reflects the `mediaGroup` HTML attrib
 
 **msClearEffects**
 
-The `msClearEffects` method of the [*HTMLMediaElement*](htmlmediaelement), is a proprietary method specific to Internet Explorer and Microsoft Edge.
+The `msClearEffects` method of the [_HTMLMediaElement_](htmlmediaelement), is a proprietary method specific to Internet Explorer and Microsoft Edge.
 
 2161
 
@@ -17706,7 +17705,7 @@ The `Option()` constructor creates a new `HTMLOptionElement`.
 
 **API, HTML DOM, Interface, NeedsExample, NeedsMarkupWork, NeedsSpecTable, Reference**
 
-*This interface inherits the methods of its parent, [`HTMLCollection`](htmlcollection).*
+_This interface inherits the methods of its parent, [`HTMLCollection`](htmlcollection)._
 
 2220
 
@@ -17954,7 +17953,7 @@ The **read-only** `HTMLSelectElement` property `selectedOptions` contains a list
 
 **API, Constrain Validation API, HTML DOM, HTMLSelectElement, Method, Reference**
 
-The `HTMLSelectElement.setCustomValidity()` method sets the custom validity message for the selection element to the specified message. Use the empty string to indicate that the element does *not* have a custom validity error.
+The `HTMLSelectElement.setCustomValidity()` method sets the custom validity message for the selection element to the specified message. Use the empty string to indicate that the element does _not_ have a custom validity error.
 
 2251
 
@@ -18362,7 +18361,7 @@ The `HTMLTimeElement` interface provides special properties (beyond the regular 
 
 **API, HTML DOM, HTMLTimeElement, Property, Reference**
 
-The `HTMLTimeElement``.dateTime` property is a `DOMString` that reflects the `datetime` HTML attribute, containing a machine-readable form of the element's date and time value.
+The ` HTMLTimeElement``.dateTime ` property is a `DOMString` that reflects the `datetime` HTML attribute, containing a machine-readable form of the element's date and time value.
 
 2302
 
@@ -18386,7 +18385,7 @@ The `HTMLTrackElement` interface represents an HTML `track` element within the D
 
 **API, Accessibility, Audio, Chapters, Descriptions, HTMLTextTrack, Media, Reference, Text, TextTrack, Video, WebVTT, a11y, captions, cuechange, events, oncuechange, track, vtt**
 
-*No summary!*
+_No summary!_
 
 2305
 
@@ -19654,7 +19653,7 @@ The read-only `didTimeout` property on the `IdleDeadline` interface is a Boolean
 
 **API, Background Tasks API, IdleDeadline, Method, Reference, timeRemaining**
 
-The `timeRemaining``()` method on the `IdleDeadline` interface returns the estimated number of milliseconds remaining in the current idle period. The callback can call this method at any time to determine how much time it can continue to work before it must return. For example, if the callback finishes a task and has another one to begin, it can call `timeRemaining()` to see if there's enough time to complete the next task. If there isn't, the callback can just return immediately, or look for other work to do with the remaining time.
+The ` timeRemaining``() ` method on the `IdleDeadline` interface returns the estimated number of milliseconds remaining in the current idle period. The callback can call this method at any time to determine how much time it can continue to work before it must return. For example, if the callback finishes a task and has another one to begin, it can call `timeRemaining()` to see if there's enough time to complete the next task. If there isn't, the callback can just return immediately, or look for other work to do with the remaining time.
 
 2465
 
@@ -19694,7 +19693,7 @@ The `ImageBitmap` interface represents a bitmap image which can be drawn to a `c
 
 **API, Experimental, ImageBitmap, Method, OffscreenCanvas, Reference**
 
-The `ImageBitmap``.close()` method disposes of all graphical resources associated with an `ImageBitmap`.
+The ` ImageBitmap``.close() ` method disposes of all graphical resources associated with an `ImageBitmap`.
 
 2470
 
@@ -20184,7 +20183,7 @@ The `InterventionReportBody` interface of the [Reporting API](reporting_api) rep
 
 **API, Experimental, Keyboard API, Keyboard Lock, Keyboard Map, Overview, Reference**
 
-The Keyboard API provides methods for working with a physical keyboard that is attached to a device running a browser. It provides several capabilities. *Keyboard mapping* provides an interface for retrieving the string generated by particular physical key on a keyboard to correctly identify that key to a user. *Keyboard locking* enables a web page to capture keys that are normally reserved by the user agent or the underlying operating system. The intended use of the Keyboard API is by web applications such as games or remote access apps that provide a full-screen immersive experience.
+The Keyboard API provides methods for working with a physical keyboard that is attached to a device running a browser. It provides several capabilities. _Keyboard mapping_ provides an interface for retrieving the string generated by particular physical key on a keyboard to correctly identify that key to a user. _Keyboard locking_ enables a web page to capture keys that are normally reserved by the user agent or the underlying operating system. The intended use of the Keyboard API is by web applications such as games or remote access apps that provide a full-screen immersive experience.
 
 2533
 
@@ -20286,7 +20285,7 @@ The `KeyboardEvent.initKeyboardEvent()` method initializes the attributes of a k
 
 **API, DOM, Deprecated, KeyboardEvent, Method, Reference**
 
-The `KeyboardEvent.initKeyEvent()` method is used to initialize the value of an event created using `document.createEvent``("KeyboardEvent")`. Events initialized in this way must have been created with the `document.createEvent``("KeyboardEvent")` method. `initKeyEvent()` must be called to set the event before it is [dispatched](eventtarget/dispatchevent).
+The `KeyboardEvent.initKeyEvent()` method is used to initialize the value of an event created using ` document.createEvent``("KeyboardEvent") `. Events initialized in this way must have been created with the ` document.createEvent``("KeyboardEvent") ` method. `initKeyEvent()` must be called to set the event before it is [dispatched](eventtarget/dispatchevent).
 
 2546
 
@@ -20506,7 +20505,7 @@ The `KeyframeEffectOptions` dictionary, part of the `Web Animations API`, is use
 
 2573
 
-[KHR\_parallel\_shader\_compile](khr_parallel_shader_compile)
+[KHR_parallel_shader_compile](khr_parallel_shader_compile)
 
 **API, Reference, Shader, WebGL, WebGL extension, parallel shader compile**
 
@@ -20558,7 +20557,7 @@ The `LinearAccelerationSensor` constructor creates a new `LinearAccelerationSens
 
 **API, CSSOM, Interface, Reference**
 
-The `LinkStyle` interface provides access to the *associated CSS style sheet* of a node.
+The `LinkStyle` interface provides access to the _associated CSS style sheet_ of a node.
 
 2580
 
@@ -20628,7 +20627,7 @@ The `hash` property of the `Location` interface returns a `USVString` containing
 
 **API, Location, Property, Reference**
 
-The `host` property of the `Location` interface is a `USVString` containing the host, that is the *hostname*, and then, if the *port* of the URL is nonempty, a `':'`, and the *port* of the URL.
+The `host` property of the `Location` interface is a `USVString` containing the host, that is the _hostname_, and then, if the _port_ of the URL is nonempty, a `':'`, and the _port_ of the URL.
 
 2589
 
@@ -20700,7 +20699,7 @@ The `Location.reload()` method reloads the current URL, like the Refresh button.
 
 **API, HTML-DOM, Location, Method, Reference**
 
-The `replace()` method of the `Location` interface replaces the current resource with the one at the provided URL. The difference from the `Location.assign` method is that after using `replace()` the current page will not be saved in session `History`, meaning the user won't be able to use the *back* button to navigate to it.
+The `replace()` method of the `Location` interface replaces the current resource with the one at the provided URL. The difference from the `Location.assign` method is that after using `replace()` the current page will not be saved in session `History`, meaning the user won't be able to use the _back_ button to navigate to it.
 
 2598
 
@@ -20708,7 +20707,7 @@ The `replace()` method of the `Location` interface replaces the current resource
 
 **API, Location, Property**
 
-The `search` property of the `Location` interface is a search string, also called a *query string*; that is, a `USVString` containing a `'?'` followed by the parameters of the URL.
+The `search` property of the `Location` interface is a search string, also called a _query string_; that is, a `USVString` containing a `'?'` followed by the parameters of the URL.
 
 2599
 
@@ -20748,7 +20747,7 @@ The `mode` read-only property of the `Lock` interface returns the access mode pa
 
 **API, Experimental, Property, Reference, Web Locks API, lock, mode, name**
 
-The `name` read-only property of the `Lock` interface returns the *name* passed to `LockManager.request` selected when the lock was requested.
+The `name` read-only property of the `Lock` interface returns the _name_ passed to `LockManager.request` selected when the lock was requested.
 
 2604
 
@@ -21146,7 +21145,7 @@ The `MediaDevices` interface's `getDisplayMedia()` method prompts the user to se
 
 **API, Media, Media Capture and Streams API, Media Streams API, MediaDevices, Method, Reference, WebRTC, getSupportedConstraints**
 
-The `getSupportedConstraints``()` method of the `MediaDevices` interface returns an object based on the `MediaTrackSupportedConstraints` dictionary, whose member fields each specify one of the constrainable properties the user agent understands.
+The ` getSupportedConstraints``() ` method of the `MediaDevices` interface returns an object based on the `MediaTrackSupportedConstraints` dictionary, whose member fields each specify one of the constrainable properties the user agent understands.
 
 2654
 
@@ -21154,7 +21153,7 @@ The `getSupportedConstraints``()` method of the `MediaDevices` interface returns
 
 **API, Audio, Capture, Media, Media Capture and Streams API, Media Streams API, MediaDevices, Method, Photos, Reference, Video, WebRTC, getusermedia**
 
-The `MediaDevices``.getUserMedia()` method prompts the user for permission to use a media input which produces a `MediaStream` with tracks containing the requested types of media.
+The ` MediaDevices``.getUserMedia() ` method prompts the user for permission to use a media input which produces a `MediaStream` with tracks containing the requested types of media.
 
 2655
 
@@ -21896,7 +21895,7 @@ The read-only `error` property in the `MediaRecorderErrorEvent` interface is a `
 
 **API, Audio, Constructor, Media, Media Capture, Media Capture and Streams, MediaRecordingErrorEvent, MediaStream Recording, MediaStream Recording API, Recording, Video**
 
-The `MediaRecorderErrorEvent``()` constructor creates a new `MediaRecorderErrorEvent` object that represents an error that occurred during the recording of media by the [MediaStream Recording API](mediastream_recording_api).
+The ` MediaRecorderErrorEvent``() ` constructor creates a new `MediaRecorderErrorEvent` object that represents an error that occurred during the recording of media by the [MediaStream Recording API](mediastream_recording_api).
 
 2749
 
@@ -22072,7 +22071,7 @@ The `endOfStream()` method of the `MediaSource` interface signals the end of the
 
 **API, Audio, Experimental, MSE, Media Source Extensions, MediaSource, Method, Reference, Static, Static Method, Video, isTypeSupported**
 
-The `MediaSource.isTypeSupported()` static method returns a `Boolean` value which is `true` if the given MIME type is *likely* to be supported by the current user agent.
+The `MediaSource.isTypeSupported()` static method returns a `Boolean` value which is `true` if the given MIME type is _likely_ to be supported by the current user agent.
 
 2771
 
@@ -22128,7 +22127,7 @@ The **MediaStream Image Capture API** is an API for capturing images or videos f
 
 **API, Audio, Media, Media Capture and Streams, MediaStream Recording, MediaStream Recording API, Overview, Reference, Video**
 
-The **MediaStream Recording API**, sometimes referred to as the *Media Recording API* or the *MediaRecorder API*, is closely affiliated with the [Media Capture and Streams API](media_streams_api) and the [WebRTC API](webrtc_api). The MediaStream Recording API makes it possible to capture the data generated by a `MediaStream` or `HTMLMediaElement` object for analysis, processing, or saving to disk. It's also surprisingly easy to work with.
+The **MediaStream Recording API**, sometimes referred to as the _Media Recording API_ or the _MediaRecorder API_, is closely affiliated with the [Media Capture and Streams API](media_streams_api) and the [WebRTC API](webrtc_api). The MediaStream Recording API makes it possible to capture the data generated by a `MediaStream` or `HTMLMediaElement` object for analysis, processing, or saving to disk. It's also surprisingly easy to work with.
 
 2778
 
@@ -22392,7 +22391,7 @@ The `MediaStreamTrack` interface represents a single media track within a stream
 
 **API, Constraints, Media Capture and Streams API, Media Streams API, MediaStreamTrack, Method, applyConstraints**
 
-The `applyConstraints``()` method of the `MediaStreamTrack` interface applies a set of constraints to the track; these constraints let the Web site or app establish ideal values and acceptable ranges of values for the constrainable properties of the track, such as frame rate, dimensions, echo cancelation, and so forth.
+The ` applyConstraints``() ` method of the `MediaStreamTrack` interface applies a set of constraints to the track; these constraints let the Web site or app establish ideal values and acceptable ranges of values for the constrainable properties of the track, such as frame rate, dimensions, echo cancelation, and so forth.
 
 2811
 
@@ -23520,17 +23519,17 @@ The `MouseEvent.shiftKey` read-only property is a `Boolean` that indicates wheth
 
 2953
 
-[MouseEvent.WEBKIT\_FORCE\_AT\_FORCE\_MOUSE\_DOWN](mouseevent/webkit_force_at_force_mouse_down)
+[MouseEvent.WEBKIT_FORCE_AT_FORCE_MOUSE_DOWN](mouseevent/webkit_force_at_force_mouse_down)
 
-**API, DOM, DOM Events, JavaScript, MouseEvent, NeedsBrowserCompatibility, NeedsCompatTable, NeedsExample, NeedsMobileBrowserCompatibility, Non-standard, Property, Reference, WEBKIT\_FORCE\_AT\_FORCE\_MOUSE\_DOWN**
+**API, DOM, DOM Events, JavaScript, MouseEvent, NeedsBrowserCompatibility, NeedsCompatTable, NeedsExample, NeedsMobileBrowserCompatibility, Non-standard, Property, Reference, WEBKIT_FORCE_AT_FORCE_MOUSE_DOWN**
 
 `MouseEvent.WEBKIT_FORCE_AT_FORCE_MOUSE_DOWN` is a proprietary, WebKit-specific, static numeric property whose value is the minimum force necessary for a force click.
 
 2954
 
-[MouseEvent.WEBKIT\_FORCE\_AT\_MOUSE\_DOWN](mouseevent/webkit_force_at_mouse_down)
+[MouseEvent.WEBKIT_FORCE_AT_MOUSE_DOWN](mouseevent/webkit_force_at_mouse_down)
 
-**API, DOM, DOM Events, JavaScript, MouseEvent, NeedsBrowserCompatibility, NeedsCompatTable, NeedsExample, NeedsMobileBrowserCompatibility, Non-standard, Property, Reference, WEBKIT\_FORCE\_AT\_MOUSE\_DOWN**
+**API, DOM, DOM Events, JavaScript, MouseEvent, NeedsBrowserCompatibility, NeedsCompatTable, NeedsExample, NeedsMobileBrowserCompatibility, Non-standard, Property, Reference, WEBKIT_FORCE_AT_MOUSE_DOWN**
 
 `MouseEvent.WEBKIT_FORCE_AT_MOUSE_DOWN` is a proprietary, WebKit-specific, static numeric property whose value is the minimum force necessary for a normal click.
 
@@ -23704,13 +23703,13 @@ The `initMSManipulationEvent` method is used to create a `MSManipulationEvent` t
 
 **msPlayToDisabled**
 
-`msPlayToDisabled` is a read/write property which gets and sets if the *PlayTo* device is enabled or disabled.
+`msPlayToDisabled` is a read/write property which gets and sets if the _PlayTo_ device is enabled or disabled.
 
 2977
 
 [msPlayToPreferredSourceUri](msplaytopreferredsourceuri)
 
-`msPlayToPreferredSourceUri` is a read/write property which gets or sets the path to the preferred media source. This enables the *PlayTo* target device to stream the media content, which can be DRM protected, from a different location, such as a cloud media server.
+`msPlayToPreferredSourceUri` is a read/write property which gets or sets the path to the preferred media source. This enables the _PlayTo_ target device to stream the media content, which can be DRM protected, from a different location, such as a cloud media server.
 
 2978
 
@@ -23718,7 +23717,7 @@ The `initMSManipulationEvent` method is used to create a `MSManipulationEvent` t
 
 **msPlayToPrimary**
 
-`msPlayToPrimary` is a read/write property which gets or sets the primary DLNA *PlayTo* device.
+`msPlayToPrimary` is a read/write property which gets or sets the primary DLNA _PlayTo_ device.
 
 2979
 
@@ -23778,7 +23777,7 @@ The `msSetMediaProtectionManager` method specifies the media protection manager 
 
 [mssitemodejumplistitemremoved event](mssitemodejumplistitemremoved)
 
-The `mssitemodejumplistitemremoved` event occurs when `msSiteModeShowJumpList` is called and an item has been removed from a *Jump List* by the user.
+The `mssitemodejumplistitemremoved` event occurs when `msSiteModeShowJumpList` is called and an item has been removed from a _Jump List_ by the user.
 
 2987
 
@@ -23906,7 +23905,7 @@ The `MutationObserverInit` dictionary's optional `childList` property indicates 
 
 **API, DOM, DOM WHATWG, Monitoring, Mutation Observer, Mutation Observer API, MutationObserverInit, Nodes, Observer, Reference, Watching, mutation, subtree**
 
-The `MutationObserverInit` dictionary's optional `subtree` property can be set to `true` to monitor the targeted node *and* all of its descendants.
+The `MutationObserverInit` dictionary's optional `subtree` property can be set to `true` to monitor the targeted node _and_ all of its descendants.
 
 3003
 
@@ -24002,7 +24001,7 @@ The `Navigator.canShare()` method of the Web Share API returns `true` if a call 
 
 **API, Badging API, Method, Navigator, Reference, clearAppBadge**
 
-The `clearAppBadge()` method of the `Navigator` interface clears a badge on the current app's icon by setting it to `nothing`. The value `nothing` indictes that no badge is currently set, and the status of the badge is *cleared*.
+The `clearAppBadge()` method of the `Navigator` interface clears a badge on the current app's icon by setting it to `nothing`. The value `nothing` indictes that no badge is currently set, and the status of the badge is _cleared_.
 
 3015
 
@@ -24820,7 +24819,7 @@ The `Node.hasChildNodes()` method returns a `Boolean` value indicating whether t
 
 **API, DOM, Method, Node, Reference**
 
-The `Node.insertBefore()` method inserts a node before a *reference node* as a child of a specified *parent node*.
+The `Node.insertBefore()` method inserts a node before a _reference node_ as a child of a specified _parent node_.
 
 3118
 
@@ -25414,7 +25413,7 @@ The non-standard, obsolete, `NotifyAudioAvailableEvent` interface defines the ev
 
 3192
 
-[OES\_element\_index\_uint](oes_element_index_uint)
+[OES_element_index_uint](oes_element_index_uint)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -25422,7 +25421,7 @@ The `OES_element_index_uint` extension is part of the [WebGL API](webgl_api) and
 
 3193
 
-[OES\_fbo\_render\_mipmap](oes_fbo_render_mipmap)
+[OES_fbo_render_mipmap](oes_fbo_render_mipmap)
 
 **API, Reference, WebGL, WebGL extension, WebGL extensions**
 
@@ -25430,7 +25429,7 @@ The `OES_fbo_render_mipmap` extension is part of the [WebGL API](webgl_api) and 
 
 3194
 
-[OES\_standard\_derivatives](oes_standard_derivatives)
+[OES_standard_derivatives](oes_standard_derivatives)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -25438,7 +25437,7 @@ The `OES_standard_derivatives` extension is part of the [WebGL API](webgl_api) a
 
 3195
 
-[OES\_texture\_float\_linear](oes_texture_float_linear)
+[OES_texture_float_linear](oes_texture_float_linear)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -25446,7 +25445,7 @@ The `OES_texture_float_linear` extension is part of the [WebGL API](webgl_api) a
 
 3196
 
-[OES\_texture\_float](oes_texture_float)
+[OES_texture_float](oes_texture_float)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -25454,7 +25453,7 @@ The `OES_texture_float` extension is part of the [WebGL API](webgl_api) and expo
 
 3197
 
-[OES\_texture\_half\_float\_linear](oes_texture_half_float_linear)
+[OES_texture_half_float_linear](oes_texture_half_float_linear)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -25462,7 +25461,7 @@ The `OES_texture_half_float_linear` extension is part of the [WebGL API](webgl_a
 
 3198
 
-[OES\_texture\_half\_float](oes_texture_half_float)
+[OES_texture_half_float](oes_texture_half_float)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -25470,15 +25469,15 @@ The `OES_texture_half_float` extension is part of the [WebGL API](webgl_api) and
 
 3199
 
-[OES\_vertex\_array\_object](oes_vertex_array_object)
+[OES_vertex_array_object](oes_vertex_array_object)
 
 **API, Reference, WebGL, WebGL extension**
 
-The **OES\_vertex\_array\_object** extension is part of the [WebGL API](webgl_api) and provides vertex array objects (VAOs) which encapsulate vertex array states. These objects keep pointers to vertex data and provide names for different sets of vertex data.
+The **OES_vertex_array_object** extension is part of the [WebGL API](webgl_api) and provides vertex array objects (VAOs) which encapsulate vertex array states. These objects keep pointers to vertex data and provide names for different sets of vertex data.
 
 3200
 
-[OES\_vertex\_array\_object.bindVertexArrayOES()](oes_vertex_array_object/bindvertexarrayoes)
+[OES_vertex_array_object.bindVertexArrayOES()](oes_vertex_array_object/bindvertexarrayoes)
 
 **API, Method, Reference, VAO, WebGL, WebGL extension**
 
@@ -25486,7 +25485,7 @@ The `OES_vertex_array_object.bindVertexArrayOES()` method of the [WebGL API](web
 
 3201
 
-[OES\_vertex\_array\_object.createVertexArrayOES()](oes_vertex_array_object/createvertexarrayoes)
+[OES_vertex_array_object.createVertexArrayOES()](oes_vertex_array_object/createvertexarrayoes)
 
 **API, Method, Reference, VAO, WebGL, WebGL extension**
 
@@ -25494,7 +25493,7 @@ The `OES_vertex_array_object.createVertexArrayOES()` method of the [WebGL API](w
 
 3202
 
-[OES\_vertex\_array\_object.deleteVertexArrayOES()](oes_vertex_array_object/deletevertexarrayoes)
+[OES_vertex_array_object.deleteVertexArrayOES()](oes_vertex_array_object/deletevertexarrayoes)
 
 **API, Method, Reference, VAO, WebGL, WebGL extension**
 
@@ -25502,7 +25501,7 @@ The `OES_vertex_array_object.deleteVertexArrayOES()` method of the [WebGL API](w
 
 3203
 
-[OES\_vertex\_array\_object.isVertexArrayOES()](oes_vertex_array_object/isvertexarrayoes)
+[OES_vertex_array_object.isVertexArrayOES()](oes_vertex_array_object/isvertexarrayoes)
 
 **API, Method, Reference, VAO, WebGL, WebGL extension**
 
@@ -25782,7 +25781,7 @@ The `OverconstrainedError` constructor creates a new `OverconstrainedError` obje
 
 3238
 
-[OVR\_multiview2](ovr_multiview2)
+[OVR_multiview2](ovr_multiview2)
 
 **API, WebGL, WebGL extensions**
 
@@ -25790,7 +25789,7 @@ The `OVR_multiview2` extension is part of the [WebGL API](webgl_api) and adds su
 
 3239
 
-[OVR\_multiview2.framebufferTextureMultiviewOVR()](ovr_multiview2/framebuffertexturemultiviewovr)
+[OVR_multiview2.framebufferTextureMultiviewOVR()](ovr_multiview2/framebuffertexturemultiviewovr)
 
 **API, Method, Multiview, VR, WebGL, WebGL extensions, WebVR, WebXR**
 
@@ -25938,7 +25937,7 @@ The `panningModel` property of the `PannerNode` interface is an enumerated value
 
 **API, PannerNode, Property, Reference, Web Audio API, positionX**
 
-The `positionX` property of the `PannerNode` interface specifies the X coordinate of the audio source's position in 3D Cartesian coordinates, corresponding to the *horizontal* axis (left-right).
+The `positionX` property of the `PannerNode` interface specifies the X coordinate of the audio source's position in 3D Cartesian coordinates, corresponding to the _horizontal_ axis (left-right).
 
 3258
 
@@ -25946,7 +25945,7 @@ The `positionX` property of the `PannerNode` interface specifies the X coordinat
 
 **API, PannerNode, Property, Reference, Web Audio API, positionY**
 
-The `positionY` property of the `PannerNode` interface specifies the Y coordinate of the audio source's position in 3D Cartesian coordinates, corresponding to the *vertical* axis (top-bottom). The complete vector is defined by the position of the audio source, given as (`PannerNode.positionX`, `PannerNode.positionY`, `PannerNode.positionZ`), and the orientation of the audio source (that is, the direction in which it's facing), given as (`PannerNode.orientationX`, `PannerNode.orientationY`, `PannerNode.orientationZ`).
+The `positionY` property of the `PannerNode` interface specifies the Y coordinate of the audio source's position in 3D Cartesian coordinates, corresponding to the _vertical_ axis (top-bottom). The complete vector is defined by the position of the audio source, given as (`PannerNode.positionX`, `PannerNode.positionY`, `PannerNode.positionZ`), and the orientation of the audio source (that is, the direction in which it's facing), given as (`PannerNode.orientationX`, `PannerNode.orientationY`, `PannerNode.orientationZ`).
 
 3259
 
@@ -25954,7 +25953,7 @@ The `positionY` property of the `PannerNode` interface specifies the Y coordinat
 
 **API, PannerNode, Property, Reference, Web Audio API, positionZ**
 
-The `positionZ` property of the `PannerNode` interface specifies the Z coordinate of the audio source's position in 3D Cartesian coordinates, corresponding to the *depth* axis (behind-in front of the listener). The complete vector is defined by the position of the audio source, given as (`PannerNode.positionX`, `PannerNode.positionY`, `PannerNode.positionZ`), and the orientation of the audio source (that is, the direction in which it's facing), given as (`PannerNode.orientationX`, `PannerNode.orientationY`, `PannerNode.orientationZ`).
+The `positionZ` property of the `PannerNode` interface specifies the Z coordinate of the audio source's position in 3D Cartesian coordinates, corresponding to the _depth_ axis (behind-in front of the listener). The complete vector is defined by the position of the audio source, given as (`PannerNode.positionX`, `PannerNode.positionY`, `PannerNode.positionZ`), and the orientation of the audio source (that is, the direction in which it's facing), given as (`PannerNode.orientationX`, `PannerNode.orientationY`, `PannerNode.orientationZ`).
 
 3260
 
@@ -26074,7 +26073,7 @@ The `Path2D` interface of the Canvas 2D API is used to declare a path that can t
 
 **API, Canvas, Method, Path2D, Path2D.addPath, Reference**
 
-The `Path2D``.addPath()` method of the Canvas 2D API adds one `Path2D` object to another `Path2D` object.
+The ` Path2D``.addPath() ` method of the Canvas 2D API adds one `Path2D` object to another `Path2D` object.
 
 3275
 
@@ -26178,7 +26177,7 @@ The `country` read-only property of the `PaymentAddress` interface is a string i
 
 **API, Payment Request, Payment Request API, PaymentRequest, Property, Reference, paymentAddress**
 
-The read-only `dependentLocality` property of the `PaymentAddress` interface is a string containing a sublocality designation within a city, such as a neighborhood, borough, district, or, in the United Kingdom, a dependent locality. Also known as a *post town*.
+The read-only `dependentLocality` property of the `PaymentAddress` interface is a string containing a sublocality designation within a city, such as a neighborhood, borough, district, or, in the United Kingdom, a dependent locality. Also known as a _post town_.
 
 3288
 
@@ -26274,7 +26273,7 @@ The `PaymentCurrencyAmount` property `currency` is a string which specifies the 
 
 **API, Commerce, Currency, Currency System, Money, Obsolete, Payment Request, Payment Request API, PaymentCurrencyAmount, Property, Reference, payment**
 
-The *obsolete* `PaymentCurrencyAmount` property `currencySystem` is a string which specifies the standard being used to specify the `PaymentCurrencyAmount.currency` the `PaymentCurrencyAmount.value` is specified in.
+The _obsolete_ `PaymentCurrencyAmount` property `currencySystem` is a string which specifies the standard being used to specify the `PaymentCurrencyAmount.currency` the `PaymentCurrencyAmount.value` is specified in.
 
 3300
 
@@ -26724,7 +26723,7 @@ The `Pbkdf2Params` dictionary of the [Web Crypto API](web_crypto_api) represents
 
 **Guide, NeedsContent, Overview, Performance, Web Performance**
 
-The [High Resolution Time](https://www.w3.org/TR/hr-time/) standard defines a `Performance` interface that supports client-side latency measurements within applications. The `Performance` interfaces are considered *high resolution* because they are accurate to a thousandth of a millisecond (subject to hardware or software constraints). The interfaces support a number of use cases including calculating frame-rates (potentially important in animations) and benchmarking (such as the time to load a resource).
+The [High Resolution Time](https://www.w3.org/TR/hr-time/) standard defines a `Performance` interface that supports client-side latency measurements within applications. The `Performance` interfaces are considered _high resolution_ because they are accurate to a thousandth of a millisecond (subject to hardware or software constraints). The interfaces support a number of use cases including calculating frame-rates (potentially important in animations) and benchmarking (such as the time to load a resource).
 
 3357
 
@@ -26732,7 +26731,7 @@ The [High Resolution Time](https://www.w3.org/TR/hr-time/) standard defines a `P
 
 **Guide, Performance, Web Performance**
 
-A fundamental requirement of web performance is a precise and consistent definition of *time.* The `DOMHighResTimeStamp` type (a `double`) is used by all performance interfaces to hold such time values. Additionally, there must be a way to create a *timestamp* for a specific point in time; this is done with the `Performance.now` method.
+A fundamental requirement of web performance is a precise and consistent definition of _time._ The `DOMHighResTimeStamp` type (a `double`) is used by all performance interfaces to hold such time values. Additionally, there must be a way to create a _timestamp_ for a specific point in time; this is done with the `Performance.now` method.
 
 3358
 
@@ -26740,7 +26739,7 @@ A fundamental requirement of web performance is a precise and consistent definit
 
 **Guide, Overview, Web Performance**
 
-The **Performance Timeline** API defines extensions to the `Performance` interface to support client-side latency measurements within applications. The extensions provide interfaces to retrieve `PerformanceEntry` based on specific filter criteria. The standard also includes interfaces that allow an application to define *Performance\_Observers* callbacks that are notified when specific performance events are added to the browser's *performance timeline*.
+The **Performance Timeline** API defines extensions to the `Performance` interface to support client-side latency measurements within applications. The extensions provide interfaces to retrieve `PerformanceEntry` based on specific filter criteria. The standard also includes interfaces that allow an application to define _Performance_Observers_ callbacks that are notified when specific performance events are added to the browser's _performance timeline_.
 
 3359
 
@@ -26764,7 +26763,7 @@ The `Performance` interface provides access to performance-related information f
 
 **API, Method, Reference, Web Performance**
 
-The `clearMarks()` method removes the *named mark* from the browser's performance entry buffer. If the method is called with no arguments, all `PerformanceEntry` with an `PerformanceEntry.entryType` of "`mark`" will be removed from the performance entry buffer.
+The `clearMarks()` method removes the _named mark_ from the browser's performance entry buffer. If the method is called with no arguments, all `PerformanceEntry` with an `PerformanceEntry.entryType` of "`mark`" will be removed from the performance entry buffer.
 
 3362
 
@@ -26772,7 +26771,7 @@ The `clearMarks()` method removes the *named mark* from the browser's performanc
 
 **API, Method, Reference, Web Performance**
 
-The `clearMeasures()` method removes the *named measure* from the browser's performance entry buffer. If the method is called with no arguments, all `PerformanceEntry` with an `PerformanceEntry.entryType` of "`measure`" will be removed from the performance entry buffer.
+The `clearMeasures()` method removes the _named measure_ from the browser's performance entry buffer. If the method is called with no arguments, all `PerformanceEntry` with an `PerformanceEntry.entryType` of "`measure`" will be removed from the performance entry buffer.
 
 3363
 
@@ -26788,7 +26787,7 @@ The `clearResourceTimings()` method removes all `PerformanceEntry` with an `Perf
 
 **API, Method, Reference, Web Performance**
 
-The `getEntries()` method returns a list of all `PerformanceEntry` objects for the page. The list's members (*entries*) can be created by making performance *marks* or *measures* (for example by calling the `Performance.mark` method) at explicit points in time. If you are only interested in performance entries of certain types or that have certain names, see `Performance.getEntriesByType` and `Performance.getEntriesByName`.
+The `getEntries()` method returns a list of all `PerformanceEntry` objects for the page. The list's members (_entries_) can be created by making performance _marks_ or _measures_ (for example by calling the `Performance.mark` method) at explicit points in time. If you are only interested in performance entries of certain types or that have certain names, see `Performance.getEntriesByType` and `Performance.getEntriesByName`.
 
 3365
 
@@ -26796,7 +26795,7 @@ The `getEntries()` method returns a list of all `PerformanceEntry` objects for t
 
 **API, Method, Reference, Web Performance**
 
-The `getEntriesByName()` method returns a list of `PerformanceEntry` objects for the given *name* and *type*. The list's members (*entries*) can be created by making performance *marks* or *measures* (for example by calling the `Performance.mark` method) at explicit points in time.
+The `getEntriesByName()` method returns a list of `PerformanceEntry` objects for the given _name_ and _type_. The list's members (_entries_) can be created by making performance _marks_ or _measures_ (for example by calling the `Performance.mark` method) at explicit points in time.
 
 3366
 
@@ -26804,7 +26803,7 @@ The `getEntriesByName()` method returns a list of `PerformanceEntry` objects for
 
 **API, Method, Reference, Web Performance**
 
-The `getEntriesByType()` method returns a list of `PerformanceEntry` objects for a given *type*. The list's members (*entries*) can be created by making performance *marks* or *measures* (for example by calling the `Performance.mark` method) at explicit points in time.
+The `getEntriesByType()` method returns a list of `PerformanceEntry` objects for a given _type_. The list's members (_entries_) can be created by making performance _marks_ or _measures_ (for example by calling the `Performance.mark` method) at explicit points in time.
 
 3367
 
@@ -26812,7 +26811,7 @@ The `getEntriesByType()` method returns a list of `PerformanceEntry` objects for
 
 **API, Method, Reference, Web Performance**
 
-The `mark()` method creates a `DOMHighResTimeStamp` in the browser's *performance entry buffer* with the given name.
+The `mark()` method creates a `DOMHighResTimeStamp` in the browser's _performance entry buffer_ with the given name.
 
 3368
 
@@ -26820,7 +26819,7 @@ The `mark()` method creates a `DOMHighResTimeStamp` in the browser's *performanc
 
 **API, Method, Reference, Web Performance, Web Workers**
 
-The `measure()` method creates a named `DOMHighResTimeStamp` in the browser's *performance entry buffer* between marks, the navigation start time, or the current time. When measuring between two marks, there is a *start mark* and *end mark*, respectively. The named timestamp is referred to as a *measure*.
+The `measure()` method creates a named `DOMHighResTimeStamp` in the browser's _performance entry buffer_ between marks, the navigation start time, or the current time. When measuring between two marks, there is a _start mark_ and _end mark_, respectively. The named timestamp is referred to as a _measure_.
 
 3369
 
@@ -26866,7 +26865,7 @@ The `resourcetimingbufferfull` event is fired when the browser's [resource timin
 
 **API, Method, Reference, Web Performance**
 
-The `setResourceTimingBufferSize()` method sets the browser's *resource timing buffer* size to the specified number of "`resource`" `PerformanceEntry.entryType` objects.
+The `setResourceTimingBufferSize()` method sets the browser's _resource timing buffer_ size to the specified number of "`resource`" `PerformanceEntry.entryType` objects.
 
 3375
 
@@ -26986,7 +26985,7 @@ The `url` read-only property of the `PerformanceElementTiming` interface returns
 
 **API, Interface, Performance Timeline API, PerformanceEntry, Reference, Web Performance**
 
-The `PerformanceEntry` object encapsulates a single performance metric that is part of the *performance timeline*. A *performance entry* can be directly created by making a performance *`PerformanceMark`* or *`PerformanceMeasure`* (for example by calling the `Performance.mark` method) at an explicit point in an application. Performance entries are also created in indirect ways such as loading a resource (such as an image).
+The `PerformanceEntry` object encapsulates a single performance metric that is part of the _performance timeline_. A _performance entry_ can be directly created by making a performance _`PerformanceMark`_ or _`PerformanceMeasure`_ (for example by calling the `Performance.mark` method) at an explicit point in an application. Performance entries are also created in indirect ways such as loading a resource (such as an image).
 
 3390
 
@@ -27026,7 +27025,7 @@ The `startTime` property returns the first recorded `DOMHighResTimeStamp` of the
 
 **API, Method, Reference, Web Performance**
 
-The `toJSON()` method is a *serializer*; it returns a JSON representation of the `PerformanceEntry` object.
+The `toJSON()` method is a _serializer_; it returns a JSON representation of the `PerformanceEntry` object.
 
 3395
 
@@ -27042,7 +27041,7 @@ The `PerformanceEventTiming` interface of the Event Timing API provides timing i
 
 **API, Frame Timing API, Interface, Performance Timeline API, PerformanceFrameTiming, Reference, Web Performance**
 
-`PerformanceFrameTiming` is an *abstract* interface that provides *frame* timing data about the browser's event loop.
+`PerformanceFrameTiming` is an _abstract_ interface that provides _frame_ timing data about the browser's event loop.
 
 3397
 
@@ -27064,7 +27063,7 @@ The `attribution` readonly property of the `PerformanceLongTaskTiming` interface
 
 **API, Interface, Performance Timing API, Reference, Web Performance**
 
-`PerformanceMark` is an *abstract* interface for `PerformanceEntry` objects with an `PerformanceEntry.entryType` of "`mark`". Entries of this type are created by calling `Performance.mark` to add a *named* `DOMHighResTimeStamp` (the *mark*) to the browser's *performance timeline*.
+`PerformanceMark` is an _abstract_ interface for `PerformanceEntry` objects with an `PerformanceEntry.entryType` of "`mark`". Entries of this type are created by calling `Performance.mark` to add a _named_ `DOMHighResTimeStamp` (the _mark_) to the browser's _performance timeline_.
 
 3400
 
@@ -27072,7 +27071,7 @@ The `attribution` readonly property of the `PerformanceLongTaskTiming` interface
 
 **API, Interface, Performance Timeline API, Reference, Web Performance**
 
-`PerformanceMeasure` is an *abstract* interface for `PerformanceEntry` objects with an `PerformanceEntry.entryType` of "`measure`". Entries of this type are created by calling `Performance.measure` to add a *named* `DOMHighResTimeStamp` (the *measure*) between two *marks* to the browser's *performance timeline*.
+`PerformanceMeasure` is an _abstract_ interface for `PerformanceEntry` objects with an `PerformanceEntry.entryType` of "`measure`". Entries of this type are created by calling `Performance.measure` to add a _named_ `DOMHighResTimeStamp` (the _measure_) between two _marks_ to the browser's _performance timeline_.
 
 3401
 
@@ -27088,7 +27087,7 @@ The legacy `PerformanceNavigation` interface represents information about how th
 
 **API, Backwards compatibility, Deprecated, HTML, Navigation Timing, PerformanceNavigation, Property, Read-only, legacy**
 
-The legacy `PerformanceNavigation``.redirectCount` read-only property returns an `unsigned short` representing the number of REDIRECTs done before reaching the page.
+The legacy ` PerformanceNavigation``.redirectCount ` read-only property returns an `unsigned short` representing the number of REDIRECTs done before reaching the page.
 
 3403
 
@@ -27096,7 +27095,7 @@ The legacy `PerformanceNavigation``.redirectCount` read-only property returns an
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceNavigation, Property, Read-only, legacy**
 
-The legacy `PerformanceNavigation``.type` read-only property returns an `unsigned short` containing a constant describing how the navigation to this page was done. Possible values are:
+The legacy ` PerformanceNavigation``.type ` read-only property returns an `unsigned short` containing a constant describing how the navigation to this page was done. Possible values are:
 
 3404
 
@@ -27112,7 +27111,7 @@ The `PerformanceNavigationTiming` interface provides methods and properties to s
 
 **API, Property, Reference, Web Performance**
 
-The `domComplete` read-only property returns a `DOMHighResTimeStamp` representing the time value equal to the time immediately before the user agent sets the current document readiness of the current document to *[complete](https://html.spec.whatwg.org/multipage/syntax.html#the-end)*.
+The `domComplete` read-only property returns a `DOMHighResTimeStamp` representing the time value equal to the time immediately before the user agent sets the current document readiness of the current document to _[complete](https://html.spec.whatwg.org/multipage/syntax.html#the-end)_.
 
 3406
 
@@ -27168,7 +27167,7 @@ The `redirectCount` property returns a `DOMHighResTimeStamp` representing the nu
 
 **API, Method, Reference, Web Performance**
 
-The `toJSON()` method is a *serializer* - it returns a JSON representation of the `PerformanceNavigationTiming` object.
+The `toJSON()` method is a _serializer_ - it returns a JSON representation of the `PerformanceNavigationTiming` object.
 
 3413
 
@@ -27200,7 +27199,7 @@ The `unloadEventStart` read-only property returns a `DOMHighResTimeStamp` repres
 
 **API, Interface, Performance Observer API, PerformanceObserver, Reference, Web Performance, observers**
 
-The `PerformanceObserver` interface is used to *observe* performance measurement events and be notified of new `PerformanceEntry` as they are recorded in the browser's *performance timeline*.
+The `PerformanceObserver` interface is used to _observe_ performance measurement events and be notified of new `PerformanceEntry` as they are recorded in the browser's _performance timeline_.
 
 3417
 
@@ -27248,7 +27247,7 @@ The `takeRecords()` method of the `PerformanceObserver` interface returns the cu
 
 **API, Interface, Reference, Web Performance**
 
-The `PerformanceObserverEntryList` interface is a list of `PerformanceEntry` that were explicitly *observed* via the `PerformanceObserver.observe` method.
+The `PerformanceObserverEntryList` interface is a list of `PerformanceEntry` that were explicitly _observed_ via the `PerformanceObserver.observe` method.
 
 3423
 
@@ -27256,7 +27255,7 @@ The `PerformanceObserverEntryList` interface is a list of `PerformanceEntry` tha
 
 **API, Method, PerformanceObserverEntryList, Reference, Web Performance**
 
-The `getEntries()` method of the `PerformanceObserverEntryList` interface returns a list of explicitly *observed* `PerformanceEntry` objects for a given filter. The list's members are determined by the set of `PerformanceEntry.entryType` specified in the call to the `PerformanceObserver.observe` method. The list is available in the observer's callback function (as the first parameter in the callback).
+The `getEntries()` method of the `PerformanceObserverEntryList` interface returns a list of explicitly _observed_ `PerformanceEntry` objects for a given filter. The list's members are determined by the set of `PerformanceEntry.entryType` specified in the call to the `PerformanceObserver.observe` method. The list is available in the observer's callback function (as the first parameter in the callback).
 
 3424
 
@@ -27264,7 +27263,7 @@ The `getEntries()` method of the `PerformanceObserverEntryList` interface return
 
 **API, Method, PerformanceObserverEntryList, Reference, Web Performance**
 
-The `getEntriesByName()` method of the `PerformanceObserverEntryList` interface returns a list of explicitly *observed* `PerformanceEntry` objects for a given *`PerformanceEntry.name`* and *`PerformanceEntry.entryType`*. The list's members are determined by the set of `PerformanceEntry.entryType` specified in the call to the `PerformanceObserver.observe` method. The list is available in the observer's callback function (as the first parameter in the callback).
+The `getEntriesByName()` method of the `PerformanceObserverEntryList` interface returns a list of explicitly _observed_ `PerformanceEntry` objects for a given _`PerformanceEntry.name`_ and _`PerformanceEntry.entryType`_. The list's members are determined by the set of `PerformanceEntry.entryType` specified in the call to the `PerformanceObserver.observe` method. The list is available in the observer's callback function (as the first parameter in the callback).
 
 3425
 
@@ -27272,7 +27271,7 @@ The `getEntriesByName()` method of the `PerformanceObserverEntryList` interface 
 
 **API, Method, PerformanceObserverEntryList, Reference, Web Performance**
 
-The `getEntriesByType()` method of the `PerformanceObserverEntryList` returns a list of explicitly *observed* `PerformanceEntry` objects for a given `PerformanceEntry.entryType`. The list's members are determined by the set of `PerformanceEntry.entryType` specified in the call to the `PerformanceObserver.observe` method. The list is available in the observer's callback function (as the first parameter in the callback).
+The `getEntriesByType()` method of the `PerformanceObserverEntryList` returns a list of explicitly _observed_ `PerformanceEntry` objects for a given `PerformanceEntry.entryType`. The list's members are determined by the set of `PerformanceEntry.entryType` specified in the call to the `PerformanceObserver.observe` method. The list is available in the observer's callback function (as the first parameter in the callback).
 
 3426
 
@@ -27288,7 +27287,7 @@ The `PerformancePaintTiming` interface of the [Paint Timing API](paint_timing_ap
 
 **DOM, Interface, Reference, Web Performance**
 
-The `PerformanceResourceTiming` interface enables retrieval and analysis of detailed network timing data regarding the loading of an application's *resources*. An application can use the timing metrics to determine, for example, the length of time it takes to fetch a specific resource, such as an `XMLHttpRequest`, `SVG`, image, or script.
+The `PerformanceResourceTiming` interface enables retrieval and analysis of detailed network timing data regarding the loading of an application's _resources_. An application can use the timing metrics to determine, for example, the length of time it takes to fetch a specific resource, such as an `XMLHttpRequest`, `SVG`, image, or script.
 
 3428
 
@@ -27336,7 +27335,7 @@ The `domainLookupStart` read-only property returns the `DOMHighResTimeStamp` imm
 
 **API, Property, Reference, Web Performance**
 
-The `encodedBodySize` read-only property represents the size (in octets) received from the fetch (HTTP or cache), of the *payload body*, before removing any applied content-codings.
+The `encodedBodySize` read-only property represents the size (in octets) received from the fetch (HTTP or cache), of the _payload body_, before removing any applied content-codings.
 
 3434
 
@@ -27352,7 +27351,7 @@ The `fetchStart` read-only property represents a `DOMHighResTimeStamp` immediate
 
 **API, Property, Reference, Web Performance**
 
-The `initiatorType` read-only property is a `DOMString` that represents the *type* of resource that initiated the performance event.
+The `initiatorType` read-only property is a `DOMString` that represents the _type_ of resource that initiated the performance event.
 
 3436
 
@@ -27360,7 +27359,7 @@ The `initiatorType` read-only property is a `DOMString` that represents the *typ
 
 **API, Property, Reference, Resource Timing API, Web Performance**
 
-The `nextHopProtocol` read-only property is a `DOMString` representing the *network protocol* used to fetch the resource, as identified by the [ALPN Protocol ID (RFC7301)](https://datatracker.ietf.org/doc/html/rfc7301).
+The `nextHopProtocol` read-only property is a `DOMString` representing the _network protocol_ used to fetch the resource, as identified by the [ALPN Protocol ID (RFC7301)](https://datatracker.ietf.org/doc/html/rfc7301).
 
 3437
 
@@ -27424,7 +27423,7 @@ The `serverTiming` read-only property returns an array of `PerformanceServerTimi
 
 **API, Method, Reference, Web Performance**
 
-The `toJSON()` method is a *serializer* that returns a JSON representation of the `PerformanceResourceTiming` object.
+The `toJSON()` method is a _serializer_ that returns a JSON representation of the `PerformanceResourceTiming` object.
 
 3445
 
@@ -27496,7 +27495,7 @@ The `PerformanceTiming` interface is a legacy interface kept for backwards compa
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceTiming, Property, Read-only, legacy**
 
-The legacy `PerformanceTiming``.connectEnd` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, where the connection is opened network. If the transport layer reports an error and the connection establishment is started again, the last connection establisment end time is given. If a persistent connection is used, the value will be the same as `PerformanceTiming.fetchStart`. A connection is considered as opened when all secure connection handshake, or SOCKS authentication, is terminated.
+The legacy ` PerformanceTiming``.connectEnd ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, where the connection is opened network. If the transport layer reports an error and the connection establishment is started again, the last connection establisment end time is given. If a persistent connection is used, the value will be the same as `PerformanceTiming.fetchStart`. A connection is considered as opened when all secure connection handshake, or SOCKS authentication, is terminated.
 
 3454
 
@@ -27504,7 +27503,7 @@ The legacy `PerformanceTiming``.connectEnd` read-only property returns an `unsig
 
 **API, Backwards compatibility, Deprecated, HTML, Navigation Timing, PerformanceTiming, Property, Read-only, legacy**
 
-The legacy `PerformanceTiming``.connectStart` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, where the request to open a connection is sent to the network. If the transport layer reports an error and the connection establishment is started again, the last connection establisment start time is given. If a persistent connection is used, the value will be the same as `PerformanceTiming.fetchStart`.
+The legacy ` PerformanceTiming``.connectStart ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, where the request to open a connection is sent to the network. If the transport layer reports an error and the connection establishment is started again, the last connection establisment start time is given. If a persistent connection is used, the value will be the same as `PerformanceTiming.fetchStart`.
 
 3455
 
@@ -27512,7 +27511,7 @@ The legacy `PerformanceTiming``.connectStart` read-only property returns an `uns
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceTiming, Property, Reference, fetchStart, legacy**
 
-The legacy `PerformanceTiming``.domainLookupEnd` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, where the domain lookup is finished. If a persistent connection is used, or the information is stored in a cache or a local resource, the value will be the same as `PerformanceTiming.fetchStart`.
+The legacy ` PerformanceTiming``.domainLookupEnd ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, where the domain lookup is finished. If a persistent connection is used, or the information is stored in a cache or a local resource, the value will be the same as `PerformanceTiming.fetchStart`.
 
 3456
 
@@ -27520,7 +27519,7 @@ The legacy `PerformanceTiming``.domainLookupEnd` read-only property returns an `
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceTiming, Property, Read-only, Reference, legacy**
 
-The legacy `PerformanceTiming``.domainLookupStart` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, where the domain lookup starts. If a persistent connection is used, or the information is stored in a cache or a local resource, the value will be the same as `PerformanceTiming.fetchStart`.
+The legacy ` PerformanceTiming``.domainLookupStart ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, where the domain lookup starts. If a persistent connection is used, or the information is stored in a cache or a local resource, the value will be the same as `PerformanceTiming.fetchStart`.
 
 3457
 
@@ -27528,7 +27527,7 @@ The legacy `PerformanceTiming``.domainLookupStart` read-only property returns an
 
 **API, Backwards compatibility, Deprecated, HTML, Navigation Timing, PerformanceTiming, Property, Read-only, legacy**
 
-The legacy `PerformanceTiming``.domComplete` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, when the parser finished its work on the main document, that is when its `Document.readyState` changes to `'complete'` and the corresponding `readystatechange` event is thrown.
+The legacy ` PerformanceTiming``.domComplete ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, when the parser finished its work on the main document, that is when its `Document.readyState` changes to `'complete'` and the corresponding `readystatechange` event is thrown.
 
 3458
 
@@ -27536,7 +27535,7 @@ The legacy `PerformanceTiming``.domComplete` read-only property returns an `unsi
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceTiming, Property, Read-only, domContentLoadedEventEnd, legacy**
 
-The legacy `PerformanceTiming``.domContentLoadedEventEnd` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, right after all the scripts that need to be executed as soon as possible, in order or not, has been executed.
+The legacy ` PerformanceTiming``.domContentLoadedEventEnd ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, right after all the scripts that need to be executed as soon as possible, in order or not, has been executed.
 
 3459
 
@@ -27544,7 +27543,7 @@ The legacy `PerformanceTiming``.domContentLoadedEventEnd` read-only property ret
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceTiming, Property, Read-only, domContentLoadedEventStart, legacy**
 
-The legacy `PerformanceTiming``.domContentLoadedEventStart` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, right before the parser sent the `DOMContentLoaded` event, that is right after all the scripts that need to be executed right after parsing has been executed.
+The legacy ` PerformanceTiming``.domContentLoadedEventStart ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, right before the parser sent the `DOMContentLoaded` event, that is right after all the scripts that need to be executed right after parsing has been executed.
 
 3460
 
@@ -27552,7 +27551,7 @@ The legacy `PerformanceTiming``.domContentLoadedEventStart` read-only property r
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceTiming, Property, Read-only, domInteractive, legacy**
 
-The legacy `PerformanceTiming``.domInteractive` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, when the parser finished its work on the main document, that is when its `Document.readyState` changes to `'interactive'` and the corresponding `readystatechange` event is thrown.
+The legacy ` PerformanceTiming``.domInteractive ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, when the parser finished its work on the main document, that is when its `Document.readyState` changes to `'interactive'` and the corresponding `readystatechange` event is thrown.
 
 3461
 
@@ -27560,7 +27559,7 @@ The legacy `PerformanceTiming``.domInteractive` read-only property returns an `u
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceTiming, Property, Reference, domxref, legacy**
 
-The legacy `PerformanceTiming``.domLoading` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, when the parser started its work, that is when its `Document.readyState` changes to `'loading'` and the corresponding `readystatechange` event is thrown.
+The legacy ` PerformanceTiming``.domLoading ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, when the parser started its work, that is when its `Document.readyState` changes to `'loading'` and the corresponding `readystatechange` event is thrown.
 
 3462
 
@@ -27568,7 +27567,7 @@ The legacy `PerformanceTiming``.domLoading` read-only property returns an `unsig
 
 **API, Backwards compatibility, Deprecated, HTTP request, Navigation Timing, PerformanceTiming, Property, Read-only, Reference, legacy**
 
-The legacy `PerformanceTiming``.fetchStart` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, the browser is ready to fetch the document using an HTTP request. This moment is *before* the check to any application cache.
+The legacy ` PerformanceTiming``.fetchStart ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, the browser is ready to fetch the document using an HTTP request. This moment is _before_ the check to any application cache.
 
 3463
 
@@ -27576,7 +27575,7 @@ The legacy `PerformanceTiming``.fetchStart` read-only property returns an `unsig
 
 **API, Backwards compatibility, Deprecated, Event Handler, Navigation Timing, PerformanceTiming, Property, Read-only, Reference, legacy**
 
-The legacy `PerformanceTiming``.loadEventEnd` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, when the `load` event handler terminated, that is when the load event is completed. If this event has not yet been sent, or is not yet completed, it returns `0.`
+The legacy ` PerformanceTiming``.loadEventEnd ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, when the `load` event handler terminated, that is when the load event is completed. If this event has not yet been sent, or is not yet completed, it returns `0.`
 
 3464
 
@@ -27584,7 +27583,7 @@ The legacy `PerformanceTiming``.loadEventEnd` read-only property returns an `uns
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceTiming, Property, Read-only, Reference, legacy**
 
-The legacy `PerformanceTiming``.loadEventStart` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, when the `load` event was sent for the current document. If this event has not yet been sent, it returns `0.`
+The legacy ` PerformanceTiming``.loadEventStart ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, when the `load` event was sent for the current document. If this event has not yet been sent, it returns `0.`
 
 3465
 
@@ -27592,7 +27591,7 @@ The legacy `PerformanceTiming``.loadEventStart` read-only property returns an `u
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, Performance, PerformanceTiming.navigationStart, Property, Read-only, Reference, legacy**
 
-The legacy `PerformanceTiming``.navigationStart` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, right after the prompt for unload terminates on the previous document in the same browsing context. If there is no previous document, this value will be the same as `PerformanceTiming.fetchStart`.
+The legacy ` PerformanceTiming``.navigationStart ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, right after the prompt for unload terminates on the previous document in the same browsing context. If there is no previous document, this value will be the same as `PerformanceTiming.fetchStart`.
 
 3466
 
@@ -27600,7 +27599,7 @@ The legacy `PerformanceTiming``.navigationStart` read-only property returns an `
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceTiming, Property, Read-only, Reference, legacy**
 
-The legacy `PerformanceTiming``.redirectEnd` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, the last HTTP redirect is completed, that is when the last byte of the HTTP response has been received. If there is no redirect, or if one of the redirect is not of the same origin, the value returned is `0`.
+The legacy ` PerformanceTiming``.redirectEnd ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, the last HTTP redirect is completed, that is when the last byte of the HTTP response has been received. If there is no redirect, or if one of the redirect is not of the same origin, the value returned is `0`.
 
 3467
 
@@ -27608,7 +27607,7 @@ The legacy `PerformanceTiming``.redirectEnd` read-only property returns an `unsi
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceTiming, Property, Read-only, Reference, legacy**
 
-The legacy `PerformanceTiming``.redirectStart` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, the first HTTP redirect starts. If there is no redirect, or if one of the redirect is not of the same origin, the value returned is `0`.
+The legacy ` PerformanceTiming``.redirectStart ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, the first HTTP redirect starts. If there is no redirect, or if one of the redirect is not of the same origin, the value returned is `0`.
 
 3468
 
@@ -27616,7 +27615,7 @@ The legacy `PerformanceTiming``.redirectStart` read-only property returns an `un
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceTiming, Property, Read-only, legacy**
 
-The legacy `PerformanceTiming``.requestStart` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, when the browser sent the request to obtain the actual document, from the server or from a cache. If the transport layer fails after the start of the request and the connection is reopened, this property will be set to the time corresponding to the new request.
+The legacy ` PerformanceTiming``.requestStart ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, when the browser sent the request to obtain the actual document, from the server or from a cache. If the transport layer fails after the start of the request and the connection is reopened, this property will be set to the time corresponding to the new request.
 
 3469
 
@@ -27624,7 +27623,7 @@ The legacy `PerformanceTiming``.requestStart` read-only property returns an `uns
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceTiming, Property, Read-only, Reference, legacy**
 
-The legacy `PerformanceTiming``.responseEnd` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, when the browser received the last byte of the response, or when the connection is closed if this happened first, from the server from a cache or from a local resource.
+The legacy ` PerformanceTiming``.responseEnd ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, when the browser received the last byte of the response, or when the connection is closed if this happened first, from the server from a cache or from a local resource.
 
 3470
 
@@ -27632,7 +27631,7 @@ The legacy `PerformanceTiming``.responseEnd` read-only property returns an `unsi
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceTiming, Property, Read-only, Reference, legacy**
 
-The legacy `PerformanceTiming``.responseStart` read-only property returns an `unsigned long long` representing the moment in time (in milliseconds since the UNIX epoch) when the browser received the first byte of the response from the server, cache, or local resource.
+The legacy ` PerformanceTiming``.responseStart ` read-only property returns an `unsigned long long` representing the moment in time (in milliseconds since the UNIX epoch) when the browser received the first byte of the response from the server, cache, or local resource.
 
 3471
 
@@ -27640,7 +27639,7 @@ The legacy `PerformanceTiming``.responseStart` read-only property returns an `un
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceTiming, Property, Read-only, legacy**
 
-The legacy `PerformanceTiming``.secureConnectionStart` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, where the secure connection handshake starts. If no such connection is requested, it returns `0`.
+The legacy ` PerformanceTiming``.secureConnectionStart ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, where the secure connection handshake starts. If no such connection is requested, it returns `0`.
 
 3472
 
@@ -27648,7 +27647,7 @@ The legacy `PerformanceTiming``.secureConnectionStart` read-only property return
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceTiming, Property, Read-only, legacy**
 
-The legacy `PerformanceTiming``.unloadEventEnd` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, the `unload` event handler finishes. If there is no previous document, or if the previous document, or one of the needed redirects, is not of the same origin, the value returned is `0`.
+The legacy ` PerformanceTiming``.unloadEventEnd ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, the `unload` event handler finishes. If there is no previous document, or if the previous document, or one of the needed redirects, is not of the same origin, the value returned is `0`.
 
 3473
 
@@ -27656,7 +27655,7 @@ The legacy `PerformanceTiming``.unloadEventEnd` read-only property returns an `u
 
 **API, Backwards compatibility, Deprecated, Navigation Timing, PerformanceTiming, Property, Read-only, legacy**
 
-The legacy `PerformanceTiming``.unloadEventStart` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, the `unload` event has been thrown. If there is no previous document, or if the previous document, or one of the needed redirects, is not of the same origin, the value returned is `0`.
+The legacy ` PerformanceTiming``.unloadEventStart ` read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, the `unload` event has been thrown. If there is no previous document, or if the previous document, or one of the needed redirects, is not of the same origin, the value returned is `0`.
 
 3474
 
@@ -27942,7 +27941,7 @@ The `PluginArray` interface is used to store a list of `Plugin` objects describi
 
 **Guide, PointerEvent, touch**
 
-Adding *gestures* to an application can significantly improve the user experience. There are many types of gestures, from the simple single-touch *swipe* gesture to the more complex multi-touch *twist* gesture, where the touch points (aka *pointers*) move in different directions.
+Adding _gestures_ to an application can significantly improve the user experience. There are many types of gestures, from the simple single-touch _swipe_ gesture to the more complex multi-touch _twist_ gesture, where the touch points (aka _pointers_) move in different directions.
 
 3510
 
@@ -27958,7 +27957,7 @@ Adding *gestures* to an application can significantly improve the user experienc
 
 **API, Advanced, Games, Reference, mouse lock, pointer lock**
 
-The **Pointer Lock API** (formerly called *Mouse Lock API*) provides input methods based on the movement of the mouse over time (i.e., deltas), not just the absolute position of the mouse cursor in the viewport. It gives you access to raw mouse movement, locks the target of mouse events to a single element, eliminates limits on how far mouse movement can go in a single direction, and removes the cursor from view.
+The **Pointer Lock API** (formerly called _Mouse Lock API_) provides input methods based on the movement of the mouse over time (i.e., deltas), not just the absolute position of the mouse cursor in the viewport. It gives you access to raw mouse movement, locks the target of mouse events to a single element, eliminates limits on how far mouse movement can go in a single direction, and removes the cursor from view.
 
 3512
 
@@ -27990,7 +27989,7 @@ The `height` read-only property of the `PointerEvent` interface represents the h
 
 **API, DOM, Interface, PointerEvent, Property, Reference**
 
-The `isPrimary` read-only property of the `PointerEvent` interface indicates whether or not the pointer device that created the event is the *primary* pointer. It returns `true` if the pointer that caused the event to be fired is the primary device and returns `false` otherwise.
+The `isPrimary` read-only property of the `PointerEvent` interface indicates whether or not the pointer device that created the event is the _primary_ pointer. It returns `true` if the pointer that caused the event to be fired is the primary device and returns `false` otherwise.
 
 3516
 
@@ -28038,7 +28037,7 @@ The `tangentialPressure` read-only property of the `PointerEvent` interface repr
 
 **API, DOM, Interface, PointerEvent, Property, Reference**
 
-The `tiltX` read-only property of the `PointerEvent` interface is the angle (in degrees) between the *Y-Z plane* of the pointer and the screen. This property is typically only useful for a pen/stylus pointer type.
+The `tiltX` read-only property of the `PointerEvent` interface is the angle (in degrees) between the _Y-Z plane_ of the pointer and the screen. This property is typically only useful for a pen/stylus pointer type.
 
 3522
 
@@ -28046,7 +28045,7 @@ The `tiltX` read-only property of the `PointerEvent` interface is the angle (in 
 
 **API, DOM, Interface, PointerEvent, Property, Reference**
 
-The `tiltY` read-only property of the `PointerEvent` interface is the angle (in degrees) between the *X-Z plane* of the pointer and the screen. This property is typically only useful for a pen/stylus pointer type.
+The `tiltY` read-only property of the `PointerEvent` interface is the angle (in degrees) between the _X-Z plane_ of the pointer and the screen. This property is typically only useful for a pen/stylus pointer type.
 
 3523
 
@@ -28150,7 +28149,7 @@ The Presentation API lets a user agent (such as a Web browser) effectively displ
 
 **API, Experimental, Interface, Presentation, Presentation API, Reference**
 
-The `Presentation` can be defined as two possible user agents in the context: *Controlling user agent* and *Receiving user agent*.
+The `Presentation` can be defined as two possible user agents in the context: _Controlling user agent_ and _Receiving user agent_.
 
 3536
 
@@ -28158,7 +28157,7 @@ The `Presentation` can be defined as two possible user agents in the context: *C
 
 **API, Presentation, Property, Reference, Web**
 
-In a [controlling user agent](https://www.w3.org/TR/presentation-api/#dfn-controlling-user-agent), the `defaultRequest` attribute *MUST* return the [default presentation request](https://www.w3.org/TR/presentation-api/#dfn-default-presentation-request) if any, otherwise `null`. In a [receiving browsing context](https://www.w3.org/TR/presentation-api/#dfn-receiving-browsing-context), it *MUST* return `null`.
+In a [controlling user agent](https://www.w3.org/TR/presentation-api/#dfn-controlling-user-agent), the `defaultRequest` attribute _MUST_ return the [default presentation request](https://www.w3.org/TR/presentation-api/#dfn-default-presentation-request) if any, otherwise `null`. In a [receiving browsing context](https://www.w3.org/TR/presentation-api/#dfn-receiving-browsing-context), it _MUST_ return `null`.
 
 3537
 
@@ -28174,7 +28173,7 @@ The **read-only** `Presentation` attribute `receiver`, which is only available i
 
 **API, Experimental, Interface, Presentation API, PresentationAvailability, Reference**
 
-A `PresentationAvailability` object is associated with available [presentation displays](https://www.w3.org/TR/presentation-api/#dfn-presentation-display) and represents the presentation display availability for a presentation request. If the [controlling user agent](https://www.w3.org/TR/presentation-api/#dfn-controlling-user-agent) can [monitor the list of available presentation displays](https://www.w3.org/TR/presentation-api/#dfn-monitor-the-list-of-available-presentation-displays) in the background (without a pending request to `start()`), the `PresentationAvailability` object *MUST* be implemented in a [controlling browsing context](https://www.w3.org/TR/presentation-api/#dfn-controlling-browsing-context).
+A `PresentationAvailability` object is associated with available [presentation displays](https://www.w3.org/TR/presentation-api/#dfn-presentation-display) and represents the presentation display availability for a presentation request. If the [controlling user agent](https://www.w3.org/TR/presentation-api/#dfn-controlling-user-agent) can [monitor the list of available presentation displays](https://www.w3.org/TR/presentation-api/#dfn-monitor-the-list-of-available-presentation-displays) in the background (without a pending request to `start()`), the `PresentationAvailability` object _MUST_ be implemented in a [controlling browsing context](https://www.w3.org/TR/presentation-api/#dfn-controlling-browsing-context).
 
 3539
 
@@ -28186,7 +28185,7 @@ The `onchange` attribute is an [event handler](https://www.w3.org/TR/presentatio
 
 [PresentationAvailability.value](presentationavailability/value)
 
-The `value` attribute *MUST* return the last value from which it was set. The value is updated by the [monitor the list of available presentation displays](https://www.w3.org/TR/presentation-api/#dfn-monitor-the-list-of-available-presentation-displays) algorithm.
+The `value` attribute _MUST_ return the last value from which it was set. The value is updated by the [monitor the list of available presentation displays](https://www.w3.org/TR/presentation-api/#dfn-monitor-the-list-of-available-presentation-displays) algorithm.
 
 3541
 
@@ -28194,7 +28193,7 @@ The `value` attribute *MUST* return the last value from which it was set. The va
 
 **API, Experimental, Interface, Presentation API, PresentationConnection, Reference**
 
-The `PresentationConnection` interface of the [Presentation API](presentation_api) provides methods and properties for managing a single presentation. Each [presentation connection](https://www.w3.org/TR/presentation-api/#dfn-presentation-connection) is represented by a `PresentationConnection` object. Both the [controlling user agent](https://www.w3.org/TR/presentation-api/#dfn-controlling-user-agent) and [receiving user agent](https://www.w3.org/TR/presentation-api/#dfn-receiving-user-agent) *MUST* implement `PresentationConnection`.
+The `PresentationConnection` interface of the [Presentation API](presentation_api) provides methods and properties for managing a single presentation. Each [presentation connection](https://www.w3.org/TR/presentation-api/#dfn-presentation-connection) is represented by a `PresentationConnection` object. Both the [controlling user agent](https://www.w3.org/TR/presentation-api/#dfn-controlling-user-agent) and [receiving user agent](https://www.w3.org/TR/presentation-api/#dfn-receiving-user-agent) _MUST_ implement `PresentationConnection`.
 
 3542
 
@@ -28202,7 +28201,7 @@ The `PresentationConnection` interface of the [Presentation API](presentation_ap
 
 **API, NeedsBrowserCompatibility, NeedsContent, NeedsExample, NeedsMarkupWork, Presentation, Presentation API, PresentationConnection, Property, Reference, binaryType**
 
-When a `PresentationConnection` object is created, its `binaryType` IDL attribute *MUST* be set to the string `"arraybuffer"`. Upon getting, the attribute *MUST* return its most recent value (the value it was last set as). Upon setting, the user agent *MUST* set the IDL attribute to the new value.
+When a `PresentationConnection` object is created, its `binaryType` IDL attribute _MUST_ be set to the string `"arraybuffer"`. Upon getting, the attribute _MUST_ return its most recent value (the value it was last set as). Upon setting, the user agent _MUST_ set the IDL attribute to the new value.
 
 3543
 
@@ -28310,7 +28309,7 @@ The `PresentationReceiver` interface of the [Presentation API](presentation_api)
 
 [PresentationRequest.getAvailability()](presentationrequest/getavailability)
 
-When the `getAvailability()` method is called, the user agent *MUST* run the following steps:
+When the `getAvailability()` method is called, the user agent _MUST_ run the following steps:
 
 3557
 
@@ -28332,7 +28331,7 @@ The `PresentationRequest` constructor creates a new `PresentationRequest` object
 
 **Promise, controlled presentations, presentation identifier**
 
-When the `reconnect(presentationId)` method is called on a `PresentationRequest` presentationRequest, the [user agent](https://www.w3.org/TR/presentation-api/#dfn-user-agents) *MUST* run the following steps to reconnect to a presentation:
+When the `reconnect(presentationId)` method is called on a `PresentationRequest` presentationRequest, the [user agent](https://www.w3.org/TR/presentation-api/#dfn-user-agents) _MUST_ run the following steps to reconnect to a presentation:
 
 3560
 
@@ -28964,7 +28963,7 @@ The `Range.comparePoint()` method returns `-1`, `0`, or `1` depending on whether
 
 **API, DOM, DOM Reference, Method, Range, Reference**
 
-The `Range.createContextualFragment()` method returns a `DocumentFragment` by invoking the HTML fragment parsing algorithm or the XML fragment parsing algorithm with the start of the range (the *parent* of the selected node) as the context node. The HTML fragment parsing algorithm is used if the range belongs to a `Document` whose HTMLness bit is set. In the HTML case, if the context node would be `html`, for historical reasons the fragment parsing algorithm is invoked with `body` as the context instead.
+The `Range.createContextualFragment()` method returns a `DocumentFragment` by invoking the HTML fragment parsing algorithm or the XML fragment parsing algorithm with the start of the range (the _parent_ of the selected node) as the context node. The HTML fragment parsing algorithm is used if the range belongs to a `Document` whose HTMLness bit is set. In the HTML case, if the context node would be `html`, for historical reasons the fragment parsing algorithm is invoked with `body` as the context instead.
 
 3639
 
@@ -29060,7 +29059,7 @@ The `Range()` constructor returns a newly created `Range` object whose start and
 
 **API, DOM, Method, Range**
 
-The `Range.selectNode()` method sets the `Range` to contain the `Node` and its contents. The parent `Node` of the start and end of the `Range` will be the same as the parent of the *referenceNode*.
+The `Range.selectNode()` method sets the `Range` to contain the `Node` and its contents. The parent `Node` of the start and end of the `Range` will be the same as the parent of the _referenceNode_.
 
 3651
 
@@ -29788,7 +29787,7 @@ The `inlineSize` read-only property of the `ResizeObserverSize` interface return
 
 **API, Guide, HTTP, Overview, Performance, Resource Timing API, Timing, Web Performance**
 
-The `Resource Timing` interfaces enable retrieving and analyzing detailed network timing data regarding the loading of an application's *resource(s)*. An application can use the timing metrics to determine, for example, the length of time it takes to load a specific resource, such as an `XMLHttpRequest`, `SVG`, image, or script.
+The `Resource Timing` interfaces enable retrieving and analyzing detailed network timing data regarding the loading of an application's _resource(s)_. An application can use the timing metrics to determine, for example, the length of time it takes to load a specific resource, such as an `XMLHttpRequest`, `SVG`, image, or script.
 
 3742
 
@@ -29796,7 +29795,7 @@ The `Resource Timing` interfaces enable retrieving and analyzing detailed networ
 
 **API, Guide, NeedsExample, Performance, Resource Timing, Resource Timing API, Timing, Web, Web Development, Web Performance**
 
-The **Resource Timing API** provides a way to retrieve and analyze detailed network timing data regarding the loading of an application's *resource(s)*. An application can use the timing metrics to determine, for example, the length of time it takes to fetch a specific resource such as an `XMLHttpRequest`, `SVG`, image, script, etc.).
+The **Resource Timing API** provides a way to retrieve and analyze detailed network timing data regarding the loading of an application's _resource(s)_. An application can use the timing metrics to determine, for example, the length of time it takes to fetch a specific resource such as an `XMLHttpRequest`, `SVG`, image, script, etc.).
 
 3743
 
@@ -29900,7 +29899,7 @@ The `url` read-only property of the `Response` interface contains the URL of the
 
 **API, Dictionary, Reference, RsaHashedImportParams, Web Crypto API**
 
-The `RsaHashedImportParams` dictionary of the [Web Crypto API](web_crypto_api) represents the object that should be passed as the `algorithm` parameter into `SubtleCrypto.importKey()` or `SubtleCrypto.unwrapKey()`, when importing any RSA-based key pair: that is, when the algorithm is identified as any of [RSASSA-PKCS1-v1\_5](subtlecrypto/sign#rsassa-pkcs1-v1_5), [RSA-PSS](subtlecrypto/sign#rsa-pss), or [RSA-OAEP](subtlecrypto/encrypt#rsa-oaep).
+The `RsaHashedImportParams` dictionary of the [Web Crypto API](web_crypto_api) represents the object that should be passed as the `algorithm` parameter into `SubtleCrypto.importKey()` or `SubtleCrypto.unwrapKey()`, when importing any RSA-based key pair: that is, when the algorithm is identified as any of [RSASSA-PKCS1-v1_5](subtlecrypto/sign#rsassa-pkcs1-v1_5), [RSA-PSS](subtlecrypto/sign#rsa-pss), or [RSA-OAEP](subtlecrypto/encrypt#rsa-oaep).
 
 3756
 
@@ -29908,7 +29907,7 @@ The `RsaHashedImportParams` dictionary of the [Web Crypto API](web_crypto_api) r
 
 **API, Dictionary, Reference, RsaHashedKeyGenParams, Web Crypto API**
 
-The `RsaHashedKeyGenParams` dictionary of the [Web Crypto API](web_crypto_api) represents the object that should be passed as the `algorithm` parameter into `SubtleCrypto.generateKey()`, when generating any RSA-based key pair: that is, when the algorithm is identified as any of [RSASSA-PKCS1-v1\_5](subtlecrypto/sign#rsassa-pkcs1-v1_5), [RSA-PSS](subtlecrypto/sign#rsa-pss), or [RSA-OAEP](subtlecrypto/encrypt#rsa-oaep).
+The `RsaHashedKeyGenParams` dictionary of the [Web Crypto API](web_crypto_api) represents the object that should be passed as the `algorithm` parameter into `SubtleCrypto.generateKey()`, when generating any RSA-based key pair: that is, when the algorithm is identified as any of [RSASSA-PKCS1-v1_5](subtlecrypto/sign#rsassa-pkcs1-v1_5), [RSA-PSS](subtlecrypto/sign#rsa-pss), or [RSA-OAEP](subtlecrypto/encrypt#rsa-oaep).
 
 3757
 
@@ -29916,7 +29915,7 @@ The `RsaHashedKeyGenParams` dictionary of the [Web Crypto API](web_crypto_api) r
 
 **API, Dictionary, Reference, RsaOaepParams, Web Crypto API**
 
-The `RsaOaepParams` dictionary of the [Web Crypto API](web_crypto_api) represents the object that should be passed as the `algorithm` parameter into `SubtleCrypto.encrypt()`, `SubtleCrypto.decrypt()`, `SubtleCrypto.wrapKey()`, or `SubtleCrypto.unwrapKey()`, when using the [RSA\_OAEP](subtlecrypto/encrypt#rsa-oaep) algorithm.
+The `RsaOaepParams` dictionary of the [Web Crypto API](web_crypto_api) represents the object that should be passed as the `algorithm` parameter into `SubtleCrypto.encrypt()`, `SubtleCrypto.decrypt()`, `SubtleCrypto.wrapKey()`, or `SubtleCrypto.unwrapKey()`, when using the [RSA_OAEP](subtlecrypto/encrypt#rsa-oaep) algorithm.
 
 3758
 
@@ -30220,7 +30219,7 @@ The `RTCDataChannelEvent()` constructor returns a new `RTCDataChannelEvent` obje
 
 **Experimental, Property, RTCDataChannelEvent, Read-only, Reference, WebRTC, channel**
 
-The read-only property `RTCDataChannelEvent``.channel` returns the `RTCDataChannel` associated with the event.
+The read-only property ` RTCDataChannelEvent``.channel ` returns the `RTCDataChannel` associated with the event.
 
 3796
 
@@ -30276,7 +30275,7 @@ The `RTCDTMFSender` interface provides a mechanism for transmitting DTMF codes o
 
 **API, DTMF, Media, Method, RTCDTMFSender, Reference, Telephony, Touch-tone, WebRTC, WebRTC API, insertDTMF**
 
-The `insertDTMF``()` method on the `RTCDTMFSender` interface starts sending
+The ` insertDTMF``() ` method on the `RTCDTMFSender` interface starts sending
 
 3803
 
@@ -30476,7 +30475,7 @@ The `RTCIceCandidate` interface's read-only `relatedPort` property indicates the
 
 **API, Audio, Candidate, Constructor, ICE, Media, RTCIceCandidate, Video, WebRTC, WebRTC API, rtc**
 
-The `RTCIceCandidate``()` constructor creates and returns a new `RTCIceCandidate` object, which can be configured to represent a single ICE candidate.
+The ` RTCIceCandidate``() ` constructor creates and returns a new `RTCIceCandidate` object, which can be configured to represent a single ICE candidate.
 
 3828
 
@@ -30740,7 +30739,7 @@ The `RTCIceCandidatePairStats` dictionary's `packetsSent` property indicates the
 
 **API, ICE, Obsolete, Property, RTCIceCandidatePairStats, Reference, Statistics, Stats, WebRTC, WebRTC API, priority**
 
-The *obsolete* `RTCIceCandidatePairStats` property `priority` reports the priority of the candidate pair as an integer value.
+The _obsolete_ `RTCIceCandidatePairStats` property `priority` reports the priority of the candidate pair as an integer value.
 
 3861
 
@@ -30748,7 +30747,7 @@ The *obsolete* `RTCIceCandidatePairStats` property `priority` reports the priori
 
 **API, Candidate, ICE, Obsolete, Property, RTCIceCandidatePairStats, Reference, Statistics, Stats, WebRTC, WebRTC API, readable**
 
-The *obsolete* `RTCIceCandidatePairStats` property `readable` reports whether or not the connection described by the candidate pair has received at least one valid incoming ICE request.
+The _obsolete_ `RTCIceCandidatePairStats` property `readable` reports whether or not the connection described by the candidate pair has received at least one valid incoming ICE request.
 
 3862
 
@@ -30808,7 +30807,7 @@ The `RTCIceCandidatePairStats` dictionary's `retransmissionsSent` property indic
 
 [RTCIceCandidatePairStats.selected](rtcicecandidatepairstats/selected)
 
-The *non-standard*, Firefox-specific `RTCIceCandidatePairStats` property `selected` indicates whether or not the candidate pair described by the object is the one currently being used to communicate with the remote peer.
+The _non-standard_, Firefox-specific `RTCIceCandidatePairStats` property `selected` indicates whether or not the candidate pair described by the object is the one currently being used to communicate with the remote peer.
 
 3870
 
@@ -30840,7 +30839,7 @@ The `transportId` property uniquely identifies the `RTCIceTransport` that was in
 
 **API, Candidate, ICE, Obsolete, Property, RTCIceCandidatePairStats, Reference, Statistics, Stats, WebRTC, WebRTC API, writable**
 
-The *obsolete* `RTCIceCandidatePairStats` property `writable` reports whether or not the connection described by the candidate pair is writable.
+The _obsolete_ `RTCIceCandidatePairStats` property `writable` reports whether or not the connection described by the candidate pair is writable.
 
 3874
 
@@ -30934,7 +30933,7 @@ The `RTCIceCandidateStats` dictionary's `transportId` property is a string that 
 
 **API, Candidate, Connection, Connectivity, ICE, Network, Networking, Property, RTCIceCandidateStats, Reference, Statistics, Stats, URL, WebRTC, WebRTC API, rtc**
 
-The `RTCIceCandidateStats` dictionary's `url` property specifies the URL of the ICE server from which the described candidate was obtained. This property is *only* available for local candidates.
+The `RTCIceCandidateStats` dictionary's `url` property specifies the URL of the ICE server from which the described candidate was obtained. This property is _only_ available for local candidates.
 
 3886
 
@@ -31576,7 +31575,7 @@ The obsolete `addstream` event is sent to an `RTCPeerConnection` when new media,
 
 **Deprecated, Experimental, Method, RTCPeerConnection, Reference, WebRTC, addStream**
 
-The *obsolete* `RTCPeerConnection` method `addStream()` adds a `MediaStream` as a local source of audio or video. Instead of using this obsolete method, you should instead use `RTCPeerConnection.addTrack` once for each track you wish to send to the remote peer.
+The _obsolete_ `RTCPeerConnection` method `addStream()` adds a `MediaStream` as a local source of audio or video. Instead of using this obsolete method, you should instead use `RTCPeerConnection.addTrack` once for each track you wish to send to the remote peer.
 
 3967
 
@@ -33748,7 +33747,7 @@ The `ServiceWorkerContainer` interface of the [Service Worker API](service_worke
 
 **API, Controller, Property, Reference, Service Workers, Service worker API, ServiceWorker, ServiceWorkerController**
 
-The `controller` read-only property of the `ServiceWorkerContainer` interface returns a `ServiceWorker` object if its state is `activating` or `activated` (the same object returned by `ServiceWorkerRegistration.active`). This property returns `null` if the request is a force refresh (*Shift* + refresh) or if there is no active worker.
+The `controller` read-only property of the `ServiceWorkerContainer` interface returns a `ServiceWorker` object if its state is `activating` or `activated` (the same object returned by `ServiceWorkerRegistration.active`). This property returns `null` if the request is a force refresh (_Shift_ + refresh) or if there is no active worker.
 
 4239
 
@@ -34291,7 +34290,7 @@ The `styleSheets` read-only property of the `ShadowRoot` interface returns a `St
 
 **API, Interface, Reference, SharedWorker, Web Workers, Workers**
 
-The `SharedWorker` interface represents a specific kind of worker that can be *accessed* from several browsing contexts, such as several windows, iframes or even workers. They implement an interface different than dedicated workers and have a different global scope, `SharedWorkerGlobalScope`.
+The `SharedWorker` interface represents a specific kind of worker that can be _accessed_ from several browsing contexts, such as several windows, iframes or even workers. They implement an interface different than dedicated workers and have a different global scope, `SharedWorkerGlobalScope`.
 
 4307
 
@@ -35489,7 +35488,7 @@ The `StereoPannerNode()` constructor of the [Web Audio API](web_audio_api) creat
 
 **API, Reference, Storage, Storage Access API**
 
-The Storage Access API provides a way for embedded, cross-origin content to gain unrestricted access to storage that it would normally only have access to in a first-party context (we refer to this as an origin’s *first-party* storage).
+The Storage Access API provides a way for embedded, cross-origin content to gain unrestricted access to storage that it would normally only have access to in a first-party context (we refer to this as an origin’s _first-party_ storage).
 
 4457
 
@@ -37639,7 +37638,7 @@ The read-only `alphabeticBaseline` property of the `TextMetrics` interface is a 
 
 **API, Experimental, Property, Reference, TextMetrics**
 
-The read-only `emHeightAscent` property of the `TextMetrics` interface is a `double` giving the distance from the horizontal line indicated by the `CanvasRenderingContext2D.textBaseline` property to the top of the *em* square in the line box, in CSS pixels.
+The read-only `emHeightAscent` property of the `TextMetrics` interface is a `double` giving the distance from the horizontal line indicated by the `CanvasRenderingContext2D.textBaseline` property to the top of the _em_ square in the line box, in CSS pixels.
 
 4727
 
@@ -37647,7 +37646,7 @@ The read-only `emHeightAscent` property of the `TextMetrics` interface is a `dou
 
 **API, Experimental, Property, Reference, TextMetrics**
 
-The read-only `emHeightDescent` property of the `TextMetrics` interface is a `double` giving the distance from the horizontal line indicated by the `CanvasRenderingContext2D.textBaseline` property to the bottom of the *em* square in the line box, in CSS pixels.
+The read-only `emHeightDescent` property of the `TextMetrics` interface is a `double` giving the distance from the horizontal line indicated by the `CanvasRenderingContext2D.textBaseline` property to the bottom of the _em_ square in the line box, in CSS pixels.
 
 4728
 
@@ -37951,7 +37950,7 @@ The `Touch.identifier` returns a value uniquely identifying this point of contac
 
 **msManipulationViesEnabled**
 
-The `msManipulationViewsEnabled` read-only property returns *true* if manipulation features are support available, such as *touch panning* and *zooming* using CSS rules.
+The `msManipulationViewsEnabled` read-only property returns _true_ if manipulation features are support available, such as _touch panning_ and _zooming_ using CSS rules.
 
 4766
 
@@ -38295,7 +38294,7 @@ The `TransitionEvent.initTransitionEvent()` method Initializes a transition even
 
 **API, CSS, CSS3 Transitions, CSSOM, Experimental, Property, Reference, TransitionEvent**
 
-The `TransitionEvent.pseudoElement` read-only property is a `DOMString`, starting with `'::'`, containing the name of the [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) the animation runs on. If the transition doesn't run on a pseudo-element but on the element, an empty string: `''``.`
+The `TransitionEvent.pseudoElement` read-only property is a `DOMString`, starting with `'::'`, containing the name of the [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) the animation runs on. If the transition doesn't run on a pseudo-element but on the element, an empty string: ` ''``. `
 
 4809
 
@@ -38343,7 +38342,7 @@ The `TreeWalker.filter` read-only property returns a `NodeFilter` that is the fi
 
 **API, DOM, DOM Reference, Method, TreeWalker**
 
-The `TreeWalker.firstChild()` method moves the current `Node` to the first *visible* child of the current node, and returns the found child. It also moves the current node to this child. If no such child exists, returns `null` and the current node is not changed.
+The `TreeWalker.firstChild()` method moves the current `Node` to the first _visible_ child of the current node, and returns the found child. It also moves the current node to this child. If no such child exists, returns `null` and the current node is not changed.
 
 4815
 
@@ -38351,7 +38350,7 @@ The `TreeWalker.firstChild()` method moves the current `Node` to the first *visi
 
 **API, DOM, DOM Reference, Method, TreeWalker**
 
-The `TreeWalker.lastChild()` method moves the current `Node` to the last *visible* child of the current node, and returns the found child. It also moves the current node to this child. If no such child exists, returns `null` and the current node is not changed.
+The `TreeWalker.lastChild()` method moves the current `Node` to the last _visible_ child of the current node, and returns the found child. It also moves the current node to this child. If no such child exists, returns `null` and the current node is not changed.
 
 4816
 
@@ -38359,7 +38358,7 @@ The `TreeWalker.lastChild()` method moves the current `Node` to the last *visibl
 
 **API, DOM, DOM Reference, Method, TreeWalker**
 
-The `TreeWalker.nextNode()` method moves the current `Node` to the next *visible* node in the document order, and returns the found node. It also moves the current node to this one. If no such node exists, returns `null` and the current node is not changed.
+The `TreeWalker.nextNode()` method moves the current `Node` to the next _visible_ node in the document order, and returns the found node. It also moves the current node to this one. If no such node exists, returns `null` and the current node is not changed.
 
 4817
 
@@ -38375,7 +38374,7 @@ The `TreeWalker.nextSibling()` method moves the current `Node` to its next sibli
 
 **API, DOM, DOM Reference, Method, TreeWalker**
 
-The `TreeWalker.parentNode()` method moves the current `Node` to the first *visible* ancestor node in the document order, and returns the found node. If no such node exists, or if it is above the `TreeWalker`'s *root node*, returns `null` and the current node is not changed.
+The `TreeWalker.parentNode()` method moves the current `Node` to the first _visible_ ancestor node in the document order, and returns the found node. If no such node exists, or if it is above the `TreeWalker`'s _root node_, returns `null` and the current node is not changed.
 
 4819
 
@@ -38383,7 +38382,7 @@ The `TreeWalker.parentNode()` method moves the current `Node` to the first *visi
 
 **API, DOM, DOM Reference, Method, TreeWalker**
 
-The `TreeWalker.previousNode()` method moves the current `Node` to the previous *visible* node in the document order, and returns the found node. It also moves the current node to this one. If no such node exists,or if it is before that the *root node* defined at the object construction, returns `null` and the current node is not changed.
+The `TreeWalker.previousNode()` method moves the current `Node` to the previous _visible_ node in the document order, and returns the found node. It also moves the current node to this one. If no such node exists,or if it is before that the _root node_ defined at the object construction, returns `null` and the current node is not changed.
 
 4820
 
@@ -38615,7 +38614,7 @@ The `isScriptURL()` method of the `TrustedTypePolicyFactory` interface returns t
 
 **API, DOM, DOM Reference, Interface, NeedsContent, Obsolete, Reference, TypeInfo, Web**
 
-The *obsolete* `TypeInfo` interface was intended to be used to describe a DOM data type by keying its name to a namespace within the document's schema.
+The _obsolete_ `TypeInfo` interface was intended to be used to describe a DOM data type by keying its name to a namespace within the document's schema.
 
 4849
 
@@ -38839,7 +38838,7 @@ The `URL.revokeObjectURL()` static method releases an existing object URL which 
 
 **API, Property, Reference, URL, URL API**
 
-The `search` property of the `URL` interface is a search string, also called a *query string*, that is a `USVString` containing a `'?'` followed by the parameters of the URL.
+The `search` property of the `URL` interface is a search string, also called a _query string_, that is a `USVString` containing a `'?'` followed by the parameters of the URL.
 
 4877
 
@@ -39007,7 +39006,7 @@ The **obsolete** `URLUtilsReadOnly` interface previously defined utility methods
 
 **API, Experimental, Property, Read-only, Reference, URL API, URLUtilsReadOnly**
 
-The `URLUtilsReadOnly``.hash` read-only property returns a `DOMString` containing a `'#'` followed by the fragment identifier of the URL. The hash is not percent encoded.
+The ` URLUtilsReadOnly``.hash ` read-only property returns a `DOMString` containing a `'#'` followed by the fragment identifier of the URL. The hash is not percent encoded.
 
 4898
 
@@ -39015,7 +39014,7 @@ The `URLUtilsReadOnly``.hash` read-only property returns a `DOMString` containin
 
 **API, Experimental, Property, Read-only, Reference, URL API, URLUtilsReadOnly**
 
-The `URLUtilsReadOnly``.host` read-only property returns a `DOMString` containing the host, that is the *hostname*, a `':'`, and the *port* of the URL.
+The ` URLUtilsReadOnly``.host ` read-only property returns a `DOMString` containing the host, that is the _hostname_, a `':'`, and the _port_ of the URL.
 
 4899
 
@@ -39023,7 +39022,7 @@ The `URLUtilsReadOnly``.host` read-only property returns a `DOMString` containin
 
 **API, Experimental, Property, Read-only, URL API, URLUtilsReadOnly**
 
-The `URLUtilsReadOnly``.hostname` read-only property returns a `DOMString` containing the domain of the URL.
+The ` URLUtilsReadOnly``.hostname ` read-only property returns a `DOMString` containing the domain of the URL.
 
 4900
 
@@ -39031,7 +39030,7 @@ The `URLUtilsReadOnly``.hostname` read-only property returns a `DOMString` conta
 
 **API, Experimental, Property, Read-only, URL API, URLUtilsReadOnly**
 
-The `URLUtilsReadOnly``.href` read-only property is a stringifier that returns a `DOMString` containing the whole URL.
+The ` URLUtilsReadOnly``.href ` read-only property is a stringifier that returns a `DOMString` containing the whole URL.
 
 4901
 
@@ -39039,7 +39038,7 @@ The `URLUtilsReadOnly``.href` read-only property is a stringifier that returns a
 
 **API, Experimental, Property, Read-only, URL API, URLUtilsReadOnly**
 
-The `URLUtilsReadOnly``.origin` read-only property is a `DOMString` containing the Unicode serialization of the origin of the represented URL, that is, for http and https, the scheme followed by `'://'`, followed by the domain, followed by `':'`, followed by the port (the default port, `80` and `443` respectively, if explicitly specified). For URL using `file:` scheme, the value is browser dependant.
+The ` URLUtilsReadOnly``.origin ` read-only property is a `DOMString` containing the Unicode serialization of the origin of the represented URL, that is, for http and https, the scheme followed by `'://'`, followed by the domain, followed by `':'`, followed by the port (the default port, `80` and `443` respectively, if explicitly specified). For URL using `file:` scheme, the value is browser dependant.
 
 4902
 
@@ -39047,7 +39046,7 @@ The `URLUtilsReadOnly``.origin` read-only property is a `DOMString` containing t
 
 **API, Experimental, Property, Read-only, URL API, URLUtilsReadOnly**
 
-The `URLUtilsReadOnly``.pathname` read-only property returns a `USVString` containing an initial `'/'` followed by the path of the URL, not including the query string or fragment.
+The ` URLUtilsReadOnly``.pathname ` read-only property returns a `USVString` containing an initial `'/'` followed by the path of the URL, not including the query string or fragment.
 
 4903
 
@@ -39055,7 +39054,7 @@ The `URLUtilsReadOnly``.pathname` read-only property returns a `USVString` conta
 
 **API, Experimental, Property, Read-only, URL API, URLUtilsReadOnly**
 
-The `URLUtilsReadOnly``.port` read-only property returns a `DOMString` containing the port number of the URL.
+The ` URLUtilsReadOnly``.port ` read-only property returns a `DOMString` containing the port number of the URL.
 
 4904
 
@@ -39063,7 +39062,7 @@ The `URLUtilsReadOnly``.port` read-only property returns a `DOMString` containin
 
 **API, Experimental, Property, Read-only, URL API, URLUtilsReadOnly**
 
-The `URLUtilsReadOnly``.protocol` read-only property returns a `DOMString` containing the protocol scheme of the URL, including the final `':'`.
+The ` URLUtilsReadOnly``.protocol ` read-only property returns a `DOMString` containing the protocol scheme of the URL, including the final `':'`.
 
 4905
 
@@ -39071,7 +39070,7 @@ The `URLUtilsReadOnly``.protocol` read-only property returns a `DOMString` conta
 
 **API, Experimental, Property, Read-only, URL API, URLUtilsReadOnly**
 
-The `URLUtilsReadOnly``.search` read-only property returns a `DOMString` containing a `'?'` followed by the parameters of the URL.
+The ` URLUtilsReadOnly``.search ` read-only property returns a `DOMString` containing a `'?'` followed by the parameters of the URL.
 
 4906
 
@@ -39079,7 +39078,7 @@ The `URLUtilsReadOnly``.search` read-only property returns a `DOMString` contain
 
 **API, Experimental, Method, Stringifier, URL API, URLUtilsReadOnly**
 
-The `URLUtilsReadOnly``.toString()` stringifier method returns a `DOMString` containing the whole URL. It is a synonym for `URLUtilsReadOnly.href`.
+The ` URLUtilsReadOnly``.toString() ` stringifier method returns a `DOMString` containing the whole URL. It is a synonym for `URLUtilsReadOnly.href`.
 
 4907
 
@@ -39191,7 +39190,7 @@ The `claimInterface()` method of the `USBDevice` interface returns a `promise` t
 
 **API, Method, Reference, USB, USBDevice, WebUSB, WebUSB API, clearHalt**
 
-The `clearHalt()` method of the `USBDevice` interface returns a `promise` that resolves when a halt condition is cleared. A halt condition is when a data tranfer to or from the device has a status of `'stall'`, which requires the web page (the *host* system, in USB terminology) to clear that condition. See the for details.
+The `clearHalt()` method of the `USBDevice` interface returns a `promise` that resolves when a halt condition is cleared. A halt condition is when a data tranfer to or from the device has a status of `'stall'`, which requires the web page (the _host_ system, in USB terminology) to clear that condition. See the for details.
 
 4921
 
@@ -39495,7 +39494,7 @@ The `USBOutTransferResult` interface of the [WebUSB API](webusb_api) provides th
 
 **Guide, Overview, Web Performance**
 
-The `User Timing` interface allows the developer to create application specific `DOMHighResTimeStamp` that are part of the browser's *performance timeline*. There are two types of *user* defined timing event types: the "`mark`" `PerformanceEntry.entryType` and the "`measure`" `PerformanceEntry.entryType`.
+The `User Timing` interface allows the developer to create application specific `DOMHighResTimeStamp` that are part of the browser's _performance timeline_. There are two types of _user_ defined timing event types: the "`mark`" `PerformanceEntry.entryType` and the "`measure`" `PerformanceEntry.entryType`.
 
 4959
 
@@ -39503,7 +39502,7 @@ The `User Timing` interface allows the developer to create application specific 
 
 **Guide, Web Performance**
 
-The `User Timing` interface allows the developer to create application specific `DOMHighResTimeStamp` that are part of the browser's *performance timeline*. There are two types of *user* defined timing entry types: the "`mark`" `PerformanceEntry.entryType` and the "`measure`" `PerformanceEntry.entryType`.
+The `User Timing` interface allows the developer to create application specific `DOMHighResTimeStamp` that are part of the browser's _performance timeline_. There are two types of _user_ defined timing entry types: the "`mark`" `PerformanceEntry.entryType` and the "`measure`" `PerformanceEntry.entryType`.
 
 4960
 
@@ -39535,7 +39534,7 @@ A `USVString` is a sequence of [Unicode scalar values](https://www.unicode.org/g
 
 **API, Constraint Validation API, Forms, HTML DOM, Interface**
 
-The `ValidityState` interface represents the *validity states* that an element can be in, with respect to constraint validation. Together, they help explain why an element's value fails to validate, if it's not valid.
+The `ValidityState` interface represents the _validity states_ that an element can be in, with respect to constraint validation. Together, they help explain why an element's value fails to validate, if it's not valid.
 
 4964
 
@@ -39543,7 +39542,7 @@ The `ValidityState` interface represents the *validity states* that an element c
 
 **API, Constraints API, HTML DOM, Property, Read-only, ValidityState**
 
-The read-only `badInput` property of a [ValidityState](validitystate) object indicates if the user has provided input that the browser is unable to convert. For example, if you have a number input element whose content is a string. ***Note:** While this is unsupported in Internet Explorer, any non-numeric value will be dismissed from the field if it is a number input.*
+The read-only `badInput` property of a [ValidityState](validitystate) object indicates if the user has provided input that the browser is unable to convert. For example, if you have a number input element whose content is a string. **\*Note:** While this is unsupported in Internet Explorer, any non-numeric value will be dismissed from the field if it is a number input.\*
 
 4965
 
@@ -40485,7 +40484,6 @@ The `sizeY` read-only property of the `VRStageParameters` interface returns the 
 
 **VTTCue, text track, vtt**
 
-  
 The `VTTCue` interface—part of the API for handling WebVTT (text tracks on media presentations)—describes and controls the text track associated with a particular `track` element.
 
 5083
@@ -40654,7 +40652,7 @@ This article explains some of the audio theory behind how the features of the We
 
 **Audio, Best practices, Guide, Web Audio API**
 
-There's no strict right or wrong way when writing creative code. As long as you consider security, performance, and accessibility, you can adapt to your own style. In this article, we'll share a number of *best practices* — guidelines, tips, and tricks for working with the Web Audio API.
+There's no strict right or wrong way when writing creative code. As long as you consider security, performance, and accessibility, you can adapt to your own style. In this article, we'll share a number of _best practices_ — guidelines, tips, and tricks for working with the Web Audio API.
 
 5104
 
@@ -40878,7 +40876,7 @@ In this WebGL example, we create a canvas and within it render a rotating square
 
 **Beginner, Example, Graphics, Learn, WebGL**
 
-*WebGL by example* is a series of live samples with short explanations that showcase WebGL concepts and capabilities. The examples are sorted according to topic and level of difficulty, covering the WebGL rendering context, shader programming, textures, geometry, user interaction, and more.
+_WebGL by example_ is a series of live samples with short explanations that showcase WebGL concepts and capabilities. The examples are sorted according to topic and level of difficulty, covering the WebGL rendering context, shader programming, textures, geometry, user interaction, and more.
 
 5132
 
@@ -41116,7 +41114,7 @@ WebGL, like its sister APIs (OpenGL and OpenGL ES), supports extensions. A compl
 
 **2D, 3D, Advanced, Best practices, Drawing, GL, Graphics, Guide, OpenGL, WebGL**
 
-WebGL is a complicated API, and it's often not obvious what the recommended ways to use it are. This page tackles recommendations across the spectrum of expertise, and not only highlights dos and don'ts, but also details *why*. You can rely on this document to guide your choice of approach, and ensure you're on the right track no matter what browser or hardware your users run.
+WebGL is a complicated API, and it's often not obvious what the recommended ways to use it are. This page tackles recommendations across the spectrum of expertise, and not only highlights dos and don'ts, but also details _why_. You can rely on this document to guide your choice of approach, and ensure you're on the right track no matter what browser or hardware your users run.
 
 5162
 
@@ -41128,7 +41126,7 @@ This article explores how to take data within a [WebGL](webgl_api) project, and 
 
 5163
 
-[WEBGL\_color\_buffer\_float](webgl_color_buffer_float)
+[WEBGL_color_buffer_float](webgl_color_buffer_float)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -41136,7 +41134,7 @@ The `WEBGL_color_buffer_float` extension is part of the [WebGL API](webgl_api) a
 
 5164
 
-[WEBGL\_compressed\_texture\_astc](webgl_compressed_texture_astc)
+[WEBGL_compressed_texture_astc](webgl_compressed_texture_astc)
 
 **API, Reference, WebGL, WebGL extension, WebGL extensions**
 
@@ -41144,7 +41142,7 @@ The `WEBGL_compressed_texture_astc` extension is part of the [WebGL API](webgl_a
 
 5165
 
-[WEBGL\_compressed\_texture\_astc.getSupportedProfiles()](webgl_compressed_texture_astc/getsupportedprofiles)
+[WEBGL_compressed_texture_astc.getSupportedProfiles()](webgl_compressed_texture_astc/getsupportedprofiles)
 
 **API, Method, Reference, WebGL, WebGL extension, WebGL extensions**
 
@@ -41152,7 +41150,7 @@ The `WEBGL_compressed_texture_astc.getSupportedProfiles()` method returns an arr
 
 5166
 
-[WEBGL\_compressed\_texture\_atc](webgl_compressed_texture_atc)
+[WEBGL_compressed_texture_atc](webgl_compressed_texture_atc)
 
 **API, Reference, WebGL, WebGL extensions**
 
@@ -41160,7 +41158,7 @@ The `WEBGL_compressed_texture_atc` extension is part of the [WebGL API](webgl_ap
 
 5167
 
-[WEBGL\_compressed\_texture\_etc](webgl_compressed_texture_etc)
+[WEBGL_compressed_texture_etc](webgl_compressed_texture_etc)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -41168,7 +41166,7 @@ The `WEBGL_compressed_texture_etc` extension is part of the [WebGL API](webgl_ap
 
 5168
 
-[WEBGL\_compressed\_texture\_etc1](webgl_compressed_texture_etc1)
+[WEBGL_compressed_texture_etc1](webgl_compressed_texture_etc1)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -41176,7 +41174,7 @@ The `WEBGL_compressed_texture_etc1` extension is part of the [WebGL API](webgl_a
 
 5169
 
-[WEBGL\_compressed\_texture\_pvrtc](webgl_compressed_texture_pvrtc)
+[WEBGL_compressed_texture_pvrtc](webgl_compressed_texture_pvrtc)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -41184,7 +41182,7 @@ The `WEBGL_compressed_texture_pvrtc` extension is part of the [WebGL API](webgl_
 
 5170
 
-[WEBGL\_compressed\_texture\_s3tc\_srgb](webgl_compressed_texture_s3tc_srgb)
+[WEBGL_compressed_texture_s3tc_srgb](webgl_compressed_texture_s3tc_srgb)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -41192,7 +41190,7 @@ The `WEBGL_compressed_texture_s3tc_srgb` extension is part of the [WebGL API](we
 
 5171
 
-[WEBGL\_compressed\_texture\_s3tc](webgl_compressed_texture_s3tc)
+[WEBGL_compressed_texture_s3tc](webgl_compressed_texture_s3tc)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -41200,7 +41198,7 @@ The `WEBGL_compressed_texture_s3tc` extension is part of the [WebGL API](webgl_a
 
 5172
 
-[WEBGL\_debug\_renderer\_info](webgl_debug_renderer_info)
+[WEBGL_debug_renderer_info](webgl_debug_renderer_info)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -41208,7 +41206,7 @@ The `WEBGL_debug_renderer_info` extension is part of the [WebGL API](webgl_api) 
 
 5173
 
-[WEBGL\_debug\_shaders](webgl_debug_shaders)
+[WEBGL_debug_shaders](webgl_debug_shaders)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -41216,7 +41214,7 @@ The `WEBGL_debug_shaders` extension is part of the [WebGL API](webgl_api) and ex
 
 5174
 
-[WEBGL\_debug\_shaders.getTranslatedShaderSource()](webgl_debug_shaders/gettranslatedshadersource)
+[WEBGL_debug_shaders.getTranslatedShaderSource()](webgl_debug_shaders/gettranslatedshadersource)
 
 **API, Method, Reference, WebGL, WebGL extension**
 
@@ -41224,7 +41222,7 @@ The `WEBGL_debug_shaders.getTranslatedShaderSource()` method is part of the [Web
 
 5175
 
-[WEBGL\_depth\_texture](webgl_depth_texture)
+[WEBGL_depth_texture](webgl_depth_texture)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -41232,7 +41230,7 @@ The `WEBGL_depth_texture` extension is part of the [WebGL API](webgl_api) and de
 
 5176
 
-[WEBGL\_draw\_buffers](webgl_draw_buffers)
+[WEBGL_draw_buffers](webgl_draw_buffers)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -41240,7 +41238,7 @@ The `WEBGL_draw_buffers` extension is part of the [WebGL API](webgl_api) and ena
 
 5177
 
-[WEBGL\_draw\_buffers.drawBuffersWEBGL()](webgl_draw_buffers/drawbufferswebgl)
+[WEBGL_draw_buffers.drawBuffersWEBGL()](webgl_draw_buffers/drawbufferswebgl)
 
 **API, Method, Reference, WebGL**
 
@@ -41248,31 +41246,31 @@ The `WEBGL_draw_buffers.drawBuffersWEBGL()` method is part of the [WebGL API](we
 
 5178
 
-[WEBGL\_lose\_context](webgl_lose_context)
+[WEBGL_lose_context](webgl_lose_context)
 
 **API, Reference, WebGL, WebGL extension**
 
-The **WEBGL\_lose\_context** extension is part of the [WebGL API](webgl_api) and exposes functions to simulate losing and restoring a `WebGLRenderingContext`.
+The **WEBGL_lose_context** extension is part of the [WebGL API](webgl_api) and exposes functions to simulate losing and restoring a `WebGLRenderingContext`.
 
 5179
 
-[WEBGL\_lose\_context.loseContext()](webgl_lose_context/losecontext)
+[WEBGL_lose_context.loseContext()](webgl_lose_context/losecontext)
 
 **API, Method, Reference, WebGL, WebGL extension**
 
-The **WEBGL\_lose\_context.loseContext()** method is part of the [WebGL API](webgl_api) and allows you to simulate losing the context of a `WebGLRenderingContext` context.
+The **WEBGL_lose_context.loseContext()** method is part of the [WebGL API](webgl_api) and allows you to simulate losing the context of a `WebGLRenderingContext` context.
 
 5180
 
-[WEBGL\_lose\_context.restoreContext()](webgl_lose_context/restorecontext)
+[WEBGL_lose_context.restoreContext()](webgl_lose_context/restorecontext)
 
 **API, Method, Reference, WebGL, WebGL extension**
 
-The **WEBGL\_lose\_context.restoreContext()** method is part of the [WebGL API](webgl_api) and allows you to simulate restoring the context of a `WebGLRenderingContext` object.
+The **WEBGL_lose_context.restoreContext()** method is part of the [WebGL API](webgl_api) and allows you to simulate restoring the context of a `WebGLRenderingContext` object.
 
 5181
 
-[WEBGL\_multi\_draw](webgl_multi_draw)
+[WEBGL_multi_draw](webgl_multi_draw)
 
 **API, Reference, WebGL, WebGL extension**
 
@@ -41280,7 +41278,7 @@ The `WEBGL_multi_draw` extension is part of the [WebGL API](webgl_api) and allow
 
 5182
 
-[WEBGL\_multi\_draw.multiDrawArraysInstancedWEBGL()](webgl_multi_draw/multidrawarraysinstancedwebgl)
+[WEBGL_multi_draw.multiDrawArraysInstancedWEBGL()](webgl_multi_draw/multidrawarraysinstancedwebgl)
 
 **Method, Reference, WebGL, WebGL extension**
 
@@ -41288,7 +41286,7 @@ The `WEBGL_multi_draw.multiDrawArraysInstancedWEBGL()` method of the [WebGL API]
 
 5183
 
-[WEBGL\_multi\_draw.multiDrawArraysWEBGL()](webgl_multi_draw/multidrawarrayswebgl)
+[WEBGL_multi_draw.multiDrawArraysWEBGL()](webgl_multi_draw/multidrawarrayswebgl)
 
 **Method, Reference, WebGL, WebGL extension**
 
@@ -41296,7 +41294,7 @@ The `WEBGL_multi_draw.multiDrawArraysWEBGL()` method of the [WebGL API](webgl_ap
 
 5184
 
-[WEBGL\_multi\_draw.multiDrawElementsInstancedWEBGL()](webgl_multi_draw/multidrawelementsinstancedwebgl)
+[WEBGL_multi_draw.multiDrawElementsInstancedWEBGL()](webgl_multi_draw/multidrawelementsinstancedwebgl)
 
 **Method, Reference, WebGL, WebGL extension**
 
@@ -41304,7 +41302,7 @@ The `WEBGL_multi_draw.multiDrawElementsWEBGL()` method of the [WebGL API](webgl_
 
 5185
 
-[WEBGL\_multi\_draw.multiDrawElementsWEBGL()](webgl_multi_draw/multidrawelementswebgl)
+[WEBGL_multi_draw.multiDrawElementsWEBGL()](webgl_multi_draw/multidrawelementswebgl)
 
 **Method, Reference, WebGL, WebGL extension**
 
@@ -42132,7 +42130,7 @@ The `WebGLRenderingContext.colorMask()` method of the [WebGL API](webgl_api) set
 
 **API, Experimental, Method, OffscreenCanvas, Reference, WebGL**
 
-The `WebGLRenderingContext``.commit()` method pushes frames back to the original `HTMLCanvasElement`, if the context is not directly fixed to a specific canvas.
+The ` WebGLRenderingContext``.commit() ` method pushes frames back to the original `HTMLCanvasElement`, if the context is not directly fixed to a specific canvas.
 
 5289
 
@@ -43322,8 +43320,8 @@ The `WebSocket()` constructor returns a new `WebSocket` object.
 
 **HTML5, Handshaking, NeedsMarkupWork, Tutorial, WebSockets**
 
-This example shows you how to create a WebSocket API server using Oracle Java.  
-  
+This example shows you how to create a WebSocket API server using Oracle Java.
+
 Although other server-side languages can be used to create a WebSocket server, this example uses Oracle Java to simplify the example code<span style="line-height: 1.5;">.</span>
 
 5441
@@ -43760,7 +43758,7 @@ The `controllers` property of the `Window` interface returns the XUL controllers
 
 **API, HTML DOM, Method, Non-standard, Point, Reference, Safari, WebKit, Window**
 
-Given a `Point` specified in a particular DOM `Node`'s coordinate system, the `Window` method `convertPointFromNodeToPage()` returns a `Point` which specifies the same position in the page's coordinate system. This method is non-standard and *should not be used*.
+Given a `Point` specified in a particular DOM `Node`'s coordinate system, the `Window` method `convertPointFromNodeToPage()` returns a `Point` which specifies the same position in the page's coordinate system. This method is non-standard and _should not be used_.
 
 5496
 
@@ -43832,7 +43830,7 @@ The `deviceorientation` event is fired when fresh data is available from an orie
 
 **API, Adaptive Design, Property, Read-only, Reference, Window, devicePixelRatio, ratio, resolution**
 
-The `devicePixelRatio` of `Window` interface returns the ratio of the resolution in *physical pixels* to the resolution in *CSS pixels* for the current display device.
+The `devicePixelRatio` of `Window` interface returns the ratio of the resolution in _physical pixels_ to the resolution in _CSS pixels_ for the current display device.
 
 5505
 
@@ -44004,7 +44002,7 @@ The `hashchange` event is fired when the fragment identifier of the URL has chan
 
 **API, HTML DOM, History API, Property, Reference, Window**
 
-The `Window.history` read-only property returns a reference to the `History` object, which provides an interface for manipulating the browser *session history* (pages visited in the tab or frame that the current page is loaded in).
+The `Window.history` read-only property returns a reference to the `History` object, which provides an interface for manipulating the browser _session history_ (pages visited in the tab or frame that the current page is loaded in).
 
 5527
 
@@ -44512,7 +44510,7 @@ The `popstate` event of the `Window` interface is fired when the active history 
 
 **API, Cross-origin Communication, HTML DOM, Method, Reference, Window, postMessage**
 
-The `window.postMessage()` method safely enables cross-origin communication between `Window` objects; *e.g.,* between a page and a pop-up that it spawned, or between a page and an iframe embedded within it.
+The `window.postMessage()` method safely enables cross-origin communication between `Window` objects; _e.g.,_ between a page and a pop-up that it spawned, or between a page and an iframe embedded within it.
 
 5591
 
@@ -44542,7 +44540,7 @@ The `rejectionhandled` event is sent to the script's global scope (usually `wind
 
 [Window.releaseEvents()](window/releaseevents)
 
-**API, DOM, DOM\_0, Method, Non-standard, Reference, Window, releaseEvents**
+**API, DOM, DOM_0, Method, Non-standard, Reference, Window, releaseEvents**
 
 Releases the window from trapping events of a specific type.
 
@@ -44600,7 +44598,7 @@ The `Window.resizeTo()` method dynamically resizes the window.
 
 **API, Method, Obsolete, Reference, Window, routeEvent**
 
-The `Window` method `routeEvent()`, which is *obsolete* and no longer available, used to be called to forward an event to the next object that has asked to capture events.
+The `Window` method `routeEvent()`, which is _obsolete_ and no longer available, used to be called to forward an event to the next object that has asked to capture events.
 
 5602
 
@@ -44694,7 +44692,7 @@ The `Window.scrollMaxX` read-only property returns the maximum number of pixels 
 
 [Window.scrollMaxY](window/scrollmaxy)
 
-**API, DOM\_0, HTML DOM, NeedsExample, NeedsMarkupWork, NeedsSpecTable, Non-standard, Property, Reference, Window**
+**API, DOM_0, HTML DOM, NeedsExample, NeedsMarkupWork, NeedsSpecTable, Non-standard, Property, Reference, Window**
 
 The `Window.scrollMaxY` read-only property returns the maximum number of pixels that the document can be scrolled vertically.
 
@@ -44736,13 +44734,13 @@ The `Window.self` read-only property returns the window itself, as a `WindowProx
 
 **APIs, Property, Reference, Storage, Window, WindowSessionStorage, sessionStorage**
 
-The read-only `sessionStorage` property accesses a session `Storage` object for the current origin. `sessionStorage` is similar to `Window.localStorage`; the difference is that while data in `localStorage` doesn't expire, data in `sessionStorage` is cleared when the *page session* ends.
+The read-only `sessionStorage` property accesses a session `Storage` object for the current origin. `sessionStorage` is similar to `Window.localStorage`; the difference is that while data in `localStorage` doesn't expire, data in `sessionStorage` is cleared when the _page session_ ends.
 
 5619
 
 [Window.setCursor()](window/setcursor)
 
-**API, DOM\_0, Method, Non-standard, Reference, Window**
+**API, DOM_0, Method, Non-standard, Reference, Window**
 
 The `Window.setCursor()` method sets the cursor for the current window.
 
@@ -45144,7 +45142,7 @@ The `onunhandledrejection` property of the `WindowEventHandlers` mixin is the `E
 
 **API, Event Handler, MakeBrowserAgnostic, Property, Reference, WindowEventHandlers**
 
-The `onunload` property of the `WindowEventHandlers` mixin is the `EventHandler` for processing `unload` events. These events fire when the window is unloading its content and resources. The resource removal is processed *after* the `unload` event occurs.
+The `onunload` property of the `WindowEventHandlers` mixin is the `EventHandler` for processing `unload` events. These events fire when the window is unloading its content and resources. The resource removal is processed _after_ the `unload` event occurs.
 
 5670
 
@@ -45998,7 +45996,7 @@ The read-only `XMLHttpRequest.status` property returns the numerical HTTP [statu
 
 **AJAX, API, Property, Read-only, Reference, XMLHttpRequest, XMLHttpRequest Status**
 
-The read-only `XMLHttpRequest.statusText` property returns a [`DOMString`](domstring) containing the response's status message as returned by the HTTP server. Unlike [`XMLHTTPRequest.status`](xmlhttprequest/status) which indicates a numerical status code, this property contains the *text* of the response status, such as "OK" or "Not Found". If the request's `readyState` is in `UNSENT` or `OPENED` state, the value of `statusText` will be an empty string.
+The read-only `XMLHttpRequest.statusText` property returns a [`DOMString`](domstring) containing the response's status message as returned by the HTTP server. Unlike [`XMLHTTPRequest.status`](xmlhttprequest/status) which indicates a numerical status code, this property contains the _text_ of the response status, such as "OK" or "Not Found". If the request's `readyState` is in `UNSENT` or `OPENED` state, the value of `statusText` will be an empty string.
 
 5777
 
@@ -46358,7 +46356,7 @@ The `getViewerPose()` method, a member of the `XRFrame` interface, returns a `XR
 
 **API, AR, Augmented Reality, Property, Reference, Session, VR, Virtual Reality, WebXR, WebXR Device API, XR, XRFrame**
 
-An `XRFrame` object's *read-only* `session` property returns the `XRSession` object that generated the frame.
+An `XRFrame` object's _read-only_ `session` property returns the `XRSession` object that generated the frame.
 
 5822
 
@@ -46430,7 +46428,7 @@ The read-only `XRInputSource` property `targetRaySpace` returns an `XRSpace` (ty
 
 **API, AR, Input Sources, Inputs, Interface, Mixed, Reality, Reference, Sources, VR, Virtual, WebXR, WebXR API, WebXR Device API, XR, XRInputSourceArray, augmented, list**
 
-The interface `XRInputSourceArray` represents a *live* list of WebXR input sources, and is used as the return value of the `XRSession` property `XRSession.inputSources`.
+The interface `XRInputSourceArray` represents a _live_ list of WebXR input sources, and is used as the return value of the `XRSession` property `XRSession.inputSources`.
 
 5831
 
@@ -46862,7 +46860,7 @@ The read-only `XRRigidTransform` property `position` is a `DOMPointReadOnly` obj
 
 **API, AR, Constructor, Mixed Reality, Orientation, Position, Reality, Reference, VR, Virtual, WebXR, XR, XRRigidTransform, augmented, transform**
 
-The **`XRRigidTransform``()`** constructor creates and returns a new `XRRigidTransform` object, representing the position and orientation of a point or object.
+The **` XRRigidTransform``() `** constructor creates and returns a new `XRRigidTransform` object, representing the position and orientation of a point or object.
 
 5885
 
@@ -46902,7 +46900,7 @@ The `end()` method shuts down the `XRSession` on which it's called, returning a 
 
 **API, AR, Property, Read-only, Reality, Reference, VR, Virtual, WebXR Augmented Reality, WebXR Augmented Reality API, XRSession, augmented, environmentBlendMode**
 
-The `XRSession` interface's *read-only* `environmentBlendMode` property identifies if—and to what degree—the computer-generated imagery is overlaid atop the real world.
+The `XRSession` interface's _read-only_ `environmentBlendMode` property identifies if—and to what degree—the computer-generated imagery is overlaid atop the real world.
 
 5890
 
@@ -46910,7 +46908,7 @@ The `XRSession` interface's *read-only* `environmentBlendMode` property identifi
 
 **API, AR, Augmented Reality, Experimental, Property, Reference, VR, Virtual Reality, WebXR, WebXR Device API, XRSession, inputSources**
 
-The *read-only* `inputSources` property of the `XRSession` interface returns an `XRInputSourceArray` object which lists all controllers and input devices which are expressly associated with the XR device and are currently available.
+The _read-only_ `inputSources` property of the `XRSession` interface returns an `XRInputSourceArray` object which lists all controllers and input devices which are expressly associated with the XR device and are currently available.
 
 5891
 
@@ -46998,7 +46996,7 @@ The `onvisibilitychange` attribute of the `XRSession` object is the event handle
 
 **API, AR, Augmented Reality, Experimental, Property, Reference, VR, Virtual Reality, WebXR, WebXR Device API, XRSession, renderState**
 
-The *read-only* `renderState` property of an `XRSession` object indicates the returns a `XRRenderState` object describing how the user's environment which should be rendered.
+The _read-only_ `renderState` property of an `XRSession` object indicates the returns a `XRRenderState` object describing how the user's environment which should be rendered.
 
 5902
 
@@ -47086,7 +47084,7 @@ The `visibilitychange` event is sent to an `XRSession` to inform it when it beco
 
 **API, AR, Augmented Reality, Experimental, Property, Reference, VR, Virtual Reality, WebXR, WebXR Device API, XRSession, visibilityState**
 
-The *read-only* `visibilityState` property of the `XRSession` interface is a string indicating whether the WebXR content is currently visible to the user, and if it is, whether it's the primary focus.
+The _read-only_ `visibilityState` property of the `XRSession` interface is a string indicating whether the WebXR content is currently visible to the user, and if it is, whether it's the primary focus.
 
 5913
 
@@ -47462,7 +47460,7 @@ One noticeable trend in W3C standards has been the effort to separate content fr
 
 [Resources](xsltprocessor/resources)
 
-*No summary!*
+_No summary!_
 
 5961
 

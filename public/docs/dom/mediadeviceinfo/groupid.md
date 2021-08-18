@@ -1,10 +1,8 @@
-MediaDeviceInfo.groupId
-=======================
+# MediaDeviceInfo.groupId
 
 The `groupId` readonly property of the [`MediaDeviceInfo`](../mediadeviceinfo) interface returns a [`DOMString`](../domstring) that is a group identifier. Two devices have the same group identifier if they belong to the same physical device; for example, a monitor with both a built-in camera and microphone.
 
-Syntax
-------
+## Syntax
 
     var groupID = mediaDeviceInfo.groupId;
 
@@ -12,14 +10,12 @@ Syntax
 
 A [`DOMString`](../domstring) which uniquely identifies the group of related devices to which this device belongs.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediadeviceinfo-groupid">Media Capture and Streams<br />
 <span class="small">The definition of 'groupId' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 In this example, we assemble a list of the devices which are part of the same group as a given device. This might be used to produce a user interface that gathers associated devices together for presentation purposes, or to make it easy for the user to choose to use the built-in camera and microphone on the same display at the same time.
 
@@ -64,8 +60,7 @@ This version of the example puts the passed-in device at the top of the result l
       return devList;
     };
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

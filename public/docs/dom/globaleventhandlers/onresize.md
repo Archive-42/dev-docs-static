@@ -1,12 +1,10 @@
-GlobalEventHandlers.onresize
-============================
+# GlobalEventHandlers.onresize
 
 The `onresize` property of the [`GlobalEventHandlers`](../globaleventhandlers) interface is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `resize` events.
 
 The `resize` event fires after the window has been resized.
 
-Syntax
-------
+## Syntax
 
     window.onresize = functionRef;
 
@@ -14,8 +12,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives a [`FocusEvent`](../focusevent) object as its sole argument.
 
-Examples
---------
+## Examples
 
 ### Window size logger
 
@@ -33,14 +30,12 @@ Examples
 
     window.onresize = resize;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onresize">HTML Living Standard<br />
 <span class="small">The definition of 'onresize' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -102,9 +97,8 @@ In Internet Explorer, this handler was only supported on the [`Window`](https://
 
 2.0
 
-See also
---------
+## See also
 
--   [Window: `resize` event](../window/resize_event)
+- [Window: `resize` event](../window/resize_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onresize" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onresize</a>

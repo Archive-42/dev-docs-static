@@ -1,24 +1,21 @@
-HTMLSelectElement.add()
-=======================
+# HTMLSelectElement.add()
 
 The `HTMLSelectElement.add()` method adds an element to the collection of `option` elements for this `select` element.
 
-Syntax
-------
+## Syntax
 
     collection.add(item[, before]);
 
 ### Parameters
 
--   *item* is an [`HTMLOptionElement`](../htmloptionelement) or [`HTMLOptGroupElement`](../htmloptgroupelement)
--   *before* is optional and an element of the collection, or an index of type *long*, representing the *item* should be inserted before. If this parameter is `null` (or the index does not exist), the new element is appended to the end of the collection.
+- _item_ is an [`HTMLOptionElement`](../htmloptionelement) or [`HTMLOptGroupElement`](../htmloptgroupelement)
+- _before_ is optional and an element of the collection, or an index of type _long_, representing the _item_ should be inserted before. If this parameter is `null` (or the index does not exist), the new element is appended to the end of the collection.
 
 ### Exceptions
 
--   A [`DOMError`](../domerror) of the type `HierarchyRequestError` if the *item* passed to the method is an ancestor of the `HTMLSelectElement`.
+- A [`DOMError`](../domerror) of the type `HierarchyRequestError` if the _item_ passed to the method is an ancestor of the `HTMLSelectElement`.
 
-Examples
---------
+## Examples
 
 ### Creating Elements from Scratch
 
@@ -111,8 +108,7 @@ The before parameter is optional. So the following is accepted.
       </select>
     */
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-select-add">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLSelectElement.add()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/forms.html#dom-select-add">HTML5<br />
@@ -121,8 +117,7 @@ The value of <code>before</code> can now be a long and is optional. It throws a 
 <span class="small">The definition of 'HTMLSelectElement.add()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>The method now throws an NOT_FOUND_ERR exception if the item of the <code>before</code> parameter is not a child of this element.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-14493106">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLSelectElement.add()' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-HTMLStyleElement.type
-=====================
+# HTMLStyleElement.type
 
 **Deprecated**
 
@@ -9,21 +8,18 @@ The `HTMLStyleElement.type` read-only property returns the type of the current s
 
 For Gecko, the type is most often given as "text/css." From the W3C spec on CSS: "The expectation is that binding-specific casting methods can be used to cast down from an instance of the CSSRule interface to the specific derived interface implied by the type."
 
-Syntax
-------
+## Syntax
 
     string = style.type;
 
-Example
--------
+## Example
 
     if (newStyle.type != "text/css"){
        // not supported!
        warnCSS();
     }
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

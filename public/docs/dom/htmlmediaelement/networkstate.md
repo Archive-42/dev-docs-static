@@ -1,10 +1,8 @@
-HTMLMediaElement.networkState
-=============================
+# HTMLMediaElement.networkState
 
 The `HTMLMediaElement.networkState` property indicates the current state of the fetching of media over the network.
 
-Syntax
-------
+## Syntax
 
     var networkState = audioOrVideo.networkState;
 
@@ -14,8 +12,7 @@ An `unsigned short`. Possible values are:
 
 <table><thead><tr class="header"><th>Constant</th><th>Value</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>NETWORK_EMPTY</code></td><td>0</td><td>There is no data yet. Also, <code>readyState</code> is <code>HAVE_NOTHING</code>.</td></tr><tr class="even"><td><code>NETWORK_IDLE</code></td><td>1</td><td>HTMLMediaElement is active and has selected a resource, but is not using the network.</td></tr><tr class="odd"><td><code>NETWORK_LOADING</code></td><td>2</td><td>The browser is downloading HTMLMediaElement data.</td></tr><tr class="even"><td><code>NETWORK_NO_SOURCE</code></td><td>3</td><td>No HTMLMediaElement src found.</td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 This example will listen for the audio element to begin playing and then check if it is still loading data.
 
@@ -33,15 +30,13 @@ This example will listen for the audio element to begin playing and then check i
 
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-media-networkstate">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLMediaElement.networkState' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/embedded-content-0.html#htmlmediaelement">HTML5<br />
 <span class="small">The definition of 'HTMLMediaElement.networkState' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -99,9 +94,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   The interface defining it, [`HTMLMediaElement`](../htmlmediaelement).
+- The interface defining it, [`HTMLMediaElement`](../htmlmediaelement).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/networkState" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/networkState</a>

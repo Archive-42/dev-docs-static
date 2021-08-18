@@ -1,5 +1,4 @@
-Element.createShadowRoot()
-==========================
+# Element.createShadowRoot()
 
 **Non-standard**
 
@@ -17,8 +16,7 @@ Use `Element.createShadowRoot` to create an instance of [shadow DOM](https://dev
 
 This method has been deprecated in favor of [`attachShadow()`](attachshadow).
 
-Syntax
-------
+## Syntax
 
     var shadowroot = element.createShadowRoot();
 
@@ -30,13 +28,11 @@ No parameters.
 
 Returns a [`ShadowRoot`](../shadowroot).
 
-Specifications
---------------
+## Specifications
 
 This feature is no longer defined by any specifications.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-HTMLFormElement.elements
-========================
+# HTMLFormElement.elements
 
 The [`HTMLFormElement`](../htmlformelement) property `elements` returns an [`HTMLFormControlsCollection`](../htmlformcontrolscollection) listing all the form controls contained in the [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element. Independently, you can obtain just the number of form controls using the [`length`](length) property.
 
@@ -9,8 +8,7 @@ Prior to HTML 5, the returned object was an [`HTMLCollection`](../htmlcollection
 
 **Note:** Similarly, you can get a list of all of the forms contained within a given document using the document's [`forms`](../document/forms) property.
 
-Syntax
-------
+## Syntax
 
     nodeList = HTMLFormElement.elements
 
@@ -22,18 +20,17 @@ The form controls in the returned collection are in the same order in which they
 
 The elements included by `HTMLFormElement.elements` and `HTMLFormElement.length` are the following:
 
--   [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)
--   [`<fieldset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset)
--   [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) (with the exception that any whose [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-type) is `"image"` are omitted for historical reasons)
--   [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object)
--   [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output)
--   [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select)
--   [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea)
+- [`<button>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)
+- [`<fieldset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset)
+- [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) (with the exception that any whose [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-type) is `"image"` are omitted for historical reasons)
+- [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object)
+- [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output)
+- [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select)
+- [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea)
 
 No other elements are included in the list returned by `elements`, which makes it an excellent way to get at the elements most important when processing forms.
 
-Example
--------
+## Example
 
 ### Quick syntax example
 
@@ -73,15 +70,13 @@ This example gets the form's element list, then iterates over the list, looking 
       inputs[i].setAttribute("disabled", "");
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-form-elements">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLFormElement.elements' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-76728479">Document Object Model (DOM) Level 2 HTML Specification<br />
 <span class="small">The definition of 'HTMLFormElement.elements' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

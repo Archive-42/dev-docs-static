@@ -1,5 +1,4 @@
-Element.scrollWidth
-===================
+# Element.scrollWidth
 
 The `Element.scrollWidth` read-only property is a measurement of the width of an element's content, including content not visible on the screen due to overflow.
 
@@ -7,15 +6,13 @@ The `scrollWidth` value is equal to the minimum width the element would require 
 
 This property will round the value to an integer. If you need a fractional value, use [`element.getBoundingClientRect()`](getboundingclientrect).
 
-Syntax
-------
+## Syntax
 
     var xScrollWidth = element.scrollWidth;
 
 `xScrollWidth` is the width of the content of `element` in pixels.
 
-Example
--------
+## Example
 
     <!DOCTYPE html>
     <html>
@@ -84,14 +81,12 @@ Example
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-element-scrollwidth">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'Element.scrollWidth' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -149,11 +144,10 @@ In Internet Explorer 5 through 7, if padding is set, the value of `scrollWidth` 
 
 1.0
 
-See also
---------
+## See also
 
--   [`Element.clientWidth`](clientwidth)
--   [`HTMLElement.offsetWidth`](../htmlelement/offsetwidth)
--   [Determining the dimensions of elements](../css_object_model/determining_the_dimensions_of_elements)
+- [`Element.clientWidth`](clientwidth)
+- [`HTMLElement.offsetWidth`](../htmlelement/offsetwidth)
+- [Determining the dimensions of elements](../css_object_model/determining_the_dimensions_of_elements)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollWidth" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollWidth</a>

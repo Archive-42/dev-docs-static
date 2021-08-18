@@ -1,5 +1,4 @@
-FetchEvent.navigationPreload
-============================
+# FetchEvent.navigationPreload
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `navigationPreload` read-only property of the [`FetchEvent`](../fetchevent) interface returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to the instance of [`NavigationPreloadManager`](../navigationpreloadmanager) associated with the current service worker registration.
 
-Syntax
-------
+## Syntax
 
     var promise = fetchEvent.navigationPreload
 
@@ -17,8 +15,7 @@ Syntax
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to the instance of [`NavigationPreloadManager`](../navigationpreloadmanager).
 
-Example
--------
+## Example
 
 The following example shows the implementation of a fetch event that uses a preloaded response.
 
@@ -37,14 +34,12 @@ The following example shows the implementation of a fetch event that uses a prel
       }());
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/ServiceWorker/#service-worker-registration-navigationpreload">Service Workers<br />
 <span class="small">The definition of 'navigationPreload' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

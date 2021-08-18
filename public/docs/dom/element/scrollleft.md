@@ -1,5 +1,4 @@
-Element.scrollLeft
-==================
+# Element.scrollLeft
 
 The `Element.scrollLeft` property gets or sets the number of pixels that an element's content is scrolled from its left edge.
 
@@ -7,8 +6,7 @@ If the element's [`direction`](https://developer.mozilla.org/en-US/docs/Web/CSS/
 
 On systems using display scaling, `scrollLeft` may give you a decimal value.
 
-Syntax
-------
+## Syntax
 
 ### Getting the value
 
@@ -24,12 +22,11 @@ Syntax
 
 `scrollLeft` can be specified as any integer value. However:
 
--   If the element can't be scrolled (e.g., it has no overflow), `scrollLeft` is set to `0`.
--   If specified as a value less than `0` (greater than `0` for right-to-left elements), `scrollLeft` is set to `0`.
--   If specified as a value greater than the maximum that the content can be scrolled, `scrollLeft` is set to the maximum.
+- If the element can't be scrolled (e.g., it has no overflow), `scrollLeft` is set to `0`.
+- If specified as a value less than `0` (greater than `0` for right-to-left elements), `scrollLeft` is set to `0`.
+- If specified as a value greater than the maximum that the content can be scrolled, `scrollLeft` is set to the maximum.
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -63,14 +60,12 @@ Example
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-element-scrollleft">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'scrollLeft' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -138,11 +133,10 @@ For right-to-left elements, this property uses 0-100 (most left to most right) i
 
 For right-to-left elements, this property uses 0-100 (most left to most right) instead of negative values. See [bug 721759](https://crbug.com/721759).
 
-See also
---------
+## See also
 
--   [MSDN's Measuring Element Dimension and Location](https://msdn.microsoft.com/en-us/library/hh781509(v=vs.85).aspx)
--   [`Element.scrollTop`](scrolltop)
--   [`Element.scrollTo()`](scrollto)
+- [MSDN's Measuring Element Dimension and Location](<https://msdn.microsoft.com/en-us/library/hh781509(v=vs.85).aspx>)
+- [`Element.scrollTop`](scrolltop)
+- [`Element.scrollTo()`](scrollto)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollLeft" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollLeft</a>

@@ -1,5 +1,4 @@
-KeyboardLayoutMap.size
-======================
+# KeyboardLayoutMap.size
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `size` read-only property of the [`KeyboardLayoutMap`](../keyboardlayoutmap) interface returns the number of elements in the map.
 
-Syntax
-------
+## Syntax
 
     var size = KeyboardLayoutMap.size()
 
@@ -17,14 +15,12 @@ Syntax
 
 A number.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/keyboard-map/#keyboardlayoutmap-interface">Keyboard Map<br />
 <span class="small">The definition of 'size' in that specification.</span></a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

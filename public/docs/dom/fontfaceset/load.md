@@ -1,5 +1,4 @@
-FontFaceSet.load()
-==================
+# FontFaceSet.load()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `load()` method of the [`FontFaceSet`](../fontfaceset) forces all the fonts given in parameters to be loaded.
 
-Syntax
-------
+## Syntax
 
     result = aFontFaceSet.load(font);
 
@@ -21,25 +19,22 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 ### Parameters
 
--   `font`: a font specification using the [CSS value syntax](https://developer.mozilla.org/en-US/docs/Web), e.g. "italic bold 16px Roboto"
--   `text`: limit the font faces to those whose Unicode range contains at least one of the characters in text. This [does not check for individual glyph coverage](https://lists.w3.org/Archives/Public/www-style/2015Aug/0330.html).
+- `font`: a font specification using the [CSS value syntax](https://developer.mozilla.org/en-US/docs/Web), e.g. "italic bold 16px Roboto"
+- `text`: limit the font faces to those whose Unicode range contains at least one of the characters in text. This [does not check for individual glyph coverage](https://lists.w3.org/Archives/Public/www-style/2015Aug/0330.html).
 
-Examples
---------
+## Examples
 
     // returns a promise that will be fulfilled or rejected according the success to load MyFont
     // The code in 'then' can assume the availability of that font.
 
     document.fonts.load("12px MyFont", "ß").then(…);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-font-loading/#font-face-set-load">CSS Font Loading Module Level 3<br />
 <span class="small">The definition of 'load' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

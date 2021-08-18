@@ -1,5 +1,4 @@
-FileException
-=============
+# FileException
 
 **Non-standard**
 
@@ -11,8 +10,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 In the [File System API](file_and_directory_entries_api/introduction), a `FileException `object represents error conditions that you might encounter while accessing the file system using the synchronous API. It extends the FileException interface described in [File Writer](https://dev.w3.org/2009/dap/file-system/pub/FileSystem/#bib-FILE-WRITER) and adds several new error codes.
 
-Basic concepts
---------------
+## Basic concepts
 
 Synchronous APIs do not have error callbacks, which makes it difficult to catch errors. The added complexity of using [WebWorkers](worker) with this API makes debugging even more challenging. To simplify things a bit, wrap your worker code in a try/catch. When errors occur, forward them to the main app using `postMessage()` as in the following:
 
@@ -25,17 +23,15 @@ Synchronous APIs do not have error callbacks, which makes it difficult to catch 
     var fileEntry = fs.root.getFile('log.txt', {create: true, exclusive:true}0;
     } catch (e) {
       onErrror(e);
-    } 
+    }
 
 The sample code was borrowed from [HTML5Rocks](https://www.html5rocks.com/en/tutorials/file/filesystem-sync/)
 
-Attribute
----------
+## Attribute
 
 <table><thead><tr class="header"><th>Attribute</th><th>Type</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><span id="attr_code"><code>code</code></span></td><td><code>unsigned short</code></td><td>The most appropriate error code for the condition.</td></tr></tbody></table>
 
-Constants
----------
+## Constants
 
 **Note**
 
@@ -101,9 +97,9 @@ Either there's not enough remaining storage space or the storage quota was reach
 
 Access to the files were denied for one of the following reasons:
 
--   The files might be unsafe for access within a Web application.
--   Too many calls are being made on file resources.
--   Other unspecified security error code or situations.
+- The files might be unsafe for access within a Web application.
+- Too many calls are being made on file resources.
+- Other unspecified security error code or situations.
 
 `TYPE_MISMATCH_ERR`
 
@@ -111,8 +107,7 @@ Access to the files were denied for one of the following reasons:
 
 The user has attempted to look up a file or directory, but the Entry found is of the wrong type. For example, the app is accessing a DirectoryEntry when the user is requesting a FileEntry.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -168,8 +163,7 @@ No
 
 1.0-3.0
 
-See also
---------
+## See also
 
 Specification: [File API: Directories and System Specification](https://dev.w3.org/2009/dap/file-system/pub/FileSystem/)WD
 

@@ -1,10 +1,8 @@
-ImageCapture.getPhotoSettings()
-===============================
+# ImageCapture.getPhotoSettings()
 
 The `getPhotoSettings()` method of the [`ImageCapture`](../imagecapture) interface returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with a <span class="page-not-created">`PhotoSettings`</span> object containing the current photo configuration settings.
 
-Syntax
-------
+## Syntax
 
     const settingsPromise = imageCapture.getPhotoSettings()
 
@@ -12,13 +10,12 @@ Syntax
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with a <span class="page-not-created">`PhotoSettings`</span> object containing the following properties:
 
--   `fillLightMode`: The flash setting of the capture device, one of `"auto"`, `"off"`, or `"on"`.
--   `imageHeight`: The desired image height as an integer. The user agent selects the closest width value to this setting if it only supports discrete heights.
--   `imageWidth`: The desired image width as an integer. The user agent selects the closest width value to this setting if it only supports discrete widths.
--   `redEyeReduction`: A boolean indicating whether the red-eye reduction should be used if it is available.
+- `fillLightMode`: The flash setting of the capture device, one of `"auto"`, `"off"`, or `"on"`.
+- `imageHeight`: The desired image height as an integer. The user agent selects the closest width value to this setting if it only supports discrete heights.
+- `imageWidth`: The desired image width as an integer. The user agent selects the closest width value to this setting if it only supports discrete widths.
+- `redEyeReduction`: A boolean indicating whether the red-eye reduction should be used if it is available.
 
-Example
--------
+## Example
 
 The following example, extracted from [Chrome's Image Capture / Photo Resolution Sample](https://googlechrome.github.io/samples/image-capture/photo-resolution.html), uses the results from `getPhotoSettings()` to modify the size of an input range. This example also shows how the [`ImageCapture`](../imagecapture) object is created using a [`MediaStreamTrack`](../mediastreamtrack) retrieved from a device's [`MediaStream`](../mediastream).
 
@@ -49,14 +46,12 @@ The following example, extracted from [Chrome's Image Capture / Photo Resolution
     })
     .catch(error => console.log('Argh!', error.name || error));
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-image/#dom-imagecapture-getphotosettings">MediaStream Image Capture<br />
 <span class="small">The definition of 'getPhotoSettings()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

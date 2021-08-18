@@ -1,10 +1,8 @@
-HTMLImageElement.useMap
-=======================
+# HTMLImageElement.useMap
 
 The `useMap` property on the [`HTMLImageElement`](../htmlimageelement) interface reflects the value of the [HTML](https://developer.mozilla.org/en-US/docs/Glossary/HTML) [`usemap`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-usemap) attribute, which is a string providing the name of the client-side image map to apply to the image.
 
-Syntax
-------
+## Syntax
 
     htmlImageElement.useMap = imageMapAnchor;
     let imageMapAnchor = htmlImageElement.useMap;
@@ -15,8 +13,7 @@ A [`USVString`](../usvstring) providing the page-local URL (that is, a URL that 
 
 You can learn more about client-side image maps in our learning article [Add a hitmap on top of an image](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Add_a_hit_map_on_top_of_an_image).
 
-Usage notes
------------
+## Usage notes
 
 The string value of `useMap` must be a valid anchor for a [`<map>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/map) element. In other words, this string should be the value of the appropriate `<map>`'s [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/map#attr-name) attribute with a pound or hash symbol prepended to it.
 
@@ -33,17 +30,14 @@ Given the image map named `mainmenu-map`, the image which uses it should look so
 
 For additional examples (including interactive ones), see the articles about the [`<map>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/map) and [`<area>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area) elements, as well as the [guide to using image maps](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Add_a_hit_map_on_top_of_an_image).
 
-Example
--------
+## Example
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-img-usemap">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLImageElement.useMap' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

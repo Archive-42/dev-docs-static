@@ -1,10 +1,8 @@
-GlobalEventHandlers.onpointerup
-===============================
+# GlobalEventHandlers.onpointerup
 
 The `onpointerup` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `pointerup` events.
 
-Syntax
-------
+## Syntax
 
     targetElement.onpointerup = upHandler;
 
@@ -15,8 +13,7 @@ Syntax
 `upHandler`  
 The `pointerup` event handler for element `targetElement`.
 
-Example
--------
+## Example
 
 This example shows two ways to use `onpointerup` to set an element's `pointerup` event handler.
 
@@ -37,15 +34,13 @@ This example shows two ways to use `onpointerup` to set an element's `pointerup`
     </body>
     </html>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/pointerevents2/#dom-globaleventhandlers-onpointerup">Pointer Events – Level 2<br />
 <span class="small">The definition of 'onpointerup' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Non-stable version</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/pointerevents1/#widl-GlobalEventHandlers-onpointerup">Pointer Events<br />
 <span class="small">The definition of 'onpointerup' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -109,10 +104,9 @@ Samsung Internet
 
 6.0
 
-See also
---------
+## See also
 
--   `Document: pointerup` event
--   `HTMLElement: pointerup` event
+- `Document: pointerup` event
+- `HTMLElement: pointerup` event
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onpointerup" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onpointerup</a>

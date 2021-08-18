@@ -1,5 +1,4 @@
-ExtendableCookieChangeEvent.changed
-===================================
+# ExtendableCookieChangeEvent.changed
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `changed` read-only property of the [`ExtendableCookieChangeEvent`](../extendablecookiechangeevent) interface returns any cookies that have been changed by the given `ExtendableCookieChangeEvent` instance.
 
-Syntax
-------
+## Syntax
 
     var array = ExtendableCookieChangeEvent.changed;
 
@@ -49,8 +47,7 @@ Cookies will be sent in all contexts.
 **Note**
 For more information on SameSite cookies see [SameSite cookies explained](https://web.dev/samesite-cookies-explained/).
 
-Examples
---------
+## Examples
 
 In this example when the cookie is set, the event listener logs the `changed` property to the console. The first item in that array contains an object representing the cookie that has just been set.
 
@@ -66,14 +63,12 @@ In this example when the cookie is set, the event listener logs the `changed` pr
       domain: "example.com"
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/cookie-store/#dom-extendablecookiechangeevent-changed">Cookie Store API<br />
 <span class="small">The definition of 'ExtendableCookieChangeEvent.changed' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

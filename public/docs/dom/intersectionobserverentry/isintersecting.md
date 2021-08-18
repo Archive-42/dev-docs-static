@@ -1,10 +1,8 @@
-IntersectionObserverEntry.isIntersecting
-========================================
+# IntersectionObserverEntry.isIntersecting
 
 The [`IntersectionObserverEntry`](../intersectionobserverentry) interface's read-only `isIntersecting` property is a Boolean value which is `true` if the target element intersects with the intersection observer's root. If this is `true`, then, the `IntersectionObserverEntry` describes a transition into a state of intersection; if it's `false`, then you know the transition is from intersecting to not-intersecting.
 
-Syntax
-------
+## Syntax
 
     var isIntersecting = IntersectionObserverEntry.isIntersecting;
 
@@ -12,8 +10,7 @@ Syntax
 
 A Boolean value which indicates whether the [`target`](target) element has transitioned into a state of intersection (`true`) or out of a state of intersection (`false`).
 
-Example
--------
+## Example
 
 In this simple example, an intersection callback is used to update a counter of how many targeted elements are currently intersecting with the [intersection root](../intersectionobserver/root).
 
@@ -29,14 +26,12 @@ In this simple example, an intersection callback is used to update a counter of 
 
 To see a more concrete example, take a look at [Handling intersection changes](../intersection_observer_api/timing_element_visibility#handling_intersection_changes) in [Timing element visibility with the Intersection Observer API](../intersection_observer_api/timing_element_visibility).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/IntersectionObserver/#dom-intersectionobserverentry-isintersecting">Intersection Observer<br />
 <span class="small">The definition of 'IntersectionObserverEntry.isIntersecting' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

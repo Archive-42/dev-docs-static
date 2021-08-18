@@ -1,10 +1,8 @@
-ImageCapture.track
-==================
+# ImageCapture.track
 
 The `track` read-only property of the [`ImageCapture`](../imagecapture) interface returns a reference to the [`MediaStreamTrack`](../mediastreamtrack) passed to the [`ImageCapture()`](imagecapture) constructor.
 
-Syntax
-------
+## Syntax
 
     const mediaStreamTrack = imageCaptureObj.track
 
@@ -12,14 +10,12 @@ Syntax
 
 A [`MediaStreamTrack`](../mediastreamtrack) object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-image/#dom-imagecapture-track">MediaStream Image Capture<br />
 <span class="small">The definition of 'track' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

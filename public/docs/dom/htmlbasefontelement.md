@@ -1,5 +1,4 @@
-HTMLBaseFontElement
-===================
+# HTMLBaseFontElement
 
 **Deprecated**
 
@@ -9,10 +8,9 @@ The `HTMLBaseFontElement` interface provides special properties (beyond the regu
 
 The `<basefont>` element has been deprecated in HTML4 and removed in HTML5. This latest specification requires that this element implements [`HTMLUnknownElement`](htmlunknownelement) rather than `HTMLBaseFontElement`.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement).*
+_Inherits properties from its parent, [`HTMLElement`](htmlelement)._
 
 <span class="page-not-created">`HTMLBaseFontElement.color`</span>  
 Is a [`DOMString`](domstring) representing the text color using either a named color or a color specified in the hexadecimal `#RRGGBB` format.
@@ -23,20 +21,17 @@ Is a [`DOMString`](domstring) representing a list of one or more font names. The
 <span class="page-not-created">`HTMLBaseFontElement.size`</span>  
 Is a [`DOMString`](domstring) representing the font size as either a numeric or relative value. Numeric values range from `1` to `7` with `1` being the smallest and `3` the default. Relative value starts with a `'+'` or a `'-`'.
 
-Methods
--------
+## Methods
 
-*No specific method; inherits methods from its parent, [`HTMLElement`](htmlelement).*
+_No specific method; inherits methods from its parent, [`HTMLElement`](htmlelement)._
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-32774408">Document Object Model (DOM) Level 2 HTML Specification<br />
 <span class="small">The definition of 'HTMLBaseFontElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>No change</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-32774408">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLBaseFontElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -170,9 +165,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   The HTML element [`<basefont>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/basefont) *was* implementing this interface.
+- The HTML element [`<basefont>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/basefont) _was_ implementing this interface.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLBaseFontElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLBaseFontElement</a>

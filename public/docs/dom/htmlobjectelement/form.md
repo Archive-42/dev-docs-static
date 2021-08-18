@@ -1,10 +1,8 @@
-HTMLObjectElement.form
-======================
+# HTMLObjectElement.form
 
 The `form` read-only property of the [`HTMLObjectElement`](../htmlobjectelement) interface returns a [`HTMLFormElement`](../htmlformelement) representing the object element's form owner, or null if there isn't one.
 
-Syntax
-------
+## Syntax
 
     var HTMLFormElement = HTMLObjectElement.form;
 
@@ -12,14 +10,12 @@ Syntax
 
 A [`HTMLFormElement`](../htmlformelement).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-fae-form">HTML Living Standard<br />
 <span class="small">The definition of 'form' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

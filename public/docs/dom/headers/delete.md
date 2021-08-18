@@ -1,17 +1,15 @@
-Headers.delete()
-================
+# Headers.delete()
 
 The `delete()` method of the [`Headers`](../headers) interface deletes a header from the current `Headers` object.
 
 This method throws a [`TypeError`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError) for the following reasons:
 
--   The value of the name parameter is not the name of an HTTP header.
--   The value of [Guard](https://developer.mozilla.org/en-US/docs/Glossary/Guard) is `immutable`.
+- The value of the name parameter is not the name of an HTTP header.
+- The value of [Guard](https://developer.mozilla.org/en-US/docs/Glossary/Guard) is `immutable`.
 
 For security reasons, some headers can only be controller by the user agent. These headers include the [forbidden header names](https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name) and [forbidden response header names](https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_response_header_name).
 
-Syntax
-------
+## Syntax
 
     myHeaders.delete(name);
 
@@ -24,8 +22,7 @@ The name of the HTTP header you want to delete from the `Headers` object.
 
 Void.
 
-Example
--------
+## Example
 
 Creating an empty `Headers` object is simple:
 
@@ -41,14 +38,12 @@ You can then delete it again:
     myHeaders.delete('Content-Type');
     myHeaders.get('Content-Type'); // Returns null, as it has been deleted
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fetch.spec.whatwg.org/#dom-headers-delete">Fetch<br />
 <span class="small">The definition of 'delete()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -114,11 +109,10 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [ServiceWorker API](../service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [ServiceWorker API](../service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Headers/delete" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Headers/delete</a>

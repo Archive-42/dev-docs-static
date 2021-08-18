@@ -1,25 +1,21 @@
-EventListener
-=============
+# EventListener
 
 The `EventListener` interface represents an object that can handle an event dispatched by an [`EventTarget`](eventtarget) object.
 
 **Note:** Due to the need for compatibility with legacy content, `EventListener` accepts both a function and an object with a `handleEvent()` property function. This is shown in the [example](#example) below.
 
-Properties
-----------
+## Properties
 
-*This interface neither implements, nor inherits, any properties.*
+_This interface neither implements, nor inherits, any properties._
 
-Methods
--------
+## Methods
 
-*This interface doesn't inherit any methods.*
+_This interface doesn't inherit any methods._
 
 [`EventListener.handleEvent()`](eventlistener/handleevent)  
 A function that is called whenever an event of the specified type occurs.
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -46,15 +42,13 @@ Example
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#callbackdef-eventlistener">DOM<br />
 <span class="small">The definition of 'EventListener' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventListener">Document Object Model (DOM) Level 2 Events Specification<br />
 <span class="small">The definition of 'EventListener' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -138,6 +132,6 @@ Samsung Internet
 
 ### See also
 
--   [addEventListener](eventtarget/addeventlistener)
+- [addEventListener](eventtarget/addeventlistener)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventListener" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EventListener</a>

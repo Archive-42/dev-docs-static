@@ -1,15 +1,12 @@
-HTMLElement.isContentEditable
-=============================
+# HTMLElement.isContentEditable
 
 The `HTMLElement.isContentEditable` read-only property returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that is `true` if the contents of the element are editable; otherwise it returns `false`.
 
-Syntax
-------
+## Syntax
 
     editable = element.isContentEditable
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -26,16 +23,14 @@ Example
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/editing.html#dom-iscontenteditable">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLElement.contenteditable' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change from latest snapshot, <a href="https://www.w3.org/TR/html51/">HTML 5.1</a></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/editing.html#dom-iscontenteditable">HTML 5.1<br />
 <span class="small">The definition of 'HTMLElement.contenteditable' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Snapshot of <a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a>, no change from <a href="https://www.w3.org/TR/html52/">HTML5</a></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/html52/editing.html#dom-iscontenteditable">HTML5<br />
 <span class="small">The definition of 'HTMLElement.contenteditable' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Snapshot of <a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a>, initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -91,10 +86,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`HTMLElement/contentEditable`](contenteditable)
--   The [`contenteditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-contenteditable) global attribute.
+- [`HTMLElement/contentEditable`](contenteditable)
+- The [`contenteditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-contenteditable) global attribute.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/isContentEditable" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/isContentEditable</a>

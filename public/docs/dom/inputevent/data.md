@@ -1,10 +1,8 @@
-InputEvent.data
-===============
+# InputEvent.data
 
 The `data` read-only property of the [`InputEvent`](../inputevent) interface returns a [`DOMString`](../domstring) with inserted characters. This may be an empty string if the change doesn't insert text, such as when characters are deleted.
 
-Syntax
-------
+## Syntax
 
     var aString = inputEvent.data;
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Examples
---------
+## Examples
 
 In the following example, an event listener receives the [input](../htmlelement/input_event) event. Any textual change to the [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element is retrieved by `InputEvent.data` and inserted into a paragraph using the `Node.textContent` property.
 
@@ -30,14 +27,12 @@ In the following example, an event listener receives the [input](../htmlelement/
       result.textContent = "Inputted text: " + e.data;
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/input-events/#dfn-data">Input Events Level 2<br />
 <span class="small">The definition of 'data' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

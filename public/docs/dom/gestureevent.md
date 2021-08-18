@@ -1,5 +1,4 @@
-GestureEvent
-============
+# GestureEvent
 
 **Non-standard**
 
@@ -9,45 +8,39 @@ The `GestureEvent` is a proprietary interface specific to WebKit which gives inf
 
 `GestureEvent` derives from [`UIEvent`](uievent), which in turn derives from [`Event`](event).
 
-Constructor
------------
+## Constructor
 
 <span class="page-not-created">`GestureEvent()`</span>  
 Creates a `GestureEvent` object.
 
-Properties
-----------
+## Properties
 
-*This interface also inherits properties of its parents, [`UIEvent`](uievent) and [`Event`](event).*
+_This interface also inherits properties of its parents, [`UIEvent`](uievent) and [`Event`](event)._
 
- <span class="page-not-created">`GestureEvent.rotation`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`GestureEvent.rotation`</span> <span class="badge inline readonly">Read only </span>  
 Change in rotation (in degrees) since the event's beginning. Positive values indicate clockwise rotation; negative values indicate counterclockwise rotation. Initial value: `0.0`
 
- <span class="page-not-created">`GestureEvent.scale`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`GestureEvent.scale`</span> <span class="badge inline readonly">Read only </span>  
 Distance between two digits since the event's beginning. Expressed as a floating-point multiple of the initial distance between the digits at the beginning of the gesture. Values below 1.0 indicate an inward pinch (zoom out). Values above 1.0 indicate an outward unpinch (zoom in). Initial value: `1.0`
 
-Methods
--------
+## Methods
 
-*This interface also inherits methods of its parents, [`UIEvent`](uievent) and [`Event`](event).*
+_This interface also inherits methods of its parents, [`UIEvent`](uievent) and [`Event`](event)._
 
 <span class="page-not-created">`GestureEvent.initGestureEvent()`</span>  
 Initializes the value of an `GestureEvent`. If the event has already being dispatched, this method does nothing.
 
-Gesture event types
--------------------
+## Gesture event types
 
--   `gesturestart`
--   `gesturechange`
--   `gestureend`
+- `gesturestart`
+- `gesturechange`
+- `gestureend`
 
-Specifications
---------------
+## Specifications
 
-*Not part of any specification.* Apple has [a description at the Safari Developer Library](https://developer.apple.com/library/iad/documentation/UserExperience/Reference/GestureEventClassReference/index.html).
+_Not part of any specification._ Apple has [a description at the Safari Developer Library](https://developer.apple.com/library/iad/documentation/UserExperience/Reference/GestureEventClassReference/index.html).
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -207,15 +200,14 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`MSGestureEvent`](msgestureevent)
--   `MSGestureStart`
--   `MSGestureEnd`
--   `MSGestureTap`
--   `MSGestureHold`
--   `MSGestureChange`
--   `MSInertiaStart`
+- [`MSGestureEvent`](msgestureevent)
+- `MSGestureStart`
+- `MSGestureEnd`
+- `MSGestureTap`
+- `MSGestureHold`
+- `MSGestureChange`
+- `MSInertiaStart`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GestureEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GestureEvent</a>

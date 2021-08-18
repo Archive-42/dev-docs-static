@@ -1,16 +1,14 @@
-Element.append()
-================
+# Element.append()
 
 The `Element.append()` method inserts a set of [`Node`](../node) objects or [`DOMString`](../domstring) objects after the last child of the `Element`. [`DOMString`](../domstring) objects are inserted as equivalent [`Text`](../text) nodes.
 
 Differences from [`Node.appendChild()`](../node/appendchild):
 
--   `Element.append()` allows you to also append [`DOMString`](../domstring) objects, whereas `Node.appendChild()` only accepts [`Node`](../node) objects.
--   `Element.append()` has no return value, whereas `Node.appendChild()` returns the appended [`Node`](../node) object.
--   `Element.append()` can append several nodes and strings, whereas `Node.appendChild()` can only append one node.
+- `Element.append()` allows you to also append [`DOMString`](../domstring) objects, whereas `Node.appendChild()` only accepts [`Node`](../node) objects.
+- `Element.append()` has no return value, whereas `Node.appendChild()` returns the appended [`Node`](../node) object.
+- `Element.append()` can append several nodes and strings, whereas `Node.appendChild()` can only append one node.
 
-Syntax
-------
+## Syntax
 
     append(...nodesOrDOMStrings)
 
@@ -21,10 +19,9 @@ A set of [`Node`](../node) or [`DOMString`](../domstring) objects to insert.
 
 ### Exceptions
 
--   <span class="page-not-created">`HierarchyRequestError`</span>: Node cannot be inserted at the specified point in the hierarchy.
+- <span class="page-not-created">`HierarchyRequestError`</span>: Node cannot be inserted at the specified point in the hierarchy.
 
-Examples
---------
+## Examples
 
 ### Appending an element
 
@@ -58,16 +55,14 @@ The `append()` method is not scoped into the `with` statement. See [`Symbol.unsc
     with(div) {
       append("foo")
     }
-    // ReferenceError: append is not defined 
+    // ReferenceError: append is not defined
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-parentnode-append">DOM<br />
 <span class="small">The definition of 'ParentNode.append()' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -123,13 +118,12 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [`Element.prepend()`](prepend)
--   [`Node.appendChild()`](../node/appendchild)
--   [`ChildNode.after()`](../childnode/after)
--   [`Element.insertAdjacentElement()`](insertadjacentelement)
--   [`NodeList`](../nodelist)
+- [`Element.prepend()`](prepend)
+- [`Node.appendChild()`](../node/appendchild)
+- [`ChildNode.after()`](../childnode/after)
+- [`Element.insertAdjacentElement()`](insertadjacentelement)
+- [`NodeList`](../nodelist)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/append" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/append</a>

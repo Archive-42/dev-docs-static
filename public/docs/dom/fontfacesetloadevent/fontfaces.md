@@ -1,5 +1,4 @@
-FontFaceSetLoadEvent.fontfaces
-==============================
+# FontFaceSetLoadEvent.fontfaces
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `fontfaces` read-only property of the [`FontFaceSetLoadEvent`](../fontfacesetloadevent) interface returns an array of [`FontFace`](../fontface) instances, each of which represents a single usable font.
 
-Syntax
-------
+## Syntax
 
     var fontFace[] = FontFaceSetLoadEvent.fontfaces
 
@@ -17,14 +15,12 @@ Syntax
 
 An array of [`FontFace`](../fontface) instance.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-font-loading/#dom-fontfacesetloadevent-fontfaces">CSS Font Loading Module Level 3<br />
 <span class="small">The definition of 'fontfaces' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

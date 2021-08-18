@@ -1,18 +1,15 @@
-HTMLAnchorElement.port
-======================
+# HTMLAnchorElement.port
 
 The `HTMLAnchorElement.port` property is a [`USVString`](../usvstring) containing the port number of the URL. If the URL does not contain an explicit port number, it will be set to `''`.
 
-Syntax
-------
+## Syntax
 
     // Getter
     string = anchor.port;
     // Setter
     anchor.port = string;
 
-Examples
---------
+## Examples
 
 ### Getting the port from an anchor link
 
@@ -20,14 +17,12 @@ Examples
     const anchor = document.getElementByID("myAnchor");
     anchor.port; // returns '443'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-hyperlink-port">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLHyperlinkElementUtils.port' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -83,9 +78,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   The [`HTMLAnchorElement`](../htmlanchorelement) interface it belongs to.
+- The [`HTMLAnchorElement`](../htmlanchorelement) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/port" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/port</a>

@@ -1,10 +1,8 @@
-Element.ariaExpanded
-====================
+# Element.ariaExpanded
 
 The `ariaExpanded` property of the [`Element`](../element) interface reflects the value of the `aria-expanded` attribute, which indicates whether a grouping element owned or controlled by this element is expanded or collapsed.
 
-Syntax
-------
+## Syntax
 
     var ariaExpanded = element.ariaExpanded;
     element.ariaExpanded = ariaExpanded
@@ -22,8 +20,7 @@ The grouping element this element owns or controls is collapsed.
 `"undefined"`  
 The element does not own or control a grouping element that is expandable.
 
-Examples
---------
+## Examples
 
 In this example the `aria-expanded` attribute on the element with an ID of `animal` is set to "false". Using `ariaExpanded` we update the value to "true".
 
@@ -42,14 +39,12 @@ In this example the `aria-expanded` attribute on the element with an ID of `anim
     el.ariaExpanded = "true";
     console.log(el.ariaExpanded); // true
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariaexpanded">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaExpanded' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-FileSystemEntry.name
-====================
+# FileSystemEntry.name
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The read-only `name` property of the [`FileSystemEntry`](../filesystementry) interface returns a [`USVString`](../usvstring) specifying the entry's name; this is the entry within its parent directory (the last component of the path as indicated by the [`fullPath`](fullpath) property).
 
-Syntax
-------
+## Syntax
 
     var name = FileSystemEntry.name;
 
@@ -17,8 +15,7 @@ Syntax
 
 A [`USVString`](../usvstring) indicating the entry's name.
 
-Example
--------
+## Example
 
 This example shows a function called `isFileWithExtension()` which returns true if the specified [`FileSystemEntry`](../filesystementry) is both a file and the file's name ends with a given extension.
 
@@ -26,14 +23,12 @@ This example shows a function called `isFileWithExtension()` which returns true 
       return (entry.isFile && entry.name.endsWith("." + extension));
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/entries-api/#dom-filesystementry-name">File and Directory Entries API<br />
 <span class="small">The definition of 'name' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -89,12 +84,11 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](../file_and_directory_entries_api)
--   [Introduction to the File System API](../file_and_directory_entries_api/introduction)
--   [`FileSystemEntry`](../filesystementry)
--   [`FileSystemEntry.fullPath`](fullpath)
+- [File and Directory Entries API](../file_and_directory_entries_api)
+- [Introduction to the File System API](../file_and_directory_entries_api/introduction)
+- [`FileSystemEntry`](../filesystementry)
+- [`FileSystemEntry.fullPath`](fullpath)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry/name" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry/name</a>

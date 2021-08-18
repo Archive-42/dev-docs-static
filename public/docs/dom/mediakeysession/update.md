@@ -1,10 +1,8 @@
-MediaKeySession.update()
-========================
+# MediaKeySession.update()
 
 The `MediaKeySession.update()` method loads messages and licenses to the CDM, and then returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) .
 
-Syntax
-------
+## Syntax
 
     mediaKeySession.update(response).then(function() { ... });
 
@@ -17,14 +15,12 @@ An instance of type BufferSource.
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-mediakeysession-update">Encrypted Media Extensions<br />
 <span class="small">The definition of 'update()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-Element.requestFullscreen()
-===========================
+# Element.requestFullscreen()
 
 The `Element.requestFullscreen()` method issues an asynchronous request to make the element be displayed in full-screen mode.
 
@@ -9,14 +8,13 @@ Earlier implementations of the Fullscreen API would always send these events to 
 
 **Note:** This method must be called while responding to a user interaction or a device orientation change; otherwise it will fail.
 
-Syntax
-------
+## Syntax
 
     var promise = element.requestFullscreen(options);
 
 ### Parameters
 
- `options` <span class="badge inline optional">Optional</span>   
+`options` <span class="badge inline optional">Optional</span>  
 A [`FullscreenOptions`](../fullscreenoptions) object providing options that control the behavior of the transition to full-screen mode. Currently, the only option is [`navigationUI`](../fullscreenoptions/navigationui), which controls whether or not to show navigation UI while the element is in full-screen mode. The default value is `"auto"`, which indicates that the browser should decide what to do.
 
 ### Return value
@@ -25,26 +23,25 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 ### Exceptions
 
-*Rather than throw a traditional exception, the `requestFullscreen()` procedure announces error conditions by rejecting the `Promise` it has returned. The rejection handler receives one of the following exception values:*
+_Rather than throw a traditional exception, the `requestFullscreen()` procedure announces error conditions by rejecting the `Promise` it has returned. The rejection handler receives one of the following exception values:_
 
 [`TypeError`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError)  
 The `TypeError` exception may be delivered in any of the following situations:
 
--   The document containing the element isn't fully active; that is, it's not the current active document.
--   The element is not contained by a document.
--   The element is not permitted to use the `"fullscreen"` feature, either because of Feature Policy configuration or other access control features.
--   The element and its document are the same node.
+- The document containing the element isn't fully active; that is, it's not the current active document.
+- The element is not contained by a document.
+- The element is not permitted to use the `"fullscreen"` feature, either because of Feature Policy configuration or other access control features.
+- The element and its document are the same node.
 
-Usage notes
------------
+## Usage notes
 
 ### Compatible elements
 
 An element that you wish to place into full-screen mode has to meet a small number of simple requirements:
 
--   It must be one of the standard HTML elements or [`<svg>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg) or `<math>`.
--   It is *not* a [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element.
--   It must either be located within the top-level document or in an [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) which has the [`allowfullscreen`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-allowfullscreen) attribute applied to it.
+- It must be one of the standard HTML elements or [`<svg>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg) or `<math>`.
+- It is _not_ a [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element.
+- It must either be located within the top-level document or in an [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) which has the [`allowfullscreen`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-allowfullscreen) attribute applied to it.
 
 Additionally, of course, the Feature Policy `"fullscreen"` permission must be granted.
 
@@ -54,8 +51,7 @@ You can determine whether or not your attempt to switch to full-screen mode is s
 
 To learn when other code has toggled full-screen mode on and off, you should establish listeners for the `fullscreenchange` event on the [`Document`](../document). It's also important to listen for `fullscreenchange` to be aware when, for example, the user manually toggles full-screen mode, or when the user switches applications, causing your application to temporarily exit full-screen mode.
 
-Examples
---------
+## Examples
 
 This function toggles the first [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) element found in the document into and out of full-screen mode.
 
@@ -77,14 +73,12 @@ If, on the other hand, full-screen mode is already in effect, we call [`document
 
 You can [see this example in action](https://fullscreen-requestfullscreen-demo.glitch.me/) or [view or remix the code](https://glitch.com/edit/#!/fullscreen-requestfullscreen-demo) on [Glitch](https://glitch.com/).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://fullscreen.spec.whatwg.org/#dom-element-requestfullscreen">Fullscreen API<br />
 <span class="small">The definition of 'Element.requestFullscreen()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -222,14 +216,13 @@ No
 
 10.0
 
-See also
---------
+## See also
 
--   [Fullscreen API](../fullscreen_api)
--   [`Document.exitFullscreen()`](../document/exitfullscreen)
--   [`Document.fullscreen`](../document/fullscreen)
--   [`Document.fullscreenElement`](../document/fullscreenelement)
--   [`:fullscreen`](https://developer.mozilla.org/en-US/docs/Web/CSS/:fullscreen)
--   [`allowfullscreen`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-allowfullscreen)
+- [Fullscreen API](../fullscreen_api)
+- [`Document.exitFullscreen()`](../document/exitfullscreen)
+- [`Document.fullscreen`](../document/fullscreen)
+- [`Document.fullscreenElement`](../document/fullscreenelement)
+- [`:fullscreen`](https://developer.mozilla.org/en-US/docs/Web/CSS/:fullscreen)
+- [`allowfullscreen`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-allowfullscreen)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullScreen" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullScreen</a>

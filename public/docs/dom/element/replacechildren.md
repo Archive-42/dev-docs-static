@@ -1,10 +1,8 @@
-Element.replaceChildren()
-=========================
+# Element.replaceChildren()
 
 The `Element.replaceChildren()` method replaces the existing children of a [`Node`](../node) with a specified new set of children. These can be [`DOMString`](../domstring) or [`Node`](../node) objects.
 
-Syntax
-------
+## Syntax
 
     replaceChildren(...nodesOrDOMStrings)
 
@@ -15,10 +13,9 @@ A set of [`Node`](../node) or [`DOMString`](../domstring) objects to replace the
 
 ### Exceptions
 
--   <span class="page-not-created">`HierarchyRequestError`</span>: The [constraints of the node tree](https://dom.spec.whatwg.org/#concept-node-tree) are violated.
+- <span class="page-not-created">`HierarchyRequestError`</span>: The [constraints of the node tree](https://dom.spec.whatwg.org/#concept-node-tree) are violated.
 
-Examples
---------
+## Examples
 
 ### Emptying a node
 
@@ -118,14 +115,12 @@ To do this, we give each of the buttons a click event handler, which collects to
 
 The end result looks like this:
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-parentnode-replacechildren">DOM<br />
 <span class="small">The definition of 'ParentNode.replaceChildren()' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -181,11 +176,10 @@ No
 
 14.0
 
-See also
---------
+## See also
 
--   [`Element.prepend()`](prepend)
--   [`Element.append()`](append)
--   [`NodeList`](../nodelist)
+- [`Element.prepend()`](prepend)
+- [`Element.append()`](append)
+- [`NodeList`](../nodelist)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/replaceChildren" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/replaceChildren</a>

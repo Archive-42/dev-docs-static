@@ -1,22 +1,19 @@
-GlobalEventHandlers.ondrag
-==========================
+# GlobalEventHandlers.ondrag
 
 A [`global event handler`](../globaleventhandlers) for the `drag` event.
 
-Syntax
-------
+## Syntax
 
     var dragHandler = targetElement.ondrag;
 
 ### Return value
 
 `dragHandler`  
-The *drag* event handler for element `targetElement`.
+The _drag_ event handler for element `targetElement`.
 
-Example
--------
+## Example
 
-This example includes the use of the *ondrag* attribute handler to set an element's *drag* event handler.
+This example includes the use of the _ondrag_ attribute handler to set an element's _drag_ event handler.
 
     <!DOCTYPE html>
     <html lang=en>
@@ -70,15 +67,13 @@ This example includes the use of the *ondrag* attribute handler to set an elemen
     </body>
     </html>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/indices.html#ix-handler-ondrag">HTML Living Standard<br />
 <span class="small">The definition of 'ondrag' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/index.html#ix-handler-ondrag">HTML 5.1<br />
 <span class="small">The definition of 'ondrag' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -134,9 +129,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   `drag`
+- `drag`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondrag" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondrag</a>

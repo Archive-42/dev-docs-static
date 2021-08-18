@@ -1,5 +1,4 @@
-Element: MSManipulationStateChanged event
-=========================================
+# Element: MSManipulationStateChanged event
 
 **Non-standard**
 
@@ -13,8 +12,7 @@ It is a proprietary event specific to Microsoft Edge and Internet Explorer.
 
 Get manipulation states using the `lastState `and `currentState `properties.
 
-Examples
---------
+## Examples
 
     // Listen for panning state change events
     outerScroller.addEventListener("MSManipulationStateChanged", function(e) {
@@ -25,13 +23,11 @@ Examples
         }
     });
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -87,10 +83,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`MSManipulationEvent`](../msmanipulationevent)
--   [Microsoft API extensions](../microsoft_extensions)
+- [`MSManipulationEvent`](../msmanipulationevent)
+- [Microsoft API extensions](../microsoft_extensions)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/MSManipulationStateChanged_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/MSManipulationStateChanged_event</a>

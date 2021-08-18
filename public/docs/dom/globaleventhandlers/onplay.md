@@ -1,18 +1,15 @@
-GlobalEventHandlers.onplay
-==========================
+# GlobalEventHandlers.onplay
 
 The `onplay` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is the [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) for processing `play` events.
 
-Syntax
-------
+## Syntax
 
     element.onplay = handlerFunction;
     var handlerFunction = element.onplay;
 
 `handlerFunction` should be either `null` or a [JavaScript function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions) specifying the handler for the event.
 
-Example
--------
+## Example
 
     <p>This example demonstrates how to assign an "onplay" event to a video element.</p>
 
@@ -30,14 +27,12 @@ Example
     }
     </script>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onplay">HTML Living Standard<br />
 <span class="small">The definition of 'onplay' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -97,10 +92,9 @@ Samsung Internet
 
 2.0
 
-See also
---------
+## See also
 
--   `play`
--   [Information on working with event handlers](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers)
+- `play`
+- [Information on working with event handlers](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onplay" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onplay</a>

@@ -1,12 +1,10 @@
-IDBDatabase: abort event
-========================
+# IDBDatabase: abort event
 
 The `abort` event is fired on `IDBDatabase` when a transaction is aborted and bubbles up to the connection object.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../event"><code>Event</code></a></td></tr><tr class="even"><td>Event handler property</td><td><code>onabort</code></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 This example opens a database (creating the database if it does not exist), then opens a transaction, adds a listener to the `abort` event, then aborts the transaction to trigger the event.
 
@@ -74,8 +72,7 @@ The same example, but assigning the event handler to the `onabort` property:
       transaction.abort();
     };
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -131,10 +128,9 @@ Samsung Internet
 
 1.5
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   `onabort` event handler property
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- `onabort` event handler property
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/abort_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/abort_event</a>

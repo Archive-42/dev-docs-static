@@ -1,5 +1,4 @@
-IntersectionObserver.thresholds
-===============================
+# IntersectionObserver.thresholds
 
 **Draft**
 
@@ -9,8 +8,7 @@ The [`IntersectionObserver`](../intersectionobserver) interface's read-only `thr
 
 See [Thresholds](../intersection_observer_api#thresholds) in [Intersection Observer API](../intersection_observer_api) to learn how thresholds work.
 
-Syntax
-------
+## Syntax
 
     var thresholds = IntersectionObserver.thresholds;
 
@@ -22,14 +20,12 @@ If no `threshold` option was included when `IntersectionObserver()` was used to 
 
 Be careful! Although the `options` object you can specify when creating an [`IntersectionObserver`](../intersectionobserver) has a field named <span class="page-not-created">`threshold`</span>, this property is called `thresholds`. Confusing? Yes. If you accidentally use `thresholds` as the name of the field in your `options`, the `thresholds` array will wind up being `[0.0]`, which is likely not what you expect. Debugging chaos may ensue.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/IntersectionObserver/#dom-intersectionobserver-thresholds">Intersection Observer<br />
 <span class="small">The definition of 'IntersectionObserver.thresholds' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

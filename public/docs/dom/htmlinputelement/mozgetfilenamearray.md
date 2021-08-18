@@ -1,5 +1,4 @@
-HTMLInputElement.mozGetFileNameArray()
-======================================
+# HTMLInputElement.mozGetFileNameArray()
 
 **Non-standard**
 
@@ -9,8 +8,7 @@ The `HTMLInputElement.mozGetFileNameArray()` method returns an array of the name
 
 **Note:** This method is Gecko-specific and is not available in other browsers. Also, it throws an error if used in Web pages.
 
-Syntax
-------
+## Syntax
 
     inputElement.mozGetFileNameArray(aLength, aFileNames);
 
@@ -22,25 +20,22 @@ If specified, will receive the number of file names in the returned array.
 `aFileNames`  
 Is an array into which the file names are placed.
 
-Example
--------
+## Example
 
     var numFiles = 0;
     var fileArray = {};
 
     inputElement.mozGetFileNameArray(numFiles, fileArray);
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 No compatibility data found for `api.HTMLInputElement.mozGetFileNameArray`.  
 [Check for problems with this page](#on-github) or contribute missing data to [mdn/browser-compat-data](https://github.com/mdn/browser-compat-data).
 
-See also
---------
+## See also
 
--   [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
--   [`HTMLInputElement`](../htmlinputelement)
--   <span class="page-not-created">`Input.mozSetFileNameArray`</span>
+- [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
+- [`HTMLInputElement`](../htmlinputelement)
+- <span class="page-not-created">`Input.mozSetFileNameArray`</span>
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/mozGetFileNameArray" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/mozGetFileNameArray</a>

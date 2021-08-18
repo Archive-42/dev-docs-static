@@ -1,10 +1,8 @@
-GlobalEventHandlers.onformdata
-==============================
+# GlobalEventHandlers.onformdata
 
 The `onformdata` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is the [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) for processing `formdata` events, fired after the entry list representing the form's data is constructed. This happens when the form is submitted, but can also be triggered by the invocation of a [`FormData()`](../formdata/formdata) constructor. `onformdata` is available on [`HTMLFormElement`](../htmlformelement).
 
-Syntax
-------
+## Syntax
 
     target.onformdata = functionRef;
 
@@ -12,8 +10,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives a [`FormDataEvent`](../formdataevent) object as its sole argument.
 
-Examples
---------
+## Examples
 
     // grab reference to form
 
@@ -46,14 +43,12 @@ Examples
       request.send(data);
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onformdata">HTML Living Standard<br />
 <span class="small">The definition of 'onformdata' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -109,11 +104,10 @@ No
 
 12.0
 
-See also
---------
+## See also
 
--   [`formdata` event](../htmlformelement/formdata_event)
--   [`FormDataEvent`](../formdataevent)
--   [Using FormData Objects](../formdata/using_formdata_objects)
+- [`formdata` event](../htmlformelement/formdata_event)
+- [`FormDataEvent`](../formdataevent)
+- [Using FormData Objects](../formdata/using_formdata_objects)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onformdata" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onformdata</a>

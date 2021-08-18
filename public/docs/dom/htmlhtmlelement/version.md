@@ -1,5 +1,4 @@
-HTMLHtmlElement.version
-=======================
+# HTMLHtmlElement.version
 
 **Deprecated**
 
@@ -11,8 +10,7 @@ This property has been declared as deprecated by the W3C technical recommendatio
 
 Returns version information about the document type definition (DTD) of a document. While this property is recognized by Mozilla, the return value for this property is always an empty string.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

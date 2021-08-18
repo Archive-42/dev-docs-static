@@ -1,31 +1,26 @@
-HTMLAreaElement.pathname
-========================
+# HTMLAreaElement.pathname
 
 The `HTMLAreaElement.pathname` property is a [`USVString`](../usvstring) containing an initial `'/'` followed by the path of the URL not including the query string or fragment (or the empty string if there is no path).
 
-Syntax
-------
+## Syntax
 
     // Getter
     string = area.pathname;
     // Setter
     area.pathname = string;
 
-Examples
---------
+## Examples
 
     // An <area id="myArea" href="/en-US/docs/HTMLAreaElement"> element is in the document
     const area = document.getElementById("myArea");
     area.pathname; // returns '/en-US/docs/HTMLAreaElement'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-hyperlink-pathname">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLHyperlinkElementUtils.pathname' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -85,9 +80,8 @@ Before Firefox 53, the `pathname` and `search` `HTMLHyperlinkElementUtils` prope
 
 1.0
 
-See also
---------
+## See also
 
--   The [`HTMLAreaElement`](../htmlareaelement) interface it belongs to.
+- The [`HTMLAreaElement`](../htmlareaelement) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAreaElement/pathname" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLAreaElement/pathname</a>

@@ -1,12 +1,10 @@
-MediaQueryList.matches
-======================
+# MediaQueryList.matches
 
 The `matches` read-only property of the [`MediaQueryList`](../mediaquerylist) interface is a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) that returns `true` if the [`document`](../document) currently matches the media query list, or `false` if not.
 
 You can be notified when the value of `matches` changes by watching for the <span class="page-not-created">`change`</span> event to be fired at the `MediaQueryList`.
 
-Syntax
-------
+## Syntax
 
     var matches = <varm>MediaQueryList.matches;
 
@@ -14,8 +12,7 @@ Syntax
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) which is `true` if the [`document`](../document) currently matches the media query list; otherwise, it's `false`.
 
-Examples
---------
+## Examples
 
 This example detects viewport orientation changes by creating a media query using the `orientation` media feature:
 
@@ -37,14 +34,12 @@ This example detects viewport orientation changes by creating a media query usin
       }
     );
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-mediaquerylist-matches">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'matches' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -100,13 +95,12 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   [Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
--   [Using media queries from code](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries)
--   [`window.matchMedia()`](../window/matchmedia)
--   [`MediaQueryList`](../mediaquerylist)
--   [`MediaQueryListEvent`](../mediaquerylistevent)
+- [Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
+- [Using media queries from code](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries)
+- [`window.matchMedia()`](../window/matchmedia)
+- [`MediaQueryList`](../mediaquerylist)
+- [`MediaQueryListEvent`](../mediaquerylistevent)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList/matches" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList/matches</a>

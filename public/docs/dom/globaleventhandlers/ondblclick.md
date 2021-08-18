@@ -1,12 +1,10 @@
-GlobalEventHandlers.ondblclick
-==============================
+# GlobalEventHandlers.ondblclick
 
 The `ondblclick` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `dblclick` events on the given element.
 
 The `dblclick` event is raised when the user double clicks an element. It fires after two `click` events.
 
-Syntax
-------
+## Syntax
 
     target.ondblclick = functionRef;
 
@@ -16,8 +14,7 @@ Syntax
 
 Only one `ondblclick` handler can be assigned to an object at a time. You may prefer to use the [`EventTarget.addEventListener()`](../eventtarget/addeventlistener) method instead, since it's more flexible.
 
-Example
--------
+## Example
 
 This example logs the position of double clicks.
 
@@ -38,14 +35,12 @@ This example logs the position of double clicks.
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-ondblclick">HTML Living Standard<br />
 <span class="small">The definition of 'ondblclick' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -101,12 +96,11 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   `dblclick` event
--   Related event handlers
-    -   [`GlobalEventHandlers.onauxclick`](onauxclick)
-    -   [`GlobalEventHandlers.onclick`](onclick)
+- `dblclick` event
+- Related event handlers
+  - [`GlobalEventHandlers.onauxclick`](onauxclick)
+  - [`GlobalEventHandlers.onclick`](onclick)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondblclick" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondblclick</a>

@@ -1,10 +1,8 @@
-Element Timing API
-==================
+# Element Timing API
 
 The **Element Timing API** provides features for monitoring the loading performance of large image elements and text nodes as they appear on screen.
 
-Concepts and Usage
-------------------
+## Concepts and Usage
 
 The aim of the Element Timing API is to give web developers or analytics tools the ability to measure rendering timestamps of critical elements on a page.
 
@@ -12,14 +10,12 @@ The API supports timing information on [`<img>`](https://developer.mozilla.org/e
 
 The author flags an element for observation by adding the [`elementtiming`](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/for) attribute on the element.
 
-Interfaces
-----------
+## Interfaces
 
 [`PerformanceElementTiming`](performanceelementtiming)  
 Reports timing information about one associated element.
 
-Examples
---------
+## Examples
 
 In this example we have two elements which are being observed. We use the [`PerformanceObserver`](performanceobserver) interface to create a list of performance measurement events, in our case observing the [`PerformanceEntry.entrytype`](performanceentry/entrytype) `element` in order to use the `PerformanceElementTiming` interface from the Element Timing API.
 
@@ -35,13 +31,11 @@ Two entries will be output to the console, the first containing details of the i
     });
     observer.observe({ entryTypes: ["element"] });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/element-timing/">Element Timing</a></td><td><span class="spec-ed">Editor's Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -359,15 +353,14 @@ No
 
 BCD tables only load in the browser
 
-See also
---------
+## See also
 
--   [`PerformanceFrameTiming`](performanceframetiming)
--   [`PerformanceNavigationTiming`](performancenavigationtiming)
--   [`PerformanceResourceTiming`](performanceresourcetiming)
--   [`PerformanceMark`](performancemark)
--   [`PerformanceMeasure`](performancemeasure)
--   [`PerformancePaintTiming`](performancepainttiming)
--   [`PerformanceLongTaskTiming`](performancelongtasktiming)
+- [`PerformanceFrameTiming`](performanceframetiming)
+- [`PerformanceNavigationTiming`](performancenavigationtiming)
+- [`PerformanceResourceTiming`](performanceresourcetiming)
+- [`PerformanceMark`](performancemark)
+- [`PerformanceMeasure`](performancemeasure)
+- [`PerformancePaintTiming`](performancepainttiming)
+- [`PerformanceLongTaskTiming`](performancelongtasktiming)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element_timing_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element_timing_API</a>

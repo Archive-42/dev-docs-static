@@ -1,20 +1,17 @@
-Gamepad.buttons
-===============
+# Gamepad.buttons
 
 The `Gamepad.buttons` property of the [`Gamepad`](../gamepad) interface returns an array of [`gamepadButton`](../gamepadbutton) objects representing the buttons present on the device.
 
 Each entry in the array is 0 if the button is not pressed, and non-zero (typically 1.0) if the button is pressed. Each [`gamepadButton`](../gamepadbutton) object has two properties: `pressed` and `value`:
 
--   The `pressed` property is a boolean indicating whether the button is currently pressed (`true`) or unpressed (`false`).
--   The `value` property is a floating point value used to enable representing analog buttons, such as the triggers on many modern gamepads. The values are normalized to the range 0.0 – 1.0, with 0.0 representing a button that is not pressed, and 1.0 representing a button that is fully pressed.
+- The `pressed` property is a boolean indicating whether the button is currently pressed (`true`) or unpressed (`false`).
+- The `value` property is a floating point value used to enable representing analog buttons, such as the triggers on many modern gamepads. The values are normalized to the range 0.0 – 1.0, with 0.0 representing a button that is not pressed, and 1.0 representing a button that is fully pressed.
 
-Syntax
-------
+## Syntax
 
     readonly    attribute GamepadButton[]     buttons;
 
-Example
--------
+## Example
 
 The following code is taken from my Gamepad API button demo (you can [view the demo live](https://chrisdavidmills.github.io/gamepad-buttons/), and [find the source code](https://github.com/chrisdavidmills/gamepad-buttons/tree/master) on Github.) Note the code fork — in Chrome [`Navigator.getGamepads`](../navigator/getgamepads) needs a `webkit` prefix and the button values are stores as an array of double values, whereas in Firefox [`Navigator.getGamepads`](../navigator/getgamepads) doesn't need a prefix, and the button values are stored as an array of [`GamepadButton`](../gamepadbutton) objects; it is the [`GamepadButton.value`](../gamepadbutton/value) or [`GamepadButton.pressed`](../gamepadbutton/pressed) properties of these we need to access, depending on what type of buttons they are. In this simple example I've just allowed either.
 
@@ -51,19 +48,16 @@ The following code is taken from my Gamepad API button demo (you can [view the d
       var start = rAF(gameLoop);
     };
 
-Value
------
+## Value
 
 An array of [`gamepadButton`](../gamepadbutton) objects.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/gamepad/#dom-gamepad-buttons">Gamepad<br />
 <span class="small">The definition of 'Gamepad.buttons' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -129,8 +123,7 @@ No
 
 2.0-3.0
 
-See also
---------
+## See also
 
 [Using the Gamepad API](../gamepad_api/using_the_gamepad_api)
 

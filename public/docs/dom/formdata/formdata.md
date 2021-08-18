@@ -1,22 +1,19 @@
-FormData()
-==========
+# FormData()
 
 The `FormData()` constructor creates a new [`FormData`](../formdata) object.
 
 **Note**: This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     var formData = new FormData(form)
 
 ### Parameters
 
- `form `<span class="badge inline optional">Optional</span>   
+`form `<span class="badge inline optional">Optional</span>  
 An HTML [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element — when specified, the [`FormData`](../formdata) object will be populated with the form's current keys/values using the name property of each element for the keys and their submitted value for the values. It will also encode file input content.
 
-Example
--------
+## Example
 
 The following line creates an empty `FormData` object:
 
@@ -49,14 +46,12 @@ Or you can specify the optional `form` argument when creating the `FormData` obj
     let myForm = document.getElementById('myForm');
     let formData = new FormData(myForm);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://xhr.spec.whatwg.org/#dom-formdata">XMLHttpRequest<br />
 <span class="small">The definition of 'FormData()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -112,12 +107,11 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`XMLHTTPRequest`](../xmlhttprequest)
--   [Using XMLHttpRequest](../xmlhttprequest/using_xmlhttprequest)
--   [Using FormData objects](using_formdata_objects)
--   [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
+- [`XMLHTTPRequest`](../xmlhttprequest)
+- [Using XMLHttpRequest](../xmlhttprequest/using_xmlhttprequest)
+- [Using FormData objects](using_formdata_objects)
+- [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData</a>

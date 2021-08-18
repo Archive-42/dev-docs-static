@@ -1,10 +1,8 @@
-Element.ariaHasPopup
-====================
+# Element.ariaHasPopup
 
 The `ariaHasPopup` property of the [`Element`](../element) interface reflects the value of the `aria-haspopup` attribute, which indicates the availability and type of interactive popup element, such as menu or dialog, that can be triggered by an element.
 
-Syntax
-------
+## Syntax
 
     var ariaHasPopup = element.ariaHasPopup;
     element.ariaHasPopup = ariaHasPopup
@@ -34,8 +32,7 @@ The element has a popup that is a grid.
 `"dialog"`  
 The element has a popup that is a dialog.
 
-Examples
---------
+## Examples
 
 In this example the `aria-haspopup` attribute on the element with an ID of `animal` is set to "true". Using `ariaHasPopup` we update the value to "false".
 
@@ -54,14 +51,12 @@ In this example the `aria-haspopup` attribute on the element with an ID of `anim
     el.ariaHasPopup = "false";
     console.log(el.ariaHasPopup); // false
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariahaspopup">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaHasPopup' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,22 +1,18 @@
-GamepadEvent
-============
+# GamepadEvent
 
 The GamepadEvent interface of the Gamepad API contains references to gamepads connected to the system, which is what the gamepad events <span class="page-not-created">`Window.gamepadconnected`</span> and <span class="page-not-created">`Window.gamepaddisconnected`</span> are fired in response to.
 
-Constructor
------------
+## Constructor
 
 [`GamepadEvent()`](gamepadevent/gamepadevent)  
 Returns a new `GamepadEvent` object.
 
-Properties
-----------
+## Properties
 
- [`GamepadEvent.gamepad`](gamepadevent/gamepad) <span class="badge inline readonly">Read only </span>   
+[`GamepadEvent.gamepad`](gamepadevent/gamepad) <span class="badge inline readonly">Read only </span>  
 Returns a [`Gamepad`](gamepad) object, providing access to the associated gamepad data for the event fired.
 
-Examples
---------
+## Examples
 
 The gamepad property being called on a fired <span class="page-not-created">`Window.gamepadconnected`</span> event.
 
@@ -33,14 +29,12 @@ And on a <span class="page-not-created">`Window.gamepaddisconnected`</span> even
       e.gamepad.index, e.gamepad.id);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/gamepad/#gamepadevent-interface">Gamepad<br />
 <span class="small">The definition of 'GamepadEvent' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -164,8 +158,7 @@ No
 
 Yes
 
-See also
---------
+## See also
 
 [Using the Gamepad API](gamepad_api/using_the_gamepad_api)
 

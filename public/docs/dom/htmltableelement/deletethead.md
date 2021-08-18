@@ -1,15 +1,12 @@
-HTMLTableElement.deleteTHead()
-==============================
+# HTMLTableElement.deleteTHead()
 
 The `HTMLTableElement.deleteTHead()` removes the [`<thead>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead) element from a given [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table).
 
-Syntax
-------
+## Syntax
 
     HTMLTableElement.deleteTHead();
 
-Example
--------
+## Example
 
 This example uses JavaScript to delete a table's header.
 
@@ -28,14 +25,12 @@ This example uses JavaScript to delete a table's header.
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-table-deletethead">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLTableElement: deleteTHead' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

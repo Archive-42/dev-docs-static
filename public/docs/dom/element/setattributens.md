@@ -1,25 +1,21 @@
-Element.setAttributeNS()
-========================
+# Element.setAttributeNS()
 
 `setAttributeNS` adds a new attribute or changes the value of an attribute with the given namespace and name.
 
-Syntax
-------
+## Syntax
 
     element.setAttributeNS(namespace, name, value)
 
--   `namespace` is a string specifying the namespace of the attribute.
--   `name` is a string identifying the attribute by its qualified name; that is, a namespace prefix followed by a colon followed by a local name.
--   `value` is the desired string value of the new attribute.
+- `namespace` is a string specifying the namespace of the attribute.
+- `name` is a string identifying the attribute by its qualified name; that is, a namespace prefix followed by a colon followed by a local name.
+- `value` is the desired string value of the new attribute.
 
-Example
--------
+## Example
 
     let d = document.getElementById('d1');
     d.setAttributeNS('http://www.mozilla.org/ns/specialspace', 'spec:align', 'center');
 
-Notes
------
+## Notes
 
 DOM methods dealing with element's attributes:
 
@@ -27,14 +23,12 @@ DOM methods dealing with element's attributes:
 
 `setAttributeNS` is the only method for namespaced attributes which expects the fully qualified name, i.e. `"namespace:localname"`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-element-setattributens">DOM<br />
 <span class="small">The definition of 'document.setAttributeNS' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

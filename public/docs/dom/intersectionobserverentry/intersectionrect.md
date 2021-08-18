@@ -1,5 +1,4 @@
-IntersectionObserverEntry.intersectionRect
-==========================================
+# IntersectionObserverEntry.intersectionRect
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The [`IntersectionObserverEntry`](../intersectionobserverentry) interface's read-only `intersectionRect` property is a [`DOMRectReadOnly`](../domrectreadonly) object which describes the smallest rectangle that contains the entire portion of the target element which is currently visible within the intersection root.
 
-Syntax
-------
+## Syntax
 
     var intersectionRect = IntersectionObserverEntry.intersectionRect;
 
@@ -19,8 +17,7 @@ A [`DOMRectReadOnly`](../domrectreadonly) which describes the part of the target
 
 This rectangle is computed by taking the intersection of [`boundingClientRect`](../intersectionobserverentry) with each of the [`target`](target)'s ancestors' clip rectangles, with the exception of the intersection [`root`](../intersectionobserver/root) itself.
 
-Example
--------
+## Example
 
 In this simple example, an intersection callback stores the intersection rectangle for later use by the code that draws the target elements' contents, so that only the visible area is redrawn.
 
@@ -33,14 +30,12 @@ In this simple example, an intersection callback stores the intersection rectang
       });
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/IntersectionObserver/#dom-intersectionobserverentry-intersectionrect">Intersection Observer<br />
 <span class="small">The definition of 'IntersectionObserverEntry.intersectionRect' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

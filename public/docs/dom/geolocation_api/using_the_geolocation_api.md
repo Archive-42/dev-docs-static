@@ -1,5 +1,4 @@
-Using the Geolocation API
-=========================
+# Using the Geolocation API
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The Geolocation API is used to retrieve the user's location, so that it can for example be used to display their position using a mapping API. This article explains the basics of how to use it.
 
-The geolocation object
-----------------------
+## The geolocation object
 
 The [Geolocation API](../geolocation) is available through the [`navigator.geolocation`](../navigator/geolocation) object.
 
@@ -70,8 +68,7 @@ A call to [`watchPosition`](../geolocation/watchposition) could look like:
 
     const watchID = navigator.geolocation.watchPosition(success, error, options);
 
-Describing a position
----------------------
+## Describing a position
 
 The user's location is described using a [`GeolocationPosition`](../geolocationposition) object instance, which itself contains a [`GeolocationCoordinates`](../geolocationcoordinates) object instance.
 
@@ -88,8 +85,7 @@ The `GeolocationCoordinates` instance contains a number of properties, but the t
 
 You can however get a number of other bits of information from a `GeolocationCoordinates` object, including altitude, speed, what direction the device is facing, and an accuracy measure of the altitude, longitude, and latitude data.
 
-Handling errors
----------------
+## Handling errors
 
 The error callback function, if provided when calling `getCurrentPosition()` or `watchPosition()`, expects a `GeolocationPositionError` object instance as its first parameter. This object type contains two properties, a `code` indicating what type of error has been returned, and a human-readable `message` that describes what the error code means.
 
@@ -99,8 +95,7 @@ You could use it like so:
       alert(`ERROR(${error.code}): ${error.message}`);
     };
 
-Examples
---------
+## Examples
 
 In the following example the Geolocation API is used to retrieve the user's latitude and longitude. If sucessful, the available hyperlink is populated with an `openstreetmap.org` URL that will show their location.
 

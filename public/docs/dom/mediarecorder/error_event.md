@@ -1,5 +1,4 @@
-MediaRecorder: error event
-==========================
+# MediaRecorder: error event
 
 The [`MediaRecorder`](../mediarecorder) interface's `error` event is fired when an error occurs: for example because recording wasn't allowed or was attempted using an unsupported codec.
 
@@ -7,8 +6,7 @@ The [`MediaRecorder`](../mediarecorder) interface's `error` event is fired when 
 
 For details of the all the possible errors see the documentation for the event handler property: `onerror`.
 
-Examples
---------
+## Examples
 
 Using `addEventListener` to listen for `error` events:
 
@@ -36,13 +34,11 @@ The same, but using the onerror event handler property:
 
     record();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-record/#errorevent-section">MediaStream Recording</a></td><td><span class="spec-wd">Working Draft</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -98,9 +94,8 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [Using the MediaRecorder API](../mediastream_recording_api/using_the_mediastream_recording_api)
+- [Using the MediaRecorder API](../mediastream_recording_api/using_the_mediastream_recording_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/error_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/error_event</a>

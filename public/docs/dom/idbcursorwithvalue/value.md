@@ -1,12 +1,10 @@
-IDBCursorWithValue.value
-========================
+# IDBCursorWithValue.value
 
 The `value` read-only property of the [`IDBCursorWithValue`](../idbcursorwithvalue) interface returns the value of the current cursor, whatever that is.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     var value = myIDBCursorWithValue.value;
 
@@ -14,8 +12,7 @@ Syntax
 
 The value of the current cursor.
 
-Example
--------
+## Example
 
 In this example we create a transaction, retrieve an object store, then use a cursor to iterate through all the records in the object store. Within each iteration we log the value of the cursor with `cursor.value`.
 
@@ -40,15 +37,13 @@ T<span style="line-height: 1.5;">he cursor does not require us to select the dat
       };
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbcursorwithvalue-value">Indexed Database API 2.0<br />
 <span class="small">The definition of 'source' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbcursorwithvalue-value">Indexed Database API 2.0<br />
 <span class="small">The definition of 'IDBDatabase' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -104,15 +99,14 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBCursorWithValue/value" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBCursorWithValue/value</a>

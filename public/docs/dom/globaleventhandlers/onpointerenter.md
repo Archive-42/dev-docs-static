@@ -1,10 +1,8 @@
-GlobalEventHandlers.onpointerenter
-==================================
+# GlobalEventHandlers.onpointerenter
 
 The `onpointerenter` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes [`pointerenter`](../htmlelement/pointerenter_event) events.
 
-Syntax
-------
+## Syntax
 
     targetElement.onpointerenter = enterHandler;
 
@@ -15,8 +13,7 @@ Syntax
 `enterHandler`  
 The `pointerenter` event handler for element `targetElement`.
 
-Example
--------
+## Example
 
 This example shows two ways to use `onpointerenter` to set an element's `pointerenter` event handler.
 
@@ -37,15 +34,13 @@ This example shows two ways to use `onpointerenter` to set an element's `pointer
     </body>
     </html>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/pointerevents2/#dom-globaleventhandlers-onpointerenter">Pointer Events – Level 2<br />
 <span class="small">The definition of 'onpointerenter' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Non-stable version</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/pointerevents1/#widl-GlobalEventHandlers-onpointerenter">Pointer Events<br />
 <span class="small">The definition of 'onpointerenter' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -109,10 +104,9 @@ Samsung Internet
 
 6.0
 
-See also
---------
+## See also
 
--   `Document: pointerenter` event
--   `HTMLElement: pointerenter` event
+- `Document: pointerenter` event
+- `HTMLElement: pointerenter` event
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onpointerenter" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onpointerenter</a>

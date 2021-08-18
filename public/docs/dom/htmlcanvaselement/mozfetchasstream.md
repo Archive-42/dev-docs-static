@@ -1,5 +1,4 @@
-HTMLCanvasElement.mozFetchAsStream()
-====================================
+# HTMLCanvasElement.mozFetchAsStream()
 
 **Deprecated**
 
@@ -7,8 +6,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `HTMLCanvasElement.mozFetchAsStream()` internal method used to create a new input stream that, when ready, would provide the contents of the canvas as image data. However, this non-standard and internal method has been removed.
 
-Syntax
-------
+## Syntax
 
     void canvas.mozFetchAsStream(callback, type);
 
@@ -17,15 +15,14 @@ Syntax
 `callback`  
 An <span class="page-not-created">`nsIInputStreamCallback`</span>.
 
- `type` <span class="badge inline optional">Optional</span>   
+`type` <span class="badge inline optional">Optional</span>  
 A [`DOMString`](../domstring) indicating the image format. The default type is `image/png`.
 
 ### Return value
 
 None.
 
-Examples
---------
+## Examples
 
 ### Save to disk with `mozFetchAsStream` (Chrome context only)
 
@@ -63,13 +60,11 @@ This technique also converts it to ico, however it will not work in Windows XP a
 
     canvas.mozFetchAsStream(mfasCallback('myIcon'), 'image/vnd.microsoft.icon');
 
-Specifications
---------------
+## Specifications
 
 Not part of any specification.
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -125,9 +120,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   The interface defining it, [`HTMLCanvasElement`](../htmlcanvaselement).
+- The interface defining it, [`HTMLCanvasElement`](../htmlcanvaselement).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/mozFetchAsStream" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/mozFetchAsStream</a>

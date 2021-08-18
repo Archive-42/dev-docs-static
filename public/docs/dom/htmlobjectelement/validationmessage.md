@@ -1,10 +1,8 @@
-HTMLObjectElement.validationMessage
-===================================
+# HTMLObjectElement.validationMessage
 
 The `validationMessage` read-only property of the [`HTMLObjectElement`](../htmlobjectelement) interface returns a [`DOMString`](../domstring) representing a localized message that describes the validation constraints that the control does not satisfy (if any). This is the empty string if the control is not a candidate for constraint validation (willValidate is false), or it satisfies its constraints.
 
-Syntax
-------
+## Syntax
 
     var String = HTMLObjectElement.validationMessage;
 
@@ -12,14 +10,12 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-cva-validationmessage">HTML Living Standard<br />
 <span class="small">The definition of 'validationMessage' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

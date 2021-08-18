@@ -1,20 +1,17 @@
-GlobalEventHandlers.ondragenter
-===============================
+# GlobalEventHandlers.ondragenter
 
 A [`global event handler`](../globaleventhandlers) for the `dragenter` event.
 
-Syntax
-------
+## Syntax
 
     var dragenterHandler = targetElement.ondragenter;
 
 ### Return value
 
 `dragenterHandler`  
-The *dragenter* event handler for element `targetElement`.
+The _dragenter_ event handler for element `targetElement`.
 
-Example
--------
+## Example
 
 This example demonstrates using the [`ondragenter`](ondragenter) attribute handler to set an element's `dragenter` event handler.
 
@@ -104,15 +101,13 @@ This example demonstrates using the [`ondragenter`](ondragenter) attribute handl
     </body>
     </html>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/indices.html#ix-handler-ondragenter">HTML Living Standard<br />
 <span class="small">The definition of 'ondragenter' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/index.html#ix-handler-ondragenter">HTML 5.1<br />
 <span class="small">The definition of 'ondragenter' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -168,9 +163,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   `dragenter`
+- `dragenter`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondragenter" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondragenter</a>

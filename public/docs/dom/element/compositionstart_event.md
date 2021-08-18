@@ -1,5 +1,4 @@
-Element: compositionstart event
-===============================
+# Element: compositionstart event
 
 The `compositionstart` event is fired when a text composition system such as an [input method editor](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) starts a new composition session.
 
@@ -7,8 +6,7 @@ For example, this event could be fired after a user starts entering a Chinese ch
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>Yes</td></tr><tr class="odd"><td>Interface</td><td><a href="../compositionevent"><code>CompositionEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td>None</td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
     const inputElement = document.querySelector('input[type="text"]');
 
@@ -51,13 +49,11 @@ Examples
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-compositionstart">UI Events</a></td><td><span class="spec-wd">Working Draft</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -113,9 +109,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   Related events: [`compositionend`](compositionend_event), [`compositionupdate`](compositionupdate_event).
+- Related events: [`compositionend`](compositionend_event), [`compositionupdate`](compositionupdate_event).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionstart_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionstart_event</a>

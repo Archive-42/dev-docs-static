@@ -1,8 +1,6 @@
-InstallTrigger.install
-======================
+# InstallTrigger.install
 
-Summary
--------
+## Summary
 
 Installs one or more XPI files on the local machine.
 
@@ -10,8 +8,7 @@ Installs one or more XPI files on the local machine.
 
 [InstallTrigger](../installtrigger) object
 
-Syntax
-------
+## Syntax
 
     int install(array XPIlist [, function callBackFunc ] )
 
@@ -19,10 +16,10 @@ Syntax
 
 The `install` method has the following parameters:
 
- XPIlist  
+XPIlist  
 An array of files to be installed (see example below).
 
- `callBackFunc`   
+`callBackFunc`  
 An optional callback function invoked when the installation is complete (see example below).
 
 **[Firefox 3 note](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/3)**
@@ -33,8 +30,7 @@ In Firefox 3 the callback is no longer invoked unless the website performing the
 
 `install` returns True if the function succeeded and False if it did not, but these values are not always reliable as a determinant of the success of the operation. To surface detail about the status of the installation, use the optional callback function and its status parameter, as in the example below.
 
-Description
------------
+## Description
 
 In the example below, a special JavaScript object constructor is used to create an object that can be passed to the `install()` method. The `{ }` constructor takes a comma-delimited set of label/value pairs. For installations, these pairs are the XPInstall confirm dialog display name and the path of the XPI, respectively.
 
@@ -42,8 +38,7 @@ In the example below, a single installation object is created, but you can use t
 
 As with the older [startSoftwareUpdate](startsoftwareupdate) method, XPIs installed with this method must have their own install.js files in which the full installation is defined. In contrast to [startSoftwareUpdate](startsoftwareupdate), `install` allows you to do multiple installs with the same trigger and provides a unified user experience for the multiple installs.
 
-Example
--------
+## Example
 
     function xpinstallCallback(url, status)
     {

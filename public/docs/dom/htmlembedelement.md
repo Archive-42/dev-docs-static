@@ -1,22 +1,20 @@
-HTMLEmbedElement
-================
+# HTMLEmbedElement
 
 The `HTMLEmbedElement` interface provides special properties (beyond the regular [`HTMLElement`](htmlelement) interface it also has available to it by inheritance) for manipulating [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed) elements.
 
 This topic describes the `HTMLEmbedElement` interface as defined in the standard. It does not address earlier, non-standardized version of the interface.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement).*
+_Inherits properties from its parent, [`HTMLElement`](htmlelement)._
 
- <span class="page-not-created">`HTMLEmbedElement.align`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLEmbedElement.align`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) representing an enumerated property indicating alignment of the element's contents with respect to the surrounding context. The possible values are `"left"`, `"right"`, `"center"`, and `"justify"`.
 
 <span class="page-not-created">`HTMLEmbedElement.height`</span>  
 Is a [`DOMString`](domstring) reflecting the [`height`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed#attr-height) HTML attribute, containing the displayed height of the resource.
 
- <span class="page-not-created">`HTMLEmbedElement.name`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+<span class="page-not-created">`HTMLEmbedElement.name`</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Is a [`DOMString`](domstring) representing the name of the embedded object.
 
 <span class="page-not-created">`HTMLEmbedElement.src`</span>  
@@ -28,20 +26,17 @@ Is a [`DOMString`](domstring) that reflects the [`type`](https://developer.mozil
 <span class="page-not-created">`HTMLEmbedElement.width`</span>  
 Is a [`DOMString`](domstring) that reflects the [`width`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed#attr-width) HTML attribute, containing the displayed width of the resource.
 
-Methods
--------
+## Methods
 
-*No specific method; inherits methods from its parent, [`HTMLElement`](htmlelement).*
+_No specific method; inherits methods from its parent, [`HTMLElement`](htmlelement)._
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#htmlembedelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLEmbedElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Adds two obsolete properties, <code>name</code> and <code>align</code>, to help with compatibility with old Web sites.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/embedded-content-0.html#the-embed-element">HTML5<br />
 <span class="small">The definition of 'HTMLEmbedElement' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -291,9 +286,8 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   The HTML element implementing this interface: [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed)
+- The HTML element implementing this interface: [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLEmbedElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLEmbedElement</a>

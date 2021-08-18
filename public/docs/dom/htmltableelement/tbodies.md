@@ -1,5 +1,4 @@
-HTMLTableElement.tBodies
-========================
+# HTMLTableElement.tBodies
 
 The `HTMLTableElement.tBodies` read-only property returns a live [`HTMLCollection`](../htmlcollection) of the bodies in a [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table).
 
@@ -15,26 +14,22 @@ The collection returned includes implicit [`<tbody>`](https://developer.mozilla.
 
 The HTML DOM generated from the above HTML will have a [`<tbody>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody) element even though the tags are not included in the source HTML.
 
-Syntax
-------
+## Syntax
 
     HTMLCollectionObject = table.tBodies
 
-Example
--------
+## Example
 
 This snippet gets the number of bodies in a table.
 
     mytable.tBodies.length;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-table-tbodies">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLTableElement: tBodies' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -90,10 +85,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`HTMLCollection`](../htmlcollection)
--   [`<tbody>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody)
+- [`HTMLCollection`](../htmlcollection)
+- [`<tbody>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableElement/tBodies" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableElement/tBodies</a>

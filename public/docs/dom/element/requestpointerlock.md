@@ -1,5 +1,4 @@
-Element.requestPointerLock()
-============================
+# Element.requestPointerLock()
 
 **Experimental**
 
@@ -10,19 +9,16 @@ The `Element.requestPointerLock()` method lets you asynchronously ask for the po
 
 To track the success or failure of the request, it is necessary to listen for the `pointerlockchange` and `pointerlockerror` events at the [`Document`](../document) level.
 
-Syntax
-------
+## Syntax
 
     instanceOfElement.requestPointerLock();
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/pointerlock/#dom-element-requestpointerlock">Pointer Lock<br />
 <span class="small">The definition of 'requestPointerLock()' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -96,11 +92,10 @@ No
 
 Yes
 
-See also
---------
+## See also
 
--   [`Document.pointerLockElement`](../document/pointerlockelement)
--   [`Document.exitPointerLock()`](../document/exitpointerlock)
--   [Pointer Lock](../pointer_lock_api)
+- [`Document.pointerLockElement`](../document/pointerlockelement)
+- [`Document.exitPointerLock()`](../document/exitpointerlock)
+- [Pointer Lock](../pointer_lock_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/requestPointerLock" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/requestPointerLock</a>

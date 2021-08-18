@@ -1,33 +1,28 @@
-HTMLAreaElement.password
-========================
+# HTMLAreaElement.password
 
 The `HTMLAreaElement.password` property is a [`USVString`](../usvstring) containing the password specified before the domain name.
 
 If it is set without first setting the `username` property, it silently fails.
 
-Syntax
-------
+## Syntax
 
     // Getter
     string = area.password;
     // Setter
     area.password = string;
 
-Examples
---------
+## Examples
 
     // An <area id="myArea" href="https://anonymous:flabada@developer.mozilla.org/en-US/docs/HTMLAreaElement"> is in the document
     const area = document.getElementByID("myArea");
     area.password; // returns 'flabada'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-hyperlink-password">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLHyperlinkElementUtils.password' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -83,9 +78,8 @@ No
 
 2.0
 
-See also
---------
+## See also
 
--   The [`HTMLAreaElement`](../htmlareaelement) interface it belongs to.
+- The [`HTMLAreaElement`](../htmlareaelement) interface it belongs to.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAreaElement/password" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLAreaElement/password</a>

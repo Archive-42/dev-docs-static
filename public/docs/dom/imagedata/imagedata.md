@@ -1,19 +1,17 @@
-ImageData()
-===========
+# ImageData()
 
 The `ImageData()` constructor returns a newly instantiated [`ImageData`](../imagedata) object built from the typed array given and having the specified width and height.
 
 This constructor is the preferred way of creating such an object in a [`Worker`](../worker).
 
-Syntax
-------
+## Syntax
 
     new ImageData(array, width [, height]);
     new ImageData(width, height);
 
 ### Parameters
 
- `array` <span class="badge inline optional">Optional</span>   
+`array` <span class="badge inline optional">Optional</span>  
 A [`Uint8ClampedArray`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray) containing the underlying pixel representation of the image. If no such array is given, an image with a transparent black rectangle of the specified `width` and `height` will be created.
 
 `width`  
@@ -31,8 +29,7 @@ A new [`ImageData`](../imagedata) object.
 `IndexSizeError`  
 Thrown if `array` is specified, but its length is not a multiple of `(4 * width)` or `(4 * width * height)`.
 
-Examples
---------
+## Examples
 
 ### Creating a blank ImageData object
 
@@ -73,14 +70,12 @@ The array (`arr`) has a length of `40000`: it consists of 10,000 pixels, each of
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-imagedata">HTML Living Standard<br />
 <span class="small">The definition of 'ImageData()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -136,9 +131,8 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [`CanvasRenderingContext2D.createImageData()`](../canvasrenderingcontext2d/createimagedata), the creator method that can be used outside workers.
+- [`CanvasRenderingContext2D.createImageData()`](../canvasrenderingcontext2d/createimagedata), the creator method that can be used outside workers.
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/ImageData/ImageData" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ImageData/ImageData</a>

@@ -1,8 +1,6 @@
-HTMLMenuItemElement
-===================
+# HTMLMenuItemElement
 
-Properties
-----------
+## Properties
 
 **Draft**
 
@@ -14,22 +12,19 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `HTMLMenuItemElement` interface provides special properties (beyond those defined on the regular [`HTMLElement`](htmlelement) interface it also has available to it by inheritance) for manipulating [`<menuitem>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/menuitem) elements.
 
-*This interface has no properties, but inherits properties from: [`HTMLElement`](htmlelement)*
+_This interface has no properties, but inherits properties from: [`HTMLElement`](htmlelement)_
 
-Methods
--------
+## Methods
 
-*This interface has no methods, but inherits methods from: [`HTMLElement`](htmlelement)*
+_This interface has no methods, but inherits methods from: [`HTMLElement`](htmlelement)_
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/html51/interactive-elements.html#htmlmenuitemelement-htmlmenuitemelement">HTML 5.1<br />
 <span class="small">The definition of 'HTMLMenuItemElement' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Snapshot of the <a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a>.<br />
 Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -267,9 +262,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`HTMLMenuElement`](htmlmenuelement)
+- [`HTMLMenuElement`](htmlmenuelement)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMenuItemElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLMenuItemElement</a>

@@ -1,8 +1,6 @@
-InstallTrigger.startSoftwareUpdate
-==================================
+# InstallTrigger.startSoftwareUpdate
 
-Summary
--------
+## Summary
 
 Triggers the downloading and installation of the software at the specified URL.
 
@@ -10,8 +8,7 @@ Triggers the downloading and installation of the software at the specified URL.
 
 [InstallTrigger](../installtrigger) object
 
-Syntax
-------
+## Syntax
 
     Boolean startSoftwareUpdate ( String url);
 
@@ -26,8 +23,7 @@ A uniform resource locator specifying the location of the XPI file containing th
 
 True.
 
-Description
------------
+## Description
 
 The `startSoftwareUpdate` method triggers a software download and install from the specified URL. This method has been largely superseded by newer [install](install) method, which is more flexible and allows you to install more than one XPI. Note also that XPIs installed with this method must have their own install.js files in which the full installation is defined.
 

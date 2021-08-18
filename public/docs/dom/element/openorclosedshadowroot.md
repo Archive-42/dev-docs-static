@@ -1,5 +1,4 @@
-Element.openOrClosedShadowRoot
-==============================
+# Element.openOrClosedShadowRoot
 
 **Draft**
 
@@ -13,8 +12,7 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 The `Element.openOrCloseShadowRoot` read-only property represents the shadow root hosted by the element, regardless if its [`mode`](../shadowroot/mode) is `open` or `closed`. Use [`Element.attachShadow()`](attachshadow) to add a shadow root to an existing element.
 
-Syntax
-------
+## Syntax
 
     var shadowroot = element.openOrCloseShadowRoot;
 
@@ -22,13 +20,11 @@ Syntax
 
 A [`ShadowRoot`](../shadowroot) object instance, regardless if its [`mode`](../shadowroot/mode) is set to `open` or `closed`, or `null` if no shadow root is present. (See [`Element.attachShadow()`](attachshadow) for further details).
 
-Specifications
---------------
+## Specifications
 
-*This property is not part of any specification.*
+_This property is not part of any specification._
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,9 +84,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [`Element.shadowRoot`](shadowroot)
+- [`Element.shadowRoot`](shadowroot)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/openOrClosedShadowRoot" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/openOrClosedShadowRoot</a>

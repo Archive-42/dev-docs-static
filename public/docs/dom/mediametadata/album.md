@@ -1,5 +1,4 @@
-MediaMetadata.album
-===================
+# MediaMetadata.album
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `album` property of the [`MediaMetaData`](../mediametadata) interface returns or sets the name of the album or collection containing the media to be played.
 
-Syntax
-------
+## Syntax
 
     var album = mediaMetaData.album
     mediaMetaData.album = album
@@ -18,8 +16,7 @@ Syntax
 
 A [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) containing the name of the album.
 
-Examples
---------
+## Examples
 
 The following example checks for browser compatibility and sets the current metadata for the media session.
 
@@ -38,14 +35,12 @@ The following example checks for browser compatibility and sets the current meta
         ]
       });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediasession/#dom-mediametadata-album">Media Session Standard<br />
 <span class="small">The definition of 'album' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

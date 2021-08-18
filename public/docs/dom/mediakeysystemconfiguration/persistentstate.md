@@ -1,5 +1,4 @@
-MediaKeySystemConfiguration.persistentState
-===========================================
+# MediaKeySystemConfiguration.persistentState
 
 **Experimental**
 
@@ -8,19 +7,16 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MediaKeySystemConfiguration.persistentState` read-only property indicates whether the ability to persist state is required.
 
-Syntax
-------
+## Syntax
 
     var persistentState = mediaSystemConfiguration.persistentSTate;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemconfiguration-persistentstate">Encrypted Media Extensions<br />
 <span class="small">The definition of 'persistentState' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

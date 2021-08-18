@@ -1,10 +1,8 @@
-HTMLObjectElement.validity
-==========================
+# HTMLObjectElement.validity
 
 The `validity` read-only property of the [`HTMLObjectElement`](../htmlobjectelement) interface returns a [`ValidityState`](../validitystate) with the validity states that this element is in.
 
-Syntax
-------
+## Syntax
 
     var ValidityState = HTMLObjectElement.validity;
 
@@ -12,14 +10,12 @@ Syntax
 
 A [`ValidityState`](../validitystate) object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-cva-validity">HTML Living Standard<br />
 <span class="small">The definition of 'validity' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

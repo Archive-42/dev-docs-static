@@ -1,30 +1,27 @@
-IDBObjectStore
-==============
+# IDBObjectStore
 
 The `IDBObjectStore` interface of the [IndexedDB API](indexeddb_api) represents an object store in a database. Records within an object store are sorted according to their keys. This sorting enables fast insertion, look-up, and ordered retrieval.
 
 **Note:** This feature is available in [Web Workers](web_workers_api).
 
-Properties
-----------
+## Properties
 
- [`IDBObjectStore.indexNames`](idbobjectstore/indexnames) <span class="badge inline readonly">Read only </span>   
+[`IDBObjectStore.indexNames`](idbobjectstore/indexnames) <span class="badge inline readonly">Read only </span>  
 A list of the names of [indexes](indexeddb_api#gloss_index) on objects in this object store.
 
- [`IDBObjectStore.keyPath`](idbobjectstore/keypath) <span class="badge inline readonly">Read only </span>   
+[`IDBObjectStore.keyPath`](idbobjectstore/keypath) <span class="badge inline readonly">Read only </span>  
 The [key path](indexeddb_api#gloss_key_path) of this object store. If this attribute is `null`, the application must provide a key for each modification operation.
 
 [`IDBObjectStore.name`](idbobjectstore/name)  
 The name of this object store.
 
- [`IDBObjectStore.transaction`](idbobjectstore/transaction) <span class="badge inline readonly">Read only </span>   
+[`IDBObjectStore.transaction`](idbobjectstore/transaction) <span class="badge inline readonly">Read only </span>  
 The [`IDBTransaction`](idbtransaction) object to which this object store belongs.
 
- [`IDBObjectStore.autoIncrement`](idbobjectstore/autoincrement) <span class="badge inline readonly">Read only </span>   
+[`IDBObjectStore.autoIncrement`](idbobjectstore/autoincrement) <span class="badge inline readonly">Read only </span>  
 The value of the auto increment flag for this object store.
 
-Methods
--------
+## Methods
 
 [`IDBObjectStore.add()`](idbobjectstore/add)  
 Returns an [`IDBRequest`](idbrequest) object, and, in a separate thread, creates a [structured clone](https://www.whatwg.org/specs/web-apps/current-work/multipage/common-dom-interfaces.html#structured-clone) of the `value`, and stores the cloned value in the object store. This is for adding new records to an object store.
@@ -62,14 +59,13 @@ Opens an index from this object store after which it can, for example, be used t
 [`IDBObjectStore.openCursor()`](idbobjectstore/opencursor)  
 Returns an [`IDBRequest`](idbrequest) object, and, in a separate thread, returns a new [`IDBCursorWithValue`](idbcursorwithvalue) object. Used for iterating through an object store by primary key with a cursor.
 
- [`IDBObjectStore.openKeyCursor()`](idbobjectstore/openkeycursor)   
+[`IDBObjectStore.openKeyCursor()`](idbobjectstore/openkeycursor)  
 Returns an [`IDBRequest`](idbrequest) object, and, in a separate thread, returns a new [`IDBCursor`](idbcursor). Used for iterating through an object store with a key.
 
 [`IDBObjectStore.put()`](idbobjectstore/put)  
 Returns an [`IDBRequest`](idbrequest) object, and, in a separate thread, creates a [structured clone](https://www.whatwg.org/specs/web-apps/current-work/multipage/common-dom-interfaces.html#structured-clone) of the `value`, and stores the cloned value in the object store. This is for updating existing records in an object store when the transaction's mode is `readwrite`.
 
-Example
--------
+## Example
 
 This example shows a variety of different uses of object stores, from updating the data structure with [`IDBObjectStore.createIndex`](idbobjectstore/createindex) inside an `onupgradeneeded` function, to adding a new item to our object store with [`IDBObjectStore.add`](idbobjectstore/add). For a full working example, see our [To-do Notifications](https://github.com/mdn/to-do-notifications/)<span style="line-height: 1.5;"> app (</span>[view example live](https://mdn.github.io/to-do-notifications/)<span style="line-height: 1.5;">.)</span>
 
@@ -137,15 +133,13 @@ This example shows a variety of different uses of object stores, from updating t
       note.innerHTML += '<li>Request successful .</li>';
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#idbobjectstore">Indexed Database API 2.0<br />
 <span class="small">The definition of 'IDBObjectStore' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#object-store-interface">Indexed Database API 2.0<br />
 <span class="small">The definition of 'IDBObjectStore' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -731,15 +725,14 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](idbdatabase)
--   Using transactions: [`IDBTransaction`](idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
--   Using cursors: [`IDBCursor`](idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](idbdatabase)
+- Using transactions: [`IDBTransaction`](idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](idbobjectstore)
+- Using cursors: [`IDBCursor`](idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore</a>

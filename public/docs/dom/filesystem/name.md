@@ -1,5 +1,4 @@
-FileSystem.name
-===============
+# FileSystem.name
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The read-only `name` property of the [`FileSystem`](../filesystem) interface indicates the file system's name. This [`USVString`](../usvstring) is unique among all file systems currently exposed by the [File and Directory Entries API](../file_and_directory_entries_api).
 
-Syntax
-------
+## Syntax
 
     var fsName = FileSystem.name;
 
@@ -17,19 +15,16 @@ Syntax
 
 A [`USVString`](../usvstring) representing the file system's name.
 
-Example
--------
+## Example
 
     // tbd
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/entries-api/#dom-filesystem-name">File and Directory Entries API<br />
 <span class="small">The definition of 'name' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -85,11 +80,10 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](../file_and_directory_entries_api)
--   [Introduction to the File System API](../file_and_directory_entries_api/introduction)
--   [`FileSystem`](../filesystem)
+- [File and Directory Entries API](../file_and_directory_entries_api)
+- [Introduction to the File System API](../file_and_directory_entries_api/introduction)
+- [`FileSystem`](../filesystem)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystem/name" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystem/name</a>

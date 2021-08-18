@@ -1,10 +1,8 @@
-HTMLLabelElement.htmlFor
-========================
+# HTMLLabelElement.htmlFor
 
 The `HTMLLabelElement.htmlFor` property reflects the value of the [`for`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attr-for) content property. That means that this script-accessible property is used to set and read the value of the content property `for`, which is the ID of the label's associated control element.
 
-Syntax
-------
+## Syntax
 
     controlId = HTMLLabelElement.htmlFor
 
@@ -16,14 +14,12 @@ A [`DOMString`](../domstring) which contains the ID string of the element which 
 
 If this property has a value, the [`HTMLLabelElement.control`](control) property must refer to the same control.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-label-htmlfor">HTML Living Standard<br />
 <span class="small">The definition of 'htmlFor' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -79,13 +75,12 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`HTMLLabelElement`](../htmllabelelement)
--   [`HTMLLabelElement.control`](control)
--   [`HTMLElement`](../htmlelement)
--   [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label)
--   [HTML forms guide](https://developer.mozilla.org/en-US/docs/Learn/Forms)
+- [`HTMLLabelElement`](../htmllabelelement)
+- [`HTMLLabelElement.control`](control)
+- [`HTMLElement`](../htmlelement)
+- [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label)
+- [HTML forms guide](https://developer.mozilla.org/en-US/docs/Learn/Forms)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor</a>

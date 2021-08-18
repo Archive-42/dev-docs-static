@@ -1,5 +1,4 @@
-Element: keypress event
-=======================
+# Element: keypress event
 
 **Deprecated**
 
@@ -11,8 +10,7 @@ Since this event has been deprecated, you should look to use `beforeinput` or `k
 
 <table><tbody><tr class="odd"><td>Interface</td><td><a href="../keyboardevent"><code>KeyboardEvent</code></a></td></tr><tr class="even"><td>Bubbles</td><td>Yes</td></tr><tr class="odd"><td>Cancelable</td><td>Yes</td></tr><tr class="even"><td>Default Action</td><td>Varies: <code>keypress</code> event; launch text composition system; <code>blur</code> and <code>focus</code> events; <code>DOMActivate</code> event; other event</td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 ### addEventListener keypress example
 
@@ -37,13 +35,11 @@ This example logs the [`KeyboardEvent.code`](../keyboardevent/code) value whenev
 
     input.onkeypress = logKey;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-keypress">UI Events</a></td><td><span class="spec-wd">Working Draft</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -83,7 +79,7 @@ Chrome does not fire the `keypress` event for [known keyboard shortcuts](https:/
 
 Yes
 
-As of Firefox 65, the `keypress` event is no longer fired for [non-printable keys](https://developer.mozilla.org/docs/Web/API/KeyboardEvent/keyCode#Non-printable_keys_(function_keys)), except for the Enter key, and the Shift + Enter and Ctrl + Enter key combinations (these were kept for cross-browser compatibility purposes).
+As of Firefox 65, the `keypress` event is no longer fired for [non-printable keys](<https://developer.mozilla.org/docs/Web/API/KeyboardEvent/keyCode#Non-printable_keys_(function_keys)>), except for the Enter key, and the Shift + Enter and Ctrl + Enter key combinations (these were kept for cross-browser compatibility purposes).
 
 ?
 
@@ -101,7 +97,7 @@ Chrome does not fire the `keypress` event for [known keyboard shortcuts](https:/
 
 Yes
 
-As of Firefox 65, the `keypress` event is no longer fired for [non-printable keys](https://developer.mozilla.org/docs/Web/API/KeyboardEvent/keyCode#Non-printable_keys_(function_keys)), except for the Enter key, and the Shift + Enter and Ctrl + Enter key combinations (these were kept for cross-browser compatibility purposes).
+As of Firefox 65, the `keypress` event is no longer fired for [non-printable keys](<https://developer.mozilla.org/docs/Web/API/KeyboardEvent/keyCode#Non-printable_keys_(function_keys)>), except for the Enter key, and the Shift + Enter and Ctrl + Enter key combinations (these were kept for cross-browser compatibility purposes).
 
 ?
 
@@ -111,14 +107,13 @@ Yes
 
 Samsung Internet does not fire the `keypress` event for [known keyboard shortcuts](https://crbug.com/13891#c50). Which keyboard shortcuts are known depends on the user's system. Use the `keydown` event to implement keyboard shortcuts.
 
-See also
---------
+## See also
 
--   [`GlobalEventHandlers.onkeypress`](../globaleventhandlers/onkeypress)
--   The [`Document`](../document) interface, which the event also targets.
--   Related events:
-    -   `input`
-    -   `keydown`
-    -   `keyup`
+- [`GlobalEventHandlers.onkeypress`](../globaleventhandlers/onkeypress)
+- The [`Document`](../document) interface, which the event also targets.
+- Related events:
+  - `input`
+  - `keydown`
+  - `keyup`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/keypress_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/keypress_event</a>

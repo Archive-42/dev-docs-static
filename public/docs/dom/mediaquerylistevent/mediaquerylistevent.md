@@ -1,10 +1,8 @@
-MediaQueryListEvent.MediaQueryListEvent()
-=========================================
+# MediaQueryListEvent.MediaQueryListEvent()
 
 The `MediaQueryListEvent` constructor creates a new `MediaQueryListEvent` instance.
 
-Syntax
-------
+## Syntax
 
     var myMqlEvent = new MediaQueryListEvent(init);
 
@@ -14,25 +12,22 @@ init
 
 An init object that defines features of the new object instance. The available properties are:
 
--   media: A [`DOMString`](../domstring) representing a serialized media query.
--   matches: A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) representing the media query status — `true` if it matches, `false` if not.
+- media: A [`DOMString`](../domstring) representing a serialized media query.
+- matches: A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) representing the media query status — `true` if it matches, `false` if not.
 
-Examples
---------
+## Examples
 
     var media = '(max-width: 600px)';
     var matches = true;
 
     var myMediaQueryListEvent = new MediaQueryListEvent({media, matches});
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-mediaquerylistevent-mediaquerylistevent">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'MediaQueryListEvent()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -88,13 +83,12 @@ No
 
 4.0
 
-See also
---------
+## See also
 
--   [Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
--   [Using media queries from code](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries)
--   [`window.matchMedia()`](../window/matchmedia)
--   [`MediaQueryList`](../mediaquerylist)
--   [`MediaQueryListEvent`](../mediaquerylistevent)
+- [Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
+- [Using media queries from code](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries)
+- [`window.matchMedia()`](../window/matchmedia)
+- [`MediaQueryList`](../mediaquerylist)
+- [`MediaQueryListEvent`](../mediaquerylistevent)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryListEvent/MediaQueryListEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryListEvent/MediaQueryListEvent</a>

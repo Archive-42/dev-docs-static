@@ -1,12 +1,10 @@
-DynamicsCompressorNode.reduction
-================================
+# DynamicsCompressorNode.reduction
 
 The `reduction` read-only property of the [`DynamicsCompressorNode`](../dynamicscompressornode) interface is a float representing the amount of gain reduction currently applied by the compressor to the signal.
 
 Intended for metering purposes, it returns a value in dB, or `0` (no gain reduction) if no signal is fed into the `DynamicsCompressorNode`. The range of this value is between `-20` and `0` (in dB).
 
-Syntax
-------
+## Syntax
 
     var myReduction = compressorNodeInstance.reduction;
 
@@ -14,21 +12,18 @@ Syntax
 
 A float.
 
-Example
--------
+## Example
 
     var audioCtx = new AudioContext();
     var compressor = audioCtx.createDynamicsCompressor();
     var myReduction = compressor.reduction;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://webaudio.github.io/web-audio-api/#dom-dynamicscompressornode-reduction">Web Audio API<br />
 <span class="small">The definition of 'reduction' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -92,9 +87,8 @@ Yes
 
 Before Samsung Internet 6.0, this was an `AudioParam.`.
 
-See also
---------
+## See also
 
--   [Using the Web Audio API](../web_audio_api/using_web_audio_api)
+- [Using the Web Audio API](../web_audio_api/using_web_audio_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/DynamicsCompressorNode/reduction" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DynamicsCompressorNode/reduction</a>

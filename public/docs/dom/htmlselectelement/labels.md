@@ -1,10 +1,8 @@
-HTMLSelectElement.labels
-========================
+# HTMLSelectElement.labels
 
 The `HTMLSelectElement.labels` read-only property returns a [`NodeList`](../nodelist) of the [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) elements associated with the [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) element.
 
-Syntax
-------
+## Syntax
 
     var labelElements = select.labels;
 
@@ -12,8 +10,7 @@ Syntax
 
 A [`NodeList`](../nodelist) containing the `<label>` elements associated with the `<select>` element.
 
-Example
--------
+## Example
 
 ### HTML
 
@@ -33,15 +30,13 @@ Example
       }
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/forms.html#dom-lfe-labels">HTML Living Standard<br />
 <span class="small">The definition of 'labels' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/forms.html#dom-lfe-labels">HTML5<br />
 <span class="small">The definition of 'labels' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

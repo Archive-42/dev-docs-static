@@ -1,12 +1,10 @@
-IDBTransaction: error event
-===========================
+# IDBTransaction: error event
 
 The `error` event is fired on `IDBTransaction` when a request returns an error and the event bubbles up to the transaction object.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../event"><code>Event</code></a></td></tr><tr class="even"><td>Event handler property</td><td><code>onerror</code></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 This example opens a database and tries to add a record, listening for the `error` event for the `add()` operation (this will occur if, for example, a record with the given `taskTitle` already exists):
 
@@ -78,8 +76,7 @@ The same example, using the `onerror` property instead of `addEventListener()`:
       const objectStoreRequest = objectStore.add(newItem);
     };
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -135,10 +132,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   `onerror` event handler property
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- `onerror` event handler property
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/error_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/error_event</a>

@@ -1,10 +1,8 @@
-Event.target
-============
+# Event.target
 
 The `target` property of the [`Event`](../event) interface is a reference to the object onto which the event was dispatched. It is different from [`Event.currentTarget`](currenttarget) when the event handler is called during the bubbling or capturing phase of the event.
 
-Syntax
-------
+## Syntax
 
     const theTarget = someEvent.target;
 
@@ -12,8 +10,7 @@ Syntax
 
 [`EventTarget`](../eventtarget)
 
-Example
--------
+## Example
 
 The `event.target` property can be used in order to implement **event delegation**.
 
@@ -36,16 +33,14 @@ The `event.target` property can be used in order to implement **event delegation
     // It will fire when each <li> is clicked
     ul.addEventListener('click', hide, false);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-event-target">DOM<br />
 <span class="small">The definition of 'Event.target' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/dom/#dom-event-target">DOM4<br />
 <span class="small">The definition of 'Event.target' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-Event-target">Document Object Model (DOM) Level 2 Events Specification<br />
 <span class="small">The definition of 'Event.target' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -113,9 +108,8 @@ In this model, the event object has a [`Event.srcElement`](srcelement) property 
       target.style.visibility = 'hidden';
     }
 
-See also
---------
+## See also
 
--   [Comparison of Event Targets](comparison_of_event_targets)
+- [Comparison of Event Targets](comparison_of_event_targets)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/target" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Event/target</a>

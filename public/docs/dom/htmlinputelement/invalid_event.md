@@ -1,5 +1,4 @@
-HTMLInputElement: invalid event
-===============================
+# HTMLInputElement: invalid event
 
 The `invalid` event fires when a submittable element has been checked for validity and doesn't satisfy its constraints.
 
@@ -9,8 +8,7 @@ This event can be useful for displaying a summary of the problems with a form on
 
 It is not checked on [`blur`](../element/blur_event).
 
-Examples
---------
+## Examples
 
 If a form is submitted with an invalid value, the submittable elements are checked and, if an error is found, the `invalid` event will fire on the `invalid` element. In this example, when an invalid event fires because of an invalid value in the input, the invalid value is logged.
 
@@ -36,16 +34,14 @@ If a form is submitted with an invalid value, the submittable elements are check
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/forms.html#the-constraint-validation-api">HTML Living Standard<br />
 <span class="small">The definition of 'Invalid event' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/sec-forms.html#the-constraint-validation-api">HTML 5.1<br />
 <span class="small">The definition of 'Invalid event' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/html52/forms.html#the-constraint-validation-api">HTML5<br />
 <span class="small">The definition of 'Invalid event' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -101,11 +97,10 @@ Samsung Internet
 
 4.0
 
-See also
---------
+## See also
 
--   HTML [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element
--   Related event: [`submit`](../htmlformelement/submit_event)
--   CSS [`:invalid`](https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid) pseudo class
+- HTML [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element
+- Related event: [`submit`](../htmlformelement/submit_event)
+- CSS [`:invalid`](https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid) pseudo class
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event</a>

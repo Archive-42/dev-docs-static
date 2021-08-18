@@ -1,17 +1,14 @@
-Gamepad.index
-=============
+# Gamepad.index
 
 The `Gamepad.index` property of the [`Gamepad`](../gamepad) interface returns an integer that is auto-incremented to be unique for each device currently connected to the system.
 
 This can be used to distinguish multiple controllers; a gamepad that is disconnected and reconnected will retain the same index.
 
-Syntax
-------
+## Syntax
 
     readonly    attribute long                index;
 
-Example
--------
+## Example
 
     window.addEventListener("gamepadconnected", function() {
       var gp = navigator.getGamepads()[0];
@@ -22,14 +19,12 @@ Example
 
 A [`number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/gamepad/#dom-gamepad-index">Gamepad<br />
 <span class="small">The definition of 'Gamepad.index' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -95,8 +90,7 @@ No
 
 2.0-3.0
 
-See also
---------
+## See also
 
 [Using the Gamepad API](../gamepad_api/using_the_gamepad_api)
 

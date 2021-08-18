@@ -1,10 +1,8 @@
-EventTarget()
-=============
+# EventTarget()
 
 The `EventTarget()` constructor creates a new [`EventTarget`](../eventtarget) object instance.
 
-Syntax
-------
+## Syntax
 
     var myEventTarget = new EventTarget();
 
@@ -16,8 +14,7 @@ None.
 
 An instance of the [`EventTarget`](../eventtarget) object.
 
-Examples
---------
+## Examples
 
     class MyEventTarget extends EventTarget {
       constructor(mySecret) {
@@ -38,14 +35,12 @@ Examples
     myEventTarget.dispatchEvent(event);
     let newValue = myEventTarget.secret; // == 7
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-eventtarget-eventtarget">DOM<br />
 <span class="small">The definition of 'EventTarget() constructor' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -101,9 +96,8 @@ No
 
 9.0
 
-See also
---------
+## See also
 
--   [`EventTarget`](../eventtarget)
+- [`EventTarget`](../eventtarget)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/EventTarget" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/EventTarget</a>

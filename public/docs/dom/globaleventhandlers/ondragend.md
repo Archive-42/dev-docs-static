@@ -1,20 +1,17 @@
-GlobalEventHandlers.ondragend
-=============================
+# GlobalEventHandlers.ondragend
 
 A [`global event handler`](../globaleventhandlers) for the `dragend` event.
 
-Syntax
-------
+## Syntax
 
     var dragendHandler = targetElement.ondragend;
 
 ### Return value
 
 `dragendHandler`  
-The *dragend* event handler for element `targetElement`.
+The _dragend_ event handler for element `targetElement`.
 
-Example
--------
+## Example
 
 This example shows two ways to use the [`ondragend`](../globaleventhandlers) attribute handler to set an element's `dragend` event handler.
 
@@ -104,15 +101,13 @@ This example shows two ways to use the [`ondragend`](../globaleventhandlers) att
     </body>
     </html>
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/indices.html#ix-handler-ondragend">HTML Living Standard<br />
 <span class="small">The definition of 'ondragend' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/index.html#ix-handler-ondragend">HTML 5.1<br />
 <span class="small">The definition of 'ondragend' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -168,9 +163,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   `dragend`
+- `dragend`
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondragend" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondragend</a>

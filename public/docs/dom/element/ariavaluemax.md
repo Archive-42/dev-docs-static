@@ -1,10 +1,8 @@
-Element.ariaValueMax
-====================
+# Element.ariaValueMax
 
 The `ariaValueMax` property of the [`Element`](../element) interface reflects the value of the [`aria-valuemax`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-valuemax_attribute) attribute, which defines the maximum allowed value for a range widget.
 
-Syntax
-------
+## Syntax
 
     var ariaValueMax = element.ariaValueMax;
     element.ariaValueMax = ariaValueMax
@@ -13,8 +11,7 @@ Syntax
 
 A [`DOMString`](../domstring) which contains a number.
 
-Examples
---------
+## Examples
 
 In this example the `aria-valuemax` attribute on the element with an ID of `slider` is set to "7". Using `ariaValueMax` we update the value to "6".
 
@@ -27,14 +24,12 @@ In this example the `aria-valuemax` attribute on the element with an ID of `slid
     el.ariaValueMax = "6";
     console.log(el.ariaValueMax); // 6
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariavaluemax">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaValueMax' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-HTMLElement: animationcancel event
-==================================
+# HTMLElement: animationcancel event
 
 **Experimental**
 
@@ -12,8 +11,7 @@ An event handler for this event can be added by setting the [`onanimationcancel`
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../animationevent"><code>AnimationEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="../globaleventhandlers/onanimationcancel"><code>onanimationcancel</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 This code gets an element that's currently being animated and adds a listener to the `animationcancel` event. It then sets the element's [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/display) property to `none`, which will trigger the `animationcancel` event.
 
@@ -115,13 +113,11 @@ The same, but using the [`onanimationcancel`](../globaleventhandlers/onanimation
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/css-animations-1/#eventdef-animationevent-animationcancel">CSS Animations Level 1</a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -181,14 +177,13 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations)
--   [Using CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)
--   [`AnimationEvent`](../animationevent)
--   Related events: [`animationstart`](animationstart_event), [`animationend`](animationend_event), [`animationiteration`](animationiteration_event)
--   This event on [`Document`](../document) targets: [`animationcancel`](../document/animationcancel_event)
--   This event on [`Window`](../window) targets: [`animationcancel`](../window/animationcancel_event)
+- [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations)
+- [Using CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)
+- [`AnimationEvent`](../animationevent)
+- Related events: [`animationstart`](animationstart_event), [`animationend`](animationend_event), [`animationiteration`](animationiteration_event)
+- This event on [`Document`](../document) targets: [`animationcancel`](../document/animationcancel_event)
+- This event on [`Window`](../window) targets: [`animationcancel`](../window/animationcancel_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/animationcancel_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/animationcancel_event</a>

@@ -1,5 +1,4 @@
-Event.returnValue
-=================
+# Event.returnValue
 
 **Deprecated**
 
@@ -11,8 +10,7 @@ The [`Event`](../event) property `returnValue` indicates whether the default act
 
 While `returnValue` has been adopted into the DOM standard, it is present primarily to support existing code. You should use [`preventDefault()`](preventdefault), and [`defaultPrevented`](defaultprevented) instead of this historical property.
 
-Syntax
-------
+## Syntax
 
     event.returnValue = bool;
 
@@ -24,21 +22,18 @@ A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 
 The value returned by `returnValue` is the opposite of the value returned by [`defaultPrevented`](defaultprevented).
 
-Usage notes
------------
+## Usage notes
 
 `returnValue` was introduced into the DOM by Internet Explorer 6, and due to that browser's ubiquity became so commonly used that other browsers eventually implemented it as well. It has been adopted into the DOM specification, primarily to ensure that existing web content continues to function going forward.
 
 New projects should generally avoid using `returnValue`, although they may if they choose to do so.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-event-returnvalue">DOM<br />
 <span class="small">The definition of 'returnValue' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Added for legacy compatibility.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

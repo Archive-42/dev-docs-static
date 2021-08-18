@@ -1,5 +1,4 @@
-MediaDeviceInfo.deviceId
-========================
+# MediaDeviceInfo.deviceId
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `deviceId` readonly property of the [`MediaDeviceInfo`](../mediadeviceinfo) interface returns a [`DOMString`](../domstring) that is an identifier for the represented device and is persisted across sessions. It is un-guessable by other applications, and unique to the origin of the calling application. It is reset when the user clears cookies. For private browsing, a different identifier is used that is not persisted across sessions.
 
-Syntax
-------
+## Syntax
 
     var deviceID = MediaDeviceInfo.deviceId
 
@@ -17,14 +15,12 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediadeviceinfo-deviceid">Media Capture and Streams<br />
 <span class="small">The definition of 'deviceId' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

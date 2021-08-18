@@ -1,5 +1,4 @@
-HTMLTableElement.width
-======================
+# HTMLTableElement.width
 
 **Deprecated**
 
@@ -7,21 +6,18 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The `HTMLTableElement.width` property represents the desired width of the table.
 
-Syntax
-------
+## Syntax
 
     HTMLTableElement.width = width;
     var width = HTMLTableElement.width;
 
 Where `width` is a string representing the width in number of pixels or as a percentage value.
 
-Example
--------
+## Example
 
     mytable.width = "75%";
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -77,9 +73,8 @@ Samsung Internet
 
 1.0
 
-Specifications
---------------
+## Specifications
 
--   W3C DOM 2 HTML Specification [*HTMLTableElement* .width](https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-77447361)
+- W3C DOM 2 HTML Specification [_HTMLTableElement_ .width](https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-77447361)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableElement/width" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLTableElement/width</a>

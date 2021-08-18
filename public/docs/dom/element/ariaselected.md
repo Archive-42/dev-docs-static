@@ -1,10 +1,8 @@
-Element.ariaSelected
-====================
+# Element.ariaSelected
 
 The `ariaSelected` property of the [`Element`](../element) interface reflects the value of the `aria-selected` attribute, which indicates the current "selected" state of elements that have a selected state.
 
-Syntax
-------
+## Syntax
 
     var ariaSelected = element.ariaSelected;
     element.ariaSelected = ariaSelected
@@ -22,8 +20,7 @@ The item is not selected.
 `"undefined"`  
 The item is not
 
-Examples
---------
+## Examples
 
 In this example the `aria-selected` attribute on the element with an ID of `tab-id` is set to "true". Using `ariaSelected` we update the value to "false".
 
@@ -34,14 +31,12 @@ In this example the `aria-selected` attribute on the element with an ID of `tab-
     el.ariaSelected = "false";
     console.log(el.ariaSelected); // false
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariavaluemax">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaSelected' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -97,9 +92,8 @@ No
 
 13.0
 
-See also
---------
+## See also
 
--   [ARIA: tab role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role)
+- [ARIA: tab role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaSelected" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaSelected</a>

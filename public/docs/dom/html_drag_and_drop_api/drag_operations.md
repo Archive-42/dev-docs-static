@@ -1,12 +1,10 @@
-Drag Operations
-===============
+# Drag Operations
 
 The following describes the steps that occur during a drag and drop operation.
 
-The drag operations described in this document use the [`DataTransfer`](../datatransfer) interface. This document does *not* use the [`DataTransferItem`](../datatransferitem) interface nor the [`DataTransferItemList`](../datatransferitemlist) interface.
+The drag operations described in this document use the [`DataTransfer`](../datatransfer) interface. This document does _not_ use the [`DataTransferItem`](../datatransferitem) interface nor the [`DataTransferItemList`](../datatransferitemlist) interface.
 
-The `draggable` Attribute
--------------------------
+## The `draggable` Attribute
 
 In a web page, there are certain cases where a default drag behavior is used. These include text selections, images, and links. When an image or link is dragged, the URL of the image or link is set as the drag data, and a drag begins. For other elements, they must be part of a selection for a default drag to occur. To see this in effect, select an area of a webpage, and then click and hold the mouse and drag the selection. An OS-specific rendering of the selection will appear and follow the mouse pointer as the drag occurs. However, this behavior is only the default drag behavior, if no listeners adjust the data to be dragged.
 
@@ -30,8 +28,7 @@ The `draggable` attribute may be used on any element, including images and links
 
 **Note:** When an element is made draggable, text or other elements within it can no longer be selected in the normal way by clicking and dragging with the mouse. Instead, the user must hold down the Alt key to select text with the mouse, or use the keyboard.
 
-Starting a Drag Operation
--------------------------
+## Starting a Drag Operation
 
 In this example, a listener is added for the `dragstart` event by using the `ondragstart` attribute.
 
@@ -45,12 +42,11 @@ In this example the `dragstart` listener is added to the draggable element itsel
 
 Within the `dragstart` event, you can specify the **drag data**, the **feedback image**, and the **drag effects**, all of which are described below. However, only the **drag data** is required. (The default image and drag effects are suitable in most situations.)
 
-Drag Data
----------
+## Drag Data
 
 All [`drag events`](../dragevent) have a property called [`dataTransfer`](../dragevent/datatransfer) which holds the drag data (`dataTransfer` is a [`DataTransfer`](../datatransfer) object).
 
-When a drag occurs, data must be associated with the drag which identifies *what* is being dragged. For example, when dragging the selected text within a textbox, the data associated with the *drag data item* is the text itself. Similarly, when dragging a link on a web page, the drag data item is the link's URL.
+When a drag occurs, data must be associated with the drag which identifies _what_ is being dragged. For example, when dragging the selected text within a textbox, the data associated with the _drag data item_ is the text itself. Similarly, when dragging a link on a web page, the drag data item is the link's URL.
 
 The [`drag data`](../datatransfer) contains two pieces of information, the **type** (or format) of the data, and the data's **value**. The format is a type string (such as `text/plain` for text data), and the value is a string of text. When the drag begins, you add data by providing a type and the data. During the drag, in an event listener for the `dragenter` and `dragover` events, you use the data types of the data being dragged to check whether a drop is allowed. For instance, a drop target that accepts links would check for the type `text/uri-list`. During a drop event, a listener would retrieve the data being dragged and insert it at the drop location.
 
@@ -85,8 +81,7 @@ You can clear the data using the [`clearData()`](../datatransfer/cleardata) meth
 
 The `type` argument to the [`clearData()`](../datatransfer/cleardata) method is optional. If the `type` is not specified, the data associated with all types is removed. If the drag contains no drag data items, or all of the items have been subsequently cleared, then no drag will occur.
 
-Setting the drag feedback image
--------------------------------
+## Setting the drag feedback image
 
 When a drag occurs, a translucent image is generated from the drag target (the element the "`dragstart`" event is fired at), and follows the user's pointer during the drag. This image is created automatically, so you do not need to create it yourself. However, you can use [`setDragImage()`](../datatransfer/setdragimage) to specify a custom drag feedback image.
 
@@ -115,8 +110,7 @@ It is also possible to use images and canvases that are not in a document. This 
 
 In this example, we make one canvas the drag image. As the canvas is `50`×`50` pixels, we use offsets of half of this (`25`) so that the image appears centered on the mouse pointer.
 
-Drag Effects
-------------
+## Drag Effects
 
 When dragging, there are several operations that may be performed. The `copy` operation is used to indicate that the data being dragged will be copied from its present location to the drop location. The `move` operation is used to indicate that the data being dragged will be moved, and the `link` operation is used to indicate that some form of relationship or connection will be created between the source and drop locations.
 
@@ -171,8 +165,7 @@ You can use the value `none` to indicate that no drop is allowed at this locatio
 
 Within the `drop` and `dragend` events, you can check the [`dropEffect`](../datatransfer/dropeffect) property to determine which effect was ultimately chosen. If the chosen effect were "`move`", then the original data should be removed from the source of the drag within the `dragend` event.
 
-Specifying Drop Targets
------------------------
+## Specifying Drop Targets
 
 A listener for the `dragenter` and `dragover` events are used to indicate valid drop targets, that is, places where dragged items may be dropped. Most areas of a web page or application are not valid places to drop data. Thus, the default handling of these events is not to allow a drop.
 
@@ -198,8 +191,7 @@ In this example, we use the `includes` method to check if the type `text/uri-lis
 
 You may also wish to set either the [`effectAllowed`](../datatransfer/effectallowed), [`dropEffect`](../datatransfer/dropeffect) property, or both at the same time, if you wish to be more specific about the type of operation that will performed. Naturally, changing either property will have no effect if you do not cancel the event as well.
 
-Drop Feedback
--------------
+## Drop Feedback
 
 There are several ways in which you can indicate to the user that a drop is allowed at a certain location. The mouse pointer will update as necessary depending on the value of the [`dropEffect`](../datatransfer/dropeffect) property.
 
@@ -221,8 +213,7 @@ The `dragover` event will fire at the element the mouse is pointing at. Naturall
 
 Finally, the `dragleave` event will fire at an element when the drag leaves the element. This is the time when you should remove any insertion markers or highlighting. You do not need to cancel this event. Any highlighting or other visual effects specified using the `:-moz-drag-over` pseudoclass will be removed automatically. The `dragleave` event will always fire, even if the drag is cancelled, so you can always ensure that any insertion point cleanup can be done during this event.
 
-Performing a Drop
------------------
+## Performing a Drop
 
 When the user releases the mouse, the drag and drop operation ends.
 
@@ -281,8 +272,7 @@ The following example returns the data associated with the best-supported format
       event.preventDefault();
     }
 
-Finishing a Drag
-----------------
+## Finishing a Drag
 
 Once the drag is complete, a `dragend` event is fired at the source of the drag (the same element that received the `dragstart` event). This event will fire if the drag was successful<sup>\[1\]</sup> or if it was cancelled. However, you can use the [`dropEffect`](../datatransfer/dropeffect) property to determine which drop operation occurred.
 
@@ -294,12 +284,11 @@ After the `dragend` event has finished propagating, the drag and drop operation 
 
 \[1\]: In Gecko, `dragend` is not dispatched if the source node is moved or removed during the drag (e.g. on drop or `dragover`). [Bug 460801](https://bugzilla.mozilla.org/show_bug.cgi?id=460801)
 
-See also
---------
+## See also
 
--   <a href="../html_drag_and_drop_api" class="internal">HTML Drag and Drop API (Overview)</a>
--   <a href="multiple_items" class="internal">Dragging and Dropping Multiple Items</a>
--   <a href="recommended_drag_types" class="internal">Recommended Drag Types</a>
--   [HTML5 Living Standard: Drag and Drop](https://html.spec.whatwg.org/multipage/interaction.html#dnd)
+- <a href="../html_drag_and_drop_api" class="internal">HTML Drag and Drop API (Overview)</a>
+- <a href="multiple_items" class="internal">Dragging and Dropping Multiple Items</a>
+- <a href="recommended_drag_types" class="internal">Recommended Drag Types</a>
+- [HTML5 Living Standard: Drag and Drop](https://html.spec.whatwg.org/multipage/interaction.html#dnd)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations</a>

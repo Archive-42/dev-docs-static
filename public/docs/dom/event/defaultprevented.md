@@ -1,12 +1,10 @@
-Event.defaultPrevented
-======================
+# Event.defaultPrevented
 
 The `defaultPrevented` read-only property of the [`Event`](../event) interface returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether or not the call to [`Event.preventDefault()`](preventdefault) canceled the event.
 
 **Note:** You should use this instead of the non-standard, deprecated `getPreventDefault()` method (see [bug 691151](https://bugzilla.mozilla.org/show_bug.cgi?id=691151)).
 
-Syntax
-------
+## Syntax
 
     var defaultWasPrevented = event.defaultPrevented;
 
@@ -14,8 +12,7 @@ Syntax
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean), where `true` indicates that the default [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) action was prevented, and `false` indicates that it was not.
 
-Example
--------
+## Example
 
 This example logs attempts to visit links from two [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) elements. JavaScript is used to prevent the second link from working.
 
@@ -50,14 +47,12 @@ This example logs attempts to visit links from two [`<a>`](https://developer.moz
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-event-defaultprevented">DOM<br />
 <span class="small">The definition of 'Event.defaultPrevented()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

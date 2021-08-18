@@ -1,12 +1,10 @@
-IDBTransaction: complete event
-==============================
+# IDBTransaction: complete event
 
 The `complete` handler is executed when a transaction successfully completed.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../event"><code>Event</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="oncomplete"><code>oncomplete</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 Using [`addEventListener()`](../eventtarget/addeventlistener):
 
@@ -86,8 +84,7 @@ Using the [`oncomplete`](oncomplete) property:
       const objectStoreRequest = objectStore.add(newItem);
     };
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -143,10 +140,9 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   [`oncomplete`](oncomplete) event handler property
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- [`oncomplete`](oncomplete) event handler property
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/complete_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/complete_event</a>

@@ -1,10 +1,8 @@
-HTMLIFrameElement.referrerPolicy
-================================
+# HTMLIFrameElement.referrerPolicy
 
-The `HTMLIFrameElement``.referrerPolicy` property reflects the HTML [`referrerpolicy`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-referrerpolicy) attribute of the [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) element defining which referrer is sent when fetching the resource.
+The ` HTMLIFrameElement``.referrerPolicy ` property reflects the HTML [`referrerpolicy`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-referrerpolicy) attribute of the [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe) element defining which referrer is sent when fetching the resource.
 
-Syntax
-------
+## Syntax
 
     refStr = iframeElt.referrerPolicy;
     iframeElt.referrerPolicy = refStr;
@@ -38,8 +36,7 @@ Send a full URL when performing a same-origin or cross-origin request.
 
 This policy will leak origins and paths from TLS-protected resources to insecure origins. Carefully consider the impact of this setting.
 
-Examples
---------
+## Examples
 
     var iframe = document.createElement("iframe");
     iframe.src = "/";
@@ -47,15 +44,13 @@ Examples
     var body = document.getElementsByTagName("body")[0];
     body.appendChild(iframe); // Fetch the image using the complete URL as the referrer
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute">Referrer Policy<br />
 <span class="small">The definition of 'referrerpolicy attribute' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Added the <code>referrerPolicy</code> attribute.</td></tr><tr class="even"><td><a href="https://html.spec.whatwg.org/multipage/#dom-iframe-referrerpolicy">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLIFrameElement: referrerPolicy' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -111,9 +106,8 @@ No
 
 6.0
 
-See also
---------
+## See also
 
--   [`HTMLAnchorElement.referrerPolicy`](../htmlanchorelement/referrerpolicy), [`HTMLAreaElement.referrerPolicy`](../htmlareaelement/referrerpolicy), and [`HTMLAreaElement.referrerPolicy`](../htmlareaelement/referrerpolicy).
+- [`HTMLAnchorElement.referrerPolicy`](../htmlanchorelement/referrerpolicy), [`HTMLAreaElement.referrerPolicy`](../htmlareaelement/referrerpolicy), and [`HTMLAreaElement.referrerPolicy`](../htmlareaelement/referrerpolicy).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/referrerPolicy" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/referrerPolicy</a>

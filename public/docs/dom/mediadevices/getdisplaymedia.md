@@ -1,18 +1,16 @@
-MediaDevices.getDisplayMedia()
-==============================
+# MediaDevices.getDisplayMedia()
 
 The [`MediaDevices`](../mediadevices) interface's `getDisplayMedia()` method prompts the user to select and grant permission to capture the contents of a display or portion thereof (such as a window) as a [`MediaStream`](../mediastream). The resulting stream can then be recorded using the [MediaStream Recording API](../mediastream_recording_api) or transmitted as part of a [WebRTC](../webrtc_api) session.
 
 See [Using the Screen Capture API](../screen_capture_api/using_screen_capture) for more details and an example.
 
-Syntax
-------
+## Syntax
 
     var promise = navigator.mediaDevices.getDisplayMedia(constraints);
 
 ### Parameters
 
- `constraints` <span class="badge inline optional">Optional</span>   
+`constraints` <span class="badge inline optional">Optional</span>  
 An optional [`MediaStreamConstraints`](../mediastreamconstraints) object specifying requirements for the returned [`MediaStream`](../mediastream). Since `getDisplayMedia()` requires a video track, the returned stream will have one even if no video track is expressly requested by the `constraints` object.
 
 ### Return value
@@ -46,20 +44,18 @@ After creating the stream, applying the specified `constraints` fails because no
 [`TypeError`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError)  
 The specified `constraints` include constraints which are not permitted when calling `getDisplayMedia()`. These unsupported constraints are `advanced` and any constraints which in turn have a member named `min` or `exact`.
 
-Usage notes
------------
+## Usage notes
 
 ### Privacy and security
 
 Because `getDisplayMedia()` could be used in nefarious ways, it can be a source of significant privacy and security concerns. For that reason, the specification details measures browsers are required to take in order to fully support `getDisplayMedia()`.
 
--   The specified `constraints` can't be used to limit the options available to the user. Instead, they must be applied after the user chooses a source, in order to generate output that matches the constraints.
--   The go-ahead permission to use `getDisplayMedia()` cannot be persisted for reuse. The user must be prompted for permission every time.
--   The call to `getDisplayMedia()` must be made from code which is running in response to a user action, such as in an event handler.
--   Browsers are encouraged to provide a warning to users about sharing displays or windows that contain browsers, and to keep a close eye on what other content might be getting captured and shown to other users.
+- The specified `constraints` can't be used to limit the options available to the user. Instead, they must be applied after the user chooses a source, in order to generate output that matches the constraints.
+- The go-ahead permission to use `getDisplayMedia()` cannot be persisted for reuse. The user must be prompted for permission every time.
+- The call to `getDisplayMedia()` must be made from code which is running in response to a user action, such as in an event handler.
+- Browsers are encouraged to provide a warning to users about sharing displays or windows that contain browsers, and to keep a close eye on what other content might be getting captured and shown to other users.
 
-Example
--------
+## Example
 
 In the example below, a `startCapture()` method is created which initiates screen capture given a set of options specified by the `displayMediaOptions` parameter. The options are specified in the form of a [`MediaStreamConstraints`](../mediastreamconstraints) object which specifies the preferred stream configuration and the [display surface](../screen_capture_api/using_screen_capture#visible_vs_logical_display_surfaces) from which video is to be captured.
 
@@ -76,14 +72,12 @@ In the example below, a `startCapture()` method is created which initiates scree
 
 This uses <span class="page-not-created">`await`</span> to asynchronously wait for `getDisplayMedia()` to resolve with a [`MediaStream`](../mediastream) which contains the display contents as requested by the specified options. The stream is then returned to the caller for use, perhaps for adding to a WebRTC call using [`RTCPeerConnection.addTrack()`](../rtcpeerconnection/addtrack) to add the video track from the stream.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-screen-share/#dom-mediadevices-getdisplaymedia">Screen Capture<br />
 <span class="small">The definition of 'MediaDevices.getDisplayMedia()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -181,13 +175,12 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Screen Capture API](../screen_capture_api)
--   [Using the Screen Capture API](../screen_capture_api/using_screen_capture)
--   [Media Capture and Streams API](../media_streams_api)
--   [WebRTC API](../webrtc_api)
--   [`getUserMedia()`](getusermedia): Capturing media from a camera and/or microphone
+- [Screen Capture API](../screen_capture_api)
+- [Using the Screen Capture API](../screen_capture_api/using_screen_capture)
+- [Media Capture and Streams API](../media_streams_api)
+- [WebRTC API](../webrtc_api)
+- [`getUserMedia()`](getusermedia): Capturing media from a camera and/or microphone
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getDisplayMedia" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getDisplayMedia</a>

@@ -1,10 +1,8 @@
-HashChangeEvent.newURL
-======================
+# HashChangeEvent.newURL
 
 The `newURL` read-only property of the [`HashChangeEvent`](../hashchangeevent) interface returns the new URL to which the window is navigating.
 
-Syntax
-------
+## Syntax
 
     let newEventUrl = event.newURL;
 
@@ -12,21 +10,18 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Example
--------
+## Example
 
     window.addEventListener('hashchange', function(event) {
       console.log('Hash changed to ' + event.newURL);
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-hashchangeevent-newurl">HTML Living Standard<br />
 <span class="small">The definition of 'HashChangeEvent: newURL' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

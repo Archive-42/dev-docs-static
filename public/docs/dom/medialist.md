@@ -1,21 +1,18 @@
-MediaList
-=========
+# MediaList
 
 The `MediaList` interface represents the media queries of a stylesheet, e.g. those set using a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) element's `media` attribute.
 
 <span class="message-body-wrapper"><span class="message-flex-body"><span class="devtools-monospace message-body"><span class="objectBox objectBox-string">**Note**: `MediaList` is a live list; updating the list using properties or methods listed below will immediately update the behavior of the document.</span></span></span></span>
 
-Properties
-----------
+## Properties
 
 [`MediaList.mediaText`](medialist/mediatext)  
 A stringifier that returns a [`DOMString`](domstring) representing the `MediaList` as text, and also allows you to set a new `MediaList`.
 
- <span class="page-not-created">`MediaList.length`</span> <span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`MediaList.length`</span> <span class="badge inline readonly">Read only </span>  
 Returns the number of media queries in the `MediaList`.
 
-Methods
--------
+## Methods
 
 <span class="page-not-created">`MediaList.appendMedium()`</span>  
 Adds a media query to the `MediaList`.
@@ -26,8 +23,7 @@ Removes a media query from the `MediaList`.
 <span class="page-not-created">`MediaList.item()`</span>  
 A getter that returns a [`CSSOMString`](cssomstring) representing a media query as text, given the media query's index value inside the `MediaList`.
 
-Examples
---------
+## Examples
 
 The following would log to the console a textual representation of the `MediaList` of the first stylesheet applied to the current document.
 
@@ -35,14 +31,12 @@ The following would log to the console a textual representation of the `MediaLis
     let stylesheet = stylesheets[0];
     console.log(stylesheet.media.mediaText);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom/#the-medialist-interface">CSS Object Model (CSSOM)<br />
 <span class="small">The definition of 'MediaList' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-HTMLTableElement.frame
-======================
+# HTMLTableElement.frame
 
 **Deprecated**
 
@@ -7,8 +6,7 @@ This feature is no longer recommended. Though some browsers might still support 
 
 The [`HTMLTableElement`](../htmltableelement) interface's `frame` property is a string that indicates which of the table's exterior borders should be drawn.
 
-Syntax
-------
+## Syntax
 
     HTMLTableElement.frame = frameSides;
     var frameSides = HTMLTableElement.frame;
@@ -44,21 +42,18 @@ All four sides
 `"border"`  
 All four sides
 
-Example
--------
+## Example
 
     // Set the frame of TableA to 'border'
     var t = document.getElementById('TableA');
     t.frame  = "border";
     t.border = "2px";
 
-Specifications
---------------
+## Specifications
 
--   W3C DOM 2 HTML Specification
+- W3C DOM 2 HTML Specification
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

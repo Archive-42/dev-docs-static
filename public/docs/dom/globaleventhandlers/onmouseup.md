@@ -1,5 +1,4 @@
-GlobalEventHandlers.onmouseup
-=============================
+# GlobalEventHandlers.onmouseup
 
 The `onmouseup` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `mouseup` events.
 
@@ -7,8 +6,7 @@ The `mouseup` event fires when the user releases the mouse button.
 
 **Note:** The opposite of `onmouseup` is [`onmousedown`](onmousedown).
 
-Syntax
-------
+## Syntax
 
     target.onmouseup = functionRef;
 
@@ -16,8 +14,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives a [`MouseEvent`](../mouseevent) object as its sole argument.
 
-Example
--------
+## Example
 
 In this example, a piece of "toast" hides when you click down with the mouse, and reappears when you release. It uses the [`onmousedown`](onmousedown) and `onmouseup` event handlers.
 
@@ -80,14 +77,12 @@ In this example, a piece of "toast" hides when you click down with the mouse, an
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onmouseup">HTML Living Standard<br />
 <span class="small">The definition of 'onmouseup' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -143,9 +138,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   `mouseup` event
+- `mouseup` event
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onmouseup" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onmouseup</a>

@@ -1,15 +1,12 @@
-HTMLInputElement.select()
-=========================
+# HTMLInputElement.select()
 
 The `HTMLInputElement.select()` method selects all the text in a [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) element or in an [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element that includes a text field.
 
-Syntax
-------
+## Syntax
 
     element.select();
 
-Example
--------
+## Example
 
 Click the button in this example to select all the text in the `<input>` element.
 
@@ -28,8 +25,7 @@ Click the button in this example to select all the text in the `<input>` element
 
 ### Result
 
-Notes
------
+## Notes
 
 Calling `element.select()` will not necessarily focus the input, so it is often used with [`HTMLOrForeignElement.focus`](../htmlorforeignelement/focus).
 
@@ -39,14 +35,12 @@ In browsers where it is not supported, it is possible to replace it with a call 
     <!-- equivalent to -->
     <input onClick="this.setSelectionRange(0, this.value.length);" value="Sample Text" />
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/forms.html#dom-textarea/input-select">HTML Living Standard<br />
 <span class="small">The definition of 'select' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -102,12 +96,11 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
--   [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea)
--   [`HTMLInputElement`](../htmlinputelement)
--   [`HTMLInputElement.setSelectionRange`](setselectionrange)
+- [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
+- [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea)
+- [`HTMLInputElement`](../htmlinputelement)
+- [`HTMLInputElement.setSelectionRange`](setselectionrange)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select</a>

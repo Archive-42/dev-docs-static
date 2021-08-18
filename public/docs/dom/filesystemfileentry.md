@@ -1,5 +1,4 @@
-FileSystemFileEntry
-===================
+# FileSystemFileEntry
 
 **Experimental**
 
@@ -8,24 +7,21 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `FileSystemFileEntry` interface of the [File System API](file_and_directory_entries_api/introduction) represents a file in a file system. It offers properties describing the file's attributes, as well as the [`file()`](filesystemfileentry/file) method, which creates a [`File`](file) object that can be used to read the file.
 
-Properties
-----------
+## Properties
 
-*Inherits the properties of its parent interface, [`FileSystemEntry`](filesystementry), but has no properties unique to this interface.*
+_Inherits the properties of its parent interface, [`FileSystemEntry`](filesystementry), but has no properties unique to this interface._
 
-Methods
--------
+## Methods
 
 [`file()`](filesystemfileentry/file)  
 Creates a new [`File`](file) object which can be used to read the file.
 
 ### Obsolete methods
 
- [`createWriter()`](filesystemfileentry/createwriter) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+[`createWriter()`](filesystemfileentry/createwriter) <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 Creates a new <span class="page-not-created">`FileWriter`</span> object which allows writing to the file represented by the file system entry.
 
-Basic concepts
---------------
+## Basic concepts
 
 To write content to file, create a <span class="page-not-created">`FileWriter`</span> object by calling [`createWriter()`](filesystemfileentry/createwriter). To read a file, obtain a [`File`](file) object representing its contents by calling [`file()`](filesystemfileentry/file).
 
@@ -59,14 +55,12 @@ The following code creates an empty file called "`log.txt"` (if it doesn't exist
 
     window.requestFileSystem(window.TEMPORARY, 1024*1024, onInitFs, errorHandler);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/entries-api/#api-fileentry">File and Directory Entries API<br />
 <span class="small">The definition of 'FileSystemFileEntry' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Draft of proposed API</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -178,10 +172,9 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   [File and Directory Entries API](file_and_directory_entries_api)
--   [Introduction to the File System API](file_and_directory_entries_api/introduction)
+- [File and Directory Entries API](file_and_directory_entries_api)
+- [Introduction to the File System API](file_and_directory_entries_api/introduction)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileEntry" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileEntry</a>

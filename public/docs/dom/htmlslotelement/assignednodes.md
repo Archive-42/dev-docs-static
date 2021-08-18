@@ -1,26 +1,23 @@
-HTMLSlotElement.assignedNodes()
-===============================
+# HTMLSlotElement.assignedNodes()
 
 The `assignedNodes()` property of the [`HTMLSlotElement`](../htmlslotelement) interface returns a sequence of the nodes assigned to this slot, and if the `flatten` option is set to `true`, the assigned nodes of any other slots that are descendants of this slot. If no assigned nodes are found, it returns the slot's fallback content.
 
-Syntax
-------
+## Syntax
 
     var assignedNodes = HTMLSlotElement.assignedNodes(options)
 
 ### Parameters
 
- options <span class="badge inline optional">Optional</span>   
+options <span class="badge inline optional">Optional</span>  
 An object that sets options for the nodes to be returned. The available options are:
 
--   `flatten`: A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether to return the assigned nodes of any available child `<slot>` elements (`true`) or not (`false`). Defaults to `false`.
+- `flatten`: A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether to return the assigned nodes of any available child `<slot>` elements (`true`) or not (`false`). Defaults to `false`.
 
 ### Return value
 
 An array of nodes.
 
-Examples
---------
+## Examples
 
 The following snippet is taken from our [slotchange example](https://github.com/mdn/web-components-examples/tree/master/slotchange) ([see it live also](https://mdn.github.io/web-components-examples/slotchange/)).
 
@@ -34,14 +31,12 @@ Here we grab references to all the slots, then add a slotchange event listener t
 
 Every time the element inserted in the slot changes, we log a report to the console saying which slot has changed, and what the new node inside the slot is.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-slot-assignednodes">HTML Living Standard<br />
 <span class="small">The definition of 'assignedNodes' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,5 +1,4 @@
-FileSystemWritableFileStream
-============================
+# FileSystemWritableFileStream
 
 **Draft**
 
@@ -11,15 +10,13 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `FileSystemWritableFileStream` interface of the [`File System Access API`](file_system_access_api) is a [`WritableStream`](writablestream) object with additional convenience methods, which operates on a single file on disk. The interface is accessed through the [`FileSystemFileHandle.createWritable()`](filesystemfilehandle/createwritable) method.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`WritableStream`](writablestream).*
+_Inherits properties from its parent, [`WritableStream`](writablestream)._
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`WritableStream`](writablestream).*
+_Inherits methods from its parent, [`WritableStream`](writablestream)._
 
 [`FileSystemWritableFileStream.write`](filesystemwritablefilestream/write)  
 Writes content into the file the method is called on, at the current file cursor offset.
@@ -30,8 +27,7 @@ Updates the current file cursor offset to the position (in bytes) specified.
 [`FileSystemWritableFileStream.truncate`](filesystemwritablefilestream/truncate)  
 Resizes the file associated with the stream to be the specified size in bytes.
 
-Examples
---------
+## Examples
 
 This asynchronous function opens the 'Save File' picker, which returns a [`FileSystemFileHandle`](filesystemfilehandle) once a file is selected. From which a writable stream is then created using the [`FileSystemFileHandle.createWritable()`](filesystemfilehandle/createwritable) method.
 
@@ -66,14 +62,12 @@ The following show different examples of options that can be passed into the `wr
     // resizes the file to be size bytes long
     writableStream.write({ type: "truncate", size: size })
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/file-system-access/#api-filesystemwritablefilestream">File System Access API<br />
 <span class="small">The definition of 'FileSystemWritableFileStream' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -207,10 +201,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [File System Access API](file_system_access_api)
--   [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
+- [File System Access API](file_system_access_api)
+- [The File System Access API: simplifying access to local files](https://web.dev/file-system-access/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemWritableFileStream" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemWritableFileStream</a>

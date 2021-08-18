@@ -1,12 +1,10 @@
-HTMLCanvasElement.toBlob()
-==========================
+# HTMLCanvasElement.toBlob()
 
 The `HTMLCanvasElement.toBlob()` method creates a [`Blob`](../blob) object representing the image contained in the canvas; this file may be cached on the disk or stored in memory at the discretion of the user agent. If `type` is not specified, the image type is `image/png`. The created image is in a resolution of 96dpi.
 
 The third argument is used when creating images using lossy compression (such as `image/jpeg`) to specify the quality of the output.
 
-Syntax
-------
+## Syntax
 
     canvas.toBlob(callback, mimeType, qualityArgument);
 
@@ -15,10 +13,10 @@ Syntax
 `callback`  
 A callback function with the resulting [`Blob`](../blob) object as a single argument.
 
- `mimeType` <span class="badge inline optional">Optional</span>   
+`mimeType` <span class="badge inline optional">Optional</span>  
 A [`DOMString`](../domstring) indicating the image format. The default type is `image/png`.
 
- `qualityArgument` <span class="badge inline optional">Optional</span>   
+`qualityArgument` <span class="badge inline optional">Optional</span>  
 A [`Number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) between `0` and `1` indicating image quality if the requested type is `image/jpeg `or `image/webp`. If this argument is anything else, the default values 0.92 and 0.80 are used for image/jpeg and image/webp respectively. Other arguments are ignored.
 
 ### Return value
@@ -30,8 +28,7 @@ None.
 `SecurityError`  
 The canvas's bitmap is not origin clean; at least some of its contents come from secure
 
-Examples
---------
+## Examples
 
 ### Getting a file representing the canvas
 
@@ -125,16 +122,14 @@ This technique saves it to the desktop and is only useful in Firefox chrome cont
     canvas.toBlob(blobCallback('passThisString'), 'image/vnd.microsoft.icon',
                   '-moz-parse-options:format=bmp;bpp=32');
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-canvas-toblob">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLCanvasElement.toBlob' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change since the latest snapshot, <a href="https://www.w3.org/TR/html52/">HTML5</a></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/scripting-1.html#dom-canvas-toblob">HTML 5.1<br />
 <span class="small">The definition of 'HTMLCanvasElement.toBlob' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>No change</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/html52/scripting-1.html#dom-canvas-toblob">HTML5<br />
 <span class="small">The definition of 'HTMLCanvasElement.toBlob' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Snapshot of the <a href="https://html.spec.whatwg.org/multipage/">HTML Living Standard</a> containing the initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -218,10 +213,9 @@ No
 
 No
 
-See also
---------
+## See also
 
--   The interface defining it, [`HTMLCanvasElement`](../htmlcanvaselement).
--   [`Blob`](../blob)
+- The interface defining it, [`HTMLCanvasElement`](../htmlcanvaselement).
+- [`Blob`](../blob)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob</a>

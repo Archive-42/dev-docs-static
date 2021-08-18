@@ -1,27 +1,25 @@
-HTMLFieldSetElement
-===================
+# HTMLFieldSetElement
 
 The `HTMLFieldSetElement` interface provides special properties and methods (beyond the regular [`HTMLElement`](htmlelement) interface it also has available to it by inheritance) for manipulating the layout and presentation of [`<fieldset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset) elements.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement).*
+_Inherits properties from its parent, [`HTMLElement`](htmlelement)._
 
 <span class="page-not-created">`HTMLFieldSetElement.disabled`</span>  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) reflecting the [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset#attr-disabled) HTML attribute, indicating whether the user can interact with the control.
 
- <span class="page-not-created">`HTMLFieldSetElement.elements`</span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLFieldSetElement.elements`</span><span class="badge inline readonly">Read only </span>  
 The elements belonging to this field set. The type of this property depends on the version of the spec that is implemented by the browser.
 
- <span class="page-not-created">`HTMLFieldSetElement.form`</span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLFieldSetElement.form`</span><span class="badge inline readonly">Read only </span>  
 An [`HTMLFormControlsCollection`](htmlformcontrolscollection) or [`HTMLCollection`](htmlcollection) referencing the containing form element, if this element is in a form.  
 If the field set is not a descendant of a form element, then the attribute can be the ID of any form element in the same document it is related to, or the `null` value if none matches.
 
 <span class="page-not-created">`HTMLFieldSetElement.name`</span>  
-A [`DOMString`](domstring) reflecting the [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset#attr-name) HTML attribute, containing the name of the field set. This can be used when accessing the field set in JavaScript. It is *not* part of the data which is sent to the server.
+A [`DOMString`](domstring) reflecting the [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset#attr-name) HTML attribute, containing the name of the field set. This can be used when accessing the field set in JavaScript. It is _not_ part of the data which is sent to the server.
 
- <span class="page-not-created">`HTMLFieldSetElement.type`</span><span class="badge inline readonly">Read only </span>   
+<span class="page-not-created">`HTMLFieldSetElement.type`</span><span class="badge inline readonly">Read only </span>  
 The [`DOMString`](domstring) "`fieldset`".
 
 <span class="page-not-created">`HTMLFieldSetElement.validationMessage`</span>  
@@ -33,10 +31,9 @@ A [`ValidityState`](validitystate) representing the validity states that this el
 <span class="page-not-created">`HTMLFieldSetElement.willValidate`</span>  
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) `false`, because [`<fieldset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset) objects are never candidates for constraint validation.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent, [`HTMLElement`](htmlelement).*
+_Inherits methods from its parent, [`HTMLElement`](htmlelement)._
 
 <span class="page-not-created">`HTMLFieldSetElement.checkValidity()`</span>  
 Always returns `true` because [`<fieldset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset) objects are never candidates for constraint validation.
@@ -47,8 +44,7 @@ Always returns `true` because [`<fieldset>`](https://developer.mozilla.org/en-US
 <span class="page-not-created">`HTMLFieldSetElement.setCustomValidity()`</span>  
 Sets a custom validity message for the field set. If this message is not the empty string, then the field set is suffering from a custom validity error, and does not validate.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#htmlfieldsetelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLFieldSetElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html51/forms.html#the-fieldset-element">HTML 5.1<br />
@@ -58,8 +54,7 @@ The following methods have been added: <code>checkValidity()</code>, <code>setCu
 <span class="small">The definition of 'HTMLFieldSetElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>No change</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-7365882">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'HTMLFieldSetElement' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -401,9 +396,8 @@ No
 
 1.0
 
-See also
---------
+## See also
 
--   The HTML element implementing this interface: [`<fieldset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset).
+- The HTML element implementing this interface: [`<fieldset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset).
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFieldSetElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLFieldSetElement</a>

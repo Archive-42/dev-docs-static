@@ -1,12 +1,10 @@
-Headers.keys()
-==============
+# Headers.keys()
 
 The `Headers.keys()` method returns an [`iterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) allowing to go through all keys contained in this object. The keys are [`ByteString`](../bytestring) objects.
 
 **Note**: This method is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
     headers.keys();
 
@@ -14,8 +12,7 @@ Syntax
 
 Returns an [`iterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols).
 
-Example
--------
+## Example
 
     // Create a test Headers object
     var myHeaders = new Headers();
@@ -32,8 +29,7 @@ The result is:
     content-type
     vary
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -89,11 +85,10 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [ServiceWorker API](../service_worker_api)
--   [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
--   [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [ServiceWorker API](../service_worker_api)
+- [HTTP access control (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Headers/keys" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Headers/keys</a>

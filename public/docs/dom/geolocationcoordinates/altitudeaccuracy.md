@@ -1,5 +1,4 @@
-GeolocationCoordinates.altitudeAccuracy
-=======================================
+# GeolocationCoordinates.altitudeAccuracy
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `GeolocationCoordinates.altitudeAccuracy` read-only property is a strictly positive `double` representing the accuracy, with a 95% confidence level, of the `altitude` expressed in meters. This value is `null` if the implementation doesn't support measuring altitude.
 
-Syntax
-------
+## Syntax
 
     let altAcc = geolocationCoordinatesInstance.altitudeAccuracy
 
@@ -16,14 +14,12 @@ Syntax
 
 A positive `double` representing the accuracy, with a 95% confidence level, of the `altitude` expressed in meters.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/geolocation-api/#dom-geolocationcoordinates-altitudeaccuracy">Geolocation API<br />
 <span class="small">The definition of 'GeolocationCoordinates.altitudeAccuracy' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -83,10 +79,9 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [Using the Geolocation API](../geolocation_api/using_the_geolocation_api)
--   [`GeolocationCoordinates`](../geolocationcoordinates)
+- [Using the Geolocation API](../geolocation_api/using_the_geolocation_api)
+- [`GeolocationCoordinates`](../geolocationcoordinates)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates/altitudeAccuracy" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates/altitudeAccuracy</a>

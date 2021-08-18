@@ -1,5 +1,4 @@
-IDBFactory.databases
-====================
+# IDBFactory.databases
 
 The `databases` method of the [`IDBFactory`](../idbfactory) interface returns a list representing all the available databases, including their names and versions.
 
@@ -9,8 +8,7 @@ The `databases` method of the [`IDBFactory`](../idbfactory) interface returns a 
 
 This method is introduced in a draft of a specifications and browser compatibility is limited.
 
-Syntax
-------
+## Syntax
 
     const promise = indexedDB.databases()
 
@@ -46,22 +44,19 @@ Other error
 
 Specification does not describe all possible errors.
 
-Example
--------
+## Example
 
     const promise = indexedDB.databases()
     promise.then(databases => {
       console.log(databases)
     })
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbfactory-databases">Indexed Database API 2.0<br />
 <span class="small">The definition of 'databases()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -121,15 +116,14 @@ Yes
 
 10.0
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBFactory/databases" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBFactory/databases</a>

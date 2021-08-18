@@ -1,5 +1,4 @@
-HTMLMediaElement.setMediaKeys()
-===============================
+# HTMLMediaElement.setMediaKeys()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `setMediaKeys()` property of the [`HTMLMediaElement`](../htmlmediaelement) interface returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves to the passed [`MediaKeys`](../mediakeys), which are those used to decrypt media during playback.
 
-Syntax
-------
+## Syntax
 
     var Promise = HTMLMediaElement.setMediaKeys(mediaKeys);
 
@@ -27,8 +25,7 @@ A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#dom-htmlmediaelement-setmediakeys">Encrypted Media Extensions<br />
 <span class="small">The definition of 'setMediaKeys()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

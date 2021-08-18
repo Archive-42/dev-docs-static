@@ -1,16 +1,13 @@
-Location: host
-==============
+# Location: host
 
-The `host` property of the [`Location`](../location) interface is a [`USVString`](../usvstring) containing the host, that is the *hostname*, and then, if the *port* of the URL is nonempty, a `':'`, and the *port* of the URL.
+The `host` property of the [`Location`](../location) interface is a [`USVString`](../usvstring) containing the host, that is the _hostname_, and then, if the _port_ of the URL is nonempty, a `':'`, and the _port_ of the URL.
 
-Syntax
-------
+## Syntax
 
     string = object.host;
     object.host = string;
 
-Examples
---------
+## Examples
 
     var anchor = document.createElement("a");
 
@@ -24,14 +21,12 @@ Examples
     anchor.href = "https://developer.mozilla.org:4097/en-US/Location.host"
     anchor.host == "developer.mozilla.org:4097"
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-location-host">HTML Living Standard<br />
 <span class="small">The definition of 'host' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

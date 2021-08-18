@@ -1,5 +1,4 @@
-IntersectionObserver.rootMargin
-===============================
+# IntersectionObserver.rootMargin
 
 **Experimental**
 
@@ -10,8 +9,7 @@ The [`IntersectionObserver`](../intersectionobserver) interface's read-only `roo
 
 See [The root element and root margin](#) in [Intersection Observer API](../intersection_observer_api) for a more in-depth look at the root margin and how it works with the root's bounding box.
 
-Syntax
-------
+## Syntax
 
     var marginString = IntersectionObserver.rootMargin;
 
@@ -23,14 +21,12 @@ The string returned by this property may not match the one specified when the [`
 
 If `rootMargin` isn't specified when the object was instantiated, it defaults to the string `"0px 0px 0px 0px"`, meaning that the intersection will be computed between the root element's unmodified bounds rectangle and the target's bounds. [The root element and root margin](#) in [Intersection Observer API](../intersection_observer_api) describes how the `rootMargin` is used in more detail.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/IntersectionObserver/#dom-intersectionobserverinit-rootmargin">Intersection Observer<br />
 <span class="small">The definition of 'IntersectionObserver.rootMargin' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

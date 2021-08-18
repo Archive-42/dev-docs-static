@@ -1,10 +1,8 @@
-HTMLInputElement.multiple
-=========================
+# HTMLInputElement.multiple
 
 The `HTMLInputElement.multiple` property indicates if an input can have more than one value. Firefox currently only supports `multiple` for `<input type="file">`.
 
-Example
--------
+## Example
 
     // fileInput is a <input type=file multiple>
     let fileInput = document.getElementById('myfileinput');
@@ -20,20 +18,17 @@ Example
       let file = fileInput.files.item(0);
     }
 
-See also
---------
+## See also
 
--   [FileList](../filelist)
--   [Bug 523771](https://bugzilla.mozilla.org/show_bug.cgi?id=523771) - Support &lt;input type=file multiple&gt;
+- [FileList](../filelist)
+- [Bug 523771](https://bugzilla.mozilla.org/show_bug.cgi?id=523771) - Support &lt;input type=file multiple&gt;
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#attr-input-multiple">HTML Living Standard<br />
 <span class="small">The definition of 'multiple' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,10 +1,8 @@
-DOMTokenList.replace()
-======================
+# DOMTokenList.replace()
 
 The `replace()` method of the [`DOMTokenList`](../domtokenlist) interface replaces an existing token with a new token. If the first token doesn't exist, `replace()` returns `false` immediately, without adding the new token to the token list.
 
-Syntax
-------
+## Syntax
 
     tokenList.replace(oldToken, newToken);
 
@@ -22,8 +20,7 @@ A boolean value, which is `true` if `oldToken` was successfully replaced, or `fa
 
 **Note**: In older browsers, `replace()` returns void.
 
-Examples
---------
+## Examples
 
 In the following example we retrieve the list of classes set on a [`<span>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span) element as a `DOMTokenList` using [`Element.classList`](../element/classlist). We then replace a token in the list, and write the list into the `<span>`'s [`Node.textContent`](../node/textcontent).
 
@@ -47,8 +44,7 @@ Now the JavaScript:
 
 The output looks like this:
 
-Polyfill
---------
+## Polyfill
 
 The following polyfill will add the replace method to the `DOMTokenList` class. The following code will only work with **IE10-11**. To use with earlier versions of IE, refer to the polyfill at [`element.classList#Polyfill`](../element/classlist#polyfill)
 
@@ -61,14 +57,12 @@ The following polyfill will add the replace method to the `DOMTokenList` class. 
         return false;
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-domtokenlist-replace">DOM<br />
 <span class="small">The definition of 'replace()' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

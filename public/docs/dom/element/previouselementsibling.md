@@ -1,18 +1,15 @@
-Element.previousElementSibling
-==============================
+# Element.previousElementSibling
 
 The `Element.previousElementSibling` read-only property returns the [`Element`](../element) immediately prior to the specified one in its parent's children list, or `null` if the specified element is the first one in the list.
 
-Syntax
-------
+## Syntax
 
     // Getter
     element = el.previousElementSibling;
 
     // No setter; read-only property
 
-Example
--------
+## Example
 
     <div id="div-01">Here is div-01</div>
     <div id="div-02">Here is div-02</div>
@@ -39,14 +36,12 @@ This example outputs the following into the page when it loads:
        3. DIV
        4. DIV
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-nondocumenttypechildnode-previouselementsibling">DOM<br />
 <span class="small">The definition of 'NonDocumentTypeChildNode.previousElementSibling' in that specification.</span></a></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -102,9 +97,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`Element.nextElementSibling`](nextelementsibling)
+- [`Element.nextElementSibling`](nextelementsibling)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/previousElementSibling" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/previousElementSibling</a>

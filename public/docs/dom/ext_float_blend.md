@@ -1,5 +1,4 @@
-EXT\_float\_blend
-=================
+# EXT_float_blend
 
 The [WebGL API](webgl_api)'s `EXT_float_blend` extension allows blending and draw buffers with 32-bit floating-point components.
 
@@ -9,13 +8,11 @@ WebGL extensions are available using the [`WebGLRenderingContext.getExtension()`
 
 With this extension enabled, calling [`drawArrays()`](webglrenderingcontext/drawarrays) or [`drawElements()`](webglrenderingcontext/drawelements) with blending enabled and a draw buffer with 32-bit floating-point components will no longer result in an `INVALID_OPERATION` error.
 
-Usage notes
------------
+## Usage notes
 
 On devices that support the `EXT_float_blend` extension, it is automatically, implicitly, enabled when any one or more of [`EXT_color_buffer_float`](ext_color_buffer_float), [`OES_texture_float`](oes_texture_float), or [`WEBGL_color_buffer_float`](webgl_color_buffer_float) are enabled. This ensures that content written before `EXT_float_blend` was exposed by WebGL will function as expected.
 
-Examples
---------
+## Examples
 
     const gl = canvas.getContext('webgl2');
 
@@ -39,13 +36,11 @@ Examples
     gl.drawArrays(gl.POINTS, 0, 1);
     // won't throw gl.INVALID_OPERATION with the extension enabled
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.khronos.org/registry/webgl/extensions/EXT_float_blend/">EXT_float_blend</a></td><td>Draft</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -103,16 +98,15 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [WebGL API](webgl_api)
--   [Using WebGL extensions](webgl_api/using_extensions)
--   [WebGL tutorial](webgl_api/tutorial)
--   [`WebGLRenderingContext.getExtension()`](webglrenderingcontext/getextension)
--   [`EXT_color_buffer_float`](ext_color_buffer_float)
--   [`WEBGL_color_buffer_float`](webgl_color_buffer_float)
--   [`WebGLRenderingContext.drawArrays()`](webglrenderingcontext/drawarrays)
--   [`WebGLRenderingContext.drawElements()`](webglrenderingcontext/drawelements)
+- [WebGL API](webgl_api)
+- [Using WebGL extensions](webgl_api/using_extensions)
+- [WebGL tutorial](webgl_api/tutorial)
+- [`WebGLRenderingContext.getExtension()`](webglrenderingcontext/getextension)
+- [`EXT_color_buffer_float`](ext_color_buffer_float)
+- [`WEBGL_color_buffer_float`](webgl_color_buffer_float)
+- [`WebGLRenderingContext.drawArrays()`](webglrenderingcontext/drawarrays)
+- [`WebGLRenderingContext.drawElements()`](webglrenderingcontext/drawelements)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/EXT_float_blend" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EXT_float_blend</a>

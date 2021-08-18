@@ -1,5 +1,4 @@
-GlobalEventHandlers.onmousedown
-===============================
+# GlobalEventHandlers.onmousedown
 
 The `onmousedown` property of the [`GlobalEventHandlers`](../globaleventhandlers) mixin is an [`EventHandler`](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers) that processes `mousedown` events.
 
@@ -7,8 +6,7 @@ The `mousedown` event fires when the user depresses the mouse button.
 
 **Note:** The opposite of `onmousedown` is [`onmouseup`](onmouseup).
 
-Syntax
-------
+## Syntax
 
     target.onmousedown = functionRef;
 
@@ -16,8 +14,7 @@ Syntax
 
 `functionRef` is a function name or a [function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function). The function receives a [`MouseEvent`](../mouseevent) object as its sole argument.
 
-Example
--------
+## Example
 
 This example reveals part of an image when you press and hold a mouse button. It uses the `onmousedown`, [`onmouseup`](onmouseup), and [`onmousemove`](onmousemove) event handlers.
 
@@ -75,14 +72,12 @@ This example reveals part of an image when you press and hold a mouse button. It
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onmousedown">HTML Living Standard<br />
 <span class="small">The definition of 'onmousedown' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -138,9 +133,8 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   `mousedown` event
+- `mousedown` event
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onmousedown" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onmousedown</a>

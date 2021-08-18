@@ -1,5 +1,4 @@
-LockManager.query()
-===================
+# LockManager.query()
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `query()` method of the [`LockManager`](../lockmanager) interface returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which resolves with an object containing information about held and pending locks.
 
-Syntax
-------
+## Syntax
 
     var promise<LockManagerSnapshot> = LockManager.query()
 
@@ -21,11 +19,10 @@ None.
 
 A [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) that resolves with a `LockManagerSnapshot` containing the following properties.
 
--   `held`: An array of [`Lock`](../lock) objects for held locks.
--   `pending`: An array of [`Lock`](../lock) objects for pending lock requests.
+- `held`: An array of [`Lock`](../lock) objects for held locks.
+- `pending`: An array of [`Lock`](../lock) objects for pending lock requests.
 
-Example
--------
+## Example
 
     const state = await navigator.locks.query();
     for (const lock of state.held) {
@@ -35,14 +32,12 @@ Example
       console.log(`requested lock: name ${request.name}, mode ${request.mode}`);
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://wicg.github.io/web-locks/#dom-lockmanager-query">Web Locks API<br />
 <span class="small">The definition of 'query()' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

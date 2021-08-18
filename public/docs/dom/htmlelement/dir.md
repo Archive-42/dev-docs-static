@@ -1,5 +1,4 @@
-HTMLElement.dir
-===============
+# HTMLElement.dir
 
 The `HTMLElement.dir` property gets or sets the text writing directionality of the content of the current element.
 
@@ -13,34 +12,30 @@ When an element has its dir set to "`auto`", the direction of the element is det
 
 Browsers might allow users to change the directionality of [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) and [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea)s in order to assist with authoring content. Chrome and Safari provide a directionality option in the contextual menu of input fields while Internet Explorer and Edge use the key combinations Ctrl + Left Shift and Ctrl + Right Shift. Firefox uses Ctrl/Cmd + Shift + X but does NOT update the `dir` attribute value.
 
-Syntax
-------
+## Syntax
 
     var currentWritingDirection = elementNodeReference.dir;
     elementNodeReference.dir = newWritingDirection;
 
--   `currentWritingDirection` is a string variable representing the text writing direction of the current element.
--   `newWritingDirection` is a string variable representing the text writing direction value.
+- `currentWritingDirection` is a string variable representing the text writing direction of the current element.
+- `newWritingDirection` is a string variable representing the text writing direction value.
 
 Possible values for `dir` are `ltr`, for left-to-right, `rtl`, for right-to-left, and `auto` for specifying that the direction of the element must be determined based on the contents of the element.
 
-Example
--------
+## Example
 
     var parg = document.getElementById("para1");
     parg.dir = "rtl";
     // change the text direction on a paragraph identified as "para1"
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-dir">HTML Living Standard<br />
 <span class="small">The definition of 'dir' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>No change from <a href="https://www.w3.org/TR/DOM-Level-2-HTML/">Document Object Model (DOM) Level 2 HTML Specification</a>.</td></tr><tr class="even"><td><a href="https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-52460740">Document Object Model (DOM) Level 2 HTML Specification<br />
 <span class="small">The definition of 'dir' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>No change from <a href="https://www.w3.org/TR/REC-DOM-Level-1/">Document Object Model (DOM) Level 1 Specification</a>.</td></tr><tr class="odd"><td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-52460740">Document Object Model (DOM) Level 1 Specification<br />
 <span class="small">The definition of 'dir' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -96,12 +91,11 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [`document.dir`](../document/dir)
--   HTML [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir) global attribute
--   CSS [`direction`](https://developer.mozilla.org/en-US/docs/Web/CSS/direction) property
--   CSS [`:dir`](https://developer.mozilla.org/en-US/docs/Web/CSS/:dir) pseudo-class
+- [`document.dir`](../document/dir)
+- HTML [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir) global attribute
+- CSS [`direction`](https://developer.mozilla.org/en-US/docs/Web/CSS/direction) property
+- CSS [`:dir`](https://developer.mozilla.org/en-US/docs/Web/CSS/:dir) pseudo-class
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dir" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dir</a>

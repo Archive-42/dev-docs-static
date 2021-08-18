@@ -1,29 +1,24 @@
-Location: pathname
-==================
+# Location: pathname
 
 The `pathname` property of the [`Location`](../location) interface is a [`USVString`](../usvstring) containing an initial `'/'` followed by the path of the URL (or the empty string if there is no path).
 
-Syntax
-------
+## Syntax
 
     string = object.pathname;
     object.pathname = string;
 
-Examples
---------
+## Examples
 
     // Let's an <a id="myAnchor" href="/en-US/docs/Location.pathname"> element be in the document
     var anchor = document.getElementById("myAnchor");
     var result = anchor.pathname; // Returns:'/en-US/docs/Location.pathname'
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-location-pathname">HTML Living Standard<br />
 <span class="small">The definition of 'pathname' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

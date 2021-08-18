@@ -1,5 +1,4 @@
-Event.srcElement
-================
+# Event.srcElement
 
 **Deprecated**
 
@@ -7,14 +6,12 @@ This feature is no longer recommended. Though some browsers might still support 
 
 Initially implemented in Internet Explorer, `Event.srcElement` is a now-standard alias (defined in the DOM Standard but flagged as "historical") for the [`Event.target`](target) property. It's supported in all major browser engines, but only for compatibility reasons. Use [`Event.target`](target) instead.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#dom-event-srcelement">DOM<br />
 <span class="small">The definition of 'Event.srcElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -70,9 +67,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`Window.event`](../window/event)
+- [`Window.event`](../window/event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/srcElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Event/srcElement</a>

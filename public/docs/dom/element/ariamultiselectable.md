@@ -1,5 +1,4 @@
-Element.ariaMultiSelectable
-===========================
+# Element.ariaMultiSelectable
 
 ### Note
 
@@ -7,8 +6,7 @@ The `ariaMultiSelectable` property of the [`Element`](../element) interface refl
 
 Where possible use an HTML [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) element as this has built in semantics and does not require ARIA attributes.
 
-Syntax
-------
+## Syntax
 
     var ariaMultiSelectable = element.ariaMultiSelectable;
     element.ariaMultiSelectable = ariaMultiSelectable
@@ -23,8 +21,7 @@ More than one item may be selected at a time.
 `"false"`  
 Only one item may be selected.
 
-Examples
---------
+## Examples
 
 In this example the `aria-multiselectable` attribute on the element with an ID of `listbox1` is set to "true" indicating that this input accepts multiple selected items. Using `ariaMultiSelectable` we update the value to "false".
 
@@ -40,14 +37,12 @@ In this example the `aria-multiselectable` attribute on the element with an ID o
     el.ariaMultiSelectable = "false"
     console.log(el.ariaMultiSelectable); // "false"
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/wai-aria-1.2/#dom-ariamixin-ariamultiselectable">Accessible Rich Internet Applications (WAI-ARIA) 1.2<br />
 <span class="small">The definition of 'ariaMultiSelectable' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -103,9 +98,8 @@ No
 
 13.0
 
-See also
---------
+## See also
 
--   [ARIA: listbox role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/listbox_role)
+- [ARIA: listbox role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/listbox_role)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaMultiSelectable" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaMultiSelectable</a>

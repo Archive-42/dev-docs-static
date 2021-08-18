@@ -1,5 +1,4 @@
-Geolocation.clearWatch()
-========================
+# Geolocation.clearWatch()
 
 **Secure context**
 
@@ -7,8 +6,7 @@ This feature is available only in [secure contexts](https://developer.mozilla.or
 
 The `Geolocation.clearWatch()` method is used to unregister location/error monitoring handlers previously installed using [`Geolocation.watchPosition()`](watchposition).
 
-Syntax
-------
+## Syntax
 
     navigator.geolocation.clearWatch(id);
 
@@ -17,8 +15,7 @@ Syntax
 `id`  
 The ID number returned by the [`Geolocation.watchPosition()`](watchposition) method when installing the handler you wish to remove.
 
-Example
--------
+## Example
 
     var id, target, option;
 
@@ -48,13 +45,11 @@ Example
 
     id = navigator.geolocation.watchPosition(success, error, options);
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/geolocation-api/">Geolocation API</a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -110,12 +105,11 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [Using geolocation](../geolocation_api/using_the_geolocation_api)
--   [`Geolocation`](../geolocation)
--   [`Geolocation.watchPosition()`](watchposition)
--   [`Geolocation.getCurrentPosition()`](getcurrentposition)
+- [Using geolocation](../geolocation_api/using_the_geolocation_api)
+- [`Geolocation`](../geolocation)
+- [`Geolocation.watchPosition()`](watchposition)
+- [`Geolocation.getCurrentPosition()`](getcurrentposition)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/clearWatch" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/clearWatch</a>

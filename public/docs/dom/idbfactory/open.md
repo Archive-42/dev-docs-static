@@ -1,5 +1,4 @@
-IDBFactory.open()
-=================
+# IDBFactory.open()
 
 The `open()` method of the [`IDBFactory`](../idbfactory) interface requests opening a [connection to a database](../indexeddb_api#gloss_database_connection).
 
@@ -9,8 +8,7 @@ May trigger `upgradeneeded`, `blocked` or `versionchange` events.
 
 **Note:** This feature is available in [Web Workers](../web_workers_api).
 
-Syntax
-------
+## Syntax
 
 For the current standard:
 
@@ -22,12 +20,12 @@ For the current standard:
 name  
 The name of the database.
 
-version <span class="badge inline optional">Optional</span>   
+version <span class="badge inline optional">Optional</span>  
 Optional. The version to open the database with. If the version is not provided and the database exists, then a connection to the database will be opened without changing its version. If the version is not provided and the database does not exist, then it will be created with version `1`.
 
 #### Experimental Gecko options object
 
-options (version and storage) <span class="badge inline optional">Optional</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>   
+options (version and storage) <span class="badge inline optional">Optional</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work. </span>  
 In Gecko, since [version 26](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/26), you can include a non-standard `options` object as a parameter of [`IDBFactory.open`](open) that contains the `version` number of the database, plus a storage value that specifies whether you want to use `persistent` or `temporary` storage.
 
 **Warning:** The `storage` attribute is deprecated and will soon be removed from Gecko. You should use [`StorageManager.persist()`](../storagemanager/persist) to get persistent storage instead.
@@ -44,8 +42,7 @@ This method may raise a [`DOMException`](../domexception) of the following types
 
 <table><thead><tr class="header"><th>Exception</th><th>Description</th></tr></thead><tbody><tr class="odd"><td><code>TypeError</code></td><td>The value of version is zero or a negative number or not a number.</td></tr></tbody></table>
 
-Example
--------
+## Example
 
 Example of calling `open` with the current specification's `version` parameter:
 
@@ -83,15 +80,13 @@ In the following code snippet, we make a request to open a database, and include
       db = DBOpenRequest.result;
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbfactory-open">Indexed Database API 2.0<br />
 <span class="small">The definition of 'open()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbfactory-open">Indexed Database API 2.0<br />
 <span class="small">The definition of 'open()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -147,15 +142,14 @@ Samsung Internet
 
 1.5
 
-See also
---------
+## See also
 
--   [Using IndexedDB](../indexeddb_api/using_indexeddb)
--   Starting transactions: [`IDBDatabase`](../idbdatabase)
--   Using transactions: [`IDBTransaction`](../idbtransaction)
--   Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
--   Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
--   Using cursors: [`IDBCursor`](../idbcursor)
--   Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
+- [Using IndexedDB](../indexeddb_api/using_indexeddb)
+- Starting transactions: [`IDBDatabase`](../idbdatabase)
+- Using transactions: [`IDBTransaction`](../idbtransaction)
+- Setting a range of keys: [`IDBKeyRange`](../idbkeyrange)
+- Retrieving and making changes to your data: [`IDBObjectStore`](../idbobjectstore)
+- Using cursors: [`IDBCursor`](../idbcursor)
+- Reference example: [To-do Notifications](https://github.com/mdn/to-do-notifications/tree/gh-pages) ([view example live](https://mdn.github.io/to-do-notifications/).)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBFactory/open" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBFactory/open</a>

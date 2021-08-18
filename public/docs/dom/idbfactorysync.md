@@ -1,5 +1,4 @@
-IDBFactorySync
-==============
+# IDBFactorySync
 
 **Draft**
 
@@ -9,13 +8,11 @@ This page is not complete.
 
 The `IDBFactorySync` interface of the [IndexedDB API](indexeddb_api) provide a synchronous means of accessing the capabilities of indexed databases.
 
-Method overview
----------------
+## Method overview
 
 <table><tbody><tr class="odd"><td><code>IDBDatabaseSync open (in DOMString name, in DOMString description, in optional boolean modifyDatabase) raises (IDBDatabaseException);</code></td></tr></tbody></table>
 
-Methods
--------
+## Methods
 
 ### open()
 

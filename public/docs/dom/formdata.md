@@ -1,5 +1,4 @@
-FormData
-========
+# FormData
 
 The `FormData` interface provides a way to easily construct a set of key/value pairs representing form fields and their values, which can then be easily sent using the [`XMLHttpRequest.send()`](xmlhttprequest/send) method. It uses the same format a form would use if the encoding type were set to `"multipart/form-data"`.
 
@@ -9,14 +8,12 @@ An object implementing `FormData` can directly be used in a [`for...of`](https:/
 
 **Note**: This feature is available in [Web Workers](web_workers_api).
 
-Constructor
------------
+## Constructor
 
 [`FormData()`](formdata/formdata)  
 Creates a new `FormData` object.
 
-Methods
--------
+## Methods
 
 [`FormData.append()`](formdata/append)  
 Appends a new value onto an existing key inside a `FormData` object, or adds the key if it does not already exist.
@@ -45,14 +42,12 @@ Sets a new value for an existing key inside a `FormData` object, or adds the key
 [`FormData.values()`](formdata/values)  
 Returns an [`iterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) allowing to go through all values contained in this object.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://xhr.spec.whatwg.org/#interface-formdata">XMLHttpRequest<br />
 <span class="small">The definition of 'FormData' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>FormData defined in XHR spec</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -460,12 +455,11 @@ No
 
 5.0
 
-See also
---------
+## See also
 
--   [`XMLHTTPRequest`](xmlhttprequest)
--   [Using XMLHttpRequest](xmlhttprequest/using_xmlhttprequest)
--   [Using FormData objects](formdata/using_formdata_objects)
--   [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
+- [`XMLHTTPRequest`](xmlhttprequest)
+- [Using XMLHttpRequest](xmlhttprequest/using_xmlhttprequest)
+- [Using FormData objects](formdata/using_formdata_objects)
+- [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FormData</a>

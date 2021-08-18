@@ -1,5 +1,4 @@
-MediaKeyMessageEvent
-====================
+# MediaKeyMessageEvent
 
 **Experimental**
 
@@ -8,41 +7,35 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `MediaKeyMessageEvent` interface of the [EncryptedMediaExtensions API](encrypted_media_extensions_api) contains the content and related data when the content decryption module generates a message for the session.
 
-Constructor
------------
+## Constructor
 
 [`MediaKeyMessageEvent()`](mediakeymessageevent/mediakeymessageevent)  
 Creates a new instance of `MediaKeyMessageEvent`.
 
-Properties
-----------
+## Properties
 
 Inherits properties from its parent, [`Event`](event).
 
- [`MediaKeyMessageEvent.message`](mediakeymessageevent/message) <span class="badge inline readonly">Read only </span>   
+[`MediaKeyMessageEvent.message`](mediakeymessageevent/message) <span class="badge inline readonly">Read only </span>  
 Returns an [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) with a message from the content decryption module. Messages vary by key system.
 
- [`MediaKeyMessageEvent.messageType`](mediakeymessageevent/messagetype) <span class="badge inline readonly">Read only </span>   
+[`MediaKeyMessageEvent.messageType`](mediakeymessageevent/messagetype) <span class="badge inline readonly">Read only </span>  
 Indicates the type of message. May be one of `license-request`, `license-renewal`, `license-release`, or `individualization-request`.
 
-Methods
--------
+## Methods
 
 Inherits methods from its parent, [`Event`](event).
 
-Examples
---------
+## Examples
 
     // TBD
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/encrypted-media/#mediakeymessageevent">Encrypted Media Extensions<br />
 <span class="small">The definition of 'MediaKeyMessageEvent' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

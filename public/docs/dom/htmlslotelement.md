@@ -1,16 +1,13 @@
-HTMLSlotElement
-===============
+# HTMLSlotElement
 
 The `HTMLSlotElement` interface of the [Shadow DOM API](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) enables access to the name and assigned nodes of an HTML [`<slot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) element.
 
-Properties
-----------
+## Properties
 
 [`HTMLSlotElement.name`](htmlslotelement/name)  
 [`DOMString`](domstring): Can be used to get and set the slot's name.
 
-Methods
--------
+## Methods
 
 [`HTMLSlotElement.assignedNodes()`](htmlslotelement/assignednodes)  
 Returns a sequence of the nodes assigned to this slot, and if the `flatten` option is set to `true`, the assigned nodes of any other slots that are descendants of this slot. If no assigned nodes are found, it returns the slot's fallback content.
@@ -18,14 +15,12 @@ Returns a sequence of the nodes assigned to this slot, and if the `flatten` opti
 [`HTMLSlotElement.assignedElements()`](htmlslotelement/assignedelements)  
 Returns a sequence of the elements assigned to this slot (and no other nodes). If the `flatten` option is set to `true`, it also returns the assigned elements of any other slots that are descendants of this slot. If no assigned nodes are found, it returns the slot's fallback content.
 
-Events
-------
+## Events
 
 [`slotchange`](htmlslotelement/slotchange_event)  
 Fired on an `HTMLSlotElement` instance ([`<slot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) element) when the node(s) contained in that slot change.
 
-Examples
---------
+## Examples
 
 The following snippet is taken from our [slotchange example](https://github.com/mdn/web-components-examples/tree/master/slotchange) ([see it live also](https://mdn.github.io/web-components-examples/slotchange/)).
 
@@ -39,14 +34,12 @@ Here we grab references to all the slots, then add a slotchange event listener t
 
 Every time the element inserted in the slot changes, we log a report to the console saying which slot has changed, and what the new node inside the slot is.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/scripting.html#htmlslotelement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLSlotElement' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

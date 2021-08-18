@@ -1,12 +1,10 @@
-HTMLMediaElement: progress event
-================================
+# HTMLMediaElement: progress event
 
 The `progress` event is fired periodically as the browser loads a resource.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>No</td></tr><tr class="even"><td>Cancelable</td><td>No</td></tr><tr class="odd"><td>Interface</td><td><a href="../event"><code>Event</code></a></td></tr><tr class="even"><td>Event handler property</td><td><code>onprogress</code></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 ### Live example
 
@@ -56,15 +54,13 @@ Examples
 
 #### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/media.html#event-media-progress">HTML Living Standard<br />
 <span class="small">The definition of 'progress media event' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/html52/embedded-content-0.html#event-media-progress">HTML5<br />
 <span class="small">The definition of 'progress media event' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -120,12 +116,11 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   [`HTMLAudioElement`](../htmlaudioelement)
--   [`HTMLVideoElement`](../htmlvideoelement)
--   [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
--   [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
+- [`HTMLAudioElement`](../htmlaudioelement)
+- [`HTMLVideoElement`](../htmlvideoelement)
+- [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
+- [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/progress_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/progress_event</a>

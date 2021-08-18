@@ -1,10 +1,8 @@
-HTMLObjectElement.height
-========================
+# HTMLObjectElement.height
 
 The `height` property of the [`HTMLObjectElement`](../htmlobjectelement) interface Returns a [`DOMString`](../domstring) that reflects the [`height`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object#attr-height) HTML attribute, specifying the displayed height of the resource in CSS pixels.
 
-Syntax
-------
+## Syntax
 
     var String = HTMLObjectElement.height;
     HTMLObjectElement.height = String;
@@ -13,14 +11,12 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/#dom-dim-height">HTML Living Standard<br />
 <span class="small">The definition of 'height' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

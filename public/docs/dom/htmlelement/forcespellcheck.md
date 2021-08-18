@@ -1,5 +1,4 @@
-HTMLElement.forceSpellCheck()
-=============================
+# HTMLElement.forceSpellCheck()
 
 **Experimental**
 
@@ -8,13 +7,11 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `forceSpellCheck()` method of the [`HTMLElement`](../htmlelement) interface forces a spelling and grammar check on HTML elements, even if the user has not focused on the elements. This method overrides [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) behavior. The specific user interface of the check, for example whether red underlining appears, is determined by the user agent.
 
-Syntax
-------
+## Syntax
 
     element.forceSpellCheck()
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -70,9 +67,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Controlling spell checking in HTML forms](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck)
+- [Controlling spell checking in HTML forms](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/forceSpellCheck" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/forceSpellCheck</a>

@@ -1,10 +1,8 @@
-MediaSession.playbackState
-==========================
+# MediaSession.playbackState
 
 The `playbackState` property of the [`MediaSession`](../mediasession) interface indicates whether the current media session is playing or paused.
 
-Syntax
-------
+## Syntax
 
     let playbackState = mediaSession.playbackState;
     mediaSession.playbackState = playbackState;
@@ -22,8 +20,7 @@ The browser's media session is currently paused. Playback may be resumed.
 `playing`  
 The browser's media session is currently playing media, which can be paused.
 
-Example
--------
+## Example
 
 The following example sets up two functions for playing and pausing, then uses them as callbacks with the relevant action handlers. Each function harnesses the `playbackState` property to indicate whether the audio is playing or paused.
 
@@ -61,14 +58,12 @@ The following example sets up two functions for playing and pausing, then uses t
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediasession/#dom-mediasession-playbackstate">Media Session Standard<br />
 <span class="small">The definition of 'playbackState' in that specification.</span></a></td><td><span class="spec-draft">Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

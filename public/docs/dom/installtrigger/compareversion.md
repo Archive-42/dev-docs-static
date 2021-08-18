@@ -1,5 +1,4 @@
-InstallTrigger.compareVersion
-=============================
+# InstallTrigger.compareVersion
 
 **Warning**
 

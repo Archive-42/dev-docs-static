@@ -1,25 +1,22 @@
-Element.scrollBy()
-==================
+# Element.scrollBy()
 
 The `scrollBy()` method of the [`Element`](../element) interface scrolls an element by the given amount.
 
-Syntax
-------
+## Syntax
 
     element.scrollBy(x-coord, y-coord);
     element.scrollBy(options)
 
 ### Parameters
 
--   `x-coord` is the horizontal pixel value that you want to scroll by.
--   `y-coord` is the vertical pixel value that you want to scroll by.
+- `x-coord` is the horizontal pixel value that you want to scroll by.
+- `y-coord` is the vertical pixel value that you want to scroll by.
 
 \- or -
 
--   `options` is a [`ScrollToOptions`](../scrolltooptions) dictionary.
+- `options` is a [`ScrollToOptions`](../scrolltooptions) dictionary.
 
-Examples
---------
+## Examples
 
     // scroll an element
     element.scrollBy(300, 300);
@@ -32,14 +29,12 @@ Using `options`:
       behavior: 'smooth'
     });
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://drafts.csswg.org/cssom-view/#dom-element-scrollby-options-options">CSS Object Model (CSSOM) View Module<br />
 <span class="small">The definition of 'element.scrollBy()' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

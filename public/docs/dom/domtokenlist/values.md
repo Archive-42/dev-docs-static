@@ -1,10 +1,8 @@
-DOMTokenList.values()
-=====================
+# DOMTokenList.values()
 
 The `values()` method of the [`DOMTokenList`](../domtokenlist) interface returns an [`iterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) allowing developers to go through all values contained in the `DOMTokenList`. The individual values are [`DOMString`](../domstring) objects.
 
-Syntax
-------
+## Syntax
 
     tokenList.values();
 
@@ -16,8 +14,7 @@ None.
 
 Returns an [`iterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols).
 
-Examples
---------
+## Examples
 
 In the following example we retrieve the list of classes set on a [`<span>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span) element as a `DOMTokenList` using [`Element.classList`](../element/classlist). We when retrieve an iterator containing the values using `values()`, then iterate through those values using a [for ... of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) loop, writing each one to the `<span>`'s [`Node.textContent`](../node/textcontent).
 
@@ -37,14 +34,12 @@ Now the JavaScript:
 
 The output looks like this:
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://dom.spec.whatwg.org/#domtokenlist">DOM<br />
 <span class="small">The definition of 'values() (as iterable&lt;Node&gt;)' in that specification.</span></a></td><td><span class="spec-living">Living Standard</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 

@@ -1,24 +1,20 @@
-MediaDevices
-============
+# MediaDevices
 
 The `MediaDevices` interface provides access to connected media input devices like cameras and microphones, as well as screen sharing. In essence, it lets you obtain access to any hardware source of media data.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent interface, [`EventTarget`](eventtarget).*
+_Inherits properties from its parent interface, [`EventTarget`](eventtarget)._
 
-Events
-------
+## Events
 
 [`devicechange`](mediadevices/devicechange_event)  
 Fired when a media input or output device is attached to or removed from the user's computer.  
 Also available via the [`ondevicechange`](mediadevices/ondevicechange) property.
 
-Methods
--------
+## Methods
 
-*Inherits methods from its parent interface, [`EventTarget`](eventtarget).*
+_Inherits methods from its parent interface, [`EventTarget`](eventtarget)._
 
 [`enumerateDevices()`](mediadevices/enumeratedevices)  
 Obtains an array of information about the media input and output devices available on the system.
@@ -32,8 +28,7 @@ Prompts the user to select a display or portion of a display (such as a window) 
 [`getUserMedia()`](mediadevices/getusermedia)  
 With the user's permission through a prompt, turns on a camera and/or a microphone on the system and provides a [`MediaStream`](mediastream) containing a video track and/or an audio track with the input.
 
-Example
--------
+## Example
 
     'use strict';
 
@@ -75,14 +70,12 @@ Example
       }
     }
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#mediadevices">Media Capture and Streams<br />
 <span class="small">The definition of 'MediaDevices' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -272,7 +265,7 @@ If you need this capability before version 53, refer to `navigator.webkitGetUser
 
 36
 
-\["If you need this capability before version 36, refer to `navigator.mozGetUserMedia`, a prefixed form of the deprecated [`navigator.getUserMedia`](https://developer.mozilla.org/docs/Web/API/Navigator/getUserMedia) API.", "Before Firefox 55, `getUserMedia()` incorrectly returns `NotSupportedError` when the list of constraints specified is empty, or has all constraints set to `false`. Starting in Firefox 55, this situation now correctly calls the failure handler with a `TypeError`.", "When using the Firefox-specific `video` constraint called `mediaSource` to request display capture, Firefox 66 and later consider values of `screen` and `window` to both cause a list of screens *and* windows to be shown.", "Starting in Firefox 66, `getUserMedia()` can no longer be used in sandboxed `<iframe>`s or `data` URLs entered in the address bar by the user."\]
+\["If you need this capability before version 36, refer to `navigator.mozGetUserMedia`, a prefixed form of the deprecated [`navigator.getUserMedia`](https://developer.mozilla.org/docs/Web/API/Navigator/getUserMedia) API.", "Before Firefox 55, `getUserMedia()` incorrectly returns `NotSupportedError` when the list of constraints specified is empty, or has all constraints set to `false`. Starting in Firefox 55, this situation now correctly calls the failure handler with a `TypeError`.", "When using the Firefox-specific `video` constraint called `mediaSource` to request display capture, Firefox 66 and later consider values of `screen` and `window` to both cause a list of screens _and_ windows to be shown.", "Starting in Firefox 66, `getUserMedia()` can no longer be used in sandboxed `<iframe>`s or `data` URLs entered in the address bar by the user."\]
 
 No
 
@@ -290,7 +283,7 @@ If you need this capability before version 53, refer to `navigator.webkitGetUser
 
 36
 
-\["If you need this capability before version 36, refer to `navigator.mozGetUserMedia`, a prefixed form of the deprecated [`navigator.getUserMedia`](https://developer.mozilla.org/docs/Web/API/Navigator/getUserMedia) API.", "Before Firefox 55, `getUserMedia()` incorrectly returns `NotSupportedError` when the list of constraints specified is empty, or has all constraints set to `false`. Starting in Firefox 55, this situation now correctly calls the failure handler with a `TypeError`.", "When using the Firefox-specific `video` constraint called `mediaSource` to request display capture, Firefox 66 and later consider values of `screen` and `window` to both cause a list of screens *and* windows to be shown.", "Starting in Firefox 66, `getUserMedia()` can no longer be used in sandboxed `<iframe>`s or `data` URLs entered in the address bar by the user."\]
+\["If you need this capability before version 36, refer to `navigator.mozGetUserMedia`, a prefixed form of the deprecated [`navigator.getUserMedia`](https://developer.mozilla.org/docs/Web/API/Navigator/getUserMedia) API.", "Before Firefox 55, `getUserMedia()` incorrectly returns `NotSupportedError` when the list of constraints specified is empty, or has all constraints set to `false`. Starting in Firefox 55, this situation now correctly calls the failure handler with a `TypeError`.", "When using the Firefox-specific `video` constraint called `mediaSource` to request display capture, Firefox 66 and later consider values of `screen` and `window` to both cause a list of screens _and_ windows to be shown.", "Starting in Firefox 66, `getUserMedia()` can no longer be used in sandboxed `<iframe>`s or `data` URLs entered in the address bar by the user."\]
 
 41
 
@@ -352,14 +345,13 @@ No
 
 ?
 
-See also
---------
+## See also
 
--   [Media Capture and Streams API](media_streams_api): The API this interface is part of.
--   [Screen Capture API](screen_capture_api): The API defining the [`getDisplayMedia()`](mediadevices/getdisplaymedia) method.
--   [WebRTC API](webrtc_api)
--   [`Navigator.mediaDevices`](navigator/mediadevices): Returns a reference to a `MediaDevices` object that can be used to access devices.
--   [CameraCaptureJS:](https://github.com/chrisjohndigital/CameraCaptureJS) HTML5 video capture and playback using `MediaDevices` and the MediaStream Recording API ([source on GitHub](https://github.com/chrisjohndigital/CameraCaptureJS))
--   [OpenLang](https://github.com/chrisjohndigital/OpenLang): HTML5 video language lab web application using `MediaDevices` and the MediaStream Recording API for video recording ([source on GitHub](https://github.com/chrisjohndigital/OpenLang))
+- [Media Capture and Streams API](media_streams_api): The API this interface is part of.
+- [Screen Capture API](screen_capture_api): The API defining the [`getDisplayMedia()`](mediadevices/getdisplaymedia) method.
+- [WebRTC API](webrtc_api)
+- [`Navigator.mediaDevices`](navigator/mediadevices): Returns a reference to a `MediaDevices` object that can be used to access devices.
+- [CameraCaptureJS:](https://github.com/chrisjohndigital/CameraCaptureJS) HTML5 video capture and playback using `MediaDevices` and the MediaStream Recording API ([source on GitHub](https://github.com/chrisjohndigital/CameraCaptureJS))
+- [OpenLang](https://github.com/chrisjohndigital/OpenLang): HTML5 video language lab web application using `MediaDevices` and the MediaStream Recording API for video recording ([source on GitHub](https://github.com/chrisjohndigital/OpenLang))
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices</a>

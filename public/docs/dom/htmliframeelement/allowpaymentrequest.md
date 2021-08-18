@@ -1,5 +1,4 @@
-HTMLIFrameElement.allowPaymentRequest
-=====================================
+# HTMLIFrameElement.allowPaymentRequest
 
 **Deprecated**
 
@@ -11,8 +10,7 @@ This feature is non-standard and is not on a standards track. Do not use it on p
 
 The `allowPaymentRequest` property of the [`HTMLIFrameElement`](../htmliframeelement) interface returns a [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) indicating whether the [Payment Request API](../payment_request_api) may be invoked on a cross-origin iframe.
 
-Syntax
-------
+## Syntax
 
     var allow = htmlIFrameElement.allowPaymentRequest
 
@@ -20,8 +18,7 @@ Syntax
 
 A [`Boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean).
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -77,9 +74,8 @@ No
 
 No
 
-See also
---------
+## See also
 
--   [Payment Request API](../payment_request_api)
+- [Payment Request API](../payment_request_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/allowPaymentRequest" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/allowPaymentRequest</a>

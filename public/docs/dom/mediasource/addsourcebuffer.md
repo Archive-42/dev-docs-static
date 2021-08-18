@@ -1,10 +1,8 @@
-MediaSource.addSourceBuffer()
-=============================
+# MediaSource.addSourceBuffer()
 
 The `addSourceBuffer()` method of the [`MediaSource`](../mediasource) interface creates a new [`SourceBuffer`](../sourcebuffer) of the given [MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type) and adds it to the `MediaSource`'s [`sourceBuffers`](sourcebuffers) list. The new `SourceBuffer` is also returned.
 
-Syntax
-------
+## Syntax
 
     var sourceBuffer = mediaSource.addSourceBuffer(mimeType);
 
@@ -31,8 +29,7 @@ The specified `mimeType` isn't supported by the [user agent](https://developer.m
 `QuotaExceededError`  
 The user agent can't handle any more `SourceBuffer` objects, or creating a new `SourceBuffer` using the given `mimeType` would result in an [unsupported configuration of `SourceBuffer`s](https://w3c.github.io/media-source/#sourcebuffer-configuration).
 
-Example
--------
+## Example
 
 The following snippet is from a simple example written by Nick Desaulniers ([view the full demo live](https://nickdesaulniers.github.io/netfix/demo/bufferAll.html), or [download the source](https://github.com/nickdesaulniers/netfix/blob/gh-pages/demo/bufferAll.html) for further investigation.)
 
@@ -64,14 +61,12 @@ The following snippet is from a simple example written by Nick Desaulniers ([vie
       });
     };
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/media-source/#dom-mediasource-addsourcebuffer">Media Source Extensions<br />
 <span class="small">The definition of 'addSourceBuffer()' in that specification.</span></a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -129,10 +124,9 @@ No
 
 1.5
 
-See also
---------
+## See also
 
--   [`SourceBuffer`](../sourcebuffer)
--   [`SourceBufferList`](../sourcebufferlist)
+- [`SourceBuffer`](../sourcebuffer)
+- [`SourceBufferList`](../sourcebufferlist)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/addSourceBuffer" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/addSourceBuffer</a>

@@ -1,5 +1,4 @@
-Geolocation
-===========
+# Geolocation
 
 **Secure context**
 
@@ -11,32 +10,28 @@ An object with this interface is obtained using the [`navigator.geolocation`](na
 
 **Note:** For security reasons, when a web page tries to access location information, the user is notified and asked to grant permission. Be aware that each browser has its own policies and methods for requesting this permission.
 
-Properties
-----------
+## Properties
 
-*The `Geolocation` interface neither implements, nor inherits any property.*
+_The `Geolocation` interface neither implements, nor inherits any property._
 
-Methods
--------
+## Methods
 
-*The `Geolocation` interface doesn't inherit any method.*
+_The `Geolocation` interface doesn't inherit any method._
 
- [`Geolocation.getCurrentPosition()`](geolocation/getcurrentposition) <span class="notecard inline secure">Secure context</span>   
+[`Geolocation.getCurrentPosition()`](geolocation/getcurrentposition) <span class="notecard inline secure">Secure context</span>  
 Determines the device's current location and gives back a [`GeolocationPosition`](geolocationposition) object with the data.
 
- [`Geolocation.watchPosition()`](geolocation/watchposition) <span class="notecard inline secure">Secure context</span>   
+[`Geolocation.watchPosition()`](geolocation/watchposition) <span class="notecard inline secure">Secure context</span>  
 Returns a `long` value representing the newly established callback function to be invoked whenever the device location changes.
 
- [`Geolocation.clearWatch()`](geolocation/clearwatch) <span class="notecard inline secure">Secure context</span>   
+[`Geolocation.clearWatch()`](geolocation/clearwatch) <span class="notecard inline secure">Secure context</span>  
 Removes the particular handler previously installed using `watchPosition()`.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/geolocation-api/#geolocation_interface">Geolocation API</a></td><td><span class="spec-rec">Recommendation</span></td><td>Initial specification.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -200,9 +195,8 @@ Yes
 
 1.0
 
-See also
---------
+## See also
 
--   [Using geolocation](geolocation_api/using_the_geolocation_api)
+- [Using geolocation](geolocation_api/using_the_geolocation_api)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Geolocation</a>

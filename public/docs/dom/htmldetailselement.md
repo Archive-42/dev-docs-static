@@ -1,37 +1,31 @@
-HTMLDetailsElement
-==================
+# HTMLDetailsElement
 
 The `HTMLDetailsElement` interface provides special properties (beyond the regular [`HTMLElement`](htmlelement) interface it also has available to it by inheritance) for manipulating [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) elements.
 
-Properties
-----------
+## Properties
 
-*Inherits properties from its parent, [`HTMLElement`](htmlelement).*
+_Inherits properties from its parent, [`HTMLElement`](htmlelement)._
 
 <span class="page-not-created">`HTMLDetailsElement.open`</span>  
 Is a [`boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean) reflecting the [`open`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details#attr-open) HTML attribute, indicating whether or not the element’s contents (not counting the [`<summary>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary)) is to be shown to the user.
 
-Methods
--------
+## Methods
 
-*No specific method; inherits methods from its parent, [`HTMLElement`](htmlelement).*
+_No specific method; inherits methods from its parent, [`HTMLElement`](htmlelement)._
 
-Events
-------
+## Events
 
 Listen to this event using `addEventListener()` or by assigning an event listener to the `oneventname` property of this interface.
 
 `toggle`  
 Fired when the `open`/`closed` state of a [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) element is toggled.
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://html.spec.whatwg.org/multipage/interactive-elements.html#htmldetailselement">HTML Living Standard<br />
 <span class="small">The definition of 'HTMLDetailsElement' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -139,9 +133,8 @@ Yes
 
 Yes
 
-See also
---------
+## See also
 
--   The HTML element implementing this interface: [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details)
+- The HTML element implementing this interface: [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDetailsElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLDetailsElement</a>

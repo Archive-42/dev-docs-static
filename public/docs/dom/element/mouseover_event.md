@@ -1,12 +1,10 @@
-Element: mouseover event
-========================
+# Element: mouseover event
 
 The `mouseover` event is fired at an [`Element`](../element) when a pointing device (such as a mouse or trackpad) is used to move the cursor onto the element or one of its child elements.
 
 <table><tbody><tr class="odd"><td>Bubbles</td><td>Yes</td></tr><tr class="even"><td>Cancelable</td><td>Yes</td></tr><tr class="odd"><td>Interface</td><td><a href="../mouseevent"><code>MouseEvent</code></a></td></tr><tr class="even"><td>Event handler property</td><td><a href="../globaleventhandlers/onmouseover"><code>onmouseover</code></a></td></tr></tbody></table>
 
-Examples
---------
+## Examples
 
 The following example illustrates the difference between `mouseover` and [`mouseenter`](mouseenter_event) events.
 
@@ -48,15 +46,13 @@ The following example illustrates the difference between `mouseover` and [`mouse
 
 ### Result
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/uievents/#event-type-mouseover">UI Events<br />
 <span class="small">The definition of 'mouseover' in that specification.</span></a></td><td><span class="spec-wd">Working Draft</span></td></tr><tr class="even"><td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#event-type-mouseover">Document Object Model (DOM) Level 3 Events Specification<br />
 <span class="small">The definition of 'mouseover' in that specification.</span></a></td><td><span class="spec-obsolete">Obsolete</span></td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
@@ -112,19 +108,18 @@ Samsung Internet
 
 1.0
 
-See also
---------
+## See also
 
--   [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
--   [`mousedown`](mousedown_event)
--   [`mouseup`](mouseup_event)
--   [`mousemove`](mousemove_event)
--   [`click`](click_event)
--   [`dblclick`](dblclick_event)
--   [`mouseover`](mouseover_event)
--   [`mouseout`](mouseout_event)
--   [`mouseenter`](mouseenter_event)
--   [`mouseleave`](mouseleave_event)
--   [`contextmenu`](contextmenu_event)
+- [Introduction to events](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
+- [`mousedown`](mousedown_event)
+- [`mouseup`](mouseup_event)
+- [`mousemove`](mousemove_event)
+- [`click`](click_event)
+- [`dblclick`](dblclick_event)
+- [`mouseover`](mouseover_event)
+- [`mouseout`](mouseout_event)
+- [`mouseenter`](mouseenter_event)
+- [`mouseleave`](mouseleave_event)
+- [`contextmenu`](contextmenu_event)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseover_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseover_event</a>

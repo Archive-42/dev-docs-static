@@ -1,5 +1,4 @@
-MediaDeviceInfo.kind
-====================
+# MediaDeviceInfo.kind
 
 **Experimental**
 
@@ -8,8 +7,7 @@ Check the [Browser compatibility table](#browser_compatibility) carefully before
 
 The `kind` readonly property of the [`MediaDeviceInfo`](../mediadeviceinfo) interface returns an enumerated value, that is either "videoinput", "audioinput" or "audiooutput".
 
-Syntax
-------
+## Syntax
 
     var kind = MediaDeviceInfo.kind
 
@@ -17,14 +15,12 @@ Syntax
 
 A [`DOMString`](../domstring).
 
-Specifications
---------------
+## Specifications
 
 <table><thead><tr class="header"><th>Specification</th><th>Status</th><th>Comment</th></tr></thead><tbody><tr class="odd"><td><a href="https://w3c.github.io/mediacapture-main/#dom-mediadeviceinfo-kind">Media Capture and Streams<br />
 <span class="small">The definition of 'kind' in that specification.</span></a></td><td><span class="spec-cr">Candidate Recommendation</span></td><td>Initial definition.</td></tr></tbody></table>
 
-Browser compatibility
----------------------
+## Browser compatibility
 
 Desktop
 
